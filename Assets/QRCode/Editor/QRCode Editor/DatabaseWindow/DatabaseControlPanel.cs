@@ -1,3 +1,4 @@
+/*
 using System.Linq;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
@@ -51,3 +52,4 @@ namespace QRCode.Editor
         }
     }
 }
+*/

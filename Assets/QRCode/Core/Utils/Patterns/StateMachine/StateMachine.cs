@@ -20,12 +20,11 @@ namespace QRCode
         private Istate CurrentState => currentState;
         
         //---<INITIALISATION>------------------------------------------------------------------------------------------<
-        public StateMachine (Istate[] states, string firstState, UpdateMode updateMode , EventArgs args)
+        public StateMachine (Istate[] states, UpdateMode updateMode , EventArgs args)
         {
             this.states = new Dictionary<string, Istate>();
             for (int i = 0; i < states.Length; i++)
                 AddState(states[i]);
-            SetState(firstState, args);
             UpdateRunner.Instance.Register(updateMode, Execute);
         }
 
