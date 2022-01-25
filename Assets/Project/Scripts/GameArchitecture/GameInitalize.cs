@@ -5,12 +5,18 @@ using UnityEngine.SceneManagement;
 
 namespace TheFowler
 {
+    /// <summary>
+    /// This class manage the initilisation of the game
+    /// </summary>
     public class GameInitalize : SerializedMonoBehaviour
     {
-        [SerializeField] private ChapterEnum startAtChapter;
-        [SerializeField] private bool loadChapter;
-        [SerializeField] private bool loadGymRoom;
-        [SerializeField] private bool loadPlayer;
+        [TitleGroup("Chapter Settings")]
+        [SerializeField, Tooltip(ToolTips.TT_loadChapter)] private bool loadChapter;
+        [SerializeField, ShowIf("@this.loadChapter")] private ChapterEnum startAtChapter;
+
+        [TitleGroup("Settings")]
+        [SerializeField, Tooltip(ToolTips.TT_loadGymRoom)] private bool loadGymRoom;
+        [SerializeField, Tooltip(ToolTips.TT_loadPlayer)] private bool loadPlayer;
         
         private void Start()
         {

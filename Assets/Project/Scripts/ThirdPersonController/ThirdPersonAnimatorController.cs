@@ -26,6 +26,12 @@ namespace TheFowler
                     smoothMoveAmount -= Time.deltaTime * smoothValue;
                 }
             }
+
+            if (moveAmount == 0)
+            {
+                smoothMoveAmount -= Time.deltaTime * smoothValue;
+                Mathf.Clamp01(smoothMoveAmount);
+            }
             
             UpdateAnimator(smoothMoveAmount);
         }

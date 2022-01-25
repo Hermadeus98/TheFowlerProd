@@ -6,6 +6,9 @@ using UnityEditor;
 
 namespace TheFowler
 {
+    /// <summary>
+    /// This class is used to ez debug in scene.
+    /// </summary>
     public class GameDebugger : SerializedMonoBehaviour
     {
         [Button]

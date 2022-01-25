@@ -13,7 +13,7 @@ namespace TheFowler
         public static void Initialize()
         {
             if (Robyn.IsNull())
-                Robyn = PlayerSpawn.current.SpawnPlayer();
+                PlayerSpawn.current.SpawnPlayer();
             else
                 PlayerSpawn.current.ReplacePlayer();
         }

@@ -12,7 +12,7 @@ namespace TheFowler
     {
         [SerializeField]
         private string stateName;
-        [HideInInspector] public string StateName { get => stateName; set => stateName = value; }
+        public string StateName { get => stateName; set => stateName = value; }
 
         [SerializeField] protected Transform model;
 

@@ -68,19 +68,4 @@ namespace TheFowler
             };
         }
     }
-
-    public class GameArg : EventArgs
-    {
-        public Chapter currentChapter;
-    }
-    
-    public enum GameStateEnum
-    {
-        LAUNCH,
-        BATTLE,
-        CINEMATIC,
-        EXPLORATION,
-        HARMONISATION,
-        CUTSCENE
-    }
 }

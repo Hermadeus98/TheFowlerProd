@@ -1,18 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace TheFowler
 {
-    public class Robyn : MonoBehaviour
+    public class Robyn : Character
     {
-        public Controller Controller;
-        
-        public Transform pawnTransform;
-
-        private void Start()
+        protected override void OnStart()
         {
+            base.OnStart();
             Player.Robyn = this;
         }
     }

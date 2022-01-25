@@ -1,15 +1,17 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
+
 using QRCode;
-using QRCode.Extensions;
+
 using TMPro;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace TheFowler
 {
+    /// <summary>
+    /// This class is used to show information useful to debug.
+    /// </summary>
     public class GameInfo : MonoBehaviourSingleton<GameInfo>
     {
         [SerializeField] private CanvasGroup canvasGroup;

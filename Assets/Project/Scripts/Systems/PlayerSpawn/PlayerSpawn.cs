@@ -1,3 +1,4 @@
+using QRCode.Extensions;
 using Sirenix.OdinInspector;
 
 namespace TheFowler
@@ -12,20 +13,22 @@ namespace TheFowler
         }
 
         [Button]
-        public Robyn SpawnPlayer()
+        public void SpawnPlayer()
         {
+            if (Player.Robyn.IsNotNull())
+                return;
+            
             var player = Instantiate<Robyn>(Spawnables.Instance.Robyn);
-            player.pawnTransform.position = transform.position;
-            player.pawnTransform.rotation = transform.rotation;
-            return player;
+            player.pawnTransform.position = current.transform.position;
+            player.pawnTransform.rotation = current.transform.rotation;
         }
 
         [Button]
         public Robyn ReplacePlayer()
         {
             var robyn = Player.Robyn;
-            robyn.pawnTransform.position = transform.position;
-            robyn.pawnTransform.rotation = transform.rotation;
+            robyn.pawnTransform.position = current.transform.position;
+            robyn.pawnTransform.rotation = current.transform.rotation;
             return robyn;
         }
     }

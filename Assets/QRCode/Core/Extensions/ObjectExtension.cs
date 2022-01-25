@@ -6,7 +6,7 @@ namespace QRCode.Extensions
     {
         public static bool IsNotNull(this Object o)
         {
-            return o ?? true;
+            return o ? o : false;
         }
         
         public static bool IsNull(this Object o)

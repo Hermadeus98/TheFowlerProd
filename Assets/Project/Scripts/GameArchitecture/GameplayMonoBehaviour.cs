@@ -31,24 +31,34 @@ namespace TheFowler
 
         //---<GAME>----------------------------------------------------------------------------------------------------<
         protected virtual void OnStart(){ }
-        
-        protected virtual void Initialize(EventArgs args){ }
 
+        /// <summary>
+        /// Callback use to set dependancies of this MonoBehaviour.
+        /// </summary>
         protected virtual void SetDependancies()
         {
             QRDebug.Log("Game", FrenchPallet.CARROT, "Set Dependancies", gameObject);
         }
         
+        /// <summary>
+        /// Callback use when the game start.
+        /// </summary>
         protected virtual void OnGameStart()
         {
             QRDebug.Log("Game", FrenchPallet.CARROT, "Start", gameObject);
         }
         
+        /// <summary>
+        /// Callback use when the game is paused.
+        /// </summary>
         protected virtual void OnPause()
         {
             QRDebug.Log("Game", FrenchPallet.CARROT, "Pause", gameObject);
         }
         
+        /// <summary>
+        /// Callback use when the game is unpaused.
+        /// </summary>
         protected virtual void OnUnpause()
         {
             QRDebug.Log("Game", FrenchPallet.CARROT, "UnPause", gameObject);
