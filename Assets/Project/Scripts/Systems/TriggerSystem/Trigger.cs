@@ -13,8 +13,10 @@ namespace TheFowler
         [FoldoutGroup("Flags")]
         [SerializeField] private ColliderFlag FlagToTrigger;
 
-        [FoldoutGroup("Events")]
-        [SerializeField] public UnityEvent onTriggerEnterFront, onTriggerEnterBack, onTriggerExit;
+        [FoldoutGroup("Events")] [SerializeField]
+        public GameInstructions enterFrontInstructions, enterBackInstructions, exitInstructions;
+        [FoldoutGroup("Events")] [SerializeField]
+        public UnityEvent onTriggerEnterFront, onTriggerEnterBack, onTriggerExit;
 
         [FoldoutGroup("Settings")]
         [SerializeField] private bool disableOnEnter = true;
@@ -33,10 +35,12 @@ namespace TheFowler
 
                     if (Vector3.Dot(forward, toOther) < 0)
                     {
+                        enterFrontInstructions?.Call();
                         onTriggerEnterFront?.Invoke();
                     }
                     else
                     {
+                        enterBackInstructions?.Call();
                         onTriggerEnterBack?.Invoke();
                     }
                     
@@ -53,6 +57,7 @@ namespace TheFowler
             {
                 if (checker.CompareFlag(FlagToTrigger))
                 {
+                    exitInstructions?.Call();
                     onTriggerExit?.Invoke();
 
                     if (disableOnExit)

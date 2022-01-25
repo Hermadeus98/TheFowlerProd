@@ -16,8 +16,8 @@ namespace QRCode
         public bool Pause = false;
         
         //---<Properties>----------------------------------------------------------------------------------------------<
-        private Dictionary<string, Istate> States => states;
-        private Istate CurrentState => currentState;
+        public Dictionary<string, Istate> States => states;
+        public Istate CurrentState => currentState;
         
         //---<INITIALISATION>------------------------------------------------------------------------------------------<
         public StateMachine (Istate[] states, UpdateMode updateMode , EventArgs args)

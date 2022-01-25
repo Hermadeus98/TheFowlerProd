@@ -9,8 +9,8 @@ namespace TheFowler
     {
         [SerializeField] private ChapterEnum startAtChapter;
         [SerializeField] private bool loadChapter;
-
         [SerializeField] private bool loadGymRoom;
+        [SerializeField] private bool loadPlayer;
         
         private void Start()
         {
@@ -32,6 +32,10 @@ namespace TheFowler
                 //--<CHAPTER>
                 ChapterManager.Initialize();
                 ChapterManager.ChangeChapter(startAtChapter);
+            }
+            else if (loadPlayer)
+            {
+                Player.Initialize();
             }
         }
     }
