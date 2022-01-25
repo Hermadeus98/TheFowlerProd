@@ -17,7 +17,7 @@ namespace QRCode
         [Button]
         public void Initialize()
         {
-            StateMachine = new StateMachine(states, states[0].StateName, updateMode, EventArgs.Empty);
+            StateMachine = new StateMachine(states, updateMode, EventArgs.Empty);
         }
     }
 }

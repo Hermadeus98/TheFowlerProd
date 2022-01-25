@@ -6,16 +6,6 @@ using MoreMountains;
 
 public class StateMachineTest : SerializedMonoBehaviour
 {
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     private StateMachine stateMachine; 
     WrapperArgs<MyArgDeTest> wrapper = new WrapperArgs<MyArgDeTest>(new MyArgDeTest() {a = 5f});
 
@@ -33,7 +23,7 @@ public class StateMachineTest : SerializedMonoBehaviour
             new StateTest() {StateName = "C"}
         };
         
-        stateMachine = new StateMachine(states, "A", UpdateMode.Update, wrapper);
+        stateMachine = new StateMachine(states, UpdateMode.Update, wrapper);
     }
 
     [Button]
