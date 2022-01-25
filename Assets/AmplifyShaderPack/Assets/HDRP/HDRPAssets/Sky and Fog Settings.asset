@@ -35,6 +35,11 @@ MonoBehaviour:
     m_Value: 0.7
     min: 0.25
     max: 5
+  spatialBilateralAggressiveness:
+    m_OverrideState: 0
+    m_Value: 0.15
+    min: 0
+    max: 1
   temporalAccumulation:
     m_OverrideState: 1
     m_Value: 1
@@ -53,32 +58,14 @@ MonoBehaviour:
     m_Value:
       serializedVersion: 2
       m_Bits: 4294967295
-  rayLength:
-    m_OverrideState: 1
-    m_Value: 0.5
-    min: 0
-    max: 50
-  sampleCount:
-    m_OverrideState: 1
-    m_Value: 4
-    min: 1
-    max: 64
-  denoise:
-    m_OverrideState: 1
-    m_Value: 0
-  denoiserRadius:
-    m_OverrideState: 1
-    m_Value: 0.5
-    min: 0.001
-    max: 1
   m_StepCount:
     m_OverrideState: 1
-    m_Value: 9
+    m_Value: 6
     min: 2
     max: 32
   m_FullResolution:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   m_MaximumRadiusInPixels:
     m_OverrideState: 1
     m_Value: 40
@@ -92,6 +79,23 @@ MonoBehaviour:
     m_Value: 2
     min: 1
     max: 6
+  m_RayLength:
+    m_OverrideState: 1
+    m_Value: 20
+    min: 0
+  m_SampleCount:
+    m_OverrideState: 1
+    m_Value: 8
+    min: 1
+    max: 64
+  m_Denoise:
+    m_OverrideState: 1
+    m_Value: 1
+  m_DenoiserRadius:
+    m_OverrideState: 1
+    m_Value: 0.65
+    min: 0.001
+    max: 1
 --- !u!114 &-4286393236230073451
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -176,6 +180,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   m_AdvancedMode: 0
+  quality:
+    m_OverrideState: 0
+    m_Value: 1
   enabled:
     m_OverrideState: 1
     m_Value: 1
@@ -217,12 +224,6 @@ MonoBehaviour:
   maximumHeight:
     m_OverrideState: 0
     m_Value: 50
-  albedo:
-    m_OverrideState: 0
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
-    hdr: 0
-    showAlpha: 1
-    showEyeDropper: 1
   meanFreePath:
     m_OverrideState: 0
     m_Value: 400
@@ -230,11 +231,12 @@ MonoBehaviour:
   enableVolumetricFog:
     m_OverrideState: 1
     m_Value: 1
-  anisotropy:
+  albedo:
     m_OverrideState: 0
-    m_Value: 0
-    min: -1
-    max: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    hdr: 0
+    showAlpha: 1
+    showEyeDropper: 1
   globalLightProbeDimmer:
     m_OverrideState: 0
     m_Value: 1
@@ -244,11 +246,45 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 64
     min: 0.1
+  denoisingMode:
+    m_OverrideState: 0
+    m_Value: 2
+  anisotropy:
+    m_OverrideState: 0
+    m_Value: 0
+    min: -1
+    max: 1
   sliceDistributionUniformity:
     m_OverrideState: 0
     m_Value: 0.75
     min: 0
     max: 1
+  m_FogControlMode:
+    m_OverrideState: 0
+    m_Value: 0
+  screenResolutionPercentage:
+    m_OverrideState: 0
+    m_Value: 12.5
+    min: 6.25
+    max: 50
+  volumeSliceCount:
+    m_OverrideState: 0
+    m_Value: 64
+    min: 1
+    max: 512
+  m_VolumetricFogBudget:
+    m_OverrideState: 0
+    m_Value: 0.333
+    min: 0
+    max: 1
+  m_ResolutionDepthRatio:
+    m_OverrideState: 0
+    m_Value: 0.5
+    min: 0
+    max: 1
+  directionalLightsOnly:
+    m_OverrideState: 0
+    m_Value: 0
   filter:
     m_OverrideState: 0
     m_Value: 0
@@ -309,13 +345,31 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 50
     min: 0
+  minDistance:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
   fadeDistance:
     m_OverrideState: 1
     m_Value: 5
     min: 0
+  fadeInDistance:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+  rayBias:
+    m_OverrideState: 0
+    m_Value: 0.2
+    min: 0
+    max: 1
+  thicknessScale:
+    m_OverrideState: 0
+    m_Value: 0.15
+    min: 0.02
+    max: 1
   m_SampleCount:
     m_OverrideState: 1
-    m_Value: 8
+    m_Value: 12
     min: 4
     max: 64
 --- !u!114 &3478507113610159706
