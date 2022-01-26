@@ -12,6 +12,8 @@ namespace QRCode.Editor
         private static SceneDatabase SceneDatabase;
         private static SceneSelectionEditor window;
 
+        private Vector2 scrollPos;
+
         [MenuItem("SceneSelection/OpenScene")]
         static void DoSomething()
         {
@@ -22,7 +24,10 @@ namespace QRCode.Editor
 
         private void OnGUI()
         {
+            scrollPos = GUILayout.BeginScrollView(scrollPos);
+
             GUILayout.Label("Open Scene");
+            
             
             if(SceneDatabase.Instance.ScenesBatches.IsNullOrEmpty())
             {
@@ -71,8 +76,9 @@ namespace QRCode.Editor
                     
                     GUILayout.EndVertical();
                 }
+                
+                GUILayout.EndScrollView();
             }
-            
         }
 
         private void OpenScene(SceneReference sceneReference)

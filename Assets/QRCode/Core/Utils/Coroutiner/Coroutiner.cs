@@ -6,21 +6,21 @@ namespace QRCode.Utils
     public class Coroutiner : MonoBehaviourSingleton<Coroutiner>
     {
         //--<Privates>
-        private List<IEnumerator> Coroutines = new List<IEnumerator>();
+        private static List<IEnumerator> Coroutines = new List<IEnumerator>();
 
         //---<CORE>----------------------------------------------------------------------------------------------------<
-        public void Play(IEnumerator enumerator)
+        public static void Play(IEnumerator enumerator)
         {
-            StartCoroutine(GetIENumerator(enumerator));
+            Instance.StartCoroutine(GetIENumerator(enumerator));
         }
 
-        public void Stop(IEnumerator enumerator)
+        public static void Stop(IEnumerator enumerator)
         {
-            StopCoroutine(GetIENumerator(enumerator));
+            Instance.StopCoroutine(GetIENumerator(enumerator));
         }
         
         //---<HELPERS>-------------------------------------------------------------------------------------------------<
-        private IEnumerator GetIENumerator(IEnumerator enumerator)
+        private static IEnumerator GetIENumerator(IEnumerator enumerator)
         {
             IEnumerator n = null;
             

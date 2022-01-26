@@ -7,7 +7,7 @@ namespace TheFowler
         Scene_UI,
         
         //INTRO
-        Scene_Cinematique,
+        Scene_Cinematique_Intro,
         Scene_Intro,
         
         //Chapitre 1 - Rencontre avec Pheobe
@@ -27,7 +27,7 @@ namespace TheFowler
         Scene_Harmonisation_SalleDeBal,
         
         //Chapitre 3 - Le tribunal
-        Scene_Harmonisation_Tribunal,
+        Scene_Harmonisation_Hub_Tribunal,
         Scene_Arene_Tribunal,
         Scene_Arene_Tribubal_Cinematique_Intro,
         Scene_Arene_Tribubal_Cinematique_Outro,

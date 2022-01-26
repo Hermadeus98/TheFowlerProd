@@ -16,8 +16,11 @@ namespace TheFowler
         public void SpawnPlayer()
         {
             if (Player.Robyn.IsNotNull())
+            {
+                ReplacePlayer();
                 return;
-            
+            }
+
             var player = Instantiate<Robyn>(Spawnables.Instance.Robyn);
             player.pawnTransform.position = current.transform.position;
             player.pawnTransform.rotation = current.transform.rotation;

@@ -1,5 +1,10 @@
+using System;
+using System.Collections;
+using System.Linq;
 using QRCode;
 using QRCode.Extensions;
+using QRCode.Utils;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace TheFowler
@@ -31,12 +36,49 @@ namespace TheFowler
                 SceneManager.LoadSceneAsync(SceneLoader.GetSceneKey(scenes[i]), LoadSceneMode.Additive);
             }
         }
+
+        public static void LoadSceneAdditive(string key, Action OnComplete)
+        {
+            Coroutiner.Play(IELoadSceneAdditive(key, OnComplete));
+        }
+
+        private static IEnumerator IELoadSceneAdditive(string key, Action OnComplete)
+        {
+            var db = SceneDatabase.Instance;
+            var batch = db.GetBatch(key);
+
+            AsyncOperation[] operations = new AsyncOperation[batch.sceneReferences.Length];
+            
+            for (int i = 0; i < batch.sceneReferences.Length; i++)
+            {
+                operations[i] = SceneManager.LoadSceneAsync(batch.sceneReferences[i].ScenePath, LoadSceneMode.Additive);
+            }
+
+            while (operations.All(w => !w.isDone))
+            {
+                QRDebug.Log("Scenes loading...", FrenchPallet.CLOUDS, $"{key} is loading.");
+                yield return null;
+            }
+            
+            OnComplete?.Invoke();
+        }
         
         public static void UnloadScene(params SceneEnum[] scenes)
         {
             for (int i = 0; i < scenes.Length; i++)
             {
                 SceneManager.UnloadSceneAsync(SceneLoader.GetSceneKey(scenes[i]));
+            }
+        }
+        
+        public static void UnloadScene(string key)
+        {
+            var db = SceneDatabase.Instance;
+            var batch = db.GetBatch(key);
+            for (int i = 0; i < batch.sceneReferences.Length; i++)
+            {
+                var sceneName = SceneManager.GetSceneByPath(batch.sceneReferences[i].ScenePath).name;
+                SceneManager.UnloadSceneAsync(sceneName);
             }
         }
     }
