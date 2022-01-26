@@ -20,6 +20,9 @@ namespace TheFowler
         
         private void Start()
         {
+            //--<REMOTE SETTINGS>
+            RemoteSettingsManager.Fetch();
+            
             //--<SYSTEM>
             GameEventInternal.Init();
             Game.Initialize();
