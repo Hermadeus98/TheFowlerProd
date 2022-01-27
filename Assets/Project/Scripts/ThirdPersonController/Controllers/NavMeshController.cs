@@ -51,6 +51,9 @@ namespace TheFowler
         public override void OnStateEnter(EventArgs arg)
         {
             base.OnStateEnter(arg);
+            
+            if(agent.isActiveAndEnabled)
+                agent.ResetPath();
         }
 
         public override void OnStateExecute()
@@ -66,6 +69,14 @@ namespace TheFowler
             UpdateAnimatorController(moveAmount);
         }
 
+        public override void OnStateExit(EventArgs arg)
+        {
+            base.OnStateExit(arg);
+            
+            if(agent.isActiveAndEnabled)
+                agent.ResetPath();
+        }
+        
         private void LateUpdate()
         {
             if(!isActive)
@@ -86,11 +97,6 @@ namespace TheFowler
         {
             base.OnSetControllerMovement(controllerMovement);
             ApplyNavMeshAgentPresset(controllerMovement);
-        }
-
-        public override void OnStateExit(EventArgs arg)
-        {
-            base.OnStateExit(arg);
         }
     }
 }

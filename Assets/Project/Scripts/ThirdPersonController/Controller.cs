@@ -9,17 +9,17 @@ using UnityEngine.InputSystem;
 
 namespace TheFowler
 {
-    public class Controller : SerializedMonoBehaviour
+    public class Controller : GameplayMonoBehaviour
     {
         [HideInInspector] public StateMachine Controllers;
         [SerializeField] private ControllerEnum controllerOnStart;
+        [SerializeField, ReadOnly] private ControllerEnum currentController;
 
         public Istate[] controllers;
 
         [HideInInspector] public ControllerArg ControllerArg = new ControllerArg();
         
         [SerializeField] protected ControllerMovement ControllerMovement;
-
 
         private void Start()
         {
@@ -31,6 +31,18 @@ namespace TheFowler
             Controllers = new StateMachine(controllers, UpdateMode.Update, ControllerArg);
             SetController(controllerOnStart);
             SetControllerMovement(ControllerMovement);
+        }
+
+        protected override void RegisterEvent()
+        {
+            base.RegisterEvent();
+            GameState.onGameStateChange += OnGameStateChange;
+        }
+
+        protected override void UnregisterEvent()
+        {
+            base.UnregisterEvent();
+            GameState.onGameStateChange -= OnGameStateChange;
         }
 
         [Button]
@@ -50,8 +62,11 @@ namespace TheFowler
                 default:
                     throw new ArgumentOutOfRangeException(nameof(controllerEnum), controllerEnum, null);
             }
-            
-            return Controllers.CurrentState as CharacterControllerBase;
+
+            currentController = controllerEnum;
+            var newCurrentController = Controllers.CurrentState as CharacterControllerBase;
+            newCurrentController.OnChangeController();
+            return newCurrentController;
         }
 
         public T SetController<T>(ControllerEnum controllerEnum) where T : CharacterControllerBase
@@ -69,6 +84,29 @@ namespace TheFowler
                 {
                     cast.OnSetControllerMovement(controllerMovement);
                 } 
+            }
+        }
+
+        private void OnGameStateChange(GameStateEnum gameStateEnum)
+        {
+            switch (gameStateEnum)
+            {
+                case GameStateEnum.LAUNCH:
+                    break;
+                case GameStateEnum.BATTLE:
+                    SetController(ControllerEnum.NAV_MESH_CONTROLLER);
+                    break;
+                case GameStateEnum.CINEMATIC:
+                    break;
+                case GameStateEnum.EXPLORATION:
+                    SetController(ControllerEnum.PLAYER_CONTROLLER);
+                    break;
+                case GameStateEnum.HARMONISATION:
+                    break;
+                case GameStateEnum.CUTSCENE:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(gameStateEnum), gameStateEnum, null);
             }
         }
     }

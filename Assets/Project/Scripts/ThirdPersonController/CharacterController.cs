@@ -90,6 +90,11 @@ namespace TheFowler
             this.controllerMovement = controllerMovement;
             controllerData = controllerPresets.GetElement(controllerMovement);
         }
+
+        public virtual void OnChangeController()
+        {
+            
+        }
     }
     
     public enum ControllerMovement{

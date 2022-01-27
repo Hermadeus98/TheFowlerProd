@@ -41,6 +41,8 @@ namespace TheFowler
         protected virtual void OnChapterLoaded(EventArgs arg)
         {
             Player.Initialize();
+            GameState.ChangeState(GameState.gameArguments.currentChapterData.InitialGameState);
+            GameState.gameArguments.currentChapterData.InitialGameInstructions.Call();
         }
     }
 }

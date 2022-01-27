@@ -12,7 +12,7 @@ namespace TheFowler
                 case SceneEnum.Scene_Main:
                     return "Scene_Main";
                 case SceneEnum.Scene_UI:
-                    break;
+                    return "Scene_UI";
                 //--<SCENES INTRO>
                 case SceneEnum.Scene_Cinematique_Intro:
                     return "Scene_Cinematique_Intro";

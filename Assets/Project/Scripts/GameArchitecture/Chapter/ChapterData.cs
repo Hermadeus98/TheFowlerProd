@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -13,5 +11,8 @@ namespace TheFowler
         public bool LoadRobyn = true;
         public bool LoadAbigael = false;
         public bool LoadPhoebe = false;
+
+        public GameStateEnum InitialGameState;
+        public GameInstructions InitialGameInstructions;
     }
 }

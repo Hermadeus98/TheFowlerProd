@@ -18,16 +18,28 @@ namespace TheFowler
                 switch (instructions[i])
                 {
                     case GameInstructionEnum.SET_PLAYER_CONTROLLER_TO_PLAYER_CONTROLLER:
-                        Player.Robyn.Controller.SetController(ControllerEnum.PLAYER_CONTROLLER);
+                        Player.Robyn?.Controller.SetController(ControllerEnum.PLAYER_CONTROLLER);
                         break;
+                    
                     case GameInstructionEnum.SET_PLAYER_CONTROLLER_TO_NAVMESH_CONTROLLER:
-                        Player.Robyn.Controller.SetController(ControllerEnum.NAV_MESH_CONTROLLER);
+                        Player.Robyn?.Controller.SetController(ControllerEnum.NAV_MESH_CONTROLLER);
                         break;
+                    
                     case GameInstructionEnum.SET_PLAYER_WALKING:
-                        Player.Robyn.Controller.SetControllerMovement(ControllerMovement.WALK);
+                        Player.Robyn?.Controller.SetControllerMovement(ControllerMovement.WALK);
                         break;
+                    
                     case GameInstructionEnum.SET_PLAYER_RUNNING:
-                        Player.Robyn.Controller.SetControllerMovement(ControllerMovement.RUN);
+                        Player.Robyn?.Controller.SetControllerMovement(ControllerMovement.RUN);
+                        break;
+
+                    case GameInstructionEnum.SET_ALLIES_CONTROLLER_TO_NAVMESH_CONTROLLER:
+                        Player.Abigael?.Controller.SetController(ControllerEnum.NAV_MESH_CONTROLLER);
+                        Player.Pheobe?.Controller.SetController(ControllerEnum.NAV_MESH_CONTROLLER);
+                        break;
+                    case GameInstructionEnum.SET_ALLIES_CONTROLLER_TO_NAVMESH_FOLLOWER:
+                        Player.Abigael?.Controller.SetController(ControllerEnum.NAV_MESH_FOLLOWER);
+                        Player.Pheobe?.Controller.SetController(ControllerEnum.NAV_MESH_FOLLOWER);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();

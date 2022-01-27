@@ -17,6 +17,8 @@ namespace TheFowler
 
         public static GameArg gameArguments = new GameArg();
 
+        public static Action<GameStateEnum> onGameStateChange;
+        
         public static void Initialize()
         {
             var states = new State[]
@@ -35,6 +37,7 @@ namespace TheFowler
         public static void ChangeState(GameStateEnum state)
         {
             GameStates.SetState(GetStateKey(state), gameArguments);
+            onGameStateChange?.Invoke(state);
         }
         
         public static void StartGame()
