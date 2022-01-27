@@ -23,6 +23,9 @@ namespace TheFowler
             //--<REMOTE SETTINGS>
             RemoteSettingsManager.Fetch();
             
+            //--<SCENE UI>
+            Game.LoadSceneAdditive(SceneEnum.Scene_UI);
+            
             //--<SYSTEM>
             GameEventInternal.Init();
             Game.Initialize();
@@ -30,7 +33,6 @@ namespace TheFowler
             
             //--<GAME STATES>
             GameState.Initialize();
-            
             ChapterManager.Initialize();
 
 

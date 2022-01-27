@@ -24,6 +24,9 @@ namespace TheFowler
         {
             base.OnStateEnter(arg);
             Follower = Follower.GetFollower(characterPlugger);
+            
+            if(agent.isActiveAndEnabled)
+                agent.ResetPath();
         }
 
         public override void OnStateExecute()
@@ -41,6 +44,14 @@ namespace TheFowler
             savedVelocity = agent.velocity;
             var moveAmount = Mathf.Abs(savedVelocity.x) + Mathf.Abs(savedVelocity.z);
             UpdateAnimatorController(moveAmount);
+        }
+
+        public override void OnStateExit(EventArgs arg)
+        {
+            base.OnStateExit(arg);
+            
+            if(agent.isActiveAndEnabled)
+                agent.ResetPath();
         }
 
         private void Follow()
@@ -100,6 +111,11 @@ namespace TheFowler
             {
                 ApplyNavMeshAgentPresset(controllerMovement);
             }
+        }
+
+        public override void OnChangeController()
+        {
+            base.OnChangeController();
         }
     }
 }

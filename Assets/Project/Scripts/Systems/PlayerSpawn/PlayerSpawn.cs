@@ -7,6 +7,7 @@ namespace TheFowler
     public class PlayerSpawn : SerializedMonoBehaviour
     {
         public static PlayerSpawn current;
+        public static PlayerSpawn defaultPlayerSpawn;
 
         [SerializeField] private Transform 
             AbigaelSpawnTransform,
@@ -15,6 +16,9 @@ namespace TheFowler
         private void Awake()
         {
             current = this;
+
+            if (defaultPlayerSpawn.IsNull())
+                defaultPlayerSpawn = this;
         }
 
         [Button]
@@ -103,7 +107,8 @@ namespace TheFowler
         {
             if (PlayerSpawn.current.IsNull())
             {
-                Debug.LogError("There is no Player Spawn Available.");
+                PlayerSpawn.current = PlayerSpawn.defaultPlayerSpawn;
+                //Debug.LogError("There is no Player Spawn Available.");
                 return false;
             }
 
