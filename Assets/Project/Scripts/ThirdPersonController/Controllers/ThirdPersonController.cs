@@ -13,7 +13,6 @@ namespace TheFowler
     {
         [SerializeField] private CharacterController characterController;
         [SerializeField] private PlayerInput playerInput;
-        [SerializeField] private ThirdPersonAnimatorController animatorController;
 
         private const float GRAVITY_FORCE = -9.81f;
 
@@ -38,17 +37,7 @@ namespace TheFowler
             SetVelocity(savedVelocity);
 
             var moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
-            switch (controllerMovement)
-            {
-                case ControllerMovement.WALK:
-                    moveAmount = Mathf.Clamp(moveAmount, 0, .5f);
-                    break;
-                case ControllerMovement.RUN:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-            animatorController.UpdateAnimatorValues(moveAmount);
+            UpdateAnimatorController(moveAmount);
         }
         
         private void FixedUpdate()

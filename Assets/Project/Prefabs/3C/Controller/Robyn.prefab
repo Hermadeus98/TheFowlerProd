@@ -54,10 +54,10 @@ MonoBehaviour:
     SerializationNodes: []
   stateName: NavMeshController
   model: {fileID: 2799147059948903694}
-  controllerPresets: {fileID: 11400000, guid: 169d3f4f7812f2048940f10b74d648ca, type: 2}
-  controllerData: {fileID: 11400000, guid: 406b8750dacd8dd41a7bc37f66c9fb1e, type: 2}
-  agent: {fileID: 9152240852131988230}
   animatorController: {fileID: 995676524221277841}
+  controllerPresets: {fileID: 11400000, guid: 169d3f4f7812f2048940f10b74d648ca, type: 2}
+  controllerData: {fileID: 0}
+  agent: {fileID: 9152240852131988230}
   NavMeshPresets: {fileID: 11400000, guid: 0e2be1faf558a3c41893b798d167f894, type: 2}
 --- !u!1 &2260171922397919332
 GameObject:
@@ -142,6 +142,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  controllerOnStart: 1
   ControllerMovement: 0
 --- !u!1 &2401025630564441045
 GameObject:
@@ -176,6 +177,7 @@ Transform:
   m_Children:
   - {fileID: 2799147059948903694}
   - {fileID: 4668982015768053042}
+  - {fileID: 7633248096432050415}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -271,6 +273,105 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!1 &4130789726290393060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7633248096432050415}
+  - component: {fileID: 6439695352826197705}
+  m_Layer: 0
+  m_Name: Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7633248096432050415
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4130789726290393060}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8324757936426109799}
+  - {fileID: 3027659802385348475}
+  m_Father: {fileID: 2401025630564441046}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6439695352826197705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4130789726290393060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4cc9175b43970d4eb4b18bea6fd083d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pivot: {fileID: 2799147059948903694}
+--- !u!1 &4333165063793201008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8324757936426109799}
+  - component: {fileID: 2977402662061182859}
+  m_Layer: 0
+  m_Name: Follower Abigael
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8324757936426109799
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4333165063793201008}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.97, y: 0, z: 1.547}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7633248096432050415}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2977402662061182859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4333165063793201008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d325ed92e278a4598e045c0a9ec4d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  CharacterPlugger: 0
 --- !u!1 &5128193248709034051
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,13 +426,66 @@ MonoBehaviour:
     SerializationNodes: []
   stateName: PlayerController
   model: {fileID: 2799147059948903694}
+  animatorController: {fileID: 995676524221277841}
   controllerPresets: {fileID: 11400000, guid: 169d3f4f7812f2048940f10b74d648ca, type: 2}
-  controllerData: {fileID: 11400000, guid: 406b8750dacd8dd41a7bc37f66c9fb1e, type: 2}
+  controllerData: {fileID: 0}
   characterController: {fileID: 2401025630564441047}
   playerInput: {fileID: 2401025630564440617}
-  animatorController: {fileID: 995676524221277841}
   useInput: 1
   input: {x: 0, y: 0}
+--- !u!1 &5297630054552116235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3027659802385348475}
+  - component: {fileID: 7147529263870883030}
+  m_Layer: 0
+  m_Name: Follower Pheobe
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3027659802385348475
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5297630054552116235}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.28, y: 0, z: 1.21}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7633248096432050415}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7147529263870883030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5297630054552116235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d325ed92e278a4598e045c0a9ec4d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  CharacterPlugger: 1
 --- !u!1001 &2401025629935385317
 PrefabInstance:
   m_ObjectHideFlags: 0

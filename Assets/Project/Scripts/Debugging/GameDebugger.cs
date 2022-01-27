@@ -1,5 +1,6 @@
 using QRCode.Extensions;
 using Sirenix.OdinInspector;
+using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif

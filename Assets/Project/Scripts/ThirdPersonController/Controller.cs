@@ -12,6 +12,7 @@ namespace TheFowler
     public class Controller : SerializedMonoBehaviour
     {
         [HideInInspector] public StateMachine Controllers;
+        [SerializeField] private ControllerEnum controllerOnStart;
 
         public Istate[] controllers;
 
@@ -28,7 +29,7 @@ namespace TheFowler
         private void Initialize()
         {
             Controllers = new StateMachine(controllers, UpdateMode.Update, ControllerArg);
-            SetController(ControllerEnum.PLAYER_CONTROLLER);
+            SetController(controllerOnStart);
             SetControllerMovement(ControllerMovement);
         }
 
@@ -42,6 +43,9 @@ namespace TheFowler
                     break;
                 case ControllerEnum.NAV_MESH_CONTROLLER:
                     Controllers.SetState("NavMeshController", ControllerArg);
+                    break;
+                case ControllerEnum.NAV_MESH_FOLLOWER:
+                    Controllers.SetState("NavMeshFollower", ControllerArg);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(controllerEnum), controllerEnum, null);
@@ -77,6 +81,7 @@ namespace TheFowler
     public enum ControllerEnum
     {
         NAV_MESH_CONTROLLER,
-        PLAYER_CONTROLLER
+        PLAYER_CONTROLLER,
+        NAV_MESH_FOLLOWER,
     }
 }

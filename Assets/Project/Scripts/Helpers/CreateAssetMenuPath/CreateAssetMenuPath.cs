@@ -15,5 +15,7 @@ namespace TheFowler
 
         public const string presets = data + "presets/";
         public const string presets_AI = presets + "AI/";
+
+        public const string chapterData = data + "ChapterData";
     }
 }

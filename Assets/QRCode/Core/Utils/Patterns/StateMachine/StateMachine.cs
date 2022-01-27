@@ -36,6 +36,8 @@ namespace QRCode
             currentState.OnStateEnter(args);
         }
 
+        public Istate GetState(string key) => states[key];
+
         private void Execute()
         {
             if(Pause)

@@ -30,20 +30,24 @@ namespace TheFowler
             
             //--<GAME STATES>
             GameState.Initialize();
+            
+            ChapterManager.Initialize();
+
 
             if (loadGymRoom)
             {
                 SceneManager.LoadScene("Scene_GymRoom", LoadSceneMode.Additive);
+                GameState.gameArguments.noloadingChapter = true;
                 Player.Initialize();
             }
             else if (loadChapter)
             {
                 //--<CHAPTER>
-                ChapterManager.Initialize();
                 ChapterManager.ChangeChapter(startAtChapter);
             }
             else if (loadPlayer)
             {
+                GameState.gameArguments.noloadingChapter = true;
                 Player.Initialize();
             }
         }

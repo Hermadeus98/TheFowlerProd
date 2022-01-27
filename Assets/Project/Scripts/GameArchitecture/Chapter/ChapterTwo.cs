@@ -10,7 +10,7 @@ namespace TheFowler
             Game.LoadSceneAdditive("Scenes Chapter Two Part 1", null);
             Game.LoadSceneAdditive("Scenes Chapter Two Part 2", () =>
             {
-                Player.Initialize();
+                OnChapterLoaded(arg);
             });
         }
 

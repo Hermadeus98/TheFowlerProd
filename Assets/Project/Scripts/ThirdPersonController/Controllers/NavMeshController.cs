@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using QRCode;
 using Sirenix.OdinInspector;
-using TheFowler;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,7 +9,6 @@ namespace TheFowler
     public class NavMeshController : CharacterControllerBase
     {
         [SerializeField] private NavMeshAgent agent;
-        [SerializeField] private ThirdPersonAnimatorController animatorController;
         [SerializeField] private NavMeshPresets NavMeshPresets;
         
         private Coroutine moveAlongWaypointsCoroutine;
@@ -67,17 +63,7 @@ namespace TheFowler
             savedVelocity = agent.velocity;
             
             var moveAmount = Mathf.Abs(savedVelocity.x) + Mathf.Abs(savedVelocity.z);
-            switch (controllerMovement)
-            {
-                case ControllerMovement.WALK:
-                    moveAmount = Mathf.Clamp(moveAmount, 0, .5f);
-                    break;
-                case ControllerMovement.RUN:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-            animatorController.UpdateAnimatorValues(moveAmount);
+            UpdateAnimatorController(moveAmount);
         }
 
         private void LateUpdate()

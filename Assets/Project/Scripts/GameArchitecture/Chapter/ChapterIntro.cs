@@ -11,7 +11,7 @@ namespace TheFowler
 
             Game.LoadSceneAdditive("Scenes Intro", () =>
             {
-                Player.Initialize();
+                OnChapterLoaded(arg);
             });
         }
 

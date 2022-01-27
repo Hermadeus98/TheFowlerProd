@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using QRCode;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ namespace TheFowler
     {
         public static StateMachine Chapters;
 
+        private const string DataPath = "Data/Scenes Datas/Chapters/";
+
         public static void Initialize()
         {
             var chapters = new Chapter[]
@@ -17,28 +20,33 @@ namespace TheFowler
                 new ChapterIntro()
                 {
                     StateName = "ChapterIntro",
-                    ChapterName = "INTRO"
+                    ChapterData = Resources.Load<ChapterData>(DataPath + "Intro"),
                 },
                 new ChapterOne()
                 {
                     StateName = "ChapterOne",
-                    ChapterName = "La rencontre avec Phoebe"
+                    ChapterData = Resources.Load<ChapterData>(DataPath + "Chapter One"),
                 },
                 new ChapterTwo()
                 {
                     StateName = "ChapterTwo",
-                    ChapterName = "La Volière"
+                    ChapterData = Resources.Load<ChapterData>(DataPath + "Chapter Two"),
                 },
                 new ChapterThree()
                 {
                     StateName = "ChapterThree",
-                    ChapterName = "Le Tribunal"
+                    ChapterData = Resources.Load<ChapterData>(DataPath + "Chapter Three"),
                 },
                 new ChapterOutro()
                 {
                     StateName = "ChapterOutro",
-                    ChapterName = "OUTRO"
+                    ChapterData = Resources.Load<ChapterData>(DataPath + "Outro"),
                 },
+                new ChapterGymRoom()
+                {
+                    StateName = "GymRoom",
+                    ChapterData = Resources.Load<ChapterData>("Data/Scenes Datas/Others/GymRoom"),
+                }
             };
 
             Chapters = new StateMachine(chapters, UpdateMode.Update, GameState.gameArguments);
@@ -50,6 +58,11 @@ namespace TheFowler
             GameInfo.Instance.Refresh();
         }
 
+        public static T GetChapter<T>(ChapterEnum chapterEnum) where T : Chapter
+        {
+            return Chapters.GetState(GetChapterKey(chapterEnum)) as T;
+        }
+
         private static string GetChapterKey(ChapterEnum key)
         {
             return key switch
@@ -59,6 +72,7 @@ namespace TheFowler
                 ChapterEnum.CHAPTER_THREE => "ChapterThree",
                 ChapterEnum.INTRO => "ChapterIntro",
                 ChapterEnum.OUTRO => "ChapterOutro",
+                ChapterEnum.GYMROOM => "GymRoom",
                 _ => throw new ArgumentOutOfRangeException(nameof(key), key, null)
             };
         }
@@ -66,6 +80,8 @@ namespace TheFowler
 
     public enum ChapterEnum
     {
+        GYMROOM,
+        
         INTRO,
         CHAPTER_ONE,
         CHAPTER_TWO,

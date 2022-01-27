@@ -9,7 +9,7 @@ public class ChapterOne : Chapter
         
         Game.LoadSceneAdditive("Scenes Chapter One", () =>
         {
-            Player.Initialize();
+            OnChapterLoaded(arg);
         });
     }
 

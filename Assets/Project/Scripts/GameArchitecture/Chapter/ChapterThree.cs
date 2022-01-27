@@ -9,7 +9,7 @@ namespace TheFowler
             base.OnStateEnter(arg);
             Game.LoadSceneAdditive("Scenes Chapter Three", () =>
             {
-                Player.Initialize();
+                OnChapterLoaded(arg);
             });
         }
 
@@ -22,7 +22,6 @@ namespace TheFowler
         {
             base.OnStateExit(arg);
             Game.UnloadScene("Scenes Chapter Three");
-
         }
     }
 }

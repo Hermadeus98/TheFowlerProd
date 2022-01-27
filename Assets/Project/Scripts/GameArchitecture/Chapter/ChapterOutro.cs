@@ -12,7 +12,7 @@ namespace TheFowler
             base.OnStateEnter(arg);
             Game.LoadSceneAdditive("Scenes Outro", () =>
             {
-                Player.Initialize();
+                OnChapterLoaded(arg);
             });
         }
 

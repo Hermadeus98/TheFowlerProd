@@ -9,6 +9,8 @@ namespace TheFowler
     [CreateAssetMenu(menuName = CreateAssetMenuPath.Spawnables)]
     public class Spawnables : ScriptableObjectSingleton<Spawnables>
     {
-        [Required]public Robyn Robyn;
+        [Required] public Robyn Robyn;
+        [Required] public Abigael Abigael;
+        [Required] public Pheobe Pheobe;
     }
 }

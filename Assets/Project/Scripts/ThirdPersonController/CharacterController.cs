@@ -15,9 +15,10 @@ namespace TheFowler
         public string StateName { get => stateName; set => stateName = value; }
 
         [SerializeField] protected Transform model;
+        [SerializeField] protected ThirdPersonAnimatorController animatorController;
 
         [SerializeField] protected ControllerPresets controllerPresets;
-        [SerializeField] protected ControllerData controllerData;
+        [SerializeField, ReadOnly] protected ControllerData controllerData;
 
         protected bool isActive = false;
         protected ControllerMovement controllerMovement;
@@ -67,6 +68,21 @@ namespace TheFowler
                 currentYRot += 360f;
             
             model.localRotation = Quaternion.Euler(0f, currentYRot, 0f);
+        }
+        
+        protected void UpdateAnimatorController(float moveAmount)
+        {
+            switch (controllerMovement)
+            {
+                case ControllerMovement.WALK:
+                    moveAmount = Mathf.Clamp(moveAmount, 0, .5f);
+                    break;
+                case ControllerMovement.RUN:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            animatorController.UpdateAnimatorValues(moveAmount);
         }
 
         public virtual void OnSetControllerMovement(ControllerMovement controllerMovement)

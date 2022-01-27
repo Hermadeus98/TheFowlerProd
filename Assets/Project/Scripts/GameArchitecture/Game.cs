@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Linq;
+using System.Threading.Tasks;
 using QRCode;
 using QRCode.Extensions;
 using QRCode.Utils;
@@ -36,6 +37,15 @@ namespace TheFowler
                 SceneManager.LoadSceneAsync(SceneLoader.GetSceneKey(scenes[i]), LoadSceneMode.Additive);
             }
         }
+        
+        public static void LoadSceneAdditive(params SceneReference[] sceneReferences)
+        {
+            for (int i = 0; i < sceneReferences.Length; i++)
+            {
+                var sceneName = SceneManager.GetSceneByPath(sceneReferences[i].ScenePath).name;
+                SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            }
+        }
 
         public static void LoadSceneAdditive(string key, Action OnComplete)
         {
@@ -60,7 +70,18 @@ namespace TheFowler
                 yield return null;
             }
             
+            QRDebug.Log("Scenes loaded", FrenchPallet.CLOUDS, $"{key} is loaded.");
+
             OnComplete?.Invoke();
+        }
+
+        public static void UnloadScene(params SceneReference[] sceneReferences)
+        {
+            for (int i = 0; i < sceneReferences.Length; i++)
+            {
+                var sceneName = SceneManager.GetSceneByPath(sceneReferences[i].ScenePath).name;
+                SceneManager.UnloadSceneAsync(sceneName);
+            }
         }
         
         public static void UnloadScene(params SceneEnum[] scenes)
