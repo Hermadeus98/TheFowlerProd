@@ -1,6 +1,7 @@
 using DG.Tweening;
 
 using QRCode;
+using QRCode.Extensions;
 using Sirenix.OdinInspector;
 using TMPro;
 
@@ -23,6 +24,9 @@ namespace TheFowler
             balancingVersion;
 
         [SerializeField] private Button fetchButton;
+
+        [SerializeField]
+        private Toggle audioToggle;
         
         private Tween openTween;
         private bool isOpen;
@@ -72,6 +76,18 @@ namespace TheFowler
                 openTween = canvasGroup.DOFade(0f, .1f);
                 canvasGroup.interactable = false;
                 canvasGroup.blocksRaycasts = true;
+            }
+        }
+
+        private void AudioToggle(bool value)
+        {
+            if (value)
+            {
+                QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, "UNMUTE");
+            }
+            else
+            {
+                QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, "MUTE");
             }
         }
     }
