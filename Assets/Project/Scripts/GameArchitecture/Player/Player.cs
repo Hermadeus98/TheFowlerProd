@@ -42,7 +42,7 @@ namespace TheFowler
         private static void SpawnRobyn()
         {
             if (Robyn.IsNull())
-                PlayerSpawn.current.SpawnPlayer();
+                PlayerSpawn.current.SpawnRobyn();
             else
                 PlayerSpawn.current.ReplacePlayer();
         }
@@ -67,6 +67,7 @@ namespace TheFowler
         {
             if (!character.IsNull())
             {
+                character.CharacterInfo.IsLoaded = false;
                 character.gameObject.SetActive(false);
             }
         }

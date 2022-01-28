@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace TheFowler
 {
     public class Robyn : Character
@@ -6,6 +8,7 @@ namespace TheFowler
         {
             base.OnStart();
             Player.Robyn = this;
+            Debug.Log(2);
         }
     }
 }
