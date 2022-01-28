@@ -7,13 +7,21 @@ using UnityEngine;
 namespace TheFowler
 {
     [Serializable]
-    public class CameraBatch
+    public class CameraBatch<T> : CameraBatchBase where T : Enum
     {
-        public CameraBatchEnum batch;
+        public T batch;
 
-        public Dictionary<string, CinemachineVirtualCameraBase> cameras =
-            new Dictionary<string, CinemachineVirtualCameraBase>();
+        public Dictionary<T, CameraReference> cameras =
+            new Dictionary<T, CameraReference>();
 
+        public CameraReference GetCameraReference(T key)
+        {
+            return cameras[key];
+        }
+    }
+
+    public class CameraBatchBase
+    {
         public void Register()
         {
             CameraManager.RegisterBatch(this);
@@ -23,5 +31,16 @@ namespace TheFowler
         {
             CameraManager.UnregisterBatch(this);
         }
+    }
+
+    [Serializable]
+    public class CameraReference
+    {
+        public CinemachineVirtualCameraBase virtualCamera;
+    }
+
+    public enum Camera_Dialogue_Statique
+    {
+        
     }
 }

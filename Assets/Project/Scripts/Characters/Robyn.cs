@@ -8,7 +8,6 @@ namespace TheFowler
         {
             base.OnStart();
             Player.Robyn = this;
-            Debug.Log(2);
         }
     }
 }

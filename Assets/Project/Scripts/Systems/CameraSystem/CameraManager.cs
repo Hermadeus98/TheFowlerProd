@@ -13,10 +13,10 @@ namespace TheFowler
         public CinemachineVirtualCameraBase current;
         public static CinemachineVirtualCameraBase Current => Instance.current;
 
-        [SerializeField] private List<CameraBatch> cameraBatches = new List<CameraBatch>();
-        public static List<CameraBatch> CameraBatches => Instance.cameraBatches;
+        [SerializeField] private List<CameraBatchBase> cameraBatches = new List<CameraBatchBase>();
+        public static List<CameraBatchBase> CameraBatches => Instance.cameraBatches;
 
-        public static void RegisterBatch(CameraBatch batch)
+        public static void RegisterBatch(CameraBatchBase batch)
         {
             if (!CameraBatches.Contains(batch))
             {
@@ -24,7 +24,7 @@ namespace TheFowler
             }
         }
 
-        public static void UnregisterBatch(CameraBatch batch)
+        public static void UnregisterBatch(CameraBatchBase batch)
         {
             if (CameraBatches.Contains(batch))
             {
