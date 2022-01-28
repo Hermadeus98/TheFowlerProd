@@ -22,7 +22,7 @@ namespace TheFowler
         }
 
         [Button]
-        public void SpawnPlayer()
+        public void SpawnRobyn()
         {
             if (Player.Robyn.IsNotNull())
             {
@@ -30,9 +30,9 @@ namespace TheFowler
                 return;
             }
 
-            var player = Instantiate<Robyn>(Spawnables.Instance.Robyn);
-            player.pawnTransform.position = current.transform.position;
-            player.pawnTransform.rotation = current.transform.rotation;
+            var robyn = Instantiate<Robyn>(Spawnables.Instance.Robyn);
+            robyn.pawnTransform.position = current.transform.position;
+            robyn.pawnTransform.rotation = current.transform.rotation;
         }
 
         public void SpawnAbigael()

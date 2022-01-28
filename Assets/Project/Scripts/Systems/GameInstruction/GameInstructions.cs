@@ -1,5 +1,6 @@
 using System;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 
 namespace TheFowler
 {
@@ -13,6 +14,9 @@ namespace TheFowler
 
         public void Call()
         {
+            if(instructions.IsNullOrEmpty())
+                return;
+            
             for (int i = 0; i < instructions.Length; i++)
             {
                 switch (instructions[i])
