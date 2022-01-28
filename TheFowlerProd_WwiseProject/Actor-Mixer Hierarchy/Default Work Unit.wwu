@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{FE972788-3429-4208-8790-69B9CC9BE7C8}" SchemaVersion="103">
+	<AudioObjects>
+		<WorkUnit Name="Default Work Unit" ID="{FE972788-3429-4208-8790-69B9CC9BE7C8}" PersistMode="Standalone">
+			<ChildrenList>
+				<ActorMixer Name="SFX" ID="{1744DB88-7BD7-4A23-A27C-3A0D26DB4B61}" ShortID="1017830680">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="SFX" ID="{CF07BEC0-CE11-4353-9123-AAD7CF5AD52D}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Folder Name="Test" ID="{CE1D4736-2830-4C7E-A159-2BC1FD7B88D6}" ShortID="310508842">
+							<ChildrenList>
+								<Sound Name="TF_System_Tick" ID="{3F2BD904-516E-40AB-AB3D-C3EE929A879F}" ShortID="302921808">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="TF_System_Tick" ID="{4F4EA295-AABE-4360-B237-E6EFE86544F1}">
+											<Language>SFX</Language>
+											<AudioFile>TF_System_Tick.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="820709661"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="TF_System_Tick" ID="{4F4EA295-AABE-4360-B237-E6EFE86544F1}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</Folder>
+					</ChildrenList>
+					<ObjectLists/>
+				</ActorMixer>
+				<ActorMixer Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" ShortID="665120169">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+						</Reference>
+					</ReferenceList>
+					<ObjectLists/>
+				</ActorMixer>
+				<ActorMixer Name="Ambiant" ID="{7ECC41FF-8D99-4B18-A981-F9444266669C}" ShortID="29342811">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Ambiant" ID="{73105985-F087-4236-9580-40288BF4134C}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+						</Reference>
+					</ReferenceList>
+					<ObjectLists/>
+				</ActorMixer>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>
