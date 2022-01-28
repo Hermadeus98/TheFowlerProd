@@ -44,7 +44,7 @@ namespace TheFowler
             if (Robyn.IsNull())
                 PlayerSpawn.current.SpawnRobyn();
             else
-                PlayerSpawn.current.ReplacePlayer();
+                PlayerSpawn.current.ReplaceRobyn();
         }
 
         private static void SpawnAbigael()

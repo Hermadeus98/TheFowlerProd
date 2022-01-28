@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using QRCode;
+using QRCode.Extensions;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace TheFowler
@@ -10,26 +12,41 @@ namespace TheFowler
     {
         public static Camera Camera => Camera.main;
 
-        public CinemachineVirtualCameraBase current;
+        [SerializeField, ReadOnly] private CinemachineVirtualCameraBase current;
         public static CinemachineVirtualCameraBase Current => Instance.current;
 
-        [SerializeField] private List<CameraBatchBase> cameraBatches = new List<CameraBatchBase>();
-        public static List<CameraBatchBase> CameraBatches => Instance.cameraBatches;
+        [SerializeField, ReadOnly] private Dictionary<string, CameraBatch> cameraBatches = new Dictionary<string, CameraBatch>();
+        public static Dictionary<string, CameraBatch> CameraBatches => Instance.cameraBatches;
 
-        public static void RegisterBatch(CameraBatchBase batch)
+        public int cameraClosePriority = 0;
+        public int currentCameraPriority = 50;
+        
+        [Button]
+        public void SetCamera(string batchName, string cameraKey = "Default")
         {
-            if (!CameraBatches.Contains(batch))
-            {
-                CameraBatches.Add(batch);
-            }
+            var cameraReference = cameraBatches[batchName].CameraReferences[cameraKey];
+            ChangeCamera(cameraReference.virtualCamera);
         }
 
-        public static void UnregisterBatch(CameraBatchBase batch)
+        private void ChangeCamera(CinemachineVirtualCameraBase newCamera)
         {
-            if (CameraBatches.Contains(batch))
-            {
-                CameraBatches.Remove(batch);
-            }
+            if(Current.IsNotNull())
+                Current.m_Priority = cameraClosePriority;
+            
+            newCamera.m_Priority = currentCameraPriority;
+            current = newCamera;
+        }
+        
+        public static void RegisterBatch(CameraBatch batch)
+        {
+            if(!CameraBatches.ContainsKey(batch.batchName))
+                CameraBatches.Add(batch.batchName, batch);
+        }
+
+        public static void Unregister(CameraBatch batch)
+        {
+            if (CameraBatches.ContainsKey(batch.batchName))
+                CameraBatches.Remove(batch.batchName);
         }
     }
 }

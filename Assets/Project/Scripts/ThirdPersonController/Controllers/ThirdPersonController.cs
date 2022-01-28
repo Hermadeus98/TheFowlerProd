@@ -21,6 +21,7 @@ namespace TheFowler
         public bool useInput;
         public Vector2 input;
 
+        public bool UpdateCamera = true;
 
         public override void OnStateEnter(EventArgs arg)
         {
@@ -99,6 +100,22 @@ namespace TheFowler
             characterController.Move(velocity * Time.deltaTime);
             
             return velocity;
+        }
+
+        public override void OnSetControllerMovement(ControllerMovement controllerMovement)
+        {
+            base.OnSetControllerMovement(controllerMovement);
+            switch (controllerMovement)
+            {
+                case ControllerMovement.WALK:
+                    //CameraManager.Instance.SetCamera("Robyn_TPS","TPS_Walk");
+                    break;
+                case ControllerMovement.RUN:
+                    //CameraManager.Instance.SetCamera("Robyn_TPS","TPS_Run");
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(controllerMovement), controllerMovement, null);
+            }
         }
     }
 }

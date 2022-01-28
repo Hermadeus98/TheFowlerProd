@@ -26,7 +26,7 @@ namespace TheFowler
         {
             if (Player.Robyn.IsNotNull())
             {
-                ReplacePlayer();
+                ReplaceRobyn();
                 return;
             }
 
@@ -62,7 +62,7 @@ namespace TheFowler
         }
 
         [Button]
-        public void ReplacePlayer()
+        public void ReplaceRobyn()
         {
             if(!CheckCurrent())
             {

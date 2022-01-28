@@ -2,34 +2,41 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace TheFowler
 {
-    [Serializable]
-    public class CameraBatch<T> : CameraBatchBase where T : Enum
+    public class CameraBatch : GameplayMonoBehaviour
     {
-        public T batch;
+        public string batchName;
+        //public CameraBatchEnum cameraBatchEnum;
+        
+        public Dictionary<string, CameraReference> CameraReferences = new Dictionary<string, CameraReference>();
 
-        public Dictionary<T, CameraReference> cameras =
-            new Dictionary<T, CameraReference>();
-
-        public CameraReference GetCameraReference(T key)
+        protected override void RegisterEvent()
         {
-            return cameras[key];
-        }
-    }
-
-    public class CameraBatchBase
-    {
-        public void Register()
-        {
+            base.RegisterEvent();
             CameraManager.RegisterBatch(this);
         }
 
-        public void Unregister()
+        protected override void UnregisterEvent()
         {
-            CameraManager.UnregisterBatch(this);
+            base.UnregisterEvent();
+            CameraManager.Unregister(this);
+        }
+
+        [Button]
+        private void Generate()
+        {
+            CameraReferences.Clear();
+            foreach (CinemachineVirtualCameraBase VM in transform.GetComponentsInChildren<CinemachineVirtualCameraBase>())
+            {
+                CameraReferences.Add(VM.gameObject.name, new CameraReference()
+                {
+                    virtualCamera = VM
+                });
+            }
         }
     }
 
