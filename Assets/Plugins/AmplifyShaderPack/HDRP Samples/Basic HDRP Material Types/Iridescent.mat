@@ -9,11 +9,11 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Iridescent
   m_Shader: {fileID: 4800000, guid: 2953aeb4c652b4345a37128368dfedf7, type: 3}
-  m_ShaderKeywords: _ADD_PRECOMPUTED_VELOCITY
+  m_ShaderKeywords: _ADD_PRECOMPUTED_VELOCITY _DISABLE_SSR_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2225
   stringTagMap:
     MotionVector: User
   disabledShaderPasses:
@@ -57,7 +57,8 @@ Material:
     - _IridescenceThickness: 1
     - _Metallic: 0
     - _ReceivesSSR: 1
-    - _RenderQueueType: 5
+    - _ReceivesSSRTransparent: 0
+    - _RenderQueueType: 1
     - _RequireSplitLighting: 0
     - _Smoothness: 0.78
     - _SrcBlend: 1
@@ -71,6 +72,7 @@ Material:
     - _StencilWriteMaskDistortionVec: 4
     - _StencilWriteMaskGBuffer: 14
     - _StencilWriteMaskMV: 40
+    - _SupportDecals: 1
     - _SurfaceType: 0
     - _TessEdgeLength: 16
     - _TessMax: 25
@@ -86,9 +88,10 @@ Material:
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 4
-    - _ZWrite: 0
+    - _ZWrite: 1
     - _iridescenceMask: 0
     - _iridescenceThickness: 1
     m_Colors:
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []

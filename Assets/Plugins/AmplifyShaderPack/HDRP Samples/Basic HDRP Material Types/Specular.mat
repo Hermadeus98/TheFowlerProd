@@ -9,11 +9,11 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Specular
   m_Shader: {fileID: 4800000, guid: c4c32fcdde82ecc4cbe330e80615b89b, type: 3}
-  m_ShaderKeywords: _ADD_PRECOMPUTED_VELOCITY
+  m_ShaderKeywords: _ADD_PRECOMPUTED_VELOCITY _DISABLE_SSR_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2225
   stringTagMap:
     MotionVector: User
   disabledShaderPasses:
@@ -67,6 +67,7 @@ Material:
     - _DstBlend: 0
     - _EnableFogOnTransparent: 1
     - _ReceivesSSR: 1
+    - _ReceivesSSRTransparent: 0
     - _RenderQueueType: 1
     - _RequireSplitLighting: 0
     - _Smoothness: 0.6529412
@@ -82,6 +83,7 @@ Material:
     - _StencilWriteMaskDistortionVec: 4
     - _StencilWriteMaskGBuffer: 14
     - _StencilWriteMaskMV: 40
+    - _SupportDecals: 1
     - _SurfaceType: 0
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
@@ -97,3 +99,4 @@ Material:
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _Specular: {r: 1, g: 0.66185796, b: 0.16509429, a: 0}
+  m_BuildTextureStacks: []

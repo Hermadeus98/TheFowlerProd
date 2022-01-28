@@ -9,11 +9,11 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Vector Displacement Mapping
   m_Shader: {fileID: 4800000, guid: 7c1ee9dc75b6cb749b8946d253769281, type: 3}
-  m_ShaderKeywords: _ADD_PRECOMPUTED_VELOCITY
+  m_ShaderKeywords: _ADD_PRECOMPUTED_VELOCITY _DISABLE_SSR_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2225
   stringTagMap:
     MotionVector: User
   disabledShaderPasses:
@@ -90,6 +90,7 @@ Material:
     - _HandIntensity: 0.3
     - _NoiseTiling: 1
     - _ReceivesSSR: 1
+    - _ReceivesSSRTransparent: 0
     - _RenderQueueType: 1
     - _RequireSplitLighting: 0
     - _ScreenColorTintBlend: 0.28
@@ -107,6 +108,7 @@ Material:
     - _StencilWriteMaskDistortionVec: 4
     - _StencilWriteMaskGBuffer: 14
     - _StencilWriteMaskMV: 40
+    - _SupportDecals: 1
     - _SurfaceType: 0
     - _TessMax: 25
     - _TessMin: 10
@@ -128,3 +130,4 @@ Material:
     - _SideHandTint: {r: 0, g: 0, b: 0, a: 0}
     - _TVHandsTint: {r: 0.92136884, g: 0.9365109, b: 0.95283014, a: 0}
     - _TopSkullTint: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
