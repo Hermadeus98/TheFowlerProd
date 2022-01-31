@@ -59,6 +59,9 @@ namespace TheFowler
                 case ControllerEnum.NAV_MESH_FOLLOWER:
                     Controllers.SetState("NavMeshFollower", ControllerArg);
                     break;
+                case ControllerEnum.STATIC_CONTROLLER:
+                    Controllers.SetState("StaticController", ControllerArg);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(controllerEnum), controllerEnum, null);
             }
@@ -121,5 +124,6 @@ namespace TheFowler
         NAV_MESH_CONTROLLER,
         PLAYER_CONTROLLER,
         NAV_MESH_FOLLOWER,
+        STATIC_CONTROLLER,
     }
 }

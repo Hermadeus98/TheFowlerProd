@@ -53,11 +53,12 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   stateName: NavMeshController
+  character: {fileID: 0}
   model: {fileID: 2799147059948903694}
+  agent: {fileID: 9152240852131988230}
   animatorController: {fileID: 995676524221277841}
   controllerPresets: {fileID: 11400000, guid: 169d3f4f7812f2048940f10b74d648ca, type: 2}
   controllerData: {fileID: 0}
-  agent: {fileID: 9152240852131988230}
   NavMeshPresets: {fileID: 11400000, guid: 0e2be1faf558a3c41893b798d167f894, type: 2}
 --- !u!1 &1979820893491050190
 GameObject:
@@ -120,6 +121,7 @@ Transform:
   m_Children:
   - {fileID: 4751640908346234891}
   - {fileID: 6597341395235369669}
+  - {fileID: 946722352125176431}
   m_Father: {fileID: 2401025630564441046}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -141,6 +143,7 @@ MonoBehaviour:
     ReferencedUnityObjects:
     - {fileID: 2698448808622304767}
     - {fileID: 6804959944030054322}
+    - {fileID: 1794209356848720525}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -154,13 +157,16 @@ MonoBehaviour:
       Data: 0|QRCode.Istate[], QRCodeUtils
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 10
       Data: 0
     - Name: 
       Entry: 10
       Data: 1
+    - Name: 
+      Entry: 10
+      Data: 2
     - Name: 
       Entry: 13
       Data: 
@@ -457,7 +463,9 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   stateName: PlayerController
+  character: {fileID: 0}
   model: {fileID: 2799147059948903694}
+  agent: {fileID: 0}
   animatorController: {fileID: 995676524221277841}
   controllerPresets: {fileID: 11400000, guid: 169d3f4f7812f2048940f10b74d648ca, type: 2}
   controllerData: {fileID: 0}
@@ -465,7 +473,10 @@ MonoBehaviour:
   playerInput: {fileID: 2401025630564440617}
   useInput: 1
   input: {x: 0, y: 0}
-  UpdateCamera: 1
+  resetCamera: 1
+  TPS_Camera:
+    batchName: Robyn_TPS
+    cameraName: Default
 --- !u!1 &5297630054552116235
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,6 +530,65 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   CharacterPlugger: 1
+--- !u!1 &6245386004308669355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 946722352125176431}
+  - component: {fileID: 1794209356848720525}
+  m_Layer: 0
+  m_Name: StaticController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &946722352125176431
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6245386004308669355}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4668982015768053042}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1794209356848720525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6245386004308669355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60c0412a5460fc44694929c352188d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  stateName: StaticController
+  character: {fileID: 0}
+  model: {fileID: 2799147059948903694}
+  agent: {fileID: 9152240852131988230}
+  animatorController: {fileID: 995676524221277841}
+  controllerPresets: {fileID: 11400000, guid: 169d3f4f7812f2048940f10b74d648ca, type: 2}
+  controllerData: {fileID: 0}
 --- !u!1 &6355562186732434914
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,9 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using CMF;
-using QRCode;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,11 +16,16 @@ namespace TheFowler
         public bool useInput;
         public Vector2 input;
 
-        public bool UpdateCamera = true;
+        [SerializeField] private bool resetCamera = true;
+        [SerializeField] private cameraPath TPS_Camera;
 
         public override void OnStateEnter(EventArgs arg)
         {
             base.OnStateEnter(arg);
+            agent.enabled = true;
+            
+            if(resetCamera)
+                SetCameraToTPSCamera();
         }
 
         public override void OnStateExecute()
@@ -116,6 +116,11 @@ namespace TheFowler
                 default:
                     throw new ArgumentOutOfRangeException(nameof(controllerMovement), controllerMovement, null);
             }
+        }
+
+        public void SetCameraToTPSCamera()
+        {
+            CameraManager.Instance.SetCamera(TPS_Camera);
         }
     }
 }

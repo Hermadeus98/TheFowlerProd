@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using QRCode.Utils;
 using UnityEngine;
 
 namespace TheFowler
@@ -12,7 +13,7 @@ namespace TheFowler
             base.OnStateEnter(arg);
             Game.LoadSceneAdditive("Scenes GymRoom", () =>
             {
-                OnChapterLoaded(arg);
+                Coroutiner.Play(OnChapterLoaded(arg));
             });
         }
 
@@ -21,6 +22,12 @@ namespace TheFowler
             base.OnStateExit(arg);
             
             Game.UnloadScene("Scenes GymRoom");
+        }
+
+        protected override IEnumerator OnChapterLoaded(EventArgs arg)
+        {
+            yield return base.OnChapterLoaded(arg);
+            DialogueManager.PlayDialoguePhase("Dialogue_Test");
         }
     }
 }

@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
 using QRCode;
 using UnityEngine;
 
@@ -12,6 +9,8 @@ namespace TheFowler
         public static StateMachine Chapters;
 
         private const string DataPath = "Data/Scenes Datas/Chapters/";
+
+        public static Action<Chapter> onChapterChange;
 
         public static void Initialize()
         {
@@ -55,7 +54,7 @@ namespace TheFowler
         public static void ChangeChapter(ChapterEnum chapter)
         {
             Chapters.SetState(GetChapterKey(chapter), GameState.gameArguments);
-            GameInfo.Instance.Refresh();
+            onChapterChange?.Invoke(Chapters.CurrentState as Chapter);
         }
 
         public static T GetChapter<T>(ChapterEnum chapterEnum) where T : Chapter

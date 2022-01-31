@@ -1,4 +1,5 @@
 using System;
+using QRCode.Utils;
 using TheFowler;
 
 public class ChapterOne : Chapter
@@ -9,7 +10,7 @@ public class ChapterOne : Chapter
         
         Game.LoadSceneAdditive("Scenes Chapter One", () =>
         {
-            OnChapterLoaded(arg);
+            Coroutiner.Play(OnChapterLoaded(arg));
         });
     }
 
