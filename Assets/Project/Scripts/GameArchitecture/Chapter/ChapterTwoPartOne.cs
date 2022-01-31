@@ -3,13 +3,12 @@ using QRCode.Utils;
 
 namespace TheFowler
 {
-    public class ChapterTwo : Chapter
+    public class ChapterTwoPartOne : Chapter
     {
         public override void OnStateEnter(EventArgs arg)
         {
             base.OnStateEnter(arg);
-            Game.LoadSceneAdditive("Scenes Chapter Two Part 1", null);
-            Game.LoadSceneAdditive("Scenes Chapter Two Part 2", () =>
+            Game.LoadSceneAdditive("Scenes Chapter Two Part 1", () =>
             {
                 Coroutiner.Play(OnChapterLoaded(arg));
             });
@@ -24,7 +23,6 @@ namespace TheFowler
         {
             base.OnStateExit(arg);
             Game.UnloadScene("Scenes Chapter Two Part 1");
-            Game.UnloadScene("Scenes Chapter Two Part 2");
         }
     }
 }

@@ -26,10 +26,15 @@ namespace TheFowler
                     StateName = "ChapterOne",
                     ChapterData = Resources.Load<ChapterData>(DataPath + "Chapter One"),
                 },
-                new ChapterTwo()
+                new ChapterTwoPartOne()
                 {
-                    StateName = "ChapterTwo",
-                    ChapterData = Resources.Load<ChapterData>(DataPath + "Chapter Two"),
+                    StateName = "ChapterTwo - Part 1",
+                    ChapterData = Resources.Load<ChapterData>(DataPath + "Chapter Two - Part 1"),
+                },
+                new ChapterTwoPartTwo()
+                {
+                    StateName = "ChapterTwo - Part 2",
+                    ChapterData = Resources.Load<ChapterData>(DataPath + "Chapter Two - Part 2"),
                 },
                 new ChapterThree()
                 {
@@ -67,7 +72,8 @@ namespace TheFowler
             return key switch
             {
                 ChapterEnum.CHAPTER_ONE => "ChapterOne",
-                ChapterEnum.CHAPTER_TWO => "ChapterTwo",
+                ChapterEnum.CHAPTER_TWO_PART1 => "ChapterTwo - Part 1",
+                ChapterEnum.CHAPTER_TWO_PART2 => "ChapterTwo - Part 2",
                 ChapterEnum.CHAPTER_THREE => "ChapterThree",
                 ChapterEnum.INTRO => "ChapterIntro",
                 ChapterEnum.OUTRO => "ChapterOutro",
@@ -83,7 +89,8 @@ namespace TheFowler
         
         INTRO,
         CHAPTER_ONE,
-        CHAPTER_TWO,
+        CHAPTER_TWO_PART1,
+        CHAPTER_TWO_PART2,
         CHAPTER_THREE,
         OUTRO,
     }

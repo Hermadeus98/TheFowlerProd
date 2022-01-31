@@ -23,20 +23,25 @@ namespace TheFowler
             
             if (value == 2)
             {
-                ChapterManager.ChangeChapter(ChapterEnum.CHAPTER_TWO);
+                ChapterManager.ChangeChapter(ChapterEnum.CHAPTER_TWO_PART1);
             }
             
             if (value == 3)
             {
-                ChapterManager.ChangeChapter(ChapterEnum.CHAPTER_THREE);
+                ChapterManager.ChangeChapter(ChapterEnum.CHAPTER_TWO_PART2);
             }
             
             if (value == 4)
             {
+                ChapterManager.ChangeChapter(ChapterEnum.CHAPTER_THREE);
+            }
+            
+            if (value == 5)
+            {
                 ChapterManager.ChangeChapter(ChapterEnum.OUTRO);
             }
 
-            if (value == 5)
+            if (value == 6)
             {
                 ChapterManager.ChangeChapter(ChapterEnum.GYMROOM);
             }
