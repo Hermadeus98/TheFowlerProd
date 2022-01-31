@@ -9,11 +9,11 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: DoubleLayerCustomSurface
   m_Shader: {fileID: 4800000, guid: e2a5988c5eb949a3aa0613db6a342088, type: 3}
-  m_ShaderKeywords: _ADD_PRECOMPUTED_VELOCITY
+  m_ShaderKeywords: _ADD_PRECOMPUTED_VELOCITY _DISABLE_SSR_TRANSPARENT
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2225
   stringTagMap:
     MotionVector: User
   disabledShaderPasses:
@@ -142,6 +142,7 @@ Material:
     - _OrangePeelTilling: 20
     - _Phase: 0.02
     - _ReceivesSSR: 1
+    - _ReceivesSSRTransparent: 0
     - _RenderQueueType: 1
     - _RequireSplitLighting: 0
     - _Smooth: 0.5
@@ -157,6 +158,7 @@ Material:
     - _StencilWriteMaskDistortionVec: 4
     - _StencilWriteMaskGBuffer: 14
     - _StencilWriteMaskMV: 40
+    - _SupportDecals: 1
     - _SurfaceType: 0
     - _Tilling: 1
     - _TransparentBackfaceEnable: 0
@@ -183,3 +185,4 @@ Material:
     - _FlakesColor1: {r: 1, g: 0, b: 0.47817135, a: 0}
     - _FlakesColor2: {r: 0.06905645, g: 0, b: 0.7735849, a: 0}
     - _Offset1: {r: 1.2, g: 6.53, b: -6.86, a: 0}
+  m_BuildTextureStacks: []
