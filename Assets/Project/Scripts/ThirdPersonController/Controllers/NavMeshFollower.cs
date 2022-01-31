@@ -9,7 +9,6 @@ namespace TheFowler
 {
     public class NavMeshFollower : CharacterControllerBase
     {
-        [SerializeField] private NavMeshAgent agent;
         [SerializeField] private NavMeshPresets NavMeshPresets;
 
         [SerializeField] private CharacterPlugger characterPlugger;
@@ -23,6 +22,9 @@ namespace TheFowler
         public override void OnStateEnter(EventArgs arg)
         {
             base.OnStateEnter(arg);
+            
+            agent.enabled = true;
+
             Follower = Follower.GetFollower(characterPlugger);
             
             if(agent.isActiveAndEnabled)

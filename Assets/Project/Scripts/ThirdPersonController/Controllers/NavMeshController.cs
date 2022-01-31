@@ -2,13 +2,11 @@ using System;
 using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace TheFowler
 {
     public class NavMeshController : CharacterControllerBase
     {
-        [SerializeField] private NavMeshAgent agent;
         [SerializeField] private NavMeshPresets NavMeshPresets;
         
         private Coroutine moveAlongWaypointsCoroutine;
@@ -53,6 +51,8 @@ namespace TheFowler
         {
             base.OnStateEnter(arg);
             
+            agent.enabled = true;
+
             if(agent.isActiveAndEnabled)
                 agent.ResetPath();
         }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using QRCode.Utils;
 using UnityEngine;
 
 namespace TheFowler
@@ -12,7 +13,7 @@ namespace TheFowler
             base.OnStateEnter(arg);
             Game.LoadSceneAdditive("Scenes Outro", () =>
             {
-                OnChapterLoaded(arg);
+                Coroutiner.Play(OnChapterLoaded(arg));
             });
         }
 

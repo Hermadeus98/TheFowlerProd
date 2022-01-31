@@ -1,6 +1,7 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using Cinemachine;
+using Nrjwolf.Tools.AttachAttributes;
 using QRCode;
 using QRCode.Extensions;
 using Sirenix.OdinInspector;
@@ -18,6 +19,9 @@ namespace TheFowler
         [SerializeField, ReadOnly] private Dictionary<string, CameraBatch> cameraBatches = new Dictionary<string, CameraBatch>();
         public static Dictionary<string, CameraBatch> CameraBatches => Instance.cameraBatches;
 
+        [SerializeField, FindObjectOfType] private CinemachineBrain cinemachineBrain;
+        [SerializeField] private CameraTransitions transitions;
+        
         public int cameraClosePriority = 0;
         public int currentCameraPriority = 50;
         
@@ -28,6 +32,11 @@ namespace TheFowler
             ChangeCamera(cameraReference.virtualCamera);
         }
 
+        public void SetCamera(cameraPath cameraPath)
+        {
+            SetCamera(cameraPath.batchName, cameraPath.cameraName);
+        }
+        
         private void ChangeCamera(CinemachineVirtualCameraBase newCamera)
         {
             if(Current.IsNotNull())
@@ -48,5 +57,14 @@ namespace TheFowler
             if (CameraBatches.ContainsKey(batch.batchName))
                 CameraBatches.Remove(batch.batchName);
         }
+    }
+
+    [Serializable]
+    public class cameraPath
+    {
+        [HorizontalGroup()] 
+        public string batchName;
+        [HorizontalGroup()] 
+        public string cameraName = "Default";
     }
 }

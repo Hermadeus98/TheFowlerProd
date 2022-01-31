@@ -1,10 +1,9 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using CMF;
 using QRCode;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace TheFowler
 {
@@ -14,7 +13,9 @@ namespace TheFowler
         private string stateName;
         public string StateName { get => stateName; set => stateName = value; }
 
+        [SerializeField] protected Character character;
         [SerializeField] protected Transform model;
+        [SerializeField] protected NavMeshAgent agent;
         [SerializeField] protected ThirdPersonAnimatorController animatorController;
 
         [SerializeField] protected ControllerPresets controllerPresets;

@@ -1,4 +1,5 @@
 using System;
+using QRCode.Utils;
 
 namespace TheFowler
 {
@@ -10,7 +11,7 @@ namespace TheFowler
             Game.LoadSceneAdditive("Scenes Chapter Two Part 1", null);
             Game.LoadSceneAdditive("Scenes Chapter Two Part 2", () =>
             {
-                OnChapterLoaded(arg);
+                Coroutiner.Play(OnChapterLoaded(arg));
             });
         }
 

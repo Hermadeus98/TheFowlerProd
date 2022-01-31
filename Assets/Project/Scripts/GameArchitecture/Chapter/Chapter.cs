@@ -1,5 +1,5 @@
 using System;
-
+using System.Collections;
 using QRCode;
 using QRCode.Extensions;
 using UnityEngine;
@@ -38,9 +38,10 @@ namespace TheFowler
             QRDebug.Log("Chapter Exit", FrenchPallet.EMERALD, ChapterName);
         }
 
-        protected virtual void OnChapterLoaded(EventArgs arg)
+        protected virtual IEnumerator OnChapterLoaded(EventArgs arg)
         {
             Player.Initialize();
+            yield return new WaitForEndOfFrame();
             GameState.ChangeState(GameState.gameArguments.currentChapterData.InitialGameState);
             GameState.gameArguments.currentChapterData.InitialGameInstructions.Call();
         }

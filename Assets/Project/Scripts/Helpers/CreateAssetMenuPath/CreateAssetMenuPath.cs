@@ -13,9 +13,14 @@ namespace TheFowler
         public const string Spawnables = data + "Spawnables";
         public const string controller = data + "Controllers/";
 
-        public const string presets = data + "presets/";
+        public const string presets = data + "Presets/";
         public const string presets_AI = presets + "AI/";
 
         public const string chapterData = data + "ChapterData";
+
+        public const string dialogueData = data + "DialogueDatabase";
+
+        public const string camera = data + "/Cameras";
+        public const string cameraTransitionData = camera + "TransitionDB";
     }
 }
