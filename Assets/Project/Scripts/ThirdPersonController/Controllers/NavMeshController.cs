@@ -19,7 +19,8 @@ namespace TheFowler
             if (!isActive)
                 return;
 
-            agent.SetDestination(transform.position);
+            if(agent.isActiveAndEnabled)
+                agent.SetDestination(transform.position);
         }
 
         [Button]
