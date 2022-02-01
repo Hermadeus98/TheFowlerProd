@@ -38,7 +38,6 @@ namespace TheFowler
             GameState.Initialize();
             ChapterManager.Initialize();
 
-
             if (loadGymRoom)
             {
                 SceneManager.LoadScene("Scene_GymRoom", LoadSceneMode.Additive);
