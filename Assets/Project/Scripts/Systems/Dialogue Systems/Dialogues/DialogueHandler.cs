@@ -3,30 +3,42 @@ using System.Collections;
 using QRCode;
 using QRCode.Extensions;
 using Sirenix.OdinInspector;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace TheFowler
 {
-    public class StaticDialogueHandler : GameplayMonoBehaviour, IDialoguePhase
+    public class DialogueHandler : GameplayMonoBehaviour, IDialoguePhase
     {
+        [TabGroup("General Settings")]
         [SerializeField] private string dialogue_id;
-
+        [TabGroup("General Settings")]
         [SerializeField] private DialogueType dialogueType;
         
+        [TabGroup("References")]
         [SerializeField] private PlayerInput Inputs;
         
         //Initialisation
+        [TabGroup("References"), ShowIf("@this.dialogueType == DialogueType.STATIC")]
         [SerializeField] private ActorActivator actorActivator;
+        [TabGroup("General Settings")]
         [SerializeField] private DialogueDatabase Dialogues;
+        [TabGroup("General Settings")]
         [SerializeField] private GameInstructions OnStart;
+        
         //End
+        [TabGroup("General Settings")]
         [SerializeField] private GameInstructions OnEnd;
 
-        private bool isActive = false;
-
-        private int currentDialogueCount = 0;
-        private float elapsedTime = 0;
+        [TabGroup("Debug")]
+        [SerializeField, ReadOnly] private bool isActive = false;
+        [TabGroup("Debug")]
+        [SerializeField, ReadOnly] private int currentDialogueCount = 0;
+        [TabGroup("Debug")]
+        [SerializeField, ReadOnly] private float elapsedTime = 0;
 
         public string Dialogue_id { get => dialogue_id; set => dialogue_id = value; }
         public bool IsActive { get => isActive; set => isActive = value; }
@@ -130,6 +142,31 @@ namespace TheFowler
         {
             actorActivator?.DesactivateActor();
         }
+        
+        //---<EDITOR>--------------------------------------------------------------------------------------------------<
+#if UNITY_EDITOR
+        [MenuItem("GameObject/LD/Dialogue/Dialogue Statique", false, 20)]
+        private static void CreateStaticDialogue(MenuCommand menuCommand)
+        {
+            var obj = Resources.Load("Dialogues/Dialogue Statique");
+            var go = PrefabUtility.InstantiatePrefab(obj, Selection.activeTransform) as GameObject;
+            GameObjectUtility.SetParentAndAlign(go, menuCommand.context as GameObject);
+            go.name = obj.name;
+            Undo.RegisterCreatedObjectUndo(go, "Create" + go.name);
+            Selection.activeObject = go;
+        }
+        
+        [MenuItem("GameObject/LD/Dialogue/Dialogue Movement", false, 20)]
+        private static void CreateMovementDialogue(MenuCommand menuCommand)
+        {
+            var obj = Resources.Load("Dialogues/Dialogue Movement");
+            var go = PrefabUtility.InstantiatePrefab(obj, Selection.activeTransform) as GameObject;
+            GameObjectUtility.SetParentAndAlign(go, menuCommand.context as GameObject);
+            go.name = obj.name;
+            Undo.RegisterCreatedObjectUndo(go, "Create" + go.name);
+            Selection.activeObject = go;
+        }
+#endif
     }
 
     public interface IDialoguePhase
