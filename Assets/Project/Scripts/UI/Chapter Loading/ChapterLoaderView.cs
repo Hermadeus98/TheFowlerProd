@@ -23,12 +23,13 @@ namespace TheFowler
 
         private void OnChapterLoaded(Chapter chapter)
         {
-            Refresh(new ChapterLoadingArg()
+            if (chapter.ChapterData.ShowChapterTitle)
             {
-                ChapterData = chapter.ChapterData,
-            });
-            
-            StartCoroutine(ShowIE());
+                Refresh(new ChapterLoadingArg()
+                {
+                    ChapterData = chapter.ChapterData,
+                });
+            }
         }
 
         private IEnumerator ShowIE()
@@ -45,6 +46,7 @@ namespace TheFowler
             {
                 chapterName.SetText(cast.ChapterData.ChapterName);
                 
+                StartCoroutine(ShowIE());
             }
         }
     }

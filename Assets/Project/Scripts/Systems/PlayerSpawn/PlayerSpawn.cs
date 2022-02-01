@@ -6,22 +6,24 @@ namespace TheFowler
 {
     public class PlayerSpawn : SerializedMonoBehaviour
     {
-        public static PlayerSpawn current;
+        [ShowInInspector] public static PlayerSpawn current;
         public static PlayerSpawn defaultPlayerSpawn;
 
         [SerializeField] private Transform 
             AbigaelSpawnTransform,
             PhoebeSpawnTransform;
 
+        [SerializeField, ReadOnly] public Vector3 RobynSpawnPosition, AbigaelSpawnPosition, PhoebeSpawnPosition;
+
         private void Awake()
         {
             current = this;
+            Debug.Log(1);
 
             if (defaultPlayerSpawn.IsNull())
                 defaultPlayerSpawn = this;
         }
 
-        [Button]
         public void SpawnRobyn()
         {
             if (Player.Robyn.IsNotNull())
@@ -31,7 +33,8 @@ namespace TheFowler
             }
 
             var robyn = Instantiate<Robyn>(Spawnables.Instance.Robyn);
-            robyn.pawnTransform.position = current.transform.position;
+            robyn.pawnTransform.position = current.RobynSpawnPosition;
+            Debug.Log(RobynSpawnPosition);
             robyn.pawnTransform.rotation = current.transform.rotation;
         }
 
@@ -44,7 +47,7 @@ namespace TheFowler
             }
             
             var abigael = Instantiate<Abigael>(Spawnables.Instance.Abigael);
-            abigael.pawnTransform.position = current.AbigaelSpawnTransform.transform.position;
+            abigael.pawnTransform.position = current.AbigaelSpawnPosition;
             abigael.pawnTransform.rotation = current.AbigaelSpawnTransform.transform.rotation;
         }
         
@@ -57,11 +60,10 @@ namespace TheFowler
             }
             
             var phoebe = Instantiate<Pheobe>(Spawnables.Instance.Pheobe);
-            phoebe.pawnTransform.position = current.PhoebeSpawnTransform.transform.position;
+            phoebe.pawnTransform.position = current.PhoebeSpawnPosition;
             phoebe.pawnTransform.rotation = current.PhoebeSpawnTransform.transform.rotation;
         }
 
-        [Button]
         public void ReplaceRobyn()
         {
             if(!CheckCurrent())
@@ -71,11 +73,10 @@ namespace TheFowler
             
             var robyn = Player.Robyn;
             robyn.gameObject.SetActive(true);
-            robyn.pawnTransform.position = current.transform.position;
+            robyn.pawnTransform.position = RobynSpawnPosition;
             robyn.pawnTransform.rotation = current.transform.rotation;
         }
 
-        [Button]
         public void ReplaceAbigael()
         {
             if(!CheckCurrent())
@@ -85,11 +86,10 @@ namespace TheFowler
             
             var abigael = Player.Abigael;
             abigael.gameObject.SetActive(true);
-            abigael.pawnTransform.position = current.AbigaelSpawnTransform.transform.position;
+            abigael.pawnTransform.position = current.AbigaelSpawnPosition;
             abigael.pawnTransform.rotation = current.AbigaelSpawnTransform.transform.rotation;
         }
         
-        [Button]
         public void ReplacePheobe()
         {
             if(!CheckCurrent())
@@ -99,10 +99,18 @@ namespace TheFowler
             
             var pheobe = Player.Pheobe;
             pheobe.gameObject.SetActive(true);
-            pheobe.pawnTransform.position = current.PhoebeSpawnTransform.transform.position;
+            pheobe.pawnTransform.position = current.PhoebeSpawnPosition;
             pheobe.pawnTransform.rotation = current.PhoebeSpawnTransform.transform.rotation;
         }
 
+        [Button]
+        private void BakeSpawnPosition()
+        {
+            RobynSpawnPosition = GetSpawnPosition(transform);
+            AbigaelSpawnPosition = GetSpawnPosition(AbigaelSpawnTransform);
+            PhoebeSpawnPosition = GetSpawnPosition(PhoebeSpawnTransform);
+        }
+        
         private bool CheckCurrent()
         {
             if (PlayerSpawn.current.IsNull())
@@ -113,6 +121,33 @@ namespace TheFowler
             }
 
             return true;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, GetSpawnPosition(transform));
+            Gizmos.DrawWireSphere(RobynSpawnPosition, .25f);
+            
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(AbigaelSpawnTransform.position, GetSpawnPosition(AbigaelSpawnTransform));
+            Gizmos.DrawWireSphere(AbigaelSpawnPosition, .25f);
+            
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(PhoebeSpawnTransform.position,  GetSpawnPosition(PhoebeSpawnTransform));
+            Gizmos.DrawWireSphere(PhoebeSpawnPosition, .25f);
+        }
+
+        private Vector3 GetSpawnPosition(Transform from)
+        {
+            var down = from.TransformDirection(Vector3.down);
+
+            if (Physics.Raycast(from.position, down, out var hit, Mathf.Infinity))
+            {
+                return hit.point;
+            }
+
+            return Vector3.zero;
         }
     }
 }
