@@ -42,6 +42,7 @@ namespace TheFowler
         {
             Player.Initialize();
             yield return new WaitForEndOfFrame();
+            ChapterManager.onChapterLoaded?.Invoke(this);
             GameState.ChangeState(GameState.gameArguments.currentChapterData.InitialGameState);
             GameState.gameArguments.currentChapterData.InitialGameInstructions.Call();
         }

@@ -1,3 +1,4 @@
+using System.Collections;
 using QRCode;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -18,13 +19,15 @@ namespace TheFowler
         [SerializeField, Tooltip(ToolTips.TT_loadGymRoom)] private bool loadGymRoom;
         [SerializeField, Tooltip(ToolTips.TT_loadPlayer)] private bool loadPlayer;
         
-        private void Start()
+        private IEnumerator Start()
         {
             //--<REMOTE SETTINGS>
             RemoteSettingsManager.Fetch();
             
             //--<SCENE UI>
             Game.LoadSceneAdditive(SceneEnum.Scene_UI);
+
+            yield return new WaitForEndOfFrame();
             
             //--<SYSTEM>
             GameEventInternal.Init();

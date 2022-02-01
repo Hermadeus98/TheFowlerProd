@@ -11,6 +11,7 @@ namespace TheFowler
         private const string DataPath = "Data/Scenes Datas/Chapters/";
 
         public static Action<Chapter> onChapterChange;
+        public static Action<Chapter> onChapterLoaded;
 
         public static void Initialize()
         {
