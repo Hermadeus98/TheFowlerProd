@@ -18,7 +18,6 @@ namespace TheFowler
         private void Awake()
         {
             current = this;
-            Debug.Log(1);
 
             if (defaultPlayerSpawn.IsNull())
                 defaultPlayerSpawn = this;
@@ -34,7 +33,6 @@ namespace TheFowler
 
             var robyn = Instantiate<Robyn>(Spawnables.Instance.Robyn);
             robyn.pawnTransform.position = current.RobynSpawnPosition;
-            Debug.Log(RobynSpawnPosition);
             robyn.pawnTransform.rotation = current.transform.rotation;
         }
 

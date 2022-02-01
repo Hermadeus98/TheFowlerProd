@@ -12,5 +12,8 @@ namespace TheFowler
         [Required] public Robyn Robyn;
         [Required] public Abigael Abigael;
         [Required] public Pheobe Pheobe;
+
+        [TitleGroup("UI")] 
+        [Required] public DialogueUIElement DialogueUIElement;
     }
 }

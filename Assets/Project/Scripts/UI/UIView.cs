@@ -1,15 +1,17 @@
 using DG.Tweening;
+using Nrjwolf.Tools.AttachAttributes;
 using QRCode.Extensions;
 using UnityEngine;
 
 namespace TheFowler
 {
+    [RequireComponent(typeof(CanvasGroup))]
     public class UIView : UIElement
     {
         [SerializeField] private bool registerView;
         [SerializeField] private string viewName;
 
-        [SerializeField] private CanvasGroup canvasGroup;
+        [SerializeField, GetComponent] private CanvasGroup canvasGroup;
 
         protected CanvasGroup CanvasGroup
         {
