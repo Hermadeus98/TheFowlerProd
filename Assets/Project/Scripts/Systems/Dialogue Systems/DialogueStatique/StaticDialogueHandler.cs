@@ -13,8 +13,7 @@ namespace TheFowler
         [SerializeField] private PlayerInput Inputs;
         
         //Initialisation
-        [SerializeField] private ActorPositionner actorPositionner;
-        [SerializeField] private InitilizationMode initilizationMode = InitilizationMode.TELEPORT;
+        [SerializeField] private ActorActivator actorActivator;
         [SerializeField] private DialogueDatabase Dialogues;
 
         //End
@@ -30,10 +29,7 @@ namespace TheFowler
 
         public void PlayDialoguePhase()
         {
-            if (initilizationMode == InitilizationMode.TELEPORT)
-            {
-                PlaceActor();
-            }
+            PlaceActor();
             
             UI.OpenView("StaticDialogueView");
             isActive = true;
@@ -84,6 +80,9 @@ namespace TheFowler
             else
             {
                 isActive = false;
+                
+                actorActivator.DesactivateActor();
+                
                 OnEnd.Call();
                 UI.CloseView("StaticDialogueView");
             }
@@ -111,7 +110,7 @@ namespace TheFowler
         
         private void PlaceActor()
         {
-            actorPositionner.UpdatePosition();
+            actorActivator.ActivateActor();
         }
     }
 
