@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using QRCode;
+using QRCode.Extensions;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,13 +11,15 @@ namespace TheFowler
     public class StaticDialogueHandler : GameplayMonoBehaviour, IDialoguePhase
     {
         [SerializeField] private string dialogue_id;
+
+        [SerializeField] private DialogueType dialogueType;
         
         [SerializeField] private PlayerInput Inputs;
         
         //Initialisation
         [SerializeField] private ActorActivator actorActivator;
         [SerializeField] private DialogueDatabase Dialogues;
-
+        [SerializeField] private GameInstructions OnStart;
         //End
         [SerializeField] private GameInstructions OnEnd;
 
@@ -29,13 +33,19 @@ namespace TheFowler
 
         public void PlayDialoguePhase()
         {
-            PlaceActor();
+            QRDebug.Log("DIALOGUE PHASE", FrenchPallet.NEPHRITIS, $"{Dialogue_id} has started.");
+            
+            OnStart.Call();
+            
+            if(dialogueType == DialogueType.STATIC)
+                PlaceActor();
             
             UI.OpenView("StaticDialogueView");
+            
             isActive = true;
-
             elapsedTime = 0;
             currentDialogueCount = 0;
+            
             DisplayDialogue(Dialogues.Dialogues[currentDialogueCount]);
         }
 
@@ -80,8 +90,11 @@ namespace TheFowler
             else
             {
                 isActive = false;
-                
-                actorActivator.DesactivateActor();
+
+                if (dialogueType == DialogueType.STATIC)
+                {
+                    ReplaceActor();
+                }
                 
                 OnEnd.Call();
                 UI.CloseView("StaticDialogueView");
@@ -110,7 +123,12 @@ namespace TheFowler
         
         private void PlaceActor()
         {
-            actorActivator.ActivateActor();
+            actorActivator?.ActivateActor();
+        }
+
+        private void ReplaceActor()
+        {
+            actorActivator?.DesactivateActor();
         }
     }
 
@@ -136,6 +154,12 @@ namespace TheFowler
         PHEOBE,
     }
 
+    public enum DialogueType
+    {
+        STATIC = 0,
+        MOVEMENT = 1,
+    }
+    
     public enum InitilizationMode
     {
         MOVE_TO,

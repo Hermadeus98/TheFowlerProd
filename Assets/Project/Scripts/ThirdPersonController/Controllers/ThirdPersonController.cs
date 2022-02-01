@@ -1,4 +1,5 @@
 using System;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,7 @@ namespace TheFowler
     {
         [SerializeField] private CharacterController characterController;
         [SerializeField] private PlayerInput playerInput;
+        [SerializeField] private CinemachineVirtualCameraBase TPS_Camera_VM;
 
         private const float GRAVITY_FORCE = -9.81f;
 
@@ -76,7 +78,7 @@ namespace TheFowler
         private Vector3 CalculateMovementVelocity(float h, float v)
         {
             var vel = Vector3.zero;
-
+            
             vel += Vector3.ProjectOnPlane(CameraManager.Camera.transform.right, transform.up).normalized *
                    h;
             vel += Vector3.ProjectOnPlane(CameraManager.Camera.transform.forward, transform.up).normalized *

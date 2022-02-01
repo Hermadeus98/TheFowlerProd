@@ -36,6 +36,11 @@ namespace TheFowler
         {
             SetCamera(cameraPath.batchName, cameraPath.cameraName);
         }
+
+        public T GetCamera<T>(cameraPath cameraPath) where T : CinemachineVirtualCameraBase
+        {
+            return cameraBatches[cameraPath.batchName].CameraReferences[cameraPath.cameraName].virtualCamera as T;
+        }
         
         private void ChangeCamera(CinemachineVirtualCameraBase newCamera)
         {
