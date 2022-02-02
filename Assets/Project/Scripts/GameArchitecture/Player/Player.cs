@@ -14,6 +14,8 @@ namespace TheFowler
 
         public static void Initialize()
         {
+            Debug.Log("PLAYER INITIALIZE");
+            
             if (GameState.gameArguments.noloadingChapter)
             {
                 SpawnRobyn();

@@ -1,7 +1,10 @@
 using System;
+using System.Collections;
 using Cinemachine;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace TheFowler
 {
@@ -10,7 +13,7 @@ namespace TheFowler
         [SerializeField] private CharacterController characterController;
         [SerializeField] private PlayerInput playerInput;
         [SerializeField] private CinemachineVirtualCameraBase TPS_Camera_VM;
-
+        
         private const float GRAVITY_FORCE = -9.81f;
 
         private float horizontal, vertical;
@@ -20,6 +23,8 @@ namespace TheFowler
 
         [SerializeField] private bool resetCamera = true;
         [SerializeField] private cameraPath TPS_Camera;
+
+        [SerializeField, Required] private bool applyMove = true;
 
         public override void OnStateEnter(EventArgs arg)
         {
@@ -99,7 +104,7 @@ namespace TheFowler
             
             velocity.y += GRAVITY_FORCE;
 
-            characterController.Move(velocity * Time.deltaTime);
+            if(applyMove) characterController.Move(velocity * Time.deltaTime);
             
             return velocity;
         }
@@ -123,6 +128,26 @@ namespace TheFowler
         public void SetCameraToTPSCamera()
         {
             CameraManager.Instance.SetCamera(TPS_Camera);
+        }
+
+        protected override void RegisterEvent()
+        {
+            base.RegisterEvent();
+            //ChapterManager.onChapterChange += delegate(Chapter chapter) { applyMove = false; };
+            //ChapterManager.onChapterLoaded += delegate(Chapter chapter) { StartCoroutine(ApplyMove()); };
+        }
+
+        IEnumerator ApplyMove()
+        {
+            yield return new WaitForSeconds(.5f);
+            applyMove = true;
+        }
+
+        protected override void UnregisterEvent()
+        {
+            base.UnregisterEvent();
+            //ChapterManager.onChapterChange -= delegate(Chapter chapter) { applyMove = false; };
+            //ChapterManager.onChapterLoaded -= delegate(Chapter chapter) { StartCoroutine(ApplyMove()); };
         }
     }
 }

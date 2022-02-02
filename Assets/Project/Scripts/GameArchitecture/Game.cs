@@ -69,6 +69,8 @@ namespace TheFowler
                 QRDebug.Log("Scenes loading...", FrenchPallet.CLOUDS, $"{key} is loading.");
                 yield return null;
             }
+
+            yield return new WaitForEndOfFrame();
             
             QRDebug.Log("Scenes loaded", FrenchPallet.CLOUDS, $"{key} is loaded.");
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using QRCode.Utils;
 
 namespace TheFowler

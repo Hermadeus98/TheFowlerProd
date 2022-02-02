@@ -70,9 +70,10 @@ namespace TheFowler
             }
             
             var robyn = Player.Robyn;
-            robyn.gameObject.SetActive(true);
+            robyn.gameObject.SetActive(false);
             robyn.pawnTransform.position = RobynSpawnPosition;
             robyn.pawnTransform.rotation = current.transform.rotation;
+            robyn.gameObject.SetActive(true);
         }
 
         public void ReplaceAbigael()
