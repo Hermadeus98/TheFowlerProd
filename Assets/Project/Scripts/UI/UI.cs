@@ -39,5 +39,10 @@ namespace TheFowler
         {
             views[key]?.Refresh(args);
         }
+
+        public static T GetView<T>(string key) where T : UIView
+        {
+            return views[key] as T;
+        }
     }
 }

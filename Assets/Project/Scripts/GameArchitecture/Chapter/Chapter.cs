@@ -42,7 +42,6 @@ namespace TheFowler
         {
             yield return new WaitForEndOfFrame();
             yield return new WaitForEndOfFrame();
-            Debug.Log(2);
             Player.Initialize();
             yield return new WaitForEndOfFrame();
             ChapterManager.onChapterLoaded?.Invoke(this);

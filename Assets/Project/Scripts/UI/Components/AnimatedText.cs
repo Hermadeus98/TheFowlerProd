@@ -1,0 +1,74 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Nrjwolf.Tools.AttachAttributes;
+using Sirenix.OdinInspector;
+using TMPro;
+using UnityEngine;
+
+namespace TheFowler
+{
+    public class AnimatedText : SerializedMonoBehaviour
+    {
+        [SerializeField, GetComponent] private TextMeshProUGUI textComponent;
+        [SerializeField] private float displayDuration = 0.01f;
+
+        [SerializeField]
+        private Dictionary<char, AnimatedTextException> exceptions = new Dictionary<char, AnimatedTextException>();
+
+        public TextMeshProUGUI TextComponent => textComponent;
+        public bool isComplete;
+        
+        private string textToDisplay;
+        
+        public void SetText(string text)
+        {
+            textToDisplay = text;
+            StartCoroutine(Display());
+        }
+
+        public void Append(string text)
+        {
+            textToDisplay += text;
+            StartCoroutine(Display(false));
+        }
+
+        private IEnumerator Display(bool clear = true)
+        {
+            isComplete = false;
+            if(clear) textComponent.SetText(string.Empty);
+            for (int i = 0; i < textToDisplay.Length; i++)
+            {
+                var character = textToDisplay[i];
+                AnimatedTextException exception = null;
+                exceptions?.TryGetValue(character, out exception);
+                if (exception != null)
+                {
+                    textComponent.text += textToDisplay[i];
+                    yield return new WaitForSeconds(exception.overrideDuration);
+                }
+                else
+                {
+                    textComponent.text += textToDisplay[i];
+                    yield return new WaitForSeconds(displayDuration);
+                }
+            }
+
+            isComplete = true;
+            yield break;
+        }
+
+        public void Complete()
+        {
+            isComplete = true;
+            textComponent.SetText(textToDisplay);
+        }
+    }
+
+    [Serializable]
+    public class AnimatedTextException
+    {
+        public float overrideDuration;
+    }
+}

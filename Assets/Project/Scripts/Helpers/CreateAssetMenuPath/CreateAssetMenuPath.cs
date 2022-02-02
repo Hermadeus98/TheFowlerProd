@@ -9,6 +9,7 @@ namespace TheFowler
         public const string root = "TheFowler/";
 
         public const string data = root + "Datas/";
+        public const string ui = data + "UI/";
 
         public const string Spawnables = data + "Spawnables";
         public const string controller = data + "Controllers/";
@@ -20,7 +21,11 @@ namespace TheFowler
 
         public const string dialogueData = data + "DialogueDatabase";
 
+        public const string actorDB = data + "ActorDatabase";
+
         public const string camera = data + "/Cameras";
         public const string cameraTransitionData = camera + "TransitionDB";
+        
+        public const string rappelInputDB = ui + "RappelInputDatabase";
     }
 }

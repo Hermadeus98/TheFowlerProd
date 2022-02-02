@@ -48,12 +48,20 @@ namespace TheFowler
             QRDebug.Log("DIALOGUE PHASE", FrenchPallet.NEPHRITIS, $"{Dialogue_id} has started.");
             
             OnStart.Call();
-            
-            if(dialogueType == DialogueType.STATIC)
-                PlaceActor();
-            
-            UI.OpenView("StaticDialogueView");
-            
+
+            switch (dialogueType)
+            {
+                case DialogueType.STATIC:
+                    PlaceActor();
+                    UI.OpenView("StaticDialogueView");
+                    break;
+                case DialogueType.MOVEMENT:
+                    UI.OpenView("MovementDialogueView");
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
             isActive = true;
             elapsedTime = 0;
             currentDialogueCount = 0;
@@ -91,6 +99,19 @@ namespace TheFowler
 
         public void Next()
         {
+            var staticDialogueView = UI.GetView<DialogueStaticView>("StaticDialogueView");
+            var movementDialogueView = UI.GetView<DialogueMovementView>("MovementDialogueView");
+            if (dialogueType == DialogueType.STATIC && !staticDialogueView.textIsComplete)
+            {
+                staticDialogueView.AnimatedText.Complete();
+                return;
+            }
+            if (dialogueType == DialogueType.MOVEMENT && !movementDialogueView.currentDialogueElement.textIsComplete)
+            {
+                movementDialogueView.currentDialogueElement.AnimatedText.Complete();
+                return;
+            }
+            
             currentDialogueCount++;
 
             if (currentDialogueCount < Dialogues.Dialogues.Length)
@@ -109,17 +130,41 @@ namespace TheFowler
                 }
                 
                 OnEnd.Call();
-                UI.CloseView("StaticDialogueView");
+
+                switch (dialogueType)
+                {
+                    case DialogueType.STATIC:
+                        UI.CloseView("StaticDialogueView");
+                        break;
+                    case DialogueType.MOVEMENT:
+                        UI.CloseView("MovementDialogueView");
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             }
         }
 
         public void DisplayDialogue(Dialogue dialogue)
         {
             CameraManager.Instance.SetCamera(dialogue.cameraPath);
-            UI.RefreshView("StaticDialogueView", new DialogueArg()
+            switch (dialogueType)
             {
-                Dialogue = dialogue,
-            });
+                case DialogueType.STATIC:
+                    UI.RefreshView("StaticDialogueView", new DialogueArg()
+                    {
+                        Dialogue = dialogue,
+                    });
+                    break;
+                case DialogueType.MOVEMENT:
+                    UI.RefreshView("MovementDialogueView", new DialogueArg()
+                    {
+                        Dialogue = dialogue,
+                    });
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         private void FixedUpdate()

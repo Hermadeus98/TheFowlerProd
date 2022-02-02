@@ -48,6 +48,12 @@ namespace QRCode.Extensions
             ColorUtility.TryParseHtmlString(htlmCode, out var c);
             return c;
         }
+
+        public static Color SetAlpha(this Color color, float a)
+        {
+            color.a = a;
+            return color;
+        }
     }
 
     public static class ColorPallets
