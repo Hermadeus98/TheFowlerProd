@@ -99,6 +99,19 @@ namespace TheFowler
 
         public void Next()
         {
+            var staticDialogueView = UI.GetView<DialogueStaticView>("StaticDialogueView");
+            var movementDialogueView = UI.GetView<DialogueMovementView>("MovementDialogueView");
+            if (dialogueType == DialogueType.STATIC && !staticDialogueView.textIsComplete)
+            {
+                staticDialogueView.AnimatedText.Complete();
+                return;
+            }
+            if (dialogueType == DialogueType.MOVEMENT && !movementDialogueView.currentDialogueElement.textIsComplete)
+            {
+                movementDialogueView.currentDialogueElement.AnimatedText.Complete();
+                return;
+            }
+            
             currentDialogueCount++;
 
             if (currentDialogueCount < Dialogues.Dialogues.Length)

@@ -26,6 +26,8 @@ namespace TheFowler
 
         [SerializeField] private Queue<DialogueUIElement> queue = new Queue<DialogueUIElement>();
 
+        public DialogueUIElement currentDialogueElement;
+
         private int a;
 
         [Button]
@@ -33,9 +35,9 @@ namespace TheFowler
         {
             a++;
             var uiElement = Instantiate(Spawnables.Instance.DialogueUIElement, container);
+            currentDialogueElement = uiElement;
             uiElement.transform.SetParent(plugs[0]);
             uiElement.RectTransform.anchoredPosition = new Vector3(-uiElement.RectTransform.sizeDelta.x, 0f, 0f);
-            Debug.Log(arg);
             uiElement.Refresh(arg);
             uiElement.Show();
 
@@ -62,9 +64,32 @@ namespace TheFowler
 
         public override void Hide()
         {
-            base.Hide();
-            queue.ForEach(w => Destroy(w.gameObject));
+            //base.Hide();
+            StartCoroutine(HideCoroutine());
+        }
+
+        private IEnumerator HideCoroutine()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                var element = queue.Peek();
+                yield return element.DestroyElement(1f);
+                
+                Add(new DialogueArg()
+                {
+                    Dialogue = null,
+                });
+            }
+
+            queue.ForEach(w => w.DestroyElement(0.1f));
             queue.Clear();
+            
+            openTween = CanvasGroup.DOFade(0f, .1f);
+            CanvasGroup.interactable = false;
+            CanvasGroup.blocksRaycasts = true;
+            
+            /*queue.ForEach(w => Destroy(w.gameObject));
+            queue.Clear();*/
         }
     }
 }

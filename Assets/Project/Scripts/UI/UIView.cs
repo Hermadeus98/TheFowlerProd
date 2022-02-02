@@ -26,7 +26,7 @@ namespace TheFowler
         
         public string ViewName => viewName;
 
-        private Tween openTween;
+        protected Tween openTween;
 
         public override void Show()
         {
