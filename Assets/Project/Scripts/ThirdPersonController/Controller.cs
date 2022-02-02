@@ -97,7 +97,6 @@ namespace TheFowler
                 case GameStateEnum.LAUNCH:
                     break;
                 case GameStateEnum.BATTLE:
-                    SetController(ControllerEnum.NAV_MESH_CONTROLLER);
                     break;
                 case GameStateEnum.CINEMATIC:
                     break;

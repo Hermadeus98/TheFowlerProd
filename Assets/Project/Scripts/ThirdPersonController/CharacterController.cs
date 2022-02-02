@@ -7,7 +7,7 @@ using UnityEngine.AI;
 
 namespace TheFowler
 {
-    public class CharacterControllerBase : SerializedMonoBehaviour, Istate
+    public class CharacterControllerBase : GameplayMonoBehaviour, Istate
     {
         [SerializeField]
         private string stateName;
