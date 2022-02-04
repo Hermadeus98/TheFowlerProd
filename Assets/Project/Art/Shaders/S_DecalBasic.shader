@@ -11,9 +11,7 @@ Shader "S_DecalBasic"
 		_Roughness("Roughness", Range( 0 , 1)) = 0
 		_Tiling("Tiling", Float) = 0
 		_Metal("Metal", Range( 0 , 1)) = 0
-		_E_Intensity("E_Intensity", Range( 0 , 250)) = 0
-		[ASEEnd]_TextureSample0("Texture Sample 0", 2D) = "white" {}
-		[HideInInspector] _texcoord( "", 2D ) = "white" {}
+		[ASEEnd]_E_Intensity("E_Intensity", Range( 0 , 250)) = 0
 
         [HideInInspector]_DrawOrder("Draw Order", Int) = 0
 		[HideInInspector][Enum(Depth Bias, 0, View Bias, 1)]_DecalMeshBiasType("Float", Float) = 0
@@ -138,7 +136,6 @@ Shader "S_DecalBasic"
 
             
             CBUFFER_START(UnityPerMaterial)
-            float4 _TextureSample0_ST;
             float _Tiling;
             float _Metal;
             float _Roughness;
@@ -170,7 +167,6 @@ Shader "S_DecalBasic"
             CBUFFER_END
                 
 			sampler2D _BaseColor;
-			sampler2D _TextureSample0;
 			sampler2D _Normal;
 
 
@@ -363,17 +359,14 @@ Shader "S_DecalBasic"
 				float2 texCoord25 = texCoord0.xy * temp_cast_0 + float2( 0,0 );
 				float4 tex2DNode17 = tex2D( _BaseColor, texCoord25 );
 				
-				float2 uv_TextureSample0 = texCoord0.xy * _TextureSample0_ST.xy + _TextureSample0_ST.zw;
-				float4 tex2DNode44 = tex2D( _TextureSample0, uv_TextureSample0 );
-				
 				surfaceDescription.BaseColor = tex2DNode17.rgb;
-				surfaceDescription.Alpha = tex2DNode44.r;
+				surfaceDescription.Alpha = tex2DNode17.a;
 				surfaceDescription.NormalTS = UnpackNormalScale( tex2D( _Normal, texCoord25 ), 1.0f );
-				surfaceDescription.NormalAlpha = tex2DNode44.r;
+				surfaceDescription.NormalAlpha = tex2DNode17.a;
 				surfaceDescription.Metallic = _Metal;
 				surfaceDescription.Occlusion = 1;
 				surfaceDescription.Smoothness = ( 1.0 - _Roughness );
-				surfaceDescription.MAOSAlpha = tex2DNode44.r;
+				surfaceDescription.MAOSAlpha = tex2DNode17.a;
 				surfaceDescription.Emission = ( tex2DNode17 * _E_Intensity ).rgb;
 
 				GetSurfaceData(surfaceDescription, input, V, posInput, angleFadeFactor, surfaceData);
@@ -464,7 +457,6 @@ Shader "S_DecalBasic"
 
             
             CBUFFER_START(UnityPerMaterial)
-            float4 _TextureSample0_ST;
             float _Tiling;
             float _Metal;
             float _Roughness;
@@ -496,7 +488,6 @@ Shader "S_DecalBasic"
             CBUFFER_END
                 
 			sampler2D _BaseColor;
-			sampler2D _TextureSample0;
 			sampler2D _Normal;
 
 
@@ -678,17 +669,14 @@ Shader "S_DecalBasic"
 				float2 texCoord25 = texCoord0.xy * temp_cast_0 + float2( 0,0 );
 				float4 tex2DNode17 = tex2D( _BaseColor, texCoord25 );
 				
-				float2 uv_TextureSample0 = texCoord0.xy * _TextureSample0_ST.xy + _TextureSample0_ST.zw;
-				float4 tex2DNode44 = tex2D( _TextureSample0, uv_TextureSample0 );
-				
 				surfaceDescription.BaseColor = tex2DNode17.rgb;
-				surfaceDescription.Alpha = tex2DNode44.r;
+				surfaceDescription.Alpha = tex2DNode17.a;
 				surfaceDescription.NormalTS = UnpackNormalScale( tex2D( _Normal, texCoord25 ), 1.0f );
-				surfaceDescription.NormalAlpha = tex2DNode44.r;
+				surfaceDescription.NormalAlpha = tex2DNode17.a;
 				surfaceDescription.Metallic = _Metal;
 				surfaceDescription.Occlusion = 1;
 				surfaceDescription.Smoothness = ( 1.0 - _Roughness );
-				surfaceDescription.MAOSAlpha = tex2DNode44.r;
+				surfaceDescription.MAOSAlpha = tex2DNode17.a;
 				surfaceDescription.Emission = ( tex2DNode17 * _E_Intensity ).rgb;
 
 				GetSurfaceData(surfaceDescription, input, V, posInput, angleFadeFactor, surfaceData);
@@ -796,7 +784,6 @@ Shader "S_DecalBasic"
 			};
 			
             CBUFFER_START(UnityPerMaterial)
-            float4 _TextureSample0_ST;
             float _Tiling;
             float _Metal;
             float _Roughness;
@@ -828,7 +815,6 @@ Shader "S_DecalBasic"
             CBUFFER_END
        
 	   		sampler2D _BaseColor;
-	   		sampler2D _TextureSample0;
 	   		sampler2D _Normal;
 
 
@@ -1047,17 +1033,14 @@ Shader "S_DecalBasic"
 				float2 texCoord25 = texCoord0.xy * temp_cast_0 + float2( 0,0 );
 				float4 tex2DNode17 = tex2D( _BaseColor, texCoord25 );
 				
-				float2 uv_TextureSample0 = texCoord0.xy * _TextureSample0_ST.xy + _TextureSample0_ST.zw;
-				float4 tex2DNode44 = tex2D( _TextureSample0, uv_TextureSample0 );
-				
 				surfaceDescription.BaseColor = tex2DNode17.rgb;
-				surfaceDescription.Alpha = tex2DNode44.r;
+				surfaceDescription.Alpha = tex2DNode17.a;
 				surfaceDescription.NormalTS = UnpackNormalScale( tex2D( _Normal, texCoord25 ), 1.0f );
-				surfaceDescription.NormalAlpha = tex2DNode44.r;
+				surfaceDescription.NormalAlpha = tex2DNode17.a;
 				surfaceDescription.Metallic = _Metal;
 				surfaceDescription.Occlusion = 1;
 				surfaceDescription.Smoothness = ( 1.0 - _Roughness );
-				surfaceDescription.MAOSAlpha = tex2DNode44.r;
+				surfaceDescription.MAOSAlpha = tex2DNode17.a;
 				surfaceDescription.Emission = ( tex2DNode17 * _E_Intensity ).rgb;
 
 				GetSurfaceData(surfaceDescription, input, V, posInput, angleFadeFactor, surfaceData);
@@ -1148,7 +1131,6 @@ Shader "S_DecalBasic"
 			};
 			
             CBUFFER_START(UnityPerMaterial)
-            float4 _TextureSample0_ST;
             float _Tiling;
             float _Metal;
             float _Roughness;
@@ -1180,7 +1162,6 @@ Shader "S_DecalBasic"
             CBUFFER_END
        
 	   		sampler2D _BaseColor;
-	   		sampler2D _TextureSample0;
 	   		sampler2D _Normal;
 
 
@@ -1374,17 +1355,14 @@ Shader "S_DecalBasic"
 				float2 texCoord25 = texCoord0.xy * temp_cast_0 + float2( 0,0 );
 				float4 tex2DNode17 = tex2D( _BaseColor, texCoord25 );
 				
-				float2 uv_TextureSample0 = texCoord0.xy * _TextureSample0_ST.xy + _TextureSample0_ST.zw;
-				float4 tex2DNode44 = tex2D( _TextureSample0, uv_TextureSample0 );
-				
 				surfaceDescription.BaseColor = tex2DNode17.rgb;
-				surfaceDescription.Alpha = tex2DNode44.r;
+				surfaceDescription.Alpha = tex2DNode17.a;
 				surfaceDescription.NormalTS = UnpackNormalScale( tex2D( _Normal, texCoord25 ), 1.0f );
-				surfaceDescription.NormalAlpha = tex2DNode44.r;
+				surfaceDescription.NormalAlpha = tex2DNode17.a;
 				surfaceDescription.Metallic = _Metal;
 				surfaceDescription.Occlusion = 1;
 				surfaceDescription.Smoothness = ( 1.0 - _Roughness );
-				surfaceDescription.MAOSAlpha = tex2DNode44.r;
+				surfaceDescription.MAOSAlpha = tex2DNode17.a;
 				surfaceDescription.Emission = ( tex2DNode17 * _E_Intensity ).rgb;
 
 				GetSurfaceData(surfaceDescription, input, V, posInput, angleFadeFactor, surfaceData);
@@ -1413,7 +1391,7 @@ Shader "S_DecalBasic"
 }
 /*ASEBEGIN
 Version=18900
-7;101;1920;917;1342.667;395.235;1;True;True
+7;101;1920;917;1362.344;568.7335;1;True;True
 Node;AmplifyShaderEditor.CommentaryNode;30;-1837.536,-303.4446;Inherit;False;673;397;Decal flipbook, put all your decals in a single atlas to simplify their use.;2;25;39;;1,1,1,1;0;0
 Node;AmplifyShaderEditor.RangedFloatNode;39;-1700.323,-169.6743;Inherit;False;Property;_Tiling;Tiling;4;0;Create;True;0;0;0;False;0;False;0;1;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.TextureCoordinatesNode;25;-1439.536,-210.4446;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
@@ -1437,12 +1415,12 @@ WireConnection;19;1;25;0
 WireConnection;42;0;17;0
 WireConnection;42;1;43;0
 WireConnection;32;0;17;0
-WireConnection;32;1;44;0
+WireConnection;32;1;17;4
 WireConnection;32;2;19;0
-WireConnection;32;3;44;0
+WireConnection;32;3;17;4
 WireConnection;32;4;36;0
 WireConnection;32;6;38;0
-WireConnection;32;7;44;0
+WireConnection;32;7;17;4
 WireConnection;32;8;42;0
 ASEEND*/
-//CHKSM=8637154527264EAF777C83B497909D27EFE28F9F
+//CHKSM=AAC368B1B5DFF570DC3F018CAB3B76760C5D8983
