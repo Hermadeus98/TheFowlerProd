@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using QRCode;
-using QRCode.Extensions;
 using Sirenix.OdinInspector;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -11,44 +8,31 @@ using UnityEngine.InputSystem;
 
 namespace TheFowler
 {
-    public class DialogueHandler : GameplayMonoBehaviour, IDialoguePhase
+    public class DialogueHandler : GameplayPhase
     {
-        [TabGroup("General Settings")]
-        [SerializeField] private string dialogue_id;
-        [TabGroup("General Settings")]
+        [TitleGroup("General Settings")]
         [SerializeField] private DialogueType dialogueType;
+        [TitleGroup("General Settings")]
+        [SerializeField] private DialogueDatabase Dialogues;
         
         [TabGroup("References")]
         [SerializeField] private PlayerInput Inputs;
-        
-        //Initialisation
         [TabGroup("References"), ShowIf("@this.dialogueType == DialogueType.STATIC")]
         [SerializeField] private ActorActivator actorActivator;
-        [TabGroup("General Settings")]
-        [SerializeField] private DialogueDatabase Dialogues;
-        [TabGroup("General Settings")]
-        [SerializeField] private GameInstructions OnStart;
-        
-        //End
-        [TabGroup("General Settings")]
-        [SerializeField] private GameInstructions OnEnd;
 
-        [TabGroup("Debug")]
-        [SerializeField, ReadOnly] private bool isActive = false;
         [TabGroup("Debug")]
         [SerializeField, ReadOnly] private int currentDialogueCount = 0;
         [TabGroup("Debug")]
         [SerializeField, ReadOnly] private float elapsedTime = 0;
 
-        public string Dialogue_id { get => dialogue_id; set => dialogue_id = value; }
-        public bool IsActive { get => isActive; set => isActive = value; }
+        public override void PlayPhase()
+        {
+            base.PlayPhase();
+            PlayDialoguePhase();
+        }
 
         public void PlayDialoguePhase()
         {
-            QRDebug.Log("DIALOGUE PHASE", FrenchPallet.NEPHRITIS, $"{Dialogue_id} has started.");
-            
-            OnStart.Call();
-
             switch (dialogueType)
             {
                 case DialogueType.STATIC:
@@ -62,7 +46,6 @@ namespace TheFowler
                     throw new ArgumentOutOfRangeException();
             }
 
-            isActive = true;
             elapsedTime = 0;
             currentDialogueCount = 0;
             
@@ -73,6 +56,7 @@ namespace TheFowler
         {
             if(!isActive)
                 return;
+            
             var currentDialogue = Dialogues.Dialogues[currentDialogueCount];
 
             if (elapsedTime < currentDialogue.displayDuration)
@@ -85,33 +69,27 @@ namespace TheFowler
             }
         }
 
-        protected override void RegisterEvent()
-        {
-            base.RegisterEvent();
-            DialogueManager.RegisterDialoguePhase(this);
-        }
-
-        protected override void UnregisterEvent()
-        {
-            base.UnregisterEvent();
-            DialogueManager.UnregisterDialoguePhase(this);
-        }
-
         public void Next()
         {
             var staticDialogueView = UI.GetView<DialogueStaticView>("StaticDialogueView");
             var movementDialogueView = UI.GetView<DialogueMovementView>("MovementDialogueView");
+
             if (dialogueType == DialogueType.STATIC && !staticDialogueView.textIsComplete)
             {
                 staticDialogueView.AnimatedText.Complete();
                 return;
             }
-            if (dialogueType == DialogueType.MOVEMENT && !movementDialogueView.currentDialogueElement.textIsComplete)
+
+            if (movementDialogueView.currentDialogueElement != null)
             {
-                movementDialogueView.currentDialogueElement.AnimatedText.Complete();
-                return;
+                if (dialogueType == DialogueType.MOVEMENT &&
+                    !movementDialogueView.currentDialogueElement.textIsComplete)
+                {
+                    movementDialogueView.currentDialogueElement.AnimatedText.Complete();
+                    return;
+                }
             }
-            
+
             currentDialogueCount++;
 
             if (currentDialogueCount < Dialogues.Dialogues.Length)
@@ -122,26 +100,29 @@ namespace TheFowler
             }
             else
             {
-                isActive = false;
+                EndPhase();
+            }
+        }
 
-                if (dialogueType == DialogueType.STATIC)
-                {
-                    ReplaceActor();
-                }
-                
-                OnEnd.Call();
+        public override void EndPhase()
+        {
+            if (dialogueType == DialogueType.STATIC)
+            {
+                ReplaceActor();
+            }
+            
+            base.EndPhase();
 
-                switch (dialogueType)
-                {
-                    case DialogueType.STATIC:
-                        UI.CloseView("StaticDialogueView");
-                        break;
-                    case DialogueType.MOVEMENT:
-                        UI.CloseView("MovementDialogueView");
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+            switch (dialogueType)
+            {
+                case DialogueType.STATIC:
+                    UI.CloseView("StaticDialogueView");
+                    break;
+                case DialogueType.MOVEMENT:
+                    UI.CloseView("MovementDialogueView");
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 
@@ -214,15 +195,6 @@ namespace TheFowler
 #endif
     }
 
-    public interface IDialoguePhase
-    {
-        public string Dialogue_id { get; set; }
-        public bool IsActive { get; set; }
-        public void PlayDialoguePhase();
-
-        public void Next();
-    }
-
     public class DialogueArg : EventArgs
     {
         public Dialogue Dialogue;
@@ -240,11 +212,5 @@ namespace TheFowler
     {
         STATIC = 0,
         MOVEMENT = 1,
-    }
-    
-    public enum InitilizationMode
-    {
-        MOVE_TO,
-        TELEPORT
     }
 }

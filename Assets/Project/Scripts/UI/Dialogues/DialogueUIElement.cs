@@ -65,7 +65,7 @@ namespace TheFowler
             canvasGroup.DOFade(0f, fadeDuration).SetDelay(delayBeforeFade);
         }
 
-        public IEnumerator DestroyElement(float duration)
+        public IEnumerator HideElement(float duration)
         {
             canvasGroup.DOFade(0f, duration);
             yield return new WaitForSeconds(duration);

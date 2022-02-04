@@ -104,7 +104,7 @@ namespace TheFowler
             
             velocity.y += GRAVITY_FORCE;
 
-            if(applyMove) characterController.Move(velocity * Time.deltaTime);
+            if(applyMove && characterController.gameObject.activeInHierarchy) characterController.Move(velocity * Time.deltaTime);
             
             return velocity;
         }
@@ -128,26 +128,6 @@ namespace TheFowler
         public void SetCameraToTPSCamera()
         {
             CameraManager.Instance.SetCamera(TPS_Camera);
-        }
-
-        protected override void RegisterEvent()
-        {
-            base.RegisterEvent();
-            //ChapterManager.onChapterChange += delegate(Chapter chapter) { applyMove = false; };
-            //ChapterManager.onChapterLoaded += delegate(Chapter chapter) { StartCoroutine(ApplyMove()); };
-        }
-
-        IEnumerator ApplyMove()
-        {
-            yield return new WaitForSeconds(.5f);
-            applyMove = true;
-        }
-
-        protected override void UnregisterEvent()
-        {
-            base.UnregisterEvent();
-            //ChapterManager.onChapterChange -= delegate(Chapter chapter) { applyMove = false; };
-            //ChapterManager.onChapterLoaded -= delegate(Chapter chapter) { StartCoroutine(ApplyMove()); };
         }
     }
 }
