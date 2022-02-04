@@ -88,10 +88,10 @@ MonoBehaviour:
   desactivateRobyn: 0
   desactivateAbigael: 0
   desactivatePhoebe: 0
-  dialogueActors:
+  ActorsToActivate:
+  - {fileID: 8790904665418008339}
   - {fileID: 8790904665661701808}
   - {fileID: 8790904666762254516}
-  - {fileID: 8790904665418008339}
 --- !u!1 &8790904665673440978
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,6 +172,21 @@ MonoBehaviour:
     - Name: virtualCamera
       Entry: 10
       Data: 0
+    - Name: isDollyTrackCamera
+      Entry: 5
+      Data: false
+    - Name: lauchAtStart
+      Entry: 5
+      Data: false
+    - Name: delay
+      Entry: 4
+      Data: 0
+    - Name: moveDuration
+      Entry: 4
+      Data: 0
+    - Name: moveEase
+      Entry: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -185,6 +200,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   batchName: Dialogue_GymRoom
+  registerBatch: 1
 --- !u!1 &8790904665690183349
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,16 +332,17 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  dialogue_id: DS_DialogueTest
-  dialogueType: 0
-  Inputs: {fileID: 8790904665946769940}
-  actorActivator: {fileID: 8790904665370385166}
-  Dialogues: {fileID: 11400000, guid: f59ab765a85ccf24c9b9a6824589d9f1, type: 2}
+  gameplayPhase_id: 
+  isActive: 0
+  onEndGameplayPhase_id: 
   OnStart:
     instructions: 
   OnEnd:
     instructions: 0000000005000000
-  isActive: 0
+  dialogueType: 0
+  Inputs: {fileID: 8790904665946769940}
+  actorActivator: {fileID: 8790904665370385166}
+  Dialogues: {fileID: 11400000, guid: f59ab765a85ccf24c9b9a6824589d9f1, type: 2}
   currentDialogueCount: 0
   elapsedTime: 0
 --- !u!114 &8790904665946769940
@@ -758,11 +775,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6740786154447216608, guid: 2fc43fb78783b1f48a7404a3ab088992, type: 3}
       propertyPath: onTriggerEnterFront.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlayDialoguePhase
+      value: PlayPhase
       objectReference: {fileID: 0}
     - target: {fileID: 6740786154447216608, guid: 2fc43fb78783b1f48a7404a3ab088992, type: 3}
       propertyPath: onTriggerEnterFront.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TheFowler.StaticDialogueHandler, Assembly-CSharp
+      value: TheFowler.DialogueHandler, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6740786154447216608, guid: 2fc43fb78783b1f48a7404a3ab088992, type: 3}
       propertyPath: onTriggerEnterFront.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

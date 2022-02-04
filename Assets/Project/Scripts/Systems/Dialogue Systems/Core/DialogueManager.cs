@@ -7,7 +7,7 @@ namespace TheFowler
 {
     public static class DialogueManager
     {
-        public static Dictionary<string, IDialoguePhase> DialoguePhases = new Dictionary<string, IDialoguePhase>();
+        /*public static Dictionary<string, IDialoguePhase> DialoguePhases = new Dictionary<string, IDialoguePhase>();
 
         public static void RegisterDialoguePhase(IDialoguePhase dialoguePhase)
         {
@@ -28,6 +28,6 @@ namespace TheFowler
         public static void PlayDialoguePhase(string key)
         {
             DialoguePhases[key].PlayDialoguePhase();
-        }
+        }*/
     }
 }

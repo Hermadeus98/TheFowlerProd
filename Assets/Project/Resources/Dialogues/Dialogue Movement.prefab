@@ -54,16 +54,17 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  dialogue_id: DM_DialogueMovement_Test
-  dialogueType: 1
-  Inputs: {fileID: 3896877582466060184}
-  actorActivator: {fileID: 0}
-  Dialogues: {fileID: 11400000, guid: e3fc506bb6e5d7740828141aed9e6dc5, type: 2}
+  gameplayPhase_id: 
+  isActive: 0
+  onEndGameplayPhase_id: 
   OnStart:
     instructions: 02000000
   OnEnd:
     instructions: 03000000
-  isActive: 0
+  dialogueType: 1
+  Inputs: {fileID: 3896877582466060184}
+  actorActivator: {fileID: 0}
+  Dialogues: {fileID: 11400000, guid: e3fc506bb6e5d7740828141aed9e6dc5, type: 2}
   currentDialogueCount: 0
   elapsedTime: 0
 --- !u!114 &3896877582466060184
@@ -197,11 +198,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6740786154447216608, guid: 2fc43fb78783b1f48a7404a3ab088992, type: 3}
       propertyPath: onTriggerEnterFront.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlayDialoguePhase
+      value: PlayPhase
       objectReference: {fileID: 0}
     - target: {fileID: 6740786154447216608, guid: 2fc43fb78783b1f48a7404a3ab088992, type: 3}
       propertyPath: onTriggerEnterFront.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TheFowler.StaticDialogueHandler, Assembly-CSharp
+      value: TheFowler.DialogueHandler, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6740786154447216608, guid: 2fc43fb78783b1f48a7404a3ab088992, type: 3}
       propertyPath: onTriggerEnterFront.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

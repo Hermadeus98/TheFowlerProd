@@ -25,6 +25,7 @@ namespace TheFowler
         [SerializeField] private RectTransform[] plugs;
 
         [SerializeField] private Queue<DialogueUIElement> queue = new Queue<DialogueUIElement>();
+        private List<DialogueUIElement> bin = new List<DialogueUIElement>();
 
         public DialogueUIElement currentDialogueElement;
 
@@ -42,6 +43,7 @@ namespace TheFowler
             uiElement.Show();
 
             uiElement.name = a.ToString();
+            bin.Add(uiElement);
             queue.Enqueue(uiElement);
             ReAgenceUI();
         }
@@ -73,7 +75,7 @@ namespace TheFowler
             for (int i = 0; i < 3; i++)
             {
                 var element = queue.Peek();
-                yield return element.DestroyElement(1f);
+                yield return element.HideElement(1f);
                 
                 Add(new DialogueArg()
                 {
@@ -81,15 +83,12 @@ namespace TheFowler
                 });
             }
 
-            queue.ForEach(w => w.DestroyElement(0.1f));
+            queue.ForEach(w => w?.HideElement(0.1f));
             queue.Clear();
             
             openTween = CanvasGroup.DOFade(0f, .1f);
             CanvasGroup.interactable = false;
             CanvasGroup.blocksRaycasts = true;
-            
-            /*queue.ForEach(w => Destroy(w.gameObject));
-            queue.Clear();*/
         }
     }
 }

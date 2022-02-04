@@ -27,7 +27,7 @@ namespace TheFowler
         protected override IEnumerator OnChapterLoaded(EventArgs arg)
         {
             yield return base.OnChapterLoaded(arg);
-            DialogueManager.PlayDialoguePhase("DM_DialogueMovement_Test");
+            //GameplayPhaseManager.PlayGameplayPhase();
         }
     }
 }

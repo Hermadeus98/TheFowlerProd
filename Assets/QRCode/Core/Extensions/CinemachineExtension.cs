@@ -44,5 +44,15 @@ namespace QRCode.Extensions
                 to,
                 duration).SetEase(ease);
         }
+
+        public static Tween DoTrackDollyPath(this CinemachineTrackedDolly trackedDolly, float to, float duration,
+            Ease ease = Ease.InOutSine)
+        {
+            return DOTween.To(
+                () => trackedDolly.m_PathPosition,
+                (x) => trackedDolly.m_PathPosition = x,
+                to,
+                duration).SetEase(ease);
+        }
     }
 }
