@@ -1,8 +1,9 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Sirenix.OdinInspector;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
+using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,29 +11,29 @@ namespace TheFowler
 {
     public class DialogueHandler : GameplayPhase
     {
-        [TitleGroup("General Settings")]
-        [SerializeField] private DialogueType dialogueType;
-        [TitleGroup("General Settings")]
-        [SerializeField] private DialogueDatabase Dialogues;
-        
-        [TabGroup("References")]
-        [SerializeField] private PlayerInput Inputs;
-        [TabGroup("References"), ShowIf("@this.dialogueType == DialogueType.STATIC")]
-        [SerializeField] private ActorActivator actorActivator;
+        public BehaviourTree BehaviourTree;
 
-        [TabGroup("Debug")]
-        [SerializeField, ReadOnly] private int currentDialogueCount = 0;
+        [SerializeField] private DialogueNode currentDialogueNode;
+        private Dialogue currentDialogue => currentDialogueNode.dialogue;
+        
         [TabGroup("Debug")]
         [SerializeField, ReadOnly] private float elapsedTime = 0;
 
+        [TitleGroup("General Settings")]
+        [SerializeField] private DialogueType dialogueType;
+        [TabGroup("References"), ShowIf("@this.dialogueType == DialogueType.STATIC")]
+        [SerializeField] private ActorActivator actorActivator;
+        
+        [TabGroup("References")]
+        [SerializeField] private PlayerInput Inputs;
+        
+        private bool waitInput;
+        [SerializeField] private bool displayChoiceResult = true;
+        
         public override void PlayPhase()
         {
             base.PlayPhase();
-            PlayDialoguePhase();
-        }
-
-        public void PlayDialoguePhase()
-        {
+            
             switch (dialogueType)
             {
                 case DialogueType.STATIC:
@@ -45,62 +46,118 @@ namespace TheFowler
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-            elapsedTime = 0;
-            currentDialogueCount = 0;
             
-            DisplayDialogue(Dialogues.Dialogues[currentDialogueCount]);
+            currentDialogueNode = BehaviourTree.rootNode as DialogueNode;
+            DisplayDialogue(currentDialogue);
         }
 
         private void Update()
         {
-            if(!isActive)
-                return;
-            
-            var currentDialogue = Dialogues.Dialogues[currentDialogueCount];
-
-            if (elapsedTime < currentDialogue.displayDuration)
+            if (isActive)
             {
-                elapsedTime += Time.deltaTime;
-            }
-            else
-            {
-                Next();
+                if (!waitInput)
+                {
+                    if (elapsedTime < currentDialogue.displayDuration)
+                    {
+                        elapsedTime += Time.deltaTime;
+                    }
+                    else
+                    {
+                        Next();
+                    }
+                }
             }
         }
 
-        public void Next()
+        private void FixedUpdate()
         {
-            var staticDialogueView = UI.GetView<DialogueStaticView>("StaticDialogueView");
-            var movementDialogueView = UI.GetView<DialogueMovementView>("MovementDialogueView");
-
-            if (dialogueType == DialogueType.STATIC && !staticDialogueView.textIsComplete)
+            if (isActive)
             {
-                staticDialogueView.AnimatedText.Complete();
-                return;
-            }
-
-            if (movementDialogueView.currentDialogueElement != null)
-            {
-                if (dialogueType == DialogueType.MOVEMENT &&
-                    !movementDialogueView.currentDialogueElement.textIsComplete)
+                if (Keyboard.current.spaceKey.wasPressedThisFrame && !waitInput)
                 {
-                    movementDialogueView.currentDialogueElement.AnimatedText.Complete();
-                    return;
+                    Next();
+                }
+
+                if (waitInput)
+                {
+                    MakeAChoice();
                 }
             }
+        }
 
-            currentDialogueCount++;
-
-            if (currentDialogueCount < Dialogues.Dialogues.Length)
-            {            
-                var currentDialogue = Dialogues.Dialogues[currentDialogueCount];
-                DisplayDialogue(currentDialogue);
-                elapsedTime = 0;
+        private void Next()
+        {
+            if (currentDialogueNode != null)
+            {
+                if (!currentDialogueNode.isLast)
+                {
+                    if (currentDialogueNode.hasMultipleChoices)
+                    {
+                        Debug.Log("choice");
+                        waitInput = true;
+                        switch (dialogueType)
+                        {
+                            case DialogueType.STATIC:
+                                var view = UI.GetView<DialogueStaticView>("StaticDialogueView");
+                                view.SetChoices(currentDialogueNode);
+                                break;
+                            case DialogueType.MOVEMENT:
+                                //UI.CloseView("MovementDialogueView");
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException();
+                        }
+                    }
+                    else
+                    {
+                        currentDialogueNode = currentDialogueNode.children[0] as DialogueNode;
+                        DisplayDialogue(currentDialogue);
+                    }
+                }
+                else
+                {
+                    currentDialogueNode = null;
+                    elapsedTime = 0;
+                    EndPhase();
+                }
             }
             else
             {
+                currentDialogueNode = null;
+                elapsedTime = 0;
                 EndPhase();
+            }
+        }
+
+        private void MakeAChoice()
+        {
+            if (Keyboard.current.numpad1Key.wasPressedThisFrame)
+            {
+                if (displayChoiceResult)
+                {
+                    currentDialogueNode = currentDialogueNode.children[0] as DialogueNode;
+                    DisplayDialogue(currentDialogue);
+                }
+                else
+                {
+                    Next();
+                }
+                
+                waitInput = false;
+            }
+            if (Keyboard.current.numpad2Key.wasPressedThisFrame)
+            {
+                if (displayChoiceResult)
+                {
+                    currentDialogueNode = currentDialogueNode.children[1] as DialogueNode;
+                    DisplayDialogue(currentDialogue);
+                }
+                else
+                {
+                    Next();
+                }
+                
+                waitInput = false;
             }
         }
 
@@ -112,7 +169,7 @@ namespace TheFowler
             }
             
             base.EndPhase();
-
+            
             switch (dialogueType)
             {
                 case DialogueType.STATIC:
@@ -126,37 +183,32 @@ namespace TheFowler
             }
         }
 
-        public void DisplayDialogue(Dialogue dialogue)
+        private void DisplayDialogue(Dialogue dialogue)
         {
             CameraManager.Instance.SetCamera(dialogue.cameraPath);
+            
             switch (dialogueType)
             {
                 case DialogueType.STATIC:
                     UI.RefreshView("StaticDialogueView", new DialogueArg()
                     {
                         Dialogue = dialogue,
+                        DialogueNode = currentDialogueNode,
                     });
                     break;
                 case DialogueType.MOVEMENT:
                     UI.RefreshView("MovementDialogueView", new DialogueArg()
                     {
                         Dialogue = dialogue,
+                        DialogueNode = currentDialogueNode,
                     });
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-        }
-
-        private void FixedUpdate()
-        {
-            if(!isActive)
-                return;
             
-            if (Inputs.actions["Next"].WasPressedThisFrame())
-            {
-                Next();
-            }
+            Debug.Log(dialogue.dialogueText);
+            elapsedTime = 0;
         }
         
         private void PlaceActor()
@@ -168,35 +220,11 @@ namespace TheFowler
         {
             actorActivator?.DesactivateActor();
         }
-        
-        //---<EDITOR>--------------------------------------------------------------------------------------------------<
-#if UNITY_EDITOR
-        [MenuItem("GameObject/LD/Dialogue/Dialogue Statique", false, 20)]
-        private static void CreateStaticDialogue(MenuCommand menuCommand)
-        {
-            var obj = Resources.Load("Dialogues/Dialogue Statique");
-            var go = PrefabUtility.InstantiatePrefab(obj, Selection.activeTransform) as GameObject;
-            GameObjectUtility.SetParentAndAlign(go, menuCommand.context as GameObject);
-            go.name = obj.name;
-            Undo.RegisterCreatedObjectUndo(go, "Create" + go.name);
-            Selection.activeObject = go;
-        }
-        
-        [MenuItem("GameObject/LD/Dialogue/Dialogue Movement", false, 20)]
-        private static void CreateMovementDialogue(MenuCommand menuCommand)
-        {
-            var obj = Resources.Load("Dialogues/Dialogue Movement");
-            var go = PrefabUtility.InstantiatePrefab(obj, Selection.activeTransform) as GameObject;
-            GameObjectUtility.SetParentAndAlign(go, menuCommand.context as GameObject);
-            go.name = obj.name;
-            Undo.RegisterCreatedObjectUndo(go, "Create" + go.name);
-            Selection.activeObject = go;
-        }
-#endif
     }
 
     public class DialogueArg : EventArgs
     {
+        public DialogueNode DialogueNode;
         public Dialogue Dialogue;
     }
 
@@ -213,4 +241,7 @@ namespace TheFowler
         STATIC = 0,
         MOVEMENT = 1,
     }
+    
 }
+
+
