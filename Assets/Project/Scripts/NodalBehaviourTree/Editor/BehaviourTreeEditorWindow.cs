@@ -1,6 +1,7 @@
 using System;
 using TheFowler;
 using UnityEditor;
+using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
@@ -16,6 +17,18 @@ public class BehaviourTreeEditorWindow : EditorWindow
     {
         BehaviourTreeEditorWindow wnd = GetWindow<BehaviourTreeEditorWindow>();
         wnd.titleContent = new GUIContent("BehaviourTreeEditorWindow");
+    }
+
+    [OnOpenAsset]
+    public static bool OnOpenAsset(int instanceId, int line)
+    {
+        if (Selection.activeObject is BehaviourTree)
+        {
+            OpenWindow();
+            return true;
+        }
+
+        return false;
     }
 
     public void CreateGUI()
