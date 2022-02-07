@@ -8,26 +8,63 @@ namespace TheFowler
     [Serializable]
     public class Round
     {
-        public List<TurnActor> TurnActors;
-        public TurnActor currentTurnActor;
+        public List<ITurnActor> TurnActors;
+        public ITurnActor currentTurnActor;
         
         private int currentTurnIndex;
 
-        public Round(IEnumerable<TurnActor> turnActors)
+        public bool roundIsFinish;
+
+        public Round(IEnumerable<ITurnActor> turnActors)
         {
-            TurnActors = new List<TurnActor>(turnActors);
+            TurnActors = new List<ITurnActor>(turnActors);
             currentTurnIndex = 0;
+            roundIsFinish = false;
         }
 
-        public void PlayTurn()
+        private void PlayRound()
         {
+            currentTurnActor?.OnTurnEnd();
             currentTurnActor = TurnActors[currentTurnIndex];
-            currentTurnActor.OnTurnStart();
+            if (currentTurnActor.SkipTurn())
+            {
+                NextTurn();
+            }
+            else
+            {
+                currentTurnActor.OnTurnStart();
+            }
         }
 
         public void NextTurn()
         {
-            
+            if (BattleManager.CurrentBattle.CheckVictory())
+            {
+                currentTurnActor?.OnTurnEnd();
+                return;
+            }
+
+            PlayRound();
+
+            currentTurnIndex++;
+
+            if (currentTurnIndex == TurnActors.Count)
+            {
+                currentTurnActor?.OnTurnEnd();
+                roundIsFinish = true;
+                Debug.Log("FINISH ROUND");
+                return;
+            }
+        }
+
+        /// <summary>
+        /// Used for Fury.
+        /// </summary>
+        /// <param name="turnActor"></param>
+        public void OverrideTurn(ITurnActor turnActor)
+        {
+            currentTurnActor?.OnTurnEnd();
+            turnActor.OnTurnStart();
         }
     }
 }

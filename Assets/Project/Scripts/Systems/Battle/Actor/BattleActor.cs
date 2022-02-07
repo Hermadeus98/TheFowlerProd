@@ -1,31 +1,52 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace TheFowler
 {
-    public class BattleActor : GameplayMonoBehaviour, TurnActor
+    public class BattleActor : GameplayMonoBehaviour, ITurnActor
     {
         [SerializeField] private CameraBatch cameraBatchBattle;
         public CameraBatch CameraBatchBattle => cameraBatchBattle;
+
+        public BattleActorInfo BattleActorInfo;
         
-        public void OnTurnStart()
+        public virtual void OnTurnStart()
         {
             Debug.Log(gameObject.name + " start turn");
         }
 
-        public void OnTurnEnd()
+        public virtual void OnTurnEnd()
         {
-            Debug.Log(gameObject.name + " start turn");
-
+            Debug.Log(gameObject.name + " end turn");
         }
 
-        public bool SkipTurn()
+        public virtual bool SkipTurn()
         {
-            
-            Debug.Log(gameObject.name + " skip turn");
+            if (BattleActorInfo.isDeath)
+            {
+                Debug.Log(gameObject.name + " skip turn");
+                return true;
+            }
 
             return false;
         }
+
+        public virtual bool IsAvailable()
+        {
+            if (BattleActorInfo.isDeath)
+            {
+                return false;
+            }
+
+            return true;
+        }
+    }
+
+    [Serializable]
+    public class BattleActorInfo
+    {
+        public bool isDeath;
     }
 }

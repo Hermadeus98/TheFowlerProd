@@ -16,8 +16,6 @@ namespace TheFowler
         [TitleGroup("Main Settings"), PropertyOrder(-1), ReadOnly, ShowInInspector]
         public bool hasMultipleChoices => children.Count > 1;
 
-        
-
         protected override void OnStart()
         {
             

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using QRCode;
 using QRCode.Extensions;
 using Sirenix.OdinInspector;
@@ -33,7 +34,9 @@ namespace TheFowler
         public List<BattleActor> Allies => allies;
         public List<BattleActor> Enemies => enemies;
         public bool FinishDirectly => finishDirectly;
-        
+
+        public TurnSystem TurnSystem;
+
         public override void PlayPhase()
         {
             BattleManager.CurrentBattle = this;
@@ -47,6 +50,15 @@ namespace TheFowler
         private void StartBattle()
         {
             ChangeBattleState(BattleStateEnum.START_BATTLE);
+            CreateTurnSystem();
+        }
+
+        private void CreateTurnSystem()
+        {
+            var turnActors = new List<ITurnActor>(allies);
+            turnActors.AddRange(enemies);
+            TurnSystem = new TurnSystem(turnActors);
+            TurnSystem.StartTurnSystem();
         }
         
         private void RegisterActors()
@@ -68,14 +80,44 @@ namespace TheFowler
             }
         }
 
+        public bool CheckVictory()
+        {
+            if (allies.All(w => w.BattleActorInfo.isDeath))
+            {
+                Debug.Log("DEFEAT");
+                ChangeBattleState(BattleStateEnum.END_BATTLE);
+                return true;
+            }
+            if (enemies.All(w => w.BattleActorInfo.isDeath))
+            {
+                Debug.Log("VICTORY");
+                ChangeBattleState(BattleStateEnum.END_BATTLE);
+                return true;
+            }
+
+            return false;
+        }
+
+        [Button]
+        private void NextTurn()
+        {
+            TurnSystem.NextTurn();
+        }
+
         private void InitializeTurnSystem()
         {
-            battleState = new StateMachine(battleStates, UpdateMode.Update, EventArgs.Empty);
+            battleState = new StateMachine(battleStates, UpdateMode.FixedUpdate, EventArgs.Empty);
         }
 
         public void ChangeBattleState(BattleStateEnum key)
         {
             battleState.SetState(GetBattleStateKey(key), EventArgs.Empty);
+        }
+        
+        public T ChangeBattleState<T>(BattleStateEnum key) where T : class, Istate
+        {
+            battleState.SetState(GetBattleStateKey(key), EventArgs.Empty);
+            return battleState.GetState(GetBattleStateKey(key)) as T;
         }
 
         private string GetBattleStateKey(BattleStateEnum key)
@@ -88,6 +130,7 @@ namespace TheFowler
                 BattleStateEnum.TARGET_PICKING => "TargetPicking",
                 BattleStateEnum.SKILL_EXECUTION => "SkillExecution",
                 BattleStateEnum.END_BATTLE => "EndBattle",
+                BattleStateEnum.FURY => "Fury",
                 _ => throw new ArgumentOutOfRangeException(nameof(key), key, null)
             };
         }
@@ -114,6 +157,7 @@ namespace TheFowler
         SKILL_PICKING,
         TARGET_PICKING,
         SKILL_EXECUTION,
+        FURY,
         END_BATTLE,
     }
 }

@@ -1,21 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using QRCode;
+using QRCode.Utils;
 using UnityEngine;
 
 namespace TheFowler
 {
-    public class PlayerTurn
+    public static class PlayerTurn
     {
-        // Start is called before the first frame update
-        void Start()
+        public static void Initialize()
         {
-
         }
 
-        // Update is called once per frame
-        void Update()
+        public static void Play()
         {
-
+            Coroutiner.Play(wait());
+        }
+        
+        static IEnumerator wait()
+        {
+            yield return new WaitForSeconds(1f);
+            BattleManager.CurrentBattle.ChangeBattleState<BattleState_ActionPicking>(BattleStateEnum.ACTION_PICKING);
+            yield break;
         }
     }
 }
