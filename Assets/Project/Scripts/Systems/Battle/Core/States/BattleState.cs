@@ -10,7 +10,7 @@ namespace TheFowler
     {
         [SerializeField] private string stateName;
         public string StateName { get => stateName; set => stateName = value; }
-        
+
         public virtual void OnStateEnter(EventArgs arg)
         {
             QRDebug.Log("BATTLE ", FrenchPallet.JALAPENOS_RED, $"{stateName}");

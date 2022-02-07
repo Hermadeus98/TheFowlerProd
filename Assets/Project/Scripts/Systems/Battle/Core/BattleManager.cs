@@ -7,5 +7,8 @@ namespace TheFowler
     public class BattleManager
     {
         public static Battle CurrentBattle;
+        public static ITurnActor CurrentTurnActor => CurrentBattle.TurnSystem.CurrentRound.currentTurnActor;
+
+        public static Round CurrentRound => CurrentBattle.TurnSystem.CurrentRound;
     }
 }

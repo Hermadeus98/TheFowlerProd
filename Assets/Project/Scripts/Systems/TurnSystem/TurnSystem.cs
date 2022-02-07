@@ -1,30 +1,54 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TheFowler
 {
     [Serializable]
     public class TurnSystem
     {
-        public List<TurnActor> TurnActors = new List<TurnActor>();
+        public List<ITurnActor> TurnActors = new List<ITurnActor>();
 
         public Round CurrentRound;
         
-        public TurnSystem(TurnActor[] turnActors)
+        public TurnSystem(IEnumerable<ITurnActor> turnActors)
         {
-            TurnActors = new List<TurnActor>(turnActors);
+            TurnActors = new List<ITurnActor>(turnActors);
         }
         
         public void StartTurnSystem()
         {
-            CurrentRound = new Round(TurnActors);
+            NewRound();
+        }
+
+        public void NewRound()
+        {
+            CurrentRound = new Round(GetAvailableActor());
+            CurrentRound.NextTurn();
+        }
+
+        public void NextTurn()
+        {
+            if(!CurrentRound.roundIsFinish)
+                CurrentRound.NextTurn();
+            else
+            {
+                NewRound();
+            }
+        }
+
+        private IEnumerable<ITurnActor> GetAvailableActor()
+        {
+            return TurnActors.Where(w => w.IsAvailable());
         }
     }
 
-    public interface TurnActor
+    public interface ITurnActor
     {
         public void OnTurnStart();
         public void OnTurnEnd();
         public bool SkipTurn();
+
+        public bool IsAvailable();
     }
 }
