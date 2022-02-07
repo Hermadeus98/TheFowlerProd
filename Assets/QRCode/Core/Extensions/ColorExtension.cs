@@ -63,30 +63,35 @@ namespace QRCode.Extensions
         /// </summary>
         /// <param name="color"></param>
         /// <returns></returns>
-        public static Color GetFrenchPalletColor(FrenchPallet color) => color switch
+        public static Color GetFrenchPalletColor(FrenchPallet color)
         {
-            FrenchPallet.TURQUOISE => new Color().ToColor("#1abc9c"),
-            FrenchPallet.GREEN_SEA => new Color().ToColor("#16a085"),
-            FrenchPallet.EMERALD => new Color().ToColor("#2ecc71"),
-            FrenchPallet.NEPHRITIS => new Color().ToColor("#27ae60"),
-            FrenchPallet.PETER_RIVER => new Color().ToColor("#3498db"),
-            FrenchPallet.BELIZE_HOLE => new Color().ToColor("#2980b9"),
-            FrenchPallet.AMETHYST => new Color().ToColor("#9b59b6"),
-            FrenchPallet.WISTERIA => new Color().ToColor("#8e44ad"),
-            FrenchPallet.WET_ASPHALT => new Color().ToColor("#34495e"),
-            FrenchPallet.MIDNIGHT_BLUE => new Color().ToColor("#2c3e50"),
-            FrenchPallet.SUN_FLOWER => new Color().ToColor("#f1c40f"),
-            FrenchPallet.ORANGE => new Color().ToColor("#f39c12"),
-            FrenchPallet.CARROT => new Color().ToColor("#e67e22"),
-            FrenchPallet.PUMPKIN => new Color().ToColor("#d35400"),
-            FrenchPallet.ALIZARIN => new Color().ToColor("#e74c3c"),
-            FrenchPallet.POMEGRANATE => new Color().ToColor("#c0392b"),
-            FrenchPallet.CLOUDS => new Color().ToColor("#ecf0f1"),
-            FrenchPallet.SILDER => new Color().ToColor("#bdc3c7"),
-            FrenchPallet.CONCRETE => new Color().ToColor("#95a5a6"),
-            FrenchPallet.ASBESTOS => new Color().ToColor("#7f8c8d"),
-            _ => throw new ArgumentOutOfRangeException(nameof(color), color, null)
-        };
+            return color switch
+            {
+                FrenchPallet.TURQUOISE => new Color().ToColor("#1abc9c"),
+                FrenchPallet.GREEN_SEA => new Color().ToColor("#16a085"),
+                FrenchPallet.EMERALD => new Color().ToColor("#2ecc71"),
+                FrenchPallet.NEPHRITIS => new Color().ToColor("#27ae60"),
+                FrenchPallet.PETER_RIVER => new Color().ToColor("#3498db"),
+                FrenchPallet.BELIZE_HOLE => new Color().ToColor("#2980b9"),
+                FrenchPallet.AMETHYST => new Color().ToColor("#9b59b6"),
+                FrenchPallet.WISTERIA => new Color().ToColor("#8e44ad"),
+                FrenchPallet.WET_ASPHALT => new Color().ToColor("#34495e"),
+                FrenchPallet.MIDNIGHT_BLUE => new Color().ToColor("#2c3e50"),
+                FrenchPallet.SUN_FLOWER => new Color().ToColor("#f1c40f"),
+                FrenchPallet.ORANGE => new Color().ToColor("#f39c12"),
+                FrenchPallet.CARROT => new Color().ToColor("#e67e22"),
+                FrenchPallet.PUMPKIN => new Color().ToColor("#d35400"),
+                FrenchPallet.ALIZARIN => new Color().ToColor("#e74c3c"),
+                FrenchPallet.POMEGRANATE => new Color().ToColor("#c0392b"),
+                FrenchPallet.CLOUDS => new Color().ToColor("#ecf0f1"),
+                FrenchPallet.SILDER => new Color().ToColor("#bdc3c7"),
+                FrenchPallet.CONCRETE => new Color().ToColor("#95a5a6"),
+                FrenchPallet.ASBESTOS => new Color().ToColor("#7f8c8d"),
+                FrenchPallet.TOMATO_RED => new Color().ToColor("#eb2f06"),
+                FrenchPallet.JALAPENOS_RED => new Color().ToColor("#b71540"),
+                _ => throw new ArgumentOutOfRangeException(nameof(color), color, null)
+            };
+        }
     }
     public enum FrenchPallet
     {
@@ -109,7 +114,9 @@ namespace QRCode.Extensions
         CLOUDS,
         SILDER,
         CONCRETE,
-        ASBESTOS
+        ASBESTOS,
+        TOMATO_RED,
+        JALAPENOS_RED
     }
 }
 

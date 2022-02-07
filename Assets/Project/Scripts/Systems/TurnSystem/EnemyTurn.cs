@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace TheFowler
 {
-    public class BattleManager
+    public class EnemyTurn
     {
-        public static Battle CurrentBattle;
+        
     }
 }

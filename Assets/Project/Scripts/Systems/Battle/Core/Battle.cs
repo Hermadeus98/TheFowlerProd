@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using QRCode;
 using QRCode.Extensions;
@@ -15,18 +16,39 @@ namespace TheFowler
     {
         [TabGroup("References")]
         [SerializeField] private Transform alliesBatch, enemiesBatch;
+
+        [TitleGroup("General Settings")] [SerializeField]
+        private StateMachine battleState;
+
+        [TabGroup("References")] [SerializeField]
+        private Istate[] battleStates;
         
+        [TabGroup("Debug")] [SerializeField] private bool finishDirectly = false;
         [TabGroup("Debug")]
         [SerializeField, ReadOnly] private List<BattleActor> allies = new List<BattleActor>();
         [TabGroup("Debug")]
         [SerializeField, ReadOnly] private List<BattleActor> enemies = new List<BattleActor>();
 
+        public StateMachine BattleState => battleState;
+        public List<BattleActor> Allies => allies;
+        public List<BattleActor> Enemies => enemies;
+        public bool FinishDirectly => finishDirectly;
+        
         public override void PlayPhase()
         {
+            BattleManager.CurrentBattle = this;
+            
             RegisterActors();
+            InitializeTurnSystem();
+            
             StartBattle();
         }
 
+        private void StartBattle()
+        {
+            ChangeBattleState(BattleStateEnum.START_BATTLE);
+        }
+        
         private void RegisterActors()
         {
             Player.Robyn?.gameObject.SetActive(false);
@@ -46,29 +68,28 @@ namespace TheFowler
             }
         }
 
-        private void StartBattle()
+        private void InitializeTurnSystem()
         {
-            //FOR DEBUG
-
-            CameraManager.Instance.SetCamera(allies[0].CameraBatchBattle);
-            
-            Invoke(nameof(EndPhase), 2f);
+            battleState = new StateMachine(battleStates, UpdateMode.Update, EventArgs.Empty);
         }
 
-        public override void EndPhase()
+        public void ChangeBattleState(BattleStateEnum key)
         {
-            FinishBattle();
-            base.EndPhase();
+            battleState.SetState(GetBattleStateKey(key), EventArgs.Empty);
         }
 
-        private void FinishBattle()
+        private string GetBattleStateKey(BattleStateEnum key)
         {
-            Player.Robyn?.gameObject.SetActive(true);
-            Player.Abigael?.gameObject.SetActive(true);
-            Player.Pheobe?.gameObject.SetActive(true);
-            
-            enemies.ForEach(w => w.gameObject.SetActive(false));
-            allies.ForEach(w => w.gameObject.SetActive(false));
+            return key switch
+            {
+                BattleStateEnum.START_BATTLE => "StartBattle",
+                BattleStateEnum.ACTION_PICKING => "ActionPicking",
+                BattleStateEnum.SKILL_PICKING => "SkillPicking",
+                BattleStateEnum.TARGET_PICKING => "TargetPicking",
+                BattleStateEnum.SKILL_EXECUTION => "SkillExecution",
+                BattleStateEnum.END_BATTLE => "EndBattle",
+                _ => throw new ArgumentOutOfRangeException(nameof(key), key, null)
+            };
         }
         
         //---<EDITOR>--------------------------------------------------------------------------------------------------<
@@ -84,5 +105,15 @@ namespace TheFowler
             Selection.activeObject = go;
         }
 #endif
+    }
+    
+    public enum BattleStateEnum
+    {
+        START_BATTLE,
+        ACTION_PICKING,
+        SKILL_PICKING,
+        TARGET_PICKING,
+        SKILL_EXECUTION,
+        END_BATTLE,
     }
 }
