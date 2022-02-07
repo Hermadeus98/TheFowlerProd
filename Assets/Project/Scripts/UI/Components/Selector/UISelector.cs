@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Nrjwolf.Tools.AttachAttributes;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,16 +10,25 @@ namespace TheFowler
 {
     public class UISelector : UIElement
     {
-        [SerializeField] protected List<UISelectorElement> elements = new List<UISelectorElement>();
+        [TabGroup("Main Settings")]
+        [SerializeField] protected List<UISelectorElement> all_elements = new List<UISelectorElement>();
+        
+        [TabGroup("Debug")]
+        [SerializeField, ReadOnly] protected List<UISelectorElement> elements = new List<UISelectorElement>();
 
+        [TabGroup("Main Settings")]
         [SerializeField] protected bool resetIndex;
 
-        [SerializeField, GetComponent] private CanvasGroup canvasGroup;
+        [TabGroup("References")]
+        [SerializeField, GetComponent] protected CanvasGroup canvasGroup;
 
+        [TabGroup("References")]
         [SerializeField, GetComponent] private PlayerInput Inputs;
         
-        private int currentIndex;
-        private UISelectorElement currentSelectedElement;
+        [TabGroup("Debug")]
+        [SerializeField, ReadOnly] protected int currentIndex;
+        [TabGroup("Debug")]
+        [SerializeField, ReadOnly] protected UISelectorElement currentSelectedElement;
 
         private void FixedUpdate()
         {
@@ -63,7 +73,7 @@ namespace TheFowler
             SelectElement();
         }
 
-        private void SelectElement()
+        protected void SelectElement()
         {
             currentSelectedElement?.DeSelect();
             currentSelectedElement = elements[currentIndex];
@@ -76,7 +86,8 @@ namespace TheFowler
 
             if (resetIndex)
                 currentIndex = 0;
-            
+
+            canvasGroup.alpha = 1;
             SelectElement();
         }
 
@@ -84,6 +95,22 @@ namespace TheFowler
         {
             base.Hide();
             currentSelectedElement = null;
+            canvasGroup.alpha = 0;
+        }
+
+        protected void DeselectedAll()
+        {
+            elements.ForEach(w => w.DeSelect());
+        }
+
+        protected void HideAllElements()
+        {
+            elements.ForEach(w => w.Hide());
+        }
+
+        protected void ResetElements()
+        {
+            elements = new List<UISelectorElement>(all_elements);
         }
     }
 }

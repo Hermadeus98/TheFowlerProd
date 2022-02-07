@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using Sirenix.OdinInspector;
-using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,9 +7,14 @@ namespace TheFowler
 {
     public class DialogueHandler : GameplayPhase
     {
+        [TitleGroup("General Settings")]
         public BehaviourTree BehaviourTree;
 
-        [SerializeField] private DialogueNode currentDialogueNode;
+        [TitleGroup("General Settings")]
+        [SerializeField] private bool displayChoiceResult = true;
+        
+        [TabGroup("Debug")]
+        [SerializeField, ReadOnly] private DialogueNode currentDialogueNode;
         private Dialogue currentDialogue => currentDialogueNode.dialogue;
         
         [TabGroup("Debug")]
@@ -27,8 +28,8 @@ namespace TheFowler
         [TabGroup("References")]
         [SerializeField] private PlayerInput Inputs;
         
+        [TabGroup("Debug")]
         private bool waitInput;
-        [SerializeField] private bool displayChoiceResult = true;
         
         public override void PlayPhase()
         {
@@ -80,7 +81,40 @@ namespace TheFowler
 
                 if (waitInput)
                 {
-                    MakeAChoice();
+                    if (displayChoiceResult)
+                    {
+                        switch (dialogueType)
+                        {
+                            case DialogueType.STATIC:
+                            {
+                                var view = UI.GetView<DialogueStaticView>("StaticDialogueView");
+                                var hasChoice = view.ChoiceSelector.WaitChoice(out currentDialogueNode);
+                                if (hasChoice)
+                                {
+                                    DisplayDialogue(currentDialogue);
+                                    waitInput = false;
+                                }
+                            }
+                                break;
+                            case DialogueType.MOVEMENT:
+                            {
+                                var view = UI.GetView<DialogueMovementView>("MovementDialogueView");
+                                var hasChoice = view.ChoiceSelector.WaitChoice(out currentDialogueNode);
+                                if (hasChoice)
+                                {
+                                    DisplayDialogue(currentDialogue);
+                                    waitInput = false;
+                                }
+                            }
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException();
+                        }
+                    }
+                    else
+                    {
+                        Next();
+                    }
                 }
             }
         }
@@ -98,11 +132,18 @@ namespace TheFowler
                         switch (dialogueType)
                         {
                             case DialogueType.STATIC:
+                            {
                                 var view = UI.GetView<DialogueStaticView>("StaticDialogueView");
+                                view.ChoiceSelector.Show();
                                 view.SetChoices(currentDialogueNode);
+                            }
                                 break;
                             case DialogueType.MOVEMENT:
-                                //UI.CloseView("MovementDialogueView");
+                            {
+                                var view = UI.GetView<DialogueMovementView>("MovementDialogueView");
+                                view.ChoiceSelector.Show();
+                                view.SetChoices(currentDialogueNode);
+                            }
                                 break;
                             default:
                                 throw new ArgumentOutOfRangeException();

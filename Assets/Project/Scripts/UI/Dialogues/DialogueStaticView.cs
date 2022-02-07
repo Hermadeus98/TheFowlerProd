@@ -19,6 +19,7 @@ namespace TheFowler
 
         public bool textIsComplete => animatedText.isComplete;
         public AnimatedText AnimatedText => animatedText;
+        public DialogueChoiceSelector ChoiceSelector => choiceSelector;
         
         public override void Refresh(EventArgs args)
         {
@@ -37,7 +38,6 @@ namespace TheFowler
         {
             if (dialogueNode.hasMultipleChoices)
             {
-                choiceSelector.Show();
                 choiceSelector.Refresh(dialogueNode.children.Cast<DialogueNode>().ToArray());
                 return;
             }
