@@ -6,6 +6,8 @@ using UnityEngine;
 
 namespace TheFowler
 {
+    [CreateAssetMenu]
+
     public class DialogueNode : CompositeNode
     {
         [TitleGroup("Main Settings"), PropertyOrder(-1)]
