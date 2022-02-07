@@ -131,10 +131,13 @@ namespace TheFowler.Editor
 
         private void UpdateScale()
         {
-            for (int i = 0; i < transform.childCount; i++)
+            if (scale)
             {
-                var t = transform.GetChild(i).transform;
-                t.localScale = scaleMultiplier;
+                for (int i = 0; i < transform.childCount; i++)
+                {
+                    var t = transform.GetChild(i).transform;
+                    t.localScale = scaleMultiplier;
+                }
             }
         }
 
