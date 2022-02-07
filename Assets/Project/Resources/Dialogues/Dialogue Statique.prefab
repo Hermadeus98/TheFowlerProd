@@ -284,7 +284,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8790904665946769942}
-  - component: {fileID: 8790904665946769943}
+  - component: {fileID: 5775937932784578480}
   - component: {fileID: 8790904665946769940}
   m_Layer: 0
   m_Name: Dialogue Statique
@@ -311,7 +311,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8790904665946769943
+--- !u!114 &5775937932784578480
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -320,7 +320,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8790904665946769929}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51408916c3a761c44bc9957169192c21, type: 3}
+  m_Script: {fileID: 11500000, guid: e33e54df8fc71cf40bb31c0712afeffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
@@ -332,19 +332,26 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  gameplayPhase_id: 
-  isActive: 0
-  onEndGameplayPhase_id: 
+  gameplayPhase_id: 0
   OnStart:
     instructions: 
+  onStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onEndGameplayPhase_id: 0
   OnEnd:
     instructions: 0000000005000000
-  dialogueType: 0
-  Inputs: {fileID: 8790904665946769940}
-  actorActivator: {fileID: 8790904665370385166}
-  Dialogues: {fileID: 11400000, guid: f59ab765a85ccf24c9b9a6824589d9f1, type: 2}
-  currentDialogueCount: 0
+  onEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  isActive: 0
+  BehaviourTree: {fileID: 0}
+  currentDialogueNode: {fileID: 0}
   elapsedTime: 0
+  dialogueType: 0
+  actorActivator: {fileID: 8790904665370385166}
+  Inputs: {fileID: 8790904665946769940}
+  displayChoiceResult: 1
 --- !u!114 &8790904665946769940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,6 +491,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Actor_RobynDialogue
       objectReference: {fileID: 0}
+    - target: {fileID: 8854336590626444312, guid: 2d956de6c8041944b8bebc92b6d153df, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8854336590626444313, guid: 2d956de6c8041944b8bebc92b6d153df, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -599,6 +610,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Actor_AbiDialogue
       objectReference: {fileID: 0}
+    - target: {fileID: 5794935659524663883, guid: a9a48ed25c997e4438d5bcda9636e38f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9a48ed25c997e4438d5bcda9636e38f, type: 3}
 --- !u!1 &8790904665661701808 stripped
@@ -665,6 +680,10 @@ PrefabInstance:
     - target: {fileID: 6272504975033255279, guid: 4ad74b59096d5c8428dbb1d4b1e9e0cd, type: 3}
       propertyPath: m_Name
       value: Actor_PhoebeDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 6272504975033255279, guid: 4ad74b59096d5c8428dbb1d4b1e9e0cd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6699392717174542994, guid: 4ad74b59096d5c8428dbb1d4b1e9e0cd, type: 3}
       propertyPath: serializationData.Prefab
@@ -768,7 +787,7 @@ PrefabInstance:
     - target: {fileID: 6740786154447216608, guid: 2fc43fb78783b1f48a7404a3ab088992, type: 3}
       propertyPath: onTriggerEnterFront.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8790904665946769943}
+      objectReference: {fileID: 5775937932784578480}
     - target: {fileID: 6740786154447216608, guid: 2fc43fb78783b1f48a7404a3ab088992, type: 3}
       propertyPath: onTriggerEnterFront.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2

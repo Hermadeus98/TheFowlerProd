@@ -1,6 +1,7 @@
 using DG.Tweening;
 using Nrjwolf.Tools.AttachAttributes;
 using QRCode.Extensions;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace TheFowler
@@ -8,9 +9,12 @@ namespace TheFowler
     [RequireComponent(typeof(CanvasGroup))]
     public class UIView : UIElement
     {
+        [TabGroup("Main Settings")]
         [SerializeField] private bool registerView;
-        [SerializeField] private string viewName;
+        [TabGroup("Main Settings")]
+        [SerializeField, EnableIf("@this.registerView == true")] private string viewName;
 
+        [TabGroup("References")]
         [SerializeField, GetComponent] private CanvasGroup canvasGroup;
 
         protected CanvasGroup CanvasGroup

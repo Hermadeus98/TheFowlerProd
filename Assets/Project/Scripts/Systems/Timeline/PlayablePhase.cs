@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Nrjwolf.Tools.AttachAttributes;
+using QRCode.Extensions;
 using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
@@ -17,9 +18,16 @@ namespace TheFowler
         public override void PlayPhase()
         {
             base.PlayPhase();
-            
-            playableDirector.Play();
-            playableDirector.stopped += EndPhase;
+
+            if (playableDirector.playableAsset.IsNotNull())
+            {
+                playableDirector.Play();
+                playableDirector.stopped += EndPhase;
+            }
+            else
+            {
+                EndPhase();
+            }
         }
 
         public override void EndPhase()

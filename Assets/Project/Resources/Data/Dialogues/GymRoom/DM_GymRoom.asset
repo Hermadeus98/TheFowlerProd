@@ -1,5 +1,142 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7868929101844180831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: jdaojzoajdo
+  m_EditorClassIdentifier: 
+  NodeName: jdaojzoajdo
+  state: 0
+  started: 0
+  guid: 64d9e5c45ef53d84c89ae0f45bbe4a0d
+  position: {x: 405, y: 171}
+  children:
+  - {fileID: -5428519163917235174}
+  - {fileID: 8753337944648337176}
+  dialogue:
+    ActorEnum: 1
+    dialogueText: Je suis un choix 2
+    cameraPath:
+      batchName: Robyn_TPS
+      cameraName: Default
+    displayDuration: 2
+    choiceText: Choix 2
+--- !u!114 &-5428519163917235174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 916ca9b8e1a820647bd1311e1cf4dfe1
+  position: {x: 697, y: 171}
+  children:
+  - {fileID: 3827813737743742955}
+  dialogue:
+    ActorEnum: 1
+    dialogueText: "Je suis le r\xE9sultat 2"
+    cameraPath:
+      batchName: Robyn_TPS
+      cameraName: Default
+    displayDuration: 2
+    choiceText: 
+--- !u!114 &-4525315822375057538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: a033e03e7fa42c84196112fbbaad7920
+  position: {x: 697, y: 72}
+  children: []
+  dialogue:
+    ActorEnum: 1
+    dialogueText: "Je suis le r\xE9sultat 1"
+    cameraPath:
+      batchName: Robyn_TPS
+      cameraName: Default
+    displayDuration: 2
+    choiceText: 
+--- !u!114 &-3319278893175396736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: a0171ac53dac57a4e89189c1e7fbc3da
+  position: {x: 158, y: 110}
+  children:
+  - {fileID: 7718154890969297323}
+  - {fileID: -7868929101844180831}
+  - {fileID: 7809935178386802231}
+  dialogue:
+    ActorEnum: 2
+    dialogueText: Je suis un autre dialogue statique
+    cameraPath:
+      batchName: Robyn_TPS
+      cameraName: Default
+    displayDuration: 2
+    choiceText: 
+--- !u!114 &-3004829535549554901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: Main
+  m_EditorClassIdentifier: 
+  NodeName: Main
+  state: 0
+  started: 0
+  guid: d79b1289c9b280349be31c6b2884795b
+  position: {x: 22, y: 110}
+  children:
+  - {fileID: -3319278893175396736}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: Je suis un dialogue statique
+    cameraPath:
+      batchName: Robyn_TPS
+      cameraName: Default
+    displayDuration: 2
+    choiceText: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9,52 +146,151 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87b24c01c3a6a084fba850aa0f8ac982, type: 3}
+  m_Script: {fileID: 11500000, guid: a9cf5a2a104152e48a7bbaed625f399a, type: 3}
   m_Name: DM_GymRoom
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  Dialogues:
-  - ActorEnum: 0
-    dialogueText: Je suis un dialogue statique
+  rootNode: {fileID: -3004829535549554901}
+  treeState: 0
+  nodes:
+  - {fileID: -3004829535549554901}
+  - {fileID: -3319278893175396736}
+  - {fileID: 7718154890969297323}
+  - {fileID: -7868929101844180831}
+  - {fileID: -5428519163917235174}
+  - {fileID: -4525315822375057538}
+  - {fileID: 8753337944648337176}
+  - {fileID: 3379193740840767729}
+  - {fileID: 3827813737743742955}
+  - {fileID: 7809935178386802231}
+--- !u!114 &3379193740840767729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 7d9e702235215c341a5ac20aae051bad
+  position: {x: 929, y: 289}
+  children: []
+  dialogue:
+    ActorEnum: 0
+    dialogueText: cadaidiouahdiuozad
+    cameraPath:
+      batchName: 
+      cameraName: Default
+    displayDuration: 2
+    choiceText: 
+--- !u!114 &3827813737743742955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: e83e7ade48b6d5045ab59a91a00e5dfe
+  position: {x: 929, y: 171}
+  children: []
+  dialogue:
+    ActorEnum: 0
+    dialogueText: afafaefdsdqz
+    cameraPath:
+      batchName: 
+      cameraName: Default
+    displayDuration: 2
+    choiceText: 
+--- !u!114 &7718154890969297323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: f420b73443f27bb43b4457b626370823
+  position: {x: 405, y: 71.5}
+  children:
+  - {fileID: -4525315822375057538}
+  dialogue:
+    ActorEnum: 1
+    dialogueText: Je suis un choix 1
     cameraPath:
       batchName: Robyn_TPS
       cameraName: Default
     displayDuration: 2
-  - ActorEnum: 2
-    dialogueText: Je suis un autre dialogue statique
+    choiceText: Choix 1
+--- !u!114 &7809935178386802231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: a0427afcef0d75541a4ef2af22e0d057
+  position: {x: 405, y: 250.5}
+  children: []
+  dialogue:
+    ActorEnum: 0
+    dialogueText: Je suis un choix 3
     cameraPath:
       batchName: Robyn_TPS
       cameraName: Default
     displayDuration: 2
-  - ActorEnum: 1
-    dialogueText: OMG biatch
+    choiceText: Choix 3
+--- !u!114 &8753337944648337176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: a93134eb15e2e0d4b92698c756e1f7cc
+  position: {x: 697, y: 289}
+  children:
+  - {fileID: 3379193740840767729}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: Je suis un choix 2
     cameraPath:
-      batchName: Robyn_TPS
+      batchName: 
       cameraName: Default
     displayDuration: 2
-  - ActorEnum: 0
-    dialogueText: Encore UN DIALOGUE
-    cameraPath:
-      batchName: Robyn_TPS
-      cameraName: Default
-    displayDuration: 2
-  - ActorEnum: 0
-    dialogueText: I HATE MY LIFE !!!!
-    cameraPath:
-      batchName: Robyn_TPS
-      cameraName: Default
-    displayDuration: 2
-  - ActorEnum: 0
-    dialogueText: PROUT LOL
-    cameraPath:
-      batchName: Robyn_TPS
-      cameraName: Default
-    displayDuration: 2
+    choiceText: 

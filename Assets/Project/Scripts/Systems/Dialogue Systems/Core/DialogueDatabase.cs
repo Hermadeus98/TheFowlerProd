@@ -17,5 +17,6 @@ namespace TheFowler
         [TextArea(3,5)] public string dialogueText;
         public cameraPath cameraPath;
         public float displayDuration = 2f;
+        public string choiceText;
     }
 }

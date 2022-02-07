@@ -47,6 +47,8 @@ namespace TheFowler
             ChapterManager.onChapterLoaded?.Invoke(this);
             GameState.ChangeState(GameState.gameArguments.currentChapterData.InitialGameState);
             GameState.gameArguments.currentChapterData.InitialGameInstructions.Call();
+            yield return new WaitForEndOfFrame();
+            GameplayPhaseManager.PlayGameplayPhase(ChapterData.OnStartGamephase_Id);
         }
     }
 }

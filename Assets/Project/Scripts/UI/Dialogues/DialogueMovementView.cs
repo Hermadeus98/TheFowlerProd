@@ -11,6 +11,25 @@ namespace TheFowler
 {
     public class DialogueMovementView : UIView
     {
+        [TabGroup("References")]
+        [SerializeField] private RectTransform container;
+        
+        [TabGroup("References")]
+        [SerializeField] private RectTransform[] plugs;
+
+        [TabGroup("References")]
+        [SerializeField] private DialogueChoiceSelector choiceSelector;
+        
+        [TabGroup("Debug")]
+        [SerializeField, ReadOnly] private Queue<DialogueUIElement> queue = new Queue<DialogueUIElement>();
+
+        [TabGroup("Debug")]
+        [SerializeField, ReadOnly] public DialogueUIElement currentDialogueElement;
+
+        private List<DialogueUIElement> bin = new List<DialogueUIElement>();
+        
+        public DialogueChoiceSelector ChoiceSelector => choiceSelector;
+
         public override void Refresh(EventArgs args)
         {
             base.Refresh(args);
@@ -21,20 +40,9 @@ namespace TheFowler
             }
         }
         
-        [SerializeField] private RectTransform container;
-        [SerializeField] private RectTransform[] plugs;
-
-        [SerializeField] private Queue<DialogueUIElement> queue = new Queue<DialogueUIElement>();
-        private List<DialogueUIElement> bin = new List<DialogueUIElement>();
-
-        public DialogueUIElement currentDialogueElement;
-
-        private int a;
-
         [Button]
         public void Add(DialogueArg arg)
         {
-            a++;
             var uiElement = Instantiate(Spawnables.Instance.DialogueUIElement, container);
             currentDialogueElement = uiElement;
             uiElement.transform.SetParent(plugs[0]);
@@ -42,7 +50,6 @@ namespace TheFowler
             uiElement.Refresh(arg);
             uiElement.Show();
 
-            uiElement.name = a.ToString();
             bin.Add(uiElement);
             queue.Enqueue(uiElement);
             ReAgenceUI();
@@ -89,6 +96,15 @@ namespace TheFowler
             openTween = CanvasGroup.DOFade(0f, .1f);
             CanvasGroup.interactable = false;
             CanvasGroup.blocksRaycasts = true;
+        }
+        
+        public void SetChoices(DialogueNode dialogueNode)
+        {
+            if (dialogueNode.hasMultipleChoices)
+            {
+                choiceSelector.Refresh(dialogueNode.children.Cast<DialogueNode>().ToArray());
+                return;
+            }
         }
     }
 }

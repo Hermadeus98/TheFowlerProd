@@ -27,7 +27,6 @@ namespace TheFowler
         protected override IEnumerator OnChapterLoaded(EventArgs arg)
         {
             yield return base.OnChapterLoaded(arg);
-            //GameplayPhaseManager.PlayGameplayPhase();
         }
     }
 }

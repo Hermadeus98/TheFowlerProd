@@ -16,5 +16,7 @@ namespace TheFowler
         public GameInstructions InitialGameInstructions;
 
         public bool ShowChapterTitle = true;
+
+        public GameplayPhaseEnum OnStartGamephase_Id;
     }
 }
