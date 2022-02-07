@@ -34,9 +34,9 @@ namespace TheFowler
         {
             base.Refresh(args);
 
-            if (args is IWrapper<string> cast)
+            if (args is WrapperArgs<string> cast)
             {
-                text.SetText(cast.Value);
+                text.SetText(cast.Arg);
             }
         }
 
