@@ -11,8 +11,8 @@ Shader "S_DecalBasic"
 		_Roughness("Roughness", Range( 0 , 1)) = 0
 		_Tiling("Tiling", Float) = 0
 		_Metal("Metal", Range( 0 , 1)) = 0
-		_DiffuseIntensity("Diffuse Intensity", Float) = 0
-		[ASEEnd]_E_Intensity("E_Intensity", Range( 0 , 250)) = 0
+		_E_Intensity("E_Intensity", Range( 0 , 250)) = 0
+		[ASEEnd]_OpacittyIntensity("Opacitty Intensity", Range( 0 , 1)) = 0
 
         [HideInInspector]_DrawOrder("Draw Order", Int) = 0
 		[HideInInspector][Enum(Depth Bias, 0, View Bias, 1)]_DecalMeshBiasType("Float", Float) = 0
@@ -138,7 +138,7 @@ Shader "S_DecalBasic"
             
             CBUFFER_START(UnityPerMaterial)
             float _Tiling;
-            float _DiffuseIntensity;
+            float _OpacittyIntensity;
             float _Metal;
             float _Roughness;
             float _E_Intensity;
@@ -361,16 +361,16 @@ Shader "S_DecalBasic"
 				float2 texCoord25 = texCoord0.xy * temp_cast_0 + float2( 0,0 );
 				float4 tex2DNode17 = tex2D( _BaseColor, texCoord25 );
 				
-				float temp_output_40_0 = ( tex2DNode17.a * _DiffuseIntensity );
+				float temp_output_45_0 = ( tex2DNode17.a * _OpacittyIntensity );
 				
 				surfaceDescription.BaseColor = tex2DNode17.rgb;
-				surfaceDescription.Alpha = temp_output_40_0;
+				surfaceDescription.Alpha = temp_output_45_0;
 				surfaceDescription.NormalTS = UnpackNormalScale( tex2D( _Normal, texCoord25 ), 1.0f );
-				surfaceDescription.NormalAlpha = temp_output_40_0;
+				surfaceDescription.NormalAlpha = temp_output_45_0;
 				surfaceDescription.Metallic = _Metal;
 				surfaceDescription.Occlusion = 1;
 				surfaceDescription.Smoothness = ( 1.0 - _Roughness );
-				surfaceDescription.MAOSAlpha = temp_output_40_0;
+				surfaceDescription.MAOSAlpha = temp_output_45_0;
 				surfaceDescription.Emission = ( tex2DNode17 * _E_Intensity ).rgb;
 
 				GetSurfaceData(surfaceDescription, input, V, posInput, angleFadeFactor, surfaceData);
@@ -462,7 +462,7 @@ Shader "S_DecalBasic"
             
             CBUFFER_START(UnityPerMaterial)
             float _Tiling;
-            float _DiffuseIntensity;
+            float _OpacittyIntensity;
             float _Metal;
             float _Roughness;
             float _E_Intensity;
@@ -674,16 +674,16 @@ Shader "S_DecalBasic"
 				float2 texCoord25 = texCoord0.xy * temp_cast_0 + float2( 0,0 );
 				float4 tex2DNode17 = tex2D( _BaseColor, texCoord25 );
 				
-				float temp_output_40_0 = ( tex2DNode17.a * _DiffuseIntensity );
+				float temp_output_45_0 = ( tex2DNode17.a * _OpacittyIntensity );
 				
 				surfaceDescription.BaseColor = tex2DNode17.rgb;
-				surfaceDescription.Alpha = temp_output_40_0;
+				surfaceDescription.Alpha = temp_output_45_0;
 				surfaceDescription.NormalTS = UnpackNormalScale( tex2D( _Normal, texCoord25 ), 1.0f );
-				surfaceDescription.NormalAlpha = temp_output_40_0;
+				surfaceDescription.NormalAlpha = temp_output_45_0;
 				surfaceDescription.Metallic = _Metal;
 				surfaceDescription.Occlusion = 1;
 				surfaceDescription.Smoothness = ( 1.0 - _Roughness );
-				surfaceDescription.MAOSAlpha = temp_output_40_0;
+				surfaceDescription.MAOSAlpha = temp_output_45_0;
 				surfaceDescription.Emission = ( tex2DNode17 * _E_Intensity ).rgb;
 
 				GetSurfaceData(surfaceDescription, input, V, posInput, angleFadeFactor, surfaceData);
@@ -792,7 +792,7 @@ Shader "S_DecalBasic"
 			
             CBUFFER_START(UnityPerMaterial)
             float _Tiling;
-            float _DiffuseIntensity;
+            float _OpacittyIntensity;
             float _Metal;
             float _Roughness;
             float _E_Intensity;
@@ -1041,16 +1041,16 @@ Shader "S_DecalBasic"
 				float2 texCoord25 = texCoord0.xy * temp_cast_0 + float2( 0,0 );
 				float4 tex2DNode17 = tex2D( _BaseColor, texCoord25 );
 				
-				float temp_output_40_0 = ( tex2DNode17.a * _DiffuseIntensity );
+				float temp_output_45_0 = ( tex2DNode17.a * _OpacittyIntensity );
 				
 				surfaceDescription.BaseColor = tex2DNode17.rgb;
-				surfaceDescription.Alpha = temp_output_40_0;
+				surfaceDescription.Alpha = temp_output_45_0;
 				surfaceDescription.NormalTS = UnpackNormalScale( tex2D( _Normal, texCoord25 ), 1.0f );
-				surfaceDescription.NormalAlpha = temp_output_40_0;
+				surfaceDescription.NormalAlpha = temp_output_45_0;
 				surfaceDescription.Metallic = _Metal;
 				surfaceDescription.Occlusion = 1;
 				surfaceDescription.Smoothness = ( 1.0 - _Roughness );
-				surfaceDescription.MAOSAlpha = temp_output_40_0;
+				surfaceDescription.MAOSAlpha = temp_output_45_0;
 				surfaceDescription.Emission = ( tex2DNode17 * _E_Intensity ).rgb;
 
 				GetSurfaceData(surfaceDescription, input, V, posInput, angleFadeFactor, surfaceData);
@@ -1142,7 +1142,7 @@ Shader "S_DecalBasic"
 			
             CBUFFER_START(UnityPerMaterial)
             float _Tiling;
-            float _DiffuseIntensity;
+            float _OpacittyIntensity;
             float _Metal;
             float _Roughness;
             float _E_Intensity;
@@ -1366,16 +1366,16 @@ Shader "S_DecalBasic"
 				float2 texCoord25 = texCoord0.xy * temp_cast_0 + float2( 0,0 );
 				float4 tex2DNode17 = tex2D( _BaseColor, texCoord25 );
 				
-				float temp_output_40_0 = ( tex2DNode17.a * _DiffuseIntensity );
+				float temp_output_45_0 = ( tex2DNode17.a * _OpacittyIntensity );
 				
 				surfaceDescription.BaseColor = tex2DNode17.rgb;
-				surfaceDescription.Alpha = temp_output_40_0;
+				surfaceDescription.Alpha = temp_output_45_0;
 				surfaceDescription.NormalTS = UnpackNormalScale( tex2D( _Normal, texCoord25 ), 1.0f );
-				surfaceDescription.NormalAlpha = temp_output_40_0;
+				surfaceDescription.NormalAlpha = temp_output_45_0;
 				surfaceDescription.Metallic = _Metal;
 				surfaceDescription.Occlusion = 1;
 				surfaceDescription.Smoothness = ( 1.0 - _Roughness );
-				surfaceDescription.MAOSAlpha = temp_output_40_0;
+				surfaceDescription.MAOSAlpha = temp_output_45_0;
 				surfaceDescription.Emission = ( tex2DNode17 * _E_Intensity ).rgb;
 
 				GetSurfaceData(surfaceDescription, input, V, posInput, angleFadeFactor, surfaceData);
@@ -1404,39 +1404,39 @@ Shader "S_DecalBasic"
 }
 /*ASEBEGIN
 Version=18900
-1966;66;1920;953;1249.213;574.9314;1;True;True
+7;156;1920;863;1660.013;455.0562;1.3;True;True
 Node;AmplifyShaderEditor.CommentaryNode;30;-1837.536,-303.4446;Inherit;False;673;397;Decal flipbook, put all your decals in a single atlas to simplify their use.;2;25;39;;1,1,1,1;0;0
 Node;AmplifyShaderEditor.RangedFloatNode;39;-1700.323,-169.6743;Inherit;False;Property;_Tiling;Tiling;4;0;Create;True;0;0;0;False;0;False;0;1;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.TextureCoordinatesNode;25;-1439.536,-210.4446;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.RangedFloatNode;43;-444.2133,276.0686;Inherit;False;Property;_E_Intensity;E_Intensity;7;0;Create;True;0;0;0;False;0;False;0;22;0;250;0;1;FLOAT;0
-Node;AmplifyShaderEditor.SamplerNode;17;-736.5359,-420.4446;Inherit;True;Property;_BaseColor;Base Color;0;0;Create;True;0;0;0;False;0;False;-1;None;8a19313e28e3b34469c0726a002d53c0;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.RangedFloatNode;41;-443.3235,-434.6743;Inherit;False;Property;_DiffuseIntensity;Diffuse Intensity;6;0;Create;True;0;0;0;False;0;False;0;0.84;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;37;-731.4197,65.31848;Inherit;False;Property;_Roughness;Roughness;3;0;Create;True;0;0;0;False;0;False;0;0.137;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.SamplerNode;19;-705.5359,-210.4446;Inherit;True;Property;_Normal;Normal;1;0;Create;True;0;0;0;False;0;False;-1;None;b400089c0dd5478b9e4f518945cd1fe7;True;0;True;bump;Auto;True;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.RangedFloatNode;36;-732.4197,-10.68152;Inherit;False;Property;_Metal;Metal;5;0;Create;True;0;0;0;False;0;False;0;0.102;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;40;-166.3235,-272.6743;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;42;-125.2133,236.0686;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
+Node;AmplifyShaderEditor.RangedFloatNode;37;-731.4197,65.31848;Inherit;False;Property;_Roughness;Roughness;3;0;Create;True;0;0;0;False;0;False;0;0.919;0;1;0;1;FLOAT;0
+Node;AmplifyShaderEditor.SamplerNode;17;-775.5358,-460.7446;Inherit;True;Property;_BaseColor;Base Color;0;0;Create;True;0;0;0;False;0;False;-1;None;23b4a292d2c39c94facd08f0b5851962;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.RangedFloatNode;46;-730.8985,288.711;Inherit;False;Property;_OpacittyIntensity;Opacitty Intensity;7;0;Create;True;0;0;0;False;0;False;0;1;0;1;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;43;-444.2133,276.0686;Inherit;False;Property;_E_Intensity;E_Intensity;6;0;Create;True;0;0;0;False;0;False;0;250;0;250;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;36;-732.4197,-10.68152;Inherit;False;Property;_Metal;Metal;5;0;Create;True;0;0;0;False;0;False;0;0;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.RangedFloatNode;24;-930.5359,-122.4446;Inherit;False;Property;_NormalIntensity;Normal Intensity;2;0;Create;True;0;0;0;False;0;False;0;1;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.OneMinusNode;38;-317.4197,86.31848;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;45;-251.1987,-181.8889;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.OneMinusNode;38;-344.4197,113.3185;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SamplerNode;19;-705.5359,-210.4446;Inherit;True;Property;_Normal;Normal;1;0;Create;True;0;0;0;False;0;False;-1;None;b400089c0dd5478b9e4f518945cd1fe7;True;0;True;bump;Auto;True;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;42;-115.2133,200.0686;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;33;-13,-105;Float;False;False;-1;2;Rendering.HighDefinition.DecalGUI;0;1;New Amplify Shader;d345501910c196f4a81c9eff8a0a5ad7;True;DecalProjectorForwardEmissive;0;1;DecalProjectorForwardEmissive;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;True;8;5;False;-1;1;False;-1;0;1;False;-1;0;False;-1;False;False;False;False;False;False;False;False;False;False;False;False;True;1;False;-1;False;False;False;False;False;False;False;False;False;False;False;True;2;False;-1;True;2;False;-1;False;True;1;LightMode=DecalProjectorForwardEmissive;False;0;0;1;=;0;SubsurfaceScattering;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;32;103,-42;Float;False;True;-1;2;Rendering.HighDefinition.DecalGUI;0;10;S_DecalBasic;d345501910c196f4a81c9eff8a0a5ad7;True;DBufferProjector;0;0;DBufferProjector;12;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;True;2;5;False;-1;10;False;-1;1;0;False;-1;10;False;-1;False;False;True;2;5;False;-1;10;False;-1;1;0;False;-1;10;False;-1;False;False;True;2;5;False;-1;10;False;-1;1;0;False;-1;10;False;-1;False;False;True;1;0;False;-1;6;False;-1;0;1;False;-1;0;False;-1;False;False;False;True;1;False;-1;False;False;False;True;True;True;True;True;0;True;-15;False;True;True;True;True;True;0;True;-16;False;True;True;True;True;True;0;True;-17;False;True;True;0;True;-7;255;False;-1;255;True;-6;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;3;False;-1;1;False;-1;1;False;-1;False;True;2;False;-1;True;2;False;-1;False;True;1;LightMode=DBufferProjector;False;0;1;0;0;-1;8;Affect BaseColor;1;Affect Normal;1;Affect Metal;1;Affect AO;1;Affect Smoothness;1;Affect Emission;1;Support LOD CrossFade;1;Vertex Position,InvertActionOnDeselection;1;0;4;True;True;True;True;False;;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;35;-13,-105;Float;False;False;-1;2;Rendering.HighDefinition.DecalGUI;0;1;New Amplify Shader;d345501910c196f4a81c9eff8a0a5ad7;True;DecalMeshForwardEmissive;0;3;DecalMeshForwardEmissive;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;True;8;5;False;-1;1;False;-1;0;1;False;-1;0;False;-1;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;-1;True;3;False;-1;False;True;1;LightMode=DecalMeshForwardEmissive;False;0;0;1;=;0;SubsurfaceScattering;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;34;-13,-105;Float;False;False;-1;2;Rendering.HighDefinition.DecalGUI;0;1;New Amplify Shader;d345501910c196f4a81c9eff8a0a5ad7;True;DBufferMesh;0;2;DBufferMesh;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;True;2;5;False;-1;10;False;-1;1;0;False;-1;10;False;-1;False;False;True;2;5;False;-1;10;False;-1;1;0;False;-1;10;False;-1;False;False;True;2;5;False;-1;10;False;-1;1;0;False;-1;10;False;-1;False;False;True;1;0;False;-1;6;False;-1;0;1;False;-1;0;False;-1;False;False;False;False;False;False;False;True;True;True;True;True;0;True;-15;False;True;True;True;True;True;0;True;-16;False;True;True;True;True;True;0;True;-17;False;True;True;0;True;-7;255;False;-1;255;True;-6;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;3;False;-1;1;False;-1;1;False;-1;False;True;2;False;-1;True;3;False;-1;False;True;1;LightMode=DBufferMesh;False;0;1;0;0;-1;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;35;-13,-105;Float;False;False;-1;2;Rendering.HighDefinition.DecalGUI;0;1;New Amplify Shader;d345501910c196f4a81c9eff8a0a5ad7;True;DecalMeshForwardEmissive;0;3;DecalMeshForwardEmissive;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;True;8;5;False;-1;1;False;-1;0;1;False;-1;0;False;-1;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;-1;True;3;False;-1;False;True;1;LightMode=DecalMeshForwardEmissive;False;0;0;1;=;0;SubsurfaceScattering;0;False;0
 WireConnection;25;0;39;0
 WireConnection;17;1;25;0
+WireConnection;45;0;17;4
+WireConnection;45;1;46;0
+WireConnection;38;0;37;0
 WireConnection;19;1;25;0
-WireConnection;40;0;17;4
-WireConnection;40;1;41;0
 WireConnection;42;0;17;0
 WireConnection;42;1;43;0
-WireConnection;38;0;37;0
 WireConnection;32;0;17;0
-WireConnection;32;1;40;0
+WireConnection;32;1;45;0
 WireConnection;32;2;19;0
-WireConnection;32;3;40;0
+WireConnection;32;3;45;0
 WireConnection;32;4;36;0
 WireConnection;32;6;38;0
-WireConnection;32;7;40;0
+WireConnection;32;7;45;0
 WireConnection;32;8;42;0
 ASEEND*/
-//CHKSM=B78A3A73C3953F95AA59E81452AFC2848423CB02
+//CHKSM=032077301B6F18794EC9CDE74F4E4BA227AB9BF5
