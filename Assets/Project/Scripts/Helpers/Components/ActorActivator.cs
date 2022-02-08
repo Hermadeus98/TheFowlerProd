@@ -31,7 +31,7 @@ namespace TheFowler
             {
                 for (int a = 0; a < ActorsToActivateParents[i].transform.childCount; a++)
                 {
-                    ActorsToActivateParents[i].transform.GetChild(a).gameObject.SetActive(true);
+                    ActorsToActivateParents[i].transform.GetChild(a).gameObject.SetActive(false);
                 }
             }
             //ActorsToActivate.ForEach(w => w.SetActive(false));
