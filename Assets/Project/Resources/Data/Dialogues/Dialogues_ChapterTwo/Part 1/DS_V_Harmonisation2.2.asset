@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6129152364239052006
+--- !u!114 &-2505113631802455125
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15,20 +15,76 @@ MonoBehaviour:
   NodeName: 
   state: 0
   started: 0
-  guid: 808822060d87870418741803b75fb13f
-  position: {x: -133, y: -20}
+  guid: 763c7cef859464e409c74a602b42ade0
+  position: {x: 36, y: 177}
+  children: []
+  dialogue:
+    ActorEnum: 2
+    dialogueText: "Not\xE9 !"
+    cameraPath:
+      genericKey: 2
+      cameraName: Default
+      batchName: 
+    displayDuration: 2
+    choiceText: 
+--- !u!114 &-2245367147911478583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: Main
+  m_EditorClassIdentifier: 
+  NodeName: Main
+  state: 0
+  started: 0
+  guid: db71a3aca6dd29f4aa40106b05fc609f
+  position: {x: -356, y: 88}
   children:
-  - {fileID: 9055436892684923528}
+  - {fileID: -1913974511118588850}
+  - {fileID: -1293308906144224875}
+  dialogue:
+    ActorEnum: 2
+    dialogueText: Robin c'est ca?
+    cameraPath:
+      genericKey: 2
+      cameraName: Default
+      batchName: 
+    displayDuration: 2
+    choiceText: 
+--- !u!114 &-1913974511118588850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 62a100729161bc3428051e3feb047132
+  position: {x: -139, y: 25}
+  children:
+  - {fileID: -1840986691186098827}
   dialogue:
     ActorEnum: 0
-    dialogueText: "Nan, c'\xE9tait pas une bonne id\xE9e cette affaire"
+    dialogueText: Nan c'est Robyn!
     cameraPath:
       genericKey: 1
       cameraName: Default
       batchName: 
     displayDuration: 2
     choiceText: 
---- !u!114 &-3808241044777943241
+--- !u!114 &-1840986691186098827
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,13 +99,40 @@ MonoBehaviour:
   NodeName: 
   state: 0
   started: 0
-  guid: fce62cee8668c804db4209ef7edbab0f
-  position: {x: -134, y: 174}
+  guid: cbdf756300df24e4f9a3af298708458c
+  position: {x: 58, y: 37}
+  children: []
+  dialogue:
+    ActorEnum: 2
+    dialogueText: My bad
+    cameraPath:
+      genericKey: 2
+      cameraName: Default
+      batchName: 
+    displayDuration: 2
+    choiceText: 
+--- !u!114 &-1293308906144224875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: d94b1eea91a303342b2cc431c59e3ace
+  position: {x: -124, y: 177}
   children:
-  - {fileID: 2722337134780315484}
+  - {fileID: -2505113631802455125}
   dialogue:
     ActorEnum: 0
-    dialogueText: Toujours!
+    dialogueText: Nan c'est Abby
     cameraPath:
       genericKey: 1
       cameraName: Default
@@ -66,96 +149,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9cf5a2a104152e48a7bbaed625f399a, type: 3}
-  m_Name: DS_H_Harmonisation3.2
+  m_Name: DS_V_Harmonisation2.2
   m_EditorClassIdentifier: 
-  rootNode: {fileID: 6752816362832641983}
+  rootNode: {fileID: -2245367147911478583}
   treeState: 0
   nodes:
-  - {fileID: 6752816362832641983}
-  - {fileID: 2722337134780315484}
-  - {fileID: 9055436892684923528}
-  - {fileID: -3808241044777943241}
-  - {fileID: -6129152364239052006}
---- !u!114 &2722337134780315484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  NodeName: 
-  state: 0
-  started: 0
-  guid: f58d790397d2fab4595f05ff20b24d9a
-  position: {x: 122, y: 173}
-  children: []
-  dialogue:
-    ActorEnum: 2
-    dialogueText: Mood
-    cameraPath:
-      genericKey: 2
-      cameraName: Default
-      batchName: 
-    displayDuration: 2
-    choiceText: 
---- !u!114 &6752816362832641983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: Main
-  m_EditorClassIdentifier: 
-  NodeName: Main
-  state: 0
-  started: 0
-  guid: 8384445cffb549845b2fcb34b055f73e
-  position: {x: -409.48, y: 90}
-  children:
-  - {fileID: -6129152364239052006}
-  - {fileID: -3808241044777943241}
-  dialogue:
-    ActorEnum: 2
-    dialogueText: Ready?
-    cameraPath:
-      genericKey: 2
-      cameraName: Default
-      batchName: 
-    displayDuration: 2
-    choiceText: 
---- !u!114 &9055436892684923528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  NodeName: 
-  state: 0
-  started: 0
-  guid: 83092c4dd025c024db461f2150d9cbd3
-  position: {x: 109, y: -32}
-  children: []
-  dialogue:
-    ActorEnum: 2
-    dialogueText: Et merde
-    cameraPath:
-      genericKey: 2
-      cameraName: Default
-      batchName: 
-    displayDuration: 2
-    choiceText: 
+  - {fileID: -1840986691186098827}
+  - {fileID: -2505113631802455125}
+  - {fileID: -1293308906144224875}
+  - {fileID: -1913974511118588850}
+  - {fileID: -2245367147911478583}

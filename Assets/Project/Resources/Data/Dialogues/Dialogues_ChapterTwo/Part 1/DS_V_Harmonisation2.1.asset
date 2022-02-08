@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6129152364239052006
+--- !u!114 &-8474110366449194726
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15,20 +15,20 @@ MonoBehaviour:
   NodeName: 
   state: 0
   started: 0
-  guid: 808822060d87870418741803b75fb13f
-  position: {x: -133, y: -20}
+  guid: 1728439625659574198636a4b63075a5
+  position: {x: -85, y: -27}
   children:
-  - {fileID: 9055436892684923528}
+  - {fileID: -862378188768951950}
   dialogue:
     ActorEnum: 0
-    dialogueText: "Nan, c'\xE9tait pas une bonne id\xE9e cette affaire"
+    dialogueText: C'est d'un laid ce truc au milieu
     cameraPath:
       genericKey: 1
       cameraName: Default
       batchName: 
     displayDuration: 2
-    choiceText: 
---- !u!114 &-3808241044777943241
+    choiceText: C'est d'un laid ce truc au milieu
+--- !u!114 &-7037926284159794527
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,15 +43,69 @@ MonoBehaviour:
   NodeName: 
   state: 0
   started: 0
-  guid: fce62cee8668c804db4209ef7edbab0f
-  position: {x: -134, y: 174}
+  guid: 6850e1be72612c44498204971dfb326a
+  position: {x: 98, y: 131}
+  children: []
+  dialogue:
+    ActorEnum: 1
+    dialogueText: Ouais !
+    cameraPath:
+      genericKey: 3
+      cameraName: Default
+      batchName: 
+    displayDuration: 2
+    choiceText: 
+--- !u!114 &-6227900290075374947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 76de4f17cbdc41b49b531d35957bba1a
+  position: {x: -80, y: 124}
   children:
-  - {fileID: 2722337134780315484}
+  - {fileID: -7037926284159794527}
   dialogue:
     ActorEnum: 0
-    dialogueText: Toujours!
+    dialogueText: On se tire ?
     cameraPath:
       genericKey: 1
+      cameraName: Default
+      batchName: 
+    displayDuration: 2
+    choiceText: On se tire ?
+--- !u!114 &-862378188768951950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 0ee4444f9ce8d6749bd194e6d4257cdf
+  position: {x: 112, y: -28}
+  children: []
+  dialogue:
+    ActorEnum: 1
+    dialogueText: Je me disais la meme
+    cameraPath:
+      genericKey: 3
       cameraName: Default
       batchName: 
     displayDuration: 2
@@ -66,44 +120,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9cf5a2a104152e48a7bbaed625f399a, type: 3}
-  m_Name: DS_H_Harmonisation3.2
+  m_Name: DS_V_Harmonisation2.1
   m_EditorClassIdentifier: 
-  rootNode: {fileID: 6752816362832641983}
+  rootNode: {fileID: 0}
   treeState: 0
   nodes:
-  - {fileID: 6752816362832641983}
-  - {fileID: 2722337134780315484}
-  - {fileID: 9055436892684923528}
-  - {fileID: -3808241044777943241}
-  - {fileID: -6129152364239052006}
---- !u!114 &2722337134780315484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  NodeName: 
-  state: 0
-  started: 0
-  guid: f58d790397d2fab4595f05ff20b24d9a
-  position: {x: 122, y: 173}
-  children: []
-  dialogue:
-    ActorEnum: 2
-    dialogueText: Mood
-    cameraPath:
-      genericKey: 2
-      cameraName: Default
-      batchName: 
-    displayDuration: 2
-    choiceText: 
---- !u!114 &6752816362832641983
+  - {fileID: 849356938383358779}
+  - {fileID: -6227900290075374947}
+  - {fileID: -8474110366449194726}
+  - {fileID: -862378188768951950}
+  - {fileID: -7037926284159794527}
+--- !u!114 &849356938383358779
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,43 +145,16 @@ MonoBehaviour:
   NodeName: Main
   state: 0
   started: 0
-  guid: 8384445cffb549845b2fcb34b055f73e
-  position: {x: -409.48, y: 90}
+  guid: ec4b77388d298ba48a51bb7e8d8191da
+  position: {x: -287, y: 23}
   children:
-  - {fileID: -6129152364239052006}
-  - {fileID: -3808241044777943241}
+  - {fileID: -8474110366449194726}
+  - {fileID: -6227900290075374947}
   dialogue:
-    ActorEnum: 2
-    dialogueText: Ready?
+    ActorEnum: 1
+    dialogueText: Alors?
     cameraPath:
-      genericKey: 2
-      cameraName: Default
-      batchName: 
-    displayDuration: 2
-    choiceText: 
---- !u!114 &9055436892684923528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  NodeName: 
-  state: 0
-  started: 0
-  guid: 83092c4dd025c024db461f2150d9cbd3
-  position: {x: 109, y: -32}
-  children: []
-  dialogue:
-    ActorEnum: 2
-    dialogueText: Et merde
-    cameraPath:
-      genericKey: 2
+      genericKey: 3
       cameraName: Default
       batchName: 
     displayDuration: 2

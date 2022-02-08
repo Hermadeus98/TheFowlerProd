@@ -1,6 +1,34 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6129152364239052006
+--- !u!114 &-6678709383925107726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: Main
+  m_EditorClassIdentifier: 
+  NodeName: Main
+  state: 0
+  started: 0
+  guid: 3b92d53a590965147af9cbfab9ce5257
+  position: {x: 12, y: -1}
+  children:
+  - {fileID: -4533192282024139248}
+  dialogue:
+    ActorEnum: 1
+    dialogueText: "Everything\u2019s clear, no one in sight."
+    cameraPath:
+      genericKey: 3
+      cameraName: Default
+      batchName: 
+    displayDuration: 2
+    choiceText: 
+--- !u!114 &-5107852449827197770
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15,20 +43,20 @@ MonoBehaviour:
   NodeName: 
   state: 0
   started: 0
-  guid: 808822060d87870418741803b75fb13f
-  position: {x: -133, y: -20}
-  children:
-  - {fileID: 9055436892684923528}
+  guid: ecc75782eb4ac2f45943c9ca25462fa5
+  position: {x: 804, y: 4}
+  children: []
   dialogue:
     ActorEnum: 0
-    dialogueText: "Nan, c'\xE9tait pas une bonne id\xE9e cette affaire"
+    dialogueText: "No time for that, we\u2019ve gotta be quick, we can\u2019t let
+      the Captain escape!"
     cameraPath:
       genericKey: 1
       cameraName: Default
       batchName: 
     displayDuration: 2
     choiceText: 
---- !u!114 &-3808241044777943241
+--- !u!114 &-4533192282024139248
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,13 +71,14 @@ MonoBehaviour:
   NodeName: 
   state: 0
   started: 0
-  guid: fce62cee8668c804db4209ef7edbab0f
-  position: {x: -134, y: 174}
+  guid: 64ded563c2497cf43aca5920883ea92a
+  position: {x: 229, y: -2}
   children:
-  - {fileID: 2722337134780315484}
+  - {fileID: 2363980503230762533}
   dialogue:
     ActorEnum: 0
-    dialogueText: Toujours!
+    dialogueText: "Great!  They won\u2019t know what hit them before it\u2019s too
+      late!"
     cameraPath:
       genericKey: 1
       cameraName: Default
@@ -66,17 +95,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9cf5a2a104152e48a7bbaed625f399a, type: 3}
-  m_Name: DS_H_Harmonisation3.2
+  m_Name: DS_EntreeExplosion
   m_EditorClassIdentifier: 
-  rootNode: {fileID: 6752816362832641983}
+  rootNode: {fileID: -6678709383925107726}
   treeState: 0
   nodes:
-  - {fileID: 6752816362832641983}
-  - {fileID: 2722337134780315484}
-  - {fileID: 9055436892684923528}
-  - {fileID: -3808241044777943241}
-  - {fileID: -6129152364239052006}
---- !u!114 &2722337134780315484
+  - {fileID: -6678709383925107726}
+  - {fileID: -5107852449827197770}
+  - {fileID: 3097418602955434166}
+  - {fileID: 2363980503230762533}
+  - {fileID: -4533192282024139248}
+--- !u!114 &2363980503230762533
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,48 +120,20 @@ MonoBehaviour:
   NodeName: 
   state: 0
   started: 0
-  guid: f58d790397d2fab4595f05ff20b24d9a
-  position: {x: 122, y: 173}
-  children: []
-  dialogue:
-    ActorEnum: 2
-    dialogueText: Mood
-    cameraPath:
-      genericKey: 2
-      cameraName: Default
-      batchName: 
-    displayDuration: 2
-    choiceText: 
---- !u!114 &6752816362832641983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: Main
-  m_EditorClassIdentifier: 
-  NodeName: Main
-  state: 0
-  started: 0
-  guid: 8384445cffb549845b2fcb34b055f73e
-  position: {x: -409.48, y: 90}
+  guid: 5aaad91e502a7f144822850bdd576db8
+  position: {x: 434, y: 3}
   children:
-  - {fileID: -6129152364239052006}
-  - {fileID: -3808241044777943241}
+  - {fileID: 3097418602955434166}
   dialogue:
-    ActorEnum: 2
-    dialogueText: Ready?
+    ActorEnum: 1
+    dialogueText: "And we\u2019re only a few floors from the top!"
     cameraPath:
-      genericKey: 2
+      genericKey: 3
       cameraName: Default
       batchName: 
     displayDuration: 2
     choiceText: 
---- !u!114 &9055436892684923528
+--- !u!114 &3097418602955434166
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,14 +148,15 @@ MonoBehaviour:
   NodeName: 
   state: 0
   started: 0
-  guid: 83092c4dd025c024db461f2150d9cbd3
-  position: {x: 109, y: -32}
-  children: []
+  guid: 6565faafa7b48b945b0cb12b89f3e5ac
+  position: {x: 620, y: 6}
+  children:
+  - {fileID: -5107852449827197770}
   dialogue:
-    ActorEnum: 2
-    dialogueText: Et merde
+    ActorEnum: 1
+    dialogueText: Maybe we could use the servants'-
     cameraPath:
-      genericKey: 2
+      genericKey: 3
       cameraName: Default
       batchName: 
     displayDuration: 2

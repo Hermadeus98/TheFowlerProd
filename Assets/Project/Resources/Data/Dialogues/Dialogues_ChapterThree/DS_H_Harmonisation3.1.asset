@@ -1,5 +1,60 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4444289414379640936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 0283955a8cd4c5a4b8336f96b50282ed
+  position: {x: -121, y: 159}
+  children:
+  - {fileID: -455773921721804351}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: Grave!
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: 
+    displayDuration: 2
+    choiceText: Grave!
+--- !u!114 &-455773921721804351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: adc798126e4bc2a4e90625c85e3f54c4
+  position: {x: 192, y: 174}
+  children: []
+  dialogue:
+    ActorEnum: 1
+    dialogueText: De meme
+    cameraPath:
+      genericKey: 3
+      cameraName: Default
+      batchName: 
+    displayDuration: 2
+    choiceText: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16,9 +71,11 @@ MonoBehaviour:
   treeState: 0
   nodes:
   - {fileID: 6752816362832641983}
-  - {fileID: 8204202044735990305}
-  - {fileID: 1520390825497602242}
---- !u!114 &1520390825497602242
+  - {fileID: -455773921721804351}
+  - {fileID: 7618231607141990830}
+  - {fileID: -4444289414379640936}
+  - {fileID: 586167870534831576}
+--- !u!114 &586167870534831576
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -28,23 +85,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: fzfzfzfz
+  m_Name: DialogueNode
   m_EditorClassIdentifier: 
-  NodeName: fzfzfzfz
+  NodeName: 
   state: 0
   started: 0
-  guid: 0a2eff9095a20ac4490cfd8380ff1fa3
-  position: {x: 141, y: 101}
-  children: []
+  guid: 4b9cbf27ee173b748bef6e77e532ae44
+  position: {x: -118, y: -5}
+  children:
+  - {fileID: 7618231607141990830}
   dialogue:
     ActorEnum: 0
-    dialogueText: fafafaffa
+    dialogueText: Pas specialement
     cameraPath:
       genericKey: 1
       cameraName: Default
       batchName: 
     displayDuration: 2
-    choiceText: 
+    choiceText: Pas specialement
 --- !u!114 &6752816362832641983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,19 +119,20 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 8384445cffb549845b2fcb34b055f73e
-  position: {x: -286, y: 100.76}
+  position: {x: -316, y: 92}
   children:
-  - {fileID: 8204202044735990305}
+  - {fileID: 586167870534831576}
+  - {fileID: -4444289414379640936}
   dialogue:
-    ActorEnum: 0
-    dialogueText: fafafzfa
+    ActorEnum: 1
+    dialogueText: Alors, heureuse?
     cameraPath:
-      genericKey: 1
+      genericKey: 3
       cameraName: Default
       batchName: 
     displayDuration: 2
     choiceText: 
---- !u!114 &8204202044735990305
+--- !u!114 &7618231607141990830
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,15 +147,14 @@ MonoBehaviour:
   NodeName: 
   state: 0
   started: 0
-  guid: 8698f5192be841f4a9e2f7f1e07bcbbd
-  position: {x: -69, y: 101}
-  children:
-  - {fileID: 1520390825497602242}
+  guid: 9a881c89be5eefe498d5e92aedfac836
+  position: {x: 176, y: -5}
+  children: []
   dialogue:
-    ActorEnum: 0
-    dialogueText: fafafafa
+    ActorEnum: 1
+    dialogueText: Jamais contente
     cameraPath:
-      genericKey: 1
+      genericKey: 3
       cameraName: Default
       batchName: 
     displayDuration: 2
