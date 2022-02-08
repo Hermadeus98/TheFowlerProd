@@ -9,28 +9,95 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87b24c01c3a6a084fba850aa0f8ac982, type: 3}
+  m_Script: {fileID: 11500000, guid: a9cf5a2a104152e48a7bbaed625f399a, type: 3}
   m_Name: DS_H_Harmonisation3.2
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  Dialogues:
-  - ActorEnum: 0
-    dialogueText: Phoebe?
+  rootNode: {fileID: 6752816362832641983}
+  treeState: 0
+  nodes:
+  - {fileID: 6752816362832641983}
+  - {fileID: 8204202044735990305}
+  - {fileID: 1520390825497602242}
+--- !u!114 &1520390825497602242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 0a2eff9095a20ac4490cfd8380ff1fa3
+  position: {x: 141, y: 101}
+  children: []
+  dialogue:
+    ActorEnum: 0
+    dialogueText: fafafaffa
     cameraPath:
-      batchName: Dialogue_Harmonisation_3
+      genericKey: 1
       cameraName: Default
+      batchName: 
     displayDuration: 2
-  - ActorEnum: 0
-    dialogueText: Robin?
+    choiceText: 
+--- !u!114 &6752816362832641983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: Main
+  m_EditorClassIdentifier: 
+  NodeName: Main
+  state: 0
+  started: 0
+  guid: 8384445cffb549845b2fcb34b055f73e
+  position: {x: -286, y: 100.76}
+  children:
+  - {fileID: 8204202044735990305}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: fafafzfa
     cameraPath:
-      batchName: Dialogue_Harmonisation_3
+      genericKey: 1
       cameraName: Default
+      batchName: 
     displayDuration: 2
+    choiceText: 
+--- !u!114 &8204202044735990305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 8698f5192be841f4a9e2f7f1e07bcbbd
+  position: {x: -69, y: 101}
+  children:
+  - {fileID: 1520390825497602242}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: fafafafa
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: 
+    displayDuration: 2
+    choiceText: 

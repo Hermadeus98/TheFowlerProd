@@ -26,6 +26,9 @@ namespace TheFowler
 
         public static void PlayGameplayPhase(GameplayPhaseEnum key)
         {
+            if(key == GameplayPhaseEnum.NULL)
+                return;
+            
             if (!GameplayPhases.ContainsKey(key))
             {
                 Debug.LogError($"GameplayPhases don't contain {key}");
