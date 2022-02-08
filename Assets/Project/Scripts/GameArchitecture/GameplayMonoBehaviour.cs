@@ -29,8 +29,14 @@ namespace TheFowler
             OnStart();
         }
 
+        private void Awake()
+        {
+            OnAwake();
+        }
+
         //---<GAME>----------------------------------------------------------------------------------------------------<
         protected virtual void OnStart(){ }
+        protected virtual void OnAwake(){ }
 
         /// <summary>
         /// Callback use to set dependancies of this MonoBehaviour.

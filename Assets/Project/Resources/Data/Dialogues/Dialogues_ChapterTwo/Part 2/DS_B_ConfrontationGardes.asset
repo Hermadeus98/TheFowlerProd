@@ -1,0 +1,190 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5123673158162036531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 79e432e871cf82045a0e69e9e57a5e0e
+  position: {x: 297, y: 228}
+  children: []
+  dialogue:
+    ActorEnum: 0
+    dialogueText: zfefzfzf
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: Robyn_Facial
+    displayDuration: 2
+    choiceText: 
+--- !u!114 &-4773958450819765716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 0456e2a2d13b7ff4884c5e85f26e2f79
+  position: {x: 297, y: 103}
+  children: []
+  dialogue:
+    ActorEnum: 0
+    dialogueText: zffzfzfz
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: Robyn_Facial
+    displayDuration: 2
+    choiceText: 
+--- !u!114 &-1746117077411681725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: d0844ed62ac368f4d9eb807ac35ee7a1
+  position: {x: 122, y: 228}
+  children:
+  - {fileID: -5123673158162036531}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: fzzfzf
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: Robyn_Facial
+    displayDuration: 2
+    choiceText: fzfzfz
+--- !u!114 &-1248799063095595835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: Main
+  m_EditorClassIdentifier: 
+  NodeName: Main
+  state: 0
+  started: 0
+  guid: 57d7762211de0f74fac5bebb3692e186
+  position: {x: -202, y: 162}
+  children:
+  - {fileID: 5880321718542277815}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: Main
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: Robyn_Facial
+    displayDuration: 2
+    choiceText: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cf5a2a104152e48a7bbaed625f399a, type: 3}
+  m_Name: DS_B_ConfrontationGardes
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: -1248799063095595835}
+  treeState: 0
+  nodes:
+  - {fileID: -1248799063095595835}
+  - {fileID: 5880321718542277815}
+  - {fileID: -1746117077411681725}
+  - {fileID: 3833911980201099874}
+  - {fileID: -4773958450819765716}
+  - {fileID: -5123673158162036531}
+--- !u!114 &3833911980201099874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 868b3cd741ed8fb4b8f28ffc3ea95eb5
+  position: {x: 122, y: 103}
+  children:
+  - {fileID: -4773958450819765716}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: zfzfezfz
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: Robyn_Facial
+    displayDuration: 2
+    choiceText: fzefzfz
+--- !u!114 &5880321718542277815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: f17172a4e7bd72e459fb67319a4cc630
+  position: {x: -37, y: 160}
+  children:
+  - {fileID: -1746117077411681725}
+  - {fileID: 3833911980201099874}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: fefzefzf
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: Robyn_Facial
+    displayDuration: 2
+    choiceText: 
