@@ -39,9 +39,18 @@ namespace TheFowler
 
         public void SetCamera(cameraPath cameraPath)
         {
-            if(cameraPath.batchName.IsNullOrWhitespace())
-                return;
-            SetCamera(cameraPath.batchName, cameraPath.cameraName);
+            if (cameraPath.genericKey == CameraGenericKeyEnum.NULL)
+            {
+                if (cameraPath.batchName.IsNullOrWhitespace())
+                    return;
+                
+                SetCamera(cameraPath.batchName, cameraPath.cameraName);
+            }
+            else
+            {
+                var batchName = CameraGenericKey.GetCameraGenericKey(cameraPath.genericKey);
+                SetCamera(batchName, cameraPath.cameraName);
+            }
         }
 
         public void SetCamera(CameraBatch cameraBatch, string key = "Default")
@@ -97,8 +106,11 @@ namespace TheFowler
     public class cameraPath
     {
         [HorizontalGroup()] 
-        public string batchName;
+        public CameraGenericKeyEnum genericKey = CameraGenericKeyEnum.NULL;
         [HorizontalGroup()] 
         public string cameraName = "Default";
+        [ShowIf("@this.genericKey == CameraGenericKeyEnum.NULL")]
+        public string batchName;
+
     }
 }

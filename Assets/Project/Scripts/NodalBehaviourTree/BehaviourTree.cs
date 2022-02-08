@@ -11,7 +11,7 @@ namespace TheFowler
     [CreateAssetMenu]
     public class BehaviourTree : ScriptableObject
     {
-        [TitleGroup("Main Settings")]
+        [TitleGroup("Main Settings"), Required]
         public Node rootNode;
         [TitleGroup("Infos")]
         public Node.State treeState = Node.State.Running;

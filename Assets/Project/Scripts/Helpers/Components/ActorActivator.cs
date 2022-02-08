@@ -9,18 +9,32 @@ namespace TheFowler
     public class ActorActivator : SerializedMonoBehaviour
     {
         [SerializeField] private bool desactivateRobyn, desactivateAbigael, desactivatePhoebe;
-        [SerializeField] private GameObject[] ActorsToActivate;
+        [SerializeField] private GameObject[] ActorsToActivateParents;
         
         public void ActivateActor()
         {
             SetActorActive(false);
-            ActorsToActivate.ForEach(w => w.SetActive(true));
+            for (int i = 0; i < ActorsToActivateParents.Length; i++)
+            {
+                for (int a = 0; a < ActorsToActivateParents[i].transform.childCount; a++)
+                {
+                    ActorsToActivateParents[i].transform.GetChild(a).gameObject.SetActive(true);
+                }
+            }
+            //ActorsToActivate.ForEach(w => w.SetActive(true));
         }
 
         public void DesactivateActor()
         {
             SetActorActive(true);
-            ActorsToActivate.ForEach(w => w.SetActive(false));
+            for (int i = 0; i < ActorsToActivateParents.Length; i++)
+            {
+                for (int a = 0; a < ActorsToActivateParents[i].transform.childCount; a++)
+                {
+                    ActorsToActivateParents[i].transform.GetChild(a).gameObject.SetActive(true);
+                }
+            }
+            //ActorsToActivate.ForEach(w => w.SetActive(false));
         }
 
         private void SetActorActive(bool state)

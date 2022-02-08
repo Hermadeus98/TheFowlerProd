@@ -37,6 +37,12 @@ namespace TheFowler
 
         public TurnSystem TurnSystem;
 
+        protected override void OnAwake()
+        {
+            base.OnAwake();
+            SetActorState(false);
+        }
+
         public override void PlayPhase()
         {
             BattleManager.CurrentBattle = this;
@@ -67,17 +73,7 @@ namespace TheFowler
             Player.Abigael?.gameObject.SetActive(false);
             Player.Pheobe?.gameObject.SetActive(false);
 
-            for (var i = 0; i < alliesBatch.childCount; i++)
-            {
-                alliesBatch.GetChild(i).gameObject.SetActive(true);
-                allies.Add(alliesBatch.GetChild(i).GetComponent<BattleActor>());
-            }
-
-            for (var i = 0; i < enemiesBatch.childCount; i++)
-            {
-                enemiesBatch.GetChild(i).gameObject.SetActive(true);
-                enemies.Add(enemiesBatch.GetChild(i).GetComponent<BattleActor>());
-            }
+            SetActorState(true);
         }
 
         public bool CheckVictory()
@@ -118,6 +114,24 @@ namespace TheFowler
         {
             battleState.SetState(GetBattleStateKey(key), EventArgs.Empty);
             return battleState.GetState(GetBattleStateKey(key)) as T;
+        }
+
+        private void SetActorState(bool state)
+        {
+            allies.Clear();
+            enemies.Clear();
+            
+            for (var i = 0; i < alliesBatch.childCount; i++)
+            {
+                alliesBatch.GetChild(i).gameObject.SetActive(state);
+                allies.Add(alliesBatch.GetChild(i).GetComponent<BattleActor>());
+            }
+
+            for (var i = 0; i < enemiesBatch.childCount; i++)
+            {
+                enemiesBatch.GetChild(i).gameObject.SetActive(state);
+                enemies.Add(enemiesBatch.GetChild(i).GetComponent<BattleActor>());
+            }
         }
 
         private string GetBattleStateKey(BattleStateEnum key)

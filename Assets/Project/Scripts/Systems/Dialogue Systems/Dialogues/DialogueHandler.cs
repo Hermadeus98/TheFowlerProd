@@ -1,4 +1,5 @@
 using System;
+using QRCode.Extensions;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,7 +8,7 @@ namespace TheFowler
 {
     public class DialogueHandler : GameplayPhase
     {
-        [TitleGroup("General Settings")]
+        [TitleGroup("General Settings"), Required]
         public BehaviourTree BehaviourTree;
 
         [TitleGroup("General Settings")]
@@ -33,6 +34,18 @@ namespace TheFowler
         
         public override void PlayPhase()
         {
+            if (BehaviourTree.IsNull())
+            {
+                Debug.LogError("Behaviour tree is missing !");
+                return;
+            }
+
+            if (BehaviourTree.rootNode.IsNull())
+            {
+                Debug.LogError("Root Node is missing !");
+                return;
+            }
+            
             base.PlayPhase();
             
             switch (dialogueType)
@@ -58,6 +71,9 @@ namespace TheFowler
             {
                 if (!waitInput)
                 {
+                    if(currentDialogueNode == null)
+                        return;
+                    
                     if (elapsedTime < currentDialogue.displayDuration)
                     {
                         elapsedTime += Time.deltaTime;
@@ -127,7 +143,7 @@ namespace TheFowler
                 {
                     if (currentDialogueNode.hasMultipleChoices)
                     {
-                        Debug.Log("choice");
+                        //Debug.Log("choice");
                         waitInput = true;
                         switch (dialogueType)
                         {
@@ -248,7 +264,7 @@ namespace TheFowler
                     throw new ArgumentOutOfRangeException();
             }
             
-            Debug.Log(dialogue.dialogueText);
+            //Debug.Log(dialogue.dialogueText);
             elapsedTime = 0;
         }
         

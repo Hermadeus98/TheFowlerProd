@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using QRCode.Extensions;
+using Sirenix.Utilities;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -58,6 +60,8 @@ namespace TheFowler
                     AddElement(edge);
                 });
             });
+
+            SetRootNode();
         }
 
         public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
@@ -98,6 +102,8 @@ namespace TheFowler
                 });
             }
             
+            SetRootNode();
+
             return graphViewChange;
         }
 
@@ -152,6 +158,20 @@ namespace TheFowler
             NodeView nodeView = new NodeView(node);
             nodeView.OnNodeSelected += OnNodeSelected;
             AddElement(nodeView);
+        }
+
+        void SetRootNode()
+        {
+            if (tree.rootNode.IsNull() && !tree.nodes.IsNullOrEmpty())
+            {
+                for (int i = 0; i < tree.nodes.Count; i++)
+                {
+                    if (tree.nodes[i].name == "Main")
+                    {
+                        tree.rootNode = tree.nodes[i];
+                    }
+                }
+            }
         }
     }
 }
