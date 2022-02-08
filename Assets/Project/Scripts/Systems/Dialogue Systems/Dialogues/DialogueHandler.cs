@@ -36,14 +36,20 @@ namespace TheFowler
         {
             if (BehaviourTree.IsNull())
             {
-                Debug.LogError("Behaviour tree is missing !");
+                Debug.LogError($"Behaviour tree is missing on {GameplayPhaseID} !");
                 return;
             }
 
             if (BehaviourTree.rootNode.IsNull())
             {
-                Debug.LogError("Root Node is missing !");
-                return;
+                BehaviourTree.SearchRootNode();
+                
+                if(BehaviourTree.rootNode.IsNotNull())
+                    Debug.Log($"Root Node repared on {BehaviourTree.name} !");
+                else
+                {
+                    Debug.LogError($"Root Node is missing on {BehaviourTree.name} !");
+                }
             }
             
             base.PlayPhase();
@@ -83,14 +89,16 @@ namespace TheFowler
                         Next();
                     }
                 }
+                
+                CheckInputs();
             }
         }
 
-        private void FixedUpdate()
+        private void CheckInputs()
         {
             if (isActive)
             {
-                if (Keyboard.current.spaceKey.wasPressedThisFrame && !waitInput)
+                if (Inputs.actions["Next"].WasPressedThisFrame() && !waitInput)
                 {
                     Next();
                 }
@@ -183,38 +191,6 @@ namespace TheFowler
                 currentDialogueNode = null;
                 elapsedTime = 0;
                 EndPhase();
-            }
-        }
-
-        private void MakeAChoice()
-        {
-            if (Keyboard.current.numpad1Key.wasPressedThisFrame)
-            {
-                if (displayChoiceResult)
-                {
-                    currentDialogueNode = currentDialogueNode.children[0] as DialogueNode;
-                    DisplayDialogue(currentDialogue);
-                }
-                else
-                {
-                    Next();
-                }
-                
-                waitInput = false;
-            }
-            if (Keyboard.current.numpad2Key.wasPressedThisFrame)
-            {
-                if (displayChoiceResult)
-                {
-                    currentDialogueNode = currentDialogueNode.children[1] as DialogueNode;
-                    DisplayDialogue(currentDialogue);
-                }
-                else
-                {
-                    Next();
-                }
-                
-                waitInput = false;
             }
         }
 

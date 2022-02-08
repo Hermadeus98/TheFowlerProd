@@ -1,9 +1,11 @@
+using System;
 using QRCode;
 using QRCode.Extensions;
 using Sirenix.OdinInspector;
 using TheFowler;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class GameplayPhase : GameplayMonoBehaviour
 {
@@ -48,7 +50,15 @@ public class GameplayPhase : GameplayMonoBehaviour
         if(onEndGameplayPhase_id != GameplayPhaseEnum.NULL)
             GameplayPhaseManager.PlayGameplayPhase(onEndGameplayPhase_id);
     }
-    
+
+    private void Update()
+    {
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            EndPhase();
+        }
+    }
+
     protected override void RegisterEvent()
     {
         base.RegisterEvent();

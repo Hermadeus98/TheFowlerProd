@@ -101,5 +101,17 @@ namespace TheFowler
 
             return children;
         }
+
+        public void SearchRootNode()
+        {
+            for (int i = 0; i < nodes.Count; i++)
+            {
+                if (nodes[i].name == "Main")
+                {
+                    rootNode = nodes[i];
+                    return;
+                }
+            }
+        }
     }
 }
