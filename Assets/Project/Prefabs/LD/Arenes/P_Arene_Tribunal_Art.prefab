@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &42279497
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 42279499}
+  - component: {fileID: 42279498}
+  m_Layer: 0
+  m_Name: collider stair (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &42279499
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42279497}
+  m_LocalRotation: {x: 0.5158322, y: -0.0075653037, z: -0.0029236511, w: 0.85665125}
+  m_LocalPosition: {x: -8.156, y: 1.989, z: 5.816}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6404465962369458341}
+  m_RootOrder: 39
+  m_LocalEulerAnglesHint: {x: 62.096, y: -1.957, z: -1.569}
+--- !u!65 &42279498
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42279497}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.09, y: 11.94, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &131806821
 GameObject:
   m_ObjectHideFlags: 0
@@ -52,7 +96,7 @@ MonoBehaviour:
     scale: {x: 1, y: 1}
     roll: 0
   - position: {x: -8.368109, y: 7.6147175, z: 2.5076656}
-    direction: {x: -10.645818, y: 9.144827, z: 4.8704348}
+    direction: {x: -10.645818, y: 8.687667, z: 4.8704348}
     up: {x: 0, y: 1, z: 0}
     scale: {x: 1, y: 1}
     roll: 0
@@ -65,14 +109,14 @@ MonoBehaviour:
       roll: 0
     n2:
       position: {x: -8.368109, y: 7.6147175, z: 2.5076656}
-      direction: {x: -10.645818, y: 9.144827, z: 4.8704348}
+      direction: {x: -10.645818, y: 8.687667, z: 4.8704348}
       up: {x: 0, y: 1, z: 0}
       scale: {x: 1, y: 1}
       roll: 0
     Changed:
       m_PersistentCalls:
         m_Calls: []
-  Length: 11.389213
+  Length: 11.405772
   isLoop: 0
   CurveChanged:
     m_PersistentCalls:
@@ -96,7 +140,7 @@ MonoBehaviour:
   rotation: {x: -27, y: -90, z: 0}
   scale: {x: 1, y: 1, z: 1}
   generateCollider: 1
-  updateInPlayMode: 0
+  updateInPlayMode: 1
   curveSpace: 0
   mode: 1
 --- !u!1 &178965134
@@ -226,7 +270,7 @@ MonoBehaviour:
   rotation: {x: -27, y: 90, z: 0}
   scale: {x: 1, y: 1, z: 1}
   generateCollider: 1
-  updateInPlayMode: 0
+  updateInPlayMode: 1
   curveSpace: 0
   mode: 1
 --- !u!1 &398209128
@@ -325,6 +369,50 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!1 &601906777
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 601906779}
+  - component: {fileID: 601906778}
+  m_Layer: 0
+  m_Name: collider stair
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &601906779
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601906777}
+  m_LocalRotation: {x: 0.5158322, y: -0.0075653037, z: -0.0029236511, w: 0.85665125}
+  m_LocalPosition: {x: 7.56, y: 2.13, z: 5.78}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6404465962369458341}
+  m_RootOrder: 38
+  m_LocalEulerAnglesHint: {x: 62.096, y: -1.957, z: -1.569}
+--- !u!65 &601906778
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601906777}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.59, y: 10.06, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &716034669
 GameObject:
   m_ObjectHideFlags: 0
@@ -1647,6 +1735,8 @@ Transform:
   - {fileID: 4109436355224687375}
   - {fileID: 398209132}
   - {fileID: 813667699}
+  - {fileID: 601906779}
+  - {fileID: 42279499}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
