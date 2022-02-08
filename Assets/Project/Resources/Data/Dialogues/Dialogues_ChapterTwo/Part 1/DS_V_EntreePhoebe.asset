@@ -1,24 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9cf5a2a104152e48a7bbaed625f399a, type: 3}
-  m_Name: DM_H_HubTribunal
-  m_EditorClassIdentifier: 
-  rootNode: {fileID: 6752816362832641983}
-  treeState: 0
-  nodes:
-  - {fileID: 6752816362832641983}
-  - {fileID: 8204202044735990305}
-  - {fileID: 1520390825497602242}
---- !u!114 &1520390825497602242
+--- !u!114 &-5426042774452931293
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -33,19 +15,65 @@ MonoBehaviour:
   NodeName: 
   state: 0
   started: 0
-  guid: 0a2eff9095a20ac4490cfd8380ff1fa3
-  position: {x: 141, y: 101}
-  children: []
+  guid: ca62c802a0bb2b245ba44c167c1730ca
+  position: {x: -64, y: 45}
+  children:
+  - {fileID: -1120658165486575781}
   dialogue:
-    ActorEnum: 2
-    dialogueText: J'ai piscine en fait
+    ActorEnum: 1
+    dialogueText: OMG Phoebe en chair et en os!
     cameraPath:
-      genericKey: 4
+      genericKey: 3
       cameraName: Default
       batchName: 
     displayDuration: 2
     choiceText: 
---- !u!114 &6752816362832641983
+--- !u!114 &-1120658165486575781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 1a48b16fdf225764399d30a208777597
+  position: {x: 175, y: 49}
+  children: []
+  dialogue:
+    ActorEnum: 0
+    dialogueText: Simp
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: 
+    displayDuration: 2
+    choiceText: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cf5a2a104152e48a7bbaed625f399a, type: 3}
+  m_Name: DS_V_EntreePhoebe
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: 8539900485663979499}
+  treeState: 0
+  nodes:
+  - {fileID: -1120658165486575781}
+  - {fileID: -5426042774452931293}
+  - {fileID: 8539900485663979499}
+--- !u!114 &8539900485663979499
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -60,43 +88,15 @@ MonoBehaviour:
   NodeName: Main
   state: 0
   started: 0
-  guid: 8384445cffb549845b2fcb34b055f73e
-  position: {x: -286, y: 100.76}
+  guid: 09d15d4284123bc4eb1b885c97e0aca2
+  position: {x: -267, y: 48}
   children:
-  - {fileID: 8204202044735990305}
+  - {fileID: -5426042774452931293}
   dialogue:
-    ActorEnum: 0
-    dialogueText: Vous etes deter?
+    ActorEnum: 2
+    dialogueText: Mais c'est quoi ce bordel?
     cameraPath:
-      genericKey: 4
-      cameraName: Default
-      batchName: 
-    displayDuration: 2
-    choiceText: 
---- !u!114 &8204202044735990305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  NodeName: 
-  state: 0
-  started: 0
-  guid: 8698f5192be841f4a9e2f7f1e07bcbbd
-  position: {x: -69, y: 101}
-  children:
-  - {fileID: 1520390825497602242}
-  dialogue:
-    ActorEnum: 1
-    dialogueText: Lol nope
-    cameraPath:
-      genericKey: 4
+      genericKey: 2
       cameraName: Default
       batchName: 
     displayDuration: 2

@@ -1,23 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9cf5a2a104152e48a7bbaed625f399a, type: 3}
-  m_Name: DS_FinDuCombatLieutenant
-  m_EditorClassIdentifier: 
-  rootNode: {fileID: 6752816362832641983}
-  treeState: 0
-  nodes:
-  - {fileID: 6752816362832641983}
-  - {fileID: 8204202044735990305}
---- !u!114 &6752816362832641983
+--- !u!114 &-8316519872427162994
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -32,20 +15,20 @@ MonoBehaviour:
   NodeName: Main
   state: 0
   started: 0
-  guid: 8384445cffb549845b2fcb34b055f73e
-  position: {x: -286, y: 100.76}
+  guid: 33eac04ae340bec45ba05e5551c142ab
+  position: {x: 0, y: 0}
   children:
-  - {fileID: 8204202044735990305}
+  - {fileID: -6994618501889822681}
   dialogue:
     ActorEnum: 0
-    dialogueText: Alors c'est qui le patron?
+    dialogueText: "Plus s\xE9rieusement!"
     cameraPath:
-      genericKey: 1
+      genericKey: 4
       cameraName: Default
       batchName: 
     displayDuration: 2
     choiceText: 
---- !u!114 &8204202044735990305
+--- !u!114 &-6994618501889822681
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -60,15 +43,32 @@ MonoBehaviour:
   NodeName: 
   state: 0
   started: 0
-  guid: 8698f5192be841f4a9e2f7f1e07bcbbd
-  position: {x: -69, y: 101}
+  guid: 527db81dbaaf14b4fa4ce759dde03958
+  position: {x: 255, y: -4}
   children: []
   dialogue:
-    ActorEnum: 2
-    dialogueText: C'est Robin
+    ActorEnum: 1
+    dialogueText: Etage 2 let's go
     cameraPath:
-      genericKey: 2
+      genericKey: 4
       cameraName: Default
       batchName: 
     displayDuration: 2
     choiceText: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cf5a2a104152e48a7bbaed625f399a, type: 3}
+  m_Name: DM_FinCouloir
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: 11400000, guid: 48affc4a9b901aa42b2ac86edd6cc6a6, type: 2}
+  treeState: 0
+  nodes:
+  - {fileID: -8316519872427162994}
+  - {fileID: -6994618501889822681}
