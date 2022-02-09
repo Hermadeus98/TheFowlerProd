@@ -19,10 +19,13 @@ namespace TheFowler
     {
         NULL,
         
-        //Dialogue
+        //Generic Dialogues
         FACIAL_ROBYN,
         FACIAL_PHOEBE,
-        FACIAL_ABI,
+        FACIAL_ABIGAIL,
+        CONTEXTUAL_ROBYN,
+        CONTEXTUAL_PHOEBE,
+        CONTEXTUAL_ABIGAIL,
         
         //Explo
         TPS_CAMERA,
@@ -44,8 +47,14 @@ namespace TheFowler
                     return "Robyn_Facial";
                 case CameraGenericKeyEnum.FACIAL_PHOEBE:
                     return "Phoebe_Facial";
-                case CameraGenericKeyEnum.FACIAL_ABI:
+                case CameraGenericKeyEnum.FACIAL_ABIGAIL:
                     return "Abigael_Facial";
+                case CameraGenericKeyEnum.CONTEXTUAL_ROBYN:
+                    return "Robyn_Contextual";
+                case CameraGenericKeyEnum.CONTEXTUAL_PHOEBE:
+                    return "Phoebe_Contextual";
+                case CameraGenericKeyEnum.CONTEXTUAL_ABIGAIL:
+                    return "Abigail_Contextual";
                 
                 //Explo
                 case CameraGenericKeyEnum.TPS_CAMERA:
