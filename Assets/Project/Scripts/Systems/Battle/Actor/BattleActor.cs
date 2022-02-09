@@ -11,6 +11,8 @@ namespace TheFowler
         public BattleActorInfo BattleActorInfo;
 
         public Snippets Snippets;
+        
+        protected Turn actorTurn;
 
         public virtual void OnTurnStart()
         {
