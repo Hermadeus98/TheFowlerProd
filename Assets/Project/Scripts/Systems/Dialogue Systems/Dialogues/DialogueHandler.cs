@@ -58,10 +58,10 @@ namespace TheFowler
             {
                 case DialogueType.STATIC:
                     PlaceActor();
-                    UI.OpenView("StaticDialogueView");
+                    UI.OpenView(UI.Views.StaticDialogs);
                     break;
                 case DialogueType.MOVEMENT:
-                    UI.OpenView("MovementDialogueView");
+                    UI.OpenView(UI.Views.MovementDialogs);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -111,7 +111,7 @@ namespace TheFowler
                         {
                             case DialogueType.STATIC:
                             {
-                                var view = UI.GetView<DialogueStaticView>("StaticDialogueView");
+                                var view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
                                 var hasChoice = view.ChoiceSelector.WaitChoice(out currentDialogueNode);
                                 if (hasChoice)
                                 {
@@ -122,7 +122,7 @@ namespace TheFowler
                                 break;
                             case DialogueType.MOVEMENT:
                             {
-                                var view = UI.GetView<DialogueMovementView>("MovementDialogueView");
+                                var view = UI.GetView<DialogueMovementView>(UI.Views.MovementDialogs);
                                 var hasChoice = view.ChoiceSelector.WaitChoice(out currentDialogueNode);
                                 if (hasChoice)
                                 {
@@ -157,14 +157,14 @@ namespace TheFowler
                         {
                             case DialogueType.STATIC:
                             {
-                                var view = UI.GetView<DialogueStaticView>("StaticDialogueView");
+                                var view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
                                 view.ChoiceSelector.Show();
                                 view.SetChoices(currentDialogueNode);
                             }
                                 break;
                             case DialogueType.MOVEMENT:
                             {
-                                var view = UI.GetView<DialogueMovementView>("MovementDialogueView");
+                                var view = UI.GetView<DialogueMovementView>(UI.Views.MovementDialogs);
                                 view.ChoiceSelector.Show();
                                 view.SetChoices(currentDialogueNode);
                             }
@@ -206,10 +206,10 @@ namespace TheFowler
             switch (dialogueType)
             {
                 case DialogueType.STATIC:
-                    UI.CloseView("StaticDialogueView");
+                    UI.CloseView(UI.Views.StaticDialogs);
                     break;
                 case DialogueType.MOVEMENT:
-                    UI.CloseView("MovementDialogueView");
+                    UI.CloseView(UI.Views.MovementDialogs);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -223,14 +223,14 @@ namespace TheFowler
             switch (dialogueType)
             {
                 case DialogueType.STATIC:
-                    UI.RefreshView("StaticDialogueView", new DialogueArg()
+                    UI.RefreshView(UI.Views.StaticDialogs, new DialogueArg()
                     {
                         Dialogue = dialogue,
                         DialogueNode = currentDialogueNode,
                     });
                     break;
                 case DialogueType.MOVEMENT:
-                    UI.RefreshView("MovementDialogueView", new DialogueArg()
+                    UI.RefreshView(UI.Views.MovementDialogs, new DialogueArg()
                     {
                         Dialogue = dialogue,
                         DialogueNode = currentDialogueNode,

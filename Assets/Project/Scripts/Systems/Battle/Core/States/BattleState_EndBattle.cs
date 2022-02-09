@@ -25,9 +25,9 @@ namespace TheFowler
             BattleManager.CurrentBattle.Enemies.ForEach(w => w.gameObject.SetActive(false));
             BattleManager.CurrentBattle.Allies.ForEach(w => w.gameObject.SetActive(false));
             
-            UI.CloseView("ActionPickingView");
-            UI.CloseView("SkillPickingView");
-            UI.CloseView("TargetPickingView");
+            UI.CloseView(UI.Views.ActionPicking);
+            UI.CloseView(UI.Views.SkillPicking);
+            UI.CloseView(UI.Views.TargetPicking);
         }
     }
 }

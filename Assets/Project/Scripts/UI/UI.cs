@@ -7,6 +7,19 @@ namespace TheFowler
 {
     public static class UI
     {
+        public class Views
+        {
+            public const string
+                StaticDialogs = "StaticDialogueView",
+                LoaderFader = "LoaderFaderView",
+                ChapterTitle = "ChapterLoaderView",
+                MovementDialogs = "MovementDialogueView",
+                SkillPicking = "SkillPickingView",
+                TargetPicking = "TargetPickingView",
+                ActionPicking = "ActionPickingView",
+                TurnTransition = "TurnTransitionView";
+        }
+        
         private static Dictionary<string, UIView> views = new Dictionary<string, UIView>();
 
         public static void RegisterView(UIView view)

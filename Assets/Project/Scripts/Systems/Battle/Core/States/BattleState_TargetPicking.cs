@@ -16,10 +16,10 @@ namespace TheFowler
 
             if (BattleManager.IsAllyTurn)
             {
-                UI.OpenView("TargetPickingView");
+                UI.OpenView(UI.Views.TargetPicking);
             }
             
-            CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, "TargetPicking");
+            CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, CameraKeys.BattleKeys.TargetPicking);
         }
 
         public override void OnStateExecute()
@@ -46,7 +46,7 @@ namespace TheFowler
         public override void OnStateExit(EventArgs arg)
         {
             base.OnStateExit(arg);
-            UI.CloseView("TargetPickingView");
+            UI.CloseView(UI.Views.TargetPicking);
         }
     }
 }

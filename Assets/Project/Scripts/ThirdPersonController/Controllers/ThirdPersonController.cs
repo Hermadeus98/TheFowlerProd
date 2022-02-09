@@ -12,7 +12,6 @@ namespace TheFowler
     {
         [SerializeField] private CharacterController characterController;
         [SerializeField] private PlayerInput playerInput;
-        [SerializeField] private CinemachineVirtualCameraBase TPS_Camera_VM;
         
         private const float GRAVITY_FORCE = -9.81f;
 
@@ -22,7 +21,6 @@ namespace TheFowler
         public Vector2 input;
 
         [SerializeField] private bool resetCamera = true;
-        [SerializeField] private cameraPath TPS_Camera;
 
         [SerializeField, Required] private bool applyMove = true;
 
@@ -127,7 +125,7 @@ namespace TheFowler
 
         public void SetCameraToTPSCamera()
         {
-            CameraManager.Instance.SetCamera(TPS_Camera);
+            CameraManager.Instance.SetCamera(CameraGenericKey.GetCameraGenericKey(CameraGenericKeyEnum.TPS_CAMERA));
         }
     }
 }

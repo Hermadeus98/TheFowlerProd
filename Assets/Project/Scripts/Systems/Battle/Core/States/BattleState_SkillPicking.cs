@@ -16,10 +16,10 @@ namespace TheFowler
             
             if (BattleManager.IsAllyTurn)
             {
-                UI.OpenView("SkillPickingView");
+                UI.OpenView(UI.Views.SkillPicking);
             }
             
-            CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, "SkillPicking");
+            CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, CameraKeys.BattleKeys.SkillPicking);
 
         }
 
@@ -47,7 +47,7 @@ namespace TheFowler
         public override void OnStateExit(EventArgs arg)
         {
             base.OnStateExit(arg);
-            UI.CloseView("SkillPickingView");
+            UI.CloseView(UI.Views.SkillPicking);
         }
     }
 }

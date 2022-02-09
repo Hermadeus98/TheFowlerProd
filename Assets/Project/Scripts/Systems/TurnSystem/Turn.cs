@@ -7,7 +7,7 @@ namespace TheFowler
 {
     public abstract class Turn
     {
-        private TurnInfoView TurnInfoView;
+        private TurnTransitionView _turnTransitionView;
         
         public virtual void OnTurnStart()
         {
@@ -23,8 +23,8 @@ namespace TheFowler
         {
             BattleManager.CurrentBattle.ChangeBattleState<BattleState_ActionPicking>(BattleStateEnum.ACTION_PICKING);
 
-            TurnInfoView = UI.OpenView<TurnInfoView>("TurnInfoView");
-            yield return new WaitForSeconds(TurnInfoView.WaitTime);
+            _turnTransitionView = UI.OpenView<TurnTransitionView>(UI.Views.TurnTransition);
+            yield return new WaitForSeconds(_turnTransitionView.WaitTime);
         }
     }
 }

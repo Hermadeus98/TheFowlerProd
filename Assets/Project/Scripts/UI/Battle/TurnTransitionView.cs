@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace TheFowler
 {
-    public class TurnInfoView : UIView
+    public class TurnTransitionView : UIView
     {
         [SerializeField] private Image icon;
         [SerializeField] private StringSpriteDatabase sprites;

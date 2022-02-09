@@ -17,13 +17,13 @@ namespace TheFowler
 
         IEnumerator OnStateEnterIE()
         {
-            CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, "ActionPicking");
+            CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, CameraKeys.BattleKeys.ActionPicking);
 
-            yield return new WaitForSeconds(UI.GetView<TurnInfoView>("TurnInfoView").WaitTime);
+            yield return new WaitForSeconds(UI.GetView<TurnTransitionView>(UI.Views.TurnTransition).WaitTime);
             
             if (BattleManager.IsAllyTurn)
             {
-                ActionPickingView = UI.OpenView<ActionPickingView>("ActionPickingView");
+                ActionPickingView = UI.OpenView<ActionPickingView>(UI.Views.ActionPicking);
                 ActionPickingView.Refresh(EventArgs.Empty);
             }
 
@@ -73,7 +73,7 @@ namespace TheFowler
         {
             base.OnStateExit(arg);
             
-            UI.CloseView("ActionPickingView");
+            UI.CloseView(UI.Views.ActionPicking);
 
             isActive = false;
         }
