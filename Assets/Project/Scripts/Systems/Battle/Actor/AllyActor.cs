@@ -6,11 +6,12 @@ namespace TheFowler
 {
     public class AllyActor : BattleActor
     {
+        
         public override void OnTurnStart()
         {
             base.OnTurnStart();
-            PlayerTurn.Initialize();
-            PlayerTurn.Play();
+            actorTurn = new PlayerTurn();
+            actorTurn.OnTurnStart();
         }
     }
 }

@@ -33,6 +33,7 @@ namespace TheFowler
             else
             {
                 currentTurnActor.OnTurnStart();
+                BattleManager.OnTurnChanged?.Invoke();
             }
         }
 
@@ -65,6 +66,7 @@ namespace TheFowler
         {
             currentTurnActor?.OnTurnEnd();
             turnActor.OnTurnStart();
+            BattleManager.OnTurnChanged.Invoke();
         }
     }
 }

@@ -13,5 +13,6 @@ namespace TheFowler
         public static bool IsEnemyTurn => CurrentTurnActor is EnemyActor;
 
         public static Action<BattleStateEnum> OnBattleStateChange;
+        public static Action OnTurnChanged;
     }
 }

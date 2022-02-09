@@ -10,8 +10,8 @@ namespace TheFowler
         public override void OnTurnStart()
         {
             base.OnTurnStart();
-            EnemyTurn.Initialize();
-            EnemyTurn.Play();
+            actorTurn = new EnemyTurn();
+            actorTurn.OnTurnStart();
         }
     }
 }
