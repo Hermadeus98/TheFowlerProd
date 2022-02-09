@@ -6,6 +6,7 @@ namespace TheFowler
     {
         public static Battle CurrentBattle;
         public static ITurnActor CurrentTurnActor => CurrentBattle.TurnSystem.CurrentRound.currentTurnActor;
+        public static BattleActor CurrentBattleActor => CurrentBattle.TurnSystem.CurrentRound.currentTurnActor as BattleActor;
 
         public static Round CurrentRound => CurrentBattle.TurnSystem.CurrentRound;
 

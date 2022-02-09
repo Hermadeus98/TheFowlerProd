@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using UnityEngine;
 
 namespace TheFowler
 {
@@ -10,16 +12,31 @@ namespace TheFowler
         {
             base.OnStateEnter(arg);
 
+            StartCoroutine(OnStateEnterIE());
+        }
+
+        IEnumerator OnStateEnterIE()
+        {
+            CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, "ActionPicking");
+
+            yield return new WaitForSeconds(UI.GetView<TurnInfoView>("TurnInfoView").WaitTime);
+            
             if (BattleManager.IsAllyTurn)
             {
                 ActionPickingView = UI.OpenView<ActionPickingView>("ActionPickingView");
                 ActionPickingView.Refresh(EventArgs.Empty);
             }
+
+            isActive = true;
+            yield break;
         }
 
         public override void OnStateExecute()
         {
             base.OnStateExecute();
+            
+            if(!isActive)
+                return;
 
             if (BattleManager.IsAllyTurn)
             {
@@ -55,7 +72,10 @@ namespace TheFowler
         public override void OnStateExit(EventArgs arg)
         {
             base.OnStateExit(arg);
+            
             UI.CloseView("ActionPickingView");
+
+            isActive = false;
         }
     }
 }

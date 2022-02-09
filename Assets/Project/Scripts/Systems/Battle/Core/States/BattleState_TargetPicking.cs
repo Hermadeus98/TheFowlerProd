@@ -18,6 +18,8 @@ namespace TheFowler
             {
                 UI.OpenView("TargetPickingView");
             }
+            
+            CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, "TargetPicking");
         }
 
         public override void OnStateExecute()

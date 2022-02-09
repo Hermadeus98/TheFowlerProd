@@ -5,7 +5,7 @@ namespace TheFowler
 {
     public class BattleActor : GameplayMonoBehaviour, ITurnActor
     {
-        [SerializeField] private CameraBatch cameraBatchBattle;
+        public CameraBatch cameraBatchBattle;
         public CameraBatch CameraBatchBattle => cameraBatchBattle;
 
         public BattleActorInfo BattleActorInfo;
@@ -66,16 +66,16 @@ namespace TheFowler
                     case BattleStateEnum.START_BATTLE:
                         break;
                     case BattleStateEnum.ACTION_PICKING:
-                        CameraManager.Instance.SetCamera(cameraBatchBattle, "ActionPicking");
+                        //CameraManager.Instance.SetCamera(cameraBatchBattle, "ActionPicking");
                         break;
                     case BattleStateEnum.SKILL_PICKING:
-                        CameraManager.Instance.SetCamera(cameraBatchBattle, "SkillPicking");
+                        //CameraManager.Instance.SetCamera(cameraBatchBattle, "SkillPicking");
                         break;
                     case BattleStateEnum.TARGET_PICKING:
-                        CameraManager.Instance.SetCamera(cameraBatchBattle, "TargetPicking");
+                        //CameraManager.Instance.SetCamera(cameraBatchBattle, "TargetPicking");
                         break;
                     case BattleStateEnum.SKILL_EXECUTION:
-                        CameraManager.Instance.SetCamera(cameraBatchBattle, "SkillExecutionDefault");
+                        //CameraManager.Instance.SetCamera(cameraBatchBattle, "SkillExecutionDefault");
                         break;
                     case BattleStateEnum.FURY:
                         break;

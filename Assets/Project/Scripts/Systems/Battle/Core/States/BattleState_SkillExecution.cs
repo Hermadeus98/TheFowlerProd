@@ -18,6 +18,8 @@ namespace TheFowler
             base.OnStateEnter(arg);
 
             StartCoroutine(Cast());
+            
+            CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, "SkillExecutionDefault");
         }
 
         IEnumerator Cast()

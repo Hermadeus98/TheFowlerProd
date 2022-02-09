@@ -15,6 +15,8 @@ namespace TheFowler
 
         [SerializeField, GetComponentInParent] protected PlayerInput inputs;
 
+        protected bool isActive = false;
+
         public virtual void OnStateEnter(EventArgs arg)
         {
             QRDebug.Log("BATTLE ", FrenchPallet.JALAPENOS_RED, $"{stateName}");
