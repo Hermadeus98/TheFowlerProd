@@ -1,5 +1,117 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8791950462800271910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: b6dd199ef7e8ab2498224a47d1d92528
+  position: {x: 222, y: 165}
+  children:
+  - {fileID: -1064586774952767642}
+  dialogue:
+    ActorEnum: 2
+    dialogueText: "And I\u2019m here to prevent that from happening."
+    cameraPath:
+      genericKey: 2
+      cameraName: Default
+      batchName: 
+    displayDuration: 3.5
+    choiceText: 
+--- !u!114 &-8564205301945677103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: a0d5434109ada4642b262f62bfe1a393
+  position: {x: 500, y: 74}
+  children:
+  - {fileID: -2674370478497785880}
+  dialogue:
+    ActorEnum: 1
+    dialogueText: You tell me.
+    cameraPath:
+      genericKey: 3
+      cameraName: Default
+      batchName: 
+    displayDuration: 2
+    choiceText: 
+--- !u!114 &-7571500343918965555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 0b1da8c32ad0597489a95fc9590cd111
+  position: {x: 503, y: 165}
+  children:
+  - {fileID: -1593648004540668904}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: "I\u2019ll prove you wrong!"
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: 
+    displayDuration: 2
+    choiceText: 
+--- !u!114 &-7440063835730218569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 779d240901c91e44d9e4493b3b62295f
+  position: {x: 361, y: 74}
+  children:
+  - {fileID: -8564205301945677103}
+  dialogue:
+    ActorEnum: 2
+    dialogueText: "And is this\u2026revolt of yours worth anything?"
+    cameraPath:
+      genericKey: 2
+      cameraName: Default
+      batchName: 
+    displayDuration: 3
+    choiceText: 
 --- !u!114 &-4554204248828434210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16,16 +128,47 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 34a938352f76c504a8c9ef6c5d246dd8
-  position: {x: 450, y: 9}
-  children: []
+  position: {x: 225, y: 74}
+  children:
+  - {fileID: -7440063835730218569}
   dialogue:
-    ActorEnum: 2
-    dialogueText: Quel incroyable hasard!
+    ActorEnum: 1
+    dialogueText: "A lass like you shouldn\u2019t work for the King\u2019s guard,
+      it\u2019s not worth it!"
     cameraPath:
-      genericKey: 2
+      genericKey: 3
       cameraName: Default
       batchName: 
-    displayDuration: 2
+    displayDuration: 4.5
+    choiceText: 
+--- !u!114 &-2674370478497785880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 4c9cbdbf8777bce4195f79c27aa72ba2
+  position: {x: 84, y: 165}
+  children:
+  - {fileID: -8791950462800271910}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: "Enough with all the chit-chat, I\u2019m here to burn down the
+      place and find back some acquaintances"
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: 
+    displayDuration: 6
     choiceText: 
 --- !u!114 &-1841118499402636189
 MonoBehaviour:
@@ -43,17 +186,75 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 4cd644f5a26606c49af16c04b24cbbb0
-  position: {x: -1, y: 1}
+  position: {x: -1, y: 74}
   children:
   - {fileID: 1381106977690102191}
   dialogue:
     ActorEnum: 0
-    dialogueText: Mais qui vois-je ?
+    dialogueText: "Phoebe? What a coincidence. Seems like we can\u2019t stop running
+      into each other!"
     cameraPath:
       genericKey: 1
       cameraName: Default
       batchName: 
+    displayDuration: 5
+    choiceText: 
+--- !u!114 &-1593648004540668904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 2ecbf63f217bab24d8df2b06412f35ad
+  position: {x: 84, y: 256}
+  children:
+  - {fileID: 2398258738841510536}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: 'GUARD1: Out with the pest!'
+    cameraPath:
+      genericKey: 0
+      cameraName: Default
+      batchName: 
     displayDuration: 2
+    choiceText: 
+--- !u!114 &-1064586774952767642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: f790713621dfe7b48818fe932cfdaac6
+  position: {x: 361, y: 165}
+  children:
+  - {fileID: -7571500343918965555}
+  dialogue:
+    ActorEnum: 2
+    dialogueText: "I\u2019ll take my leave. The guards are more than enough to handle
+      you."
+    cameraPath:
+      genericKey: 2
+      cameraName: Default
+      batchName: 
+    displayDuration: 4
     choiceText: 
 --- !u!114 &11400000
 MonoBehaviour:
@@ -73,6 +274,15 @@ MonoBehaviour:
   - {fileID: -1841118499402636189}
   - {fileID: -4554204248828434210}
   - {fileID: 1381106977690102191}
+  - {fileID: -7440063835730218569}
+  - {fileID: -8564205301945677103}
+  - {fileID: -2674370478497785880}
+  - {fileID: -8791950462800271910}
+  - {fileID: -1064586774952767642}
+  - {fileID: -7571500343918965555}
+  - {fileID: -1593648004540668904}
+  - {fileID: 2398258738841510536}
+  - {fileID: 8361543496212584178}
 --- !u!114 &1381106977690102191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,14 +299,69 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 0f004ab269b701347bfe4e4e43c7258c
-  position: {x: 232, y: 3}
+  position: {x: 84, y: 74}
   children:
   - {fileID: -4554204248828434210}
   dialogue:
     ActorEnum: 2
-    dialogueText: Ca alors mais quel hasard!
+    dialogueText: "I\u2019d rather not have any more encounters with you. Especially
+      in this context."
     cameraPath:
       genericKey: 2
+      cameraName: Default
+      batchName: 
+    displayDuration: 4.5
+    choiceText: 
+--- !u!114 &2398258738841510536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 7caa420146d4d9e47b3948ac295ee50c
+  position: {x: 225, y: 256}
+  children: []
+  dialogue:
+    ActorEnum: 0
+    dialogueText: "GUARD2: You\u2019ll soon be dealt with!"
+    cameraPath:
+      genericKey: 0
+      cameraName: Default
+      batchName: 
+    displayDuration: 2
+    choiceText: 
+--- !u!114 &8361543496212584178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: c70ad2baddb3898408e36aca0a8bc200
+  position: {x: 361, y: 256}
+  children: []
+  dialogue:
+    ActorEnum: 0
+    dialogueText: "You\u2019ll soon be brown bread!"
+    cameraPath:
+      genericKey: 1
       cameraName: Default
       batchName: 
     displayDuration: 2

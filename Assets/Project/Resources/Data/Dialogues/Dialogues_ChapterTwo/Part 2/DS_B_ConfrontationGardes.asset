@@ -16,17 +16,17 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 57d7762211de0f74fac5bebb3692e186
-  position: {x: -202, y: 162}
+  position: {x: -203, y: 161}
   children:
   - {fileID: 5880321718542277815}
   dialogue:
     ActorEnum: 0
-    dialogueText: Main
+    dialogueText: 'GUARD1: Stop right there criminal scum!'
     cameraPath:
       genericKey: 1
       cameraName: Default
       batchName: Robyn_Facial
-    displayDuration: 2
+    displayDuration: 3
     choiceText: 
 --- !u!114 &11400000
 MonoBehaviour:
@@ -45,6 +45,38 @@ MonoBehaviour:
   nodes:
   - {fileID: -1248799063095595835}
   - {fileID: 5880321718542277815}
+  - {fileID: 5338549579494542790}
+  - {fileID: 7413616161941266586}
+  - {fileID: 6665712545289257312}
+--- !u!114 &5338549579494542790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 6ab1ecb4f97aaa9469ff0ab103ef1a7c
+  position: {x: 24, y: 161}
+  children:
+  - {fileID: 7413616161941266586}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: 'GUARD2: Phoebe, you traitorous apostate! The King shall have your
+      head, at last!'
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: 
+    displayDuration: 5
+    choiceText: 
 --- !u!114 &5880321718542277815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,14 +93,70 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: f17172a4e7bd72e459fb67319a4cc630
-  position: {x: -71, y: 161}
-  children: []
+  position: {x: -117, y: 161}
+  children:
+  - {fileID: 5338549579494542790}
   dialogue:
     ActorEnum: 0
-    dialogueText: fefzefzf
+    dialogueText: "Get lost you arsehole! I\u2019ve got a King to depose!"
     cameraPath:
       genericKey: 1
       cameraName: Default
       batchName: Robyn_Facial
+    displayDuration: 3.5
+    choiceText: 
+--- !u!114 &6665712545289257312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: f71d882508e4a11469fecb8612accdbd
+  position: {x: 305, y: 161}
+  children: []
+  dialogue:
+    ActorEnum: 1
+    dialogueText: Aye, less talking, more fighting
+    cameraPath:
+      genericKey: 3
+      cameraName: Default
+      batchName: 
     displayDuration: 2
+    choiceText: 
+--- !u!114 &7413616161941266586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 1487c49bbf063744eb7f9bb99ae77739
+  position: {x: 165, y: 161}
+  children:
+  - {fileID: 6665712545289257312}
+  dialogue:
+    ActorEnum: 2
+    dialogueText: "Let\u2019s not waste any time on vain menaces"
+    cameraPath:
+      genericKey: 2
+      cameraName: Default
+      batchName: 
+    displayDuration: 3
     choiceText: 

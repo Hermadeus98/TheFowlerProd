@@ -1,5 +1,89 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7260250312693069855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: b427c50425afe4c4d96694fa67651d5d
+  position: {x: -199, y: 101}
+  children:
+  - {fileID: 7040557895431755321}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: "LIEUTENANT: Fascinating how you made your way to this place through
+      your sheer foolishness\u2026"
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: 
+    displayDuration: 5
+    choiceText: 
+--- !u!114 &-4107526493773237208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: f1e65c227fe522e4fa5548e412d0a5cc
+  position: {x: 1058, y: 101}
+  children: []
+  dialogue:
+    ActorEnum: 0
+    dialogueText: "You jackass won\u2019t live to see the King fall!"
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: 
+    displayDuration: 2.5
+    choiceText: 
+--- !u!114 &-2315732437755560005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 6c6b6de9de9f6bc48bdb7223ba2f1a68
+  position: {x: 915, y: 101}
+  children:
+  - {fileID: -4107526493773237208}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: "GUARD: You reprobates won\u2019t live to see the sunset!"
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: 
+    displayDuration: 2.5
+    choiceText: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16,6 +100,187 @@ MonoBehaviour:
   treeState: 0
   nodes:
   - {fileID: 6752816362832641983}
+  - {fileID: -7260250312693069855}
+  - {fileID: 7040557895431755321}
+  - {fileID: 3006069639674515101}
+  - {fileID: 4283789776607903449}
+  - {fileID: 6353833769127480549}
+  - {fileID: 4988459808792245719}
+  - {fileID: 5735598528036021076}
+  - {fileID: 3922668644475884548}
+  - {fileID: -2315732437755560005}
+  - {fileID: -4107526493773237208}
+--- !u!114 &3006069639674515101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 7dbe287373f08044c9c360466f4ed485
+  position: {x: 78, y: 101}
+  children:
+  - {fileID: 4283789776607903449}
+  dialogue:
+    ActorEnum: 2
+    dialogueText: "It\u2019s over, Lieutenant, call down the guards."
+    cameraPath:
+      genericKey: 2
+      cameraName: Default
+      batchName: 
+    displayDuration: 3
+    choiceText: 
+--- !u!114 &3922668644475884548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 0dcc0a2baaf67e84abc6e426aa1ba951
+  position: {x: 771, y: 101}
+  children:
+  - {fileID: -2315732437755560005}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: 'LIEUTENANT: Be quick with them.'
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: 
+    displayDuration: 2
+    choiceText: 
+--- !u!114 &4283789776607903449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 9f8d777370305c0428e7ca34e76743f5
+  position: {x: 214, y: 101}
+  children:
+  - {fileID: 6353833769127480549}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: "LIEUTENANT: Ah, Phoebe, what a mistake you\u2019ve done. I, sadly,
+      cannot defend you any longer."
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: 
+    displayDuration: 5
+    choiceText: 
+--- !u!114 &4988459808792245719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 07bfb9ba69718cd419bb43ebf6a0862e
+  position: {x: 489.72, y: 101}
+  children:
+  - {fileID: 5735598528036021076}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: Your turn now, arsehole!
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: 
+    displayDuration: 2
+    choiceText: 
+--- !u!114 &5735598528036021076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 0b6fd8c86923daf4cba92261e47afc2f
+  position: {x: 630.76, y: 101}
+  children:
+  - {fileID: 3922668644475884548}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: "LIEUTENANT: :sigh: I\u2019d love to entertain you some more, but
+      my time is too precious and my guards aren\u2019t here for show."
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: 
+    displayDuration: 6
+    choiceText: 
+--- !u!114 &6353833769127480549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 6d78b5480ad53704abd6c4f00fd52c67
+  position: {x: 352, y: 101}
+  children:
+  - {fileID: 4988459808792245719}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: She can defend herself well enough, your soldiers down below are
+      proof enough!
+    cameraPath:
+      genericKey: 0
+      cameraName: Default
+      batchName: 
+    displayDuration: 5
+    choiceText: 
 --- !u!114 &6752816362832641983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33,13 +298,44 @@ MonoBehaviour:
   started: 0
   guid: 8384445cffb549845b2fcb34b055f73e
   position: {x: -286, y: 100.76}
-  children: []
+  children:
+  - {fileID: -7260250312693069855}
   dialogue:
     ActorEnum: 0
-    dialogueText: C'est ici le laissez passer A38?
+    dialogueText: "You\u2019ve been a pain in our arse for too long, now\u2019s time
+      for payback!"
     cameraPath:
       genericKey: 1
       cameraName: Default
       batchName: 
-    displayDuration: 2
+    displayDuration: 4
+    choiceText: 
+--- !u!114 &7040557895431755321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: b7487a991ecc47a41a0dc65de6b5d321
+  position: {x: -58, y: 101}
+  children:
+  - {fileID: 3006069639674515101}
+  dialogue:
+    ActorEnum: 1
+    dialogueText: "Someone has to put a stop to the terror you\u2019re spreading
+      all around the Kingdom!"
+    cameraPath:
+      genericKey: 3
+      cameraName: Default
+      batchName: 
+    displayDuration: 5
     choiceText: 
