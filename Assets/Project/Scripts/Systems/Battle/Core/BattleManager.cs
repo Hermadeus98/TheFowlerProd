@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
 namespace TheFowler
 {
@@ -10,5 +8,10 @@ namespace TheFowler
         public static ITurnActor CurrentTurnActor => CurrentBattle.TurnSystem.CurrentRound.currentTurnActor;
 
         public static Round CurrentRound => CurrentBattle.TurnSystem.CurrentRound;
+
+        public static bool IsAllyTurn => CurrentTurnActor is AllyActor;
+        public static bool IsEnemyTurn => CurrentTurnActor is EnemyActor;
+
+        public static Action<BattleStateEnum> OnBattleStateChange;
     }
 }

@@ -102,17 +102,18 @@ namespace TheFowler
 
         private void InitializeTurnSystem()
         {
-            battleState = new StateMachine(battleStates, UpdateMode.FixedUpdate, EventArgs.Empty);
+            battleState = new StateMachine(battleStates, UpdateMode.Update, EventArgs.Empty);
         }
 
         public void ChangeBattleState(BattleStateEnum key)
         {
             battleState.SetState(GetBattleStateKey(key), EventArgs.Empty);
+            BattleManager.OnBattleStateChange.Invoke(key);
         }
         
         public T ChangeBattleState<T>(BattleStateEnum key) where T : class, Istate
         {
-            battleState.SetState(GetBattleStateKey(key), EventArgs.Empty);
+            ChangeBattleState(key);
             return battleState.GetState(GetBattleStateKey(key)) as T;
         }
 

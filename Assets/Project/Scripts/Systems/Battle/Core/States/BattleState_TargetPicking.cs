@@ -10,13 +10,23 @@ namespace TheFowler
 {
     public class BattleState_TargetPicking : BattleState
     {
+        public override void OnStateEnter(EventArgs arg)
+        {
+            base.OnStateEnter(arg);
+
+            if (BattleManager.IsAllyTurn)
+            {
+                UI.OpenView("TargetPickingView");
+            }
+        }
+
         public override void OnStateExecute()
         {
             base.OnStateExecute();
 
-            if (BattleManager.CurrentTurnActor is AllyActor)
+            if (BattleManager.IsAllyTurn)
             {
-                if (Gamepad.current.aButton.wasPressedThisFrame)
+                if (inputs.actions["Select"].WasPressedThisFrame())
                 {
                     BattleManager.CurrentBattle.ChangeBattleState<BattleState_SkillExecution>(BattleStateEnum.SKILL_EXECUTION);
                 }
@@ -25,10 +35,16 @@ namespace TheFowler
                     BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.SKILL_PICKING);
                 }
             }
-            else if (BattleManager.CurrentTurnActor is EnemyActor)
+            else if (BattleManager.IsEnemyTurn)
             {
                 BattleManager.CurrentBattle.ChangeBattleState<BattleState_SkillExecution>(BattleStateEnum.SKILL_EXECUTION);
             }
+        }
+
+        public override void OnStateExit(EventArgs arg)
+        {
+            base.OnStateExit(arg);
+            UI.CloseView("TargetPickingView");
         }
     }
 }

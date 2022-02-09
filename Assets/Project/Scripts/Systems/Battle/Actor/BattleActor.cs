@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace TheFowler
@@ -11,7 +9,9 @@ namespace TheFowler
         public CameraBatch CameraBatchBattle => cameraBatchBattle;
 
         public BattleActorInfo BattleActorInfo;
-        
+
+        public Snippets Snippets;
+
         public virtual void OnTurnStart()
         {
             Debug.Log(gameObject.name + " start turn");
@@ -41,6 +41,48 @@ namespace TheFowler
             }
 
             return true;
+        }
+
+        protected override void RegisterEvent()
+        {
+            base.RegisterEvent();
+            BattleManager.OnBattleStateChange += OnBattleStateChange;
+        }
+
+        protected override void UnregisterEvent()
+        {
+            base.UnregisterEvent();
+            BattleManager.OnBattleStateChange -= OnBattleStateChange;
+        }
+
+        protected virtual void OnBattleStateChange(BattleStateEnum currentBattleState)
+        {
+            if ((BattleActor) BattleManager.CurrentTurnActor == this)
+            {
+                switch (currentBattleState)
+                {
+                    case BattleStateEnum.START_BATTLE:
+                        break;
+                    case BattleStateEnum.ACTION_PICKING:
+                        CameraManager.Instance.SetCamera(cameraBatchBattle, "ActionPicking");
+                        break;
+                    case BattleStateEnum.SKILL_PICKING:
+                        CameraManager.Instance.SetCamera(cameraBatchBattle, "SkillPicking");
+                        break;
+                    case BattleStateEnum.TARGET_PICKING:
+                        CameraManager.Instance.SetCamera(cameraBatchBattle, "TargetPicking");
+                        break;
+                    case BattleStateEnum.SKILL_EXECUTION:
+                        CameraManager.Instance.SetCamera(cameraBatchBattle, "SkillExecutionDefault");
+                        break;
+                    case BattleStateEnum.FURY:
+                        break;
+                    case BattleStateEnum.END_BATTLE:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(currentBattleState), currentBattleState, null);
+                }
+            }
         }
     }
 
