@@ -18,6 +18,7 @@ namespace TheFowler
         [TitleGroup("Settings")]
         [SerializeField, Tooltip(ToolTips.TT_loadGymRoom)] private bool loadGymRoom;
         [SerializeField, Tooltip(ToolTips.TT_loadPlayer)] private bool loadPlayer;
+        [SerializeField] private bool loadUI;
         
         private IEnumerator Start()
         {
@@ -25,7 +26,7 @@ namespace TheFowler
             RemoteSettingsManager.Fetch();
             
             //--<SCENE UI>
-            Game.LoadSceneAdditive(SceneEnum.Scene_UI);
+            if(loadUI) Game.LoadSceneAdditive(SceneEnum.Scene_UI);
 
             yield return new WaitForEndOfFrame();
             

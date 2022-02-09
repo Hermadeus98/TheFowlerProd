@@ -30,6 +30,12 @@ namespace TheFowler
             views[key]?.Show();
         }
         
+        public static T OpenView<T>(string key) where T : UIView
+        {
+            views[key]?.Show();
+            return views[key] as T;
+        }
+        
         public static void CloseView(string key)
         {
             views[key]?.Hide();

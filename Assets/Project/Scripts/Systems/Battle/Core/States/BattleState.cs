@@ -1,8 +1,10 @@
 using System;
+using Nrjwolf.Tools.AttachAttributes;
 using QRCode;
 using QRCode.Extensions;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace TheFowler
 {
@@ -10,6 +12,8 @@ namespace TheFowler
     {
         [SerializeField] private string stateName;
         public string StateName { get => stateName; set => stateName = value; }
+
+        [SerializeField, GetComponentInParent] protected PlayerInput inputs;
 
         public virtual void OnStateEnter(EventArgs arg)
         {
