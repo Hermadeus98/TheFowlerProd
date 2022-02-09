@@ -13,7 +13,7 @@ namespace TheFowler
         [FoldoutGroup("Flags")]
         [SerializeField] private ColliderFlag FlagToTrigger;
 
-        [FoldoutGroup("Events")] [SerializeField]
+        [FoldoutGroup("Events")] [SerializeField] 
         public GameInstructions enterFrontInstructions, enterBackInstructions, exitInstructions;
         [FoldoutGroup("Events")] [SerializeField]
         public UnityEvent onTriggerEnterFront, onTriggerEnterBack, onTriggerExit;
@@ -100,6 +100,12 @@ namespace TheFowler
             go.name = obj.name;
             Undo.RegisterCreatedObjectUndo(go, "Create" + go.name);
             Selection.activeObject = go;
+        }
+
+        [Button]
+        public void OnEnterFront()
+        {
+            onTriggerEnterFront?.Invoke();
         }
 #endif
     }
