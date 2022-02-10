@@ -15,6 +15,8 @@ namespace TheFowler
         [TitleGroup("Main Settings")]
         public int ManaCost;
 
+        [TitleGroup("Main Settings")] public TargetTypeEnum TargetType;
+        
         [TitleGroup("Main Settings")] 
         public ExecutionTypeEnum ExecutionType;
         public enum ExecutionTypeEnum
