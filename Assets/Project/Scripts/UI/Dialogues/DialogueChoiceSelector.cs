@@ -34,9 +34,8 @@ namespace TheFowler
             SelectElement();
         }
 
-        protected override void FixedUpdate()
+        protected void Update()
         {
-            base.FixedUpdate();
 
             switch (dialogueNodes.Count)
             {
@@ -95,7 +94,7 @@ namespace TheFowler
 
             if(selectorType == SelectorType.NAVIGATION)
             {
-                if (Gamepad.current.aButton.wasPressedThisFrame)
+                if (Inputs.actions["Select"].WasPressedThisFrame())
                 {
                     Hide();
                     dialogueNode = node;
