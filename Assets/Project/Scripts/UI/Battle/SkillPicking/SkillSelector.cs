@@ -41,7 +41,15 @@ namespace TheFowler
         
         public bool WaitChoice(out SkillSelectorElement skillSelectorElement)
         {
+            var skillElement = elements[currentIndex] as SkillSelectorElement;
             
+            if (Inputs.actions["Select"].WasPressedThisFrame())
+            {
+                Hide();
+                skillSelectorElement = skillElement;
+                return true;
+            }
+
             skillSelectorElement = null;
             return false;
         }

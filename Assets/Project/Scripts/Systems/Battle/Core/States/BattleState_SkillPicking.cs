@@ -31,8 +31,10 @@ namespace TheFowler
 
             if (BattleManager.IsAllyTurn)
             {
-                if (skillPickingView.skillSelector.WaitChoice(out var ))
+                if (skillPickingView.skillSelector.WaitChoice(out var skillSelectorElement))
                 {
+                    var spell = skillSelectorElement.referedSpell;
+                    
                     BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.TARGET_PICKING);
                 }
                 if (Gamepad.current.bButton.wasPressedThisFrame)
