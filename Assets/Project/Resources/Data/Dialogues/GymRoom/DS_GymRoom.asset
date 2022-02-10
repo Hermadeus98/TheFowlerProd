@@ -27,7 +27,7 @@ MonoBehaviour:
       cameraName: Default
       batchName: Abigail_Facial
     displayDuration: 2
-    choiceText: 
+    choiceText: Je suis un choix 2
 --- !u!114 &-5428519163917235174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,6 +102,7 @@ MonoBehaviour:
   children:
   - {fileID: 7718154890969297323}
   - {fileID: -7868929101844180831}
+  - {fileID: 8187213617932659204}
   dialogue:
     ActorEnum: 2
     dialogueText: Je suis un autre dialogue statique
@@ -109,6 +110,33 @@ MonoBehaviour:
       genericKey: 0
       cameraName: Default
       batchName: Dialogue_GymRoom
+    displayDuration: 2
+    choiceText: 
+--- !u!114 &-3221953677325414087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 931d08f072367ca4998091a10ab1594e
+  position: {x: 682, y: 303}
+  children: []
+  dialogue:
+    ActorEnum: 2
+    dialogueText: "Je suis le r\xE9sultat 3"
+    cameraPath:
+      genericKey: 0
+      cameraName: Default
+      batchName: 
     displayDuration: 2
     choiceText: 
 --- !u!114 &-3004829535549554901
@@ -160,6 +188,8 @@ MonoBehaviour:
   - {fileID: -7868929101844180831}
   - {fileID: -5428519163917235174}
   - {fileID: -4525315822375057538}
+  - {fileID: 8187213617932659204}
+  - {fileID: -3221953677325414087}
 --- !u!114 &7718154890969297323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,4 +217,32 @@ MonoBehaviour:
       cameraName: Default
       batchName: Abigail_Facial
     displayDuration: 2
-    choiceText: 
+    choiceText: Je suis un choix 1
+--- !u!114 &8187213617932659204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: e091ef9c4a826dd4382bed9f8d41b7cb
+  position: {x: 405, y: 303}
+  children:
+  - {fileID: -3221953677325414087}
+  dialogue:
+    ActorEnum: 2
+    dialogueText: Je suis un choix 3
+    cameraPath:
+      genericKey: 0
+      cameraName: Default
+      batchName: 
+    displayDuration: 2
+    choiceText: Je suis un choix 3
