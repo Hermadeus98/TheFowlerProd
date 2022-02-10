@@ -38,7 +38,7 @@ namespace TheFowler
                 case CameraGenericKeyEnum.FACIAL_PHOEBE:
                     return "Phoebe_Facial";
                 case CameraGenericKeyEnum.FACIAL_ABIGAIL:
-                    return "Abigael_Facial";
+                    return "Abigail_Facial";
                 case CameraGenericKeyEnum.CONTEXTUAL_ROBYN:
                     return "Robyn_Contextual";
                 case CameraGenericKeyEnum.CONTEXTUAL_PHOEBE:
