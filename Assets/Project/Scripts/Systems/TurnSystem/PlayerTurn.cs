@@ -8,5 +8,10 @@ namespace TheFowler
 {
     public class PlayerTurn : Turn
     {
+        public override void OnTurnStart()
+        {
+            base.OnTurnStart();
+            Player.SelectedSpell = null;
+        }
     }
 }
