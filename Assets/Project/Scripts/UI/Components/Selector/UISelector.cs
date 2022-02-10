@@ -72,7 +72,7 @@ namespace TheFowler
             set
             {
                 currentIndex = value;
-                SelectElement();
+                
             }
         }
 

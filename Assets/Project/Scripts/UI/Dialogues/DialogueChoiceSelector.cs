@@ -65,37 +65,71 @@ namespace TheFowler
                 switch (dialogueNodes.Count)
                 {
                     case 1:
-                        if (Inputs.actions["A"].WasReleasedThisFrame())
+                        if (Inputs.actions["A"].WasPressedThisFrame())
                         {
+                            CurrentIndex = 0;
+
                             Hide();
-                            dialogueNode = node;
+                            dialogueNode = dialogueNodes[currentIndex];
                             return true;
                         }
                         break;
                     case 2:
-                        if (Inputs.actions["A"].WasReleasedThisFrame() || Inputs.actions["B"].WasPressedThisFrame())
+                        if (Inputs.actions["A"].WasPressedThisFrame())
                         {
+                            CurrentIndex = 0;
+
                             Hide();
-                            dialogueNode = node;
+                            dialogueNode = dialogueNodes[currentIndex];
+                            return true;
+                        }
+                        else if (Inputs.actions["B"].WasPressedThisFrame())
+                        {
+                            CurrentIndex = 1;
+
+                            Hide();
+                            dialogueNode = dialogueNodes[currentIndex];
                             return true;
                         }
                         break;
                     case 3:
-                        if (Inputs.actions["A"].WasReleasedThisFrame() ||
-                            Inputs.actions["B"].WasPressedThisFrame() ||
-                            Inputs.actions["C"].WasPressedThisFrame())
+                        if (Inputs.actions["A"].WasPressedThisFrame())
                         {
+                            CurrentIndex = 0;
+
                             Hide();
-                            dialogueNode = node;
+                            dialogueNode = dialogueNodes[currentIndex];
                             return true;
                         }
+                        else if (Inputs.actions["B"].WasPressedThisFrame())
+                        {
+                            CurrentIndex = 1;
+
+                            Hide();
+                            dialogueNode = dialogueNodes[currentIndex];
+                            return true;
+                        }
+                        else if (Inputs.actions["C"].WasPressedThisFrame())
+                        {
+
+                            CurrentIndex = 2;
+
+                            Hide();
+                            dialogueNode = dialogueNodes[currentIndex];
+                            return true;
+                        }
+
+                        
                         break;
                 }
+
 
             }
 
             dialogueNode = null;
             return false;
         }
+
+
     }
 }
