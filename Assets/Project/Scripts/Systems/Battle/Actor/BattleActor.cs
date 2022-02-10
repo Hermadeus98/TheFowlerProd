@@ -5,6 +5,8 @@ namespace TheFowler
 {
     public class BattleActor : GameplayMonoBehaviour, ITurnActor
     {
+        public BattleActorData BattleActorData;
+        
         public CameraBatch cameraBatchBattle;
         public CameraBatch CameraBatchBattle => cameraBatchBattle;
 

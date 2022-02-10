@@ -16,7 +16,7 @@ namespace TheFowler
             
             if (BattleManager.IsAllyTurn)
             {
-                UI.OpenView(UI.Views.SkillPicking);
+                var skillPickingView = UI.OpenView<SkillPickingView>(UI.Views.SkillPicking);
             }
             
             CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, CameraKeys.BattleKeys.SkillPicking);

@@ -11,7 +11,7 @@ namespace TheFowler
     public class UISelectorElement : UIElement
     {
         [TabGroup("References")]
-        [SerializeField] private TextMeshProUGUI text;
+        [SerializeField] protected TextMeshProUGUI text;
         [TabGroup("References")]
         [SerializeField, GetComponent] protected CanvasGroup canvasGroup;
         [TabGroup("References")]
@@ -19,7 +19,7 @@ namespace TheFowler
         
         [TabGroup("Debug")]
         [ReadOnly] public bool interactable = true;
-        
+
         public void Select()
         {
             transform.localScale = Vector3.one * 1.2f;
