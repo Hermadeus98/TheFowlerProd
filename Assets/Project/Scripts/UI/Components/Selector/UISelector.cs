@@ -26,7 +26,7 @@ namespace TheFowler
         [SerializeField, GetComponent] protected CanvasGroup canvasGroup;
 
         [TabGroup("References")]
-        [SerializeField, GetComponent] private PlayerInput Inputs;
+        [SerializeField, GetComponent] protected PlayerInput Inputs;
         
         [TabGroup("Debug")]
         [SerializeField, ReadOnly] protected int currentIndex;
