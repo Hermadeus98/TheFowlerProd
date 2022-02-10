@@ -32,46 +32,6 @@ namespace TheFowler
             SelectElement();
         }
 
-        protected void Update()
-        {
-
-            /*switch (dialogueNodes.Count)
-            {
-                case 1:
-                    if (Inputs.actions["A"].IsPressed())
-                    {
-                        CurrentIndex = 0;
-                    }
-                    break;
-                case 2:
-                    if (Inputs.actions["A"].IsPressed())
-                    {
-                        CurrentIndex = 0;
-                    }
-                    else if (Inputs.actions["B"].IsPressed())
-                    {
-                        CurrentIndex = 1;
-                    }
-                    break;
-                case 3:
-                    if (Inputs.actions["A"].IsPressed())
-                    {
-                        CurrentIndex = 0;
-                    }
-                    else if (Inputs.actions["B"].IsPressed())
-                    {
-                        CurrentIndex = 2;
-                    }
-                    else if (Inputs.actions["C"].IsPressed())
-                    {
-                        CurrentIndex = 1;
-                    }
-                    break;
-            }*/
-
-            
-        }
-
         public override void Show()
         {
             base.Show();
