@@ -101,7 +101,6 @@ namespace TheFowler
 
         protected void SelectElement()
         {
-            ResetElements();
             currentSelectedElement?.DeSelect();
             currentSelectedElement = elements[currentIndex];
             currentSelectedElement.Select();

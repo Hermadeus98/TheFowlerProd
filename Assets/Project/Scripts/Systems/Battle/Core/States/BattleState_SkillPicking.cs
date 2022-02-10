@@ -33,8 +33,7 @@ namespace TheFowler
             {
                 if (skillPickingView.skillSelector.WaitChoice(out var skillSelectorElement))
                 {
-                    var spell = skillSelectorElement.referedSpell;
-                    
+                    Player.SelectedSpell = skillSelectorElement.referedSpell;
                     BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.TARGET_PICKING);
                 }
                 if (Gamepad.current.bButton.wasPressedThisFrame)
