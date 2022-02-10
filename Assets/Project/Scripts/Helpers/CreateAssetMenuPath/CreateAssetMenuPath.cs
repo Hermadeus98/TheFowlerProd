@@ -10,6 +10,7 @@ namespace TheFowler
 
         public const string data = root + "Datas/";
         public const string ui = data + "UI/";
+        public const string battle = data + "Battle/";
 
         public const string Spawnables = data + "Spawnables";
         public const string controller = data + "Controllers/";
@@ -27,5 +28,8 @@ namespace TheFowler
         public const string cameraTransitionData = camera + "TransitionDB";
         
         public const string rappelInputDB = ui + "RappelInputDatabase";
+
+        public const string battleActorData = battle + "BattleActor";
+        public const string spell = data + "Spell";
     }
 }
