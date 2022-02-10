@@ -10,9 +10,6 @@ namespace TheFowler
     {
         public void Refresh(BattleActorData battleActorData)
         {
-            Debug.Log(battleActorData.Spells.Length);
-
-            
             ResetElements();
             HideAllElements();
             DeselectedAll();
@@ -44,6 +41,7 @@ namespace TheFowler
         
         public bool WaitChoice(out SkillSelectorElement skillSelectorElement)
         {
+            
             skillSelectorElement = null;
             return false;
         }

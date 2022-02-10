@@ -10,13 +10,15 @@ namespace TheFowler
 {
     public class BattleState_SkillPicking : BattleState
     {
+        private SkillPickingView skillPickingView;
+        
         public override void OnStateEnter(EventArgs arg)
         {
             base.OnStateEnter(arg);
             
             if (BattleManager.IsAllyTurn)
             {
-                var skillPickingView = UI.OpenView<SkillPickingView>(UI.Views.SkillPicking);
+                skillPickingView = UI.OpenView<SkillPickingView>(UI.Views.SkillPicking);
             }
             
             CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, CameraKeys.BattleKeys.SkillPicking);
@@ -29,7 +31,7 @@ namespace TheFowler
 
             if (BattleManager.IsAllyTurn)
             {
-                if (inputs.actions["Select"].WasPressedThisFrame())
+                if (skillPickingView.skillSelector.WaitChoice(out var ))
                 {
                     BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.TARGET_PICKING);
                 }

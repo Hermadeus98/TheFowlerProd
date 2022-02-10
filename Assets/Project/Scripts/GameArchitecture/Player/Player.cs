@@ -11,6 +11,8 @@ namespace TheFowler
         public static Robyn Robyn { get; set; }
         public static Abigael Abigael { get; set; }
         public static Pheobe Pheobe { get; set; }
+        
+        public static Spell SelectedSpell { get; set; }
 
         public static void Initialize()
         {

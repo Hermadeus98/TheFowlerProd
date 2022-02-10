@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using QRCode;
+using QRCode.Extensions;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -32,6 +33,14 @@ namespace TheFowler
             }
             else
             {
+                if (BattleManager.IsAllyTurn)
+                {
+                    if (Player.SelectedSpell.IsNotNull())
+                    {
+                        yield return Player.SelectedSpell.Cast();
+                    }    
+                }
+                
                 BattleManager.CurrentBattle.TurnSystem.NextTurn();
             }
         }
