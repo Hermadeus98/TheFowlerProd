@@ -31,7 +31,25 @@ namespace TheFowler
                 elements[i].Refresh(new WrapperArgs<string>(nodes[i].dialogue.choiceText));
             }
             
-            //SelectElement();
+            SelectElement();
+        }
+
+        protected override void FixedUpdate()
+        {
+            base.FixedUpdate();
+
+            if (Gamepad.current.xButton.wasPressedThisFrame)
+            {
+                CurrentIndex = 2;
+            }
+            else if (Gamepad.current.aButton.wasPressedThisFrame)
+            {
+                CurrentIndex = 1;
+            }
+            else if (Gamepad.current.bButton.wasPressedThisFrame)
+            {
+                CurrentIndex = 0;
+            }
         }
 
         public override void Show()
@@ -46,33 +64,15 @@ namespace TheFowler
             canvasGroup.alpha = 0f;
         }
 
-        public override void SelectWithButton()
-        {
-            Debug.Log("SelectWithButton");
-            if (Gamepad.current.xButton.wasPressedThisFrame)
-            {
-                currentIndex = 0;
-               
-            }
-            else if (Gamepad.current.aButton.wasPressedThisFrame)
-            {
-                currentIndex = 1;
-            }
-            else if(Gamepad.current.yButton.wasPressedThisFrame)
-            {
-                currentIndex = 2;
-            }
-            SelectElement();
-        }
 
         public bool WaitChoice(out DialogueNode dialogueNode)
         {
             Debug.Log("WaitChoice");
             var node = dialogueNodes[currentIndex];
 
-            if (Gamepad.current.aButton.wasPressedThisFrame
-                || Gamepad.current.xButton.wasPressedThisFrame
-                || Gamepad.current.yButton.wasPressedThisFrame)
+            if (Gamepad.current.aButton.wasReleasedThisFrame
+                || Gamepad.current.xButton.wasReleasedThisFrame
+                || Gamepad.current.bButton.wasReleasedThisFrame)
             {
                 Hide();
                 dialogueNode = node;

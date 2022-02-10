@@ -102,11 +102,7 @@ namespace TheFowler
             Selection.activeObject = go;
         }
 
-        [Button]
-        public void OnEnterFront()
-        {
-            onTriggerEnterFront?.Invoke();
-        }
+
 #endif
     }
 }

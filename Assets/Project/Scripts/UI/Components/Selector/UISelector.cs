@@ -33,35 +33,49 @@ namespace TheFowler
         [TabGroup("Debug")]
         [SerializeField, ReadOnly] protected UISelectorElement currentSelectedElement;
 
-        private void FixedUpdate()
+        [SerializeField] protected int index;
+
+        protected virtual void FixedUpdate()
         {
             if(!isActive)
                 return;
-            
-            Navigate();
+
+            switch (selectorType)
+            {
+                case SelectorType.NAVIGATION:
+                    Navigate();
+                    break;
+
+            }
         }
 
         private void Navigate()
         {
-            switch (selectorType)
+            if (Inputs.actions["NavigateDown"].WasPressedThisFrame())
             {
-                case SelectorType.NAVIGATION:
-                    if (Inputs.actions["NavigateDown"].WasPressedThisFrame())
-                    {
-                        SelectNext();
-                    }
-
-                    if (Inputs.actions["NavigateUp"].WasPressedThisFrame())
-                    {
-                        SelectPrevious();
-                    }
-                    break;
-                case SelectorType.BUTTON:
-                    SelectWithButton();
-                    break;
+                SelectNext();
             }
 
+            if (Inputs.actions["NavigateUp"].WasPressedThisFrame())
+            {
+                SelectPrevious();
+            }
         }
+
+
+        protected int CurrentIndex
+        {
+            get
+            {
+                return currentIndex;
+            }
+            set
+            {
+                currentIndex = value;
+                SelectElement();
+            }
+        }
+
 
         private void SelectNext()
         {
@@ -83,11 +97,6 @@ namespace TheFowler
             }
 
             SelectElement();
-        }
-
-        public virtual void SelectWithButton()
-        {
-
         }
 
         protected void SelectElement()
@@ -136,4 +145,5 @@ namespace TheFowler
         NAVIGATION,
         BUTTON
     }
+
 }
