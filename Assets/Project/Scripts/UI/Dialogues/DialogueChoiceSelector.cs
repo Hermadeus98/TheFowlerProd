@@ -17,7 +17,7 @@ namespace TheFowler
         public void Refresh(DialogueNode[] nodes)
         {
             ResetElements();
-            
+
             HideAllElements();
             DeselectedAll();
             elements.ForEach(w => w.Hide());
@@ -38,18 +38,41 @@ namespace TheFowler
         {
             base.FixedUpdate();
 
-            if (Gamepad.current.xButton.wasPressedThisFrame)
+            switch (dialogueNodes.Count)
             {
-                CurrentIndex = 2;
+                case 1:
+                    if (Gamepad.current.xButton.isPressed)
+                    {
+                        CurrentIndex = 0;
+                    }
+                    break;
+                case 2:
+                    if (Gamepad.current.xButton.isPressed)
+                    {
+                        CurrentIndex = 0;
+                    }
+                    else if (Gamepad.current.bButton.isPressed)
+                    {
+                        CurrentIndex = 1;
+                    }
+                    break;
+                case 3:
+                    if (Gamepad.current.xButton.isPressed)
+                    {
+                        CurrentIndex = 0;
+                    }
+                    else if (Gamepad.current.yButton.isPressed)
+                    {
+                        CurrentIndex = 2;
+                    }
+                    else if (Gamepad.current.bButton.isPressed)
+                    {
+                        CurrentIndex = 1;
+                    }
+                    break;
             }
-            else if (Gamepad.current.aButton.wasPressedThisFrame)
-            {
-                CurrentIndex = 1;
-            }
-            else if (Gamepad.current.bButton.wasPressedThisFrame)
-            {
-                CurrentIndex = 0;
-            }
+
+            
         }
 
         public override void Show()
@@ -70,15 +93,50 @@ namespace TheFowler
             Debug.Log("WaitChoice");
             var node = dialogueNodes[currentIndex];
 
-            if (Gamepad.current.aButton.wasReleasedThisFrame
-                || Gamepad.current.xButton.wasReleasedThisFrame
-                || Gamepad.current.bButton.wasReleasedThisFrame)
+            if(selectorType == SelectorType.NAVIGATION)
             {
-                Hide();
-                dialogueNode = node;
-                return true;
+                if (Gamepad.current.aButton.wasPressedThisFrame)
+                {
+                    Hide();
+                    dialogueNode = node;
+                    return true;
+                }
+
             }
-            
+            else if (selectorType == SelectorType.BUTTON)
+            {
+                switch (dialogueNodes.Count)
+                {
+                    case 1:
+                        if (Gamepad.current.xButton.wasReleasedThisFrame)
+                        {
+                            Hide();
+                            dialogueNode = node;
+                            return true;
+                        }
+                        break;
+                    case 2:
+                        if (Gamepad.current.xButton.wasReleasedThisFrame || Gamepad.current.bButton.wasReleasedThisFrame)
+                        {
+                            Hide();
+                            dialogueNode = node;
+                            return true;
+                        }
+                        break;
+                    case 3:
+                        if (Gamepad.current.xButton.wasReleasedThisFrame ||
+                            Gamepad.current.bButton.wasReleasedThisFrame ||
+                            Gamepad.current.yButton.wasReleasedThisFrame)
+                        {
+                            Hide();
+                            dialogueNode = node;
+                            return true;
+                        }
+                        break;
+                }
+
+            }
+
             dialogueNode = null;
             return false;
         }

@@ -101,6 +101,7 @@ namespace TheFowler
 
         protected void SelectElement()
         {
+            ResetElements();
             currentSelectedElement?.DeSelect();
             currentSelectedElement = elements[currentIndex];
             currentSelectedElement.Select();
@@ -136,6 +137,7 @@ namespace TheFowler
 
         protected void ResetElements()
         {
+
             elements = new List<UISelectorElement>(all_elements);
         }
     }
