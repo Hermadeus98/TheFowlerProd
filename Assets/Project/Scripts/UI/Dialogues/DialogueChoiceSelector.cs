@@ -40,31 +40,31 @@ namespace TheFowler
             switch (dialogueNodes.Count)
             {
                 case 1:
-                    if (Gamepad.current.xButton.isPressed)
+                    if (Inputs.actions["A"].IsPressed())
                     {
                         CurrentIndex = 0;
                     }
                     break;
                 case 2:
-                    if (Gamepad.current.xButton.isPressed)
+                    if (Inputs.actions["A"].IsPressed())
                     {
                         CurrentIndex = 0;
                     }
-                    else if (Gamepad.current.bButton.isPressed)
+                    else if (Inputs.actions["B"].IsPressed())
                     {
                         CurrentIndex = 1;
                     }
                     break;
                 case 3:
-                    if (Gamepad.current.xButton.isPressed)
+                    if (Inputs.actions["A"].IsPressed())
                     {
                         CurrentIndex = 0;
                     }
-                    else if (Gamepad.current.yButton.isPressed)
+                    else if (Inputs.actions["B"].IsPressed())
                     {
                         CurrentIndex = 2;
                     }
-                    else if (Gamepad.current.bButton.isPressed)
+                    else if (Inputs.actions["C"].IsPressed())
                     {
                         CurrentIndex = 1;
                     }
@@ -107,7 +107,7 @@ namespace TheFowler
                 switch (dialogueNodes.Count)
                 {
                     case 1:
-                        if (Gamepad.current.xButton.wasReleasedThisFrame)
+                        if (Inputs.actions["A"].WasReleasedThisFrame())
                         {
                             Hide();
                             dialogueNode = node;
@@ -115,7 +115,7 @@ namespace TheFowler
                         }
                         break;
                     case 2:
-                        if (Gamepad.current.xButton.wasReleasedThisFrame || Gamepad.current.bButton.wasReleasedThisFrame)
+                        if (Inputs.actions["A"].WasReleasedThisFrame() || Inputs.actions["B"].WasPressedThisFrame())
                         {
                             Hide();
                             dialogueNode = node;
@@ -123,9 +123,9 @@ namespace TheFowler
                         }
                         break;
                     case 3:
-                        if (Gamepad.current.xButton.wasReleasedThisFrame ||
-                            Gamepad.current.bButton.wasReleasedThisFrame ||
-                            Gamepad.current.yButton.wasReleasedThisFrame)
+                        if (Inputs.actions["A"].WasReleasedThisFrame() ||
+                            Inputs.actions["B"].WasPressedThisFrame() ||
+                            Inputs.actions["C"].WasPressedThisFrame())
                         {
                             Hide();
                             dialogueNode = node;
