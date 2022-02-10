@@ -114,7 +114,6 @@ namespace TheFowler
                 currentIndex = 0;
 
             canvasGroup.alpha = 1;
-            SelectElement();
         }
 
         public override void Hide()
