@@ -8,6 +8,8 @@ namespace TheFowler
     [Serializable]
     public abstract class Effect
     {
+        public string EffectName = "NO NAME EFFECT";
+
         public abstract IEnumerator OnBeginCast();
 
         public abstract IEnumerator OnCast();

@@ -16,6 +16,8 @@ namespace TheFowler
             elements.ForEach(w => w.Hide());
             elements.Clear();
 
+            Debug.Break();
+            Debug.Log(battleActorData.Spells.Length);
             
             for (int i = 0; i < battleActorData.Spells.Length; i++)
             {
