@@ -62,21 +62,6 @@ namespace TheFowler
             }
         }
 
-
-        protected int CurrentIndex
-        {
-            get
-            {
-                return currentIndex;
-            }
-            set
-            {
-                currentIndex = value;
-                
-            }
-        }
-
-
         private void SelectNext()
         {
             currentIndex++;

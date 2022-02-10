@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using QRCode;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -17,6 +18,7 @@ namespace TheFowler
             if (BattleManager.IsAllyTurn)
             {
                 UI.OpenView(UI.Views.TargetPicking);
+                TargetSelector.Initialize(Player.SelectedSpell.TargetType);
             }
             
             CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, CameraKeys.BattleKeys.TargetPicking);
@@ -28,11 +30,18 @@ namespace TheFowler
 
             if (BattleManager.IsAllyTurn)
             {
-                if (inputs.actions["Select"].WasPressedThisFrame())
+                TargetSelector.Navigate(inputs.actions["NavigateLeft"].WasPressedThisFrame(), inputs.actions["NavigateRight"].WasPressedThisFrame());
+                
+                if (TargetSelector.Select(inputs.actions["Select"].WasPressedThisFrame(), out var targets))
                 {
+                    for (int i = 0; i < targets.Count(); i++)
+                    {
+                        Debug.Log(targets.ElementAt(i).BattleActorData.actorName);
+                    }
+                    
                     BattleManager.CurrentBattle.ChangeBattleState<BattleState_SkillExecution>(BattleStateEnum.SKILL_EXECUTION);
                 }
-                if (Gamepad.current.bButton.wasPressedThisFrame)
+                if (inputs.actions["Return"].WasPressedThisFrame())
                 {
                     BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.SKILL_PICKING);
                 }

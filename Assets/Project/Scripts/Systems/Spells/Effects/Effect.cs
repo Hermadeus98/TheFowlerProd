@@ -10,6 +10,8 @@ namespace TheFowler
     {
         public string EffectName = "NO NAME EFFECT";
 
+        public TargetTypeEnum TargetType;
+        
         public abstract IEnumerator OnBeginCast();
 
         public abstract IEnumerator OnCast();

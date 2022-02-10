@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace TheFowler
 {
@@ -15,5 +16,8 @@ namespace TheFowler
 
         public static Action<BattleStateEnum> OnBattleStateChange;
         public static Action OnTurnChanged;
+
+        public static BattleActor[] GetAllAllies() => CurrentBattle.Allies.Cast<BattleActor>().ToArray();
+        public static BattleActor[] GetAllEnemies() => CurrentBattle.Enemies.Cast<BattleActor>().ToArray();
     }
 }
