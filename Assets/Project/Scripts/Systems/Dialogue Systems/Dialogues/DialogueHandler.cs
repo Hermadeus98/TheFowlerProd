@@ -151,7 +151,7 @@ namespace TheFowler
                 {
                     if (currentDialogueNode.hasMultipleChoices)
                     {
-                        //Debug.Log("choice");
+                        Debug.Log("choice");
                         waitInput = true;
                         switch (dialogueType)
                         {
@@ -240,7 +240,6 @@ namespace TheFowler
                     throw new ArgumentOutOfRangeException();
             }
             
-            //Debug.Log(dialogue.dialogueText);
             elapsedTime = 0;
         }
         

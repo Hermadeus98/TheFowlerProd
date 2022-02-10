@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using QRCode;
 using Sirenix.OdinInspector;
@@ -37,7 +35,7 @@ namespace TheFowler
         protected void Update()
         {
 
-            switch (dialogueNodes.Count)
+            /*switch (dialogueNodes.Count)
             {
                 case 1:
                     if (Inputs.actions["A"].IsPressed())
@@ -69,7 +67,7 @@ namespace TheFowler
                         CurrentIndex = 1;
                     }
                     break;
-            }
+            }*/
 
             
         }
