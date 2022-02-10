@@ -31,7 +31,7 @@ namespace TheFowler
                 elements[i].Refresh(new WrapperArgs<string>(nodes[i].dialogue.choiceText));
             }
             
-            SelectElement();
+            //SelectElement();
         }
 
         public override void Show()
@@ -46,11 +46,33 @@ namespace TheFowler
             canvasGroup.alpha = 0f;
         }
 
+        public override void SelectWithButton()
+        {
+            Debug.Log("SelectWithButton");
+            if (Gamepad.current.xButton.wasPressedThisFrame)
+            {
+                currentIndex = 0;
+               
+            }
+            else if (Gamepad.current.aButton.wasPressedThisFrame)
+            {
+                currentIndex = 1;
+            }
+            else if(Gamepad.current.yButton.wasPressedThisFrame)
+            {
+                currentIndex = 2;
+            }
+            SelectElement();
+        }
+
         public bool WaitChoice(out DialogueNode dialogueNode)
         {
+            Debug.Log("WaitChoice");
             var node = dialogueNodes[currentIndex];
 
-            if (Gamepad.current.aButton.wasPressedThisFrame)
+            if (Gamepad.current.aButton.wasPressedThisFrame
+                || Gamepad.current.xButton.wasPressedThisFrame
+                || Gamepad.current.yButton.wasPressedThisFrame)
             {
                 Hide();
                 dialogueNode = node;

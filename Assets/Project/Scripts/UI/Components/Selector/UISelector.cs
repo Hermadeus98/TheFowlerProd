@@ -11,6 +11,8 @@ namespace TheFowler
     public class UISelector : UIElement
     {
         [TabGroup("Main Settings")]
+        [SerializeField] protected SelectorType selectorType;
+        [TabGroup("Main Settings")]
         [SerializeField] protected List<UISelectorElement> all_elements = new List<UISelectorElement>();
         
         [TabGroup("Debug")]
@@ -18,6 +20,7 @@ namespace TheFowler
 
         [TabGroup("Main Settings")]
         [SerializeField] protected bool resetIndex;
+
 
         [TabGroup("References")]
         [SerializeField, GetComponent] protected CanvasGroup canvasGroup;
@@ -40,15 +43,24 @@ namespace TheFowler
 
         private void Navigate()
         {
-            if (Inputs.actions["NavigateDown"].WasPressedThisFrame())
+            switch (selectorType)
             {
-                SelectNext();
+                case SelectorType.NAVIGATION:
+                    if (Inputs.actions["NavigateDown"].WasPressedThisFrame())
+                    {
+                        SelectNext();
+                    }
+
+                    if (Inputs.actions["NavigateUp"].WasPressedThisFrame())
+                    {
+                        SelectPrevious();
+                    }
+                    break;
+                case SelectorType.BUTTON:
+                    SelectWithButton();
+                    break;
             }
-            
-            if (Inputs.actions["NavigateUp"].WasPressedThisFrame())
-            {
-                SelectPrevious();
-            }
+
         }
 
         private void SelectNext()
@@ -71,6 +83,11 @@ namespace TheFowler
             }
 
             SelectElement();
+        }
+
+        public virtual void SelectWithButton()
+        {
+
         }
 
         protected void SelectElement()
@@ -112,5 +129,11 @@ namespace TheFowler
         {
             elements = new List<UISelectorElement>(all_elements);
         }
+    }
+
+    public enum SelectorType
+    {
+        NAVIGATION,
+        BUTTON
     }
 }
