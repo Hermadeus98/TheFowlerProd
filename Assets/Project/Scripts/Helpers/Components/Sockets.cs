@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace TheFowler
 {
-    public class Snippets : SerializedMonoBehaviour
+    public class Sockets : SerializedMonoBehaviour
     {
         public Transform body_Middle;
     }

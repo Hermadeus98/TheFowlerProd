@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,7 +9,10 @@ namespace TheFowler
 {
     public static class TargetSelector
     {
+        //private static List<BattleActor> availableTargets;
         public static List<BattleActor> AvailableTargets;
+        
+        //private static List<BattleActor> selectedTargets;
         public static List<BattleActor> SelectedTargets;
 
         private static TargetTypeEnum targetType;
@@ -26,72 +30,45 @@ namespace TheFowler
                 case TargetTypeEnum.SELF:
                     AvailableTargets.Add(GetSelf());
                     SelectedTargets.Add(GetSelf());
+                    Select(AvailableTargets[0]);
                     break;
                 case TargetTypeEnum.SOLO_ENEMY:
                     AvailableTargets.AddRange(GetAllEnemiesOf(BattleManager.CurrentBattleActor));
+                    Select(AvailableTargets[0]);
                     break;
                 case TargetTypeEnum.ALL_ENEMIES:
                     AvailableTargets.AddRange(GetAllEnemiesOf(BattleManager.CurrentBattleActor));
                     SelectedTargets.AddRange(GetAllEnemiesOf(BattleManager.CurrentBattleActor));
+                    SelectAll(SelectedTargets);
                     break;
                 case TargetTypeEnum.SOLO_ALLY:
                     AvailableTargets.AddRange(GetAllAlliesOf(BattleManager.CurrentBattleActor));
+                    Select(AvailableTargets[0]);
                     break;
                 case TargetTypeEnum.ALL_ALLIES:
                     AvailableTargets.AddRange(GetAllAlliesOf(BattleManager.CurrentBattleActor));
                     SelectedTargets.AddRange(GetAllAlliesOf(BattleManager.CurrentBattleActor));
+                    SelectAll(SelectedTargets);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(targetType), targetType, null);
             }
         }
+
+        public static void Quit()
+        {
+            AvailableTargets.ForEach(w => EndPreview(w));
+            AvailableTargets.Clear();
+            SelectedTargets.Clear();
+        }
         
         //---<CORE>----------------------------------------------------------------------------------------------------<
         public static bool Select(bool validate, out IEnumerable<BattleActor> battleActors)
         {
-            switch (targetType)
+            if (validate)
             {
-                case TargetTypeEnum.SELF:
-                    if (validate)
-                    {
-                        battleActors = SelectedTargets;
-                        return true;
-                    }
-
-                    battleActors = null;
-                    return false;
-                case TargetTypeEnum.SOLO_ENEMY:
-                    if (validate)
-                    {
-                        battleActors = SelectedTargets;
-                        return true;
-                    }
-
-                    battleActors = null;
-                    return false;
-                case TargetTypeEnum.ALL_ENEMIES:
-                    battleActors = SelectedTargets;
-                    return true;
-                case TargetTypeEnum.SOLO_ALLY:
-                    if (validate)
-                    {
-                        battleActors = SelectedTargets;
-                        return true;
-                    }
-
-                    battleActors = null;
-                    return false;
-                case TargetTypeEnum.ALL_ALLIES:
-                    if (validate)
-                    {
-                        battleActors = SelectedTargets;
-                        return true;
-                    }
-
-                    battleActors = null;
-                    return false;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                battleActors = SelectedTargets;
+                return true;
             }
 
             battleActors = null;
@@ -119,7 +96,7 @@ namespace TheFowler
             currentIndex++;
             if (currentIndex >= AvailableTargets.Count)
             {
-                currentIndex = AvailableTargets.Count - 1;
+                currentIndex = 0;
             }
             
             Select(AvailableTargets[currentIndex]);
@@ -130,7 +107,7 @@ namespace TheFowler
             currentIndex--;
             if (currentIndex < 0)
             {
-                currentIndex = 0;
+                currentIndex = AvailableTargets.Count - 1;
             }
 
             Select(AvailableTargets[currentIndex]);
@@ -142,16 +119,31 @@ namespace TheFowler
             {
                 SelectedTargets.ForEach(w => Deselect(w));
             }
-            
-            Debug.Log("SELECT " + actor.BattleActorData.actorName);
 
             SelectedTargets.Clear();
             SelectedTargets.Add(actor);
+            Preview(actor);
+        }
+
+        private static void SelectAll(IEnumerable<BattleActor> actors)
+        {
+            actors.ForEach(w => w.OnTarget());
         }
 
         private static void Deselect(BattleActor actor)
         {
-            Debug.Log("DESELECT " + actor.BattleActorData.actorName);
+            actor.OnEndTarget();
+            EndPreview(actor);
+        }
+
+        private static void Preview(BattleActor actor)
+        {
+            actor.OnTarget();
+        }
+
+        private static void EndPreview(BattleActor actor)
+        {
+            actor.OnEndTarget();
         }
         
         //---<HELPERS>-------------------------------------------------------------------------------------------------<

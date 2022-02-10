@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace TheFowler
 {
-    public class BattleActor : GameplayMonoBehaviour, ITurnActor
+    public class BattleActor : GameplayMonoBehaviour, ITurnActor, ITarget
     {
         public BattleActorData BattleActorData;
         
@@ -12,7 +12,9 @@ namespace TheFowler
 
         public BattleActorInfo BattleActorInfo;
 
-        public Snippets Snippets;
+        public Sockets sockets;
+
+        public SelectionPointer SelectionPointer;
         
         protected Turn actorTurn;
 
@@ -87,6 +89,16 @@ namespace TheFowler
                         throw new ArgumentOutOfRangeException(nameof(currentBattleState), currentBattleState, null);
                 }
             }
+        }
+
+        public void OnTarget()
+        {
+            SelectionPointer.Show();
+        }
+
+        public void OnEndTarget()
+        {
+            SelectionPointer.Hide();
         }
     }
 

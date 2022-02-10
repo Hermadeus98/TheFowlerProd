@@ -17,7 +17,9 @@ namespace TheFowler
             public const string
                 ActionPicking = "ActionPicking",
                 SkillPicking = "SkillPicking",
-                TargetPicking = "TargetPicking",
+                TargetPickingDefault = "TargetPickingDefault",
+                TargetPickingAllies = "TargetPickingAllies",
+                TargetPickingEnemies = "TargetPickingEnemies",
                 SkillExecutionDefault = "SkillExecutionDefault";
         }
         

@@ -19,9 +19,12 @@ namespace TheFowler
             {
                 UI.OpenView(UI.Views.TargetPicking);
                 TargetSelector.Initialize(Player.SelectedSpell.TargetType);
+                SetCamera();
             }
-            
-            CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, CameraKeys.BattleKeys.TargetPicking);
+            else if(BattleManager.IsEnemyTurn)
+            {
+                CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, CameraKeys.BattleKeys.TargetPickingDefault);
+            }
         }
 
         public override void OnStateExecute()
@@ -56,6 +59,31 @@ namespace TheFowler
         {
             base.OnStateExit(arg);
             UI.CloseView(UI.Views.TargetPicking);
+            TargetSelector.Quit();
+        }
+
+        private void SetCamera()
+        {
+            switch (Player.SelectedSpell.TargetType)
+            {
+                case TargetTypeEnum.SELF:
+                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, CameraKeys.BattleKeys.TargetPickingDefault);
+                    break;
+                case TargetTypeEnum.SOLO_ENEMY:
+                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, CameraKeys.BattleKeys.TargetPickingEnemies);
+                    break;
+                case TargetTypeEnum.ALL_ENEMIES:
+                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, CameraKeys.BattleKeys.TargetPickingEnemies);
+                    break;
+                case TargetTypeEnum.SOLO_ALLY:
+                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, CameraKeys.BattleKeys.TargetPickingAllies);
+                    break;
+                case TargetTypeEnum.ALL_ALLIES:
+                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, CameraKeys.BattleKeys.TargetPickingAllies);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }

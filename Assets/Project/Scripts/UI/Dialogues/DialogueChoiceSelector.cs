@@ -67,7 +67,7 @@ namespace TheFowler
                     case 1:
                         if (Inputs.actions["A"].WasPressedThisFrame())
                         {
-                            CurrentIndex = 0;
+                            currentIndex = 0;
 
                             Hide();
                             dialogueNode = dialogueNodes[currentIndex];
@@ -77,7 +77,7 @@ namespace TheFowler
                     case 2:
                         if (Inputs.actions["A"].WasPressedThisFrame())
                         {
-                            CurrentIndex = 0;
+                            currentIndex = 0;
 
                             Hide();
                             dialogueNode = dialogueNodes[currentIndex];
@@ -85,7 +85,7 @@ namespace TheFowler
                         }
                         else if (Inputs.actions["B"].WasPressedThisFrame())
                         {
-                            CurrentIndex = 1;
+                            currentIndex = 1;
 
                             Hide();
                             dialogueNode = dialogueNodes[currentIndex];
@@ -95,7 +95,7 @@ namespace TheFowler
                     case 3:
                         if (Inputs.actions["A"].WasPressedThisFrame())
                         {
-                            CurrentIndex = 0;
+                            currentIndex = 0;
 
                             Hide();
                             dialogueNode = dialogueNodes[currentIndex];
@@ -103,7 +103,7 @@ namespace TheFowler
                         }
                         else if (Inputs.actions["B"].WasPressedThisFrame())
                         {
-                            CurrentIndex = 1;
+                            currentIndex = 1;
 
                             Hide();
                             dialogueNode = dialogueNodes[currentIndex];
@@ -112,7 +112,7 @@ namespace TheFowler
                         else if (Inputs.actions["C"].WasPressedThisFrame())
                         {
 
-                            CurrentIndex = 2;
+                            currentIndex = 2;
 
                             Hide();
                             dialogueNode = dialogueNodes[currentIndex];

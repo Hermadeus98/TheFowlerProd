@@ -16,8 +16,8 @@ namespace TheFowler
         [Button]
         public void PlugToActor(BattleActor actor)
         {
-            front.position = actor.Snippets.body_Middle.position;
-            back.position = actor.Snippets.body_Middle.position;
+            front.position = actor.sockets.body_Middle.position;
+            back.position = actor.sockets.body_Middle.position;
 
 #if UNITY_EDITOR
             /*var rotation = SceneView.currentDrawingSceneView.camera.transform.rotation;
