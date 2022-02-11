@@ -260,12 +260,15 @@ namespace TheFowler
         public Dialogue Dialogue;
     }
 
-    [Flags]
+
     public enum ActorEnum
     {
         ROBYN,
         ABIGAEL,
         PHEOBE,
+        GUARD,
+        LIEUTENANT,
+        EMPTY,
     }
 
     public enum DialogueType
