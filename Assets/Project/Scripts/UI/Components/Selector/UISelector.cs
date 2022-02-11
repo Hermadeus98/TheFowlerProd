@@ -35,6 +35,8 @@ namespace TheFowler
 
         [SerializeField] protected int index;
 
+        protected Action<UISelectorElement> OnSelect;
+
         protected virtual void FixedUpdate()
         {
             if(!isActive)
@@ -89,6 +91,7 @@ namespace TheFowler
             currentSelectedElement?.DeSelect();
             currentSelectedElement = elements[currentIndex];
             currentSelectedElement.Select();
+            OnSelect?.Invoke(currentSelectedElement);
         }
         
         public override void Show()

@@ -16,6 +16,9 @@ namespace TheFowler
         public int ManaCost;
 
         [TitleGroup("Main Settings")] public TargetTypeEnum TargetType;
+
+        [TitleGroup("Main Settings"), TextArea(3,5)] 
+        public string SpellDescription;
         
         [TitleGroup("Main Settings")] 
         public ExecutionTypeEnum ExecutionType;
@@ -25,6 +28,8 @@ namespace TheFowler
             CONSECUTIVE,
         }
 
+        [TitleGroup("Effects")] public SpellTypeEnum SpellType;
+        
         [TitleGroup("Effects")] 
         public Effect[] Effects;
         
@@ -53,6 +58,13 @@ namespace TheFowler
                     throw new ArgumentOutOfRangeException();
             }
             yield break;
+        }
+        
+        public enum SpellTypeEnum
+        {
+            CLAW,
+            BEAK,
+            WEATHER
         }
     }
 }

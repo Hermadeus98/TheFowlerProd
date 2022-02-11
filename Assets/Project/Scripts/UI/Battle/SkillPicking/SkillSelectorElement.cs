@@ -5,6 +5,7 @@ using QRCode;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TheFowler
 {
@@ -12,6 +13,8 @@ namespace TheFowler
     {
         [SerializeField, ReadOnly] public Spell referedSpell;
         [SerializeField] private TextMeshProUGUI manaCostText;
+        [SerializeField] private Image spellTypeIcon;
+        [SerializeField] private SpellTypeDatabase SpellTypeDatabase;
         
         public override void Refresh(EventArgs args)
         {
@@ -22,6 +25,7 @@ namespace TheFowler
                 referedSpell = cast.Arg;
                 text.SetText(referedSpell.SpellName);
                 manaCostText.SetText(referedSpell.ManaCost.ToString());
+                spellTypeIcon.sprite = SpellTypeDatabase.GetElement(referedSpell.SpellType);
             }
         }
     }
