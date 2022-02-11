@@ -17,7 +17,7 @@ namespace TheFowler
         public static Action<BattleStateEnum> OnBattleStateChange;
         public static Action OnTurnChanged;
 
-        public static BattleActor[] GetAllAllies() => CurrentBattle.Allies.Cast<BattleActor>().ToArray();
-        public static BattleActor[] GetAllEnemies() => CurrentBattle.Enemies.Cast<BattleActor>().ToArray();
+        public static BattleActor[] GetAllAllies() => CurrentBattle.Allies.Where(w => !w.BattleActorInfo.isDeath).ToArray();
+        public static BattleActor[] GetAllEnemies() => CurrentBattle.Enemies.Where(w => !w.BattleActorInfo.isDeath).ToArray();
     }
 }

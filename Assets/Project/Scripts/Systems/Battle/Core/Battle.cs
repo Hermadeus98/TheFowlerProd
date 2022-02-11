@@ -108,7 +108,7 @@ namespace TheFowler
         public void ChangeBattleState(BattleStateEnum key)
         {
             battleState.SetState(GetBattleStateKey(key), EventArgs.Empty);
-            BattleManager.OnBattleStateChange.Invoke(key);
+            BattleManager.OnBattleStateChange?.Invoke(key);
         }
         
         public T ChangeBattleState<T>(BattleStateEnum key) where T : class, Istate
