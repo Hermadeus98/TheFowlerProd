@@ -8,6 +8,9 @@ namespace TheFowler
         [TabGroup("References")] [SerializeField]
         public SkillSelector skillSelector;
 
+        [TabGroup("References")] [SerializeField]
+        public AnimatedText descriptionText;
+
         public override void Show()
         {
             base.Show();

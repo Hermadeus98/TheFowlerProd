@@ -13,5 +13,9 @@ namespace TheFowler
 
         [TitleGroup("Identity")] 
         public Spell[] Spells;
+
+        [TitleGroup("Identity")] public Spell
+            BasicAttackSpell,
+            DefendSpell;
     }
 }

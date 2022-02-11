@@ -11,7 +11,7 @@ namespace TheFowler
     public class BattleState_SkillPicking : BattleState
     {
         private SkillPickingView skillPickingView;
-        
+
         public override void OnStateEnter(EventArgs arg)
         {
             base.OnStateEnter(arg);

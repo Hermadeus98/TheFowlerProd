@@ -11,6 +11,8 @@ namespace TheFowler
 {
     public class BattleState_TargetPicking : BattleState
     {
+        public bool ReturnToActionMenu { get; set; }
+
         public override void OnStateEnter(EventArgs arg)
         {
             base.OnStateEnter(arg);
@@ -46,7 +48,14 @@ namespace TheFowler
                 }
                 if (inputs.actions["Return"].WasPressedThisFrame())
                 {
-                    BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.SKILL_PICKING);
+                    if (ReturnToActionMenu)
+                    {
+                        BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.ACTION_PICKING);
+                    }
+                    else
+                    {
+                        BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.SKILL_PICKING);
+                    }
                 }
             }
             else if (BattleManager.IsEnemyTurn)
@@ -60,6 +69,7 @@ namespace TheFowler
             base.OnStateExit(arg);
             UI.CloseView(UI.Views.TargetPicking);
             TargetSelector.Quit();
+            ReturnToActionMenu = false;
         }
 
         private void SetCamera()

@@ -28,6 +28,7 @@ namespace TheFowler
         public const string cameraTransitionData = camera + "TransitionDB";
         
         public const string rappelInputDB = ui + "RappelInputDatabase";
+        public const string spellTypeDB = ui + "SpellTypeDatabase";
 
         public const string battleActorData = battle + "BattleActor";
         public const string spell = data + "Spell";
