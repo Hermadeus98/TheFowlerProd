@@ -47,7 +47,6 @@ namespace TheFowler
 
         public bool WaitChoice(out DialogueNode dialogueNode)
         {
-            Debug.Log("WaitChoice");
             var node = dialogueNodes[currentIndex];
 
             if(selectorType == SelectorType.NAVIGATION)

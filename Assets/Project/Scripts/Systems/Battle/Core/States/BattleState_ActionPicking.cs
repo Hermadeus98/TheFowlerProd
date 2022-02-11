@@ -17,6 +17,7 @@ namespace TheFowler
 
         IEnumerator OnStateEnterIE()
         {
+            Debug.Log(BattleManager.CurrentBattleActor.cameraBatchBattle);
             CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, CameraKeys.BattleKeys.ActionPicking);
 
             yield return new WaitForSeconds(UI.GetView<TurnTransitionView>(UI.Views.TurnTransition).WaitTime);

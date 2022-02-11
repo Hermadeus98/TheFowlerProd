@@ -28,6 +28,7 @@ namespace TheFowler
             currentTurnActor = TurnActors[currentTurnIndex];
             if (currentTurnActor.SkipTurn())
             {
+                currentTurnIndex++;
                 NextTurn();
             }
             else
