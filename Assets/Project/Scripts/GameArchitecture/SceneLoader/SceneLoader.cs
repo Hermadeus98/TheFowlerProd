@@ -58,8 +58,6 @@ namespace TheFowler
                 default:
                     throw new ArgumentOutOfRangeException(nameof(scene), scene, null);
             }
-            
-            return String.Empty;
         }   
     }
 }

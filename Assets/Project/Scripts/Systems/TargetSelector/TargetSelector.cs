@@ -202,10 +202,10 @@ namespace TheFowler
 
     public enum TargetTypeEnum
     {
-        SELF,
-        SOLO_ENEMY,
-        ALL_ENEMIES,
-        SOLO_ALLY,
-        ALL_ALLIES,
+        SELF = 0,
+        SOLO_ENEMY = 1,
+        ALL_ENEMIES = 2,
+        SOLO_ALLY = 3,
+        ALL_ALLIES = 4,
     }
 }

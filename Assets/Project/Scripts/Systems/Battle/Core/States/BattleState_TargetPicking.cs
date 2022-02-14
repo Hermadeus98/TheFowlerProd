@@ -25,7 +25,7 @@ namespace TheFowler
             }
             else if(BattleManager.IsEnemyTurn)
             {
-                CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, CameraKeys.BattleKeys.TargetPickingDefault);
+                CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle, CameraKeys.BattleKeys.TargetPickingDefault);
             }
         }
 
@@ -77,19 +77,19 @@ namespace TheFowler
             switch (Player.SelectedSpell.TargetType)
             {
                 case TargetTypeEnum.SELF:
-                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, CameraKeys.BattleKeys.TargetPickingDefault);
+                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle, CameraKeys.BattleKeys.TargetPickingDefault);
                     break;
                 case TargetTypeEnum.SOLO_ENEMY:
-                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, CameraKeys.BattleKeys.TargetPickingEnemies);
+                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle, CameraKeys.BattleKeys.TargetPickingEnemies);
                     break;
                 case TargetTypeEnum.ALL_ENEMIES:
-                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, CameraKeys.BattleKeys.TargetPickingEnemies);
+                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle, CameraKeys.BattleKeys.TargetPickingEnemies);
                     break;
                 case TargetTypeEnum.SOLO_ALLY:
-                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, CameraKeys.BattleKeys.TargetPickingAllies);
+                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle, CameraKeys.BattleKeys.TargetPickingAllies);
                     break;
                 case TargetTypeEnum.ALL_ALLIES:
-                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, CameraKeys.BattleKeys.TargetPickingAllies);
+                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle, CameraKeys.BattleKeys.TargetPickingAllies);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

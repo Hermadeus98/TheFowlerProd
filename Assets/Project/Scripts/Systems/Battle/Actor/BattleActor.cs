@@ -1,4 +1,5 @@
 using System;
+using Sirenix.OdinInspector;
 using Unity.RemoteConfig;
 using UnityEngine;
 
@@ -6,26 +7,33 @@ namespace TheFowler
 {
     public class BattleActor : GameplayMonoBehaviour, ITurnActor, ITarget
     {
-        public BattleActorData BattleActorData;
-        
-        public CameraBatch cameraBatchBattle;
-        public CameraBatch CameraBatchBattle => cameraBatchBattle;
-
-        public BattleActorInfo BattleActorInfo;
-
+        [TabGroup("References")] 
+        [SerializeField] private BattleActorData battleActorData;
+        [TabGroup("References")]
+        [SerializeField] private CameraBatch cameraBatchBattle;
+        [TabGroup("References")]
         public Sockets sockets;
-
+        [TabGroup("References")]
         public SelectionPointer SelectionPointer;
+
+        [TabGroup("Datas")]
+        [SerializeField] protected BattleActorInfo battleActorInfo;
+        [TabGroup("Datas")]
+        public BattleActorStats BattleActorStats;
         
         protected Turn actorTurn;
 
-        public BattleActorStats BattleActorStats;
+        //--<Properties>-----------------------------------------------------------------------------------------------<
+        public CameraBatch CameraBatchBattle => cameraBatchBattle;
+        public BattleActorData BattleActorData => battleActorData;
+        public BattleActorInfo BattleActorInfo => battleActorInfo;
 
         protected override void OnStart()
         {
             base.OnStart();
             
             OnChangeDifficulty(DifficultyManager.currentDifficulty);
+            
             InitializeComponents();
         }
 
@@ -111,34 +119,50 @@ namespace TheFowler
 
         protected virtual void OnChangeDifficulty(DifficultyEnum newDifficulty)
         {
-            switch(newDifficulty)
+            if (BattleActorData.bindingType == BattleActorData.BindingType.REMOTE_SETTINGS)
             {
-                case DifficultyEnum.TEST:
+                switch (newDifficulty)
                 {
-                    var dataInitializer = new BattleActorDataInitializer(ConfigManager.appConfig.GetJson("TestJson"));
-                    BattleActorStats = dataInitializer.datas;
+                    case DifficultyEnum.TEST:
+                    {
+                        var dataInitializer =
+                            new BattleActorDataInitializer(
+                                ConfigManager.appConfig.GetJson(BattleActorData.datakey_default));
+                        BattleActorStats = dataInitializer.datas;
+                    }
+                        break;
+                    case DifficultyEnum.EASY:
+                    {
+                        var dataInitializer =
+                            new BattleActorDataInitializer(
+                                ConfigManager.appConfig.GetJson(BattleActorData.datakey_easy));
+                        BattleActorStats = dataInitializer.datas;
+                    }
+                        break;
+                    case DifficultyEnum.MEDIUM:
+                    {
+                        var dataInitializer =
+                            new BattleActorDataInitializer(
+                                ConfigManager.appConfig.GetJson(BattleActorData.datakey_medium));
+                        BattleActorStats = dataInitializer.datas;
+                    }
+                        break;
+                    case DifficultyEnum.HARD:
+                    {
+                        var dataInitializer =
+                            new BattleActorDataInitializer(
+                                ConfigManager.appConfig.GetJson(BattleActorData.datakey_hard));
+                        BattleActorStats = dataInitializer.datas;
+                    }
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(newDifficulty), newDifficulty, null);
                 }
-                    break;
-                case DifficultyEnum.EASY:
-                {
-                    var dataInitializer = new BattleActorDataInitializer(ConfigManager.appConfig.GetJson("EasyJson"));
-                    BattleActorStats = dataInitializer.datas;
-                }
-                    break;
-                case DifficultyEnum.MEDIUM:
-                {
-                    var dataInitializer = new BattleActorDataInitializer(ConfigManager.appConfig.GetJson("MediumJson"));
-                    BattleActorStats = dataInitializer.datas;
-                }
-                    break;
-                case DifficultyEnum.HARD:
-                {
-                    var dataInitializer = new BattleActorDataInitializer(ConfigManager.appConfig.GetJson("HardJson"));
-                    BattleActorStats = dataInitializer.datas;
-                }
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(newDifficulty), newDifficulty, null);
+            }
+            else
+            {
+                BattleActorStats.health = BattleActorData.health;
+                BattleActorStats.mana = BattleActorData.mana;
             }
         }
         
