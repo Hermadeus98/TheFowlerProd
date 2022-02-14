@@ -21,6 +21,7 @@ namespace TheFowler
         TPS_CAMERA,
         
         //Combats
+        BATTLE,
     }
 
     public static class CameraGenericKey
@@ -51,7 +52,9 @@ namespace TheFowler
                     return "Robyn_TPS";
                 
                 //Combats
-                
+
+                case CameraGenericKeyEnum.BATTLE:
+                    return "Battle";
                 default:
                     throw new ArgumentOutOfRangeException(nameof(key), key, null);
             }

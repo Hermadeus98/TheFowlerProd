@@ -23,6 +23,8 @@ namespace TheFowler
 
         [TabGroup("References")] [SerializeField]
         private Istate[] battleStates;
+
+        [TabGroup("References")] public CameraBatch BattleCameraBatch;
         
         [TabGroup("Debug")] [SerializeField] private bool finishDirectly = false;
         [TabGroup("Debug")]

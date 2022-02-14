@@ -10,7 +10,7 @@ namespace TheFowler
         {
             base.OnStateEnter(arg);
             
-            CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.Allies[0].CameraBatchBattle);
+            SetCamera("Default");
 
             if (BattleManager.CurrentBattle.FinishDirectly)
                 StartCoroutine(Stop());

@@ -99,6 +99,7 @@ Transform:
   - {fileID: 2898208878522503806}
   - {fileID: 261438265739385764}
   - {fileID: 2723629309268329476}
+  - {fileID: 809356721973280604}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -183,6 +184,7 @@ MonoBehaviour:
   isActive: 0
   alliesBatch: {fileID: 2898208878132705306}
   enemiesBatch: {fileID: 2898208878184489766}
+  BattleCameraBatch: {fileID: 8894770614557310612}
   finishDirectly: 0
   allies: []
   enemies: []
@@ -341,6 +343,11 @@ MonoBehaviour:
     SerializationNodes: []
   stateName: SkillExecution
   inputs: {fileID: 7269043487680707352}
+  battleCameraBatch: 1
+  cameraPath:
+    genericKey: 0
+    cameraName: Default
+    batchName: 
   fury: 0
 --- !u!1 &4822776653891921662
 GameObject:
@@ -400,6 +407,11 @@ MonoBehaviour:
       Data: 0
   stateName: Fury
   inputs: {fileID: 7269043487680707352}
+  battleCameraBatch: 1
+  cameraPath:
+    genericKey: 0
+    cameraName: Default
+    batchName: 
 --- !u!1 &5532701056424057083
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,6 +466,11 @@ MonoBehaviour:
     SerializationNodes: []
   stateName: SkillPicking
   inputs: {fileID: 7269043487680707352}
+  battleCameraBatch: 1
+  cameraPath:
+    genericKey: 0
+    cameraName: Default
+    batchName: 
 --- !u!1 &5650857267409678603
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,6 +525,11 @@ MonoBehaviour:
     SerializationNodes: []
   stateName: StartBattle
   inputs: {fileID: 7269043487680707352}
+  battleCameraBatch: 0
+  cameraPath:
+    genericKey: 8
+    cameraName: Default
+    batchName: 
 --- !u!1 &6116878657024185529
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,6 +584,11 @@ MonoBehaviour:
     SerializationNodes: []
   stateName: EndBattle
   inputs: {fileID: 7269043487680707352}
+  battleCameraBatch: 1
+  cameraPath:
+    genericKey: 0
+    cameraName: Default
+    batchName: 
 --- !u!1 &6417898757773543633
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,6 +643,11 @@ MonoBehaviour:
     SerializationNodes: []
   stateName: TargetPicking
   inputs: {fileID: 7269043487680707352}
+  battleCameraBatch: 1
+  cameraPath:
+    genericKey: 0
+    cameraName: Default
+    batchName: 
 --- !u!1 &7643029919333079853
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,6 +702,88 @@ MonoBehaviour:
     SerializationNodes: []
   stateName: ActionPicking
   inputs: {fileID: 7269043487680707352}
+  battleCameraBatch: 1
+  cameraPath:
+    genericKey: 0
+    cameraName: Default
+    batchName: 
+--- !u!1001 &2624756170187334820
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2898208878129117671}
+    m_Modifications:
+    - target: {fileID: 3411028606880406520, guid: 7e9d64e954731bb438246d590d3c7fc5, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411028606880406520, guid: 7e9d64e954731bb438246d590d3c7fc5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411028606880406520, guid: 7e9d64e954731bb438246d590d3c7fc5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411028606880406520, guid: 7e9d64e954731bb438246d590d3c7fc5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411028606880406520, guid: 7e9d64e954731bb438246d590d3c7fc5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411028606880406520, guid: 7e9d64e954731bb438246d590d3c7fc5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411028606880406520, guid: 7e9d64e954731bb438246d590d3c7fc5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411028606880406520, guid: 7e9d64e954731bb438246d590d3c7fc5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411028606880406520, guid: 7e9d64e954731bb438246d590d3c7fc5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411028606880406520, guid: 7e9d64e954731bb438246d590d3c7fc5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411028606880406520, guid: 7e9d64e954731bb438246d590d3c7fc5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6853796299410676272, guid: 7e9d64e954731bb438246d590d3c7fc5, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 6853796299410676272, guid: 7e9d64e954731bb438246d590d3c7fc5, type: 3}
+    - target: {fileID: 7795459432105617616, guid: 7e9d64e954731bb438246d590d3c7fc5, type: 3}
+      propertyPath: m_Name
+      value: Cameras Battle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7e9d64e954731bb438246d590d3c7fc5, type: 3}
+--- !u!4 &809356721973280604 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3411028606880406520, guid: 7e9d64e954731bb438246d590d3c7fc5, type: 3}
+  m_PrefabInstance: {fileID: 2624756170187334820}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8894770614557310612 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6853796299410676272, guid: 7e9d64e954731bb438246d590d3c7fc5, type: 3}
+  m_PrefabInstance: {fileID: 2624756170187334820}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95fa56a86b25bb845ad05699fb770a1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2898208878308587498
 PrefabInstance:
   m_ObjectHideFlags: 0
