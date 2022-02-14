@@ -20,7 +20,7 @@ namespace TheFowler
 
             StartCoroutine(Cast());
             
-            CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.cameraBatchBattle, CameraKeys.BattleKeys.SkillExecutionDefault);
+            CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle, CameraKeys.BattleKeys.SkillExecutionDefault);
         }
 
         IEnumerator Cast()

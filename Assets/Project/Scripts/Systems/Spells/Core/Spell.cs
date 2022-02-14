@@ -57,14 +57,14 @@ namespace TheFowler
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            yield break;
         }
         
         public enum SpellTypeEnum
         {
-            CLAW,
-            BEAK,
-            WEATHER
+            NULL = 0,
+            CLAW = 1,
+            BEAK = 2,
+            FEATHER = 3,
         }
     }
 }
