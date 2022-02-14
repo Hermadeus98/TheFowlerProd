@@ -20,9 +20,8 @@ namespace TheFowler
             {
                 skillPickingView = UI.OpenView<SkillPickingView>(UI.Views.SkillPicking);
             }
-            
-            CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle, CameraKeys.BattleKeys.SkillPicking);
 
+            SetCamera(CameraKeys.BattleKeys.SkillPicking);
         }
 
         public override void OnStateExecute()
