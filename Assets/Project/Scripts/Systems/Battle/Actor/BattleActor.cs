@@ -1,4 +1,5 @@
 using System;
+using Unity.RemoteConfig;
 using UnityEngine;
 
 namespace TheFowler
@@ -17,6 +18,17 @@ namespace TheFowler
         public SelectionPointer SelectionPointer;
         
         protected Turn actorTurn;
+
+        public BattleActorStats BattleActorStats;
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+            var dataInitializer = new BattleActorDataInitializer(ConfigManager.appConfig.GetJson("TestJson"));
+            Debug.Log(ConfigManager.appConfig.GetJson("TestJson"));
+            Debug.Log(dataInitializer.datas.health);
+            BattleActorStats = dataInitializer.datas;
+        }
 
         public virtual void OnTurnStart()
         {
