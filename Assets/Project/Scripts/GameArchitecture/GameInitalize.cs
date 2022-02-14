@@ -13,11 +13,16 @@ namespace TheFowler
     {
         [TitleGroup("Chapter Settings")]
         [SerializeField, Tooltip(ToolTips.TT_loadChapter)] private bool loadChapter;
+        [TitleGroup("Settings")]
         [SerializeField, ShowIf("@this.loadChapter")] private ChapterEnum startAtChapter;
 
         [TitleGroup("Settings")]
         [SerializeField, Tooltip(ToolTips.TT_loadGymRoom)] private bool loadGymRoom;
+        [TitleGroup("Settings")]
         [SerializeField, Tooltip(ToolTips.TT_loadPlayer)] private bool loadPlayer;
+
+        [TitleGroup("Difficulty Settings")] [SerializeField]
+        private DifficultyEnum startDifficulty = DifficultyEnum.TEST;
         
         private IEnumerator Start()
         {
@@ -33,6 +38,9 @@ namespace TheFowler
             GameEventInternal.Init();
             Game.Initialize();
             Game.SetDependancies();
+            
+            //--<DIFFICULTY>
+            DifficultyManager.ChangeDifficulty(startDifficulty);
             
             //--<GAME STATES>
             GameState.Initialize();
