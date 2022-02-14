@@ -69,7 +69,6 @@ namespace TheFowler
         {
             canvasGroup.DOFade(0f, duration);
             yield return new WaitForSeconds(duration);
-            //Destroy(gameObject);
         }
     }
 }

@@ -15,7 +15,9 @@ namespace TheFowler
         [SerializeField, EnableIf("@this.registerView == true")] private string viewName;
 
         [TabGroup("Main Settings")] [SerializeField]
-        protected bool useDefaultAnim = true;
+        protected bool useDefaultAnimShow = true;
+        [TabGroup("Main Settings")] [SerializeField]
+        protected bool useDefaultAnimHide = true;
 
         [TabGroup("References")]
         [SerializeField, GetComponent] private CanvasGroup canvasGroup;
@@ -38,7 +40,7 @@ namespace TheFowler
         public override void Show()
         {
             base.Show();
-            if (useDefaultAnim)
+            if (useDefaultAnimShow)
             {
                 openTween = CanvasGroup.DOFade(1f, .1f);
                 CanvasGroup.interactable = true;
@@ -49,7 +51,7 @@ namespace TheFowler
         public override void Hide()
         {
             base.Hide();
-            if (useDefaultAnim)
+            if (useDefaultAnimHide)
             {
                 openTween = CanvasGroup.DOFade(0f, .1f);
                 CanvasGroup.interactable = false;

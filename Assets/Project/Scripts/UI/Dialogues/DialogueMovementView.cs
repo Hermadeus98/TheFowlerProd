@@ -30,6 +30,18 @@ namespace TheFowler
         
         public DialogueChoiceSelector ChoiceSelector => choiceSelector;
 
+        protected override void RegisterEvent()
+        {
+            base.RegisterEvent();
+            ChapterManager.onChapterChange += delegate(Chapter chapter) { Hide(); };
+        }
+
+        protected override void UnregisterEvent()
+        {
+            base.UnregisterEvent();
+            ChapterManager.onChapterChange -= delegate(Chapter chapter) { Hide(); };
+        }
+
         public override void Refresh(EventArgs args)
         {
             base.Refresh(args);
@@ -63,7 +75,7 @@ namespace TheFowler
                 Destroy(element.gameObject);
             }
 
-            for (int i = 0; i < queue.Count; i++)
+            for (var i = 0; i < queue.Count; i++)
             {
                 var element = queue.ElementAt(i);
                 element.transform.SetParent(plugs[queue.Count - 1 - i]);
@@ -73,8 +85,10 @@ namespace TheFowler
 
         public override void Hide()
         {
-            //base.Hide();
-            StartCoroutine(HideCoroutine());
+            if(isActive)
+                StartCoroutine(HideCoroutine());
+            
+            base.Hide();
         }
 
         private IEnumerator HideCoroutine()
@@ -96,6 +110,16 @@ namespace TheFowler
             openTween = CanvasGroup.DOFade(0f, .1f);
             CanvasGroup.interactable = false;
             CanvasGroup.blocksRaycasts = true;
+
+            yield return new WaitForSeconds(1f);
+            
+            for (int i = 0; i < plugs.Length; i++)
+            {
+                for (int j = 0; j < plugs[i].childCount; j++)
+                {
+                    Destroy(plugs[i].transform.GetChild(j).GetComponent<DialogueUIElement>().gameObject, 1f);
+                }
+            }
         }
         
         public void SetChoices(DialogueNode dialogueNode)

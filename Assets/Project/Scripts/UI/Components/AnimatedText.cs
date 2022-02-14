@@ -21,17 +21,21 @@ namespace TheFowler
         public bool isComplete;
         
         private string textToDisplay;
+
+        private Coroutine displayCor;
         
         public void SetText(string text)
         {
             textToDisplay = text;
-            StartCoroutine(Display());
+            if(displayCor != null) StopCoroutine(displayCor);
+            displayCor = StartCoroutine(Display());
         }
 
         public void Append(string text)
         {
             textToDisplay += text;
-            StartCoroutine(Display(false));
+            if(displayCor != null) StopCoroutine(displayCor);
+            displayCor = StartCoroutine(Display(false));
         }
 
         private IEnumerator Display(bool clear = true)

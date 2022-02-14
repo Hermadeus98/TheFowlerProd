@@ -31,7 +31,19 @@ namespace TheFowler
         
         [TabGroup("Debug")]
         private bool waitInput;
-        
+
+        protected override void RegisterEvent()
+        {
+            base.RegisterEvent();
+            ChapterManager.onChapterChange += delegate(Chapter chapter) { EndPhase(); };
+        }
+
+        protected override void UnregisterEvent()
+        {
+            base.UnregisterEvent();
+            ChapterManager.onChapterChange -= delegate(Chapter chapter) { EndPhase(); };
+        }
+
         public override void PlayPhase()
         {
             if (BehaviourTree.IsNull())
@@ -151,7 +163,6 @@ namespace TheFowler
                 {
                     if (currentDialogueNode.hasMultipleChoices)
                     {
-                        Debug.Log("choice");
                         waitInput = true;
                         switch (dialogueType)
                         {
