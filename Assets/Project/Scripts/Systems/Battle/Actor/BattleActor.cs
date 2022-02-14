@@ -24,10 +24,14 @@ namespace TheFowler
         protected override void OnStart()
         {
             base.OnStart();
-            var dataInitializer = new BattleActorDataInitializer(ConfigManager.appConfig.GetJson("TestJson"));
-            Debug.Log(ConfigManager.appConfig.GetJson("TestJson"));
-            Debug.Log(dataInitializer.datas.health);
-            BattleActorStats = dataInitializer.datas;
+            
+            OnChangeDifficulty(DifficultyManager.currentDifficulty);
+            InitializeComponents();
+        }
+
+        protected virtual void InitializeComponents()
+        {
+            
         }
 
         public virtual void OnTurnStart()
@@ -65,12 +69,14 @@ namespace TheFowler
         {
             base.RegisterEvent();
             BattleManager.OnBattleStateChange += OnBattleStateChange;
+            DifficultyManager.OnDifficultyChange += OnChangeDifficulty;
         }
 
         protected override void UnregisterEvent()
         {
             base.UnregisterEvent();
             BattleManager.OnBattleStateChange -= OnBattleStateChange;
+            DifficultyManager.OnDifficultyChange -= OnChangeDifficulty;
         }
 
         protected virtual void OnBattleStateChange(BattleStateEnum currentBattleState)
@@ -103,6 +109,39 @@ namespace TheFowler
             }
         }
 
+        protected virtual void OnChangeDifficulty(DifficultyEnum newDifficulty)
+        {
+            switch(newDifficulty)
+            {
+                case DifficultyEnum.TEST:
+                {
+                    var dataInitializer = new BattleActorDataInitializer(ConfigManager.appConfig.GetJson("TestJson"));
+                    BattleActorStats = dataInitializer.datas;
+                }
+                    break;
+                case DifficultyEnum.EASY:
+                {
+                    var dataInitializer = new BattleActorDataInitializer(ConfigManager.appConfig.GetJson("EasyJson"));
+                    BattleActorStats = dataInitializer.datas;
+                }
+                    break;
+                case DifficultyEnum.MEDIUM:
+                {
+                    var dataInitializer = new BattleActorDataInitializer(ConfigManager.appConfig.GetJson("MediumJson"));
+                    BattleActorStats = dataInitializer.datas;
+                }
+                    break;
+                case DifficultyEnum.HARD:
+                {
+                    var dataInitializer = new BattleActorDataInitializer(ConfigManager.appConfig.GetJson("HardJson"));
+                    BattleActorStats = dataInitializer.datas;
+                }
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(newDifficulty), newDifficulty, null);
+            }
+        }
+        
         public void OnTarget()
         {
             SelectionPointer.Show();

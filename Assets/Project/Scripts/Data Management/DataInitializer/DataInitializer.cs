@@ -11,7 +11,6 @@ namespace TheFowler
         public DataInitializer(string json)
         {
             datas = JsonUtility.FromJson<T>(json);
-            Debug.Log(json);
         }
     }
 }
