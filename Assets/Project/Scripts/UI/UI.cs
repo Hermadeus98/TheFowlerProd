@@ -17,7 +17,9 @@ namespace TheFowler
                 SkillPicking = "SkillPickingView",
                 TargetPicking = "TargetPickingView",
                 ActionPicking = "ActionPickingView",
-                TurnTransition = "TurnTransitionView";
+                TurnTransition = "TurnTransitionView",
+                Harmo = "HarmonisationView",
+                InfoBox = "InfoBoxView";
         }
         
         private static Dictionary<string, UIView> views = new Dictionary<string, UIView>();

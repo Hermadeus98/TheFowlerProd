@@ -1,0 +1,122 @@
+using System;
+using QRCode.Extensions;
+using Sirenix.OdinInspector;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+namespace TheFowler
+{
+    public class HarmonisationHandler : GameplayPhase
+    {
+        private HarmonisationView view;
+        private InfoBoxView infoView;
+        [TabGroup("References")]
+        [SerializeField] private PlayerInput Inputs;
+        [TabGroup("References")]
+        [SerializeField] private DialogueHandler harmonisationAbigail, harmonisationPhoebe;
+        protected override void RegisterEvent()
+        {
+            base.RegisterEvent();
+            ChapterManager.onChapterChange += delegate (Chapter chapter) { EndPhase(); };
+        }
+
+        protected override void UnregisterEvent()
+        {
+            base.UnregisterEvent();
+            ChapterManager.onChapterChange -= delegate (Chapter chapter) { EndPhase(); };
+        }
+        public override void PlayPhase()
+        {
+            base.PlayPhase();
+            view = UI.GetView<HarmonisationView>(UI.Views.Harmo);
+            infoView = UI.GetView<InfoBoxView>(UI.Views.InfoBox);
+
+            infoView.Hide();
+            view.Show();
+        }
+
+        public override void EndPhase()
+        {
+            base.EndPhase();
+
+            infoView.Hide();
+        }
+
+        public void CheckInputs()
+        {
+            if (view.isChosing)
+            {
+                if (Inputs.actions["NavigateRight"].WasPressedThisFrame())
+                {
+                    view.ShowPhoebe();
+
+                    infoView.Show();
+
+                    InfoBoxButtons[] infoButtons = new InfoBoxButtons[2];
+                    infoButtons[0] = InfoBoxButtons.CONFIRM;
+                    infoButtons[1] = InfoBoxButtons.BACK;
+
+                    infoView.ShowProfile(infoButtons);
+                }
+                else if (Inputs.actions["NavigateLeft"].WasPressedThisFrame())
+                {
+                    view.ShowAbi();
+
+                    infoView.Show();
+
+                    InfoBoxButtons[] infoButtons = new InfoBoxButtons[2];
+                    infoButtons[0] = InfoBoxButtons.CONFIRM;
+                    infoButtons[1] = InfoBoxButtons.BACK;
+
+                    infoView.ShowProfile(infoButtons);
+                }
+
+            }
+            else if (view.onAbi)
+            {
+                if (Inputs.actions["Select"].WasPressedThisFrame())
+                {
+                    view.Hide();
+                    harmonisationAbigail.PlayPhase();
+                    EndPhase();
+                }
+                else if (Inputs.actions["Return"].WasPressedThisFrame())
+                {
+                    view.ShowChoice();
+                    infoView.Hide();
+                }
+            }
+
+            else if (view.onPhoebe)
+            {
+                if (Inputs.actions["Select"].WasPressedThisFrame())
+                {
+                    view.Hide();
+                    harmonisationPhoebe.PlayPhase();
+                    EndPhase();
+                }
+                else if (Inputs.actions["Return"].WasPressedThisFrame())
+                {
+                    view.ShowChoice();
+                    infoView.Hide();
+                }
+            }
+
+            if (Inputs.actions["InfoBox"].WasPressedThisFrame())
+            {
+
+                infoView.CheckInfoBox();
+            }
+
+        }
+        private void Update()
+        {
+            if (isActive)
+            {
+                CheckInputs();
+            }
+        }
+
+    }
+}
+
