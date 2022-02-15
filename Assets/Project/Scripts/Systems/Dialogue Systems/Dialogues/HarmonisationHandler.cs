@@ -17,6 +17,8 @@ namespace TheFowler
         [SerializeField] private DialogueHandler harmonisationAbigail, harmonisationPhoebe;
         [TabGroup("References")]
         [SerializeField] private bool isAbigailSolo;
+        [TabGroup("References")]
+        [SerializeField] private ActorActivator actorActivator;
 
         protected override void RegisterEvent()
         {
@@ -32,6 +34,8 @@ namespace TheFowler
         public override void PlayPhase()
         {
             base.PlayPhase();
+            PlaceActor();
+
             view = UI.GetView<HarmonisationView>(UI.Views.Harmo);
             infoView = UI.GetView<InfoBoxView>(UI.Views.InfoBox);
 
@@ -123,6 +127,11 @@ namespace TheFowler
                 infoView.CheckInfoBox();
             }
 
+        }
+
+        private void PlaceActor()
+        {
+            actorActivator?.ActivateActor();
         }
 
         private IEnumerator WaitCutscenePhase(DialogueHandler cutscene)

@@ -93,8 +93,8 @@ MonoBehaviour:
   onTriggerEnterFront:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TheFowler.DialogueHandler, Assembly-CSharp
+      - m_Target: {fileID: 3656496174745475175}
+        m_TargetAssemblyTypeName: TheFowler.HarmonisationHandler, Assembly-CSharp
         m_MethodName: PlayPhase
         m_Mode: 1
         m_Arguments:
@@ -113,6 +113,62 @@ MonoBehaviour:
       m_Calls: []
   disableOnEnter: 1
   disableOnExit: 0
+--- !u!1 &8193951535547763654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6970689573188679141}
+  - component: {fileID: 5528686638618908689}
+  m_Layer: 0
+  m_Name: ActorActivator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6970689573188679141
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193951535547763654}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -12.664614, y: -3.6309953, z: 1.3617983}
+  m_LocalScale: {x: 0.7398637, y: 1, z: 0.99999976}
+  m_Children: []
+  m_Father: {fileID: 9060475477620800205}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5528686638618908689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193951535547763654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ca2a9300b916594880e5df7baa15c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  desactivateRobyn: 1
+  desactivateAbigael: 1
+  desactivatePhoebe: 1
+  ActorsToActivateParents: []
 --- !u!1 &9060475477620800210
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,6 +199,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6207393329020455125}
+  - {fileID: 6970689573188679141}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -181,6 +238,10 @@ MonoBehaviour:
       m_Calls: []
   isActive: 0
   Inputs: {fileID: 6886370477447089445}
+  harmonisationAbigail: {fileID: 0}
+  harmonisationPhoebe: {fileID: 0}
+  isAbigailSolo: 0
+  actorActivator: {fileID: 5528686638618908689}
 --- !u!114 &6886370477447089445
 MonoBehaviour:
   m_ObjectHideFlags: 0
