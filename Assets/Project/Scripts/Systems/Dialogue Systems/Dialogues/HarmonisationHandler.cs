@@ -34,7 +34,7 @@ namespace TheFowler
         public override void PlayPhase()
         {
             base.PlayPhase();
-            PlaceActor();
+
 
             view = UI.GetView<HarmonisationView>(UI.Views.Harmo);
             infoView = UI.GetView<InfoBoxView>(UI.Views.InfoBox);
@@ -52,6 +52,8 @@ namespace TheFowler
                 infoButtons[0] = InfoBoxButtons.CONFIRM;
                 infoView.ShowProfile(infoButtons);
             }
+
+            PlaceActor();
         }
 
         public override void EndPhase()
@@ -59,6 +61,8 @@ namespace TheFowler
             base.EndPhase();
 
             infoView.Hide();
+            view.Hide();
+            actorActivator?.DesactivateActor();
         }
 
         public void CheckInputs()
