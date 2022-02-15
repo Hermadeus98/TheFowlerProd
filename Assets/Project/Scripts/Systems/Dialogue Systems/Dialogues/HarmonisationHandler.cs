@@ -20,6 +20,7 @@ namespace TheFowler
         [TabGroup("References")]
         [SerializeField] private ActorActivator actorActivator;
 
+
         protected override void RegisterEvent()
         {
             base.RegisterEvent();
@@ -34,7 +35,7 @@ namespace TheFowler
         public override void PlayPhase()
         {
             base.PlayPhase();
-
+            PlaceActor();
 
             view = UI.GetView<HarmonisationView>(UI.Views.Harmo);
             infoView = UI.GetView<InfoBoxView>(UI.Views.InfoBox);
@@ -53,7 +54,7 @@ namespace TheFowler
                 infoView.ShowProfile(infoButtons);
             }
 
-            PlaceActor();
+            
         }
 
         public override void EndPhase()
@@ -64,6 +65,11 @@ namespace TheFowler
             view.Hide();
             actorActivator?.DesactivateActor();
         }
+
+        //public override void PlayWithTransition()
+        //{
+        //    UI.GetView<TransitionView>(UI.Views.TransitionView).Show(TransitionType.HARMONISATION, PlayPhase);
+        //}
 
         public void CheckInputs()
         {

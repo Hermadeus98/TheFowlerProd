@@ -3,6 +3,8 @@ using QRCode.Extensions;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DG.Tweening;
+using System.Collections;
 
 namespace TheFowler
 {
@@ -69,8 +71,8 @@ namespace TheFowler
             switch (dialogueType)
             {
                 case DialogueType.STATIC:
-                    PlaceActor();
                     UI.OpenView(UI.Views.StaticDialogs);
+                    PlaceActor();
                     break;
                 case DialogueType.MOVEMENT:
                     UI.OpenView(UI.Views.MovementDialogs);
@@ -82,6 +84,26 @@ namespace TheFowler
             currentDialogueNode = BehaviourTree.rootNode as DialogueNode;
             DisplayDialogue(currentDialogue);
         }
+
+        //public override void PlayWithTransition()
+        //{
+        //    switch (dialogueType)
+        //    {
+        //        case DialogueType.STATIC:
+        //            StartCoroutine(WaitToPlaceActors());
+        //            UI.GetView<TransitionView>(UI.Views.TransitionView).Show(TransitionType.STATIC, PlayPhase);
+        //            break;
+        //        case DialogueType.MOVEMENT:
+        //            PlayPhase();
+        //            break;
+        //        default:
+        //            throw new ArgumentOutOfRangeException();
+        //    }
+
+        //}
+
+
+        
 
         private void Update()
         {

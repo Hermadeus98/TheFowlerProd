@@ -55,6 +55,12 @@ namespace TheFowler
             StartBattle();
         }
 
+        //public override void PlayWithTransition()
+        //{
+        //    UI.GetView<TransitionView>(UI.Views.TransitionView).Show(TransitionType.STATIC, PlayPhase);
+
+        //}
+
         private void StartBattle()
         {
             ChangeBattleState(BattleStateEnum.START_BATTLE);

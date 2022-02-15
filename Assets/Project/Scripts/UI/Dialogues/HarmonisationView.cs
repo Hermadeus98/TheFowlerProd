@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
-using MoreMountains.Feedbacks;
+
 
 namespace TheFowler
 {
@@ -13,7 +13,7 @@ namespace TheFowler
     {
         [TabGroup("References")]
         [SerializeField] private GameObject choice, abigail, phoebe, abigailSolo;
-        [SerializeField] private MMFeedbacks transitionIn;
+
 
         [ReadOnly]
         public bool isChosing, onAbi, onPhoebe;
@@ -27,7 +27,7 @@ namespace TheFowler
         public override void Show()
         {
             base.Show();
-            transitionIn.PlayFeedbacks();
+            SetupShow();
         }
 
         public void SetupShow()
