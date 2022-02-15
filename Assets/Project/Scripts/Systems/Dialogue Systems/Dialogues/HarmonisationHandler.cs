@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using QRCode.Extensions;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -91,7 +92,7 @@ namespace TheFowler
                 if (Inputs.actions["Select"].WasPressedThisFrame())
                 {
                     view.Hide();
-                    harmonisationAbigail.PlayPhase();
+                    StartCoroutine(WaitCutscenePhase(harmonisationAbigail));
                     EndPhase();
                 }
                 else if (Inputs.actions["Return"].WasPressedThisFrame())
@@ -106,7 +107,7 @@ namespace TheFowler
                 if (Inputs.actions["Select"].WasPressedThisFrame())
                 {
                     view.Hide();
-                    harmonisationPhoebe.PlayPhase();
+                    StartCoroutine(WaitCutscenePhase(harmonisationPhoebe));
                     EndPhase();
                 }
                 else if (Inputs.actions["Return"].WasPressedThisFrame())
@@ -122,6 +123,14 @@ namespace TheFowler
                 infoView.CheckInfoBox();
             }
 
+        }
+
+        private IEnumerator WaitCutscenePhase(DialogueHandler cutscene)
+        {
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+            cutscene.PlayPhase();
+            yield break;
         }
         private void Update()
         {
