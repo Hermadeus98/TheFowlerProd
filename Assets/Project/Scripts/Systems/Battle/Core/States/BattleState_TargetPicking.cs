@@ -39,11 +39,6 @@ namespace TheFowler
                 
                 if (TargetSelector.Select(inputs.actions["Select"].WasPressedThisFrame(), out var targets))
                 {
-                    for (int i = 0; i < targets.Count(); i++)
-                    {
-                        Debug.Log(targets.ElementAt(i).BattleActorData.actorName);
-                    }
-                    
                     BattleManager.CurrentBattle.ChangeBattleState<BattleState_SkillExecution>(BattleStateEnum.SKILL_EXECUTION);
                 }
                 if (inputs.actions["Return"].WasPressedThisFrame())

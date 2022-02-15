@@ -24,8 +24,12 @@ namespace TheFowler
 
         private void PlayRound()
         {
+            Debug.Log(currentTurnIndex);
+            
             currentTurnActor?.OnTurnEnd();
+
             currentTurnActor = TurnActors[currentTurnIndex];
+
             if (currentTurnActor.SkipTurn())
             {
                 currentTurnIndex++;
@@ -35,6 +39,7 @@ namespace TheFowler
             {
                 currentTurnActor.OnTurnStart();
                 BattleManager.OnTurnChanged?.Invoke();
+                currentTurnIndex++;
             }
         }
 
@@ -46,17 +51,18 @@ namespace TheFowler
                 return;
             }
 
-            PlayRound();
-
-            currentTurnIndex++;
-
             if (currentTurnIndex == TurnActors.Count)
             {
                 currentTurnActor?.OnTurnEnd();
                 roundIsFinish = true;
-                Debug.Log("FINISH ROUND");
+                //Debug.Log("FINISH ROUND AT " + currentTurnIndex);
+                BattleManager.CurrentBattle.TurnSystem.NextTurn();
                 return;
             }
+            
+            PlayRound();
+
+            //currentTurnIndex++;
         }
 
         /// <summary>

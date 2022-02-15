@@ -57,9 +57,19 @@ namespace TheFowler
 
         public static void Quit()
         {
-            AvailableTargets.ForEach(w => EndPreview(w));
-            AvailableTargets.Clear();
-            SelectedTargets.Clear();
+            if (!AvailableTargets.IsNullOrEmpty())
+            {
+                AvailableTargets.ForEach(w => EndPreview(w));
+                AvailableTargets.Clear();
+            }
+        }
+
+        public static void ResetSelectedTargets()
+        {
+            if (!SelectedTargets.IsNullOrEmpty())
+            {
+                SelectedTargets.Clear();
+            }
         }
         
         //---<CORE>----------------------------------------------------------------------------------------------------<

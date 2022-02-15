@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace TheFowler
 {
-    public class DebugLogEffect : Effect
+    public class StunEffect : Effect
     {
+        [SerializeField] private int stunTurnDuration;
+        
         public override IEnumerator OnBeginCast(BattleActor emitter, BattleActor[] receivers)
         {
             yield break;
@@ -13,7 +15,11 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-            Debug.Log("CAST " + EffectName);
+            foreach (var receiver in receivers)
+            {
+                receiver.GetBattleComponent<Stun>().StunActor(stunTurnDuration);
+            }
+            
             yield break;
         }
 
@@ -22,4 +28,5 @@ namespace TheFowler
             yield break;
         }
     }
+
 }

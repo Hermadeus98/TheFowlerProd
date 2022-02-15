@@ -12,7 +12,13 @@ namespace TheFowler
         [SerializeField, Range(0,100)] private float buffPercent = 25f;
 
         public UnityEvent OnBuffStart, OnBuffEnd;
-        
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            waitTurn = 0;
+        }
+
         [Button]
         public void BuffActor(int turnCount)
         {

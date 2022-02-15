@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace TheFowler
 {
-    public class DebugLogEffect : Effect
+    public class DamageEffect : Effect
     {
+        public float damage;
+        
         public override IEnumerator OnBeginCast(BattleActor emitter, BattleActor[] receivers)
         {
             yield break;
@@ -13,7 +15,12 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-            Debug.Log("CAST " + EffectName);
+            foreach (var receiver in receivers)
+            {
+                receiver.Health.TakeDamage(
+                    DamageCalculator.CalculateDamage(damage, emitter, receiver)
+                    );
+            }
             yield break;
         }
 

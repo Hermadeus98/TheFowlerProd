@@ -12,6 +12,12 @@ namespace TheFowler
         
         public UnityEvent OnTauntStart, OnTauntEnd;
         
+        public override void Initialize()
+        {
+            base.Initialize();
+            waitTurn = 0;
+        }
+        
         [Button]
         public void TauntActor(int turnCount)
         {
