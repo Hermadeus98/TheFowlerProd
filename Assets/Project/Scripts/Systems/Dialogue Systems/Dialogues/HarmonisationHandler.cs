@@ -14,6 +14,9 @@ namespace TheFowler
         [SerializeField] private PlayerInput Inputs;
         [TabGroup("References")]
         [SerializeField] private DialogueHandler harmonisationAbigail, harmonisationPhoebe;
+        [TabGroup("References")]
+        [SerializeField] private bool isAbigailSolo;
+
         protected override void RegisterEvent()
         {
             base.RegisterEvent();
@@ -32,7 +35,18 @@ namespace TheFowler
             infoView = UI.GetView<InfoBoxView>(UI.Views.InfoBox);
 
             infoView.Hide();
+
+            view.isAbigailSolo = isAbigailSolo;
             view.Show();
+
+            if (isAbigailSolo)
+            {
+                infoView.Show();
+
+                InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
+                infoButtons[0] = InfoBoxButtons.CONFIRM;
+                infoView.ShowProfile(infoButtons);
+            }
         }
 
         public override void EndPhase()

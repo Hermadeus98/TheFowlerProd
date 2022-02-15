@@ -11,11 +11,12 @@ namespace TheFowler
     public class HarmonisationView : UIView
     {
         [TabGroup("References")]
-        [SerializeField] private GameObject choice, abigail, phoebe;
+        [SerializeField] private GameObject choice, abigail, phoebe, abigailSolo;
 
-        public bool isChosing;
-        public bool onAbi;
-        public bool onPhoebe;
+        [ReadOnly]
+        public bool isChosing, onAbi, onPhoebe;
+        [ReadOnly]
+        public bool isAbigailSolo;
         public override void Refresh(EventArgs args)
         {
             base.Refresh(args);
@@ -25,7 +26,15 @@ namespace TheFowler
         {
             base.Show();
 
-            ShowChoice();
+            if (!isAbigailSolo)
+            {
+                ShowChoice();
+            }
+            else
+            {
+                ShowAbiSolo();
+            }
+
         }
 
         public override void Hide()
@@ -35,6 +44,7 @@ namespace TheFowler
             choice.SetActive(false);
             abigail.SetActive(false);
             phoebe.SetActive(false);
+            abigailSolo.SetActive(false);
             isChosing = false;
             onAbi = false;
             onPhoebe = false;
@@ -44,6 +54,17 @@ namespace TheFowler
         {
             choice.SetActive(false);
             abigail.SetActive(true);
+            phoebe.SetActive(false);
+            isChosing = false;
+            onAbi = true;
+            onPhoebe = false;
+        }
+
+        public void ShowAbiSolo()
+        {
+            choice.SetActive(false);
+            abigail.SetActive(false);
+            abigailSolo.SetActive(true);
             phoebe.SetActive(false);
             isChosing = false;
             onAbi = true;
