@@ -1,5 +1,6 @@
 using System;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using Unity.RemoteConfig;
 using UnityEngine;
 
@@ -16,6 +17,13 @@ namespace TheFowler
         [TabGroup("References")]
         public SelectionPointer SelectionPointer;
 
+        [TabGroup("Components")] [SerializeField]
+        private BattleActorComponent[] battleActorComponents;
+        [TabGroup("Components")] [SerializeField]
+        private Health health;
+        [TabGroup("Components")] [SerializeField]
+        private Mana mana;
+        
         [TabGroup("Datas")]
         [SerializeField] protected BattleActorInfo battleActorInfo;
         [TabGroup("Datas")]
@@ -39,12 +47,15 @@ namespace TheFowler
 
         protected virtual void InitializeComponents()
         {
-            
+            battleActorComponents.ForEach(w => w.Initialize());
+            health?.Initialize(BattleActorStats.health);
+            mana?.Initialize(BattleActorStats.mana);
         }
 
         public virtual void OnTurnStart()
         {
             Debug.Log(gameObject.name + " start turn");
+            battleActorComponents.ForEach(w => w.OnTurnStart());
         }
 
         public virtual void OnTurnEnd()
@@ -181,5 +192,9 @@ namespace TheFowler
     public class BattleActorInfo
     {
         public bool isDeath;
+        public bool isStun;
+        public float buffBonus;
+        public float debuffMalus;
+        public bool isTaunt;
     }
 }
