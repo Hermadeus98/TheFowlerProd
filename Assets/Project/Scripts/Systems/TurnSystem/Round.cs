@@ -24,7 +24,7 @@ namespace TheFowler
 
         private void PlayRound()
         {
-            Debug.Log(currentTurnIndex);
+            //Debug.Log(currentTurnIndex);
             
             currentTurnActor?.OnTurnEnd();
 

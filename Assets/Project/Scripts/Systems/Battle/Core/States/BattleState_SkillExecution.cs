@@ -15,10 +15,10 @@ namespace TheFowler
         public override void OnStateEnter(EventArgs arg)
         {
             base.OnStateEnter(arg);
-
-            StartCoroutine(Cast());
             
             SetCamera(CameraKeys.BattleKeys.SkillExecutionDefault);
+
+            StartCoroutine(Cast());
         }
 
         IEnumerator Cast()

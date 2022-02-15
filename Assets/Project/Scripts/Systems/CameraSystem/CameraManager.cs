@@ -7,6 +7,9 @@ using QRCode;
 using QRCode.Extensions;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 
 namespace TheFowler
@@ -112,5 +115,17 @@ namespace TheFowler
         [ShowIf("@this.genericKey == CameraGenericKeyEnum.NULL")]
         public string batchName;
 
+        [Button]
+        public void Target()
+        {
+            CameraManager.Instance.SetCamera(this);
+#if UNITY_EDITOR
+            var cam = GameObject.FindObjectOfType<CinemachineBrain>().ActiveVirtualCamera;
+            if (cam is CinemachineVirtualCameraBase cast)
+            {
+                Selection.activeObject = cast;
+            }
+#endif
+        }
     }
 }
