@@ -33,7 +33,7 @@ namespace TheFowler
                 {
                     if (Player.SelectedSpell.IsNotNull())
                     {
-                        yield return Player.SelectedSpell.Cast();
+                        yield return Player.SelectedSpell.Cast(BattleManager.CurrentBattleActor, TargetSelector.SelectedTargets.ToArray());
                     }    
                 }
                 
@@ -45,6 +45,7 @@ namespace TheFowler
         {
             base.OnStateExit(arg);
             fury = false;
+            TargetSelector.ResetSelectedTargets();
         }
     }
 }

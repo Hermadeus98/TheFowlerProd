@@ -89,17 +89,24 @@ namespace TheFowler
             if (allies.All(w => w.BattleActorInfo.isDeath))
             {
                 Debug.Log("DEFEAT");
-                ChangeBattleState(BattleStateEnum.END_BATTLE);
+                StopBattle();
                 return true;
             }
             if (enemies.All(w => w.BattleActorInfo.isDeath))
             {
                 Debug.Log("VICTORY");
-                ChangeBattleState(BattleStateEnum.END_BATTLE);
+                StopBattle();
                 return true;
             }
 
             return false;
+        }
+
+        [Button]
+        public void StopBattle()
+        {
+            ChangeBattleState(BattleStateEnum.END_BATTLE);
+
         }
 
         [Button]

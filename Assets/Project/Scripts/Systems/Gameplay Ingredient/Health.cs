@@ -25,7 +25,11 @@ namespace TheFowler
                 return;
             
             currentHealth -= damage;
-            if (currentHealth < 0) currentHealth = 0;
+            if (currentHealth <= 0)
+            {
+                currentHealth = 0;
+                Death();
+            }
             onDamaged?.Invoke(currentHealth);
         }
 

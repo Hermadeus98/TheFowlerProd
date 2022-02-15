@@ -35,6 +35,7 @@ namespace TheFowler
         public CameraBatch CameraBatchBattle => cameraBatchBattle;
         public BattleActorData BattleActorData => battleActorData;
         public BattleActorInfo BattleActorInfo => battleActorInfo;
+        public Health Health => health;
 
         protected override void OnStart()
         {
@@ -50,11 +51,18 @@ namespace TheFowler
             battleActorComponents.ForEach(w => w.Initialize());
             health?.Initialize(BattleActorStats.health);
             mana?.Initialize(BattleActorStats.mana);
+
+            battleActorInfo.isDeath = false;
+            battleActorInfo.isStun = false;
+            BattleActorInfo.isTaunt = false;
+            battleActorInfo.buffBonus = 0;
+            battleActorInfo.debuffMalus = 0;
         }
 
         public virtual void OnTurnStart()
         {
             Debug.Log(gameObject.name + " start turn");
+            
             battleActorComponents.ForEach(w => w.OnTurnStart());
         }
 
@@ -65,6 +73,13 @@ namespace TheFowler
 
         public virtual bool SkipTurn()
         {
+            if (BattleActorInfo.isStun)
+            {
+                Debug.Log(gameObject.name + " skip turn : stun");
+                GetBattleComponent<Stun>().OnTurnStart();
+                return true;
+            }
+            
             if (BattleActorInfo.isDeath)
             {
                 Debug.Log(gameObject.name + " skip turn");
@@ -89,6 +104,7 @@ namespace TheFowler
             base.RegisterEvent();
             BattleManager.OnBattleStateChange += OnBattleStateChange;
             DifficultyManager.OnDifficultyChange += OnChangeDifficulty;
+            InitializeComponents();
         }
 
         protected override void UnregisterEvent()
@@ -185,6 +201,19 @@ namespace TheFowler
         public void OnEndTarget()
         {
             SelectionPointer.Hide();
+        }
+
+        public T GetBattleComponent<T>() where T : BattleActorComponent
+        {
+            for (int i = 0; i < battleActorComponents.Length; i++)
+            {
+                if (battleActorComponents[i] is T cast)
+                {
+                    return cast;
+                }
+            }
+
+            return null;
         }
     }
 

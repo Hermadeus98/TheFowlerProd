@@ -16,11 +16,11 @@ namespace TheFowler
         [SerializeField] protected BattleCameraBatch battleCameraBatch = BattleCameraBatch.NULL;
         [SerializeField, HideIf("@this.battleCameraBatch == BattleCameraBatch.CURRENT_ACTOR")] protected cameraPath cameraPath;
         
-        public abstract IEnumerator OnBeginCast();
+        public abstract IEnumerator OnBeginCast(BattleActor emitter, BattleActor[] receivers);
 
-        public abstract IEnumerator OnCast();
+        public abstract IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers);
 
-        public abstract IEnumerator OnFinishCast();
+        public abstract IEnumerator OnFinishCast(BattleActor emitter, BattleActor[] receivers);
         
         public void SetCamera()
         {
