@@ -1,0 +1,57 @@
+using System.Collections;
+using System.Collections.Generic;
+using QRCode.Utils;
+using Sirenix.OdinInspector;
+using UnityEngine;
+
+namespace TheFowler
+{
+    public class Mana : BattleActorComponent
+    {
+        [SerializeField] private int maxMana;
+        [SerializeField] private int currentMana;
+
+        public IntUnityEvent onRemoveMana, onWinMana;
+        
+        public void Initialize(int mana)
+        {
+            maxMana = currentMana = mana;
+        }
+
+        [Button]
+        public bool HaveEnoughMana(int mana)
+        {
+            return currentMana >= mana;
+        }
+
+        [Button]
+        public void AddMana(int mana)
+        {
+            currentMana += mana;
+            if (currentMana > maxMana) currentMana = maxMana;
+            onWinMana?.Invoke(currentMana);
+        }
+
+        [Button]
+        public void RemoveMana(int mana)
+        {
+            currentMana -= mana;
+            if (currentMana < 0) currentMana = 0;
+            onRemoveMana?.Invoke(currentMana);
+        }
+
+        [Button]
+        public void RemoveAllMana()
+        {
+            currentMana = 0;
+            onRemoveMana?.Invoke(currentMana);
+        }
+
+        [Button]
+        public void RestoreMana()
+        {
+            currentMana = maxMana;
+            onWinMana?.Invoke(currentMana);
+        }
+    }
+}
