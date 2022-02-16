@@ -213,7 +213,7 @@ namespace TheFowler
         {
             if (dialogueType == DialogueType.STATIC)
             {
-                ReplaceActor(.5f);
+                ReplaceActor();
             }
             
             base.EndPhase();
