@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using MoreMountains.Feedbacks;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using Event = AK.Wwise.Event;
+using UnityEngine.Playables;
 
 namespace TheFowler
 {
@@ -14,6 +14,12 @@ namespace TheFowler
 
         private bool next;
         private Coroutine currentBrickIE;
+
+        [ReadOnly] public bool isPlaying;
+ 
+        [HideInInspector] public Action OnStart, OnEnd;
+        
+         public EventBrick CurrentBrick { get; private set; }
         
         [Button]
         public void Play()
@@ -23,8 +29,12 @@ namespace TheFowler
 
         IEnumerator PlayBricks()
         {
+            isPlaying = true;
+            OnStart?.Invoke();
+            
             for (int i = 0; i < Bricks.Count; i++)
             {
+                CurrentBrick = Bricks[i];
                 currentBrickIE = StartCoroutine(Bricks[i].Execute());
                 
                 while (Bricks[i].isPlaying)
@@ -40,7 +50,10 @@ namespace TheFowler
 
                 next = false;
             }
-            
+
+            isPlaying = false;
+            OnEnd?.Invoke();
+            Bricks = null;
             yield break;
         }
 
@@ -55,12 +68,12 @@ namespace TheFowler
     public class EventBrick
     {
         [TitleGroup("Settings")] [SerializeField]
+        private BrickType brickType;
+        [TitleGroup("Settings")] [SerializeField]
         private string sequenceName;
         [TitleGroup("Settings")] [SerializeField]
         private int loop = 1;
         
-        [TitleGroup("Gameplay")]
-        public bool waitAnInput = true;
         [TitleGroup("Gameplay"), ReadOnly]
         public bool hasAnInput = false; //Si il y un input l'action est fini.
 
@@ -69,6 +82,15 @@ namespace TheFowler
         [TitleGroup("Sequence"), ReadOnly]
         public bool isPlaying;
 
+        [TitleGroup("Sequence")] 
+        public PlayableDirector PlayableDirector;
+        
+        public enum BrickType
+        {
+            SEQUENCE,
+            WAIT_INPUT,
+            CINEMATIC,
+        }
         
         public IEnumerator Execute()
         {
@@ -77,25 +99,33 @@ namespace TheFowler
             for (int i = 0; i < loop; i++)
             {
                 hasAnInput = false;
-                
-                if (waitAnInput)
+
+                switch (brickType)
                 {
-                    sequence.PlayFeedbacks();
-                    while (!hasAnInput)
-                    {
-                        Debug.Log(sequenceName);
-                        yield return null;
-                    }
-                    sequence.StopFeedbacks();
-                }
-                else
-                {
-                    sequence.PlayFeedbacks();
-                    while (sequence.IsPlaying)
-                    {
-                        Debug.Log(sequenceName);
-                        yield return null;
-                    }
+                    case BrickType.SEQUENCE:
+                        sequence.PlayFeedbacks();
+                        while (sequence.IsPlaying)
+                        {
+                            yield return null;
+                        }
+                        break;
+                    case BrickType.WAIT_INPUT:
+                        sequence.PlayFeedbacks();
+                        while (!hasAnInput)
+                        {
+                            yield return null;
+                        }
+                        sequence.StopFeedbacks();
+                        break;
+                    case BrickType.CINEMATIC:
+                        PlayableDirector.Play();
+                        while (PlayableDirector.state == PlayState.Playing)
+                        {
+                            yield return null;
+                        }
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
             }
 
@@ -105,6 +135,7 @@ namespace TheFowler
         public void Stop()
         {
             isPlaying = false;
+            PlayableDirector.Stop();
         }
 
         public void SetLoop(int loopCount)
@@ -113,6 +144,10 @@ namespace TheFowler
         }
 
         [Button]
-        public void Input() => hasAnInput = true;
+        public void Input()
+        {
+            if(brickType == BrickType.WAIT_INPUT)
+                hasAnInput = true;
+        }
     }
 }

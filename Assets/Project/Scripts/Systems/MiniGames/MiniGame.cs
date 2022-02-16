@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,30 +5,20 @@ namespace TheFowler
 {
     public class MiniGame : GameplayPhase
     {
-        [SerializeField] private BattleActor Actor;
-        [SerializeField] private Transform ActorPosition;
-
-        protected Vector3 initialPosition;
-        protected Quaternion initialRotation;
+        [SerializeField] protected EventBricks EventBricks;
+        [SerializeField] protected PlayerInput Inputs;
         
         public override void PlayPhase()
         {
             base.PlayPhase();
+            EventBricks.OnEnd += EndPhase;
+            EventBricks.Play();
         }
 
         public override void EndPhase()
         {
             base.EndPhase();
-        }
-
-        protected override void Update()
-        {
-            base.Update();
-
-            if (Gamepad.current.aButton.wasPressedThisFrame)
-            {
-                EndPhase();
-            }
+            EventBricks.OnEnd -= EndPhase;
         }
     }
 }
