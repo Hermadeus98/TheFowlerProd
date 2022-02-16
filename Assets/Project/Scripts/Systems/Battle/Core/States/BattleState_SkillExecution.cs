@@ -36,7 +36,8 @@ namespace TheFowler
                         yield return Player.SelectedSpell.Cast(BattleManager.CurrentBattleActor, TargetSelector.SelectedTargets.ToArray());
                     }    
                 }
-                
+
+                yield return new WaitForSeconds(2f);
                 BattleManager.CurrentBattle.TurnSystem.NextTurn();
             }
         }

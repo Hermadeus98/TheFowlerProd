@@ -51,6 +51,7 @@ namespace TheFowler
         {
             //---<GESTION DAMAGE EFFECT>-------------------------------------------------------------------------------<
             oldList.ForEach(w => w.Health.FillBar.HidePreview());
+            oldList.Clear();
         }
     }
 }

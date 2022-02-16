@@ -38,6 +38,8 @@ namespace TheFowler
         public void SetFill(float newValue)
         {
             HidePreview();
+            newValue = Mathf.Clamp(newValue, 0f, maxValue);
+
             currentValue = newValue;
 
             //FORMULA = fill.SetRight((1 - valueInPercent) * RectTransform.rect.width);
@@ -66,6 +68,8 @@ namespace TheFowler
         public void SetPreview(float newValue)
         {
             ShowPreview();
+
+            newValue = Mathf.Clamp(newValue, 0f, maxValue);
             
             if (newValue < currentValue)
             {
