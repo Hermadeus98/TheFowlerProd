@@ -80,5 +80,7 @@ namespace TheFowler
                 previewImage.color = previewAdd;
             }
         }
+
+        public void SetMaxValue(float value) => maxValue = value;
     }
 }

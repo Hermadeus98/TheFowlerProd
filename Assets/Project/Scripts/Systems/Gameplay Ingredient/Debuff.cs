@@ -46,6 +46,8 @@ namespace TheFowler
             else
             {
                 waitTurn--;
+                if(waitTurn == 0)
+                    EndDebuff();
             }
         }
     }

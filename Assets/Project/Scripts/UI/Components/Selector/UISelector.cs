@@ -86,7 +86,7 @@ namespace TheFowler
             SelectElement();
         }
 
-        protected void SelectElement()
+        protected virtual void SelectElement()
         {
             currentSelectedElement?.DeSelect();
             currentSelectedElement = elements[currentIndex];

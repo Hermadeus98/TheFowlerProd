@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using QRCode.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -62,6 +63,21 @@ namespace TheFowler
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        public bool ContainEffect<T>(out T component) where T : Effect
+        {
+            for (int i = 0; i < Effects.Length; i++)
+            {
+                if (Effects[i] is T)
+                {
+                    component = Effects[i] as T;
+                    return true;
+                }
+            }
+
+            component = null;
+            return false;
         }
 
         public enum SpellTypeEnum

@@ -61,6 +61,11 @@ PrefabInstance:
       objectReference: {fileID: 22100000, guid: 1b2b89afbe780f346be275df1170bba6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e04af3640841ee54898aea0d6ce92efd, type: 3}
+--- !u!95 &6062898007870983248 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: e04af3640841ee54898aea0d6ce92efd, type: 3}
+  m_PrefabInstance: {fileID: 380879849160602049}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &118955077286740938 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8867669891919531509, guid: e04af3640841ee54898aea0d6ce92efd, type: 3}
@@ -101,13 +106,21 @@ PrefabInstance:
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 3066280224512765197, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
+    - target: {fileID: 3185024958187003936, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
+      propertyPath: Animator
+      value: 
+      objectReference: {fileID: 6062898007870983248}
+    - target: {fileID: 3185024958187003936, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 3185024958187003936, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
     - target: {fileID: 3775320230351651898, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
       propertyPath: m_Name
       value: Battle Camera Abigael
       objectReference: {fileID: 0}
     - target: {fileID: 4724284122239969848, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4897548947646647464, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
       propertyPath: referedActor
@@ -169,6 +182,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sockets
       objectReference: {fileID: 0}
+    - target: {fileID: 8449327657292965611, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
+      propertyPath: referedActor
+      value: 
+      objectReference: {fileID: 1283757644691733337}
+    - target: {fileID: 8449327657292965611, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 8449327657292965611, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
     - target: {fileID: 8900099574962576855, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
       propertyPath: referedActor
       value: 
@@ -245,6 +266,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a139aab692062c14ca05007d0a5a60a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3953999083734964448 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3185024958187003936, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
+  m_PrefabInstance: {fileID: 1939950161417697472}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9316f067f2833f9418ca0b904b5343fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2878596844426144999 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4404171824462025767, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
@@ -294,9 +326,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c00d52c17d0f8498b411e7da5e0f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6420867210567382120 stripped
+--- !u!114 &8047401299783179819 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4897548947646647464, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8449327657292965611, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
   m_PrefabInstance: {fileID: 1939950161417697472}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -352,11 +384,12 @@ MonoBehaviour:
   cameraBatchBattle: {fileID: 777331851651811901}
   sockets: {fileID: 5239570622228735641}
   SelectionPointer: {fileID: 8232735916488855185}
+  BattleActorAnimator: {fileID: 3953999083734964448}
   battleActorComponents:
   - {fileID: 7020996422467888407}
   - {fileID: 5903592644588290911}
   - {fileID: 1184258474099982657}
-  - {fileID: 6420867210567382120}
+  - {fileID: 8047401299783179819}
   - {fileID: 3486221496557245901}
   - {fileID: 8185005043502706186}
   health: {fileID: 7020996422467888407}
