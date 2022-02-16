@@ -8,6 +8,8 @@ namespace TheFowler
 {
     public class BattleActor : GameplayMonoBehaviour, ITurnActor, ITarget
     {
+        public bool isParticipant = true;
+        
         [TabGroup("References")] 
         [SerializeField] private BattleActorData battleActorData;
         [TabGroup("References")]

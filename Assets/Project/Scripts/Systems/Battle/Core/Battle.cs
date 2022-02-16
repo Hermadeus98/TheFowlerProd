@@ -140,13 +140,15 @@ namespace TheFowler
             for (var i = 0; i < alliesBatch.childCount; i++)
             {
                 alliesBatch.GetChild(i).gameObject.SetActive(state);
-                allies.Add(alliesBatch.GetChild(i).GetComponent<BattleActor>());
+                if(alliesBatch.GetChild(i).GetComponent<BattleActor>().isParticipant)
+                    allies.Add(alliesBatch.GetChild(i).GetComponent<BattleActor>());
             }
 
             for (var i = 0; i < enemiesBatch.childCount; i++)
             {
                 enemiesBatch.GetChild(i).gameObject.SetActive(state);
-                enemies.Add(enemiesBatch.GetChild(i).GetComponent<BattleActor>());
+                if(enemiesBatch.GetChild(i).GetComponent<BattleActor>().isParticipant)
+                    enemies.Add(enemiesBatch.GetChild(i).GetComponent<BattleActor>());
             }
         }
 

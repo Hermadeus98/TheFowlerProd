@@ -52,7 +52,7 @@ public class GameplayPhase : GameplayMonoBehaviour
             GameplayPhaseManager.PlayGameplayPhase(onEndGameplayPhase_id);
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
