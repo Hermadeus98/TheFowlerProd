@@ -4,6 +4,7 @@ using QRCode.Extensions;
 using UnityEngine;
 using MoreMountains.Feedbacks;
 
+
 namespace TheFowler
 {
     public class TransitionHandler : GameplayPhase
@@ -11,6 +12,8 @@ namespace TheFowler
         [SerializeField] private GameplayPhase nextPhase;
         [SerializeField] private TransitionType transitionType;
         [SerializeField] private MMFeedbacks feedbacks;
+
+
         public override void PlayPhase()
         {
             base.PlayPhase();

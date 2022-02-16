@@ -14,7 +14,7 @@ namespace TheFowler
         [TabGroup("References")]
         [SerializeField] private PlayerInput Inputs;
         [TabGroup("References")]
-        [SerializeField] private DialogueHandler harmonisationAbigail, harmonisationPhoebe;
+        [SerializeField] private GameplayPhase harmonisationAbigail, harmonisationPhoebe;
         [TabGroup("References")]
         [SerializeField] private bool isAbigailSolo;
         [TabGroup("References")]
@@ -144,7 +144,7 @@ namespace TheFowler
             actorActivator?.ActivateActor();
         }
 
-        private IEnumerator WaitCutscenePhase(DialogueHandler cutscene)
+        private IEnumerator WaitCutscenePhase(GameplayPhase cutscene)
         {
             yield return new WaitForEndOfFrame();
             yield return new WaitForEndOfFrame();
