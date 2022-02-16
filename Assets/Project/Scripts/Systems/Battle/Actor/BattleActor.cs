@@ -17,6 +17,8 @@ namespace TheFowler
         [TabGroup("References")]
         public SelectionPointer SelectionPointer;
 
+        [TabGroup("References")] public BattleActorAnimator BattleActorAnimator;
+        
         [TabGroup("Components")] [SerializeField]
         private BattleActorComponent[] battleActorComponents;
         [TabGroup("Components")] [SerializeField]
@@ -42,8 +44,6 @@ namespace TheFowler
             base.OnStart();
             
             OnChangeDifficulty(DifficultyManager.currentDifficulty);
-            
-            InitializeComponents();
         }
 
         protected virtual void InitializeComponents()
@@ -104,7 +104,6 @@ namespace TheFowler
             base.RegisterEvent();
             BattleManager.OnBattleStateChange += OnBattleStateChange;
             DifficultyManager.OnDifficultyChange += OnChangeDifficulty;
-            InitializeComponents();
         }
 
         protected override void UnregisterEvent()
@@ -191,6 +190,8 @@ namespace TheFowler
                 BattleActorStats.health = BattleActorData.health;
                 BattleActorStats.mana = BattleActorData.mana;
             }
+            
+            InitializeComponents();
         }
         
         public void OnTarget()
