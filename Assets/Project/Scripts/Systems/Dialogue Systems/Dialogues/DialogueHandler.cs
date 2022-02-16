@@ -85,25 +85,7 @@ namespace TheFowler
             DisplayDialogue(currentDialogue);
         }
 
-        //public override void PlayWithTransition()
-        //{
-        //    switch (dialogueType)
-        //    {
-        //        case DialogueType.STATIC:
-        //            StartCoroutine(WaitToPlaceActors());
-        //            UI.GetView<TransitionView>(UI.Views.TransitionView).Show(TransitionType.STATIC, PlayPhase);
-        //            break;
-        //        case DialogueType.MOVEMENT:
-        //            PlayPhase();
-        //            break;
-        //        default:
-        //            throw new ArgumentOutOfRangeException();
-        //    }
 
-        //}
-
-
-        
 
         private void Update()
         {
@@ -231,7 +213,7 @@ namespace TheFowler
         {
             if (dialogueType == DialogueType.STATIC)
             {
-                ReplaceActor();
+                ReplaceActor(.5f);
             }
             
             base.EndPhase();
@@ -284,6 +266,18 @@ namespace TheFowler
         private void ReplaceActor()
         {
             actorActivator?.DesactivateActor();
+        }
+
+        private void ReplaceActor(float timer)
+        {
+            StartCoroutine(WaitReplaceActor(timer));
+        }
+
+        private IEnumerator WaitReplaceActor(float timer)
+        {
+            yield return new WaitForSeconds(timer);
+            ReplaceActor();
+            yield break;
         }
     }
 
