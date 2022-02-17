@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using QRCode.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -35,7 +36,7 @@ namespace TheFowler
         [TitleGroup("Effects")] 
         public Effect[] Effects;
         
-        public IEnumerator Cast()
+        public IEnumerator Cast(BattleActor emitter, BattleActor[] receivers)
         {
             yield return new WaitForSeconds(executionDuration);
 
@@ -45,23 +46,38 @@ namespace TheFowler
                     for (int i = 0; i < Effects.Length; i++)
                     {
                         Effects[i].SetCamera();
-                        Coroutiner.Play(Effects[i].OnBeginCast());
-                        Coroutiner.Play(Effects[i].OnCast());
-                        Coroutiner.Play(Effects[i].OnFinishCast());
+                        Coroutiner.Play(Effects[i].OnBeginCast(emitter, receivers));
+                        Coroutiner.Play(Effects[i].OnCast(emitter, receivers));
+                        Coroutiner.Play(Effects[i].OnFinishCast(emitter, receivers));
                     }
                     break;
                 case ExecutionTypeEnum.CONSECUTIVE:
                     for (int i = 0; i < Effects.Length; i++)
                     {
                         Effects[i].SetCamera();
-                        yield return Effects[i].OnBeginCast();
-                        yield return Effects[i].OnCast();
-                        yield return Effects[i].OnFinishCast();
+                        yield return Effects[i].OnBeginCast(emitter, receivers);
+                        yield return Effects[i].OnCast(emitter, receivers);
+                        yield return Effects[i].OnFinishCast(emitter, receivers);
                     }
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        public bool ContainEffect<T>(out T component) where T : Effect
+        {
+            for (int i = 0; i < Effects.Length; i++)
+            {
+                if (Effects[i] is T)
+                {
+                    component = Effects[i] as T;
+                    return true;
+                }
+            }
+
+            component = null;
+            return false;
         }
 
         public enum SpellTypeEnum

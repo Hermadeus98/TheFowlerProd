@@ -20,13 +20,17 @@ namespace TheFowler
             if (BattleManager.IsAllyTurn)
             {
                 UI.OpenView(UI.Views.TargetPicking);
+                
+                TargetSelector.OnTargetChanged += PreviewManager.SetPreviews;
                 TargetSelector.Initialize(Player.SelectedSpell.TargetType);
+                
                 SetCamera();
             }
             else if(BattleManager.IsEnemyTurn)
             {
                 SetCamera(CameraKeys.BattleKeys.TargetPickingDefault);
             }
+            
         }
 
         public override void OnStateExecute()
@@ -39,11 +43,6 @@ namespace TheFowler
                 
                 if (TargetSelector.Select(inputs.actions["Select"].WasPressedThisFrame(), out var targets))
                 {
-                    for (int i = 0; i < targets.Count(); i++)
-                    {
-                        Debug.Log(targets.ElementAt(i).BattleActorData.actorName);
-                    }
-                    
                     BattleManager.CurrentBattle.ChangeBattleState<BattleState_SkillExecution>(BattleStateEnum.SKILL_EXECUTION);
                 }
                 if (inputs.actions["Return"].WasPressedThisFrame())
@@ -67,6 +66,13 @@ namespace TheFowler
         public override void OnStateExit(EventArgs arg)
         {
             base.OnStateExit(arg);
+
+            if (BattleManager.IsAllyTurn)
+            {
+                TargetSelector.OnTargetChanged -= PreviewManager.SetPreviews;
+                PreviewManager.EndPreviews();
+            }
+            
             UI.CloseView(UI.Views.TargetPicking);
             TargetSelector.Quit();
             ReturnToActionMenu = false;

@@ -15,10 +15,10 @@ namespace TheFowler
         public override void OnStateEnter(EventArgs arg)
         {
             base.OnStateEnter(arg);
-
-            StartCoroutine(Cast());
             
             SetCamera(CameraKeys.BattleKeys.SkillExecutionDefault);
+
+            StartCoroutine(Cast());
         }
 
         IEnumerator Cast()
@@ -33,10 +33,11 @@ namespace TheFowler
                 {
                     if (Player.SelectedSpell.IsNotNull())
                     {
-                        yield return Player.SelectedSpell.Cast();
+                        yield return Player.SelectedSpell.Cast(BattleManager.CurrentBattleActor, TargetSelector.SelectedTargets.ToArray());
                     }    
                 }
-                
+
+                yield return new WaitForSeconds(2f);
                 BattleManager.CurrentBattle.TurnSystem.NextTurn();
             }
         }
@@ -45,6 +46,7 @@ namespace TheFowler
         {
             base.OnStateExit(arg);
             fury = false;
+            TargetSelector.ResetSelectedTargets();
         }
     }
 }

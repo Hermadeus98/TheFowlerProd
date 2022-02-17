@@ -55,6 +55,12 @@ namespace TheFowler
             StartBattle();
         }
 
+        //public override void PlayWithTransition()
+        //{
+        //    UI.GetView<TransitionView>(UI.Views.TransitionView).Show(TransitionType.STATIC, PlayPhase);
+
+        //}
+
         private void StartBattle()
         {
             ChangeBattleState(BattleStateEnum.START_BATTLE);
@@ -83,17 +89,24 @@ namespace TheFowler
             if (allies.All(w => w.BattleActorInfo.isDeath))
             {
                 Debug.Log("DEFEAT");
-                ChangeBattleState(BattleStateEnum.END_BATTLE);
+                StopBattle();
                 return true;
             }
             if (enemies.All(w => w.BattleActorInfo.isDeath))
             {
                 Debug.Log("VICTORY");
-                ChangeBattleState(BattleStateEnum.END_BATTLE);
+                StopBattle();
                 return true;
             }
 
             return false;
+        }
+
+        [Button]
+        public void StopBattle()
+        {
+            ChangeBattleState(BattleStateEnum.END_BATTLE);
+
         }
 
         [Button]
@@ -123,17 +136,23 @@ namespace TheFowler
         {
             allies.Clear();
             enemies.Clear();
-            
+
             for (var i = 0; i < alliesBatch.childCount; i++)
             {
-                alliesBatch.GetChild(i).gameObject.SetActive(state);
-                allies.Add(alliesBatch.GetChild(i).GetComponent<BattleActor>());
+                if (alliesBatch.GetChild(i).GetComponent<BattleActor>().isParticipant)
+                {
+                    allies.Add(alliesBatch.GetChild(i).GetComponent<BattleActor>());
+                    alliesBatch.GetChild(i).gameObject.SetActive(state);
+                }
             }
 
             for (var i = 0; i < enemiesBatch.childCount; i++)
             {
-                enemiesBatch.GetChild(i).gameObject.SetActive(state);
-                enemies.Add(enemiesBatch.GetChild(i).GetComponent<BattleActor>());
+                if (enemiesBatch.GetChild(i).GetComponent<BattleActor>().isParticipant)
+                {
+                    enemiesBatch.GetChild(i).gameObject.SetActive(state);
+                    enemies.Add(enemiesBatch.GetChild(i).GetComponent<BattleActor>());
+                }
             }
         }
 

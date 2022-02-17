@@ -12,6 +12,12 @@ namespace TheFowler
 
         public UnityEvent OnStunStart, OnStunEnd;
         
+        public override void Initialize()
+        {
+            base.Initialize();
+            waitTurn = 0;
+        }
+        
         [Button]
         public void StunActor(int turnCount)
         {
@@ -39,6 +45,8 @@ namespace TheFowler
             else
             {
                 waitTurn--;
+                if(waitTurn == 0)
+                    EndStun();
             }
         }
     }

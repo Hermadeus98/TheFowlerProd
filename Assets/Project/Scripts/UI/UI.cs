@@ -19,7 +19,8 @@ namespace TheFowler
                 ActionPicking = "ActionPickingView",
                 TurnTransition = "TurnTransitionView",
                 Harmo = "HarmonisationView",
-                InfoBox = "InfoBoxView";
+                InfoBox = "InfoBoxView",
+                TransitionView = "TransitionView";
         }
         
         private static Dictionary<string, UIView> views = new Dictionary<string, UIView>();

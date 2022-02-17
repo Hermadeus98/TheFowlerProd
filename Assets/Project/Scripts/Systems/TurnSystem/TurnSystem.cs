@@ -39,7 +39,8 @@ namespace TheFowler
 
         private IEnumerable<ITurnActor> GetAvailableActor()
         {
-            return TurnActors.Where(w => w.IsAvailable());
+            //return TurnActors.Where(w => w.IsAvailable());
+            return TurnActors;
         }
     }
 

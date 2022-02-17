@@ -17,6 +17,10 @@ namespace TheFowler
 
         private static TargetTypeEnum targetType;
         private static int currentIndex;
+
+        public static Action<List<BattleActor>> OnTargetChanged;
+
+        private static bool blockNavigation = false;
         
         public static void Initialize(TargetTypeEnum targetType)
         {
@@ -24,42 +28,69 @@ namespace TheFowler
             AvailableTargets = new List<BattleActor>();
             SelectedTargets = new List<BattleActor>();
             currentIndex = 0;
+            blockNavigation = false;
 
-            switch (targetType)
+            if (BattleManager.CurrentBattleActor.BattleActorInfo.isTaunt && 
+                !BattleManager.CurrentBattleActor.GetBattleComponent<Taunt>().taunter.BattleActorInfo.isDeath)
             {
-                case TargetTypeEnum.SELF:
-                    AvailableTargets.Add(GetSelf());
-                    SelectedTargets.Add(GetSelf());
-                    Select(AvailableTargets[0]);
-                    break;
-                case TargetTypeEnum.SOLO_ENEMY:
-                    AvailableTargets.AddRange(GetAllEnemiesOf(BattleManager.CurrentBattleActor));
-                    Select(AvailableTargets[0]);
-                    break;
-                case TargetTypeEnum.ALL_ENEMIES:
-                    AvailableTargets.AddRange(GetAllEnemiesOf(BattleManager.CurrentBattleActor));
-                    SelectedTargets.AddRange(GetAllEnemiesOf(BattleManager.CurrentBattleActor));
-                    SelectAll(SelectedTargets);
-                    break;
-                case TargetTypeEnum.SOLO_ALLY:
-                    AvailableTargets.AddRange(GetAllAlliesOf(BattleManager.CurrentBattleActor));
-                    Select(AvailableTargets[0]);
-                    break;
-                case TargetTypeEnum.ALL_ALLIES:
-                    AvailableTargets.AddRange(GetAllAlliesOf(BattleManager.CurrentBattleActor));
-                    SelectedTargets.AddRange(GetAllAlliesOf(BattleManager.CurrentBattleActor));
-                    SelectAll(SelectedTargets);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(targetType), targetType, null);
+                var taunt = BattleManager.CurrentBattleActor.GetBattleComponent<Taunt>();
+                AvailableTargets.Add(taunt.taunter);
+                SelectedTargets.Add(taunt.taunter);
+                Select(AvailableTargets[0]);
+                blockNavigation = true;
             }
+            else
+            {
+                switch (targetType)
+                {
+                    case TargetTypeEnum.SELF:
+                        AvailableTargets.Add(GetSelf());
+                        SelectedTargets.Add(GetSelf());
+                        Select(AvailableTargets[0]);
+                        break;
+                    case TargetTypeEnum.SOLO_ENEMY:
+                        AvailableTargets.AddRange(GetAllEnemiesOf(BattleManager.CurrentBattleActor));
+                        Select(AvailableTargets[0]);
+                        break;
+                    case TargetTypeEnum.ALL_ENEMIES:
+                        AvailableTargets.AddRange(GetAllEnemiesOf(BattleManager.CurrentBattleActor));
+                        SelectedTargets.AddRange(GetAllEnemiesOf(BattleManager.CurrentBattleActor));
+                        SelectAll(SelectedTargets);
+                        break;
+                    case TargetTypeEnum.SOLO_ALLY:
+                        AvailableTargets.AddRange(GetAllAlliesOf(BattleManager.CurrentBattleActor));
+                        Select(AvailableTargets[0]);
+                        break;
+                    case TargetTypeEnum.ALL_ALLIES:
+                        AvailableTargets.AddRange(GetAllAlliesOf(BattleManager.CurrentBattleActor));
+                        SelectedTargets.AddRange(GetAllAlliesOf(BattleManager.CurrentBattleActor));
+                        SelectAll(SelectedTargets);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(targetType), targetType, null);
+                }
+            }
+
+            OnTargetChanged?.Invoke(SelectedTargets);
         }
 
         public static void Quit()
         {
-            AvailableTargets.ForEach(w => EndPreview(w));
-            AvailableTargets.Clear();
-            SelectedTargets.Clear();
+            if (!AvailableTargets.IsNullOrEmpty())
+            {
+                AvailableTargets.ForEach(w => EndPreview(w));
+                AvailableTargets.Clear();
+            }
+
+            OnTargetChanged = null;
+        }
+
+        public static void ResetSelectedTargets()
+        {
+            if (!SelectedTargets.IsNullOrEmpty())
+            {
+                SelectedTargets.Clear();
+            }
         }
         
         //---<CORE>----------------------------------------------------------------------------------------------------<
@@ -77,6 +108,9 @@ namespace TheFowler
 
         public static void Navigate(bool previous, bool next)
         {
+            if(blockNavigation)
+                return;
+            
             if (targetType == TargetTypeEnum.SOLO_ALLY || targetType == TargetTypeEnum.SOLO_ENEMY)
             {
                 if (next)
@@ -123,6 +157,8 @@ namespace TheFowler
             SelectedTargets.Clear();
             SelectedTargets.Add(actor);
             Preview(actor);
+            
+            OnTargetChanged?.Invoke(SelectedTargets);
         }
 
         private static void SelectAll(IEnumerable<BattleActor> actors)

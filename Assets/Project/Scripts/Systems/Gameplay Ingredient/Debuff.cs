@@ -13,6 +13,12 @@ namespace TheFowler
 
         public UnityEvent OnDebuffStart, OnDebuffEnd;
         
+        public override void Initialize()
+        {
+            base.Initialize();
+            waitTurn = 0;
+        }
+        
         [Button]
         public void DebuffActor(int turnCount)
         {
@@ -40,6 +46,8 @@ namespace TheFowler
             else
             {
                 waitTurn--;
+                if(waitTurn == 0)
+                    EndDebuff();
             }
         }
     }

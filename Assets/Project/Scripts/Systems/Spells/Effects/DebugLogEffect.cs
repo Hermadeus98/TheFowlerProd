@@ -6,18 +6,18 @@ namespace TheFowler
 {
     public class DebugLogEffect : Effect
     {
-        public override IEnumerator OnBeginCast()
+        public override IEnumerator OnBeginCast(BattleActor emitter, BattleActor[] receivers)
         {
             yield break;
         }
 
-        public override IEnumerator OnCast()
+        public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
             Debug.Log("CAST " + EffectName);
             yield break;
         }
 
-        public override IEnumerator OnFinishCast()
+        public override IEnumerator OnFinishCast(BattleActor emitter, BattleActor[] receivers)
         {
             yield break;
         }

@@ -11,11 +11,20 @@ namespace TheFowler
         [SerializeField] private int waitTurn;
         
         public UnityEvent OnTauntStart, OnTauntEnd;
+
+        public BattleActor taunter;
+        
+        public override void Initialize()
+        {
+            base.Initialize();
+            waitTurn = 0;
+        }
         
         [Button]
-        public void TauntActor(int turnCount)
+        public void TauntActor(int turnCount, BattleActor taunter)
         {
             ReferedActor.BattleActorInfo.isTaunt = true;
+            this.taunter = taunter;
             waitTurn = turnCount;
             OnTauntStart?.Invoke();
         }
@@ -24,6 +33,7 @@ namespace TheFowler
         public void EndTaunt()
         {
             ReferedActor.BattleActorInfo.isTaunt = false;
+            taunter = null;
             waitTurn = 0;
             OnTauntEnd?.Invoke();
         }
@@ -39,6 +49,8 @@ namespace TheFowler
             else
             {
                 waitTurn--;
+                if(waitTurn == 0)
+                    EndTaunt();
             }
         }
     }

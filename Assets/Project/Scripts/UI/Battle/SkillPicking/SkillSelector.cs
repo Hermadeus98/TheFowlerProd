@@ -37,7 +37,8 @@ namespace TheFowler
                 elements[i].Show();
                 elements[i].Refresh(new WrapperArgs<Spell>(battleActorData.Spells[i]));
             }
-            
+
+            currentIndex = 0;
             SelectElement();
         }
 

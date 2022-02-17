@@ -21,8 +21,9 @@ namespace TheFowler
         
         //INTRO
         CINEMATIQUE_INTRO,
-        
+
         //CHAPTER_ONE
+        TRANSITION_DS_ENTREE_EXPLOSION_IN,
         DS_ENTREE_EXPLOSION,
         DS_RENCONTRE_PHOEBE,
         BATTLE_GUARDES_PHOEBE,
