@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Language="SFX" Hash="2129779705">
+		<SoundBank Id="1355168291" Language="SFX" Hash="3938877516">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
@@ -31,7 +31,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3787826988" Language="SFX" Hash="4257938915">
+		<SoundBank Id="3787826988" Language="SFX" Hash="2941770242">
 			<ObjectPath>\SoundBanks\Default Work Unit\Core</ObjectPath>
 			<ShortName>Core</ShortName>
 			<Path>Core.bnk</Path>
@@ -45,30 +45,18 @@
 					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="3460945957" Name="TF_CoreInit" ObjectPath="\Events\Default Work Unit\TF_CoreInit" DurationType="Infinite">
-					<IncludedMemoryFiles>
-						<File Id="633126184" Language="SFX">
-							<ShortName>TF_M_Explo.wav</ShortName>
-							<Path>SFX\TF_M_Explo_8A123740.wem</Path>
-						</File>
-						<File Id="648708101" Language="SFX">
-							<ShortName>TF_M_Battle.wav</ShortName>
-							<Path>SFX\TF_M_Battle_8A123740.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-					<SwitchContainers>
-						<SwitchContainer SwitchValue="{9ADCD37D-AFCA-4EDE-823F-79A2510E4F0B}">
-							<Media>
-								<File Id="633126184"/>
-							</Media>
-						</SwitchContainer>
-						<SwitchContainer SwitchValue="{16478AC6-5BF2-42C8-86D6-91C94808F876}">
-							<Media>
-								<File Id="648708101"/>
-							</Media>
-						</SwitchContainer>
-					</SwitchContainers>
 					<ActionSetState>
 						<ActionSetStateEntry Id="3814499265" Name="Explo" ObjectPath="\States\Default Work Unit\GameplayPhase\Explo"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="2594094354" Name="TF_Main_SetMuteOff" ObjectPath="\Events\Default Work Unit\Utilities\TF_Main_SetMuteOff" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionSetState>
+						<ActionSetStateEntry Id="930712164" Name="Off" ObjectPath="\States\Default Work Unit\Mute\Off"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="1059030324" Name="TF_Main_SetMuteOn" ObjectPath="\Events\Default Work Unit\Utilities\TF_Main_SetMuteOn" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionSetState>
+						<ActionSetStateEntry Id="1651971902" Name="On" ObjectPath="\States\Default Work Unit\Mute\On"/>
 					</ActionSetState>
 				</Event>
 				<Event Id="1242661300" Name="TF_Music_SetBattle" ObjectPath="\Events\Default Work Unit\Utilities\TF_Music_SetBattle" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
@@ -79,16 +67,6 @@
 				<Event Id="117344976" Name="TF_Music_SetExplo" ObjectPath="\Events\Default Work Unit\Utilities\TF_Music_SetExplo" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
 					<ActionSetState>
 						<ActionSetStateEntry Id="3814499265" Name="Explo" ObjectPath="\States\Default Work Unit\GameplayPhase\Explo"/>
-					</ActionSetState>
-				</Event>
-				<Event Id="2417923004" Name="TF_Music_SetMuteOff" ObjectPath="\Events\Default Work Unit\Utilities\TF_Music_SetMuteOff" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
-					<ActionSetState>
-						<ActionSetStateEntry Id="930712164" Name="Off" ObjectPath="\States\Default Work Unit\Mute\Off"/>
-					</ActionSetState>
-				</Event>
-				<Event Id="2627824886" Name="TF_Music_SetMuteOn" ObjectPath="\Events\Default Work Unit\Utilities\TF_Music_SetMuteOn" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
-					<ActionSetState>
-						<ActionSetStateEntry Id="1651971902" Name="On" ObjectPath="\States\Default Work Unit\Mute\On"/>
 					</ActionSetState>
 				</Event>
 				<Event Id="3100206904" Name="TF_SFX_Combat_Generic_Ally_DamageTaken" ObjectPath="\Events\Default Work Unit\Combat\TF_SFX_Combat_Generic_Ally_DamageTaken" MaxAttenuation="50." DurationType="OneShot" DurationMin="1.343855" DurationMax="1.343855">
@@ -295,13 +273,6 @@
 			<StateGroups>
 				<StateGroup Id="930712164" Name="Off" ObjectPath="\States\Default Work Unit\Mute\Off" GUID="{BB0D7B2A-57C2-470B-90A9-FE079A4E2CDC}">
 					<States/>
-				</StateGroup>
-				<StateGroup Id="990169578" Name="GameplayPhase" ObjectPath="\States\Default Work Unit\GameplayPhase" GUID="{2A5EE531-77F5-40A3-AD77-55F44139FEB4}">
-					<States>
-						<State Id="748895195" Name="None" ObjectPath="\States\Default Work Unit\GameplayPhase\None" GUID="{0A47B512-815B-42FA-B0B2-F5DD4E26DC6A}"/>
-						<State Id="3814499265" Name="Explo" ObjectPath="\States\Default Work Unit\GameplayPhase\Explo" GUID="{9ADCD37D-AFCA-4EDE-823F-79A2510E4F0B}"/>
-						<State Id="2937832959" Name="Battle" ObjectPath="\States\Default Work Unit\GameplayPhase\Battle" GUID="{16478AC6-5BF2-42C8-86D6-91C94808F876}"/>
-					</States>
 				</StateGroup>
 				<StateGroup Id="1651971902" Name="On" ObjectPath="\States\Default Work Unit\Mute\On" GUID="{1FCE60A8-F134-43D4-AB90-C6E2F727BF4E}">
 					<States/>

@@ -15,10 +15,10 @@ namespace AK
     {
         static const AkUniqueID TEST_TICK = 564845035U;
         static const AkUniqueID TF_COREINIT = 3460945957U;
+        static const AkUniqueID TF_MAIN_SETMUTEOFF = 2594094354U;
+        static const AkUniqueID TF_MAIN_SETMUTEON = 1059030324U;
         static const AkUniqueID TF_MUSIC_SETBATTLE = 1242661300U;
         static const AkUniqueID TF_MUSIC_SETEXPLO = 117344976U;
-        static const AkUniqueID TF_MUSIC_SETMUTEOFF = 2417923004U;
-        static const AkUniqueID TF_MUSIC_SETMUTEON = 2627824886U;
         static const AkUniqueID TF_SFX_COMBAT_GENERIC_ALLY_DAMAGETAKEN = 3100206904U;
         static const AkUniqueID TF_SFX_COMBAT_GENERIC_ENEMY_DAMAGETAKEN_NEUTRAL = 3091443500U;
         static const AkUniqueID TF_SFX_COMBAT_GENERIC_ENEMY_DAMAGETAKEN_RESIST = 2730268465U;
