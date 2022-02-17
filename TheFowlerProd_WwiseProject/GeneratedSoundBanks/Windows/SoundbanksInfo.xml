@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Language="SFX" Hash="655836493">
+		<SoundBank Id="1355168291" Language="SFX" Hash="2129779705">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
@@ -21,13 +21,22 @@
 				<GameParameter Id="1039087204" Name="Game_Volume_Music" ObjectPath="\Game Parameters\Default Work Unit\Game_Volume_Music"/>
 				<GameParameter Id="2065406626" Name="Game_Volume_Voices" ObjectPath="\Game Parameters\Default Work Unit\Game_Volume_Voices"/>
 			</GameParameters>
+			<StateGroups>
+				<StateGroup Id="2974103762" Name="Mute" ObjectPath="\States\Default Work Unit\Mute" GUID="{F57996C9-5656-45C6-AFF6-CF6BDE346B6A}">
+					<States>
+						<State Id="748895195" Name="None" ObjectPath="\States\Default Work Unit\Mute\None" GUID="{4966D6F4-3962-4FF1-920F-750E65B96FC8}"/>
+						<State Id="1651971902" Name="On" ObjectPath="\States\Default Work Unit\Mute\On" GUID="{1FCE60A8-F134-43D4-AB90-C6E2F727BF4E}"/>
+						<State Id="930712164" Name="Off" ObjectPath="\States\Default Work Unit\Mute\Off" GUID="{BB0D7B2A-57C2-470B-90A9-FE079A4E2CDC}"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3787826988" Language="SFX" Hash="2986201035">
+		<SoundBank Id="3787826988" Language="SFX" Hash="4257938915">
 			<ObjectPath>\SoundBanks\Default Work Unit\Core</ObjectPath>
 			<ShortName>Core</ShortName>
 			<Path>Core.bnk</Path>
 			<IncludedEvents>
-				<Event Id="564845035" Name="Test_Tick" ObjectPath="\Events\Default Work Unit\Test_Tick" DurationType="OneShot" DurationMin="0.139313" DurationMax="0.139313">
+				<Event Id="564845035" Name="Test_Tick" ObjectPath="\Events\Default Work Unit\Test_Tick" MaxAttenuation="50." DurationType="OneShot" DurationMin="0.139313" DurationMax="0.139313">
 					<IncludedMemoryFiles>
 						<File Id="820709661" Language="SFX">
 							<ShortName>TF_System_Tick.wav</ShortName>
@@ -35,7 +44,54 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3100206904" Name="TF_SFX_Combat_Generic_Ally_DamageTaken" ObjectPath="\Events\Default Work Unit\Combat\TF_SFX_Combat_Generic_Ally_DamageTaken" DurationType="OneShot" DurationMin="1.343855" DurationMax="1.343855">
+				<Event Id="3460945957" Name="TF_CoreInit" ObjectPath="\Events\Default Work Unit\TF_CoreInit" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="633126184" Language="SFX">
+							<ShortName>TF_M_Explo.wav</ShortName>
+							<Path>SFX\TF_M_Explo_8A123740.wem</Path>
+						</File>
+						<File Id="648708101" Language="SFX">
+							<ShortName>TF_M_Battle.wav</ShortName>
+							<Path>SFX\TF_M_Battle_8A123740.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+					<SwitchContainers>
+						<SwitchContainer SwitchValue="{9ADCD37D-AFCA-4EDE-823F-79A2510E4F0B}">
+							<Media>
+								<File Id="633126184"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{16478AC6-5BF2-42C8-86D6-91C94808F876}">
+							<Media>
+								<File Id="648708101"/>
+							</Media>
+						</SwitchContainer>
+					</SwitchContainers>
+					<ActionSetState>
+						<ActionSetStateEntry Id="3814499265" Name="Explo" ObjectPath="\States\Default Work Unit\GameplayPhase\Explo"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="1242661300" Name="TF_Music_SetBattle" ObjectPath="\Events\Default Work Unit\Utilities\TF_Music_SetBattle" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionSetState>
+						<ActionSetStateEntry Id="2937832959" Name="Battle" ObjectPath="\States\Default Work Unit\GameplayPhase\Battle"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="117344976" Name="TF_Music_SetExplo" ObjectPath="\Events\Default Work Unit\Utilities\TF_Music_SetExplo" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionSetState>
+						<ActionSetStateEntry Id="3814499265" Name="Explo" ObjectPath="\States\Default Work Unit\GameplayPhase\Explo"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="2417923004" Name="TF_Music_SetMuteOff" ObjectPath="\Events\Default Work Unit\Utilities\TF_Music_SetMuteOff" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionSetState>
+						<ActionSetStateEntry Id="930712164" Name="Off" ObjectPath="\States\Default Work Unit\Mute\Off"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="2627824886" Name="TF_Music_SetMuteOn" ObjectPath="\Events\Default Work Unit\Utilities\TF_Music_SetMuteOn" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionSetState>
+						<ActionSetStateEntry Id="1651971902" Name="On" ObjectPath="\States\Default Work Unit\Mute\On"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="3100206904" Name="TF_SFX_Combat_Generic_Ally_DamageTaken" ObjectPath="\Events\Default Work Unit\Combat\TF_SFX_Combat_Generic_Ally_DamageTaken" MaxAttenuation="50." DurationType="OneShot" DurationMin="1.343855" DurationMax="1.343855">
 					<IncludedMemoryFiles>
 						<File Id="913957696" Language="SFX">
 							<ShortName>TF_SFX_Combat_Generic_Ally_DamageTaken.wav</ShortName>
@@ -43,7 +99,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3091443500" Name="TF_SFX_Combat_Generic_Enemy_DamageTaken_Neutral" ObjectPath="\Events\Default Work Unit\Combat\TF_SFX_Combat_Generic_Enemy_DamageTaken_Neutral" DurationType="OneShot" DurationMin="1.498005" DurationMax="1.498005">
+				<Event Id="3091443500" Name="TF_SFX_Combat_Generic_Enemy_DamageTaken_Neutral" ObjectPath="\Events\Default Work Unit\Combat\TF_SFX_Combat_Generic_Enemy_DamageTaken_Neutral" MaxAttenuation="50." DurationType="OneShot" DurationMin="1.498005" DurationMax="1.498005">
 					<IncludedMemoryFiles>
 						<File Id="668656660" Language="SFX">
 							<ShortName>TF_SFX_Combat_Generic_Enemy_DamageTaken_Neutral.wav</ShortName>
@@ -51,7 +107,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2730268465" Name="TF_SFX_Combat_Generic_Enemy_DamageTaken_Resist" ObjectPath="\Events\Default Work Unit\Combat\TF_SFX_Combat_Generic_Enemy_DamageTaken_Resist" DurationType="OneShot" DurationMin="1.098798" DurationMax="1.098798">
+				<Event Id="2730268465" Name="TF_SFX_Combat_Generic_Enemy_DamageTaken_Resist" ObjectPath="\Events\Default Work Unit\Combat\TF_SFX_Combat_Generic_Enemy_DamageTaken_Resist" MaxAttenuation="50." DurationType="OneShot" DurationMin="1.098798" DurationMax="1.098798">
 					<IncludedMemoryFiles>
 						<File Id="51546097" Language="SFX">
 							<ShortName>TF_SFX_Combat_Generic_Enemy_DamageTaken_Resist.wav</ShortName>
@@ -59,7 +115,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3474944871" Name="TF_SFX_Combat_Generic_Enemy_DamageTaken_Weak" ObjectPath="\Events\Default Work Unit\Combat\TF_SFX_Combat_Generic_Enemy_DamageTaken_Weak" DurationType="OneShot" DurationMin="1.999977" DurationMax="1.999977">
+				<Event Id="3474944871" Name="TF_SFX_Combat_Generic_Enemy_DamageTaken_Weak" ObjectPath="\Events\Default Work Unit\Combat\TF_SFX_Combat_Generic_Enemy_DamageTaken_Weak" MaxAttenuation="50." DurationType="OneShot" DurationMin="1.999977" DurationMax="1.999977">
 					<IncludedMemoryFiles>
 						<File Id="664784644" Language="SFX">
 							<ShortName>TF_SFX_Combat_Generic_Enemy_DamageTaken_Weak.wav</ShortName>
@@ -67,7 +123,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="777422854" Name="TF_SFX_Combat_Generic_Skill_Buff" ObjectPath="\Events\Default Work Unit\Combat\TF_SFX_Combat_Generic_Skill_Buff" DurationType="OneShot" DurationMin="2.002375" DurationMax="2.002375">
+				<Event Id="777422854" Name="TF_SFX_Combat_Generic_Skill_Buff" ObjectPath="\Events\Default Work Unit\Combat\TF_SFX_Combat_Generic_Skill_Buff" MaxAttenuation="50." DurationType="OneShot" DurationMin="2.002375" DurationMax="2.002375">
 					<IncludedMemoryFiles>
 						<File Id="268285935" Language="SFX">
 							<ShortName>TF_SFX_Combat_Generic_Skill_Buff.wav</ShortName>
@@ -75,7 +131,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3306024426" Name="TF_SFX_Combat_Generic_Skill_Damage" ObjectPath="\Events\Default Work Unit\Combat\TF_SFX_Combat_Generic_Skill_Damage" DurationType="OneShot" DurationMin="1.95225" DurationMax="1.95225">
+				<Event Id="3306024426" Name="TF_SFX_Combat_Generic_Skill_Damage" ObjectPath="\Events\Default Work Unit\Combat\TF_SFX_Combat_Generic_Skill_Damage" MaxAttenuation="50." DurationType="OneShot" DurationMin="1.95225" DurationMax="1.95225">
 					<IncludedMemoryFiles>
 						<File Id="409971587" Language="SFX">
 							<ShortName>TF_SFX_Combat_Generic_Skill_Damage.wav</ShortName>
@@ -83,7 +139,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2661308679" Name="TF_SFX_Combat_Generic_Skill_Debuff" ObjectPath="\Events\Default Work Unit\Combat\TF_SFX_Combat_Generic_Skill_Debuff" DurationType="OneShot" DurationMin="1.414042" DurationMax="1.414042">
+				<Event Id="2661308679" Name="TF_SFX_Combat_Generic_Skill_Debuff" ObjectPath="\Events\Default Work Unit\Combat\TF_SFX_Combat_Generic_Skill_Debuff" MaxAttenuation="50." DurationType="OneShot" DurationMin="1.414042" DurationMax="1.414042">
 					<IncludedMemoryFiles>
 						<File Id="604860231" Language="SFX">
 							<ShortName>TF_SFX_Combat_Generic_Skill_Debuff.wav</ShortName>
@@ -91,7 +147,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2608294815" Name="TF_SFX_Combat_Generic_Skill_Heal" ObjectPath="\Events\Default Work Unit\Combat\TF_SFX_Combat_Generic_Skill_Heal" DurationType="OneShot" DurationMin="2.006979" DurationMax="2.006979">
+				<Event Id="2608294815" Name="TF_SFX_Combat_Generic_Skill_Heal" ObjectPath="\Events\Default Work Unit\Combat\TF_SFX_Combat_Generic_Skill_Heal" MaxAttenuation="50." DurationType="OneShot" DurationMin="2.006979" DurationMax="2.006979">
 					<IncludedMemoryFiles>
 						<File Id="638240910" Language="SFX">
 							<ShortName>TF_SFX_Combat_Generic_Skill_Heal.wav</ShortName>
@@ -99,7 +155,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2654934017" Name="TF_SFX_Combat_Generic_Skill_Stun" ObjectPath="\Events\Default Work Unit\Combat\TF_SFX_Combat_Generic_Skill_Stun" DurationType="OneShot" DurationMin="1.501104" DurationMax="1.501104">
+				<Event Id="2654934017" Name="TF_SFX_Combat_Generic_Skill_Stun" ObjectPath="\Events\Default Work Unit\Combat\TF_SFX_Combat_Generic_Skill_Stun" MaxAttenuation="50." DurationType="OneShot" DurationMin="1.501104" DurationMax="1.501104">
 					<IncludedMemoryFiles>
 						<File Id="976047112" Language="SFX">
 							<ShortName>TF_SFX_Combat_Generic_Skill_Stun.wav</ShortName>
@@ -107,7 +163,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2034208103" Name="TF_SFX_Combat_Generic_Skill_Taunt" ObjectPath="\Events\Default Work Unit\Combat\TF_SFX_Combat_Generic_Skill_Taunt" DurationType="OneShot" DurationMin="2.31619" DurationMax="2.31619">
+				<Event Id="2034208103" Name="TF_SFX_Combat_Generic_Skill_Taunt" ObjectPath="\Events\Default Work Unit\Combat\TF_SFX_Combat_Generic_Skill_Taunt" MaxAttenuation="50." DurationType="OneShot" DurationMin="2.31619" DurationMax="2.31619">
 					<IncludedMemoryFiles>
 						<File Id="832169181" Language="SFX">
 							<ShortName>TF_SFX_Combat_Generic_Skill_Taunt.wav</ShortName>
@@ -115,7 +171,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="936410632" Name="TF_SFX_Combat_UI_ActionWheel_Open" ObjectPath="\Events\Default Work Unit\UI\TF_SFX_Combat_UI_ActionWheel_Open" DurationType="OneShot" DurationMin="3." DurationMax="3.">
+				<Event Id="936410632" Name="TF_SFX_Combat_UI_ActionWheel_Open" ObjectPath="\Events\Default Work Unit\UI\TF_SFX_Combat_UI_ActionWheel_Open" MaxAttenuation="50." DurationType="OneShot" DurationMin="3." DurationMax="3.">
 					<IncludedMemoryFiles>
 						<File Id="224406122" Language="SFX">
 							<ShortName>TF_SFX_Combat_UI_ActionWheel_Open.wav</ShortName>
@@ -123,7 +179,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1612741184" Name="TF_SFX_Combat_UI_Cancel" ObjectPath="\Events\Default Work Unit\UI\TF_SFX_Combat_UI_Cancel" DurationType="OneShot" DurationMin="0.272721" DurationMax="0.272721">
+				<Event Id="1612741184" Name="TF_SFX_Combat_UI_Cancel" ObjectPath="\Events\Default Work Unit\UI\TF_SFX_Combat_UI_Cancel" MaxAttenuation="50." DurationType="OneShot" DurationMin="0.272721" DurationMax="0.272721">
 					<IncludedMemoryFiles>
 						<File Id="390586097" Language="SFX">
 							<ShortName>TF_SFX_Combat_UI_Cancel.wav</ShortName>
@@ -131,7 +187,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1091842654" Name="TF_SFX_Combat_UI_Confirm" ObjectPath="\Events\Default Work Unit\UI\TF_SFX_Combat_UI_Confirm" DurationType="OneShot" DurationMin="0.375011" DurationMax="0.375011">
+				<Event Id="1091842654" Name="TF_SFX_Combat_UI_Confirm" ObjectPath="\Events\Default Work Unit\UI\TF_SFX_Combat_UI_Confirm" MaxAttenuation="50." DurationType="OneShot" DurationMin="0.375011" DurationMax="0.375011">
 					<IncludedMemoryFiles>
 						<File Id="790774281" Language="SFX">
 							<ShortName>TF_SFX_Combat_UI_Confirm.wav</ShortName>
@@ -139,7 +195,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2681612572" Name="TF_SFX_Combat_UI_Hover" ObjectPath="\Events\Default Work Unit\UI\TF_SFX_Combat_UI_Hover" DurationType="OneShot" DurationMin="0.747029" DurationMax="0.747029">
+				<Event Id="2681612572" Name="TF_SFX_Combat_UI_Hover" ObjectPath="\Events\Default Work Unit\UI\TF_SFX_Combat_UI_Hover" MaxAttenuation="50." DurationType="OneShot" DurationMin="0.747029" DurationMax="0.747029">
 					<IncludedMemoryFiles>
 						<File Id="253351397" Language="SFX">
 							<ShortName>TF_SFX_Combat_UI_Hover.wav</ShortName>
@@ -147,7 +203,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2399625037" Name="TF_SFX_Combat_UI_SkillSelection" ObjectPath="\Events\Default Work Unit\UI\TF_SFX_Combat_UI_SkillSelection" DurationType="OneShot" DurationMin="1.221338" DurationMax="1.221338">
+				<Event Id="2399625037" Name="TF_SFX_Combat_UI_SkillSelection" ObjectPath="\Events\Default Work Unit\UI\TF_SFX_Combat_UI_SkillSelection" MaxAttenuation="50." DurationType="OneShot" DurationMin="1.221338" DurationMax="1.221338">
 					<IncludedMemoryFiles>
 						<File Id="71614746" Language="SFX">
 							<ShortName>TF_SFX_Combat_UI_SkillSelection.wav</ShortName>
@@ -155,7 +211,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1260578859" Name="TF_SFX_Combat_UI_SpellSelectionPanel_Open" ObjectPath="\Events\Default Work Unit\UI\TF_SFX_Combat_UI_SpellSelectionPanel_Open" DurationType="OneShot" DurationMin="1.015805" DurationMax="1.015805">
+				<Event Id="1260578859" Name="TF_SFX_Combat_UI_SpellSelectionPanel_Open" ObjectPath="\Events\Default Work Unit\UI\TF_SFX_Combat_UI_SpellSelectionPanel_Open" MaxAttenuation="50." DurationType="OneShot" DurationMin="1.015805" DurationMax="1.015805">
 					<IncludedMemoryFiles>
 						<File Id="589660666" Language="SFX">
 							<ShortName>TF_SFX_Combat_UI_SpellSelectionPanel_Open.wav</ShortName>
@@ -163,7 +219,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3123946201" Name="TF_SFX_Combat_UI_SwitchTarget" ObjectPath="\Events\Default Work Unit\UI\TF_SFX_Combat_UI_SwitchTarget" DurationType="OneShot" DurationMin="1.221338" DurationMax="1.221338">
+				<Event Id="3123946201" Name="TF_SFX_Combat_UI_SwitchTarget" ObjectPath="\Events\Default Work Unit\UI\TF_SFX_Combat_UI_SwitchTarget" MaxAttenuation="50." DurationType="OneShot" DurationMin="1.221338" DurationMax="1.221338">
 					<IncludedMemoryFiles>
 						<File Id="582475609" Language="SFX">
 							<ShortName>TF_SFX_Combat_UI_SwitchTarget.wav</ShortName>
@@ -171,7 +227,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="595504765" Name="TF_SFX_Combat_UI_Turn_AllyTurn" ObjectPath="\Events\Default Work Unit\UI\TF_SFX_Combat_UI_Turn_AllyTurn" DurationType="OneShot" DurationMin="2.011837" DurationMax="2.011837">
+				<Event Id="595504765" Name="TF_SFX_Combat_UI_Turn_AllyTurn" ObjectPath="\Events\Default Work Unit\UI\TF_SFX_Combat_UI_Turn_AllyTurn" MaxAttenuation="50." DurationType="OneShot" DurationMin="2.011837" DurationMax="2.011837">
 					<IncludedMemoryFiles>
 						<File Id="566595046" Language="SFX">
 							<ShortName>TF_SFX_Combat_UI_Turn_AllyTurn.wav</ShortName>
@@ -179,7 +235,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1139569567" Name="TF_SFX_Combat_UI_Turn_EnemyTurn" ObjectPath="\Events\Default Work Unit\UI\TF_SFX_Combat_UI_Turn_EnemyTurn" DurationType="OneShot" DurationMin="3." DurationMax="3.">
+				<Event Id="1139569567" Name="TF_SFX_Combat_UI_Turn_EnemyTurn" ObjectPath="\Events\Default Work Unit\UI\TF_SFX_Combat_UI_Turn_EnemyTurn" MaxAttenuation="50." DurationType="OneShot" DurationMin="3." DurationMax="3.">
 					<IncludedMemoryFiles>
 						<File Id="377820509" Language="SFX">
 							<ShortName>TF_SFX_Combat_UI_Turn_EnemyTurn.wav</ShortName>
@@ -187,7 +243,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3449597560" Name="TF_SFX_Combat_UI_WeakDisplay" ObjectPath="\Events\Default Work Unit\UI\TF_SFX_Combat_UI_WeakDisplay" DurationType="OneShot" DurationMin="1.901179" DurationMax="1.901179">
+				<Event Id="3449597560" Name="TF_SFX_Combat_UI_WeakDisplay" ObjectPath="\Events\Default Work Unit\UI\TF_SFX_Combat_UI_WeakDisplay" MaxAttenuation="50." DurationType="OneShot" DurationMin="1.901179" DurationMax="1.901179">
 					<IncludedMemoryFiles>
 						<File Id="527974620" Language="SFX">
 							<ShortName>TF_SFX_Combat_UI_WeakDisplay.wav</ShortName>
@@ -195,7 +251,68 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="2232847779" Name="TF_SFX_Explo_Generic_Footstep" ObjectPath="\Events\Default Work Unit\Characters\TF_SFX_Explo_Generic_Footstep" MaxAttenuation="50." DurationType="OneShot" DurationMin="0.5" DurationMax="0.5">
+					<IncludedMemoryFiles>
+						<File Id="96533956" Language="SFX">
+							<ShortName>TF_SFX_Explo_Generic_Footsteps01.wav</ShortName>
+							<Path>SFX\TF_SFX_Explo_Generic_Footsteps01_05F9AB7E.wem</Path>
+						</File>
+						<File Id="148413221" Language="SFX">
+							<ShortName>TF_SFX_Explo_Generic_Footsteps07.wav</ShortName>
+							<Path>SFX\TF_SFX_Explo_Generic_Footsteps07_05F9AB7E.wem</Path>
+						</File>
+						<File Id="397827699" Language="SFX">
+							<ShortName>TF_SFX_Explo_Generic_Footsteps03.wav</ShortName>
+							<Path>SFX\TF_SFX_Explo_Generic_Footsteps03_05F9AB7E.wem</Path>
+						</File>
+						<File Id="534233471" Language="SFX">
+							<ShortName>TF_SFX_Explo_Generic_Footsteps09.wav</ShortName>
+							<Path>SFX\TF_SFX_Explo_Generic_Footsteps09_05F9AB7E.wem</Path>
+						</File>
+						<File Id="658112401" Language="SFX">
+							<ShortName>TF_SFX_Explo_Generic_Footsteps02.wav</ShortName>
+							<Path>SFX\TF_SFX_Explo_Generic_Footsteps02_05F9AB7E.wem</Path>
+						</File>
+						<File Id="772527009" Language="SFX">
+							<ShortName>TF_SFX_Explo_Generic_Footsteps08.wav</ShortName>
+							<Path>SFX\TF_SFX_Explo_Generic_Footsteps08_05F9AB7E.wem</Path>
+						</File>
+						<File Id="857193520" Language="SFX">
+							<ShortName>TF_SFX_Explo_Generic_Footsteps04.wav</ShortName>
+							<Path>SFX\TF_SFX_Explo_Generic_Footsteps04_05F9AB7E.wem</Path>
+						</File>
+						<File Id="934682114" Language="SFX">
+							<ShortName>TF_SFX_Explo_Generic_Footsteps05.wav</ShortName>
+							<Path>SFX\TF_SFX_Explo_Generic_Footsteps05_05F9AB7E.wem</Path>
+						</File>
+						<File Id="1070590533" Language="SFX">
+							<ShortName>TF_SFX_Explo_Generic_Footsteps06.wav</ShortName>
+							<Path>SFX\TF_SFX_Explo_Generic_Footsteps06_05F9AB7E.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 			</IncludedEvents>
+			<StateGroups>
+				<StateGroup Id="930712164" Name="Off" ObjectPath="\States\Default Work Unit\Mute\Off" GUID="{BB0D7B2A-57C2-470B-90A9-FE079A4E2CDC}">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="990169578" Name="GameplayPhase" ObjectPath="\States\Default Work Unit\GameplayPhase" GUID="{2A5EE531-77F5-40A3-AD77-55F44139FEB4}">
+					<States>
+						<State Id="748895195" Name="None" ObjectPath="\States\Default Work Unit\GameplayPhase\None" GUID="{0A47B512-815B-42FA-B0B2-F5DD4E26DC6A}"/>
+						<State Id="3814499265" Name="Explo" ObjectPath="\States\Default Work Unit\GameplayPhase\Explo" GUID="{9ADCD37D-AFCA-4EDE-823F-79A2510E4F0B}"/>
+						<State Id="2937832959" Name="Battle" ObjectPath="\States\Default Work Unit\GameplayPhase\Battle" GUID="{16478AC6-5BF2-42C8-86D6-91C94808F876}"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="1651971902" Name="On" ObjectPath="\States\Default Work Unit\Mute\On" GUID="{1FCE60A8-F134-43D4-AB90-C6E2F727BF4E}">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="2937832959" Name="Battle" ObjectPath="\States\Default Work Unit\GameplayPhase\Battle" GUID="{16478AC6-5BF2-42C8-86D6-91C94808F876}">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="3814499265" Name="Explo" ObjectPath="\States\Default Work Unit\GameplayPhase\Explo" GUID="{9ADCD37D-AFCA-4EDE-823F-79A2510E4F0B}">
+					<States/>
+				</StateGroup>
+			</StateGroups>
 		</SoundBank>
 	</SoundBanks>
 </SoundBanksInfo>

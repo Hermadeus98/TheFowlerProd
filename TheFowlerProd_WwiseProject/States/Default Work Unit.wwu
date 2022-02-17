@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}" SchemaVersion="103">
 	<States>
-		<WorkUnit Name="Default Work Unit" ID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}" PersistMode="Standalone">
+			<ChildrenList>
+				<StateGroup Name="GameplayPhase" ID="{2A5EE531-77F5-40A3-AD77-55F44139FEB4}">
+					<ChildrenList>
+						<State Name="None" ID="{0A47B512-815B-42FA-B0B2-F5DD4E26DC6A}"/>
+						<State Name="Explo" ID="{9ADCD37D-AFCA-4EDE-823F-79A2510E4F0B}"/>
+						<State Name="Battle" ID="{16478AC6-5BF2-42C8-86D6-91C94808F876}"/>
+					</ChildrenList>
+				</StateGroup>
+				<StateGroup Name="Mute" ID="{F57996C9-5656-45C6-AFF6-CF6BDE346B6A}">
+					<ChildrenList>
+						<State Name="None" ID="{4966D6F4-3962-4FF1-920F-750E65B96FC8}"/>
+						<State Name="On" ID="{1FCE60A8-F134-43D4-AB90-C6E2F727BF4E}"/>
+						<State Name="Off" ID="{BB0D7B2A-57C2-470B-90A9-FE079A4E2CDC}"/>
+					</ChildrenList>
+				</StateGroup>
+			</ChildrenList>
+		</WorkUnit>
 	</States>
 </WwiseDocument>

@@ -4,7 +4,18 @@
 		<WorkUnit Name="Default Work Unit" ID="{FE972788-3429-4208-8790-69B9CC9BE7C8}" PersistMode="Standalone">
 			<ChildrenList>
 				<ActorMixer Name="SFX" ID="{1744DB88-7BD7-4A23-A27C-3A0D26DB4B61}" ShortID="1017830680">
+					<PropertyList>
+						<Property Name="3DSpatialization" Type="int16" Value="2"/>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-6</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
+						<Reference Name="Attenuation">
+							<ObjectRef Name="Generic Attenuation" ID="{E500C4E3-EEAE-4A57-B02E-C56FA0CEAA9D}" WorkUnitID="{84B6E339-5A25-442D-BFAE-C367CDB2C0FD}"/>
+						</Reference>
 						<Reference Name="Conversion">
 							<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
 						</Reference>
@@ -508,6 +519,237 @@
 								</Sound>
 							</ChildrenList>
 						</Folder>
+						<Folder Name="Characters" ID="{B083DF0D-0521-4C8C-B647-D6C93787C71B}" ShortID="193660980">
+							<ChildrenList>
+								<RandomSequenceContainer Name="TF_SFX_Explo_Generic_Footsteps" ID="{D1BD98D0-9523-4063-949B-84DEF71ECBA0}" ShortID="388680281">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-6</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="TF_SFX_Explo_Generic_Footsteps01" ID="{08A108BA-EF10-41F4-9760-FD6ACF5E2DDE}" ShortID="1014038571">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_SFX_Explo_Generic_Footsteps01" ID="{0B0B3207-C1AB-412A-9C64-85E21142BA9E}">
+													<Language>SFX</Language>
+													<AudioFile>TF_SFX_Explo_Generic_Footsteps01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="96533956"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_SFX_Explo_Generic_Footsteps01" ID="{0B0B3207-C1AB-412A-9C64-85E21142BA9E}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_SFX_Explo_Generic_Footsteps02" ID="{44D5AB51-677C-4F5B-9881-27DBE9194C37}" ShortID="964939945">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_SFX_Explo_Generic_Footsteps02" ID="{96E1532B-652A-4627-BF6F-BE5F957581AD}">
+													<Language>SFX</Language>
+													<AudioFile>TF_SFX_Explo_Generic_Footsteps02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="658112401"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_SFX_Explo_Generic_Footsteps02" ID="{96E1532B-652A-4627-BF6F-BE5F957581AD}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_SFX_Explo_Generic_Footsteps03" ID="{3ECA7DA7-1E0D-4853-855A-852F9684508D}" ShortID="406007734">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_SFX_Explo_Generic_Footsteps03" ID="{90FB6FF6-91B3-42BD-A9F3-17BD1DC58333}">
+													<Language>SFX</Language>
+													<AudioFile>TF_SFX_Explo_Generic_Footsteps03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="397827699"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_SFX_Explo_Generic_Footsteps03" ID="{90FB6FF6-91B3-42BD-A9F3-17BD1DC58333}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_SFX_Explo_Generic_Footsteps04" ID="{3F02B820-F44B-48F4-B0D8-305157846709}" ShortID="223520732">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_SFX_Explo_Generic_Footsteps04" ID="{0455F394-C58C-4F59-9FEA-EB99CF9035D9}">
+													<Language>SFX</Language>
+													<AudioFile>TF_SFX_Explo_Generic_Footsteps04.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="857193520"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_SFX_Explo_Generic_Footsteps04" ID="{0455F394-C58C-4F59-9FEA-EB99CF9035D9}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_SFX_Explo_Generic_Footsteps05" ID="{061BBAF0-9982-4688-AD20-501FC7F042A9}" ShortID="743900904">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_SFX_Explo_Generic_Footsteps05" ID="{895FF929-6245-44BC-821C-BEF33A974E23}">
+													<Language>SFX</Language>
+													<AudioFile>TF_SFX_Explo_Generic_Footsteps05.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="934682114"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_SFX_Explo_Generic_Footsteps05" ID="{895FF929-6245-44BC-821C-BEF33A974E23}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_SFX_Explo_Generic_Footsteps06" ID="{8198D1E0-93E1-4053-BD70-D443865BCFDC}" ShortID="1048696936">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_SFX_Explo_Generic_Footsteps06" ID="{722C5723-DA21-490F-BF9C-297621AFB92E}">
+													<Language>SFX</Language>
+													<AudioFile>TF_SFX_Explo_Generic_Footsteps06.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="1070590533"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_SFX_Explo_Generic_Footsteps06" ID="{722C5723-DA21-490F-BF9C-297621AFB92E}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_SFX_Explo_Generic_Footsteps07" ID="{99E5D820-C6DC-4CEB-B343-42137C893B2A}" ShortID="1000987399">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_SFX_Explo_Generic_Footsteps07" ID="{CC7C2C45-0F1A-4A4E-9BB0-16C03F78A8DA}">
+													<Language>SFX</Language>
+													<AudioFile>TF_SFX_Explo_Generic_Footsteps07.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="148413221"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_SFX_Explo_Generic_Footsteps07" ID="{CC7C2C45-0F1A-4A4E-9BB0-16C03F78A8DA}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_SFX_Explo_Generic_Footsteps08" ID="{0B445177-0E08-4111-A98C-2684A444B98B}" ShortID="968497522">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_SFX_Explo_Generic_Footsteps08" ID="{5F55A809-1ECA-4381-A2FF-680CE94DA5A3}">
+													<Language>SFX</Language>
+													<AudioFile>TF_SFX_Explo_Generic_Footsteps08.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="772527009"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_SFX_Explo_Generic_Footsteps08" ID="{5F55A809-1ECA-4381-A2FF-680CE94DA5A3}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_SFX_Explo_Generic_Footsteps09" ID="{68415810-2D3C-4F27-95F4-6977B9FB16EF}" ShortID="822435888">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_SFX_Explo_Generic_Footsteps09" ID="{2D3D4848-C2CB-4307-923F-11AE6496E5D7}">
+													<Language>SFX</Language>
+													<AudioFile>TF_SFX_Explo_Generic_Footsteps09.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="534233471"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_SFX_Explo_Generic_Footsteps09" ID="{2D3D4848-C2CB-4307-923F-11AE6496E5D7}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<ObjectLists/>
+								</RandomSequenceContainer>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 					<ObjectLists/>
 				</ActorMixer>
@@ -520,6 +762,63 @@
 							<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
 						</Reference>
 					</ReferenceList>
+					<ChildrenList>
+						<ActorMixer Name="Robyn" ID="{F862517A-203A-4ACB-8002-42DA76DC1905}" ShortID="466438736">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+								</Reference>
+							</ReferenceList>
+							<ObjectLists/>
+						</ActorMixer>
+						<ActorMixer Name="Abigail" ID="{DC9B6BB8-92C6-4ECB-949A-63768B5C3C53}" ShortID="1059560334">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+								</Reference>
+							</ReferenceList>
+							<ObjectLists/>
+						</ActorMixer>
+						<ActorMixer Name="Phoebe" ID="{37B53DA5-50D2-420C-8272-F3A3F70C9299}" ShortID="350218375">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+								</Reference>
+							</ReferenceList>
+							<ObjectLists/>
+						</ActorMixer>
+						<ActorMixer Name="Guard" ID="{DF042F6A-7C90-47A6-920C-30E5560D1371}" ShortID="21148428">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+								</Reference>
+							</ReferenceList>
+							<ObjectLists/>
+						</ActorMixer>
+						<ActorMixer Name="Lieutenant" ID="{F74DB94D-AD31-4603-890A-539037D33F8D}" ShortID="468390526">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+								</Reference>
+							</ReferenceList>
+							<ObjectLists/>
+						</ActorMixer>
+					</ChildrenList>
 					<ObjectLists/>
 				</ActorMixer>
 				<ActorMixer Name="Ambiant" ID="{7ECC41FF-8D99-4B18-A981-F9444266669C}" ShortID="29342811">

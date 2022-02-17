@@ -242,6 +242,112 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
+				<Event Name="TF_CoreInit" ID="{491272F8-7396-4DFB-A0BC-CFEBE9008309}">
+					<ChildrenList>
+						<Action Name="" ID="{73513A4E-F899-4D12-9508-4071700CA6D1}" ShortID="734877713">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Music" ID="{AA39F08F-B600-44EA-B6D0-871E9D9A2379}" WorkUnitID="{912F3122-A24C-4B99-884A-0DC9FAC759AE}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{E8086261-95AA-4641-9FBD-EC390E85B300}" ShortID="443743820">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="22"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Explo" ID="{9ADCD37D-AFCA-4EDE-823F-79A2510E4F0B}" WorkUnitID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{4B900810-E4A1-46A8-8647-CA59BC8F96BE}" ShortID="410684505">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Music" ID="{AA39F08F-B600-44EA-B6D0-871E9D9A2379}" WorkUnitID="{912F3122-A24C-4B99-884A-0DC9FAC759AE}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Folder Name="Utilities" ID="{B1453998-B37A-4822-BDE6-E5C71CA995DD}" ShortID="458007305">
+					<ChildrenList>
+						<Event Name="TF_Music_SetBattle" ID="{26EEDCE8-9E0C-465B-A43D-F04585749B78}">
+							<ChildrenList>
+								<Action Name="" ID="{E637783B-CA74-45B0-8BA8-86690E77B20C}" ShortID="860152106">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Battle" ID="{16478AC6-5BF2-42C8-86D6-91C94808F876}" WorkUnitID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="TF_Music_SetExplo" ID="{55469B46-5FF3-4E5F-BE24-F2260F7E4BD8}">
+							<ChildrenList>
+								<Action Name="" ID="{0282386A-AA8A-432E-A866-39BE3CDC22C8}" ShortID="970159073">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Explo" ID="{9ADCD37D-AFCA-4EDE-823F-79A2510E4F0B}" WorkUnitID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="TF_Music_SetMuteOn" ID="{8A907E54-496D-40D2-9239-236D1C63A818}">
+							<ChildrenList>
+								<Action Name="" ID="{6700B68A-1DB9-4349-8AE5-61CED247D7FA}" ShortID="732711002">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="On" ID="{1FCE60A8-F134-43D4-AB90-C6E2F727BF4E}" WorkUnitID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="TF_Music_SetMuteOff" ID="{853D4F4C-8A14-42E0-916D-80BBF8FB70B8}">
+							<ChildrenList>
+								<Action Name="" ID="{F6CF27C1-4CDB-4270-A8B7-3C85F2D0E1DB}" ShortID="346491478">
+									<PropertyList>
+										<Property Name="ActionType" Type="int16" Value="22"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="Off" ID="{BB0D7B2A-57C2-470B-90A9-FE079A4E2CDC}" WorkUnitID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Characters" ID="{0AF42364-62DF-4779-92A9-4BF1AB899B10}" ShortID="580457654">
+					<ChildrenList>
+						<Event Name="TF_SFX_Explo_Generic_Footstep" ID="{E1EB4C04-D5B3-488D-BF77-95752130F9E4}">
+							<ChildrenList>
+								<Action Name="" ID="{B7B4583D-57DA-426A-A883-EA260E1CA32A}" ShortID="989432539">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="TF_SFX_Explo_Generic_Footsteps" ID="{D1BD98D0-9523-4063-949B-84DEF71ECBA0}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
