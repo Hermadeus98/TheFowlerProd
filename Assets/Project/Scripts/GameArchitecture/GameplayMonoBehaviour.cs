@@ -43,7 +43,7 @@ namespace TheFowler
         /// </summary>
         protected virtual void SetDependancies()
         {
-            QRDebug.Log("Game", FrenchPallet.CARROT, "Set Dependancies", gameObject);
+            //QRDebug.Log("Game", FrenchPallet.CARROT, "Set Dependancies", gameObject);
         }
         
         /// <summary>
@@ -51,7 +51,7 @@ namespace TheFowler
         /// </summary>
         protected virtual void OnGameStart()
         {
-            QRDebug.Log("Game", FrenchPallet.CARROT, "Start", gameObject);
+            //QRDebug.Log("Game", FrenchPallet.CARROT, "Start", gameObject);
         }
         
         /// <summary>
@@ -59,7 +59,7 @@ namespace TheFowler
         /// </summary>
         protected virtual void OnPause()
         {
-            QRDebug.Log("Game", FrenchPallet.CARROT, "Pause", gameObject);
+            //QRDebug.Log("Game", FrenchPallet.CARROT, "Pause", gameObject);
         }
         
         /// <summary>
@@ -67,7 +67,7 @@ namespace TheFowler
         /// </summary>
         protected virtual void OnUnpause()
         {
-            QRDebug.Log("Game", FrenchPallet.CARROT, "UnPause", gameObject);
+            //QRDebug.Log("Game", FrenchPallet.CARROT, "UnPause", gameObject);
         }
         
         //---<EVENTS>--------------------------------------------------------------------------------------------------<

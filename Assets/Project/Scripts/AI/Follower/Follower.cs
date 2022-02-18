@@ -21,6 +21,11 @@ namespace TheFowler
 
         public static Follower GetFollower(CharacterPlugger plugger)
         {
+            if (!Followers.ContainsKey(plugger))
+            {
+                return null;
+            }
+            
             return Followers[plugger];
         }
 

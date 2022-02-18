@@ -38,7 +38,7 @@ namespace TheFowler
             for (int i = 0; i < waypoints.Length; i++)
             {
                 GoTo(waypoints[i]);
-                while (Vector3.Distance(agent.transform.position, waypoints[i].position) > .2f)
+                while (Vector3.Distance(agent.transform.position, waypoints[i].position) > .5f)
                 {
                     yield return null;
                 }

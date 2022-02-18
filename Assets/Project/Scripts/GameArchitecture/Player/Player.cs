@@ -84,8 +84,6 @@ namespace TheFowler
                     return Abigael;
                 case CharacterEnum.PHEOEBE:
                     return Pheobe;
-                case CharacterEnum.ABI_PHEOBE:
-                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(characterEnum), characterEnum, null);
             }
@@ -94,15 +92,10 @@ namespace TheFowler
         }
     }
     
-    [Flags]
     public enum CharacterEnum
     {
         ROBYN = 0,
         ABIGAEL = 1,
         PHEOEBE = 2,
-        ROBYN_PHEOBE = ROBYN | PHEOEBE,
-        ROBYN_ABI = ROBYN | ABIGAEL,
-        ABI_PHEOBE = ABIGAEL | PHEOEBE,
-        ROBYN_ABI_PHEOBE = ABIGAEL | ROBYN | PHEOEBE,
     }
 }

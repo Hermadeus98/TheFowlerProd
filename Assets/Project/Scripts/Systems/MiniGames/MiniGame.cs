@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Sirenix.Utilities;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,30 +6,33 @@ namespace TheFowler
 {
     public class MiniGame : GameplayPhase
     {
-        [SerializeField] private BattleActor Actor;
-        [SerializeField] private Transform ActorPosition;
+        [SerializeField] protected EventBricks EventBricks;
+        [SerializeField] protected PlayerInput Inputs;
 
-        protected Vector3 initialPosition;
-        protected Quaternion initialRotation;
+        [SerializeField] protected bool resetCamera = true;
+        private CinemachineVirtualCameraBase lastCamera;
         
         public override void PlayPhase()
         {
             base.PlayPhase();
+            
+            lastCamera = CameraManager.Current;
+
+            EventBricks.OnEnd += EndPhase;
+            EventBricks.Play();
+            if (BattleManager.CurrentBattle != null)
+                BattleManager.CurrentBattle.BattleState.Pause = true;
         }
 
         public override void EndPhase()
         {
             base.EndPhase();
-        }
-
-        protected override void Update()
-        {
-            base.Update();
-
-            if (Gamepad.current.aButton.wasPressedThisFrame)
-            {
-                EndPhase();
-            }
+            EventBricks.OnEnd -= EndPhase;
+            if (BattleManager.CurrentBattle != null)
+                BattleManager.CurrentBattle.BattleState.Pause = false;
+            
+            if(resetCamera)
+                CameraManager.Instance.SetCamera(lastCamera);
         }
     }
 }

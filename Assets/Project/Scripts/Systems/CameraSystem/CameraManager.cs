@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Cinemachine;
 using DG.Tweening;
-using Nrjwolf.Tools.AttachAttributes;
 using QRCode;
 using QRCode.Extensions;
 using Sirenix.OdinInspector;
@@ -26,8 +25,12 @@ namespace TheFowler
         
         public int cameraClosePriority = 0;
         public int currentCameraPriority = 50;
+
+        public void SetCamera(CinemachineVirtualCameraBase newCamera)
+        {
+            ChangeCamera(newCamera);
+        }
         
-        [Button]
         public void SetCamera(string batchName, string cameraKey = "Default")
         {
             if (!cameraBatches.ContainsKey(batchName))
@@ -73,13 +76,18 @@ namespace TheFowler
             if(Current.IsNotNull())
                 Current.m_Priority = cameraClosePriority;
             
-            newCamera.m_Priority = currentCameraPriority;
-            current = newCamera;
+            ChangeCamera(newCamera);
 
             if (cameraBatch.CameraReferences[key].isDollyTrackCamera)
             {
                 DollyTrackActivation(cameraBatch.CameraReferences[key]);
             }
+        }
+
+        private void ChangeCamera(CinemachineVirtualCameraBase newCamera)
+        {
+            newCamera.m_Priority = currentCameraPriority;
+            current = newCamera;
         }
 
         private void DollyTrackActivation(CameraReference reference)
@@ -103,6 +111,20 @@ namespace TheFowler
             if (CameraBatches.ContainsKey(batch.batchName))
                 CameraBatches.Remove(batch.batchName);
         }
+        
+        //---<EDITOR>--------------------------------------------------------------------------------------------------<
+#if UNITY_EDITOR
+        [MenuItem("GameObject/Cameras/Default Virtual Camera", false, 20)]
+        private static void CreateCamera(MenuCommand menuCommand)
+        {
+            var obj = Resources.Load("Camera/Virtual Camera Default");
+            var go = PrefabUtility.InstantiatePrefab(obj, Selection.activeTransform) as GameObject;
+            GameObjectUtility.SetParentAndAlign(go, menuCommand.context as GameObject);
+            go.name = obj.name;
+            Undo.RegisterCreatedObjectUndo(go, "Create" + go.name);
+            Selection.activeObject = go;
+        }
+#endif
     }
 
     [Serializable]

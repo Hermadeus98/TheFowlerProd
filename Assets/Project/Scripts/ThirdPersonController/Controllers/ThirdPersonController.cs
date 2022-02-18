@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Cinemachine;
+using PathCreation;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -72,12 +73,7 @@ namespace TheFowler
             
             TurnModel();
         }
-
-        public override void OnStateExit(EventArgs arg)
-        {
-            base.OnStateExit(arg);
-        }
-
+        
         private Vector3 CalculateMovementVelocity(float h, float v)
         {
             var vel = Vector3.zero;
@@ -102,7 +98,8 @@ namespace TheFowler
             
             velocity.y += GRAVITY_FORCE;
 
-            if(applyMove && characterController.gameObject.activeInHierarchy) characterController.Move(velocity * Time.deltaTime);
+            if(applyMove && characterController.gameObject.activeInHierarchy) 
+                characterController.Move(velocity * Time.deltaTime);
             
             return velocity;
         }

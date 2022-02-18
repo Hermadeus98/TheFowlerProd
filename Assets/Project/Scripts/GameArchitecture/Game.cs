@@ -27,6 +27,7 @@ namespace TheFowler
 
         public static void SetDependancies()
         {
+            QRDebug.Log("Game", FrenchPallet.CARROT, "Set Dependancies");
             GameEvent.Broadcast(GameEventAddressCore.SetDependancies);
         }
 
