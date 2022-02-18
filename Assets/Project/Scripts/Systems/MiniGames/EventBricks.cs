@@ -53,7 +53,7 @@ namespace TheFowler
 
             isPlaying = false;
             OnEnd?.Invoke();
-            Bricks = null;
+            CurrentBrick = null;
             yield break;
         }
 
@@ -74,7 +74,7 @@ namespace TheFowler
         [TitleGroup("Settings")] [SerializeField]
         private int loop = 1;
         
-        [TitleGroup("Gameplay"), ReadOnly]
+        [TitleGroup("Gameplay"), ReadOnly, ShowIf("@this.brickType == BrickType.WAIT_INPUT")]
         public bool hasAnInput = false; //Si il y un input l'action est fini.
 
         [TitleGroup("Sequence")]
@@ -82,7 +82,7 @@ namespace TheFowler
         [TitleGroup("Sequence"), ReadOnly]
         public bool isPlaying;
 
-        [TitleGroup("Sequence")] 
+        [TitleGroup("Sequence"), ShowIf("@this.brickType == BrickType.CINEMATIC")] 
         public PlayableDirector PlayableDirector;
         
         public enum BrickType

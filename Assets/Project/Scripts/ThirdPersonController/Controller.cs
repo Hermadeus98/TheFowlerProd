@@ -62,6 +62,9 @@ namespace TheFowler
                 case ControllerEnum.STATIC_CONTROLLER:
                     Controllers.SetState("StaticController", ControllerArg);
                     break;
+                case ControllerEnum.PATH_CONTROLLER:
+                    Controllers.SetState("PathController", ControllerArg);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(controllerEnum), controllerEnum, null);
             }
@@ -124,5 +127,6 @@ namespace TheFowler
         PLAYER_CONTROLLER,
         NAV_MESH_FOLLOWER,
         STATIC_CONTROLLER,
+        PATH_CONTROLLER,
     }
 }

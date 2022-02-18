@@ -50,7 +50,11 @@ namespace TheFowler
         public static void EndPreviews()
         {
             //---<GESTION DAMAGE EFFECT>-------------------------------------------------------------------------------<
-            oldList.ForEach(w => w.Health.FillBar.HidePreview());
+            if (!oldList.IsNullOrEmpty())
+            {
+                oldList.ForEach(w => w.Health.FillBar?.HidePreview());
+            }
+
             oldList.Clear();
         }
     }

@@ -25,8 +25,12 @@ namespace TheFowler
         
         public int cameraClosePriority = 0;
         public int currentCameraPriority = 50;
+
+        public void SetCamera(CinemachineVirtualCameraBase newCamera)
+        {
+            ChangeCamera(newCamera);
+        }
         
-        [Button]
         public void SetCamera(string batchName, string cameraKey = "Default")
         {
             if (!cameraBatches.ContainsKey(batchName))
@@ -72,13 +76,18 @@ namespace TheFowler
             if(Current.IsNotNull())
                 Current.m_Priority = cameraClosePriority;
             
-            newCamera.m_Priority = currentCameraPriority;
-            current = newCamera;
+            ChangeCamera(newCamera);
 
             if (cameraBatch.CameraReferences[key].isDollyTrackCamera)
             {
                 DollyTrackActivation(cameraBatch.CameraReferences[key]);
             }
+        }
+
+        private void ChangeCamera(CinemachineVirtualCameraBase newCamera)
+        {
+            newCamera.m_Priority = currentCameraPriority;
+            current = newCamera;
         }
 
         private void DollyTrackActivation(CameraReference reference)
@@ -106,7 +115,7 @@ namespace TheFowler
         //---<EDITOR>--------------------------------------------------------------------------------------------------<
 #if UNITY_EDITOR
         [MenuItem("GameObject/Cameras/Default Virtual Camera", false, 20)]
-        private static void CreateStaticDialogue(MenuCommand menuCommand)
+        private static void CreateCamera(MenuCommand menuCommand)
         {
             var obj = Resources.Load("Camera/Virtual Camera Default");
             var go = PrefabUtility.InstantiatePrefab(obj, Selection.activeTransform) as GameObject;

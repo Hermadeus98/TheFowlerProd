@@ -24,7 +24,7 @@ namespace TheFowler
         protected bool isActive = false;
         protected ControllerMovement controllerMovement;
         protected Vector3 savedVelocity;
-        protected float currentYRot;
+        protected static float currentYRot;
         
         public virtual void OnStateEnter(EventArgs arg)
         {
