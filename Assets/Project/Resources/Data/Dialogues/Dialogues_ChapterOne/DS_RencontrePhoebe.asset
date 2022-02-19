@@ -186,18 +186,17 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 4cd644f5a26606c49af16c04b24cbbb0
-  position: {x: -1, y: 74}
+  position: {x: -224, y: 74}
   children:
-  - {fileID: 1381106977690102191}
+  - {fileID: -923025069718162834}
   dialogue:
-    ActorEnum: 0
-    dialogueText: "Phoebe? What a coincidence. Seems like we can\u2019t stop running
-      into each other!"
+    ActorEnum: 2
+    dialogueText: ...
     cameraPath:
-      genericKey: 4
-      cameraName: Cam3
+      genericKey: 5
+      cameraName: Cam2
       batchName: 
-    displayDuration: 5
+    displayDuration: 13
     choiceText: 
 --- !u!114 &-1593648004540668904
 MonoBehaviour:
@@ -256,6 +255,36 @@ MonoBehaviour:
       batchName: 
     displayDuration: 4
     choiceText: 
+--- !u!114 &-923025069718162834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: DialogueNode
+  state: 0
+  started: 0
+  guid: 921789d5b2764654d917a7c4f2432ed0
+  position: {x: -75, y: 74}
+  children:
+  - {fileID: -1841118499402636189}
+  - {fileID: 1381106977690102191}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: "Phoebe? What a coincidence. Seems like we can\u2019t stop running
+      into each other!"
+    cameraPath:
+      genericKey: 1
+      cameraName: Middle
+      batchName: 
+    displayDuration: 5
+    choiceText: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,6 +312,7 @@ MonoBehaviour:
   - {fileID: -1593648004540668904}
   - {fileID: 2398258738841510536}
   - {fileID: 8361543496212584178}
+  - {fileID: -923025069718162834}
 --- !u!114 &1381106977690102191
 MonoBehaviour:
   m_ObjectHideFlags: 0

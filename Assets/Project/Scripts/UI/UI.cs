@@ -20,7 +20,8 @@ namespace TheFowler
                 TurnTransition = "TurnTransitionView",
                 Harmo = "HarmonisationView",
                 InfoBox = "InfoBoxView",
-                TransitionView = "TransitionView";
+                TransitionView = "TransitionView",
+                CutsceneView = "TwoDCutsceneView";
         }
         
         private static Dictionary<string, UIView> views = new Dictionary<string, UIView>();

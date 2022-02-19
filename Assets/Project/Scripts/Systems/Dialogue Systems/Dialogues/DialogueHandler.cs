@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using DG.Tweening;
 using System.Collections;
-
+using UnityEngine.Playables;
 namespace TheFowler
 {
     public class DialogueHandler : GameplayPhase
@@ -30,7 +30,9 @@ namespace TheFowler
         
         [TabGroup("References")]
         [SerializeField] private PlayerInput Inputs;
-        
+        [TabGroup("References")]
+        [SerializeField] private PlayableDirector Timeline;
+
         [TabGroup("Debug")]
         private bool waitInput;
 
@@ -48,6 +50,13 @@ namespace TheFowler
 
         public override void PlayPhase()
         {
+            if(Timeline != null)
+            {
+                Timeline.Play();
+
+            }
+
+
             if (BehaviourTree.IsNull())
             {
                 Debug.LogError($"Behaviour tree is missing on {GameplayPhaseID} !");
