@@ -76,6 +76,9 @@ namespace TheFowler
             
             if(agent.isActiveAndEnabled)
                 agent.ResetPath();
+            
+            if(moveAlongWaypointsCoroutine != null)
+                StopCoroutine(moveAlongWaypointsCoroutine);
         }
         
         private void LateUpdate()

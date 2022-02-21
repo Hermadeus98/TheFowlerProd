@@ -21,7 +21,7 @@ namespace TheFowler
         [SerializeField] protected ControllerPresets controllerPresets;
         [SerializeField, ReadOnly] protected ControllerData controllerData;
 
-        protected bool isActive = false;
+        [SerializeField, ReadOnly] protected bool isActive = false;
         protected ControllerMovement controllerMovement;
         protected Vector3 savedVelocity;
         protected static float currentYRot;

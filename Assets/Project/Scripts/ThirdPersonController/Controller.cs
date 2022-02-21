@@ -80,6 +80,19 @@ namespace TheFowler
             return SetController(controllerEnum) as T;
         }
 
+        public void SetControllerMovement(int index)
+        {
+            if (index == 0)
+            {
+                SetControllerMovement(ControllerMovement.RUN);
+            }
+
+            if (index == 1)
+            {
+                SetControllerMovement(ControllerMovement.RUN);
+            }
+        }
+        
         [Button]
         public void SetControllerMovement(ControllerMovement controllerMovement)
         {

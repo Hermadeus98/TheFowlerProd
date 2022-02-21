@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -156,6 +156,7 @@ Transform:
   - {fileID: 5431788522323012798}
   - {fileID: 4328991231665162849}
   - {fileID: 7473903955778101450}
+  - {fileID: 7606891184145214425}
   m_Father: {fileID: 5273665785464774216}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -172,20 +173,120 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
-    SerializedBytes: 2d010b00000043006f006e00740072006f006c006c0065007200730001010b00000063006f006e00740072006f006c006c006500720073002f00000000011c0000005100520043006f00640065002e004900730074006100740065005b005d002c0020005100520043006f00640065005500740069006c007300000000000603000000000000000c000000000c010000000c02000000070501010d00000043006f006e00740072006f006c006c00650072004100720067002f01000000012800000054006800650046006f0077006c00650072002e0043006f006e00740072006f006c006c00650072004100720067002c00200041007300730065006d0062006c0079002d004300530068006100720070000100000005
+    SerializedFormat: 2
+    SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 7750199417960923096}
     - {fileID: 1034518258537128089}
     - {fileID: 5653216027656488615}
+    - {fileID: 5154356585124571306}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: Controllers
+      Entry: 6
+      Data: 
+    - Name: controllers
+      Entry: 7
+      Data: 0|QRCode.Istate[], QRCodeUtils
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ControllerArg
+      Entry: 7
+      Data: 1|TheFowler.ControllerArg, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+  controllerOnStart: 2
+  currentController: 0
+  ControllerMovement: 1
+--- !u!1 &4264689682658643898
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7606891184145214425}
+  - component: {fileID: 5154356585124571306}
+  m_Layer: 0
+  m_Name: FollowPathController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7606891184145214425
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4264689682658643898}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 454309791833914412}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5154356585124571306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4264689682658643898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f11fb397173867e478eb80e0e8639331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  controllerOnStart: 2
-  currentController: 0
-  ControllerMovement: 1
+  stateName: PathController
+  character: {fileID: 4528731836656609698}
+  model: {fileID: 1240251671113648415}
+  agent: {fileID: 7902036603410242855}
+  animatorController: {fileID: 4280127011860134381}
+  controllerPresets: {fileID: 11400000, guid: 2428b29a65e59b84d8f5f5b5d373e86e, type: 2}
+  controllerData: {fileID: 0}
+  playerInput: {fileID: 0}
+  pathpercent: 0
+  path: {fileID: 0}
+  speedCoef: 1.2
+  movementLerp: 0.2
+  pathControllerType: 0
+  verticalBinding: 0
 --- !u!1 &6115438185163568191
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,6 +343,7 @@ GameObject:
   - component: {fileID: 5273665785464774216}
   - component: {fileID: 7902036603410242855}
   - component: {fileID: 4528731836656609698}
+  - component: {fileID: 1476347546709049582}
   m_Layer: 0
   m_Name: Abigael
   m_TagString: Untagged
@@ -301,7 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -311,6 +413,51 @@ MonoBehaviour:
     SerializationNodes: []
   Controller: {fileID: 8572219966394749481}
   pawnTransform: {fileID: 5273665785464774216}
+--- !u!114 &1476347546709049582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6417987021687173804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: d16e24551a8778346914ccf3f06e7857, type: 2}
+    - {fileID: 11400000, guid: 0ce0ee9ac3a2ef842ac073d23e38b384, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8572219966394749481}
+          m_TargetAssemblyTypeName: TheFowler.Controller, Assembly-CSharp
+          m_MethodName: SetControllerMovement
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8572219966394749481}
+          m_TargetAssemblyTypeName: TheFowler.Controller, Assembly-CSharp
+          m_MethodName: SetControllerMovement
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &8208351117871667643
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,7 +502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -463,7 +610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -490,18 +637,18 @@ PrefabInstance:
     - target: {fileID: 281642956514855057, guid: 7c73a02f45fda6548bc8f6ebe044299d, type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 281642956514855057, guid: 7c73a02f45fda6548bc8f6ebe044299d, type: 3}
     - target: {fileID: 281642956514855057, guid: 7c73a02f45fda6548bc8f6ebe044299d, type: 3}
       propertyPath: serializationData.SerializedFormat
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 281642956514855057, guid: 7c73a02f45fda6548bc8f6ebe044299d, type: 3}
       propertyPath: serializationData.SerializedBytes.Array.size
-      value: 1581
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 281642956514855057, guid: 7c73a02f45fda6548bc8f6ebe044299d, type: 3}
       propertyPath: serializationData.SerializationNodes.Array.size
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 281642956514855057, guid: 7c73a02f45fda6548bc8f6ebe044299d, type: 3}
       propertyPath: serializationData.SerializedBytes.Array.data[0]

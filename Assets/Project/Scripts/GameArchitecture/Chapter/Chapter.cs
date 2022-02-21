@@ -42,7 +42,7 @@ namespace TheFowler
         {
             yield return new WaitForEndOfFrame();
             yield return new WaitForEndOfFrame();
-            Player.Initialize();
+            //Player.Initialize();
             yield return new WaitForEndOfFrame();
             ChapterManager.onChapterLoaded?.Invoke(this);
             GameState.ChangeState(GameState.gameArguments.currentChapterData.InitialGameState);

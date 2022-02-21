@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4196603420155586137}
   - component: {fileID: 8277487063562025423}
+  - component: {fileID: 7369982512207883965}
   m_Layer: 0
   m_Name: 3C
   m_TagString: Untagged
@@ -56,6 +57,51 @@ MonoBehaviour:
     SerializationNodes: []
   Controller: {fileID: 2768600201499419703}
   pawnTransform: {fileID: 4196603420020207576}
+--- !u!114 &7369982512207883965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4196603420155586138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: b551ba7ff3b4bde43bccf2882d0f2b0d, type: 2}
+    - {fileID: 11400000, guid: 4cc0de9eae195224d851d522b8275b79, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2768600201499419703}
+          m_TargetAssemblyTypeName: TheFowler.Controller, Assembly-CSharp
+          m_MethodName: SetControllerMovement
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2768600201499419703}
+          m_TargetAssemblyTypeName: TheFowler.Controller, Assembly-CSharp
+          m_MethodName: SetControllerMovement
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &6872040267648477006
 GameObject:
   m_ObjectHideFlags: 0
@@ -2274,6 +2320,10 @@ PrefabInstance:
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7234275852034884156, guid: 38f923afb0011b549b5e26c345410cd3, type: 3}
+      propertyPath: pathControllerType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7234275852034884156, guid: 38f923afb0011b549b5e26c345410cd3, type: 3}
       propertyPath: characterController
       value: 
       objectReference: {fileID: 4196603420020207577}
@@ -2481,12 +2531,16 @@ PrefabInstance:
       value: -7.973341e-11
       objectReference: {fileID: 0}
     - target: {fileID: 2312289652739415978, guid: b19842bc24ba6a34a8179a3c644bdb5e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0000017285347
+      objectReference: {fileID: 0}
+    - target: {fileID: 2312289652739415978, guid: b19842bc24ba6a34a8179a3c644bdb5e, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2312289652739415978, guid: b19842bc24ba6a34a8179a3c644bdb5e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.0000009536743
       objectReference: {fileID: 0}
     - target: {fileID: 2312289652739415978, guid: b19842bc24ba6a34a8179a3c644bdb5e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2494,15 +2548,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2312289652739415978, guid: b19842bc24ba6a34a8179a3c644bdb5e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.075300016
+      value: 0.07530006
       objectReference: {fileID: 0}
     - target: {fileID: 2312289652739415978, guid: b19842bc24ba6a34a8179a3c644bdb5e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.00000050663954
       objectReference: {fileID: 0}
     - target: {fileID: 2312289652739415978, guid: b19842bc24ba6a34a8179a3c644bdb5e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.00000003911555
       objectReference: {fileID: 0}
     - target: {fileID: 2891059369847251994, guid: b19842bc24ba6a34a8179a3c644bdb5e, type: 3}
       propertyPath: m_TrackedObjectOffset.y

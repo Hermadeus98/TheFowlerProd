@@ -1,3 +1,4 @@
+using DG.Tweening;
 using PathCreation;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -13,6 +14,11 @@ namespace TheFowler
 
         public GameInstructions OnCompleteInstructions;
 
+        private PathController bindedPathController;
+        [SerializeField] private PathController.PathControllerType PathControllerType;
+        [SerializeField] private float duration = 4f;
+        [SerializeField] private AnimationCurve ease;
+        
         [Button]
         public void Follow(int characters)
         {
@@ -25,8 +31,17 @@ namespace TheFowler
         public void FollowPath(int characters)
         {
             var character = Player.GetCharacters((CharacterEnum)characters);
-            var controller = character.Controller.SetController<PathController>(ControllerEnum.PATH_CONTROLLER);
-            controller.MoveAlongWayPath(path, OnCompleteInstructions.Call);
+            bindedPathController = character.Controller.SetController<PathController>(ControllerEnum.PATH_CONTROLLER);
+            bindedPathController.path = path;
+            bindedPathController.MoveAlongWayPath(path, OnCompleteInstructions.Call);
+            bindedPathController.pathControllerType = PathControllerType;
+            
+            DOTween.To(
+                () => bindedPathController.verticalBinding,
+                (x) => bindedPathController.verticalBinding = x,
+                1f,
+                duration
+                ).SetEase(ease);
         }
     }
 }

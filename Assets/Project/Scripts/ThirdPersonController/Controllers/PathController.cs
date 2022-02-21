@@ -10,7 +10,6 @@ namespace TheFowler
 {
     public class PathController : CharacterControllerBase
     {
-        [SerializeField] private CharacterController characterController;
         [SerializeField] private PlayerInput playerInput;
         
         private Coroutine moveAlongWaypointsCoroutine;
@@ -18,7 +17,7 @@ namespace TheFowler
         float vertical = 0;
         [SerializeField, ReadOnly] float pathpercent = 0;
         
-        [SerializeField] private PathCreator path;
+        public PathCreator path;
 
         [SerializeField]
         private float speedCoef;
@@ -28,6 +27,15 @@ namespace TheFowler
 
         private float position;
         [SerializeField] private float movementLerp = .2f;
+        
+        public enum PathControllerType
+        {
+            Auto,
+            Manual,
+        }
+
+        public PathControllerType pathControllerType;
+        public float verticalBinding = 0;
 
         [Button]
         public void MoveAlongWayPath(PathCreator path, Action OnComplete = null)
@@ -66,8 +74,18 @@ namespace TheFowler
             
             if (pathpercent >= path.path.length - 0.1f)
                 hasReachTheEnd = true;
-            
-            vertical = Mathf.Abs(playerInput.actions["move"].ReadValue<Vector2>().y);
+
+            switch (pathControllerType)
+            {
+                case PathControllerType.Auto:
+                    vertical = verticalBinding;
+                    break;
+                case PathControllerType.Manual:
+                    vertical = Mathf.Clamp01(Mathf.Abs(playerInput.actions["move"].ReadValue<Vector2>().y));
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
             savedVelocity.x = vertical;
                 
             pathpercent += (vertical * controllerData.MovementSpeed) / speedCoef * Time.deltaTime;

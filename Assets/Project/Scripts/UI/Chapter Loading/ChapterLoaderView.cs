@@ -13,11 +13,13 @@ namespace TheFowler
 
         protected override void RegisterEvent()
         {
+            base.RegisterEvent();
             ChapterManager.onChapterLoaded += OnChapterLoaded;
         }
 
         protected override void UnregisterEvent()
         {
+            base.UnregisterEvent();
             ChapterManager.onChapterLoaded -= OnChapterLoaded;
         }
 
@@ -37,6 +39,11 @@ namespace TheFowler
             Show();
             yield return new WaitForSeconds(duration);
             Hide();
+        }
+
+        public void Refresh(ChapterData ChapterData)
+        {
+            chapterName.SetText(ChapterData.ChapterName);
         }
 
         public override void Refresh(EventArgs args)
