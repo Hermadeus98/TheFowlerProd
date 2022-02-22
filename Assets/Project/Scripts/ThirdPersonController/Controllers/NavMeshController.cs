@@ -80,13 +80,6 @@ namespace TheFowler
             if(moveAlongWaypointsCoroutine != null)
                 StopCoroutine(moveAlongWaypointsCoroutine);
         }
-        
-        private void LateUpdate()
-        {
-            if(!isActive)
-                return;
-            TurnModel();
-        }
 
         private void ApplyNavMeshAgentPresset(ControllerMovement controllerMovement)
         {

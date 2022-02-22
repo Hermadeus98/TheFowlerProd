@@ -90,13 +90,6 @@ namespace TheFowler
             agent.transform.position = Follower.transform.position;
         }
         
-        private void LateUpdate()
-        {
-            if(!isActive)
-                return;
-            TurnModel();
-        }
-        
         private void ApplyNavMeshAgentPresset(ControllerMovement controllerMovement)
         {
             var presset = NavMeshPresets.GetElement(controllerMovement);

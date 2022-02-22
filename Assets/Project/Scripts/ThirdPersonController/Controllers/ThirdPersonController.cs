@@ -43,7 +43,7 @@ namespace TheFowler
             
             SetVelocity(savedVelocity);
 
-            var moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
+            var moveAmount = Mathf.Abs(horizontal) + Mathf.Abs(vertical);
             UpdateAnimatorController(moveAmount);
         }
         
@@ -64,14 +64,6 @@ namespace TheFowler
             }
             
             savedVelocity = CalculateMovementVelocity(horizontal, vertical);
-        }
-
-        private void LateUpdate()
-        {
-            if(!isActive)
-                return;
-            
-            TurnModel();
         }
         
         private Vector3 CalculateMovementVelocity(float h, float v)

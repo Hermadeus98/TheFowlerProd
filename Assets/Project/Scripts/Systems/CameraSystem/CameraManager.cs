@@ -28,6 +28,9 @@ namespace TheFowler
 
         public void SetCamera(CinemachineVirtualCameraBase newCamera)
         {
+            if(newCamera == current)
+                return;
+            
             ChangeCamera(newCamera);
         }
         

@@ -9,6 +9,8 @@ namespace TheFowler
 {
     public class CharacterControllerBase : GameplayMonoBehaviour, Istate
     {
+        [HideInInspector] public Controller referedController;
+        
         [SerializeField]
         private string stateName;
         public string StateName { get => stateName; set => stateName = value; }
@@ -24,7 +26,13 @@ namespace TheFowler
         [SerializeField, ReadOnly] protected bool isActive = false;
         protected ControllerMovement controllerMovement;
         protected Vector3 savedVelocity;
-        protected static float currentYRot;
+
+        [HideInInspector]
+        public float currentYRot
+        {
+            get => referedController.currentYRot;
+            set => referedController.currentYRot = value;
+        }
         
         public virtual void OnStateEnter(EventArgs arg)
         {
@@ -95,6 +103,13 @@ namespace TheFowler
         public virtual void OnChangeController()
         {
             
+        }
+
+        private void LateUpdate()
+        {
+            if(!isActive)
+                return;
+            TurnModel();
         }
     }
     

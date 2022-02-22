@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using CMF;
 using QRCode;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,6 +22,9 @@ namespace TheFowler
         [HideInInspector] public ControllerArg ControllerArg = new ControllerArg();
         
         [SerializeField] protected ControllerMovement ControllerMovement;
+        
+        [HideInInspector] public float currentYRot;
+ 
 
         private void Start()
         {
@@ -29,6 +34,7 @@ namespace TheFowler
         private void Initialize()
         {
             Controllers = new StateMachine(controllers, UpdateMode.Update, ControllerArg);
+            controllers.Cast<CharacterControllerBase>().ForEach(w => w.referedController = this);
             SetController(controllerOnStart);
             SetControllerMovement(ControllerMovement);
         }
@@ -89,7 +95,7 @@ namespace TheFowler
 
             if (index == 1)
             {
-                SetControllerMovement(ControllerMovement.RUN);
+                SetControllerMovement(ControllerMovement.WALK);
             }
         }
         

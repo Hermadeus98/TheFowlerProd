@@ -36,6 +36,8 @@ namespace TheFowler
 
         public PathControllerType pathControllerType;
         public float verticalBinding = 0;
+        public float Vertical => vertical;
+        public float PathPercent => pathpercent;
 
         [Button]
         public void MoveAlongWayPath(PathCreator path, Action OnComplete = null)
