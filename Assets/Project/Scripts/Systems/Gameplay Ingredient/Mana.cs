@@ -12,10 +12,26 @@ namespace TheFowler
         [SerializeField] private int currentMana;
 
         public IntUnityEvent onRemoveMana, onWinMana;
+        public int CurrentMana => currentMana;
+
+        public float NormalizedMana
+        {
+            get
+            {
+                if (maxMana == 0)
+                    return 1f;
+                else
+                {
+                    return (float)currentMana / (float)maxMana;
+                }
+            }
+        }
+
         
         public void Initialize(int mana)
         {
             maxMana = currentMana = mana;
+            ReferedActor.AllyData?.Refresh();
         }
 
         [Button]
@@ -30,6 +46,7 @@ namespace TheFowler
             currentMana += mana;
             if (currentMana > maxMana) currentMana = maxMana;
             onWinMana?.Invoke(currentMana);
+            ReferedActor.AllyData?.Refresh();
         }
 
         [Button]
@@ -38,6 +55,7 @@ namespace TheFowler
             currentMana -= mana;
             if (currentMana < 0) currentMana = 0;
             onRemoveMana?.Invoke(currentMana);
+            ReferedActor.AllyData?.Refresh();
         }
 
         [Button]
@@ -45,6 +63,7 @@ namespace TheFowler
         {
             currentMana = 0;
             onRemoveMana?.Invoke(currentMana);
+            ReferedActor.AllyData?.Refresh();
         }
 
         [Button]
@@ -52,6 +71,7 @@ namespace TheFowler
         {
             currentMana = maxMana;
             onWinMana?.Invoke(currentMana);
+            ReferedActor.AllyData?.Refresh();
         }
     }
 }

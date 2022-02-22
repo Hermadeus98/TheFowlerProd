@@ -17,12 +17,26 @@ namespace TheFowler
 
         public FillBar FillBar => fillBar;
         public float CurrentHealth => currentHealth;
+
+        public float NormalizedHealth
+        {
+            get
+            {
+                if (maxHealth == 0)
+                    return 1f;
+                else
+                {
+                   return currentHealth / maxHealth;
+                }
+            }
+        } 
         
         public void Initialize(float health)
         {
             maxHealth = currentHealth = health;
             fillBar?.SetMaxValue(maxHealth);
             fillBar?.SetFill(currentHealth);
+            ReferedActor.AllyData?.Refresh();
         }
 
         [Button]
@@ -40,6 +54,7 @@ namespace TheFowler
             
             onDamaged?.Invoke(currentHealth);
             fillBar?.SetFill(currentHealth);
+            ReferedActor.AllyData?.Refresh();
         }
 
         [Button]
@@ -52,6 +67,7 @@ namespace TheFowler
             if (currentHealth > maxHealth) currentHealth = maxHealth;
             onHealed?.Invoke(currentHealth);
             fillBar?.SetFill(currentHealth);
+            ReferedActor.AllyData?.Refresh();
         }
 
         [Button]
@@ -60,6 +76,7 @@ namespace TheFowler
             currentHealth = 0;
             onDamaged?.Invoke(currentHealth);
             fillBar?.SetFill(currentHealth);
+            ReferedActor.AllyData?.Refresh();
 
             Death();
         }
@@ -77,6 +94,7 @@ namespace TheFowler
             currentHealth = health;
             onHealed?.Invoke(currentHealth);
             fillBar?.SetFill(currentHealth);
+            ReferedActor.AllyData?.Refresh();
 
             onResurect?.Invoke();
             ReferedActor.BattleActorInfo.isDeath = false;
