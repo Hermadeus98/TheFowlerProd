@@ -40,6 +40,9 @@ namespace AK
         static const AkUniqueID TF_SFX_COMBAT_UI_TURN_ENEMYTURN = 1139569567U;
         static const AkUniqueID TF_SFX_COMBAT_UI_WEAKDISPLAY = 3449597560U;
         static const AkUniqueID TF_SFX_EXPLO_GENERIC_FOOTSTEP = 2232847779U;
+        static const AkUniqueID TF_VOICE_TEST_NARRA01 = 3755670027U;
+        static const AkUniqueID TF_VOICE_TEST_NARRA02 = 3755670024U;
+        static const AkUniqueID TF_VOICE_TEST_NARRA03 = 3755670025U;
     } // namespace EVENTS
 
     namespace STATES
