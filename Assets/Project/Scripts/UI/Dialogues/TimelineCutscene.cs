@@ -31,6 +31,23 @@ namespace TheFowler
         {
             dialogueHandler.currentAnim.SetTrigger(animationTrigger);
         }
+
+        public void PlaysSentence(DialogueNode sentence)
+        {
+
+            DialogueStaticView view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs) ;
+            view.Show();
+            view.DisplaySentence(sentence);
+            PlaySound(sentence.dialogue.voice);
+        }
+
+        public void HideSentence()
+        {
+
+            DialogueStaticView view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
+            view.Hide();
+
+        }
     }
 }
 

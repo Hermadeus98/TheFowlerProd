@@ -42,5 +42,12 @@ namespace TheFowler
                 return;
             }
         }
+
+        public void DisplaySentence(DialogueNode node)
+        {
+            
+            speakerName.SetText(node.dialogue.ActorEnum.ToString());
+            animatedText.SetText(node.dialogue.dialogueText);
+        }
     }
 }
