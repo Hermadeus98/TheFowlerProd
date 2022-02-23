@@ -237,7 +237,7 @@ namespace TheFowler
         {
             if (dialogueType == DialogueType.STATIC)
             {
-                ReplaceActor();
+                //ReplaceActor();
                 SoundManager.StopSound(currentSound, gameObject);
             }
             
