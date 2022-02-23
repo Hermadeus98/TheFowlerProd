@@ -12,7 +12,7 @@ namespace TheFowler
     public class TransitionView : UIView
     {
         [TabGroup("References")]
-        [SerializeField] private MMFeedbacks transitionHarmonisation, transitionStatic, transitionChapterIn;
+        [SerializeField] private MMFeedbacks transitionHarmonisation, transitionStatic, transitionChapterIn, transitionBattleIn;
         public override void Refresh(EventArgs args)
         {
             base.Refresh(args);
@@ -43,6 +43,9 @@ namespace TheFowler
                     break;
                 case TransitionType.CHAPTER_IN:
                     Transition(transitionChapterIn, action);
+                    break;
+                case TransitionType.BATTLE:
+                    Transition(transitionBattleIn, action);
                     break;
             }
 

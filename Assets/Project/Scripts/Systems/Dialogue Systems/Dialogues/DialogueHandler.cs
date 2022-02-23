@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using DG.Tweening;
 using System.Collections;
 using UnityEngine.Playables;
+
 namespace TheFowler
 {
     public class DialogueHandler : GameplayPhase
@@ -32,6 +33,12 @@ namespace TheFowler
         [SerializeField] private PlayerInput Inputs;
         [TabGroup("References")]
         [SerializeField] private PlayableDirector Timeline;
+
+        [TabGroup("References")]
+        [SerializeField] Animator robynAnim, phoebeAnim, abiAnim;
+
+        public Animator currentAnim;
+        private AK.Wwise.Event currentSound;
 
         [TabGroup("Debug")]
         private bool waitInput;
@@ -184,6 +191,8 @@ namespace TheFowler
                                 var view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
                                 view.ChoiceSelector.Show();
                                 view.SetChoices(currentDialogueNode);
+
+
                             }
                                 break;
                             case DialogueType.MOVEMENT:
@@ -199,8 +208,14 @@ namespace TheFowler
                     }
                     else
                     {
+                        Debug.Log(currentDialogue.displayDuration - elapsedTime);
+                        Timeline.time += (currentDialogue.displayDuration - elapsedTime);
+
                         currentDialogueNode = currentDialogueNode.children[0] as DialogueNode;
                         DisplayDialogue(currentDialogue);
+
+                        
+
                     }
                 }
                 else
@@ -223,6 +238,7 @@ namespace TheFowler
             if (dialogueType == DialogueType.STATIC)
             {
                 ReplaceActor();
+                SoundManager.StopSound(currentSound, gameObject);
             }
             
             base.EndPhase();
@@ -250,8 +266,25 @@ namespace TheFowler
                     UI.RefreshView(UI.Views.StaticDialogs, new DialogueArg()
                     {
                         Dialogue = dialogue,
-                        DialogueNode = currentDialogueNode,
+                        DialogueNode = currentDialogueNode,                        
                     });
+                    SoundManager.PlaySound(dialogue.voice, gameObject);
+
+                    switch (dialogue.ActorEnum)
+                    {
+                        case ActorEnum.ROBYN:
+                            currentAnim = robynAnim;
+                            break;
+                        case ActorEnum.PHEOBE:
+                            currentAnim = phoebeAnim;
+                            break;
+                        case ActorEnum.ABIGAEL:
+                            currentAnim = abiAnim;
+                            break;
+                    }
+
+                    currentAnim.SetTrigger(dialogue.animationTrigger.ToString());
+                    currentSound = dialogue.voice;
                     break;
                 case DialogueType.MOVEMENT:
                     UI.RefreshView(UI.Views.MovementDialogs, new DialogueArg()

@@ -10,6 +10,9 @@ namespace TheFowler
 
         public static void RegisterGameplayPhase(GameplayPhase dialoguePhase)
         {
+            if (dialoguePhase.GameplayPhaseID == GameplayPhaseEnum.NULL)
+                return;
+
             if (!GameplayPhases.ContainsKey(dialoguePhase.GameplayPhaseID))
             {
                 GameplayPhases.Add(dialoguePhase.GameplayPhaseID, dialoguePhase);

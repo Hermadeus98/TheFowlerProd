@@ -18,5 +18,15 @@ namespace TheFowler
         public cameraPath cameraPath;
         public float displayDuration = 2f;
         public string choiceText;
+        public AK.Wwise.Event voice;
+        public AnimationTriggerName animationTrigger;
+    }
+
+    [System.Serializable]
+    public enum AnimationTriggerName
+    {
+            IDLE,
+            Walk,
+            Attack
     }
 }
