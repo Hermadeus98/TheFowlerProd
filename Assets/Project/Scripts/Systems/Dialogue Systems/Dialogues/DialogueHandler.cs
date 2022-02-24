@@ -98,7 +98,8 @@ namespace TheFowler
                     PlaceActor();
                     break;
                 case DialogueType.MOVEMENT:
-                    UI.OpenView(UI.Views.MovementDialogs);
+                    //UI.OpenView(UI.Views.MovementDialogs);
+                    UI.OpenView(UI.Views.StaticDialogs);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -170,22 +171,13 @@ namespace TheFowler
                                 break;
                             case DialogueType.MOVEMENT:
                             {
-                                var view = UI.GetView<DialogueMovementView>(UI.Views.MovementDialogs);
+                                //var view = UI.GetView<DialogueMovementView>(UI.Views.MovementDialogs);
+                                var view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
                                 var hasChoice = view.ChoiceSelector.WaitChoice(out currentDialogueNode, out choiceNumber);
 
                                 if (hasChoice)
                                 {
                                     DisplayDialogue(currentDialogue);
-                                    switch (choiceNumber)
-                                    {
-                                        case 0:
-                                            eventChoice1.Invoke();
-                                            break;
-                                        case 1:
-                                            eventChoice2.Invoke();
-                                            break;
-                                    }
-
 
                                     waitInput = false;
                                 }
@@ -225,7 +217,8 @@ namespace TheFowler
                                 break;
                             case DialogueType.MOVEMENT:
                             {
-                                var view = UI.GetView<DialogueMovementView>(UI.Views.MovementDialogs);
+                                //var view = UI.GetView<DialogueMovementView>(UI.Views.MovementDialogs);
+                                var view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
                                 view.ChoiceSelector.Show();
                                 view.SetChoices(currentDialogueNode);
                             }
@@ -236,8 +229,8 @@ namespace TheFowler
                     }
                     else
                     {
-                        Debug.Log(currentDialogue.displayDuration - elapsedTime);
-                        Timeline.time += (currentDialogue.displayDuration - elapsedTime);
+                        if(Timeline!=null)
+                            Timeline.time += (currentDialogue.displayDuration - elapsedTime);
 
                         currentDialogueNode = currentDialogueNode.children[0] as DialogueNode;
                         DisplayDialogue(currentDialogue);
@@ -277,7 +270,8 @@ namespace TheFowler
                     UI.CloseView(UI.Views.StaticDialogs);
                     break;
                 case DialogueType.MOVEMENT:
-                    UI.CloseView(UI.Views.MovementDialogs);
+                    //UI.CloseView(UI.Views.MovementDialogs);
+                    UI.CloseView(UI.Views.StaticDialogs);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -320,11 +314,17 @@ namespace TheFowler
                     currentSound = dialogue.voice;
                     break;
                 case DialogueType.MOVEMENT:
-                    UI.RefreshView(UI.Views.MovementDialogs, new DialogueArg()
+                    //UI.RefreshView(UI.Views.MovementDialogs, new DialogueArg()
+                    //{
+                    //    Dialogue = dialogue,
+                    //    DialogueNode = currentDialogueNode,
+                    //});
+                    UI.RefreshView(UI.Views.StaticDialogs, new DialogueArg()
                     {
                         Dialogue = dialogue,
                         DialogueNode = currentDialogueNode,
                     });
+                    SoundManager.PlaySound(dialogue.voice, gameObject);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
