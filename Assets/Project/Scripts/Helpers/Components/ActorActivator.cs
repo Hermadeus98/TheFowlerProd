@@ -34,14 +34,11 @@ namespace TheFowler
                     ActorsToActivateParents[i].transform.GetChild(a).gameObject.SetActive(false);
                 }
             }
+            
             //ActorsToActivate.ForEach(w => w.SetActive(false));
         }
 
 
-        private IEnumerator WaitDesactivateSK()
-        {
-            yield return new WaitForSeconds(1f);
-        }
 
         private void SetActorActive(bool state)
         {

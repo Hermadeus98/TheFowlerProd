@@ -258,7 +258,7 @@ namespace TheFowler
         {
             if (dialogueType == DialogueType.STATIC)
             {
-                ReplaceActor();
+                ReplaceActor(1);
                 SoundManager.StopSound(currentSound, gameObject);
             }
             
@@ -342,6 +342,7 @@ namespace TheFowler
         {
             actorActivator?.DesactivateActor();
         }
+
 
         private void ReplaceActor(float timer)
         {
