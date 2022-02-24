@@ -759,6 +759,14 @@ PrefabInstance:
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 7506749512297971287, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
+    - target: {fileID: 7523836532537439499, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
+      propertyPath: referedActor
+      value: 
+      objectReference: {fileID: 5987991261210515036}
+    - target: {fileID: 7523836532537439499, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 7523836532537439499, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
     - target: {fileID: 7542574822764082769, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
       propertyPath: serializationData.Prefab
       value: 
@@ -883,6 +891,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4404171824462025767, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
   m_PrefabInstance: {fileID: 7199203821685095931}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &829432870164269296 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7523836532537439499, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
+  m_PrefabInstance: {fileID: 7199203821685095931}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d22c282a4bc7164297092b60bb2d70d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1633327853723982608 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8449327657292965611, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
@@ -986,6 +1005,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
+  isParticipant: 1
   battleActorData: {fileID: 11400000, guid: c93fc0172cb7c4945865c092472a731d, type: 2}
   cameraBatchBattle: {fileID: 843953709359555606}
   sockets: {fileID: 3580944888745419682}
@@ -998,6 +1018,7 @@ MonoBehaviour:
   - {fileID: 1633327853723982608}
   - {fileID: 5288677480332251382}
   - {fileID: 617654400817408817}
+  - {fileID: 829432870164269296}
   health: {fileID: 1759558160362987564}
   mana: {fileID: 2947999462815204964}
   battleActorInfo:
@@ -1006,6 +1027,7 @@ MonoBehaviour:
     buffBonus: 0
     debuffMalus: 0
     isTaunt: 0
+    isDefending: 0
   BattleActorStats:
     health: 0
     mana: 0

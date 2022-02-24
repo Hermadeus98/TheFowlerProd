@@ -10,9 +10,12 @@ namespace TheFowler
         {
             var bonusesCoef = emitter.BattleActorInfo.buffBonus / 100;
             var malusesCoef = emitter.BattleActorInfo.debuffMalus / 100;
+
+            var defenseCoef = receiver.BattleActorInfo.defenseBonus / 100;
+            
             var bonusesCalculate = initialDamage * (bonusesCoef - malusesCoef);
 
-            return initialDamage + bonusesCalculate;
+            return (initialDamage + bonusesCalculate) / defenseCoef;
         }
     }
 }

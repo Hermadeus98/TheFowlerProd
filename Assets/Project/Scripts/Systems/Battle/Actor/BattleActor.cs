@@ -233,5 +233,6 @@ namespace TheFowler
         public float buffBonus;
         public float debuffMalus;
         public bool isTaunt;
+        public float defenseBonus;
     }
 }

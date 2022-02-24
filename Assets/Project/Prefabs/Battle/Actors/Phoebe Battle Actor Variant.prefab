@@ -62,9 +62,9 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d65095c232f76364eb97077756a90c21, type: 3}
   m_PrefabInstance: {fileID: 1343401636660488267}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1575624316279302426 stripped
+--- !u!4 &1606392659602446912 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -8684904513567981231, guid: d65095c232f76364eb97077756a90c21, type: 3}
+  m_CorrespondingSourceObject: {fileID: -8867669891919531509, guid: d65095c232f76364eb97077756a90c21, type: 3}
   m_PrefabInstance: {fileID: 1343401636660488267}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &4420434769901067090
@@ -225,7 +225,7 @@ PrefabInstance:
     - target: {fileID: 5934240025784311385, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
       propertyPath: body_Middle
       value: 
-      objectReference: {fileID: 1575624316279302426}
+      objectReference: {fileID: 1606392659602446912}
     - target: {fileID: 5934240025784311385, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
       propertyPath: serializationData.Prefab
       value: 
@@ -238,6 +238,14 @@ PrefabInstance:
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 7506749512297971287, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
+    - target: {fileID: 7523836532537439499, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
+      propertyPath: referedActor
+      value: 
+      objectReference: {fileID: 3295742940894024284}
+    - target: {fileID: 7523836532537439499, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 7523836532537439499, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
     - target: {fileID: 7542574822764082769, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
       propertyPath: serializationData.Prefab
       value: 
@@ -431,6 +439,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaacfd35cfc4ac64e9f5c7cb2a2f9c1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &254213998925419967 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7523836532537439499, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
+  m_PrefabInstance: {fileID: 7776924076498591924}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d22c282a4bc7164297092b60bb2d70d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3295742940894024284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,6 +471,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
+  isParticipant: 1
   battleActorData: {fileID: 11400000, guid: 06f540379a7b27d4ba54df924f399ee2, type: 2}
   cameraBatchBattle: {fileID: 2553097096883903592}
   sockets: {fileID: 4158943288032165613}
@@ -464,6 +484,7 @@ MonoBehaviour:
   - {fileID: 2211027184539469407}
   - {fileID: 4710961611215654329}
   - {fileID: 42718098177963646}
+  - {fileID: 254213998925419967}
   health: {fileID: 1184075440728210787}
   mana: {fileID: 2372551898259102507}
   battleActorInfo:
@@ -472,6 +493,7 @@ MonoBehaviour:
     buffBonus: 0
     debuffMalus: 0
     isTaunt: 0
+    defenseBonus: 0
   BattleActorStats:
     health: 0
     mana: 0
