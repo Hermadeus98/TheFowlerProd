@@ -18,7 +18,7 @@ namespace TheFowler
         [TabGroup("References")]
         [SerializeField] private Transform alliesBatch, enemiesBatch;
 
-        [TitleGroup("General Settings")] [SerializeField]
+        [TitleGroup("General Settings")]
         private StateMachine battleState;
 
         [TabGroup("References")] [SerializeField]
@@ -39,6 +39,8 @@ namespace TheFowler
 
         public TurnSystem TurnSystem;
 
+        public AllyActor robyn, abi, phoebe;
+
         protected override void OnAwake()
         {
             base.OnAwake();
@@ -49,17 +51,13 @@ namespace TheFowler
         {
             BattleManager.CurrentBattle = this;
             
+            InitializeUI();
+
             RegisterActors();
             InitializeTurnSystem();
             
             StartBattle();
         }
-
-        //public override void PlayWithTransition()
-        //{
-        //    UI.GetView<TransitionView>(UI.Views.TransitionView).Show(TransitionType.STATIC, PlayPhase);
-
-        //}
 
         private void StartBattle()
         {
@@ -73,6 +71,13 @@ namespace TheFowler
             turnActors.AddRange(enemies);
             TurnSystem = new TurnSystem(turnActors);
             TurnSystem.StartTurnSystem();
+        }
+
+        private void InitializeUI()
+        {
+            var alliesDataView = UI.GetView<AlliesDataView>("AlliesDataView");
+            alliesDataView.Initialize(robyn, abi, phoebe);
+            alliesDataView.Show();
         }
         
         private void RegisterActors()
@@ -106,7 +111,6 @@ namespace TheFowler
         public void StopBattle()
         {
             ChangeBattleState(BattleStateEnum.END_BATTLE);
-
         }
 
         [Button]
