@@ -19,8 +19,14 @@ namespace TheFowler
         public override void EndPhase()
         {
             base.EndPhase();
-            nextPhase.PlayPhase();
+            if (nextPhase != null)
+            {
+                nextPhase.PlayPhase();
+            }
+
+
         }
+
     }
 
 }

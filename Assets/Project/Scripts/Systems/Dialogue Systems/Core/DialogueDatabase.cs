@@ -27,6 +27,7 @@ namespace TheFowler
     {
             IDLE,
             Walk,
-            Attack
+            Attack,
+            IDLE_Combat
     }
 }

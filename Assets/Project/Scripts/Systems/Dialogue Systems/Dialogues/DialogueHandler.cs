@@ -16,7 +16,14 @@ namespace TheFowler
 
         [TitleGroup("General Settings")]
         [SerializeField] private bool displayChoiceResult = true;
-        
+        [TitleGroup("General Settings")]
+        [SerializeField] private bool hasChoices = false;
+
+        [TitleGroup("General Settings"), ShowIf("hasChoices")]
+        [SerializeField] private UnityEngine.Events.UnityEvent eventChoice1, eventChoice2;
+        private int choiceNumber;
+
+
         [TabGroup("Debug")]
         [SerializeField, ReadOnly] private DialogueNode currentDialogueNode;
         private Dialogue currentDialogue => currentDialogueNode.dialogue;
@@ -144,21 +151,42 @@ namespace TheFowler
                             case DialogueType.STATIC:
                             {
                                 var view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
-                                var hasChoice = view.ChoiceSelector.WaitChoice(out currentDialogueNode);
+                                var hasChoice = view.ChoiceSelector.WaitChoice(out currentDialogueNode, out choiceNumber);
                                 if (hasChoice)
                                 {
                                     DisplayDialogue(currentDialogue);
-                                    waitInput = false;
+                                        switch (choiceNumber)
+                                        {
+                                            case 0:
+                                                eventChoice1.Invoke();
+                                                break;
+                                            case 1:
+                                                eventChoice2.Invoke();
+                                                break;
+                                        }
+                                        waitInput = false;
                                 }
                             }
                                 break;
                             case DialogueType.MOVEMENT:
                             {
                                 var view = UI.GetView<DialogueMovementView>(UI.Views.MovementDialogs);
-                                var hasChoice = view.ChoiceSelector.WaitChoice(out currentDialogueNode);
+                                var hasChoice = view.ChoiceSelector.WaitChoice(out currentDialogueNode, out choiceNumber);
+
                                 if (hasChoice)
                                 {
                                     DisplayDialogue(currentDialogue);
+                                    switch (choiceNumber)
+                                    {
+                                        case 0:
+                                            eventChoice1.Invoke();
+                                            break;
+                                        case 1:
+                                            eventChoice2.Invoke();
+                                            break;
+                                    }
+
+
                                     waitInput = false;
                                 }
                             }
@@ -254,6 +282,11 @@ namespace TheFowler
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
+            if(Timeline != null)
+            {
+                Timeline.time = Timeline.duration;
+            }
         }
 
         private void DisplayDialogue(Dialogue dialogue)
@@ -321,6 +354,7 @@ namespace TheFowler
             ReplaceActor();
             yield break;
         }
+
     }
 
     public class DialogueArg : EventArgs
