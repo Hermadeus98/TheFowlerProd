@@ -37,6 +37,12 @@ namespace TheFowler
             //ActorsToActivate.ForEach(w => w.SetActive(false));
         }
 
+
+        private IEnumerator WaitDesactivateSK()
+        {
+            yield return new WaitForSeconds(1f);
+        }
+
         private void SetActorActive(bool state)
         {
             if (desactivateRobyn)

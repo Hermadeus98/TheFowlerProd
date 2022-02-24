@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using DG.Tweening;
 using System.Collections;
 using UnityEngine.Playables;
+
 namespace TheFowler
 {
     public class DialogueHandler : GameplayPhase
@@ -15,7 +16,14 @@ namespace TheFowler
 
         [TitleGroup("General Settings")]
         [SerializeField] private bool displayChoiceResult = true;
-        
+        [TitleGroup("General Settings")]
+        [SerializeField] private bool hasChoices = false;
+
+        [TitleGroup("General Settings"), ShowIf("hasChoices")]
+        [SerializeField] private UnityEngine.Events.UnityEvent eventChoice1, eventChoice2;
+        private int choiceNumber;
+
+
         [TabGroup("Debug")]
         [SerializeField, ReadOnly] private DialogueNode currentDialogueNode;
         private Dialogue currentDialogue => currentDialogueNode.dialogue;
@@ -32,6 +40,12 @@ namespace TheFowler
         [SerializeField] private PlayerInput Inputs;
         [TabGroup("References")]
         [SerializeField] private PlayableDirector Timeline;
+
+        [TabGroup("References")]
+        [SerializeField] Animator robynAnim, phoebeAnim, abiAnim;
+
+        public Animator currentAnim;
+        private AK.Wwise.Event currentSound;
 
         [TabGroup("Debug")]
         private bool waitInput;
@@ -137,21 +151,42 @@ namespace TheFowler
                             case DialogueType.STATIC:
                             {
                                 var view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
-                                var hasChoice = view.ChoiceSelector.WaitChoice(out currentDialogueNode);
+                                var hasChoice = view.ChoiceSelector.WaitChoice(out currentDialogueNode, out choiceNumber);
                                 if (hasChoice)
                                 {
                                     DisplayDialogue(currentDialogue);
-                                    waitInput = false;
+                                        switch (choiceNumber)
+                                        {
+                                            case 0:
+                                                eventChoice1.Invoke();
+                                                break;
+                                            case 1:
+                                                eventChoice2.Invoke();
+                                                break;
+                                        }
+                                        waitInput = false;
                                 }
                             }
                                 break;
                             case DialogueType.MOVEMENT:
                             {
                                 var view = UI.GetView<DialogueMovementView>(UI.Views.MovementDialogs);
-                                var hasChoice = view.ChoiceSelector.WaitChoice(out currentDialogueNode);
+                                var hasChoice = view.ChoiceSelector.WaitChoice(out currentDialogueNode, out choiceNumber);
+
                                 if (hasChoice)
                                 {
                                     DisplayDialogue(currentDialogue);
+                                    switch (choiceNumber)
+                                    {
+                                        case 0:
+                                            eventChoice1.Invoke();
+                                            break;
+                                        case 1:
+                                            eventChoice2.Invoke();
+                                            break;
+                                    }
+
+
                                     waitInput = false;
                                 }
                             }
@@ -184,6 +219,8 @@ namespace TheFowler
                                 var view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
                                 view.ChoiceSelector.Show();
                                 view.SetChoices(currentDialogueNode);
+
+
                             }
                                 break;
                             case DialogueType.MOVEMENT:
@@ -199,8 +236,14 @@ namespace TheFowler
                     }
                     else
                     {
+                        Debug.Log(currentDialogue.displayDuration - elapsedTime);
+                        Timeline.time += (currentDialogue.displayDuration - elapsedTime);
+
                         currentDialogueNode = currentDialogueNode.children[0] as DialogueNode;
                         DisplayDialogue(currentDialogue);
+
+                        
+
                     }
                 }
                 else
@@ -223,6 +266,7 @@ namespace TheFowler
             if (dialogueType == DialogueType.STATIC)
             {
                 ReplaceActor();
+                SoundManager.StopSound(currentSound, gameObject);
             }
             
             base.EndPhase();
@@ -238,6 +282,11 @@ namespace TheFowler
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
+            if(Timeline != null)
+            {
+                Timeline.time = Timeline.duration;
+            }
         }
 
         private void DisplayDialogue(Dialogue dialogue)
@@ -250,8 +299,25 @@ namespace TheFowler
                     UI.RefreshView(UI.Views.StaticDialogs, new DialogueArg()
                     {
                         Dialogue = dialogue,
-                        DialogueNode = currentDialogueNode,
+                        DialogueNode = currentDialogueNode,                        
                     });
+                    SoundManager.PlaySound(dialogue.voice, gameObject);
+
+                    switch (dialogue.ActorEnum)
+                    {
+                        case ActorEnum.ROBYN:
+                            currentAnim = robynAnim;
+                            break;
+                        case ActorEnum.PHEOBE:
+                            currentAnim = phoebeAnim;
+                            break;
+                        case ActorEnum.ABIGAEL:
+                            currentAnim = abiAnim;
+                            break;
+                    }
+
+                    currentAnim.SetTrigger(dialogue.animationTrigger.ToString());
+                    currentSound = dialogue.voice;
                     break;
                 case DialogueType.MOVEMENT:
                     UI.RefreshView(UI.Views.MovementDialogs, new DialogueArg()
@@ -288,6 +354,7 @@ namespace TheFowler
             ReplaceActor();
             yield break;
         }
+
     }
 
     public class DialogueArg : EventArgs

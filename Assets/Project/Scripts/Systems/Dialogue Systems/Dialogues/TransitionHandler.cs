@@ -20,19 +20,23 @@ namespace TheFowler
             feedbacks?.PlayFeedbacks();
         }
 
+
         public override void EndPhase()
         {
             base.EndPhase();
             if(nextPhase != null)
             {
-                UI.GetView<TransitionView>(UI.Views.TransitionView).Show(transitionType, nextPhase.PlayPhase);
-            }
-            else
-            {
-                UI.GetView<TransitionView>(UI.Views.TransitionView).Show(transitionType, null);
+                nextPhase.PlayPhase();
             }
 
+
         }
+
+        public void Transition()
+        {
+            UI.GetView<TransitionView>(UI.Views.TransitionView).Show(transitionType, null);
+        }
+
     }
 
 }

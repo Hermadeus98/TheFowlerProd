@@ -49,6 +49,8 @@ namespace TheFowler
 
         public override void PlayPhase()
         {
+            base.PlayPhase();
+
             BattleManager.CurrentBattle = this;
             
             InitializeUI();

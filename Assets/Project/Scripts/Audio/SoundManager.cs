@@ -15,5 +15,17 @@ namespace TheFowler
         {
             AudioDatabase.GetElement(key).Post(handler);
         }
+
+        public static void PlaySound(AK.Wwise.Event sound, GameObject handler)
+        {
+            sound.Stop(handler);
+            sound.Post(handler);
+        }
+
+        public static void StopSound(AK.Wwise.Event sound, GameObject handler)
+        {
+            sound.Stop(handler);
+        }
+
     }
 }
