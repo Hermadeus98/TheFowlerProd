@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using QRCode;
+using QRCode.Extensions;
 using UnityEngine;
 
 namespace TheFowler
@@ -58,11 +59,14 @@ namespace TheFowler
         {
             var skillElement = elements[currentIndex] as SkillSelectorElement;
             
-            if (Inputs.actions["Select"].WasPressedThisFrame())
+            if (Inputs.actions["Select"].WasPressedThisFrame() && skillElement != null)
             {
-                Hide();
-                skillSelectorElement = skillElement;
-                return true;
+                if (skillElement.isSelectable)
+                {
+                    Hide();
+                    skillSelectorElement = skillElement;
+                    return true;
+                }
             }
 
             skillSelectorElement = null;
