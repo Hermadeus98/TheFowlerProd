@@ -123,7 +123,6 @@ namespace TheFowler
 
         protected void ResetElements()
         {
-
             elements = new List<UISelectorElement>(all_elements);
         }
     }

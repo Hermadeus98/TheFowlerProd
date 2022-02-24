@@ -33,6 +33,7 @@ namespace TheFowler
                 {
                     if (Player.SelectedSpell.IsNotNull())
                     {
+                        BattleManager.CurrentBattleActor.Mana.RemoveMana(Player.SelectedSpell.ManaCost);
                         yield return Player.SelectedSpell.Cast(BattleManager.CurrentBattleActor, TargetSelector.SelectedTargets.ToArray());
                     }    
                 }

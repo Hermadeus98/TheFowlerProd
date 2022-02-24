@@ -15,6 +15,10 @@ namespace TheFowler
         [SerializeField] private TextMeshProUGUI manaCostText;
         [SerializeField] private Image spellTypeIcon;
         [SerializeField] private SpellTypeDatabase SpellTypeDatabase;
+
+        [SerializeField] private Image selectableFeedback;
+        
+        public bool isSelectable { get; set; } = false;
         
         public override void Refresh(EventArgs args)
         {
@@ -26,6 +30,17 @@ namespace TheFowler
                 text.SetText(referedSpell.SpellName);
                 manaCostText.SetText(referedSpell.ManaCost.ToString());
                 spellTypeIcon.sprite = SpellTypeDatabase.GetElement(referedSpell.SpellType);
+                
+                if (BattleManager.CurrentBattleActor.Mana.HaveEnoughMana(referedSpell.ManaCost))
+                {
+                    isSelectable = true;
+                    selectableFeedback.enabled = false;
+                }
+                else
+                {
+                    isSelectable = false;
+                    selectableFeedback.enabled = true;
+                }
             }
         }
     }
