@@ -116,5 +116,6 @@ namespace TheFowler
         {
             CameraManager.Instance.SetCamera(CameraGenericKey.GetCameraGenericKey(CameraGenericKeyEnum.TPS_CAMERA));
         }
+
     }
 }

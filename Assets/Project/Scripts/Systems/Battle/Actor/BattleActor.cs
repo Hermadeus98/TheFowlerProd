@@ -40,6 +40,9 @@ namespace TheFowler
         public BattleActorData BattleActorData => battleActorData;
         public BattleActorInfo BattleActorInfo => battleActorInfo;
         public Health Health => health;
+        public Mana Mana => mana;
+        
+        public AllyData AllyData { get; set; }
 
         protected override void OnStart()
         {
@@ -66,11 +69,13 @@ namespace TheFowler
             Debug.Log(gameObject.name + " start turn");
             
             battleActorComponents.ForEach(w => w.OnTurnStart());
+            AllyData?.Select();
         }
 
         public virtual void OnTurnEnd()
         {
             Debug.Log(gameObject.name + " end turn");
+            AllyData?.UnSelect();
         }
 
         public virtual bool SkipTurn()
@@ -228,5 +233,6 @@ namespace TheFowler
         public float buffBonus;
         public float debuffMalus;
         public bool isTaunt;
+        public float defenseBonus;
     }
 }

@@ -45,7 +45,7 @@ namespace TheFowler
         }
 
 
-        public bool WaitChoice(out DialogueNode dialogueNode)
+        public bool WaitChoice(out DialogueNode dialogueNode, out int choiceNumber)
         {
             var node = dialogueNodes[currentIndex];
 
@@ -55,6 +55,7 @@ namespace TheFowler
                 {
                     Hide();
                     dialogueNode = node;
+                    choiceNumber = -1;
                     return true;
                 }
 
@@ -70,6 +71,7 @@ namespace TheFowler
 
                             Hide();
                             dialogueNode = dialogueNodes[currentIndex];
+                            choiceNumber = 0;
                             return true;
                         }
                         break;
@@ -80,6 +82,7 @@ namespace TheFowler
 
                             Hide();
                             dialogueNode = dialogueNodes[currentIndex];
+                            choiceNumber = 0;
                             return true;
                         }
                         else if (Inputs.actions["B"].WasPressedThisFrame())
@@ -88,6 +91,7 @@ namespace TheFowler
 
                             Hide();
                             dialogueNode = dialogueNodes[currentIndex];
+                            choiceNumber = 1;
                             return true;
                         }
                         break;
@@ -98,6 +102,7 @@ namespace TheFowler
 
                             Hide();
                             dialogueNode = dialogueNodes[currentIndex];
+                            choiceNumber = 0;
                             return true;
                         }
                         else if (Inputs.actions["B"].WasPressedThisFrame())
@@ -106,6 +111,7 @@ namespace TheFowler
 
                             Hide();
                             dialogueNode = dialogueNodes[currentIndex];
+                            choiceNumber = 1;
                             return true;
                         }
                         else if (Inputs.actions["C"].WasPressedThisFrame())
@@ -115,6 +121,7 @@ namespace TheFowler
 
                             Hide();
                             dialogueNode = dialogueNodes[currentIndex];
+                            choiceNumber = 2;
                             return true;
                         }
 
@@ -126,6 +133,7 @@ namespace TheFowler
             }
 
             dialogueNode = null;
+            choiceNumber = -1;
             return false;
         }
 

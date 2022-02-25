@@ -34,8 +34,11 @@ namespace TheFowler
                     ActorsToActivateParents[i].transform.GetChild(a).gameObject.SetActive(false);
                 }
             }
+            
             //ActorsToActivate.ForEach(w => w.SetActive(false));
         }
+
+
 
         private void SetActorActive(bool state)
         {
