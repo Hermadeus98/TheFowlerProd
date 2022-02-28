@@ -30,7 +30,6 @@ namespace TheFowler
             {
                 SetCamera(CameraKeys.BattleKeys.TargetPickingDefault);
             }
-            
         }
 
         public override void OnStateExecute()

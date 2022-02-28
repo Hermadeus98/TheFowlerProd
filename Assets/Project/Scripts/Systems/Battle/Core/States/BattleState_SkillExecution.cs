@@ -37,8 +37,21 @@ namespace TheFowler
                         yield return Player.SelectedSpell.Cast(BattleManager.CurrentBattleActor, TargetSelector.SelectedTargets.ToArray());
                     }    
                 }
+                else if (BattleManager.IsEnemyTurn)
+                {
+                    if (BattleManager.CurrentBattleActor is EnemyActor enemyActor)
+                    {
+                        if (enemyActor.Brain != null)
+                        {
+                            enemyActor.AI.Think();
 
-                yield return new WaitForSeconds(2f);
+                            yield return enemyActor.AI.SelectedSpell.Cast(enemyActor,
+                                TargetSelector.SelectedTargets.ToArray());
+                        }
+                    }
+                }
+
+                //yield return new WaitForSeconds(2f);
                 BattleManager.CurrentBattle.TurnSystem.NextTurn();
             }
         }

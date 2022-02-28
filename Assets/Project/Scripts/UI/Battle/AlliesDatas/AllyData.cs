@@ -28,7 +28,6 @@ namespace TheFowler
 
         public void Refresh()
         {
-            Debug.Log(referedActor.Health.NormalizedHealth);
             healthBar.DOFillAmount(referedActor.Health.NormalizedHealth, .2f);
             manaBar.DOFillAmount(referedActor.Mana.NormalizedMana, .2f);
             
