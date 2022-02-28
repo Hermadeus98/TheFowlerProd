@@ -9,14 +9,14 @@ namespace TheFowler
         protected override void Update()
         {
             base.Update();
+            
+            if(!isActive)
+                return;
             CheckInputs();
         }
 
         public void CheckInputs()
         {
-            if(!isActive)
-                return;
-
             if (Inputs.actions["A"].WasPressedThisFrame())
             {
                 EventBricks.CurrentBrick.Input();

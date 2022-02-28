@@ -10,6 +10,8 @@ namespace TheFowler
         [TitleGroup("Main Settings")]
         [SerializeField] private string message;
 
+        public void DebugLog() => Debug.Log($" {message}");
+        
         protected override void OnStart()
         {
             Debug.Log($"OnStart {message}");
