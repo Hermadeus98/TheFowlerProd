@@ -24,9 +24,9 @@ namespace TheFowler
             //ActorsToActivate.ForEach(w => w.SetActive(true));
         }
 
-        public void DesactivateActor()
+        public void DesactivateActor(bool activatePlayer)
         {
-            SetActorActive(true);
+            SetActorActive(activatePlayer);
             for (int i = 0; i < ActorsToActivateParents.Length; i++)
             {
                 for (int a = 0; a < ActorsToActivateParents[i].transform.childCount; a++)

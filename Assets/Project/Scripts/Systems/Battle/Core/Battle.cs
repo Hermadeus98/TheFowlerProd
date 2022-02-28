@@ -20,7 +20,8 @@ namespace TheFowler
 
         [TitleGroup("General Settings")]
         private StateMachine battleState;
-
+        [TitleGroup("General Settings")]
+        public bool replaceActorAtTheEnd = true;
         [TabGroup("References")] [SerializeField]
         private Istate[] battleStates;
 
@@ -130,6 +131,10 @@ namespace TheFowler
         {
             battleState.SetState(GetBattleStateKey(key), EventArgs.Empty);
             BattleManager.OnBattleStateChange?.Invoke(key);
+
+            Player.Robyn?.gameObject.SetActive(replaceActorAtTheEnd);
+            Player.Abigael?.gameObject.SetActive(replaceActorAtTheEnd);
+            Player.Pheobe?.gameObject.SetActive(replaceActorAtTheEnd);
         }
         
         public T ChangeBattleState<T>(BattleStateEnum key) where T : class, Istate
