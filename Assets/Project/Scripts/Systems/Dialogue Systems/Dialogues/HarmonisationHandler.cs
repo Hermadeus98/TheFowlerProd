@@ -63,7 +63,7 @@ namespace TheFowler
 
             infoView.Hide();
             view.Hide();
-            actorActivator?.DesactivateActor();
+            actorActivator?.DesactivateActor(true);
         }
 
         //public override void PlayWithTransition()

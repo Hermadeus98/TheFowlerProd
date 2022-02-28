@@ -13,6 +13,8 @@ namespace TheFowler
     {
         [TitleGroup("General Settings"), Required]
         public BehaviourTree BehaviourTree;
+        [TitleGroup("General Settings")]
+        public bool replaceActorAtTheEnd = true;
 
         [TitleGroup("General Settings")]
         [SerializeField] private bool displayChoiceResult = true;
@@ -340,7 +342,7 @@ namespace TheFowler
 
         private void ReplaceActor()
         {
-            actorActivator?.DesactivateActor();
+            actorActivator?.DesactivateActor(replaceActorAtTheEnd);
         }
 
 
