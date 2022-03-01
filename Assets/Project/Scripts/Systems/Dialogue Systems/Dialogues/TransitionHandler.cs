@@ -37,6 +37,14 @@ namespace TheFowler
             UI.GetView<TransitionView>(UI.Views.TransitionView).Show(transitionType, null);
         }
 
+        public void ReplaceActor()
+        {
+
+            Player.Robyn?.gameObject.SetActive(true);
+            Player.Abigael?.gameObject.SetActive(true);
+            Player.Pheobe?.gameObject.SetActive(true);
+        }
+
     }
 
 }

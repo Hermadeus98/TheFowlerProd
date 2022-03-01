@@ -16,18 +16,23 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 57d7762211de0f74fac5bebb3692e186
-  position: {x: -204, y: 161}
+  position: {x: -434, y: 161}
   children:
-  - {fileID: 5880321718542277815}
+  - {fileID: 6965270673268810762}
   dialogue:
-    ActorEnum: 0
-    dialogueText: 'GUARD1: Stop right there criminal scum!'
+    ActorEnum: 3
+    dialogueText: '!'
     cameraPath:
       genericKey: 4
-      cameraName: Cam4
+      cameraName: Cam5
       batchName: Robyn_Facial
-    displayDuration: 3
+    displayDuration: 2.5
     choiceText: 
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 11400000, guid: af54ae50bf89e674ab227505b994c800, type: 2}
+    animationTrigger: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,6 +53,7 @@ MonoBehaviour:
   - {fileID: 5338549579494542790}
   - {fileID: 7413616161941266586}
   - {fileID: 6665712545289257312}
+  - {fileID: 6965270673268810762}
 --- !u!114 &5338549579494542790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,19 +70,24 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 6ab1ecb4f97aaa9469ff0ab103ef1a7c
-  position: {x: 24, y: 161}
+  position: {x: 23, y: 161}
   children:
   - {fileID: 7413616161941266586}
   dialogue:
-    ActorEnum: 0
-    dialogueText: 'GUARD2: Phoebe, you traitorous apostate! The King shall have your
-      head, at last!'
+    ActorEnum: 3
+    dialogueText: Phoebe, you traitorous apostate! The King shall have your head,
+      at last!
     cameraPath:
       genericKey: 4
-      cameraName: Cam4
+      cameraName: Cam5
       batchName: 
     displayDuration: 5
     choiceText: 
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 11400000, guid: af54ae50bf89e674ab227505b994c800, type: 2}
+    animationTrigger: 0
 --- !u!114 &5880321718542277815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,11 +111,16 @@ MonoBehaviour:
     ActorEnum: 0
     dialogueText: "Get lost you arsehole! I\u2019ve got a King to depose!"
     cameraPath:
-      genericKey: 4
-      cameraName: Cam4
+      genericKey: 1
+      cameraName: Middle
       batchName: Robyn_Facial
     displayDuration: 3.5
     choiceText: 
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 11400000, guid: af54ae50bf89e674ab227505b994c800, type: 2}
+    animationTrigger: 2
 --- !u!114 &6665712545289257312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,13 +131,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
+  m_Name: 
   m_EditorClassIdentifier: 
   NodeName: 
   state: 0
   started: 0
   guid: f71d882508e4a11469fecb8612accdbd
-  position: {x: 305, y: 161}
+  position: {x: 306, y: 161}
   children: []
   dialogue:
     ActorEnum: 1
@@ -130,8 +146,46 @@ MonoBehaviour:
       genericKey: 3
       cameraName: Middle
       batchName: 
+    displayDuration: 3
+    choiceText: 
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 11400000, guid: af54ae50bf89e674ab227505b994c800, type: 2}
+    animationTrigger: 2
+--- !u!114 &6965270673268810762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NodeName: 
+  state: 0
+  started: 0
+  guid: 6457cbd21d92ed747a8ec7c4959b69ca
+  position: {x: -305, y: 161}
+  children:
+  - {fileID: 5880321718542277815}
+  dialogue:
+    ActorEnum: 3
+    dialogueText: Stop here criminal scum !
+    cameraPath:
+      genericKey: 4
+      cameraName: Cam5
+      batchName: 
     displayDuration: 2
     choiceText: 
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 11400000, guid: af54ae50bf89e674ab227505b994c800, type: 2}
+    animationTrigger: 0
 --- !u!114 &7413616161941266586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,3 +214,8 @@ MonoBehaviour:
       batchName: 
     displayDuration: 3
     choiceText: 
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 11400000, guid: af54ae50bf89e674ab227505b994c800, type: 2}
+    animationTrigger: 0
