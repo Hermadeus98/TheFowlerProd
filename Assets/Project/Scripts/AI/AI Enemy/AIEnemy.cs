@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using QRCode;
 using QRCode.Extensions;
+using QRCode.Utils;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using UnityEngine;
@@ -15,18 +16,35 @@ namespace TheFowler
     {
         public BehaviourTree brain;
         public Node currentNode;
+        public EnemyActor referedEnemy;
 
         [SerializeField, ReadOnly] private Node nextNode;
 
         [ShowInInspector, ReadOnly] public Spell SelectedSpell { get; private set; }
 
-        public AIEnemy(BehaviourTree behaviourTree)
+        public AIEnemy(BehaviourTree behaviourTree, EnemyActor enemyActor)
         {
             brain = behaviourTree;
             currentNode = brain.rootNode;
+            referedEnemy = enemyActor;
+        }
+
+        [Button]
+        public void DebugAI()
+        {
+            BattleManager.CurrentBattle.TurnSystem.CurrentRound.currentTurnActor = referedEnemy;
+            StartThink();
+
+            //Coroutiner.Play(referedEnemy.AI.SelectedSpell.Cast(referedEnemy,
+            //    TargetSelector.SelectedTargets.ToArray()));
         }
         
-        [Button]
+        public void StartThink()
+        {
+            currentNode = brain.rootNode;
+            Think();
+        }
+        
         public void Think()
         {
             if (currentNode is ChoiceNode choiceNode)
@@ -62,7 +80,7 @@ namespace TheFowler
             if (currentNode is CastNode castNode)
             {
                 QRDebug.Log("AI", FrenchPallet.GREEN_SEA, $"RESULT FOUNDED -> {castNode.NodeName}");
-                SelectedSpell = castNode.spellToCast;
+                SelectedSpell = castNode.GetRandomSpell();
                 return;
             }
         }
@@ -78,12 +96,6 @@ namespace TheFowler
         }
     }
 
-    public enum Intention
-    {
-        ALEATOIRE = 0,
-        AGRESSIVE = 1, //Cherche à infliger des dégats
-    }
-
     public enum TargetIntention
     {
         NONE = 0,
@@ -95,5 +107,7 @@ namespace TheFowler
         ROBYN = 6,
         ABI = 7,
         PHOEBE = 8,
+        RANDOM_ALLY = 9,
+        RANDOM_ENEMY = 10,
     }
 }

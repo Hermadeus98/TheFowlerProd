@@ -5,6 +5,7 @@ using System.Linq;
 using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 namespace TheFowler
 {
@@ -268,6 +269,16 @@ namespace TheFowler
         public static BattleActor GetStrongerEnemy()
         {
             return GetAllEnemies().OrderByDescending(w => w.BattleActorData.health).First();
+        }
+
+        public static BattleActor GetRandomAlly()
+        {
+            return GetAllAllies()[Random.Range(0, GetAllAllies().Length)];
+        }
+        
+        public static BattleActor GetRandomEnemy()
+        {
+            return GetAllEnemies()[Random.Range(0, GetAllEnemies().Length)];
         }
     }
 

@@ -1,18 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace TheFowler
 {
     public class TargetNode : CompositeNode
     {
-        [SerializeField] private TargetTypeEnum TargetTypeEnum;
+        [TitleGroup("Target")]
         [SerializeField] private TargetIntention TargetIntention;
 
         public void SelectTarget()
         {
-            TargetSelector.Initialize(TargetTypeEnum);
+            TargetSelector.Initialize(TargetTypeEnum.SELF);
             switch (TargetIntention)
             {
                 case TargetIntention.NONE:
@@ -40,7 +41,12 @@ namespace TheFowler
                 case TargetIntention.PHOEBE:
                     BattleManager.CurrentBattle.phoebe?.SelectAsTarget();
                     break;
-                
+                case TargetIntention.RANDOM_ALLY:
+                    TargetSelector.GetRandomAlly().SelectAsTarget();
+                    break;
+                case TargetIntention.RANDOM_ENEMY:
+                    TargetSelector.GetRandomEnemy().SelectAsTarget();
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }

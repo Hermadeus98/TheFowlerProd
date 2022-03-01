@@ -19,7 +19,7 @@ namespace TheFowler
             base.OnStart();
             
             if(brain.IsNotNull())
-                ai = new AIEnemy(brain);
+                ai = new AIEnemy(brain, this);
         }
 
         public override void OnTurnStart()
@@ -28,5 +28,8 @@ namespace TheFowler
             actorTurn = new EnemyTurn();
             actorTurn.OnTurnStart();
         }
+
+        [Button]
+        private void Think() => ai.DebugAI();
     }
 }
