@@ -15,7 +15,7 @@ namespace TheFowler
         }
 
         [TitleGroup("Main Settings"), PropertyOrder(-1)] [SerializeField] [OnValueChanged("ApplyName")]
-        protected string NodeName;
+        public string NodeName;
 
         protected virtual void ApplyName() => name = NodeName;
         

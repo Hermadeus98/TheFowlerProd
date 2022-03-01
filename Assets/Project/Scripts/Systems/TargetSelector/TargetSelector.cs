@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -21,6 +22,14 @@ namespace TheFowler
         public static Action<List<BattleActor>> OnTargetChanged;
 
         private static bool blockNavigation = false;
+
+        public static void DebugSelectedTargets()
+        {
+            if (!SelectedTargets.IsNullOrEmpty())
+            {
+                SelectedTargets.ForEach(w => Debug.Log(w.gameObject.name));
+            }
+        }
         
         public static void Initialize(TargetTypeEnum targetType)
         {
@@ -227,7 +236,39 @@ namespace TheFowler
         {
             return BattleManager.GetAllAllies();
         }
+
+        //---<AI>------------------------------------------------------------------------------------------------------<
+
+        public static void SelectAsTarget(this BattleActor actor)
+        {
+            SelectedTargets = new List<BattleActor>();
+            SelectedTargets.Add(actor);
+        }
+
+        public static void SelectAsTargets(this IEnumerable<BattleActor> actors)
+        {
+            SelectedTargets = new List<BattleActor>(actors);
+        }
         
+        public static BattleActor GetWeakerAlly()
+        {
+            return GetAllAllies().OrderBy(w => w.BattleActorData.health).First();
+        }
+        
+        public static BattleActor GetWeakerEnemy()
+        {
+            return GetAllEnemies().OrderBy(w => w.BattleActorData.health).First();
+        }
+        
+        public static BattleActor GetStrongerAlly()
+        {
+            return GetAllAllies().OrderByDescending(w => w.BattleActorData.health).First();
+        }
+        
+        public static BattleActor GetStrongerEnemy()
+        {
+            return GetAllEnemies().OrderByDescending(w => w.BattleActorData.health).First();
+        }
     }
 
     public interface ITarget

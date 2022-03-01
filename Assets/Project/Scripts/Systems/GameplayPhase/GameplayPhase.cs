@@ -59,6 +59,9 @@ public class GameplayPhase : GameplayMonoBehaviour
         {
             EndPhase();
         }
+        
+        if(!isActive)
+            return;
     }
 
     protected override void RegisterEvent()

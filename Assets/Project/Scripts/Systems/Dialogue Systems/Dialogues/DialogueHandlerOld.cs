@@ -166,7 +166,7 @@ namespace TheFowler
 
         private void ReplaceActor()
         {
-            actorActivator?.DesactivateActor();
+            actorActivator?.DesactivateActor(true);
         }
         
         //---<EDITOR>--------------------------------------------------------------------------------------------------<
