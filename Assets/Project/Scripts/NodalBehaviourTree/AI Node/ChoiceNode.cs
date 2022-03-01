@@ -1,20 +1,25 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace TheFowler
 {
     public class ChoiceNode : CompositeNode
     {
+        [TitleGroup("Choices")]
         [SerializeField] private AI_Choice[] Choices;
 
+        [TitleGroup("Choices")]
         [SerializeField] private Node DefaultNextNode;
         
         public void FindBestChoice(out Node result)
         {
             for (int i = 0; i < Choices.Length; i++)
             {
+                Debug.Log(Choices[i].Test());
+
                 if (Choices[i].Test())
                 {
                     result = Choices[i].NextNode;
@@ -48,6 +53,7 @@ namespace TheFowler
         [SerializeField] private ComparableComponent component;
         [SerializeField] private OPERATOR Operator;
         [SerializeField] private ComparableActor comparator_B;
+        [SerializeField, ShowIf("@this.comparator_B == ComparableActor.VALUE")] private float percent = 0;
 
         public Node NextNode;
         
@@ -68,21 +74,30 @@ namespace TheFowler
             switch (Operator)
             {
                 case OPERATOR.EQUAL:
-                    return false;
+                    if (comparator_B == ComparableActor.VALUE)
+                        return Comparator.HaveEqualHealth(GetActors(comparator_A), percent);
+                    else
+                        return Comparator.HaveEqualHealth(GetActors(comparator_A), GetActors(comparator_B));
                 case OPERATOR.MINUS:
-                    return Comparator.HaveLessHealth(GetActors(comparator_A), GetActors(comparator_B));
+                    if (comparator_B == ComparableActor.VALUE)
+                        return Comparator.HaveLessHealth(GetActors(comparator_A), percent);
+                    else
+                        return Comparator.HaveLessHealth(GetActors(comparator_A), GetActors(comparator_B));
                 case OPERATOR.MINUS_EQUAL:
-                    return false;
+                    if (comparator_B == ComparableActor.VALUE)
+                        return Comparator.HaveLessEqualHealth(GetActors(comparator_A), percent);
+                    else
+                        return Comparator.HaveLessEqualHealth(GetActors(comparator_A), GetActors(comparator_B));
                 case OPERATOR.PLUS:
-                    return Comparator.HaveMoreHealth(GetActors(comparator_A), GetActors(comparator_B));
+                    if (comparator_B == ComparableActor.VALUE)
+                        return Comparator.HaveMoreHealth(GetActors(comparator_A), percent);
+                    else 
+                        return Comparator.HaveMoreHealth(GetActors(comparator_A), GetActors(comparator_B));
                 case OPERATOR.PLUS_EQUAL:
-                    return false;
-                case OPERATOR.IS_LOW:
-                    return false;
-                case OPERATOR.IS_HIGH:
-                    return false;
-                case OPERATOR.IS_MIDDLE:
-                    return false;
+                    if (comparator_B == ComparableActor.VALUE)
+                        return Comparator.HaveMoreEqualHealth(GetActors(comparator_A), percent);
+                    else 
+                        return Comparator.HaveMoreEqualHealth(GetActors(comparator_A), GetActors(comparator_B));
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -132,7 +147,8 @@ namespace TheFowler
         MY,
         ROBYN,
         ABI,
-        PHOEBE
+        PHOEBE,
+        VALUE,
     }
 
     public enum ComparableComponent
@@ -146,9 +162,6 @@ namespace TheFowler
         MINUS,
         MINUS_EQUAL,
         PLUS,
-        PLUS_EQUAL,
-        IS_LOW,
-        IS_HIGH,
-        IS_MIDDLE,
+        PLUS_EQUAL
     }
 }

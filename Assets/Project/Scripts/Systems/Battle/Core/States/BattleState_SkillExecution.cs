@@ -43,7 +43,9 @@ namespace TheFowler
                     {
                         if (enemyActor.Brain != null)
                         {
-                            enemyActor.AI.Think();
+                            yield break;
+                            
+                            enemyActor.AI.StartThink();
 
                             yield return enemyActor.AI.SelectedSpell.Cast(enemyActor,
                                 TargetSelector.SelectedTargets.ToArray());

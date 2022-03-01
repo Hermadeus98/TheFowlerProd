@@ -223,6 +223,13 @@ namespace TheFowler
 
             return null;
         }
+
+        [Button]
+        private void Debugssss(float h, float c, float v)
+        {
+            Debug.Log(h * v / 100);
+            Debug.Log(c > h * v / 100);
+        }
     }
 
     [Serializable]
