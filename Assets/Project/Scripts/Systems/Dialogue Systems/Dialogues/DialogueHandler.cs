@@ -312,7 +312,11 @@ namespace TheFowler
                             break;
                     }
 
-                    currentAnim.SetTrigger(dialogue.animationTrigger.ToString());
+                    if(currentAnim != null)
+                    {
+                        currentAnim.SetTrigger(dialogue.animationTrigger.ToString());
+                    }
+
                     currentSound = dialogue.voice;
                     break;
                 case DialogueType.MOVEMENT:
