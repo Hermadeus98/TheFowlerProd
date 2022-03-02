@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Linq;
+using DG.Tweening;
 using QRCode;
 using TMPro;
 using UnityEngine;
@@ -13,6 +15,7 @@ namespace TheFowler
     {
         [TabGroup("References")]
         [SerializeField] private MMFeedbacks transitionHarmonisation, transitionStatic, transitionChapterIn, transitionBattleIn;
+        
         public override void Refresh(EventArgs args)
         {
             base.Refresh(args);
