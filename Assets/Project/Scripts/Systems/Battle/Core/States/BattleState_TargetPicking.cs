@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using QRCode;
+using QRCode.Extensions;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,6 +31,20 @@ namespace TheFowler
             else if(BattleManager.IsEnemyTurn)
             {
                 SetCamera(CameraKeys.BattleKeys.TargetPickingDefault);
+            }
+            
+            PlaySpellPreview();
+        }
+
+        private void PlaySpellPreview()
+        {
+            if (BattleManager.IsAllyTurn)
+            {
+                var spell = Player.SelectedSpell;
+                if (spell.IsNotNull())
+                {
+                    spell.Effects.ForEach(w => w.PreviewEffect(BattleManager.CurrentBattleActor));
+                }
             }
         }
 

@@ -18,7 +18,9 @@ namespace TheFowler
 
         [TitleGroup("Main Settings")] public TargetTypeEnum TargetType;
 
-        [TitleGroup("Main Settings")] public float executionDuration = 2f;
+        [TitleGroup("Main Settings")] public float
+            executionDurationBeforeCast = 1f,
+            executionDurationAfterCast = 1f;
         
         [TitleGroup("Main Settings"), TextArea(3,5)] 
         public string SpellDescription;
@@ -38,7 +40,7 @@ namespace TheFowler
         
         public IEnumerator Cast(BattleActor emitter, BattleActor[] receivers)
         {
-            yield return new WaitForSeconds(executionDuration);
+            yield return new WaitForSeconds(executionDurationBeforeCast);
 
             switch (ExecutionType)
             {
@@ -46,6 +48,7 @@ namespace TheFowler
                     for (int i = 0; i < Effects.Length; i++)
                     {
                         Effects[i].SetCamera();
+                        yield return new WaitForSeconds(1f);
                         Coroutiner.Play(Effects[i].OnBeginCast(emitter, receivers));
                         Coroutiner.Play(Effects[i].OnCast(emitter, receivers));
                         Coroutiner.Play(Effects[i].OnFinishCast(emitter, receivers));
@@ -63,6 +66,8 @@ namespace TheFowler
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+            
+            yield return new WaitForSeconds(executionDurationAfterCast);
         }
 
         public bool ContainEffect<T>(out T component) where T : Effect

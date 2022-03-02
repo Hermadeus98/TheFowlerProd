@@ -77,6 +77,14 @@ namespace TheFowler
                 return;
             }
 
+            if (currentNode is AleatoryChoiceNode aleatoryChoiceNode)
+            {
+                QRDebug.Log("AI", FrenchPallet.GREEN_SEA, $"ITERATE ALEATORY IN {aleatoryChoiceNode.NodeName}");
+                nextNode = aleatoryChoiceNode.GetRandomNode();
+                Iterate();
+                return;
+            }
+            
             if (currentNode is CastNode castNode)
             {
                 QRDebug.Log("AI", FrenchPallet.GREEN_SEA, $"RESULT FOUNDED -> {castNode.NodeName}");
@@ -94,20 +102,5 @@ namespace TheFowler
             currentNode = nextNode;
             Think();
         }
-    }
-
-    public enum TargetIntention
-    {
-        NONE = 0,
-        ALL = 1,
-        WEAKER_ALLY = 2,
-        STRONGER_ALLY = 3,
-        WEAKER_ENEMY = 4,
-        STRONGER_ENEMY = 5,
-        ROBYN = 6,
-        ABI = 7,
-        PHOEBE = 8,
-        RANDOM_ALLY = 9,
-        RANDOM_ENEMY = 10,
     }
 }
