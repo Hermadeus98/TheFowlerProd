@@ -36,21 +36,16 @@ namespace TheFowler
         public override void PlayPhase()
         {
             base.PlayPhase();
+            view = UI.GetView<HarmonisationView>(UI.Views.Harmo);
+            view.Show();
         }
+
         public override void EndPhase()
         {
             base.EndPhase();
+            view.Hide();
 
         }
-
-        //public override void EndPhase()
-        //{
-        //    base.EndPhase();
-
-        //    infoView.Hide();
-        //    view.Hide();
-        //    actorActivator?.DesactivateActor(true);
-        //}
         //public override void PlayPhase()
         //{
         //    base.PlayPhase();
@@ -170,13 +165,13 @@ namespace TheFowler
             cutscene.PlayPhase();
             yield break;
         }
-        private void Update()
-        {
-            if (isActive)
-            {
-                CheckInputs();
-            }
-        }
+        //private void Update()
+        //{
+        //    if (isActive)
+        //    {
+        //        CheckInputs();
+        //    }
+        //}
 
     }
 }

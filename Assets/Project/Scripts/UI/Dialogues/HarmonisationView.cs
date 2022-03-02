@@ -85,14 +85,14 @@ namespace TheFowler
         public override void Hide()
         {
             base.Hide();
-
-            choice.SetActive(false);
-            abigail.SetActive(false);
-            phoebe.SetActive(false);
-            abigailSolo.SetActive(false);
-            isChosing = false;
-            onAbi = false;
-            onPhoebe = false;
+            MMfadeOut.PlayFeedbacks();
+            //choice.SetActive(false);
+            //abigail.SetActive(false);
+            //phoebe.SetActive(false);
+            //abigailSolo.SetActive(false);
+            //isChosing = false;
+            //onAbi = false;
+            //onPhoebe = false;
         }
 
         public void ShowAbi()
