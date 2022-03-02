@@ -18,6 +18,8 @@ namespace TheFowler
         public cameraPath cameraPath;
         public float displayDuration = 2f;
         public string choiceText;
+        public bool openHarmonisation = false;
+        public bool closeHarmonisation = false;
         public AK.Wwise.Event voice;
         public AnimationTriggerName animationTrigger;
     }

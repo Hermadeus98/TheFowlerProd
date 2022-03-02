@@ -32,39 +32,53 @@ namespace TheFowler
             base.UnregisterEvent();
             ChapterManager.onChapterChange -= delegate (Chapter chapter) { EndPhase(); };
         }
+
         public override void PlayPhase()
         {
             base.PlayPhase();
-            PlaceActor();
-
             view = UI.GetView<HarmonisationView>(UI.Views.Harmo);
-            infoView = UI.GetView<InfoBoxView>(UI.Views.InfoBox);
-
-            infoView.Hide();
-
-            view.isAbigailSolo = isAbigailSolo;
             view.Show();
-
-            if (isAbigailSolo)
-            {
-                infoView.Show();
-
-                InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
-                infoButtons[0] = InfoBoxButtons.CONFIRM;
-                infoView.ShowProfile(infoButtons);
-            }
-
-            
         }
 
         public override void EndPhase()
         {
             base.EndPhase();
-
-            infoView.Hide();
             view.Hide();
-            actorActivator?.DesactivateActor(true);
+
         }
+        //public override void PlayPhase()
+        //{
+        //    base.PlayPhase();
+        //    PlaceActor();
+
+        //    view = UI.GetView<HarmonisationView>(UI.Views.Harmo);
+        //    infoView = UI.GetView<InfoBoxView>(UI.Views.InfoBox);
+
+        //    infoView.Hide();
+
+        //    view.isAbigailSolo = isAbigailSolo;
+        //    view.Show();
+
+        //    if (isAbigailSolo)
+        //    {
+        //        infoView.Show();
+
+        //        InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
+        //        infoButtons[0] = InfoBoxButtons.CONFIRM;
+        //        infoView.ShowProfile(infoButtons);
+        //    }
+
+
+        //}
+
+        //public override void EndPhase()
+        //{
+        //    base.EndPhase();
+
+        //    infoView.Hide();
+        //    view.Hide();
+        //    actorActivator?.DesactivateActor(true);
+        //}
 
         //public override void PlayWithTransition()
         //{
@@ -151,13 +165,13 @@ namespace TheFowler
             cutscene.PlayPhase();
             yield break;
         }
-        private void Update()
-        {
-            if (isActive)
-            {
-                CheckInputs();
-            }
-        }
+        //private void Update()
+        //{
+        //    if (isActive)
+        //    {
+        //        CheckInputs();
+        //    }
+        //}
 
     }
 }
