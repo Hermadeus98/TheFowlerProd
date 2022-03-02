@@ -18,7 +18,7 @@ namespace TheFowler
 
             if (BattleManager.IsAllyTurn)
             {
-                SetCamera(CameraKeys.BattleKeys.SkillExecutionDefault);
+                //SetCamera(CameraKeys.BattleKeys.SkillExecutionDefault);
             }
             else if (BattleManager.IsEnemyTurn)
             {

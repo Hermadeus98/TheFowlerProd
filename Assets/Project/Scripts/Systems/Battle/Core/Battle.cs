@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using QRCode;
@@ -33,6 +34,8 @@ namespace TheFowler
         [TabGroup("Debug")]
         [SerializeField, ReadOnly] private List<BattleActor> enemies = new List<BattleActor>();
 
+        [TabGroup("Debug")] [SerializeField] private bool playAtStart = false;
+
         public StateMachine BattleState => battleState;
         public List<BattleActor> Allies => allies;
         public List<BattleActor> Enemies => enemies;
@@ -46,6 +49,15 @@ namespace TheFowler
         {
             base.OnAwake();
             SetActorState(false);
+        }
+
+        private IEnumerator Start()
+        {
+            yield return new WaitForSeconds(1f);
+            if(playAtStart)
+                PlayPhase();
+            
+            yield break;
         }
 
         public override void PlayPhase()

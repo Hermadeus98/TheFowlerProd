@@ -19,6 +19,19 @@ namespace TheFowler
         }
 
         protected bool isActive;
+
+        private Canvas canvas;
+
+        public Canvas Canvas
+        {
+            get
+            {
+                if (canvas.IsNull())
+                    canvas = GetComponentInParent<Canvas>();
+
+                return canvas;
+            }
+        }
         
         [Button]
         public virtual void Show()
