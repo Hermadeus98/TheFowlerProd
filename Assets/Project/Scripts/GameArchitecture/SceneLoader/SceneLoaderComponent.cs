@@ -12,6 +12,7 @@ namespace TheFowler
     {
         [SerializeField] private ChapterEnum chapterToLoad;
 
+        [Button]
         public void ChangeChapter()
         {
             ChapterManager.ChangeChapter(chapterToLoad);

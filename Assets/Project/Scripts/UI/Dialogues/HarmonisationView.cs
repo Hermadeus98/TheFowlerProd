@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
-
+using MoreMountains.Feedbacks;
 
 namespace TheFowler
 {
@@ -14,6 +14,20 @@ namespace TheFowler
         [TabGroup("References")]
         [SerializeField] private GameObject choice, abigail, phoebe, abigailSolo;
 
+        [TabGroup("References")]
+        [SerializeField] private MMFeedbacks MMfadeIn, MMfadeOut;
+
+        [SerializeField] private Image portrait;
+        [SerializeField] private ActorDatabase actorDatabase;
+
+        [SerializeField] private AnimatedText animatedText;
+        [SerializeField] private TextMeshProUGUI speakerName;
+
+        [SerializeField] private DialogueChoiceSelector choiceSelector;
+
+        public bool textIsComplete => animatedText.isComplete;
+        public AnimatedText AnimatedText => animatedText;
+        public DialogueChoiceSelector ChoiceSelector => choiceSelector;
 
         [ReadOnly]
         public bool isChosing, onAbi, onPhoebe;
@@ -22,12 +36,38 @@ namespace TheFowler
         public override void Refresh(EventArgs args)
         {
             base.Refresh(args);
+
+            if (args is DialogueArg cast)
+            {
+                var db = actorDatabase.GetElement(cast.Dialogue.ActorEnum);
+                portrait.sprite = db.portraitBuste;
+                speakerName.SetText(db.actorName);
+                animatedText.SetText(cast.Dialogue.dialogueText);
+            }
+        }
+
+        public void SetChoices(DialogueNode dialogueNode)
+        {
+            if (dialogueNode.hasMultipleChoices)
+            {
+                choiceSelector.Refresh(dialogueNode.children.Cast<DialogueNode>().ToArray());
+                return;
+            }
+        }
+
+        public void DisplaySentence(DialogueNode node)
+        {
+
+            speakerName.SetText(node.dialogue.ActorEnum.ToString());
+            animatedText.SetText(node.dialogue.dialogueText);
         }
 
         public override void Show()
         {
             base.Show();
-            SetupShow();
+            MMfadeIn.PlayFeedbacks();
+           
+            //SetupShow();
         }
 
         public void SetupShow()

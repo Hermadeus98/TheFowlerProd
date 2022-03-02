@@ -103,6 +103,9 @@ namespace TheFowler
                     //UI.OpenView(UI.Views.MovementDialogs);
                     UI.OpenView(UI.Views.StaticDialogs);
                     break;
+                case DialogueType.HARMONISATION:
+                    UI.OpenView(UI.Views.Harmo);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -185,6 +188,27 @@ namespace TheFowler
                                 }
                             }
                                 break;
+                            case DialogueType.HARMONISATION:
+                                {
+                                    var view = UI.GetView<HarmonisationView>(UI.Views.Harmo);
+                                    var hasChoice = view.ChoiceSelector.WaitChoice(out currentDialogueNode, out choiceNumber);
+                                    if (hasChoice)
+                                    {
+                                        DisplayDialogue(currentDialogue);
+                                        switch (choiceNumber)
+                                        {
+                                            case 0:
+                                                eventChoice1.Invoke();
+                                                break;
+                                            case 1:
+                                                eventChoice2.Invoke();
+                                                break;
+                                        }
+                                        waitInput = false;
+                                    }
+                                }
+                                break;
+
                             default:
                                 throw new ArgumentOutOfRangeException();
                         }
@@ -224,6 +248,15 @@ namespace TheFowler
                                 view.ChoiceSelector.Show();
                                 view.SetChoices(currentDialogueNode);
                             }
+                                break;
+                            case DialogueType.HARMONISATION:
+                                {
+                                    var view = UI.GetView<HarmonisationView>(UI.Views.Harmo);
+                                    view.ChoiceSelector.Show();
+                                    view.SetChoices(currentDialogueNode);
+
+
+                                }
                                 break;
                             default:
                                 throw new ArgumentOutOfRangeException();
@@ -274,6 +307,10 @@ namespace TheFowler
                 case DialogueType.MOVEMENT:
                     //UI.CloseView(UI.Views.MovementDialogs);
                     UI.CloseView(UI.Views.StaticDialogs);
+                    break;
+                case DialogueType.HARMONISATION:
+                    //UI.CloseView(UI.Views.MovementDialogs);
+                    UI.CloseView(UI.Views.Harmo);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -326,6 +363,14 @@ namespace TheFowler
                     //    DialogueNode = currentDialogueNode,
                     //});
                     UI.RefreshView(UI.Views.StaticDialogs, new DialogueArg()
+                    {
+                        Dialogue = dialogue,
+                        DialogueNode = currentDialogueNode,
+                    });
+                    SoundManager.PlaySound(dialogue.voice, gameObject);
+                    break;
+                case DialogueType.HARMONISATION:
+                    UI.RefreshView(UI.Views.Harmo, new DialogueArg()
                     {
                         Dialogue = dialogue,
                         DialogueNode = currentDialogueNode,
@@ -385,6 +430,7 @@ namespace TheFowler
     {
         STATIC = 0,
         MOVEMENT = 1,
+        HARMONISATION = 2,
     }
     
 }
