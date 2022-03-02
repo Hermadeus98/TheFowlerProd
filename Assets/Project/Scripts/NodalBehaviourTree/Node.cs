@@ -17,6 +17,9 @@ namespace TheFowler
         [TitleGroup("Main Settings"), PropertyOrder(-1)] [SerializeField] [OnValueChanged("ApplyName")]
         public string NodeName;
 
+        [TitleGroup("Main Settings"), PropertyOrder(-1)] [Range(0, 100)]
+        public int chance = 1;
+
         protected virtual void ApplyName() => name = NodeName;
         
         [TitleGroup("Debug"), ReadOnly]

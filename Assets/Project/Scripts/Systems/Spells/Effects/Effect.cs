@@ -14,7 +14,12 @@ namespace TheFowler
         public TargetTypeEnum TargetType;
 
         [SerializeField] protected BattleCameraBatch battleCameraBatch = BattleCameraBatch.NULL;
-        [SerializeField, HideIf("@this.battleCameraBatch == BattleCameraBatch.CURRENT_ACTOR")] protected cameraPath cameraPath;
+        [SerializeField, ShowIf("@this.battleCameraBatch == BattleCameraBatch.NULL")] protected cameraPath cameraPath;
+        [SerializeField, ShowIf("@this.battleCameraBatch == BattleCameraBatch.CURRENT_ACTOR_PERSONALISE")] private string cameraSpecificPath = "Default";
+
+        public bool ImPreview = false;
+        
+        public virtual void PreviewEffect(BattleActor emitter){}
         
         public abstract IEnumerator OnBeginCast(BattleActor emitter, BattleActor[] receivers);
 
@@ -31,6 +36,9 @@ namespace TheFowler
                     break;
                 case BattleCameraBatch.CURRENT_ACTOR:
                     CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle, CameraKeys.BattleKeys.SkillExecutionDefault);
+                    break;
+                case BattleCameraBatch.CURRENT_ACTOR_PERSONALISE:
+                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle, cameraSpecificPath);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

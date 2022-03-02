@@ -15,8 +15,15 @@ namespace TheFowler
         public override void OnStateEnter(EventArgs arg)
         {
             base.OnStateEnter(arg);
-            
-            SetCamera(CameraKeys.BattleKeys.SkillExecutionDefault);
+
+            if (BattleManager.IsAllyTurn)
+            {
+                SetCamera(CameraKeys.BattleKeys.SkillExecutionDefault);
+            }
+            else if (BattleManager.IsEnemyTurn)
+            {
+                SetCamera(CameraKeys.BattleKeys.SkillExecutionDefault);
+            }
 
             StartCoroutine(Cast());
         }
@@ -43,8 +50,6 @@ namespace TheFowler
                     {
                         if (enemyActor.Brain != null)
                         {
-                            yield break;
-                            
                             enemyActor.AI.StartThink();
 
                             yield return enemyActor.AI.SelectedSpell.Cast(enemyActor,
@@ -53,7 +58,7 @@ namespace TheFowler
                     }
                 }
 
-                //yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(2f);
                 BattleManager.CurrentBattle.TurnSystem.NextTurn();
             }
         }

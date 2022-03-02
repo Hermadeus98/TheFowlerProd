@@ -1,3 +1,5 @@
+using System.Linq;
+using MoreMountains.Feedbacks;
 using QRCode.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -15,6 +17,10 @@ namespace TheFowler
         public FloatUnityEvent onDamaged, onHealed;
         public UnityEvent onDeath, onResurect;
 
+        [SerializeField] private MMFeedbacks onDamageFeedbacks;
+        private MMPopupText popupComponent;
+        
+        
         public FillBar FillBar => fillBar;
         public float CurrentHealth => currentHealth;
         public float MaxHealth => maxHealth;
@@ -38,6 +44,7 @@ namespace TheFowler
             fillBar?.SetMaxValue(maxHealth);
             fillBar?.SetFill(currentHealth);
             ReferedActor.AllyData?.Refresh();
+            popupComponent = onDamageFeedbacks.Feedbacks.First(w => w.GetType() == typeof(MMPopupText)) as MMPopupText;
         }
 
         [Button]
@@ -53,6 +60,8 @@ namespace TheFowler
                 Death();
             }
             
+            popupComponent.message = damage.ToString();
+
             onDamaged?.Invoke(currentHealth);
             fillBar?.SetFill(currentHealth);
             ReferedActor.AllyData?.Refresh();

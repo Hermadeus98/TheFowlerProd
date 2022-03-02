@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using QRCode;
+using QRCode.Extensions;
 using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -28,7 +30,7 @@ namespace TheFowler
         {
             if (!SelectedTargets.IsNullOrEmpty())
             {
-                SelectedTargets.ForEach(w => Debug.Log(w.gameObject.name));
+                SelectedTargets.ForEach(w => QRDebug.Log("TARGET SELECTOR", FrenchPallet.ALIZARIN, w.gameObject.name));
             }
         }
         

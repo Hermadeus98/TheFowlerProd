@@ -16,18 +16,6 @@ namespace TheFowler
         public float WaitTime =>
             InOutComponent.in_duration + InOutComponent.between_duration + InOutComponent.out_duration;
         
-        protected override void RegisterEvent()
-        {
-            base.RegisterEvent();
-            //BattleManager.OnTurnChanged += Show;
-        }
-
-        protected override void UnregisterEvent()
-        {
-            base.UnregisterEvent();
-            //BattleManager.OnTurnChanged -= Show;
-        }
-
         public override void Show()
         {
             base.Show();
