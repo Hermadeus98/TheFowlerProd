@@ -24,6 +24,7 @@ namespace TheFowler
 
         public static void StopSound(AK.Wwise.Event sound, GameObject handler)
         {
+            if (sound == null) return;
             sound.Stop(handler);
         }
 

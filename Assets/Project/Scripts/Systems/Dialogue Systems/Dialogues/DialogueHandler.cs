@@ -336,7 +336,7 @@ namespace TheFowler
 
         public override void EndPhase()
         {
-            if (dialogueType == DialogueType.STATIC)
+            if (dialogueType == DialogueType.STATIC && IsActive)
             {
                 ReplaceActor(1);
                 SoundManager.StopSound(currentSound, gameObject);
@@ -491,7 +491,11 @@ namespace TheFowler
             yield break;
         }
 
+
+
     }
+
+    
 
     public class DialogueArg : EventArgs
     {

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CMF;
 using QRCode;
+using QRCode.Utils;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using UnityEngine;
@@ -49,6 +50,7 @@ namespace TheFowler
         {
             base.UnregisterEvent();
             GameState.onGameStateChange -= OnGameStateChange;
+            Controllers.Destroy();
         }
 
         [Button]
