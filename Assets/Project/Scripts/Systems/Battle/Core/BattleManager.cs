@@ -6,8 +6,22 @@ namespace TheFowler
     public class BattleManager
     {
         public static Battle CurrentBattle;
-        public static ITurnActor CurrentTurnActor => CurrentBattle.TurnSystem.CurrentRound.currentTurnActor;
-        public static BattleActor CurrentBattleActor => CurrentBattle.TurnSystem.CurrentRound.currentTurnActor as BattleActor;
+
+        public static ITurnActor CurrentTurnActor
+        {
+            get
+            {
+                if (CurrentBattle.TurnSystem.CurrentRound.overrideTurnActor == null)
+                {
+                    return CurrentBattle.TurnSystem.CurrentRound.currentTurnActor;
+                }
+                else
+                {
+                    return CurrentBattle.TurnSystem.CurrentRound.overrideTurnActor;
+                }
+            }
+        }
+        public static BattleActor CurrentBattleActor => CurrentTurnActor as BattleActor;
 
         public static Round CurrentRound => CurrentBattle.TurnSystem.CurrentRound;
 

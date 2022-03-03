@@ -10,6 +10,7 @@ namespace TheFowler
     {
         public List<ITurnActor> TurnActors;
         public ITurnActor currentTurnActor;
+        public ITurnActor overrideTurnActor;
         
         private int currentTurnIndex;
 
@@ -72,8 +73,15 @@ namespace TheFowler
         public void OverrideTurn(ITurnActor turnActor)
         {
             currentTurnActor?.OnTurnEnd();
+            overrideTurnActor = turnActor;
             turnActor.OnTurnStart();
-            BattleManager.OnTurnChanged.Invoke();
+            BattleManager.OnTurnChanged?.Invoke();
+        }
+
+        public void ResetOverrideTurn()
+        {
+            Debug.Log("RESET OVERRIDE TURN");
+            overrideTurnActor = null;
         }
     }
 }

@@ -16,7 +16,8 @@ namespace TheFowler
 
         [TitleGroup("Identity")] public Spell
             BasicAttackSpell,
-            DefendSpell;
+            DefendSpell,
+            BatonPass;
         
         [TitleGroup("Data Binding")]
         public enum BindingType{DEFAULT,REMOTE_SETTINGS}

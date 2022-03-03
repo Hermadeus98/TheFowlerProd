@@ -66,7 +66,19 @@ namespace TheFowler
         public override void OnStateExit(EventArgs arg)
         {
             base.OnStateExit(arg);
+
+            if (fury)
+            {
+                var furyState = BattleManager.CurrentBattle.BattleState.GetState("Fury") as BattleState_Fury;
+                furyState.selectedActorForFury = TargetSelector.SelectedTargets[0];
+            }
+            else
+            {
+                BattleManager.CurrentRound.ResetOverrideTurn();
+            }
+            
             fury = false;
+
             TargetSelector.ResetSelectedTargets();
         }
     }
