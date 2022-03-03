@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: Basic Attack
+  m_Name: Time of Joy
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -29,13 +29,13 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.DamageEffect, Assembly-CSharp
+      Data: 1|TheFowler.HealEffect, Assembly-CSharp
     - Name: EffectName
       Entry: 1
-      Data: Damage
+      Data: Heal
     - Name: TargetType
       Entry: 3
-      Data: 1
+      Data: 3
     - Name: battleCameraBatch
       Entry: 3
       Data: 2
@@ -44,13 +44,13 @@ MonoBehaviour:
       Data: 
     - Name: cameraSpecificPath
       Entry: 1
-      Data: SkillExecutionAttack
+      Data: TargetPickingAllies
     - Name: ImPreview
       Entry: 5
       Data: false
-    - Name: damage
+    - Name: healValue
       Entry: 4
-      Data: 15
+      Data: 10
     - Name: 
       Entry: 8
       Data: 
@@ -60,11 +60,11 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Basic Attack
-  ManaCost: 0
-  TargetType: 1
+  SpellName: Encouraging Roll
+  ManaCost: 7
+  TargetType: 3
   executionDurationBeforeCast: 1
   executionDurationAfterCast: 1
-  SpellDescription: Inflicts Light DMG
+  SpellDescription: Heals 10 HP
   ExecutionType: 0
   SpellType: 0
