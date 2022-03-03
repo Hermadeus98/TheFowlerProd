@@ -64,6 +64,7 @@ namespace TheFowler
             battleActorInfo.debuffMalus = 0;
         }
 
+        [Button]
         public virtual void OnTurnStart()
         {
             Debug.Log(gameObject.name + " start turn");
