@@ -20,6 +20,8 @@ namespace QRCode
         public Istate CurrentState => currentState;
 
         public UpdateMode UpdateMode { get; set; }
+
+        private bool isRegister = false;
         
         //---<INITIALISATION>------------------------------------------------------------------------------------------<
         public StateMachine (Istate[] states, UpdateMode updateMode , EventArgs args)
@@ -28,7 +30,7 @@ namespace QRCode
             for (int i = 0; i < states.Length; i++)
                 AddState(states[i]);
             UpdateMode = updateMode;
-            UpdateRunner.Instance.Register(updateMode, Execute);
+            Register();
         }
 
         //---<CORE>----------------------------------------------------------------------------------------------------<
@@ -61,9 +63,19 @@ namespace QRCode
                 states.Remove(key);
         }
 
+        public void Register()
+        {
+            if (!isRegister)
+            {
+                UpdateRunner.Instance.Register(UpdateMode, Execute);
+                isRegister = true;
+            }
+        }
+
         public void Destroy()
         {
             UpdateRunner.Instance.UnRegister(UpdateMode, Execute);
+            isRegister = false;
         }
     }
 
