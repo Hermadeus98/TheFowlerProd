@@ -31,6 +31,19 @@ namespace TheFowler
         
         public static bool HaveEqualHealth(BattleActor[] a, float value) => GetSumOfHealth(a) == GetSumOfMaxHealth(a) * value / 100;
 
+        public static bool AtLeastOneHaveMinusHealthThan(BattleActor[] actors, float value)
+        {
+            for (int i = 0; i < actors.Length; i++)
+            {
+                if (HaveMoreHealth(new BattleActor[] {actors[i]}, value))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        
         //---<HELPERS>-------------------------------------------------------------------------------------------------<
         private static float GetSumOfHealth(BattleActor[] actors)
         {

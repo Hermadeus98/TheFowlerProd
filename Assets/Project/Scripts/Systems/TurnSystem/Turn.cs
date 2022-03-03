@@ -23,8 +23,18 @@ namespace TheFowler
         {
             BattleManager.CurrentBattle.ChangeBattleState<BattleState_ActionPicking>(BattleStateEnum.ACTION_PICKING);
 
-            _turnTransitionView = UI.OpenView<TurnTransitionView>(UI.Views.TurnTransition);
+            
+            _turnTransitionView = UI.GetView<TurnTransitionView>(UI.Views.TurnTransition);
+            _turnTransitionView.CameraSwipTransition(delegate
+            {
+                var actor = BattleManager.CurrentBattleActor;
+                CameraManager.Instance.SetCamera(actor.CameraBatchBattle, CameraKeys.BattleKeys.ActionPicking);
+            });
+
+            //_turnTransitionView = UI.OpenView<TurnTransitionView>(UI.Views.TurnTransition);
             yield return new WaitForSeconds(_turnTransitionView.WaitTime);
+            
+            yield break;
         }
     }
 }

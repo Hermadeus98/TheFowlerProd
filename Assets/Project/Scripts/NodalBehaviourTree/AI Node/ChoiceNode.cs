@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using UnityEngine;
 
 namespace TheFowler
@@ -49,26 +51,103 @@ namespace TheFowler
     [Serializable]
     public class AI_Choice
     {
-        [SerializeField] private ComparableActor comparator_A;
-        [SerializeField] private ComparableComponent component;
-        [SerializeField] private OPERATOR Operator;
-        [SerializeField] private ComparableActor comparator_B;
+        [SerializeField] private bool isHardChoice = false;
+        [SerializeField, ShowIf("@this.isHardChoice == true")] private HardChoice hardChoice;
+        
+        [SerializeField, ShowIf("@this.isHardChoice == false")] private ComparableActor comparator_A;
+        [SerializeField, ShowIf("@this.isHardChoice == false")] private ComparableComponent component;
+        [SerializeField, ShowIf("@this.isHardChoice == false")] private OPERATOR Operator;
+        [SerializeField, ShowIf("@this.isHardChoice == false")] private ComparableActor comparator_B;
         [SerializeField, ShowIf("@this.comparator_B == ComparableActor.VALUE")] private float percent = 0;
 
+        [SerializeField]
+        
         public Node NextNode;
         
         public bool Test()
         {
-            switch (component)
+            if (isHardChoice)
             {
-                case ComparableComponent.HEALTH:
-                    return CompareHealth();
+                switch (hardChoice)
+                {
+                    case HardChoice.AT_LEAST_AN_ENEMY_HAVE_BUFF:
+                    {
+                        var enemies = TargetSelector.GetAllEnemies().Where(w => w.BattleActorInfo.buffBonus > 0).ToArray();
+                        if (!enemies.IsNullOrEmpty())
+                            return true;
+                        
+                        return false;
+                    }
+                    case HardChoice.AT_LEAST_AN_ENEMY_HAVE_DEFEND_BUFF:
+                    {
+                        var enemies = TargetSelector.GetAllEnemies().Where(w => w.BattleActorInfo.defenseBonus > 0).ToArray();
+                        if (!enemies.IsNullOrEmpty())
+                            return true;
+                        
+                        return false;
+                    }
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+            else
+            {
+                switch (component)
+                {
+                    case ComparableComponent.HEALTH:
+                        return CompareHealth();
+                    case ComparableComponent.TEAM_COUNT:
+                        return CompareTeamCount();
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
+        
+        private bool CompareTeamCount()
+        {
+            switch (comparator_A)
+            {
+                case ComparableActor.ALL_ALLIES:
+                    var allies = TargetSelector.GetAllAllies().Length;
+                    switch (Operator)
+                    {
+                        case OPERATOR.EQUAL:
+                            return allies == percent;
+                        case OPERATOR.MINUS:
+                            return allies < percent;
+                        case OPERATOR.MINUS_EQUAL:
+                            return allies <= percent;
+                        case OPERATOR.PLUS:
+                            return allies > percent;
+                        case OPERATOR.PLUS_EQUAL:
+                            return allies >= percent;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+                case ComparableActor.ALL_ENEMIES:
+                    var enemies = TargetSelector.GetAllEnemies().Length;
+                    switch (Operator)
+                    {
+                        case OPERATOR.EQUAL:
+                            return enemies == percent;
+                        case OPERATOR.MINUS:
+                            return enemies < percent;
+                        case OPERATOR.MINUS_EQUAL:
+                            return enemies <= percent;
+                        case OPERATOR.PLUS:
+                            return enemies > percent;
+                        case OPERATOR.PLUS_EQUAL:
+                            return enemies >= percent;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            return false;
         }
-
+        
         private bool CompareHealth()
         {
             switch (Operator)
@@ -98,6 +177,12 @@ namespace TheFowler
                         return Comparator.HaveMoreEqualHealth(GetActors(comparator_A), percent);
                     else 
                         return Comparator.HaveMoreEqualHealth(GetActors(comparator_A), GetActors(comparator_B));
+                case OPERATOR.AT_LEAST_PLUS:
+                    if (comparator_B == ComparableActor.VALUE)
+                        return Comparator.AtLeastOneHaveMinusHealthThan(GetActors(comparator_A), percent);
+                    else
+                        return false;
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -136,9 +221,35 @@ namespace TheFowler
                     {
                         return null;
                     }
+                case ComparableActor.ALL_ALLIES:
+                    var allies = TargetSelector.GetAllAllies();
+                    
+                    if (!allies.IsNullOrEmpty())
+                    {
+                        return allies;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                case ComparableActor.ALL_ENEMIES:
+                    var enemies = TargetSelector.GetAllEnemies();
+                    
+                    if (!enemies.IsNullOrEmpty())
+                    {
+                        return enemies;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                case ComparableActor.VALUE:
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(actor), actor, null);
             }
+
+            return null;
         }
     }
 
@@ -148,12 +259,16 @@ namespace TheFowler
         ROBYN,
         ABI,
         PHOEBE,
+        ALL_ALLIES,
+        ALL_ENEMIES,
         VALUE,
     }
 
     public enum ComparableComponent
     {
         HEALTH,
+        TEAM_COUNT,
+        BUFF,
     }
 
     public enum OPERATOR
@@ -162,6 +277,13 @@ namespace TheFowler
         MINUS,
         MINUS_EQUAL,
         PLUS,
-        PLUS_EQUAL
+        PLUS_EQUAL,
+        AT_LEAST_PLUS,
+    }
+
+    public enum HardChoice
+    {
+        AT_LEAST_AN_ENEMY_HAVE_BUFF,
+        AT_LEAST_AN_ENEMY_HAVE_DEFEND_BUFF,
     }
 }

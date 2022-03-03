@@ -13,6 +13,11 @@ namespace TheFowler
             base.OnStateEnter(arg);
 
             StartCoroutine(OnStateEnterIE());
+
+            if (BattleManager.IsAllyTurn)
+            {
+                BattleManager.CurrentBattleActor.BattleActorAnimator.Idle();
+            }
         }
 
         IEnumerator OnStateEnterIE()

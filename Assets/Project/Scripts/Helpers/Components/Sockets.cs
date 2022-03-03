@@ -8,5 +8,7 @@ namespace TheFowler
     public class Sockets : SerializedMonoBehaviour
     {
         public Transform body_Middle;
+        public Transform hand_Right;
+        public Transform hand_Left;
     }
 }

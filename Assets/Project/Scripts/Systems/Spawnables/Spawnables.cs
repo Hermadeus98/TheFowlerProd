@@ -13,5 +13,7 @@ namespace TheFowler
 
         [TitleGroup("UI")] 
         [Required] public DialogueUIElement DialogueUIElement;
+
+        [TitleGroup("UI")] [Required] public PopupText PopupText;
     }
 }

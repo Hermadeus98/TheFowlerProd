@@ -11,12 +11,48 @@ namespace TheFowler
 
         public void Death()
         {
+            ResetTriggers();
             Animator.SetTrigger("Death");
         }
 
         public void ResetAnimator()
         {
+            ResetTriggers();
             Animator.SetTrigger("Reset");
+        }
+
+        public void Idle()
+        {
+            ResetTriggers();
+            Animator.SetTrigger("Idle");
+        }
+
+        public void AttackPreview()
+        {
+            ResetTriggers();
+            Animator.SetTrigger("AttackPreview");
+        }
+
+        public void AttackCast()
+        {
+            ResetTriggers();
+            Animator.SetTrigger("AttackCast");
+        }
+
+        public void Hit()
+        {
+            ResetTriggers();
+            Animator.SetTrigger("Hit");
+        }
+
+        private void ResetTriggers()
+        {
+            Animator.ResetTrigger("Death");
+            Animator.ResetTrigger("AttackCast");
+            Animator.ResetTrigger("AttackPreview");
+            Animator.ResetTrigger("Idle");
+            Animator.ResetTrigger("Reset");
+            Animator.ResetTrigger("Hit");
         }
     }
 }
