@@ -18,7 +18,7 @@ namespace TheFowler
             }
         }
 
-        protected bool isActive;
+        public bool isActive;
 
         private Canvas canvas;
 

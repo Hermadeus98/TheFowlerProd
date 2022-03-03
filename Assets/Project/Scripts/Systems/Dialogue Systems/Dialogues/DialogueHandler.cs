@@ -269,9 +269,19 @@ namespace TheFowler
                         {
                             case DialogueType.STATIC:
                             {
-                                var view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
-                                view.ChoiceSelector.Show();
-                                view.SetChoices(currentDialogueNode);
+                                    if (currentDialogue.isHarmonisation)
+                                    {
+                                        var view = UI.GetView<HarmonisationView>(UI.Views.Harmo);
+                                        view.ChoiceSelector.Show();
+                                        view.SetChoices(currentDialogueNode);
+                                    }
+                                    else
+                                    {
+                                        var view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
+                                        view.ChoiceSelector.Show();
+                                        view.SetChoices(currentDialogueNode);
+                                    }
+
 
 
                             }
@@ -372,22 +382,19 @@ namespace TheFowler
                 case DialogueType.STATIC:
                     CameraManager.Instance.SetCamera(dialogue.cameraPath);
 
-                    if(dialogue.closeHarmonisation)
+                    if (dialogue.isHarmonisation)
                     {
-                        currentView = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
-                        UI.CloseView(UI.Views.Harmo);
-                        UI.OpenView(UI.Views.StaticDialogs);
-                        UI.RefreshView(UI.Views.StaticDialogs, new DialogueArg()
+                       
+                        
+                        HarmonisationView view = UI.GetView<HarmonisationView>(UI.Views.Harmo);
+                        if (!view.isActive)
                         {
-                            Dialogue = dialogue,
-                            DialogueNode = currentDialogueNode,
-                        });
-                    }
-                    else if (dialogue.openHarmonisation)
-                    {
-                        currentView = UI.GetView<HarmonisationView>(UI.Views.Harmo);
-                        UI.CloseView(UI.Views.StaticDialogs);
-                        UI.OpenView(UI.Views.Harmo);
+                            currentView = UI.GetView<HarmonisationView>(UI.Views.Harmo);
+                            UI.CloseView(UI.Views.StaticDialogs);
+                            UI.OpenView(UI.Views.Harmo);
+                        }
+
+
                         UI.RefreshView(UI.Views.Harmo, new DialogueArg()
                         {
                             Dialogue = dialogue,
@@ -396,8 +403,13 @@ namespace TheFowler
                     }
                     else
                     {
-                        currentView = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
-                        UI.OpenView(UI.Views.StaticDialogs);
+                        DialogueStaticView view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
+                        if (!view.isActive)
+                        {
+                            currentView = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
+                            UI.CloseView(UI.Views.Harmo);
+                            UI.OpenView(UI.Views.StaticDialogs);
+                        }
                         UI.RefreshView(UI.Views.StaticDialogs, new DialogueArg()
                         {
                             Dialogue = dialogue,

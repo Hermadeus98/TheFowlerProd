@@ -20,12 +20,14 @@ namespace TheFowler
         
         public void VFX_Slap()
         {
+            if (vfx_slap_particles == null) return;
             vfx_slap_particles.Play();
             feedbacks_attack.PlayFeedbacks();
         }
 
         private void Update()
         {
+            if (vfx_slap_particles == null) return;
             vfx_slap_particles.transform.position = robyn_sockets.hand_Left.position;
         }
     }
