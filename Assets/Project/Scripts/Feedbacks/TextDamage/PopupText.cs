@@ -13,12 +13,14 @@ namespace TheFowler
 
         public float duration = 1.2f;
         public Vector3 offset;
+        public Color Color = Color.red;
 
         
         [Button]
         public void Play(string message)
         {
             text.text = message;
+            text.color = Color;
 
             transform.DOMove(transform.position + offset, duration).SetEase(Ease.OutCubic).OnComplete(delegate
             {

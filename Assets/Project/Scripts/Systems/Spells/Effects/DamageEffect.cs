@@ -12,7 +12,7 @@ namespace TheFowler
         {
             base.PreviewEffect(emitter);
             
-            emitter.BattleActorAnimator.AttackPreview();
+            
         }
 
         public override IEnumerator OnBeginCast(BattleActor emitter, BattleActor[] receivers)
@@ -23,13 +23,12 @@ namespace TheFowler
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
             emitter.BattleActorAnimator.AttackCast();
+            yield return new WaitForSeconds(emitter.BattleActorAnimator.AttackCastDuration());
 
             foreach (var receiver in receivers)
             {
                 var _damage = DamageCalculator.CalculateDamage(damage, emitter, receiver);
-                
-                Debug.Log(_damage);
-                
+
                 receiver.Health.TakeDamage(
                     _damage
                     );
