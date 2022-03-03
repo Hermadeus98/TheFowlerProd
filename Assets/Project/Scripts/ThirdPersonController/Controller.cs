@@ -44,13 +44,14 @@ namespace TheFowler
         {
             base.RegisterEvent();
             GameState.onGameStateChange += OnGameStateChange;
+            Controllers?.Register();
         }
 
         protected override void UnregisterEvent()
         {
             base.UnregisterEvent();
             GameState.onGameStateChange -= OnGameStateChange;
-            Controllers.Destroy();
+            Controllers?.Destroy();
         }
 
         [Button]

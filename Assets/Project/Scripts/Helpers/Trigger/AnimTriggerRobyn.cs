@@ -21,6 +21,8 @@ namespace TheFowler
         
         public void VFX_Slap()
         {
+            if (vfx_slap_particles == null) return;
+
             vfx_slap_particles?.Play();
             feedbacks_attack?.PlayFeedbacks();
         }
