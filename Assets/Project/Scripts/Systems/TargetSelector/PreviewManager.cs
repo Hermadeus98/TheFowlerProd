@@ -22,7 +22,7 @@ namespace TheFowler
                         {
                             for (int i = 0; i < oldList.Count; i++)
                             {
-                                oldList[i].Health.FillBar.HidePreview();
+                                oldList[i].Health.FillBar?.HidePreview();
                             }
                         }
                     }
@@ -40,7 +40,7 @@ namespace TheFowler
                             var damage = DamageCalculator.CalculateDamage(damageEffect.damage,
                                 BattleManager.CurrentBattleActor, actors[i]);
                             var previewFill = actors[i].Health.CurrentHealth - damage;
-                            actors[i].Health.FillBar.SetPreview(previewFill);
+                            actors[i].Health.FillBar?.SetPreview(previewFill);
                         }
                     }
                 }

@@ -17,8 +17,9 @@ namespace TheFowler
         public FloatUnityEvent onDamaged, onHealed;
         public UnityEvent onDeath, onResurect;
 
-        [SerializeField] private MMFeedbacks onDamageFeedbacks;
-        private MMPopupText popupComponent;
+        [SerializeField] private MMFeedbacks onDamageFeedbacks, onHealFeedbacks;
+        private MMPopupText popupDamageComponent;
+        private MMPopupText popupHealComponent;
         
         
         public FillBar FillBar => fillBar;
@@ -44,7 +45,8 @@ namespace TheFowler
             fillBar?.SetMaxValue(maxHealth);
             fillBar?.SetFill(currentHealth);
             ReferedActor.AllyData?.Refresh();
-            popupComponent = onDamageFeedbacks.Feedbacks.First(w => w.GetType() == typeof(MMPopupText)) as MMPopupText;
+            popupDamageComponent = onDamageFeedbacks.Feedbacks.First(w => w.GetType() == typeof(MMPopupText)) as MMPopupText;
+            popupHealComponent = onHealFeedbacks.Feedbacks.First(w => w.GetType() == typeof(MMPopupText)) as MMPopupText;
         }
 
         [Button]
@@ -60,7 +62,7 @@ namespace TheFowler
                 Death();
             }
             
-            popupComponent.message = damage.ToString();
+            popupDamageComponent.message = damage.ToString();
 
             onDamaged?.Invoke(currentHealth);
             fillBar?.SetFill(currentHealth);
@@ -73,6 +75,8 @@ namespace TheFowler
         {
             if(heal == 0)
                 return;
+
+            popupHealComponent.message = heal.ToString();
             
             currentHealth += heal;
             if (currentHealth > maxHealth) currentHealth = maxHealth;

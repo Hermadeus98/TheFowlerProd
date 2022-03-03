@@ -18,8 +18,11 @@ namespace TheFowler
         [SerializeField, ShowIf("@this.battleCameraBatch == BattleCameraBatch.CURRENT_ACTOR_PERSONALISE")] private string cameraSpecificPath = "Default";
 
         public bool ImPreview = false;
-        
-        public virtual void PreviewEffect(BattleActor emitter){}
+
+        public virtual void PreviewEffect(BattleActor emitter)
+        {
+            emitter.BattleActorAnimator.AttackPreview();
+        }
         
         public abstract IEnumerator OnBeginCast(BattleActor emitter, BattleActor[] receivers);
 

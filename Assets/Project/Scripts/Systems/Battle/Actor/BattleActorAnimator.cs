@@ -9,6 +9,8 @@ namespace TheFowler
     {
         public Animator Animator;
 
+        [SerializeField] private AnimationClip attackClip;
+
         public void Death()
         {
             ResetTriggers();
@@ -33,6 +35,7 @@ namespace TheFowler
             Animator.SetTrigger("AttackPreview");
         }
 
+        public float AttackCastDuration() => attackClip.length;
         public void AttackCast()
         {
             ResetTriggers();

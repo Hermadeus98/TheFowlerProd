@@ -13,6 +13,25 @@ namespace TheFowler
 
         public UnityEvent OnBuffStart, OnBuffEnd;
 
+        public float BuffPercent
+        {
+            get => buffPercent;
+            set
+            {
+                if (waitTurn > 0)
+                {
+                    if (value > buffPercent)
+                    {
+                        buffPercent = value;
+                    }
+                }
+                else
+                {
+                    buffPercent = value;
+                }
+            }
+        }
+        
         public override void Initialize()
         {
             base.Initialize();

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.Feedbacks;
+using QRCode.Extensions;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -20,13 +21,16 @@ namespace TheFowler
         
         public void VFX_Slap()
         {
-            vfx_slap_particles.Play();
-            feedbacks_attack.PlayFeedbacks();
+            vfx_slap_particles?.Play();
+            feedbacks_attack?.PlayFeedbacks();
         }
 
         private void Update()
         {
-            vfx_slap_particles.transform.position = robyn_sockets.hand_Left.position;
+            if (robyn_sockets.IsNotNull())
+            {
+                vfx_slap_particles.transform.position = robyn_sockets.hand_Left.position;
+            }
         }
     }
 }
