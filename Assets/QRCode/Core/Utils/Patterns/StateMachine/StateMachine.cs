@@ -18,6 +18,8 @@ namespace QRCode
         //---<Properties>----------------------------------------------------------------------------------------------<
         public Dictionary<string, Istate> States => states;
         public Istate CurrentState => currentState;
+
+        public UpdateMode UpdateMode { get; set; }
         
         //---<INITIALISATION>------------------------------------------------------------------------------------------<
         public StateMachine (Istate[] states, UpdateMode updateMode , EventArgs args)
@@ -25,6 +27,7 @@ namespace QRCode
             this.states = new Dictionary<string, Istate>();
             for (int i = 0; i < states.Length; i++)
                 AddState(states[i]);
+            UpdateMode = updateMode;
             UpdateRunner.Instance.Register(updateMode, Execute);
         }
 
@@ -56,6 +59,11 @@ namespace QRCode
         {
             if(states.ContainsKey(key))
                 states.Remove(key);
+        }
+
+        public void Destroy()
+        {
+            UpdateRunner.Instance.UnRegister(UpdateMode, Execute);
         }
     }
 

@@ -14,8 +14,11 @@ namespace TheFowler
     public class TransitionView : UIView
     {
         [TabGroup("References")]
-        [SerializeField] private MMFeedbacks transitionHarmonisation, transitionStatic, transitionChapterIn, transitionBattleIn;
-        
+        [SerializeField] private MMFeedbacks transitionHarmonisation, transitionStatic, transitionBattleIn,
+            transitionChapter_One, transitionChapter_Two_PartOne, transitionChapter_Two_PartTwo, transitionChapter_Three;
+        [ReadOnly]
+        public ChapterEnum chapterType;
+
         public override void Refresh(EventArgs args)
         {
             base.Refresh(args);
@@ -41,11 +44,21 @@ namespace TheFowler
                 case TransitionType.STATIC:
                     Transition(transitionStatic, action);
                     break;
-                case TransitionType.CHAPTER_OUT:
-                    Transition(transitionStatic, action);
-                    break;
-                case TransitionType.CHAPTER_IN:
-                    Transition(transitionChapterIn, action);
+                case TransitionType.CHAPTER:
+                    switch (chapterType)
+                    {
+                        case ChapterEnum.CHAPTER_TWO_PART1:
+                            Transition(transitionChapter_Two_PartOne, action);
+                            break;
+                        case ChapterEnum.CHAPTER_TWO_PART2:
+                            Transition(transitionChapter_Two_PartTwo, action);
+                            break;
+                        case ChapterEnum.CHAPTER_THREE:
+                            Transition(transitionChapter_Three, action);
+                            break;
+                    }
+                    
+                    
                     break;
                 case TransitionType.BATTLE:
                     Transition(transitionBattleIn, action);
@@ -86,8 +99,8 @@ namespace TheFowler
         MOVEMENT,
         HARMONISATION,
         BATTLE,
-        CHAPTER_IN,
-        CHAPTER_OUT
+        CHAPTER
     }
+
 }
 

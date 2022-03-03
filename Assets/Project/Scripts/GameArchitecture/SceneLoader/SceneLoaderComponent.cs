@@ -11,11 +11,13 @@ namespace TheFowler
     public class SceneLoaderComponent : SerializedMonoBehaviour
     {
         [SerializeField] private ChapterEnum chapterToLoad;
-
         [Button]
         public void ChangeChapter()
         {
-            ChapterManager.ChangeChapter(chapterToLoad);
+            TransitionView view = UI.GetView<TransitionView>(UI.Views.TransitionView);
+            view.chapterType = chapterToLoad;
+            view.Show(TransitionType.CHAPTER, () => ChapterManager.ChangeChapter(chapterToLoad));
+            
         }
         
         //---<EDITOR>--------------------------------------------------------------------------------------------------<

@@ -17,6 +17,7 @@ namespace TheFowler
         protected virtual void OnDisable()
         {
             UnregisterEvent();
+
         }
 
         protected virtual void OnDestroy()

@@ -16,7 +16,14 @@ namespace TheFowler
 
         private static void Register(Follower follower)
         {
-            Followers.Add(follower.CharacterPlugger, follower);
+            if (Followers.ContainsKey(follower.CharacterPlugger))
+            {
+                Followers[follower.CharacterPlugger] = follower;
+            }
+            else
+            {
+                Followers.Add(follower.CharacterPlugger, follower);
+            }
         }
 
         public static Follower GetFollower(CharacterPlugger plugger)
