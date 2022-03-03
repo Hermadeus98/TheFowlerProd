@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
-  m_Name: Defend
+  m_Name: Middle HP
   m_EditorClassIdentifier: 
-  NodeName: Defend
+  NodeName: Middle HP
   chance: 1
   state: 0
   started: 0
@@ -20,8 +20,12 @@ MonoBehaviour:
   position: {x: -51, y: -47}
   children: []
   spellList:
-  - Spell: {fileID: 11400000, guid: b08f81d790a69c84d82ee771e3eabfb5, type: 2}
-    Chance: 3
+  - Spell: {fileID: 11400000, guid: 2f578645506af364398026e4c907e2bb, type: 2}
+    Chance: 2
+  - Spell: {fileID: 11400000, guid: 51cb1029a50badb47a9c40a8d5b8b8cb, type: 2}
+    Chance: 1
+  - Spell: {fileID: 11400000, guid: a6d4511392456114e862b6dc19e7957f, type: 2}
+    Chance: 1
 --- !u!114 &-5002943791546989718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39,7 +43,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 716ef1726c9d0fe479a32a137b129274
-  position: {x: -481, y: -47.5}
+  position: {x: -481, y: -48}
   children:
   - {fileID: 4151569233255065424}
   - {fileID: 5388224996074128664}
@@ -80,7 +84,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9cf5a2a104152e48a7bbaed625f399a, type: 3}
-  m_Name: AI_Spire
+  m_Name: AI_Squire
   m_EditorClassIdentifier: 
   rootNode: {fileID: -5002943791546989718}
   treeState: 0
@@ -109,7 +113,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 2843550e539117842bf2c0503c7c77c8
-  position: {x: -311, y: -150}
+  position: {x: -310, y: -150}
   children:
   - {fileID: 4554433209448224214}
   TargetIntention: 9
@@ -125,18 +129,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
-  m_Name: Attack
+  m_Name: +75%HP
   m_EditorClassIdentifier: 
-  NodeName: Attack
+  NodeName: +75%HP
   chance: 1
   state: 0
   started: 0
   guid: a9420b19c3f107c46a9a46696c727a80
-  position: {x: -38, y: -282}
+  position: {x: -49, y: -151}
   children: []
   spellList:
-  - Spell: {fileID: 11400000, guid: d97d88a805ece2d4bab19a3051cb93cc, type: 2}
+  - Spell: {fileID: 11400000, guid: a6d4511392456114e862b6dc19e7957f, type: 2}
     Chance: 3
+  - Spell: {fileID: 11400000, guid: 2f578645506af364398026e4c907e2bb, type: 2}
+    Chance: 1
 --- !u!114 &5388224996074128664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,9 +199,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
-  m_Name: Stun
+  m_Name: -40%HP
   m_EditorClassIdentifier: 
-  NodeName: Stun
+  NodeName: -40%HP
   chance: 1
   state: 0
   started: 0
@@ -203,5 +209,7 @@ MonoBehaviour:
   position: {x: -51, y: 65}
   children: []
   spellList:
-  - Spell: {fileID: 11400000, guid: a393d4382fb459940a89bbc203b68850, type: 2}
+  - Spell: {fileID: 11400000, guid: 51cb1029a50badb47a9c40a8d5b8b8cb, type: 2}
     Chance: 3
+  - Spell: {fileID: 11400000, guid: 2f578645506af364398026e4c907e2bb, type: 2}
+    Chance: 1
