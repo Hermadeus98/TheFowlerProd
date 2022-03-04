@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: Defend
+  m_Name: Fowler's Rage
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -29,49 +29,31 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.DefendEffect, Assembly-CSharp
+      Data: 1|TheFowler.DamageBonus, Assembly-CSharp
     - Name: EffectName
       Entry: 1
-      Data: Defend
+      Data: NO NAME EFFECT
     - Name: TargetType
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: battleCameraBatch
       Entry: 3
-      Data: 1
-    - Name: cameraPath
-      Entry: 7
-      Data: 2|TheFowler.cameraPath, Assembly-CSharp
-    - Name: genericKey
-      Entry: 3
       Data: 0
-    - Name: cameraName
-      Entry: 1
-      Data: Default
-    - Name: batchName
+    - Name: cameraPath
       Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
       Data: 
     - Name: cameraSpecificPath
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: Default
     - Name: ImPreview
       Entry: 5
       Data: false
-    - Name: effectDuration
-      Entry: 3
-      Data: 1
-    - Name: effect
+    - Name: buffBonus
       Entry: 4
-      Data: 25
-    - Name: manaToRestaure
+      Data: 20
+    - Name: turnDuration
       Entry: 3
       Data: 2
-    - Name: restaureManaAt
-      Entry: 3
-      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -81,11 +63,11 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Defend
+  SpellName: Fowler's Rage
   ManaCost: 0
-  TargetType: 0
+  TargetType: 3
   executionDurationBeforeCast: 1
   executionDurationAfterCast: 1
-  SpellDescription: Simple Attack with turbo damage
+  SpellDescription: Basic Attack
   ExecutionType: 0
   SpellType: 0
