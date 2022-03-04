@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using QRCode.Utils;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using UnityEngine;
 
 namespace TheFowler
@@ -37,7 +38,12 @@ namespace TheFowler
         
         [TitleGroup("Effects")] 
         public Effect[] Effects;
-        
+
+        private void OnEnable()
+        {
+            Effects.ForEach(w => w.ReferedSpell = this);
+        }
+
         public IEnumerator Cast(BattleActor emitter, BattleActor[] receivers)
         {
             yield return new WaitForSeconds(executionDurationBeforeCast);

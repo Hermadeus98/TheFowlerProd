@@ -83,6 +83,21 @@ namespace TheFowler
                 }
             }
 
+            if (BattleManager.IsAllyTurn && (targetType == TargetTypeEnum.ALL_ALLIES || targetType == TargetTypeEnum.SOLO_ENEMY))
+            {
+                var weak = AvailableTargets.Cast<EnemyActor>().Where(w => w.IsWeakOf(Player.SelectedSpell.SpellType));
+                weak.ForEach(w => w.weak.gameObject.SetActive(true));
+
+                if (weak.Count() == 1 && targetType == TargetTypeEnum.SOLO_ENEMY)
+                {
+                    Select(weak.ElementAt(0));
+                }
+                else if (targetType == TargetTypeEnum.ALL_ALLIES)
+                {
+                    SelectAll(SelectedTargets);
+                }
+            }
+
             OnTargetChanged?.Invoke(SelectedTargets);
         }
 
@@ -90,7 +105,14 @@ namespace TheFowler
         {
             if (!AvailableTargets.IsNullOrEmpty())
             {
-                AvailableTargets.ForEach(w => EndPreview(w));
+                for (int i = 0; i < AvailableTargets.Count; i++)
+                {
+                    if (AvailableTargets[i] is EnemyActor enemyActor)
+                    {
+                        enemyActor.weak.SetActive(false);
+                    }
+                    EndPreview(AvailableTargets[i]);
+                }
                 AvailableTargets.Clear();
             }
 
