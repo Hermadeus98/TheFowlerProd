@@ -20,7 +20,7 @@ namespace TheFowler
 
             foreach (var receiver in receivers)
             {
-                var _damage = DamageCalculator.CalculateDamage(damage, emitter, receiver);
+                var _damage = DamageCalculator.CalculateDamage(damage, emitter, receiver, ReferedSpell.SpellType);
 
                 receiver.Health.TakeDamage(
                     _damage

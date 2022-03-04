@@ -48,6 +48,12 @@ namespace TheFowler
 
         public void SetCamera(cameraPath cameraPath)
         {
+            if (cameraPath == null)
+            {
+                Debug.LogError("CAMERA PATH IS NULL");
+                return;
+            }
+            
             if (cameraPath.genericKey == CameraGenericKeyEnum.NULL)
             {
                 if (cameraPath.batchName.IsNullOrWhitespace())

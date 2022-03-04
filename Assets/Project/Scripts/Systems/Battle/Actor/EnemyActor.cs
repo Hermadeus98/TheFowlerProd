@@ -10,6 +10,7 @@ namespace TheFowler
     {
         [SerializeField] private BehaviourTree brain;
         [SerializeField] private AIEnemy ai;
+        public GameObject weak;
 
         public BehaviourTree Brain => brain;
         public AIEnemy AI => ai;
@@ -20,6 +21,11 @@ namespace TheFowler
             
             if(brain.IsNotNull())
                 ai = new AIEnemy(brain, this);
+            
+            Health.onDeath.AddListener(delegate
+            {
+                weak.SetActive(false);
+            });
         }
 
         public override void OnTurnStart()

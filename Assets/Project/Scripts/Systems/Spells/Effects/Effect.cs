@@ -19,6 +19,8 @@ namespace TheFowler
 
         public bool ImPreview = false;
 
+        [ReadOnly] public Spell ReferedSpell;
+
         public virtual void PreviewEffect(BattleActor emitter)
         {
             emitter.BattleActorAnimator.AttackPreview();

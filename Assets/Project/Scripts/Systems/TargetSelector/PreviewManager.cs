@@ -38,7 +38,7 @@ namespace TheFowler
                         for (int i = 0; i < actors.Count; i++)
                         {
                             var damage = DamageCalculator.CalculateDamage(damageEffect.damage,
-                                BattleManager.CurrentBattleActor, actors[i]);
+                                BattleManager.CurrentBattleActor, actors[i], damageEffect.ReferedSpell.SpellType);
                             var previewFill = actors[i].Health.CurrentHealth - damage;
                             actors[i].Health.FillBar?.SetPreview(previewFill);
                         }
