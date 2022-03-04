@@ -21,6 +21,7 @@ namespace TheFowler
         private bool triggeredHarmo = false;
         private bool canHarmo = false;
         private GameplayPhase phase;
+        private float disAbi, disPhoebe;
 
         public CharacterInfo CharacterInfo = new CharacterInfo();
 
@@ -77,6 +78,16 @@ namespace TheFowler
                 LaunchHarmonisation();
             }
         }
+
+        //private void CheckDistanceFromCenterOfScreen()
+        //{
+        //    Vector2 posAbi = CameraManager.Camera.WorldToScreenPoint(Player.Abigael.transform.position);
+        //    Vector2 posPhoebe = CameraManager.Camera.WorldToScreenPoint(Player.Pheobe.transform.position);
+        //    Vector2 centerScreen = new Vector2(Screen.width / 2, Screen.height / 2);
+        //    disAbi = Vector2.Distance(posAbi, centerScreen);
+        //    disPhoebe = Vector2.Distance(posAbi, centerScreen);
+
+        //}
 
         public void Update()
         {
