@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace TheFowler
 {
-    public class AnimTriggerRobyn : SerializedMonoBehaviour
+    public class AnimTriggerRobyn : AnimTriggerBase
     {
         [TabGroup("References")] [SerializeField]
         private Sockets robyn_sockets;
@@ -16,15 +16,11 @@ namespace TheFowler
         [TabGroup("VFX_Slap")] [SerializeField]
         private ParticleSystem vfx_slap_particles;
 
-        [TabGroup("VFX_Slap")] [SerializeField]
-        private MMFeedbacks feedbacks_attack;
-        
         public void VFX_Slap()
         {
             if (vfx_slap_particles == null) return;
 
             vfx_slap_particles?.Play();
-            feedbacks_attack?.PlayFeedbacks();
         }
 
         private void Update()

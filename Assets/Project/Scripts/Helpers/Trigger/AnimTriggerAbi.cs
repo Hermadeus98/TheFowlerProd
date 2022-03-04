@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace TheFowler
 {
-    public class AnimTriggerAbi : SerializedMonoBehaviour
+    public class AnimTriggerAbi : AnimTriggerBase
     {
         [TabGroup("References")] [SerializeField]
         public Sockets abi_Sockets;
