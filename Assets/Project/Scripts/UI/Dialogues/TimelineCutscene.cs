@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 using AK.Wwise;
 using System;
+using Sirenix.OdinInspector;
 
 namespace TheFowler
 {
@@ -79,6 +80,12 @@ namespace TheFowler
             DialogueStaticView view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
             view.Hide();
 
+        }
+
+        [Button]
+        public void EndTimeline()
+        {
+            Timeline.time = Timeline.duration;
         }
     }
 }
