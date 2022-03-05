@@ -14,7 +14,10 @@ namespace TheFowler
         [TitleGroup("General Settings"), Required]
         public BehaviourTree BehaviourTree;
         [TitleGroup("General Settings")]
-        public bool replaceActorAtTheEnd = true;
+        public ReplacementActors replacementActors;
+        [TitleGroup("General Settings")]
+        public bool playDialogueAnimations = false;
+
 
         [TitleGroup("General Settings")]
         [SerializeField] private bool displayChoiceResult = true;
@@ -336,12 +339,20 @@ namespace TheFowler
 
         public override void EndPhase()
         {
+
             if (dialogueType == DialogueType.STATIC && IsActive)
             {
-                ReplaceActor(1);
+                
+                ReplaceActor(replacementActors.timeOfReplacement);
                 SoundManager.StopSound(currentSound, gameObject);
             }
-            
+
+
+            if (Timeline != null)
+            {
+                Timeline.time = Timeline.duration;
+            }
+
             base.EndPhase();
             
             switch (dialogueType)
@@ -357,8 +368,8 @@ namespace TheFowler
                 case DialogueType.HARMONISATION:
                     //UI.CloseView(UI.Views.MovementDialogs);
                     UI.CloseView(UI.Views.Harmo);
-                    if(replaceActorAtTheEnd)
-                    ReplaceActor(1);
+                    if(replacementActors.replaceActorAtTheEnd)
+                        ReplaceActor(replacementActors.timeOfReplacement);
 
                     harmoVCam.Priority = -1;
                     harmoVCam.gameObject.SetActive(false);
@@ -367,10 +378,6 @@ namespace TheFowler
                     throw new ArgumentOutOfRangeException();
             }
 
-            if(Timeline != null)
-            {
-                Timeline.time = Timeline.duration;
-            }
         }
 
         private void DisplayDialogue(Dialogue dialogue)
@@ -432,7 +439,7 @@ namespace TheFowler
                             break;
                     }
 
-                    if(currentAnim != null)
+                    if(currentAnim != null && playDialogueAnimations)
                     {
                         currentAnim.SetTrigger(dialogue.animationTrigger.ToString());
                     }
@@ -475,7 +482,7 @@ namespace TheFowler
 
         public void ReplaceActor()
         {
-            actorActivator?.DesactivateActor(replaceActorAtTheEnd);
+            actorActivator?.DesactivateActor(replacementActors.replaceActorAtTheEnd);
         }
 
 
@@ -519,6 +526,14 @@ namespace TheFowler
         STATIC = 0,
         MOVEMENT = 1,
         HARMONISATION = 2,
+    }
+
+    [Serializable]
+    public struct ReplacementActors
+    {
+        public bool replaceActorAtTheEnd;
+        public float timeOfReplacement;
+
     }
     
 }
