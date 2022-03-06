@@ -34,7 +34,7 @@ namespace TheFowler
         private Dialogue currentDialogue => currentDialogueNode.dialogue;
         
         [TabGroup("Debug")]
-        [SerializeField, ReadOnly] private float elapsedTime = 0;
+        [SerializeField, ReadOnly] private float elapsedTime = 0, elapsedTimePassCutscene = 0;
 
         [TitleGroup("General Settings")]
         [SerializeField] private DialogueType dialogueType;
@@ -156,6 +156,39 @@ namespace TheFowler
                 {
                     Next();
                 }
+                if(dialogueType == DialogueType.STATIC)
+                {
+                    if (Inputs.actions["Return"].IsPressed() && !waitInput)
+                    {
+                        elapsedTimePassCutscene += Time.deltaTime;
+                        if (currentView.GetType() == typeof(HarmonisationView))
+                        {
+                            var view = UI.GetView<HarmonisationView>(UI.Views.Harmo);
+                            view.RappelInputFeedback(elapsedTimePassCutscene);
+                        }
+
+                        else if (currentView.GetType() == typeof(DialogueStaticView))
+                        {
+                            var view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
+                            view.RappelInputFeedback(elapsedTimePassCutscene);
+                        }
+
+                        if (elapsedTimePassCutscene >= 1)
+                        {
+                            elapsedTimePassCutscene = 0;
+                            EndPhase();
+                        }
+                    }
+                    else
+                    {
+                        elapsedTimePassCutscene = 0;
+                        var view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
+                        view.RappelInputFeedback(elapsedTimePassCutscene);
+                        var view2 = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
+                        view2.RappelInputFeedback(elapsedTimePassCutscene);
+                    }
+                }
+
 
                 if (waitInput)
                 {

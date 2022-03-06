@@ -17,14 +17,13 @@ namespace TheFowler
         [TabGroup("References")]
         [SerializeField] private MMFeedbacks MMfadeIn, MMfadeOut;
 
-        [SerializeField] private Image portrait;
+        [SerializeField] private Image portrait, rappelInputFill;
         [SerializeField] private ActorDatabase actorDatabase;
 
         [SerializeField] private AnimatedText animatedText;
         [SerializeField] private TextMeshProUGUI speakerName;
-
         [SerializeField] private DialogueChoiceSelector choiceSelector;
-
+        
         public bool textIsComplete => animatedText.isComplete;
         public AnimatedText AnimatedText => animatedText;
         public DialogueChoiceSelector ChoiceSelector => choiceSelector;
@@ -60,6 +59,11 @@ namespace TheFowler
 
             speakerName.SetText(node.dialogue.ActorEnum.ToString());
             animatedText.SetText(node.dialogue.dialogueText);
+        }
+
+        public void RappelInputFeedback(float elapsedTime)
+        {
+            rappelInputFill.fillAmount = elapsedTime;
         }
 
         public override void Show()

@@ -16,6 +16,7 @@ namespace TheFowler
         [SerializeField] private TextMeshProUGUI speakerName;
 
         [SerializeField] private DialogueChoiceSelector choiceSelector;
+        [SerializeField] private Image rappelInputFill;
 
         public bool textIsComplete => animatedText.isComplete;
         public AnimatedText AnimatedText => animatedText;
@@ -48,6 +49,11 @@ namespace TheFowler
             
             speakerName.SetText(node.dialogue.ActorEnum.ToString());
             animatedText.SetText(node.dialogue.dialogueText);
+        }
+
+        public void RappelInputFeedback(float elapsedTime)
+        {
+            rappelInputFill.fillAmount = elapsedTime;
         }
     }
 }
