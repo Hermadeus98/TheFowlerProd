@@ -62,6 +62,8 @@ namespace TheFowler
                 }
                 if (inputs.actions["Return"].WasPressedThisFrame())
                 {
+                    SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Cancel, gameObject);
+
                     if (ReturnToActionMenu)
                     {
                         BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.ACTION_PICKING);

@@ -75,10 +75,16 @@ namespace TheFowler
 
         private void RepositionningCursor(UISelectorElement element)
         {
-            cursor.DOMoveY(element.RectTransform.position.y, .5f);
+            cursor.DOMoveY(element.RectTransform.position.y, .1f);
             
             var skillPickingView = UI.GetView<SkillPickingView>(UI.Views.SkillPicking);
             skillPickingView.descriptionText.SetText(((SkillSelectorElement)element).referedSpell.SpellDescription);
+        }
+
+        protected override void OnNavigate()
+        {
+            base.OnNavigate();
+            SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SkillSelection, gameObject);
         }
     }
 }

@@ -14,14 +14,18 @@ namespace TheFowler
 
         public static AudioDatabase AudioDatabase => Instance._audioDatabase;
 
+
         [Button]
         public static void PlaySound(AudioGenericEnum key, GameObject handler)
         {
             if (key == AudioGenericEnum.NULL)
             {
-                QRDebug.Log("AUDIO", FrenchPallet.BELIZE_HOLE, "Audio Generic Enum is equal to NULL.");
+                QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, "Audio Generic Enum is equal to NULL.");
                 return;
             }
+
+            if (handler == null)
+                handler = Instance.gameObject;
             
             AudioDatabase.GetElement(key).Post(handler);
         }
@@ -61,6 +65,18 @@ namespace TheFowler
                         throw new ArgumentOutOfRangeException(nameof(result), result, null);
                 }
             }
+        }
+
+        public static void Mute()
+        {
+            QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, "MUTE");
+            PlaySound(AudioGenericEnum.TF_Main_SetMuteOn, null);
+        }
+
+        public static void UnMute()
+        {
+            QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, "UNMUTE");
+            PlaySound(AudioGenericEnum.TF_Main_SetMuteOff, null);
         }
     }
 }

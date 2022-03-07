@@ -42,7 +42,8 @@ namespace TheFowler
 
         public override void Show()
         {
-            SoundManager.PlaySound(AudioEventShow, gameObject);
+            if(AudioEventShow != AudioGenericEnum.NULL)
+                SoundManager.PlaySound(AudioEventShow, gameObject);
             
             base.Show();
             if (useDefaultAnimShow)

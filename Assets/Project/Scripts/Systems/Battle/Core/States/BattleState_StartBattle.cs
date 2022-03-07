@@ -12,6 +12,8 @@ namespace TheFowler
             
             SetCamera("Default");
 
+            SoundManager.PlaySound(AudioGenericEnum.TF_Main_SetBattle, gameObject);
+
             if (BattleManager.CurrentBattle.FinishDirectly)
                 StartCoroutine(Stop());
         }
