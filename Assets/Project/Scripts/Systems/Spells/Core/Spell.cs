@@ -20,8 +20,8 @@ namespace TheFowler
         [TitleGroup("Main Settings")] public TargetTypeEnum TargetType;
 
         [TitleGroup("Main Settings")] public float
-            executionDurationBeforeCast = 1f,
-            executionDurationAfterCast = 1f;
+            executionDurationBeforeCast = .3f,
+            executionDurationAfterCast = .3f;
         
         [TitleGroup("Main Settings"), TextArea(3,5)] 
         public string SpellDescription;
@@ -54,7 +54,7 @@ namespace TheFowler
                     for (int i = 0; i < Effects.Length; i++)
                     {
                         Effects[i].SetCamera();
-                        yield return new WaitForSeconds(1f);
+                        yield return new WaitForSeconds(.3f);
                         Coroutiner.Play(Effects[i].OnBeginCast(emitter, receivers));
                         Coroutiner.Play(Effects[i].OnCast(emitter, receivers));
                         Coroutiner.Play(Effects[i].OnFinishCast(emitter, receivers));
