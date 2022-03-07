@@ -7,7 +7,7 @@ namespace TheFowler
 {
     public static class DamageCalculator
     {
-        public static float CalculateDamage(float initialDamage, BattleActor emitter, BattleActor receiver, Spell.SpellTypeEnum spellType)
+        public static float CalculateDamage(float initialDamage, BattleActor emitter, BattleActor receiver, Spell.SpellTypeEnum spellType, out ResistanceFaiblesseResult ResistanceFaiblesseResult)
         {
             var bonusesCoef = emitter.BattleActorInfo.buffBonus / 100;
             var malusesCoef = emitter.BattleActorInfo.debuffMalus / 100;
@@ -32,6 +32,7 @@ namespace TheFowler
                     throw new ArgumentOutOfRangeException();
             }
 
+            ResistanceFaiblesseResult = resistance;
             return result;
         }
 

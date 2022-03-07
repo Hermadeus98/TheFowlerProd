@@ -19,6 +19,9 @@ namespace TheFowler
         [TabGroup("Main Settings")] [SerializeField]
         protected bool useDefaultAnimHide = true;
 
+        [TabGroup("Main Settings")] [SerializeField]
+        protected AudioGenericEnum AudioEventShow;
+        
         [TabGroup("References")]
         [SerializeField, GetComponent] private CanvasGroup canvasGroup;
 
@@ -39,6 +42,8 @@ namespace TheFowler
 
         public override void Show()
         {
+            SoundManager.PlaySound(AudioEventShow, gameObject);
+            
             base.Show();
             if (useDefaultAnimShow)
             {

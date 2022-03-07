@@ -21,7 +21,7 @@ namespace TheFowler
         {
             if (Sockets.IsNotNull())
             {
-                vfx_attack.transform.position = Sockets.hand_Right.position;
+                if(vfx_attack.IsNotNull()) vfx_attack.transform.position = Sockets.hand_Right.position;
             }
         }
     }

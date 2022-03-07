@@ -24,7 +24,7 @@ namespace TheFowler
         {
             if (Sockets.IsNotNull())
             {
-                vfx_slap_particles.transform.position = Sockets.hand_Left.position;
+                if(vfx_slap_particles.IsNotNull()) vfx_slap_particles.transform.position = Sockets.hand_Left.position;
             }
         }
     }
