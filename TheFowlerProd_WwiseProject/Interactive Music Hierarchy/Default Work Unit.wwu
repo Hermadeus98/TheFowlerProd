@@ -4,6 +4,13 @@
 		<WorkUnit Name="Default Work Unit" ID="{912F3122-A24C-4B99-884A-0DC9FAC759AE}" PersistMode="Standalone">
 			<ChildrenList>
 				<MusicSwitchContainer Name="Music" ID="{AA39F08F-B600-44EA-B6D0-871E9D9A2379}" ShortID="1010412950">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-8</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Music Conversion" ID="{9408CA8F-7F50-4CB1-94E5-16E45649BFFB}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
@@ -144,7 +151,6 @@
 						<MusicPlaylistContainer Name="Explo" ID="{31B64764-0C4C-4F2A-B699-2BC371F6BCBE}" ShortID="152532181">
 							<PropertyList>
 								<Property Name="OverrideClockSettings" Type="bool" Value="True"/>
-								<Property Name="Tempo" Type="Real64" Value="105"/>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -155,9 +161,9 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<MusicSegment Name="TF_M_Explo" ID="{36B0A5D1-8F8C-48A8-A55D-643D70DBE297}" ShortID="145718116">
+								<MusicSegment Name="TF_Music_Explo_120BPM" ID="{3C6F00E6-5528-4C0B-AF54-A24BDA43B349}" ShortID="829529868">
 									<PropertyList>
-										<Property Name="EndPosition" Type="Real64" Value="111090.333333333"/>
+										<Property Name="EndPosition" Type="Real64" Value="135059.931972789"/>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -168,23 +174,23 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<MusicTrack Name="TF_M_Explo" ID="{1307545A-B83F-41BB-83AD-0934C183839E}" ShortID="340115286">
+										<MusicTrack Name="TF_Music_Explo_120BPM" ID="{DA5C32F9-F71F-4383-9479-9FD8B0935449}" ShortID="601981121">
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="TF_M_Explo" ID="{539A39B0-F14B-4F01-88F0-6C94618A0F52}">
+												<AudioFileSource Name="TF_Music_Explo_120BPM" ID="{CE84C36B-CF77-4430-9829-467E5AE5E90C}">
 													<Language>SFX</Language>
-													<AudioFile>TF_M_Explo.wav</AudioFile>
+													<AudioFile>TF_Music_Explo_120BPM.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="633126184"/>
+														<MediaID ID="48130237"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
 											<TransitionList>
-												<MusicTransition Name="Root" ID="{D60D773F-BA0A-4914-9A9E-A5478DFA5D65}">
+												<MusicTransition Name="Root" ID="{6B9F8C0E-B11F-44DC-A6E9-E2C7556CF65E}">
 													<PropertyList>
 														<Property Name="IsFolder" Type="bool" Value="True"/>
 													</PropertyList>
@@ -195,18 +201,18 @@
 												<ObjectList Name="Sequences">
 													<Reference>
 														<Local>
-															<MusicTrackSequence Name="" ID="{D7FE34B1-0463-4703-89E9-8F63B8DF0ABE}">
+															<MusicTrackSequence Name="" ID="{D69E64DA-3CC5-434D-B9DD-8FA1B5F2AD20}">
 																<ObjectLists>
 																	<ObjectList Name="Clips">
 																		<Reference>
 																			<Local>
-																				<MusicClip Name="TF_M_Explo" ID="{28DCAC13-5F72-405F-8463-2956B6BFFE2D}">
+																				<MusicClip Name="TF_Music_Explo_120BPM" ID="{F4FBFA6E-AC9A-4A8A-9CAA-8052C33DFC2C}">
 																					<PropertyList>
-																						<Property Name="EndTrimOffset" Type="Real64" Value="111090.333333333"/>
+																						<Property Name="EndTrimOffset" Type="Real64" Value="135059.931972789"/>
 																						<Property Name="FadeInMode" Type="int16" Value="0"/>
 																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
 																					</PropertyList>
-																					<AudioSourceRef Name="TF_M_Explo" ID="{539A39B0-F14B-4F01-88F0-6C94618A0F52}"/>
+																					<AudioSourceRef Name="TF_Music_Explo_120BPM" ID="{CE84C36B-CF77-4430-9829-467E5AE5E90C}"/>
 																				</MusicClip>
 																			</Local>
 																		</Reference>
@@ -223,15 +229,15 @@
 										<ObjectList Name="Cues">
 											<Reference>
 												<Local>
-													<MusicCue Name="Entry Cue" ID="{F2121DE3-7602-40FE-80DB-5CB58A0CB5F7}"/>
+													<MusicCue Name="Entry Cue" ID="{677B1B6C-D9BD-4E68-87AB-881992632EA7}"/>
 												</Local>
 											</Reference>
 											<Reference>
 												<Local>
-													<MusicCue Name="Exit Cue" ID="{5289D2DF-CB86-4852-951A-A0C91469D485}">
+													<MusicCue Name="Exit Cue" ID="{8D63867F-463B-4C66-82C8-DD5B1D588E08}">
 														<PropertyList>
 															<Property Name="CueType" Type="int16" Value="1"/>
-															<Property Name="TimeMs" Type="Real64" Value="111090.333333333"/>
+															<Property Name="TimeMs" Type="Real64" Value="135059.931972789"/>
 														</PropertyList>
 													</MusicCue>
 												</Local>
@@ -260,11 +266,11 @@
 										<Property Name="LoopCount" Type="int16" Value="0"/>
 									</PropertyList>
 									<ChildrenList>
-										<MusicPlaylistItem Name="" ID="{24C6C58B-E13C-4D26-B113-FDA3D22462F1}" ShortID="390839226">
+										<MusicPlaylistItem Name="" ID="{5220D056-2A60-4870-8B96-CE8E0F4CEB10}" ShortID="812925565">
 											<PropertyList>
 												<Property Name="PlaylistItemType" Type="int16" Value="1"/>
 											</PropertyList>
-											<SegmentRef Name="TF_M_Explo" ID="{36B0A5D1-8F8C-48A8-A55D-643D70DBE297}"/>
+											<SegmentRef Name="TF_Music_Explo_120BPM" ID="{3C6F00E6-5528-4C0B-AF54-A24BDA43B349}"/>
 										</MusicPlaylistItem>
 									</ChildrenList>
 								</MusicPlaylistItem>
