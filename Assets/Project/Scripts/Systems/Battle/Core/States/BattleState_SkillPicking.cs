@@ -33,11 +33,13 @@ namespace TheFowler
             {
                 if (skillPickingView.skillSelector.WaitChoice(out var skillSelectorElement))
                 {
+                    SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SkillSelection, gameObject);
                     Player.SelectedSpell = skillSelectorElement.referedSpell;
                     BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.TARGET_PICKING);
                 }
-                if (Gamepad.current.bButton.wasPressedThisFrame)
+                if (inputs.actions["Return"].WasPressedThisFrame())
                 {
+                    SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Cancel, gameObject);
                     BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.ACTION_PICKING);
                 }
             }

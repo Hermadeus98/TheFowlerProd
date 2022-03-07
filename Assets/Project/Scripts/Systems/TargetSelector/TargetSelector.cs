@@ -88,6 +88,11 @@ namespace TheFowler
                 var weak = AvailableTargets.Cast<EnemyActor>().Where(w => w.IsWeakOf(Player.SelectedSpell.SpellType));
                 weak.ForEach(w => w.weak.gameObject.SetActive(true));
 
+                if (weak.Count() > 0)
+                {
+                    SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_WeakDisplay, null);
+                }
+                
                 if (weak.Count() == 1 && targetType == TargetTypeEnum.SOLO_ENEMY)
                 {
                     Select(weak.ElementAt(0));
@@ -161,6 +166,7 @@ namespace TheFowler
         
         private static void SelectNext()
         {
+            SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SwitchTarget, null);
             currentIndex++;
             if (currentIndex >= AvailableTargets.Count)
             {
@@ -172,6 +178,7 @@ namespace TheFowler
 
         private static void SelectPrevious()
         {
+            SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SwitchTarget, null);
             currentIndex--;
             if (currentIndex < 0)
             {

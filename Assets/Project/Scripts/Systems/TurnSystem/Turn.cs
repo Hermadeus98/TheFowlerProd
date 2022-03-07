@@ -29,6 +29,15 @@ namespace TheFowler
             {
                 var actor = BattleManager.CurrentBattleActor;
                 CameraManager.Instance.SetCamera(actor.CameraBatchBattle, CameraKeys.BattleKeys.ActionPicking);
+
+                if (BattleManager.IsAllyTurn)
+                {
+                    SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Turn_AllyTurn, null);
+                }
+                else if (BattleManager.IsEnemyTurn)
+                {
+                    SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Turn_EnemyTurn, null);
+                }
             });
 
             //_turnTransitionView = UI.OpenView<TurnTransitionView>(UI.Views.TurnTransition);

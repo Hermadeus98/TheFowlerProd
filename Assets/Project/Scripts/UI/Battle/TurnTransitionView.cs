@@ -30,8 +30,6 @@ namespace TheFowler
         private IEnumerator CameraSwipTransitionIE(Action transitionEvent)
         {
             CanvasGroup.alpha = 1;
-            Debug.Log("SWIPE");
-            
             mask.fillAmount = 1f;
             
             var cam = CameraManager.Camera;
@@ -44,6 +42,7 @@ namespace TheFowler
             image.rectTransform.sizeDelta = new Vector2((int)dim.x, (int)dim.y);
 
             transitionEvent?.Invoke();
+
             mask.DOFillAmount(0, transitionDuration).OnComplete(delegate
             {
                 CanvasGroup.alpha = 0;
@@ -52,6 +51,9 @@ namespace TheFowler
             yield break;
         }
         
+        /// <summary>
+        /// NE PAS UTILISER, utiliser CameraSwipTransition.
+        /// </summary>
         public override void Show()
         {
             base.Show();

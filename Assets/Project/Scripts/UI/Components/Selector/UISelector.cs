@@ -37,7 +37,7 @@ namespace TheFowler
 
         protected Action<UISelectorElement> OnSelect;
 
-        protected virtual void FixedUpdate()
+        protected virtual void Update()
         {
             if(!isActive)
                 return;
@@ -56,12 +56,19 @@ namespace TheFowler
             if (Inputs.actions["NavigateDown"].WasPressedThisFrame())
             {
                 SelectNext();
+                OnNavigate();
             }
 
             if (Inputs.actions["NavigateUp"].WasPressedThisFrame())
             {
                 SelectPrevious();
+                OnNavigate();
             }
+        }
+
+        protected virtual void OnNavigate()
+        {
+            
         }
 
         private void SelectNext()

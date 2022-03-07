@@ -102,11 +102,11 @@ namespace TheFowler
         {
             if (value)
             {
-                QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, "UNMUTE");
+                SoundManager.UnMute();
             }
             else
             {
-                QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, "MUTE");
+                SoundManager.Mute();
             }
         }
     }

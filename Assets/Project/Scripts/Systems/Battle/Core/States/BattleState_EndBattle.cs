@@ -29,6 +29,8 @@ namespace TheFowler
             UI.CloseView(UI.Views.SkillPicking);
             UI.CloseView(UI.Views.TargetPicking);
             UI.CloseView(UI.Views.AlliesDataView);
+            
+            SoundManager.PlaySound(AudioGenericEnum.TF_Main_SetExplo, gameObject);
         }
     }
 }
