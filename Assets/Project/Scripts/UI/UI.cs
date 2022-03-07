@@ -21,7 +21,8 @@ namespace TheFowler
                 Harmo = "HarmonisationView",
                 InfoBox = "InfoBoxView",
                 TransitionView = "TransitionView",
-                CutsceneView = "TwoDCutsceneView";
+                CutsceneView = "TwoDCutsceneView",
+                AlliesDataView = "AlliesDataView";
         }
         
         private static Dictionary<string, UIView> views = new Dictionary<string, UIView>();

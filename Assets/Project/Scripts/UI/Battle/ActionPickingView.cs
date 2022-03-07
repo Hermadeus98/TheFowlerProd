@@ -31,7 +31,7 @@ namespace TheFowler
             if (BattleManager.CurrentTurnActor != null)
             {
                 var currentBattleActor = BattleManager.CurrentTurnActor as BattleActor;
-                ActionPicker.PlugToActor(currentBattleActor);
+                //ActionPicker.PlugToActor(currentBattleActor);
             }
         }
 

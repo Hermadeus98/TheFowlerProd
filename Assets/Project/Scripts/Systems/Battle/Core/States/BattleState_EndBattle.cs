@@ -28,6 +28,7 @@ namespace TheFowler
             UI.CloseView(UI.Views.ActionPicking);
             UI.CloseView(UI.Views.SkillPicking);
             UI.CloseView(UI.Views.TargetPicking);
+            UI.CloseView(UI.Views.AlliesDataView);
         }
     }
 }
