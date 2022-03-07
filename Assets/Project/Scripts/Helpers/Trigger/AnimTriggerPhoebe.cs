@@ -10,9 +10,6 @@ namespace TheFowler
 {
     public class AnimTriggerPhoebe : AnimTriggerBase
     {
-        [SerializeField] private Sockets Sockets;
-
-
         [SerializeField] private ParticleSystem vfx_attack;
 
         public void SFX_Slap()

@@ -10,9 +10,6 @@ namespace TheFowler
 {
     public class AnimTriggerRobyn : AnimTriggerBase
     {
-        [TabGroup("References")] [SerializeField]
-        private Sockets robyn_sockets;
-        
         [TabGroup("VFX_Slap")] [SerializeField]
         private ParticleSystem vfx_slap_particles;
 
@@ -25,9 +22,9 @@ namespace TheFowler
 
         private void Update()
         {
-            if (robyn_sockets.IsNotNull())
+            if (Sockets.IsNotNull())
             {
-                vfx_slap_particles.transform.position = robyn_sockets.hand_Left.position;
+                vfx_slap_particles.transform.position = Sockets.hand_Left.position;
             }
         }
     }
