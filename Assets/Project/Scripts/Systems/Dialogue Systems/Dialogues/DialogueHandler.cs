@@ -175,11 +175,12 @@ namespace TheFowler
 
                         if (elapsedTimePassCutscene >= 1)
                         {
+                            
                             elapsedTimePassCutscene = 0;
                             EndPhase();
                         }
                     }
-                    else
+                    if (Inputs.actions["Return"].WasReleasedThisFrame())
                     {
                         elapsedTimePassCutscene = 0;
                         var view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);

@@ -25,10 +25,10 @@ namespace TheFowler
                 {
 
                     case FriendName.ABI:
-                        Player.Abigael?.InitializeHarmonisation(phaseToPlay[0]);
+                        Player.Abigael?.harmonisationComponent.InitializeHarmonisation(phaseToPlay[0]);
                         break;
                     case FriendName.PHOEBE:
-                        Player.Pheobe?.InitializeHarmonisation(phaseToPlay[1]);
+                        Player.Pheobe?.harmonisationComponent.InitializeHarmonisation(phaseToPlay[1]);
                         break;
                 }
                      

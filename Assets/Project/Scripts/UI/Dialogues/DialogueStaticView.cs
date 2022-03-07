@@ -16,7 +16,7 @@ namespace TheFowler
         [SerializeField] private TextMeshProUGUI speakerName;
 
         [SerializeField] private DialogueChoiceSelector choiceSelector;
-        [SerializeField] private Image rappelInputFill;
+        [SerializeField] private Image rappelInputFill, background;
 
         public bool textIsComplete => animatedText.isComplete;
         public AnimatedText AnimatedText => animatedText;
@@ -28,10 +28,26 @@ namespace TheFowler
 
             if (args is DialogueArg cast)
             {
+                
                 var db = actorDatabase.GetElement(cast.Dialogue.ActorEnum);
                 portrait.sprite = db.portraitBuste;
-                speakerName.SetText(db.actorName);
-                animatedText.SetText(cast.Dialogue.dialogueText);
+
+                if(cast.Dialogue.dialogueText != "")
+                {
+                    background.enabled = true;
+                    speakerName.enabled = true;
+                    animatedText.enabled = true;
+                    speakerName.SetText(db.actorName);
+                    animatedText.SetText(cast.Dialogue.dialogueText);
+                }
+                else
+                {
+                    background.enabled = false;
+                    speakerName.enabled = false;
+                    animatedText.enabled = false;
+                    animatedText.SetText(cast.Dialogue.dialogueText);
+                }
+
             }
         }
 
