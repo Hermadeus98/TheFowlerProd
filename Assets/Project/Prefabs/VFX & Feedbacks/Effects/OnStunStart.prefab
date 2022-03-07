@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5956828976829125259}
   - component: {fileID: 2575579922463868192}
   - component: {fileID: 5579743552221993506}
+  - component: {fileID: 4664793635620696495}
   m_Layer: 13
   m_Name: OnStunStart
   m_TagString: Untagged
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Feedbacks:
   - {fileID: 5579743552221993506}
+  - {fileID: 4664793635620696495}
   InitializationMode: 2
   SafeMode: 3
   Direction: 0
@@ -117,6 +119,43 @@ MonoBehaviour:
   BoundParticleSystem: {fileID: 8060566029262425483}
   MoveToPosition: 0
   RandomParticleSystems: []
+--- !u!114 &4664793635620696495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4191817012935211417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97a1a6f6c3380ec43bd1e4696eedbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Active: 1
+  Label: WwisePlayGenericSound
+  Chance: 100
+  Timing:
+    TimescaleMode: 0
+    InitialDelay: 0
+    CooldownDuration: 0
+    ExcludeFromHoldingPauses: 0
+    InterruptsOnStop: 1
+    NumberOfRepeats: 0
+    RepeatForever: 0
+    DelayBetweenRepeats: 1
+    MMFeedbacksDirectionCondition: 0
+    PlayDirection: 0
+    ConstantIntensity: 0
+    UseIntensityInterval: 0
+    IntensityIntervalMin: 0
+    IntensityIntervalMax: 0
+    Sequence: {fileID: 0}
+    TrackID: 0
+    Quantized: 0
+    TargetBPM: 120
+  DebugActive: 0
+  key: 11
+  handler: {fileID: 4191817012935211417}
 --- !u!1001 &8060566029281694281
 PrefabInstance:
   m_ObjectHideFlags: 0

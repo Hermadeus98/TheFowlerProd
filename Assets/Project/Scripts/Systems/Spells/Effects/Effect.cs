@@ -18,6 +18,8 @@ namespace TheFowler
         [SerializeField, ShowIf("@this.battleCameraBatch == BattleCameraBatch.CURRENT_ACTOR_PERSONALISE")] private string cameraSpecificPath = "Default";
 
         public bool ImPreview = false;
+        
+        public AudioGenericEnum audioEvent;
 
         [ReadOnly] public Spell ReferedSpell;
 

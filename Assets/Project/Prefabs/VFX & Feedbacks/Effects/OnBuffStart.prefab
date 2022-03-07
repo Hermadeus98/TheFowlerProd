@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3943630672148778500}
   - component: {fileID: 6126262532999840752}
   - component: {fileID: 3764437121856914265}
+  - component: {fileID: 3565963602274366483}
   m_Layer: 13
   m_Name: OnBuffStart
   m_TagString: Untagged
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Feedbacks:
   - {fileID: 3764437121856914265}
+  - {fileID: 3565963602274366483}
   InitializationMode: 2
   SafeMode: 3
   Direction: 0
@@ -117,6 +119,43 @@ MonoBehaviour:
   BoundParticleSystem: {fileID: 3097082877664602546}
   MoveToPosition: 0
   RandomParticleSystems: []
+--- !u!114 &3565963602274366483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4697210007256675529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97a1a6f6c3380ec43bd1e4696eedbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Active: 1
+  Label: WwisePlayGenericSound
+  Chance: 100
+  Timing:
+    TimescaleMode: 0
+    InitialDelay: 0
+    CooldownDuration: 0
+    ExcludeFromHoldingPauses: 0
+    InterruptsOnStop: 1
+    NumberOfRepeats: 0
+    RepeatForever: 0
+    DelayBetweenRepeats: 1
+    MMFeedbacksDirectionCondition: 0
+    PlayDirection: 0
+    ConstantIntensity: 0
+    UseIntensityInterval: 0
+    IntensityIntervalMin: 0
+    IntensityIntervalMax: 0
+    Sequence: {fileID: 0}
+    TrackID: 0
+    Quantized: 0
+    TargetBPM: 120
+  DebugActive: 0
+  key: 7
+  handler: {fileID: 2900155144853707600}
 --- !u!1001 &2898428071074678458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -222,6 +261,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0bc1b6b391734647b9bb142bafc0819, type: 3}
+--- !u!1 &2900155144853707600 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1727626132299242, guid: b0bc1b6b391734647b9bb142bafc0819, type: 3}
+  m_PrefabInstance: {fileID: 2898428071074678458}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2897942679469533760 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4159976647224570, guid: b0bc1b6b391734647b9bb142bafc0819, type: 3}

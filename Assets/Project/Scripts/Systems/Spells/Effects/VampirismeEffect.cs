@@ -16,11 +16,15 @@ namespace TheFowler
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
             emitter.BattleActorAnimator.AttackCast();
+            SoundManager.PlaySound(audioEvent, emitter.gameObject);
+
             yield return new WaitForSeconds(emitter.BattleActorAnimator.AttackCastDuration());
 
             foreach (var receiver in receivers)
             {
-                var _damage = DamageCalculator.CalculateDamage(damage, emitter, receiver, ReferedSpell.SpellType);
+                var _damage = DamageCalculator.CalculateDamage(damage, emitter, receiver, ReferedSpell.SpellType, out var resistanceFaiblesseResult);
+
+                SoundManager.PlaySoundDamageTaken(receiver, resistanceFaiblesseResult);
 
                 receiver.Health.TakeDamage(
                     _damage
