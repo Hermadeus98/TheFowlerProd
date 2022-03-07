@@ -44,6 +44,7 @@ namespace TheFowler
             waitTurn = turnCount;
             ReferedActor.BattleActorInfo.buffBonus = buffPercent;
             OnBuffStart?.Invoke();
+            ReferedActor.StateIcons?.buff.Show();
         }
 
         [Button]
@@ -52,6 +53,7 @@ namespace TheFowler
             waitTurn = 0;
             ReferedActor.BattleActorInfo.buffBonus = 0;
             OnBuffEnd?.Invoke();
+            ReferedActor.StateIcons?.buff.Hide();
         }
         
         public override void OnTurnStart()

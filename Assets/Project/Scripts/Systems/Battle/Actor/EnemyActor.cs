@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using QRCode;
 using QRCode.Extensions;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace TheFowler
     {
         [SerializeField] private BehaviourTree brain;
         [SerializeField] private AIEnemy ai;
+        [SerializeField] private TypeIcon TypeIcon;
         public GameObject weak;
 
         public BehaviourTree Brain => brain;
@@ -26,6 +28,9 @@ namespace TheFowler
             {
                 weak.SetActive(false);
             });
+            
+            TypeIcon.Refresh(BattleActorData.actorType);
+            StateIcons.HideAll();
         }
 
         public override void OnTurnStart()

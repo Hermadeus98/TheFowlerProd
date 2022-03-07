@@ -25,6 +25,7 @@ namespace TheFowler
             waitTurn = turnCount;
             ReferedActor.BattleActorInfo.defenseBonus = bonus;
             OnDefendStart?.Invoke();
+            ReferedActor.StateIcons?.defend.Show();
         }
 
         public void EndDefend()
@@ -35,6 +36,8 @@ namespace TheFowler
             
             RestaureMana?.Invoke();
             RestaureMana?.RemoveAllListeners();
+            
+            ReferedActor.StateIcons?.defend.Hide();
         }
         
         public override void OnTurnStart()

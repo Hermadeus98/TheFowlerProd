@@ -24,6 +24,7 @@ namespace TheFowler
             ReferedActor.BattleActorInfo.isStun = true;
             waitTurn = turnCount;
             OnStunStart?.Invoke();
+            ReferedActor.StateIcons?.stun.Show();
         }
 
         [Button]
@@ -32,6 +33,7 @@ namespace TheFowler
             waitTurn = 0;
             ReferedActor.BattleActorInfo.isStun = false;
             OnStunEnd?.Invoke();
+            ReferedActor.StateIcons?.stun.Hide();
         }
 
         public override void OnTurnStart()
