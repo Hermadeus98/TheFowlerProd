@@ -177,6 +177,10 @@ namespace TheFowler
                         {
                             
                             elapsedTimePassCutscene = 0;
+                            var view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
+                            view.RappelInputFeedback(elapsedTimePassCutscene);
+                            var view2 = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
+                            view2.RappelInputFeedback(elapsedTimePassCutscene);
                             EndPhase();
                         }
                     }
