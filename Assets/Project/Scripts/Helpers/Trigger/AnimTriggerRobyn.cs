@@ -13,12 +13,14 @@ namespace TheFowler
         [TabGroup("VFX_Slap")] [SerializeField]
         private ParticleSystem vfx_slap_particles;
 
+
         public void VFX_Slap()
         {
             if (vfx_slap_particles == null) return;
 
             vfx_slap_particles?.Play();
         }
+
 
         private void Update()
         {
