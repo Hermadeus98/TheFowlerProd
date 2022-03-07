@@ -18,7 +18,9 @@ namespace TheFowler
         public Sockets sockets;
         [TabGroup("References")]
         public SelectionPointer SelectionPointer;
-
+        [TabGroup("References")]
+        [SerializeField] protected StateIcons stateIcons;
+        
         [TabGroup("References")] public BattleActorAnimator BattleActorAnimator;
         
         [TabGroup("Components")] [SerializeField]
@@ -30,8 +32,8 @@ namespace TheFowler
         
         [TabGroup("Datas")]
         [SerializeField] protected BattleActorInfo battleActorInfo;
-        [TabGroup("Datas")]
         public BattleActorStats BattleActorStats;
+        
         
         protected Turn actorTurn;
 
@@ -41,6 +43,7 @@ namespace TheFowler
         public BattleActorInfo BattleActorInfo => battleActorInfo;
         public Health Health => health;
         public Mana Mana => mana;
+        public StateIcons StateIcons => stateIcons;
         
         public AllyData AllyData { get; set; }
 
