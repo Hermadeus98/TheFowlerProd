@@ -26,6 +26,7 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
+            
             switch (restaureManaAt)
             {
                 case RestaureManaAt.Cast:
@@ -38,6 +39,7 @@ namespace TheFowler
                     throw new ArgumentOutOfRangeException();
             }
             emitter.GetBattleComponent<Defense>().DefendActor(effectDuration, effect);
+            emitter.BattleActorAnimator.Parry();
             yield break;
         }
 

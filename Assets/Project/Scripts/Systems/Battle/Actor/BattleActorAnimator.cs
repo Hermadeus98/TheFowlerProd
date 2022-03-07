@@ -29,6 +29,12 @@ namespace TheFowler
             Animator.SetTrigger("Idle");
         }
 
+        public void Parry()
+        {
+            ResetTriggers();
+            Animator.SetTrigger("Parry");
+        }
+
         public void AttackPreview()
         {
             ResetTriggers();
@@ -56,6 +62,7 @@ namespace TheFowler
             Animator.ResetTrigger("Idle");
             Animator.ResetTrigger("Reset");
             Animator.ResetTrigger("Hit");
+            Animator.ResetTrigger("Parry");
         }
     }
 }

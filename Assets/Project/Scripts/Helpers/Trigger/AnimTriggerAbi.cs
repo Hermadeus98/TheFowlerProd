@@ -9,6 +9,7 @@ namespace TheFowler
 {
     public class AnimTriggerAbi : AnimTriggerBase
     {
+        [TabGroup("SkillExecution")]
         public ParticleSystem vfx_StandTom, vfx_Cymbal_L, vfx_Cymbal_R;
 
         public void SFX_StandTom()
