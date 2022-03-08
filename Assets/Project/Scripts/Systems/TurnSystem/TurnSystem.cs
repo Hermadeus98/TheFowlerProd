@@ -23,7 +23,7 @@ namespace TheFowler
 
         public void NewRound()
         {
-            CurrentRound = new Round(GetAvailableActor());
+            CurrentRound = new Round(TurnActors);
             CurrentRound.NextTurn();
         }
 
@@ -35,12 +35,6 @@ namespace TheFowler
             {
                 NewRound();
             }
-        }
-
-        private IEnumerable<ITurnActor> GetAvailableActor()
-        {
-            //return TurnActors.Where(w => w.IsAvailable());
-            return TurnActors;
         }
     }
 

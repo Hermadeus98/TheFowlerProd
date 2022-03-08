@@ -26,20 +26,24 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-            
-            switch (restaureManaAt)
+            foreach (var receiver in receivers)
             {
-                case RestaureManaAt.Cast:
-                    emitter.Mana.AddMana(manaToRestaure);
-                    break;
-                case RestaureManaAt.Start_Turn:
-                    emitter.GetBattleComponent<Defense>().RestaureMana.AddListener(() => emitter.Mana.AddMana(manaToRestaure));
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                switch (restaureManaAt)
+                {
+                    case RestaureManaAt.Cast:
+                        receiver.Mana.AddMana(manaToRestaure);
+                        break;
+                    case RestaureManaAt.Start_Turn:
+                        receiver.GetBattleComponent<Defense>().RestaureMana.AddListener(() => receiver.Mana.AddMana(manaToRestaure));
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+                receiver.GetBattleComponent<Defense>().DefendActor(effectDuration, effect);
+                receiver.BattleActorAnimator.Parry();
             }
-            emitter.GetBattleComponent<Defense>().DefendActor(effectDuration, effect);
-            emitter.BattleActorAnimator.Parry();
+            
+            
             yield break;
         }
 

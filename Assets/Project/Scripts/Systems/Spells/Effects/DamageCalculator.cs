@@ -33,6 +33,8 @@ namespace TheFowler
             }
 
             ResistanceFaiblesseResult = resistance;
+
+            result = Mathf.Ceil(result);
             return result;
         }
 

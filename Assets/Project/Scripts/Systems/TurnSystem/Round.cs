@@ -53,7 +53,7 @@ namespace TheFowler
                 currentTurnActor?.OnTurnEnd();
                 return;
             }
-
+            
             if (blockNextTurn)
             {
                 blockNextTurn = false;
@@ -64,7 +64,6 @@ namespace TheFowler
             {
                 currentTurnActor?.OnTurnEnd();
                 roundIsFinish = true;
-                //Debug.Log("FINISH ROUND AT " + currentTurnIndex);
                 BattleManager.CurrentBattle.TurnSystem.NextTurn();
                 return;
             }
