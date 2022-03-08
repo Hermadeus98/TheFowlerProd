@@ -161,6 +161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3998001450174182572}
   - component: {fileID: 4483094636876738791}
+  - component: {fileID: 8776140066919794366}
   m_Layer: 14
   m_Name: Action Spell
   m_TagString: Untagged
@@ -212,7 +213,21 @@ MonoBehaviour:
     SerializationNodes: []
   isActive: 0
   actionKey: Spell
+  canInput: 1
+  CanvasGroup: {fileID: 8776140066919794366}
   playerActionType: 1
+--- !u!225 &8776140066919794366
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601659980505279050}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1978396307928106299
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,6 +655,7 @@ MonoBehaviour:
   - {fileID: 6018459334618525185}
   - {fileID: 6047060329951936320}
   - {fileID: 4483094636876738791}
+  furyButton: {fileID: 6477549979103949808}
 --- !u!114 &3643754765020592934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -830,6 +846,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2591880504552258920}
   - component: {fileID: 6018459334618525185}
+  - component: {fileID: 7266518870972136716}
   m_Layer: 14
   m_Name: Action Parry
   m_TagString: Untagged
@@ -881,7 +898,21 @@ MonoBehaviour:
     SerializationNodes: []
   isActive: 0
   actionKey: Parry
+  canInput: 1
+  CanvasGroup: {fileID: 7266518870972136716}
   playerActionType: 2
+--- !u!225 &7266518870972136716
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5910127364602561282}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6767749010051936981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1042,6 +1073,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2993608151108285797}
   - component: {fileID: 6477549979103949808}
+  - component: {fileID: 5453127083025237828}
   m_Layer: 14
   m_Name: Action Fury
   m_TagString: Untagged
@@ -1093,7 +1125,21 @@ MonoBehaviour:
     SerializationNodes: []
   isActive: 0
   actionKey: Fury
+  canInput: 0
+  CanvasGroup: {fileID: 5453127083025237828}
   playerActionType: 4
+--- !u!225 &5453127083025237828
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8340730719361501089}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8527490592085212783
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,6 +1150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 425553252103963233}
   - component: {fileID: 6047060329951936320}
+  - component: {fileID: 4066407329046681695}
   m_Layer: 14
   m_Name: Action Attack
   m_TagString: Untagged
@@ -1155,7 +1202,21 @@ MonoBehaviour:
     SerializationNodes: []
   isActive: 0
   actionKey: Attack
+  canInput: 1
+  CanvasGroup: {fileID: 4066407329046681695}
   playerActionType: 3
+--- !u!225 &4066407329046681695
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8527490592085212783}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8825935489826528369
 GameObject:
   m_ObjectHideFlags: 0

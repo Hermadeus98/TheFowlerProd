@@ -60,7 +60,7 @@ namespace TheFowler
                 {
                     BattleManager.CurrentBattle.ChangeBattleState<BattleState_SkillExecution>(BattleStateEnum.SKILL_EXECUTION);
                 }
-                if (inputs.actions["Return"].WasPressedThisFrame() && !Fury.IsInFury)
+                if (inputs.actions["Return"].WasPressedThisFrame())
                 {
                     SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Cancel, gameObject);
 

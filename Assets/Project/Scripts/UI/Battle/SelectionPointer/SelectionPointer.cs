@@ -14,7 +14,6 @@ namespace TheFowler
 
         public override void Show()
         {
-            Debug.Log(4545451515);
             base.Show();
             animTween?.Kill();
             animTween = selector.DOFade(1f, .5f);
