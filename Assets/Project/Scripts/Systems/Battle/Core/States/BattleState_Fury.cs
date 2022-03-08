@@ -13,15 +13,34 @@ namespace TheFowler
 
         public override void OnStateEnter(EventArgs arg)
         {
+            BattleManager.CurrentRound.OverrideTurn(selectedActorForFury);
+
             Debug.Log("FURYYYYYYYYYYYYYYYY");
             
-            CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies");
-            TargetSelector.Initialize(TargetTypeEnum.SOLO_ALLY);
+            //StartCoroutine(OnEnter());
+            
+        }
 
-            var transition = UI.GetView<TurnTransitionView>(UI.Views.TurnTransition);
-            transition.CameraSwipTransition(null);
+        IEnumerator OnEnter()
+        {
+            yield return new WaitForSeconds(1f);
+
             
             ImagePopup.Instance.PopupFury();
+            
+            yield return new WaitForSeconds(1f);
+
+            var transition = UI.GetView<TurnTransitionView>(UI.Views.TurnTransition);
+            transition.CameraSwipTransition(delegate
+            {
+                CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies");
+            });
+
+            yield return new WaitForSeconds(1f);
+            
+            TargetSelector.Initialize(TargetTypeEnum.SOLO_ALLY);
+
+            yield break;
         }
 
         public override void OnStateExecute()
@@ -49,9 +68,9 @@ namespace TheFowler
 
         private void Apply()
         {
-            BattleManager.CurrentRound.OverrideTurn(selectedActorForFury);
+            //BattleManager.CurrentRound.OverrideTurn(selectedActorForFury);
             
-            var killer = BattleManager.CurrentBattleActor;
+            //var killer = BattleManager.CurrentBattleActor;
             //BattleManager.CurrentRound.RestartTurn();
 
         }

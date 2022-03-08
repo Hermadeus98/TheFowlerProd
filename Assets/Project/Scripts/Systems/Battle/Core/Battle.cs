@@ -45,6 +45,8 @@ namespace TheFowler
 
         public AllyActor robyn, abi, phoebe;
 
+        public bool IsFinish { get; set; }
+        
         protected override void OnAwake()
         {
             base.OnAwake();
@@ -76,6 +78,7 @@ namespace TheFowler
 
         private void StartBattle()
         {
+            IsFinish = false;
             ChangeBattleState(BattleStateEnum.START_BATTLE);
             CreateTurnSystem();
         }
@@ -125,6 +128,7 @@ namespace TheFowler
         [Button]
         public void StopBattle()
         {
+            IsFinish = true;
             ChangeBattleState(BattleStateEnum.END_BATTLE);
         }
 
