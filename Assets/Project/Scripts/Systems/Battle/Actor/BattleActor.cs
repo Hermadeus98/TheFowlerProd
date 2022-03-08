@@ -22,6 +22,7 @@ namespace TheFowler
         [SerializeField] protected StateIcons stateIcons;
         
         [TabGroup("References")] public BattleActorAnimator BattleActorAnimator;
+        [TabGroup("References")] public FeedbackReferences feedbackReferences;
         
         [TabGroup("Components")] [SerializeField]
         private BattleActorComponent[] battleActorComponents;

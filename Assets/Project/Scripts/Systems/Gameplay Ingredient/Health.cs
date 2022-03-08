@@ -26,6 +26,8 @@ namespace TheFowler
         public float CurrentHealth => currentHealth;
         public float MaxHealth => maxHealth;
 
+
+
         public float NormalizedHealth
         {
             get
