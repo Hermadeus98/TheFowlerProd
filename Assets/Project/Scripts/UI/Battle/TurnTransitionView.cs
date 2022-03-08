@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using QRCode;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -57,23 +58,16 @@ namespace TheFowler
         public override void Show()
         {
             base.Show();
-            
-            CanvasGroup.alpha = 0;
 
+            Sprite spr = null;
             if (BattleManager.IsAllyTurn)
             {
-                icon.sprite = sprites.GetElement("ally");
+                spr = sprites.GetElement("ally");
             }
             else
             {
-                icon.sprite = sprites.GetElement("enemy");
+                spr = sprites.GetElement("enemy");
             }
-
-            var sequence = DOTween.Sequence();
-            sequence.Append(CanvasGroup.DOFade(1f, InOutComponent.in_duration).SetEase(InOutComponent.in_ease));
-            sequence.Append(CanvasGroup.DOFade(0f, InOutComponent.out_duration).SetEase(InOutComponent.out_ease).SetDelay(InOutComponent.between_duration));
-            sequence.OnComplete(Hide);
-            sequence.Play();
         }
     }
 }
