@@ -11,7 +11,8 @@ namespace TheFowler
         [SerializeField] private int waitTurn;
 
         public UnityEvent OnStunStart, OnStunEnd;
-        
+
+
         public override void Initialize()
         {
             base.Initialize();

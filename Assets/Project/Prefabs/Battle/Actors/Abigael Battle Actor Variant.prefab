@@ -132,6 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionPreviewIn: {fileID: 2709061421078011323}
   actionPreviewOut: {fileID: 8311330505692510621}
+  feedbackFromComponents: []
 --- !u!1001 &1939950161417697472
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -142,6 +143,10 @@ PrefabInstance:
     - target: {fileID: 565814397451847819, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
       propertyPath: m_Name
       value: Abigael Battle Actor Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 565814397451847819, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 688802258760390350, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
       propertyPath: cameraBatchBattle
@@ -254,6 +259,34 @@ PrefabInstance:
     - target: {fileID: 6156401769322040426, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6506188730057098073, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
+      propertyPath: InstantEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6506188730057098073, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
+      propertyPath: InstantEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6506188730057098073, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
+      propertyPath: InstantEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8083511383474180546}
+    - target: {fileID: 6506188730057098073, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
+      propertyPath: InstantEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6506188730057098073, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
+      propertyPath: InstantEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StopBattleComponentsFB
+      objectReference: {fileID: 0}
+    - target: {fileID: 6506188730057098073, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
+      propertyPath: InstantEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TheFowler.FeedbackReferences, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6506188730057098073, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
+      propertyPath: InstantEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7120570587221803330, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
       propertyPath: m_RootOrder
@@ -554,6 +587,7 @@ MonoBehaviour:
   SelectionPointer: {fileID: 8232735916488855185}
   stateIcons: {fileID: 0}
   BattleActorAnimator: {fileID: 3953999083734964448}
+  feedbackReferences: {fileID: 8083511383474180546}
   battleActorComponents:
   - {fileID: 7020996422467888407}
   - {fileID: 5903592644588290911}
@@ -1208,43 +1242,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1847261901530209210, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.97
+      value: 0.93
       objectReference: {fileID: 0}
     - target: {fileID: 1847261901530209210, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.55
+      value: 1.599
       objectReference: {fileID: 0}
     - target: {fileID: 1847261901530209210, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.71
+      value: -1.23
       objectReference: {fileID: 0}
     - target: {fileID: 1847261901530209210, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99467874
+      value: 0.9694814
       objectReference: {fileID: 0}
     - target: {fileID: 1847261901530209210, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.07526871
+      value: 0.075429834
       objectReference: {fileID: 0}
     - target: {fileID: 1847261901530209210, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.069296345
+      value: -0.2330097
       objectReference: {fileID: 0}
     - target: {fileID: 1847261901530209210, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.012120478
+      value: 0.011073701
       objectReference: {fileID: 0}
     - target: {fileID: 1847261901530209210, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 8.709
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1847261901530209210, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 7.91
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1847261901530209210, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.793
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2532368241989458351, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: mNoiseOffsets.x
@@ -1261,6 +1295,10 @@ PrefabInstance:
     - target: {fileID: 2751752811299952788, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_Name
       value: Battle Camera Abigael
+      objectReference: {fileID: 0}
+    - target: {fileID: 4106083857256433625, guid: 83fcf89819c163646994e971074cd583, type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 63
       objectReference: {fileID: 0}
     - target: {fileID: 4606302281376751660, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_RootOrder
@@ -1328,7 +1366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6106385746503019319, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.97
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6106385746503019319, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1336,23 +1374,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6106385746503019319, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.97
+      value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 6106385746503019319, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99467874
+      value: 0.06164921
       objectReference: {fileID: 0}
     - target: {fileID: 6106385746503019319, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.07526871
+      value: -0.0021523442
       objectReference: {fileID: 0}
     - target: {fileID: 6106385746503019319, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.069296345
+      value: 0.995182
       objectReference: {fileID: 0}
     - target: {fileID: 6106385746503019319, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.012120478
+      value: -0.07620795
       objectReference: {fileID: 0}
     - target: {fileID: 6106385746503019319, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1360,7 +1398,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6106385746503019319, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 7.91
+      value: 172.85
       objectReference: {fileID: 0}
     - target: {fileID: 6106385746503019319, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

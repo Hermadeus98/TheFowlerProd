@@ -10,6 +10,19 @@ namespace TheFowler
         [TabGroup("Action Preview")]
         public MMFeedbacks actionPreviewIn, actionPreviewOut;
 
+        [TabGroup("Battle Components")]
+        [SerializeField] private List<MMFeedbacks> feedbackFromComponents;
+
+        public List<MMFeedbacks> FeedbackFromComponents => feedbackFromComponents;
+
+        public void StopBattleComponentsFB()
+        {
+            for (int i = 0; i < FeedbackFromComponents.Count; i++)
+            {
+                FeedbackFromComponents[i].StopFeedbacks();
+            }
+        }
+
     }
 }
 
