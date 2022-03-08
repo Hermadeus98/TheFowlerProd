@@ -14,6 +14,8 @@ namespace TheFowler
 
         [SerializeField] private PlayerInput Inputs;
         [SerializeField] private ActionPickerElement[] actions;
+
+        public ActionPickerElement furyButton;
         
         private Tween backAnim;
         
@@ -57,6 +59,11 @@ namespace TheFowler
 
             playerActionType = ActionPickerElement.PlayerActionType.NONE;
             return false;
+        }
+
+        public void AllowFury(bool state)
+        {
+            furyButton.canInput = state;
         }
     }
 }

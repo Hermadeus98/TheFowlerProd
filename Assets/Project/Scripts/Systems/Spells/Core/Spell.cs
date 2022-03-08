@@ -53,6 +53,9 @@ namespace TheFowler
                 case ExecutionTypeEnum.SIMULTANEOUS:
                     for (int i = 0; i < Effects.Length; i++)
                     {
+                        if(Effects[i].GetType() != typeof(BatonPassEffect))
+                            Fury.StopFury();
+                        
                         Effects[i].SetCamera();
                         yield return new WaitForSeconds(.3f);
                         Coroutiner.Play(Effects[i].OnBeginCast(emitter, receivers));
@@ -63,6 +66,9 @@ namespace TheFowler
                 case ExecutionTypeEnum.CONSECUTIVE:
                     for (int i = 0; i < Effects.Length; i++)
                     {
+                        if(Effects[i].GetType() != typeof(BatonPassEffect))
+                            Fury.StopFury();
+                        
                         Effects[i].SetCamera();
                         yield return Effects[i].OnBeginCast(emitter, receivers);
                         yield return Effects[i].OnCast(emitter, receivers);

@@ -20,8 +20,6 @@ namespace TheFowler
         {
             for (int i = 0; i < Choices.Length; i++)
             {
-                Debug.Log(Choices[i].Test());
-
                 if (Choices[i].Test())
                 {
                     result = Choices[i].NextNode;
