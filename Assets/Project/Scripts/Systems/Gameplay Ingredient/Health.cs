@@ -4,6 +4,7 @@ using QRCode.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 namespace TheFowler
 {
@@ -20,7 +21,7 @@ namespace TheFowler
         [SerializeField] private MMFeedbacks onDamageFeedbacks, onHealFeedbacks;
         private MMPopupText popupDamageComponent;
         private MMPopupText popupHealComponent;
-        
+        [SerializeField] private TextMeshProUGUI lifeTxt;
         
         public FillBar FillBar => fillBar;
         public float CurrentHealth => currentHealth;
@@ -49,6 +50,7 @@ namespace TheFowler
             ReferedActor.AllyData?.Refresh();
             popupDamageComponent = onDamageFeedbacks.Feedbacks.First(w => w.GetType() == typeof(MMPopupText)) as MMPopupText;
             popupHealComponent = onHealFeedbacks.Feedbacks.First(w => w.GetType() == typeof(MMPopupText)) as MMPopupText;
+            if(lifeTxt != null)lifeTxt.text = health.ToString();
         }
 
         [Button]
@@ -70,6 +72,8 @@ namespace TheFowler
             fillBar?.SetFill(currentHealth);
             ReferedActor.AllyData?.Refresh();
             ReferedActor.BattleActorStats.health = currentHealth;
+
+            if (lifeTxt != null) lifeTxt.text = currentHealth.ToString();
         }
 
         [Button]
@@ -86,6 +90,8 @@ namespace TheFowler
             fillBar?.SetFill(currentHealth);
             ReferedActor.AllyData?.Refresh();
             ReferedActor.BattleActorStats.health = currentHealth;
+
+            if (lifeTxt != null) lifeTxt.text = currentHealth.ToString();
         }
 
         [Button]
@@ -119,6 +125,8 @@ namespace TheFowler
 
             onResurect?.Invoke();
             ReferedActor.BattleActorInfo.isDeath = false;
+
+            if (lifeTxt != null) lifeTxt.text = currentHealth.ToString();
         }
     }
 }
