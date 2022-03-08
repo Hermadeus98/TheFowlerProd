@@ -33,7 +33,7 @@ namespace TheFowler
                 SelectedTargets.ForEach(w => QRDebug.Log("TARGET SELECTOR", FrenchPallet.ALIZARIN, w.gameObject.name));
             }
         }
-        
+
         public static void Initialize(TargetTypeEnum targetType)
         {
             TargetSelector.targetType = targetType;

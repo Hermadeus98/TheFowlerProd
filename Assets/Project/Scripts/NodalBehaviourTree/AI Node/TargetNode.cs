@@ -26,7 +26,7 @@ namespace TheFowler
                 return;
             }
             
-            TargetSelector.Initialize(TargetTypeEnum.SELF);
+            //TargetSelector.Initialize(TargetTypeEnum.SELF);
             switch (TargetIntention)
             {
                 case TargetIntention.NONE:

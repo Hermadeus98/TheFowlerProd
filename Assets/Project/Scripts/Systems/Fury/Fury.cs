@@ -11,9 +11,16 @@ namespace TheFowler
         
         public static void PlayFury()
         {
-            IsInFury = true;
+            BattleManager.CurrentBattle.CheckVictory();
+            
+            if(BattleManager.CurrentBattle.IsFinish)
+                return;
+            
+            BattleManager.CurrentRound.RestartTurn();
+            
+            /*IsInFury = true;
             BattleManager.CurrentBattle.BattleState.SetState("Fury", EventArgs.Empty);
-            BattleManager.CurrentRound.BlockNextTurn();
+            BattleManager.CurrentRound.BlockNextTurn();*/
         }
 
         public static void StopFury()
