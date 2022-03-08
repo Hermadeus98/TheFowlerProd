@@ -9,6 +9,7 @@ namespace TheFowler
     {
         public ITurnActor selectedActorForFury;
 
+
         public override void OnStateEnter(EventArgs arg)
         {
             Debug.Log("FURYYYYYYYYYYYYYYYY");
