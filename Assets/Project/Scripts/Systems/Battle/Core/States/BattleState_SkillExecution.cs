@@ -78,6 +78,7 @@ namespace TheFowler
             }
             
             fury = false;
+            Fury.StopFury();
 
             TargetSelector.ResetSelectedTargets();
         }

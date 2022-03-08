@@ -57,7 +57,6 @@ namespace TheFowler
             if (blockNextTurn)
             {
                 blockNextTurn = false;
-                Debug.Log("BlockNextTurn");
                 return;
             }
             
@@ -93,16 +92,21 @@ namespace TheFowler
             overrideTurnActor = null;
         }
 
-        public void RestartTurn()
+        public void RestartTurn(ITurnActor turnActor = null)
         {
             Debug.Log("RESTART TURN");
-            OverrideTurn(currentTurnActor);
-            BlockNextTurn();
+            /*if (turnActor == null)
+                OverrideTurn(currentTurnActor);
+            else
+                OverrideTurn(turnActor);*/
+
+            //BlockNextTurn();
         }
 
-        private void BlockNextTurn()
+        public void BlockNextTurn()
         {
             blockNextTurn = true;
+            Debug.Log("BlockNextTurn");
         }
     }
 }

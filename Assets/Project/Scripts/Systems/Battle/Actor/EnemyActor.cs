@@ -46,15 +46,8 @@ namespace TheFowler
         public override void OnDeath()
         {
             base.OnDeath();
-            ActivateFuryOnDeath();   
-        }
-
-        private void ActivateFuryOnDeath()
-        {
-            Debug.Log("FURY");
-            var killer = BattleManager.CurrentBattleActor;
-            BattleManager.CurrentRound.RestartTurn();
             
+            Fury.PlayFury();
         }
     }
 }
