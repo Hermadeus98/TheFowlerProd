@@ -95,12 +95,12 @@ namespace TheFowler
         public void RestartTurn(ITurnActor turnActor = null)
         {
             Debug.Log("RESTART TURN");
-            /*if (turnActor == null)
+            if (turnActor == null)
                 OverrideTurn(currentTurnActor);
             else
-                OverrideTurn(turnActor);*/
+                OverrideTurn(turnActor);
 
-            //BlockNextTurn();
+            BlockNextTurn();
         }
 
         public void BlockNextTurn()
