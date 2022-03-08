@@ -19,7 +19,6 @@ namespace TheFowler
                 {
                     ReferedActor.feedbackReferences.FeedbackFromComponents.Add(transform.GetChild(i).GetComponent<MMFeedbacks>());
                 }
-
             }
         }
         public virtual void Initialize()

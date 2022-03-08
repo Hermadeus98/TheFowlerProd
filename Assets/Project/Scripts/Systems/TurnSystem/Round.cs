@@ -16,6 +16,8 @@ namespace TheFowler
 
         public bool roundIsFinish;
 
+        private bool blockNextTurn = false;
+
         public Round(IEnumerable<ITurnActor> turnActors)
         {
             TurnActors = new List<ITurnActor>(turnActors);
@@ -52,6 +54,13 @@ namespace TheFowler
                 return;
             }
 
+            if (blockNextTurn)
+            {
+                blockNextTurn = false;
+                Debug.Log("BlockNextTurn");
+                return;
+            }
+            
             if (currentTurnIndex == TurnActors.Count)
             {
                 currentTurnActor?.OnTurnEnd();
@@ -82,6 +91,18 @@ namespace TheFowler
         {
             Debug.Log("RESET OVERRIDE TURN");
             overrideTurnActor = null;
+        }
+
+        public void RestartTurn()
+        {
+            Debug.Log("RESTART TURN");
+            OverrideTurn(currentTurnActor);
+            BlockNextTurn();
+        }
+
+        private void BlockNextTurn()
+        {
+            blockNextTurn = true;
         }
     }
 }

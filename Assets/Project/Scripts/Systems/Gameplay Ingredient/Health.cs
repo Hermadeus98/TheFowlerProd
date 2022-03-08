@@ -104,7 +104,7 @@ namespace TheFowler
         {
             onDeath?.Invoke();
             ReferedActor.BattleActorInfo.isDeath = true;
-            ReferedActor.BattleActorAnimator.Death();
+            ReferedActor.OnDeath();
             ReferedActor.BattleActorStats.health = currentHealth;
         }
 

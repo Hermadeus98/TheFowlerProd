@@ -247,6 +247,11 @@ namespace TheFowler
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
+
+        public virtual void OnDeath()
+        {
+            BattleActorAnimator.Death();
+        }
     }
 
     [Serializable]
