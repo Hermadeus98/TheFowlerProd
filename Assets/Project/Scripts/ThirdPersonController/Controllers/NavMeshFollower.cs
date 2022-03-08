@@ -10,12 +10,14 @@ namespace TheFowler
     public class NavMeshFollower : CharacterControllerBase
     {
         [SerializeField] private NavMeshPresets NavMeshPresets;
-        private NavMeshPreset currentNavMeshPresset => NavMeshPresets.GetElement(controllerMovement);
-
 
         [SerializeField] private CharacterPlugger characterPlugger;
         private Follower Follower;
         
+        [SerializeField] private float minimalDistanceFollow = 4f;
+        [SerializeField] private float distanceOfWalking = 8f;
+        [SerializeField] private bool teleportIfBigDistance = true;
+        [SerializeField] private float maxDistanceFollow = 16f;
 
         public override void OnStateEnter(EventArgs arg)
         {
@@ -62,12 +64,12 @@ namespace TheFowler
                 return;
             }
             
-            if(Vector3.Distance(agent.transform.position, Follower.transform.position) > currentNavMeshPresset.MinimalDistanceFollow)
+            if(Vector3.Distance(agent.transform.position, Follower.transform.position) > minimalDistanceFollow)
             {
                 agent.SetDestination(Follower.Target.position);
             }
 
-            if (Vector3.Distance(agent.transform.position, Follower.transform.position) < currentNavMeshPresset.DistanceOfWalking)
+            if (Vector3.Distance(agent.transform.position, Follower.transform.position) < distanceOfWalking)
             {
                 OnSetControllerMovement(ControllerMovement.WALK);
             }
@@ -76,9 +78,9 @@ namespace TheFowler
                 OnSetControllerMovement(ControllerMovement.RUN);
             }
             
-            if (Vector3.Distance(agent.transform.position, Follower.transform.position) > currentNavMeshPresset.MaxDistanceFollow)
+            if (Vector3.Distance(agent.transform.position, Follower.transform.position) > maxDistanceFollow)
             {
-                if(currentNavMeshPresset.TeleportIfBigDistance) 
+                if(teleportIfBigDistance) 
                     TeleportToFollower();
             }
         }

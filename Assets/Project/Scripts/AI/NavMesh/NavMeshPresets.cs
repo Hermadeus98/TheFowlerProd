@@ -20,9 +20,5 @@ namespace TheFowler
         public float Speed = 3.5f;
         public float AngularSpeed = 120f;
         public float Acceleration = 8f;
-        public float MinimalDistanceFollow = 4f;
-        public float DistanceOfWalking = 8f;
-        public bool TeleportIfBigDistance = true;
-        public float MaxDistanceFollow = 16f;
     }
 }
