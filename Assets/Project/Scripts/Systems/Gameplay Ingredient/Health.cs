@@ -47,7 +47,9 @@ namespace TheFowler
             maxHealth = currentHealth = health;
             fillBar?.SetMaxValue(maxHealth);
             fillBar?.SetFill(currentHealth);
+            
             ReferedActor.AllyData?.Refresh();
+            
             popupDamageComponent = onDamageFeedbacks.Feedbacks.First(w => w.GetType() == typeof(MMPopupText)) as MMPopupText;
             popupHealComponent = onHealFeedbacks.Feedbacks.First(w => w.GetType() == typeof(MMPopupText)) as MMPopupText;
             if(lifeTxt != null)lifeTxt.text = health.ToString();
@@ -68,10 +70,13 @@ namespace TheFowler
             
             popupDamageComponent.message = damage.ToString();
 
+            ReferedActor.BattleActorStats.health = currentHealth;
             onDamaged?.Invoke(currentHealth);
             fillBar?.SetFill(currentHealth);
+            
+
             ReferedActor.AllyData?.Refresh();
-            ReferedActor.BattleActorStats.health = currentHealth;
+            ReferedActor.AllyData?.ShakeHearth();
 
             if (lifeTxt != null) lifeTxt.text = currentHealth.ToString();
         }
@@ -83,13 +88,16 @@ namespace TheFowler
                 return;
 
             popupHealComponent.message = heal.ToString();
+
+            ReferedActor.BattleActorStats.health = currentHealth;
+            onHealed?.Invoke(currentHealth);
+            fillBar?.SetFill(currentHealth);
+            
             
             currentHealth += heal;
             if (currentHealth > maxHealth) currentHealth = maxHealth;
-            onHealed?.Invoke(currentHealth);
-            fillBar?.SetFill(currentHealth);
+            
             ReferedActor.AllyData?.Refresh();
-            ReferedActor.BattleActorStats.health = currentHealth;
 
             if (lifeTxt != null) lifeTxt.text = currentHealth.ToString();
         }

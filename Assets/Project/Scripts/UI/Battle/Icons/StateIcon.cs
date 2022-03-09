@@ -8,7 +8,7 @@ namespace TheFowler
 {
     public class StateIcon : UIElement
     {
-        [SerializeField, GetComponent] private Image icon;
+        [SerializeField, GetComponent] protected Image icon;
         
         public override void Show()
         {

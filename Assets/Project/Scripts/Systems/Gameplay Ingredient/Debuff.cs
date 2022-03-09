@@ -25,7 +25,8 @@ namespace TheFowler
             waitTurn = turnCount;
             ReferedActor.BattleActorInfo.debuffMalus = debuffPercent;
             OnDebuffStart?.Invoke();
-            ReferedActor.StateIcons?.debuff.Show();
+            
+            ReferedActor.StateIcons?.Refresh_Att(ReferedActor);
         }
 
         [Button]
@@ -34,7 +35,8 @@ namespace TheFowler
             waitTurn = 0;
             ReferedActor.BattleActorInfo.debuffMalus = 0;
             OnDebuffEnd?.Invoke();
-            ReferedActor.StateIcons?.debuff.Hide();
+            
+            ReferedActor.StateIcons?.Refresh_Att(ReferedActor);
         }
 
         public override void OnTurnStart()

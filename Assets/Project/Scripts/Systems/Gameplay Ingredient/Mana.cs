@@ -13,6 +13,7 @@ namespace TheFowler
 
         public IntUnityEvent onRemoveMana, onWinMana;
         public int CurrentMana => currentMana;
+        public int MaxMana => maxMana;
 
         public float NormalizedMana
         {
