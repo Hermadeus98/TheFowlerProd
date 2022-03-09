@@ -15,7 +15,7 @@ namespace TheFowler
           
             var bonusesCalculate = initialDamage * (bonusesCoef - malusesCoef);
             
-            var result = (initialDamage + bonusesCalculate) / defenseCoef;
+            var result = (initialDamage + bonusesCalculate) * defenseCoef;
             
             var resistance = CalculateSpellTypeBonus(spellType, receiver.BattleActorData.actorType);
             switch (resistance)
