@@ -22,7 +22,8 @@ namespace TheFowler
                 InfoBox = "InfoBoxView",
                 TransitionView = "TransitionView",
                 CutsceneView = "TwoDCutsceneView",
-                AlliesDataView = "AlliesDataView";
+                AlliesDataView = "AlliesDataView",
+                Video = "VideoView";
         }
         
         private static Dictionary<string, UIView> views = new Dictionary<string, UIView>();

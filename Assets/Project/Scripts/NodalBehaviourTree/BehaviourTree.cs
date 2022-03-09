@@ -13,6 +13,8 @@ namespace TheFowler
     {
         [TitleGroup("Main Settings"), Required]
         public Node rootNode;
+        [TitleGroup("Main Settings"), Required]
+        public ActorEnum[] actors;
         [TitleGroup("Infos")]
         public Node.State treeState = Node.State.Running;
         public List<Node> nodes = new List<Node>();

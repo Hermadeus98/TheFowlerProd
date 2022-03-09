@@ -29,6 +29,8 @@ namespace TheFowler
                     case FriendName.PHOEBE:
                         SetActor(Player.Pheobe, harmonisationDatas[i]);
                         break;
+
+                        
                 }
                      
             }
@@ -38,7 +40,7 @@ namespace TheFowler
         private void SetActor(Character chara, HarmonisationData data)
         {
             chara?.harmonisationComponent.InitializeHarmonisation(data.phaseToPlay, data.harmonisationpoint);
-            data.instruction.Call();
+            chara.Controller.SetController(ControllerEnum.NAV_MESH_CONTROLLER);
             for (int j = 0; j < chara?.Controller.controllers.Length; j++)
             {
                 if (chara?.Controller.controllers[j] as NavMeshController)
@@ -126,7 +128,6 @@ namespace TheFowler
         public FriendName friendName;
         public GameplayPhase phaseToPlay;
         public Transform harmonisationpoint;
-        public GameInstructions instruction;
     }
 
     

@@ -28,6 +28,16 @@ namespace TheFowler
             harmo.alpha = 0;
             talk.alpha = 0;
             phase.PlayPhase();
+            switch (actor)
+            {
+                case ActorEnum.ABIGAEL:
+                    Player.Abigael.Controller.SetController(ControllerEnum.NAV_MESH_FOLLOWER);
+                    break;
+                case ActorEnum.PHEOBE:
+                    Player.Pheobe.Controller.SetController(ControllerEnum.NAV_MESH_FOLLOWER);
+                    break;
+
+            }
 
         }
 

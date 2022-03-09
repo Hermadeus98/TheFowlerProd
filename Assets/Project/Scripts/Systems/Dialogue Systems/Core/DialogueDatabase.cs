@@ -21,6 +21,7 @@ namespace TheFowler
         public bool isHarmonisation = false;
         public AK.Wwise.Event voice;
         public AnimationTriggerName animationTrigger;
+
     }
 
     [System.Serializable]
@@ -31,4 +32,6 @@ namespace TheFowler
             Attack,
             IDLE_Combat
     }
+
+
 }
