@@ -26,13 +26,13 @@ namespace TheFowler
             if (def != 0)
             {
                 buff_def.Show();
+                buff_def.Refresh(def);
             }
             else
             {
                 buff_def.Hide();
             }
             
-            buff_def.Refresh(def);
         }
 
         public void Refresh_Att(BattleActor actor)
@@ -42,13 +42,13 @@ namespace TheFowler
             if (att != 0)
             {
                 buff_att.Show();
+                buff_att.Refresh(att);
             }
             else
             {
                 buff_att.Hide();
             }
             
-            buff_def.Refresh(att);
         }
     }
 }

@@ -36,7 +36,7 @@ namespace TheFowler
             referedActor = actor;
             referedActor.AllyData = this;
             Refresh();
-            
+            actor.StateIcons = StateIcons;
             StateIcons.HideAll();
         }
 
