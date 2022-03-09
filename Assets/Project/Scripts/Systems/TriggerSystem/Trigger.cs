@@ -15,8 +15,9 @@ namespace TheFowler
 
         [FoldoutGroup("Events")] [SerializeField] 
         public GameInstructions enterFrontInstructions, enterBackInstructions, exitInstructions;
-        [FoldoutGroup("Events")] [SerializeField]
-        public UnityEvent onTriggerEnterFront, onTriggerEnterBack, onTriggerExit;
+        [FoldoutGroup("Events")]
+        [SerializeField]
+        public UnityEvent onTriggerEnterFront, onTriggerEnterBack, onTriggerExit, onTriggerStay;
 
         [FoldoutGroup("Settings")]
         [SerializeField] private bool disableOnEnter = true;
@@ -77,7 +78,19 @@ namespace TheFowler
                 ForGizmo(transform.position, transform.forward, Color.red);
             }
         }
-        
+
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.TryGetComponent<ColliderChecker>(out var checker))
+            {
+                if (checker.CompareFlag(FlagToTrigger))
+                {
+                    onTriggerStay.Invoke();
+                }
+            }
+
+        }
+
         public static void ForGizmo(Vector3 pos, Vector3 direction, Color color, float arrowHeadLength = 0.25f, float arrowHeadAngle = 20.0f)
         {
             Gizmos.color = color;

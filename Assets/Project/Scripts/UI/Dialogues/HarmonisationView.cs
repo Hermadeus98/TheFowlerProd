@@ -53,6 +53,11 @@ namespace TheFowler
                 return;
             }
         }
+        public void EndDialog(string text)
+        {
+            animatedText.TextComponent.text = text;
+        }
+
 
         public void DisplaySentence(DialogueNode node)
         {

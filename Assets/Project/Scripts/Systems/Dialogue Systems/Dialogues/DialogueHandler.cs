@@ -59,6 +59,7 @@ namespace TheFowler
         [TabGroup("Debug")]
         private bool waitInput;
 
+        private bool hasPassedDialogue = false;
         protected override void RegisterEvent()
         {
             base.RegisterEvent();
@@ -140,7 +141,11 @@ namespace TheFowler
                     }
                     else
                     {
-                        Next();
+                        
+                        Timeline.time = currentDialogue.displayDuration;
+                        Timeline.Pause();
+
+                        //Next();
                     }
                 }
                 
@@ -154,7 +159,27 @@ namespace TheFowler
             {
                 if (Inputs.actions["Next"].WasPressedThisFrame() && !waitInput)
                 {
-                    Next();
+                    if (Inputs.actions["Next"].WasPressedThisFrame() && !waitInput)
+                    {
+                        if (hasPassedDialogue)
+                        {
+
+                            Next();
+                            Timeline.Play();
+                            hasPassedDialogue = false;
+                        }
+                        else
+                        {
+
+                            hasPassedDialogue = true;
+                            var view = UI.GetView<HarmonisationView>(UI.Views.Harmo);
+                            view.EndDialog(currentDialogue.dialogueText);
+
+                            var view2 = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
+                            view2.EndDialog(currentDialogue.dialogueText);
+                        }
+
+                    }
                 }
                 if(dialogueType == DialogueType.STATIC)
                 {

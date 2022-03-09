@@ -51,6 +51,12 @@ namespace TheFowler
             }
         }
 
+        public void EndDialog(string text)
+        {
+            animatedText.TextComponent.text = text;
+            animatedText.StopAllCoroutines();
+        }
+
         public void SetChoices(DialogueNode dialogueNode)
         {
             if (dialogueNode.hasMultipleChoices)

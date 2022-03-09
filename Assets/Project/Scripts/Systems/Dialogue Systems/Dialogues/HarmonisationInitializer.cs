@@ -6,8 +6,7 @@ namespace TheFowler
 {
     public class HarmonisationInitializer : MonoBehaviour
     {
-        [SerializeField] private FriendName[] friendName;
-        [SerializeField] private GameplayPhase[] phaseToPlay;
+        [SerializeField] private HarmonisationData[] harmonisationDatas;
         [SerializeField] private BehaviourTree tree;
         private bool isTrigger;
         private float elapsedTime = 0;
@@ -19,22 +18,50 @@ namespace TheFowler
 
             isTrigger = true;
             LaunchDialogue();
-            for (int i = 0; i < friendName.Length; i++)
+            for (int i = 0; i < harmonisationDatas.Length; i++)
             {
-                switch (friendName[i])
+                switch (harmonisationDatas[i].friendName)
                 {
 
                     case FriendName.ABI:
-                        Player.Abigael?.harmonisationComponent.InitializeHarmonisation(phaseToPlay[0]);
+                        SetActor(Player.Abigael, harmonisationDatas[i]);
                         break;
                     case FriendName.PHOEBE:
-                        Player.Pheobe?.harmonisationComponent.InitializeHarmonisation(phaseToPlay[1]);
+                        SetActor(Player.Pheobe, harmonisationDatas[i]);
                         break;
                 }
                      
             }
 
         }
+
+        private void SetActor(Character chara, HarmonisationData data)
+        {
+            chara?.harmonisationComponent.InitializeHarmonisation(data.phaseToPlay, data.harmonisationpoint);
+            data.instruction.Call();
+            for (int j = 0; j < chara?.Controller.controllers.Length; j++)
+            {
+                if (chara?.Controller.controllers[j] as NavMeshController)
+                {
+                    NavMeshController var = chara?.Controller.controllers[j] as NavMeshController;
+                    StartCoroutine(WaitToGoToDestination(var, data.harmonisationpoint));
+
+                }
+            }
+
+
+        }
+
+        private IEnumerator WaitToGoToDestination(NavMeshController controller, Transform dest)
+        {
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+            controller.GoTo(dest);
+
+            yield return null;
+        }
+
 
         private void LaunchDialogue()
         {
@@ -91,6 +118,15 @@ namespace TheFowler
     {
         ABI,
         PHOEBE
+    }
+
+    [System.Serializable]
+    public struct HarmonisationData
+    {
+        public FriendName friendName;
+        public GameplayPhase phaseToPlay;
+        public Transform harmonisationpoint;
+        public GameInstructions instruction;
     }
 
     
