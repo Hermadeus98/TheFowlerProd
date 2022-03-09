@@ -16,6 +16,7 @@ namespace TheFowler
 
             if (BattleManager.IsAllyTurn)
             {
+                ActionPickingView = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
                 BattleManager.CurrentBattleActor.BattleActorAnimator.Idle();
             }
         }

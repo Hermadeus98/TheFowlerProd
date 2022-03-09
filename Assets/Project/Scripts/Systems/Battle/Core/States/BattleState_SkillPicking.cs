@@ -18,6 +18,9 @@ namespace TheFowler
             
             if (BattleManager.IsAllyTurn)
             {
+                skillPickingView = UI.GetView<SkillPickingView>(UI.Views.SkillPicking);
+                skillPickingView.skillSelector.Refresh(BattleManager.CurrentBattleActor.BattleActorData);
+                
                 StartCoroutine(OpenView());
                 BattleManager.CurrentBattleActor.BattleActorAnimator.Idle();
             }
@@ -37,16 +40,20 @@ namespace TheFowler
 
             if (BattleManager.IsAllyTurn)
             {
-                if (skillPickingView.skillSelector.WaitChoice(out var skillSelectorElement))
+                if (skillPickingView != null)
                 {
-                    SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SkillSelection, gameObject);
-                    Player.SelectedSpell = skillSelectorElement.referedSpell;
-                    BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.TARGET_PICKING);
-                }
-                if (inputs.actions["Return"].WasPressedThisFrame())
-                {
-                    SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Cancel, gameObject);
-                    BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.ACTION_PICKING);
+                    if (skillPickingView.skillSelector.WaitChoice(out var skillSelectorElement))
+                    {
+                        SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SkillSelection, gameObject);
+                        Player.SelectedSpell = skillSelectorElement.referedSpell;
+                        BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.TARGET_PICKING);
+                    }
+
+                    if (inputs.actions["Return"].WasPressedThisFrame())
+                    {
+                        SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Cancel, gameObject);
+                        BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.ACTION_PICKING);
+                    }
                 }
             }
             else if (BattleManager.IsEnemyTurn)
