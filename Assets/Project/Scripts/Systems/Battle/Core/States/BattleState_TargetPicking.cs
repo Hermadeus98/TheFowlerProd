@@ -36,6 +36,7 @@ namespace TheFowler
             PlaySpellPreview();
         }
 
+
         private void PlaySpellPreview()
         {
             if (BattleManager.IsAllyTurn)

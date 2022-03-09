@@ -44,8 +44,13 @@ namespace TheFowler
         public BattleActorInfo BattleActorInfo => battleActorInfo;
         public Health Health => health;
         public Mana Mana => mana;
-        public StateIcons StateIcons => stateIcons;
-        
+
+        public StateIcons StateIcons
+        {
+            get => stateIcons;
+            set => stateIcons = value;
+        }
+
         public AllyData AllyData { get; set; }
 
         protected override void OnStart()

@@ -12,6 +12,8 @@ namespace TheFowler
         
         public void Refresh(float value)
         {
+            Debug.Log(value);
+            
             if (value > 0)
             {
                 icon.sprite = buff;

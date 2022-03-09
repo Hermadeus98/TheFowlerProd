@@ -18,11 +18,17 @@ namespace TheFowler
             
             if (BattleManager.IsAllyTurn)
             {
-                skillPickingView = UI.OpenView<SkillPickingView>(UI.Views.SkillPicking);
+                StartCoroutine(OpenView());
                 BattleManager.CurrentBattleActor.BattleActorAnimator.Idle();
             }
 
             SetCamera(CameraKeys.BattleKeys.SkillPicking);
+        }
+
+        private IEnumerator OpenView()
+        {
+            yield return new WaitForSeconds(.5f);
+            skillPickingView = UI.OpenView<SkillPickingView>(UI.Views.SkillPicking);
         }
 
         public override void OnStateExecute()

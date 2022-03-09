@@ -97,10 +97,16 @@ namespace TheFowler
         public override void OnStateExit(EventArgs arg)
         {
             base.OnStateExit(arg);
-            
-            UI.CloseView(UI.Views.ActionPicking);
+
+            StartCoroutine(CloseView());
 
             isActive = false;
+        }
+
+        private IEnumerator CloseView()
+        {
+            yield return new WaitForSeconds(.5f);
+            UI.CloseView(UI.Views.ActionPicking);
         }
     }
 }

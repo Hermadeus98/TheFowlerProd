@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace TheFowler
 {
@@ -18,6 +19,8 @@ namespace TheFowler
         public ActionPickerElement furyButton;
         
         private Tween backAnim;
+
+        [SerializeField] private Image flamme;
         
         public override void Show()
         {
@@ -64,6 +67,15 @@ namespace TheFowler
         public void AllowFury(bool state)
         {
             furyButton.canInput = state;
+
+            if (state)
+            {
+                flamme.DOFade(1f, 0.01f);
+            }
+            else
+            {
+                flamme.DOFade(0f, 0.01f);
+            }
         }
     }
 }
