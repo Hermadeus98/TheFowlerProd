@@ -14,6 +14,12 @@ namespace TheFowler
 
         public override void OnStateEnter(EventArgs arg)
         {
+            BattleManager.CurrentBattleActor.AllyData?.Fury(false);
+            if (selectedActorForFury is AllyActor actor)
+            {
+                actor.AllyData?.Fury(true);   
+            }
+            
             BattleManager.CurrentRound.OverrideTurn(selectedActorForFury);
         }
     }

@@ -5,6 +5,7 @@ using System.Linq;
 using QRCode;
 using QRCode.Extensions;
 using QRCode.Utils;
+using Sirenix.Utilities;
 using UnityEngine;
 
 namespace TheFowler
@@ -23,11 +24,24 @@ namespace TheFowler
 
             IsInFury = true;
 
+            FeedbackFury();
+
             BattleManager.CurrentRound.BlockNextTurn();
 
             Coroutiner.Play(Feedback());
         }
 
+        private static void FeedbackFury()
+        {
+            var actor = BattleManager.CurrentBattleActor;
+            if (actor is AllyActor cast)
+            {
+                var element = UI.GetView<AlliesDataView>(UI.Views.AlliesDataView)
+                    .allyDatas[cast];
+                element.Fury(true);
+            }
+        }
+        
         private static IEnumerator Feedback()
         {
             yield return new WaitForSeconds(1f);
@@ -46,6 +60,14 @@ namespace TheFowler
             IsInFury = false;
             var actionPickingView = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
             actionPickingView.AllowFury(false);
+            
+            StopFeedback();
+        }
+
+        private static void StopFeedback()
+        {
+            var element = UI.GetView<AlliesDataView>(UI.Views.AlliesDataView).datas;
+            element.ForEach(w => w.Fury(false));
         }
     }
 }
