@@ -24,6 +24,7 @@ namespace TheFowler
         TF_SFX_Explo_Generic_Footstep,
 
         //Combat
+        //Generic
         TF_SFX_Combat_Generic_Ally_DamageTaken,
         TF_SFX_Combat_Generic_Enemy_DamageTaken_Resist,
         TF_SFX_Combat_Generic_Enemy_DamageTaken_Neutral,
@@ -34,6 +35,18 @@ namespace TheFowler
         TF_SFX_Combat_Generic_Skill_Heal,
         TF_SFX_Combat_Generic_Skill_Stun,
         TF_SFX_Combat_Generic_Skill_Taunt,
+
+            //Robyn
+            TF_SFX_Combat_BaseAttack_Robyn_Cast,
+            TF_SFX_Combat_BaseAttack_Robyn_Hit,
+            //Abigail
+            TF_SFX_Combat_BaseAttack_Abigail_Cast,
+            TF_SFX_Combat_BaseAttack_Abigail_Hit,
+            //Phoebe
+
+            //Guards
+
+
 
         //UI
         TF_SFX_Combat_UI_ActionWheel_Open,
