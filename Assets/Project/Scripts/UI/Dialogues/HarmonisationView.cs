@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
 using MoreMountains.Feedbacks;
+using DG.Tweening;
 
 namespace TheFowler
 {
@@ -17,7 +18,7 @@ namespace TheFowler
         [TabGroup("References")]
         [SerializeField] private MMFeedbacks MMfadeIn, MMfadeOut;
 
-        [SerializeField] private Image portrait, rappelInputFill;
+        [SerializeField] private Image portraitLeft,portraitRight, rappelInputFill;
         [SerializeField] private ActorDatabase actorDatabase;
 
         [SerializeField] private AnimatedText animatedText;
@@ -39,7 +40,25 @@ namespace TheFowler
             if (args is DialogueArg cast)
             {
                 var db = actorDatabase.GetElement(cast.Dialogue.ActorEnum);
-                portrait.sprite = db.portraitBuste;
+
+                var dbLeft = actorDatabase.GetElement(cast.Tree.actors[0]);
+                var dbRight = actorDatabase.GetElement(cast.Tree.actors[1]);
+
+                portraitLeft.sprite = dbLeft.portraitBuste;
+                portraitRight.sprite = dbRight.portraitBuste;
+
+                if(cast.Tree.actors[0] == cast.Dialogue.ActorEnum)
+                {
+                    portraitLeft.DOColor(Color.white, .2f);
+                    portraitRight.DOColor(Color.grey, .2f);
+                }
+                else if(cast.Tree.actors[1] == cast.Dialogue.ActorEnum)
+                {
+                    portraitLeft.DOColor(Color.grey, .2f);
+                    portraitRight.DOColor(Color.white, .2f);
+                }
+
+
                 speakerName.SetText(db.actorName);
                 animatedText.SetText(cast.Dialogue.dialogueText);
             }
@@ -56,6 +75,7 @@ namespace TheFowler
         public void EndDialog(string text)
         {
             animatedText.TextComponent.text = text;
+            animatedText.StopAllCoroutines();
         }
 
 

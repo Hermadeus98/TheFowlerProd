@@ -141,9 +141,9 @@ namespace TheFowler
                     }
                     else
                     {
-                        
-                        Timeline.time = currentDialogue.displayDuration;
-                        Timeline.Pause();
+                        Next();
+                        //Timeline.time = currentDialogue.displayDuration;
+                        //Timeline.Pause();
 
                         //Next();
                     }
@@ -159,27 +159,24 @@ namespace TheFowler
             {
                 if (Inputs.actions["Next"].WasPressedThisFrame() && !waitInput)
                 {
-                    if (Inputs.actions["Next"].WasPressedThisFrame() && !waitInput)
-                    {
-                        if (hasPassedDialogue)
-                        {
+                    Next();
+                    //if (hasPassedDialogue)
+                    //{
 
-                            Next();
-                            Timeline.Play();
-                            hasPassedDialogue = false;
-                        }
-                        else
-                        {
+                    //    Next();
+                    //    Timeline.Play();
+                    //    hasPassedDialogue = false;
+                    //}
+                    //else
+                    //{
 
-                            hasPassedDialogue = true;
-                            var view = UI.GetView<HarmonisationView>(UI.Views.Harmo);
-                            view.EndDialog(currentDialogue.dialogueText);
+                    //    hasPassedDialogue = true;
+                    //    var view = UI.GetView<HarmonisationView>(UI.Views.Harmo);
+                    //    view.EndDialog(currentDialogue.dialogueText);
 
-                            var view2 = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
-                            view2.EndDialog(currentDialogue.dialogueText);
-                        }
-
-                    }
+                    //    var view2 = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
+                    //    view2.EndDialog(currentDialogue.dialogueText);
+                    //}
                 }
                 if(dialogueType == DialogueType.STATIC)
                 {
@@ -457,6 +454,7 @@ namespace TheFowler
                        
                         
                         HarmonisationView view = UI.GetView<HarmonisationView>(UI.Views.Harmo);
+                        
                         if (!view.isActive)
                         {
                             currentView = UI.GetView<HarmonisationView>(UI.Views.Harmo);
@@ -469,6 +467,7 @@ namespace TheFowler
                         {
                             Dialogue = dialogue,
                             DialogueNode = currentDialogueNode,
+                            Tree = BehaviourTree,
                         });
                     }
                     else
@@ -484,6 +483,7 @@ namespace TheFowler
                         {
                             Dialogue = dialogue,
                             DialogueNode = currentDialogueNode,
+                            Tree = BehaviourTree,
                         });
                     }
                     
@@ -571,6 +571,7 @@ namespace TheFowler
     {
         public DialogueNode DialogueNode;
         public Dialogue Dialogue;
+        public BehaviourTree Tree;
     }
 
 
