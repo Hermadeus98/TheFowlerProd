@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: 342493a3fb3b69542a56062390f01f72
@@ -20,14 +21,20 @@ MonoBehaviour:
   children:
   - {fileID: -4956760713917664753}
   dialogue:
-    ActorEnum: 0
-    dialogueText: 
+    ActorEnum: 1
+    dialogueText: "But..we can\u2019t leave them here, alone.."
     cameraPath:
       genericKey: 7
       cameraName: Default
       batchName: 
     displayDuration: 2
     choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
 --- !u!114 &-4956760713917664753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41,49 +48,28 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: 4c8e0858a4be2334f9d01f5e35e51b5b
-  position: {x: 222, y: 72}
-  children:
-  - {fileID: -4893834951470935889}
-  dialogue:
-    ActorEnum: 1
-    dialogueText: "But..we can\u2019t leave them here, alone.."
-    cameraPath:
-      genericKey: 7
-      cameraName: Default
-      batchName: 
-    displayDuration: 3.5
-    choiceText: 
---- !u!114 &-4893834951470935889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  NodeName: 
-  state: 0
-  started: 0
-  guid: 339779114b2722b4483cc7ab1e6c8a48
-  position: {x: 359, y: 72}
+  position: {x: 224.0113, y: 71.999985}
   children: []
   dialogue:
-    ActorEnum: 2
+    ActorEnum: 1
     dialogueText: "It\u2019s not here we\u2019ll find any solution, Robyn is right,
       let us go"
     cameraPath:
       genericKey: 7
       cameraName: Default
       batchName: 
-    displayDuration: 4
+    displayDuration: 3.5
     choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,7 +88,6 @@ MonoBehaviour:
   - {fileID: 3992382426278007304}
   - {fileID: -5958612543143814147}
   - {fileID: -4956760713917664753}
-  - {fileID: -4893834951470935889}
 --- !u!114 &3992382426278007304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,6 +101,7 @@ MonoBehaviour:
   m_Name: Main
   m_EditorClassIdentifier: 
   NodeName: Main
+  chance: 1
   state: 0
   started: 0
   guid: e3a50c5d0871a4d40b5cec054278364a
@@ -131,3 +117,9 @@ MonoBehaviour:
       batchName: 
     displayDuration: 2
     choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0

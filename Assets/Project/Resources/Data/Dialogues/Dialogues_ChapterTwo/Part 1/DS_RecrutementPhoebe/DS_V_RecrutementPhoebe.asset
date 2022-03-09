@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: 0bcc861dbfe77e34da234b083a240cad
@@ -20,14 +21,16 @@ MonoBehaviour:
   children:
   - {fileID: 2706063410356514007}
   dialogue:
-    ActorEnum: 2
-    dialogueText: What are you suggesting?
+    ActorEnum: 1
+    dialogueText: "Wait, hold on a sec\u2019. All this time, you were already thinking
+      about\u2026 leaving?"
     cameraPath:
-      genericKey: 2
+      genericKey: 6
       cameraName: Right
       batchName: 
     displayDuration: 2
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -46,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: 812240b6079ede247bed298c4c1831a6
@@ -53,15 +57,16 @@ MonoBehaviour:
   children:
   - {fileID: -7888171742091773889}
   dialogue:
-    ActorEnum: 2
-    dialogueText: "I did not. Who do you think the King trust? Me or the Captain?
-      Don\u2019t assume I\u2019m back in anyone\u2019s good graces, Robyn!"
+    ActorEnum: 0
+    dialogueText: Did you know?! Did you have any ideas about what was going on around
+      here?!
     cameraPath:
-      genericKey: 2
+      genericKey: 1
       cameraName: Right
       batchName: 
     displayDuration: 7
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -80,6 +85,7 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: eee6752808743894b80467c8aac33178
@@ -87,14 +93,16 @@ MonoBehaviour:
   children:
   - {fileID: 1177321702872040823}
   dialogue:
-    ActorEnum: 1
-    dialogueText: Then why are you even staying?!
+    ActorEnum: 2
+    dialogueText: "I did not. Who do you think the King trust? Me or the Lieutenant?
+      Don\u2019t assume I\u2019m back in anyone\u2019s good graces, Robyn!"
     cameraPath:
-      genericKey: 3
+      genericKey: 5
       cameraName: Middle
       batchName: 
     displayDuration: 3
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -113,6 +121,7 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: 75f4e474226f4ca4abc03a0f8c7e8048
@@ -120,14 +129,16 @@ MonoBehaviour:
   children:
   - {fileID: -4138783362958089478}
   dialogue:
-    ActorEnum: 1
-    dialogueText: Took you goddamn long.
+    ActorEnum: 0
+    dialogueText: Personal reasons? PERSONAL ONES? You do actually have feelings
+      under that tin can you call an armor.
     cameraPath:
-      genericKey: 3
+      genericKey: 1
       cameraName: Middle
       batchName: 
     displayDuration: 2
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -146,6 +157,7 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: 6d54411aaee588d4684a6363045a1281
@@ -153,18 +165,89 @@ MonoBehaviour:
   children:
   - {fileID: 7593509771670744121}
   dialogue:
-    ActorEnum: 0
-    dialogueText: Make your choice. Now. We have to act quick.
+    ActorEnum: 1
+    dialogueText: "Hurry up, there\u2019s just 15min left. I say, if you don\u2019t
+      make a move now, there\u2019ll be no other opportunity."
     cameraPath:
-      genericKey: 1
+      genericKey: 2
       cameraName: Middle
       batchName: 
     displayDuration: 3
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
       WwiseObjectReference: {fileID: 11400000, guid: af54ae50bf89e674ab227505b994c800, type: 2}
+    animationTrigger: 0
+--- !u!114 &-5944814405232017499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 714749b1dc73fc847969335701b3c590
+  position: {x: -4.0568647, y: 462.99994}
+  children:
+  - {fileID: -5315135294215459216}
+  dialogue:
+    ActorEnum: 1
+    dialogueText: "You\u2019ll get used to it."
+    cameraPath:
+      genericKey: 6
+      cameraName: Default
+      batchName: 
+    displayDuration: 2
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &-5315135294215459216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: f9955b15e66fb444298ba747526e59f3
+  position: {x: 148.8404, y: 464.62347}
+  children: []
+  dialogue:
+    ActorEnum: 2
+    dialogueText: Do I have to?
+    cameraPath:
+      genericKey: 5
+      cameraName: Default
+      batchName: 
+    displayDuration: 2
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
     animationTrigger: 0
 --- !u!114 &-4138783362958089478
 MonoBehaviour:
@@ -179,6 +262,7 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: bc73668b58ea123428f93db1df86f7d6
@@ -186,15 +270,15 @@ MonoBehaviour:
   children:
   - {fileID: 385651243813142448}
   dialogue:
-    ActorEnum: 0
-    dialogueText: "But don\u2019t try anything either, one look back to the Crown,
-      and you\u2019re out for good."
+    ActorEnum: 2
+    dialogueText: I regret everything.
     cameraPath:
-      genericKey: 1
+      genericKey: 2
       cameraName: Middle
       batchName: 
     displayDuration: 4.5
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -213,6 +297,7 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: f3c656cb90901924982098e1fe536d82
@@ -220,14 +305,16 @@ MonoBehaviour:
   children:
   - {fileID: 3039088528075927266}
   dialogue:
-    ActorEnum: 2
-    dialogueText: "And do what, he\u2019ll have my head at any slip-"
+    ActorEnum: 0
+    dialogueText: "Well, we\u2019re right in front of you, Commander, why are you
+      not finishing your mission?"
     cameraPath:
-      genericKey: 2
+      genericKey: 1
       cameraName: Right
       batchName: 
     displayDuration: 3
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -246,6 +333,7 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: 27faec5d298b4e947919d7184d6c4e37
@@ -253,14 +341,15 @@ MonoBehaviour:
   children:
   - {fileID: 973787799593814016}
   dialogue:
-    ActorEnum: 2
-    dialogueText: "I didn\u2019t expect you to be such a jester."
+    ActorEnum: 0
+    dialogueText: "Well tell me, what do we do now? What\u2019s your plan? "
     cameraPath:
-      genericKey: 2
+      genericKey: 4
       cameraName: Right
       batchName: 
     displayDuration: 3.5
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -300,6 +389,8 @@ MonoBehaviour:
   - {fileID: -7004643440701602422}
   - {fileID: -4138783362958089478}
   - {fileID: 385651243813142448}
+  - {fileID: -5315135294215459216}
+  - {fileID: -5944814405232017499}
 --- !u!114 &385651243813142448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,20 +404,23 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: dda019e2b2aaea24fb0c0a60db27f2ec
   position: {x: -155, y: 466}
-  children: []
+  children:
+  - {fileID: -5944814405232017499}
   dialogue:
-    ActorEnum: 2
-    dialogueText: "I\u2019ll remember that."
+    ActorEnum: 0
+    dialogueText: "Hold on to your butt, that\u2019s only the beginning "
     cameraPath:
-      genericKey: 2
+      genericKey: 1
       cameraName: Middle
       batchName: 
     displayDuration: 2
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -345,21 +439,23 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: 5d95bbaec65d13c4fb25fb047ad61134
-  position: {x: 118, y: 281}
+  position: {x: 120.01136, y: 280.9999}
   children:
   - {fileID: -6584731965261090192}
   dialogue:
-    ActorEnum: 0
-    dialogueText: "Abby\u2019s the funny one. I\u2019m dead serious."
+    ActorEnum: 2
+    dialogueText: "\u2026"
     cameraPath:
-      genericKey: 1
+      genericKey: 5
       cameraName: Middle
       batchName: 
     displayDuration: 3
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -378,6 +474,7 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: 9360fb3ab29a91e4e83b896a073c035b
@@ -385,15 +482,15 @@ MonoBehaviour:
   children:
   - {fileID: 1636263822608112025}
   dialogue:
-    ActorEnum: 2
-    dialogueText: "Under the King\u2019s command is my place, I don\u2019t have any
-      other options."
+    ActorEnum: 1
+    dialogueText: Then what are you doing here?
     cameraPath:
-      genericKey: 2
+      genericKey: 3
       cameraName: Right
       batchName: 
     displayDuration: 4
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -412,6 +509,7 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: a6452417efa231d40aa92001e4f32e5e
@@ -419,15 +517,15 @@ MonoBehaviour:
   children:
   - {fileID: -3894117561629248625}
   dialogue:
-    ActorEnum: 0
-    dialogueText: "Stop feeling sorry for yourself, do something instead of staying
-      at the King\u2019s mercy!"
+    ActorEnum: 2
+    dialogueText: I was merely sent to take care of you two fools!
     cameraPath:
-      genericKey: 1
+      genericKey: 2
       cameraName: Middle
       batchName: 
     displayDuration: 5
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -446,6 +544,7 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: d88b992b71e6e044289788c2f9044699
@@ -453,14 +552,15 @@ MonoBehaviour:
   children:
   - {fileID: -1906826753508576737}
   dialogue:
-    ActorEnum: 0
-    dialogueText: For you to join us!
+    ActorEnum: 2
+    dialogueText: "Indeed but you can\u2019t just\u2026escape his grasp like \u201Cthat\u201D."
     cameraPath:
-      genericKey: 1
+      genericKey: 2
       cameraName: Middle
       batchName: 
     displayDuration: 2
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -479,6 +579,7 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: b937e1c60de028248891543e0cde8128
@@ -486,14 +587,15 @@ MonoBehaviour:
   children:
   - {fileID: 3718444627092990487}
   dialogue:
-    ActorEnum: 2
-    dialogueText: "I don\u2019t know, Abby\u2026"
+    ActorEnum: 1
+    dialogueText: ROBYN!
     cameraPath:
-      genericKey: 6
+      genericKey: 3
       cameraName: Cam5
       batchName: 
     displayDuration: 2
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -512,6 +614,7 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: f1ac7c93029fc80478cc0f9722573709
@@ -519,14 +622,16 @@ MonoBehaviour:
   children:
   - {fileID: -9167305086579176144}
   dialogue:
-    ActorEnum: 0
-    dialogueText: "He can\u2019t have your head if we deprive him of his own."
+    ActorEnum: 2
+    dialogueText: "I\u2019ve been\u2026reconsidering\u2026 my position\u2026 ever
+      since I saw his plans for his \u201Cbrighter future\u201D."
     cameraPath:
-      genericKey: 1
+      genericKey: 2
       cameraName: Middle
       batchName: 
     displayDuration: 4
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -545,22 +650,23 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: c1d7e3706a9ef8e47807567f366f443a
-  position: {x: -155, y: 102}
+  position: {x: -155.00005, y: 99.98865}
   children:
   - {fileID: -8010600568624366800}
   dialogue:
     ActorEnum: 0
-    dialogueText: Did you know what they were plotting?! When they took dozens of
-      villages, ripped them from their homes?!
+    dialogueText: No no no, this gal here has some answers for me!
     cameraPath:
       genericKey: 1
       cameraName: Middle
       batchName: 
     displayDuration: 6
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -579,6 +685,7 @@ MonoBehaviour:
   m_Name: Main
   m_EditorClassIdentifier: 
   NodeName: Main
+  chance: 1
   state: 0
   started: 0
   guid: 55e833e29514f9c45879833edefc4723
@@ -586,14 +693,15 @@ MonoBehaviour:
   children:
   - {fileID: 2724935663008417242}
   dialogue:
-    ActorEnum: 1
-    dialogueText: "All the pain they\u2019ve created, what\u2019s their goal?"
+    ActorEnum: 0
+    dialogueText: Nice tattoos.
     cameraPath:
-      genericKey: 6
+      genericKey: 4
       cameraName: Cam5
       batchName: 
     displayDuration: 3.5
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -612,6 +720,7 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: 4cef6ddf579eea0469a58eb80fedf6ed
@@ -620,13 +729,15 @@ MonoBehaviour:
   - {fileID: -7004643440701602422}
   dialogue:
     ActorEnum: 2
-    dialogueText: "I guess it\u2019s time I give back my oath, isn\u2019t it?"
+    dialogueText: "I will\u2026 join you, but remember\u2026 Robyn, I also have my
+      personal reasons."
     cameraPath:
       genericKey: 2
       cameraName: Middle
       batchName: 
     displayDuration: 3
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -645,21 +756,23 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: 182621e5e668b97449a62bb066bc8dbd
-  position: {x: -155, y: 372}
+  position: {x: -152.98868, y: 371.99997}
   children:
   - {fileID: 6666089985069191806}
   dialogue:
     ActorEnum: 2
-    dialogueText: ...
+    dialogueText: "I guess I have nothing left to lose at this point\u2026"
     cameraPath:
       genericKey: 2
       cameraName: Middle
       batchName: 
     displayDuration: 3
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
