@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3660508114101251706}
   - component: {fileID: 1172056164588336636}
   - component: {fileID: 900014033629116641}
+  - component: {fileID: 8455886887651235594}
   m_Layer: 13
   m_Name: OnTakeDamages
   m_TagString: Untagged
@@ -51,6 +52,7 @@ MonoBehaviour:
   - {fileID: 1172056164588336636}
   - {fileID: 3660508114101251706}
   - {fileID: 900014033629116641}
+  - {fileID: 8455886887651235594}
   InitializationMode: 2
   SafeMode: 3
   Direction: 0
@@ -160,6 +162,7 @@ MonoBehaviour:
   duration: 1.2
   offsetSpawningPos: {x: 0, y: 1.5, z: 0}
   offsetMovement: {x: 0, y: 1, z: 0}
+  color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &900014033629116641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,6 +223,44 @@ MonoBehaviour:
   FloatValueMin: 0
   FloatValueMax: 5
   FloatIncrement: 1
+--- !u!114 &8455886887651235594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8487554637966611692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b673e601f6a476e418cafff58ca63155, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Active: 1
+  Label: Manette Vibration
+  Chance: 100
+  Timing:
+    TimescaleMode: 0
+    InitialDelay: 0
+    CooldownDuration: 0
+    ExcludeFromHoldingPauses: 0
+    InterruptsOnStop: 1
+    NumberOfRepeats: 0
+    RepeatForever: 0
+    DelayBetweenRepeats: 1
+    MMFeedbacksDirectionCondition: 0
+    PlayDirection: 0
+    ConstantIntensity: 0
+    UseIntensityInterval: 0
+    IntensityIntervalMin: 0
+    IntensityIntervalMax: 0
+    Sequence: {fileID: 0}
+    TrackID: 0
+    Quantized: 0
+    TargetBPM: 120
+  DebugActive: 0
+  lowFrequency: 0.5
+  highFrequency: 0.2
+  duration: 0.2
 --- !u!1001 &4657314227645311931
 PrefabInstance:
   m_ObjectHideFlags: 0

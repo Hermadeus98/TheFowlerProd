@@ -27,6 +27,7 @@ namespace TheFowler
         public float showDuration = 2f;
 
         public Image blackPanel;
+        public RectTransform backGround;
         
         public enum MenuPanel
         {
@@ -67,7 +68,7 @@ namespace TheFowler
             manette.DOFade(0f, fadeDuration);
             yield return new WaitForSeconds(fadeDuration);
             menu.DOFade(1f, fadeDuration);
-            
+
             ReturnToMain();
         }
 
@@ -127,9 +128,12 @@ namespace TheFowler
 
         IEnumerator ChooseChapterIE(int chapter)
         {
+            backGround.DOScale(backGround.localScale * 1.2f, 1f).SetEase(Ease.InOutSine);
+            yield return new WaitForSeconds(1f + .1f);
+            
             blackPanel.DOFade(1f, fadeDuration);
             yield return new WaitForSeconds(fadeDuration + .1f);
-            
+
             SceneManager.UnloadSceneAsync("Scene_MenuPrincipal");
 
             if(chapter == 1)
