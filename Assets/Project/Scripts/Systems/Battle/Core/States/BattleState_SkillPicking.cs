@@ -52,11 +52,16 @@ namespace TheFowler
                         BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.TARGET_PICKING);
                     }
 
-                    if (inputs.actions["Return"].WasPressedThisFrame())
+                    if (!Tutoriel.LockSkill)
                     {
-                        SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Cancel, gameObject);
-                        BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.ACTION_PICKING);
+                        if (inputs.actions["Return"].WasPressedThisFrame())
+                        {
+                            SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Cancel, gameObject);
+                            BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.ACTION_PICKING);
+                        }
+
                     }
+
                 }
             }
             else if (BattleManager.IsEnemyTurn)
