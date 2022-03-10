@@ -31,6 +31,7 @@ namespace TheFowler
             UI.CloseView(UI.Views.AlliesDataView);
             
             SoundManager.PlaySound(AudioGenericEnum.TF_Main_SetExplo, gameObject);
+            HeartBeating.Instance.isBeating = false;
         }
     }
 }

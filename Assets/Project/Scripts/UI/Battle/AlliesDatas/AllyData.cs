@@ -83,6 +83,8 @@ namespace TheFowler
                     beat.Append(hearth_icon.transform.DOScale(1f, .2f).SetEase(Ease.InSine));
                     beat.SetLoops(-1);
                     beat.Play();
+
+                    HeartBeating.Instance.isBeating = true;
                 }
 
                 isBeating = true;
@@ -98,6 +100,7 @@ namespace TheFowler
             beat?.Kill();
             hearth_icon.transform.localScale = Vector3.one;
             isBeating = false;
+            HeartBeating.Instance.isBeating = false;
         }
 
         [Button]
@@ -134,6 +137,8 @@ namespace TheFowler
             mana_icon.color = death_color;
             
             StateIcons.HideAll();
+            
+            StopBeat();
         }
 
         public void Select()

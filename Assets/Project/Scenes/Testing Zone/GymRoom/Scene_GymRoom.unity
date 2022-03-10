@@ -516,6 +516,120 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Camera: {fileID: 0}
   useMainCamera: 1
+--- !u!1 &74665408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 74665411}
+  - component: {fileID: 74665410}
+  - component: {fileID: 74665409}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &74665409
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74665408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b673e601f6a476e418cafff58ca63155, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Active: 1
+  Label: Manette Vibration
+  Chance: 100
+  Timing:
+    TimescaleMode: 0
+    InitialDelay: 0
+    CooldownDuration: 0
+    ExcludeFromHoldingPauses: 0
+    InterruptsOnStop: 1
+    NumberOfRepeats: 0
+    RepeatForever: 0
+    DelayBetweenRepeats: 1
+    MMFeedbacksDirectionCondition: 0
+    PlayDirection: 0
+    ConstantIntensity: 0
+    UseIntensityInterval: 0
+    IntensityIntervalMin: 0
+    IntensityIntervalMax: 0
+    Sequence: {fileID: 0}
+    TrackID: 0
+    Quantized: 0
+    TargetBPM: 120
+  DebugActive: 0
+  lowFrequency: 1
+  highFrequency: 1
+--- !u!114 &74665410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74665408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 841b72de2996c5c40bfb394f3d0e0a98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Feedbacks:
+  - {fileID: 74665409}
+  InitializationMode: 2
+  SafeMode: 3
+  Direction: 0
+  AutoChangeDirectionOnEnd: 0
+  AutoPlayOnStart: 0
+  AutoPlayOnEnable: 0
+  DurationMultiplier: 1
+  DisplayFullDurationDetails: 0
+  CooldownDuration: 0
+  InitialDelay: 0
+  CanPlayWhileAlreadyPlaying: 1
+  FeedbacksIntensity: 1
+  Events:
+    TriggerMMFeedbacksEvents: 0
+    TriggerUnityEvents: 1
+    OnPlay:
+      m_PersistentCalls:
+        m_Calls: []
+    OnPause:
+      m_PersistentCalls:
+        m_Calls: []
+    OnResume:
+      m_PersistentCalls:
+        m_Calls: []
+    OnRevert:
+      m_PersistentCalls:
+        m_Calls: []
+    OnComplete:
+      m_PersistentCalls:
+        m_Calls: []
+  DebugActive: 0
+--- !u!4 &74665411
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74665408}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &116605984 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3568752503620323250, guid: 6864e8d5ed563f74e9038fd686578084, type: 3}
@@ -783,15 +897,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6168251540887807039, guid: 33c778a3a8dd4d540a4fcdc39f734e22, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.039685808
+      value: 0.03968579
       objectReference: {fileID: 0}
     - target: {fileID: 6168251540887807039, guid: 33c778a3a8dd4d540a4fcdc39f734e22, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.46016246
+      value: -0.46016243
       objectReference: {fileID: 0}
     - target: {fileID: 6168251540887807039, guid: 33c778a3a8dd4d540a4fcdc39f734e22, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.020595185
+      value: 0.02059517
       objectReference: {fileID: 0}
     - target: {fileID: 6168251540887807039, guid: 33c778a3a8dd4d540a4fcdc39f734e22, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3550,15 +3664,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2705801706303496515, guid: 4567972ddcf51844c97e35dc944d4a35, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00076732
+      value: -0.00076732005
       objectReference: {fileID: 0}
     - target: {fileID: 2705801706303496515, guid: 4567972ddcf51844c97e35dc944d4a35, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000000030858798
+      value: -0.0000000027947034
       objectReference: {fileID: 0}
     - target: {fileID: 2705801706303496515, guid: 4567972ddcf51844c97e35dc944d4a35, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 2.367858e-12
+      value: -2.1444326e-12
       objectReference: {fileID: 0}
     - target: {fileID: 2768600201499419703, guid: 4567972ddcf51844c97e35dc944d4a35, type: 3}
       propertyPath: controllerOnStart
@@ -3582,15 +3696,15 @@ PrefabInstance:
       objectReference: {fileID: 3620515283056016261, guid: 4567972ddcf51844c97e35dc944d4a35, type: 3}
     - target: {fileID: 3827759875739885281, guid: 4567972ddcf51844c97e35dc944d4a35, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.037071556
+      value: 0.037071552
       objectReference: {fileID: 0}
     - target: {fileID: 3827759875739885281, guid: 4567972ddcf51844c97e35dc944d4a35, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000000021493194
+      value: -0.0000000021493194
       objectReference: {fileID: 0}
     - target: {fileID: 3827759875739885281, guid: 4567972ddcf51844c97e35dc944d4a35, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -7.973341e-11
+      value: 7.97334e-11
       objectReference: {fileID: 0}
     - target: {fileID: 4196603420155586137, guid: 4567972ddcf51844c97e35dc944d4a35, type: 3}
       propertyPath: m_RootOrder
