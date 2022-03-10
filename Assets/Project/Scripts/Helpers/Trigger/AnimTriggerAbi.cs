@@ -16,18 +16,26 @@ namespace TheFowler
         {
             if (vfx_StandTom == null) return;
             vfx_StandTom?.Play();
+            
+            GamepadVibration.Rumble(.6f, 0f, 0.1f);
         }
 
         public void SFX_Cymbal_L()
         {
             if (vfx_Cymbal_L == null) return;
             vfx_Cymbal_L?.Play();
+            
+            GamepadVibration.Rumble(.6f, 0f, 0.1f);
+            GamepadVibration.Rumble(.0f, 1f, 0.2f);
         }
 
         public void SFX_Cymbal_R()
         {
             if (vfx_Cymbal_R == null) return;
             vfx_Cymbal_R?.Play();
+            
+            GamepadVibration.Rumble(.6f, 0f, 0.1f);
+            GamepadVibration.Rumble(.0f, 1f, 0.2f);
         }
 
         public void SFX_Cymbal_L_R()

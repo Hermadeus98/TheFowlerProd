@@ -14,7 +14,11 @@ namespace TheFowler
 
         public void SFX_Slap()
         {
+            if(vfx_attack == null)
+                return;
+            
             vfx_attack?.Play();
+            GamepadVibration.Rumble(.0f, 1f, 0.2f);
         }
 
         private void Update()

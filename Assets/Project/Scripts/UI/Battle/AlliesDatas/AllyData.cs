@@ -30,7 +30,13 @@ namespace TheFowler
         public StateIcons StateIcons;
 
         [SerializeField] private Image furyFlamme;
-        
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+            transform.localScale = Vector3.one * .85f;
+        }
+
         public void Register(BattleActor actor)
         {
             referedActor = actor;
@@ -143,12 +149,14 @@ namespace TheFowler
 
         public void Select()
         {
-            head.sprite = outlineSprite;
+            //head.sprite = outlineSprite;
+            transform.DOScale(1f, .2f);
         }
 
         public void UnSelect()
         {
-            head.sprite = normalSprite;
+            //head.sprite = normalSprite;
+            transform.DOScale(.85f, .2f);
         }
 
         public void ShakeHearth()

@@ -19,6 +19,7 @@ namespace TheFowler
             if (vfx_slap_particles == null) return;
 
             vfx_slap_particles?.Play();
+            GamepadVibration.Rumble(.0f, 1f, 0.2f);
         }
 
 

@@ -12,6 +12,8 @@ namespace TheFowler
     {
         private SkillPickingView skillPickingView;
 
+        private Coroutine openning;
+        
         public override void OnStateEnter(EventArgs arg)
         {
             base.OnStateEnter(arg);
@@ -21,7 +23,7 @@ namespace TheFowler
                 skillPickingView = UI.GetView<SkillPickingView>(UI.Views.SkillPicking);
                 skillPickingView.skillSelector.Refresh(BattleManager.CurrentBattleActor.BattleActorData);
                 
-                StartCoroutine(OpenView());
+                openning = StartCoroutine(OpenView());
                 BattleManager.CurrentBattleActor.BattleActorAnimator.Idle();
             }
 
@@ -30,8 +32,9 @@ namespace TheFowler
 
         private IEnumerator OpenView()
         {
-            yield return new WaitForSeconds(.5f);
+            //yield return new WaitForSeconds(.5f);
             skillPickingView = UI.OpenView<SkillPickingView>(UI.Views.SkillPicking);
+            yield break;
         }
 
         public override void OnStateExecute()
@@ -66,6 +69,9 @@ namespace TheFowler
         {
             base.OnStateExit(arg);
             UI.CloseView(UI.Views.SkillPicking);
+            
+            if(openning != null)
+                StopCoroutine(openning);
         }
     }
 }
