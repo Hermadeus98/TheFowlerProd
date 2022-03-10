@@ -25,7 +25,8 @@ namespace TheFowler
         {
             SetCamera(CameraKeys.BattleKeys.ActionPicking);
 
-            yield return new WaitForSeconds(UI.GetView<TurnTransitionView>(UI.Views.TurnTransition).WaitTime);
+            //yield return new WaitForSeconds(UI.GetView<TurnTransitionView>(UI.Views.TurnTransition).WaitTime);
+            yield return new WaitForSeconds(.2f);
             
             if (BattleManager.IsAllyTurn)
             {
