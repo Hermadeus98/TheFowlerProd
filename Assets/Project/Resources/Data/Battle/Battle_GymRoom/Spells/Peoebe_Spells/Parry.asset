@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: Basic Attack
+  m_Name: Parry
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -30,34 +30,55 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.DamageEffect, Assembly-CSharp
+      Data: 1|TheFowler.DefendEffect, Assembly-CSharp
     - Name: EffectName
       Entry: 1
-      Data: Damage
+      Data: Defend
     - Name: TargetType
       Entry: 3
-      Data: 1
+      Data: 0
     - Name: battleCameraBatch
       Entry: 3
-      Data: 2
+      Data: 1
     - Name: cameraPath
+      Entry: 7
+      Data: 2|TheFowler.cameraPath, Assembly-CSharp
+    - Name: genericKey
+      Entry: 3
+      Data: 0
+    - Name: cameraName
+      Entry: 1
+      Data: Default
+    - Name: batchName
       Entry: 6
       Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: cameraSpecificPath
-      Entry: 1
-      Data: SkillExecutionAttack
+      Entry: 6
+      Data: 
     - Name: ImPreview
       Entry: 5
       Data: false
     - Name: audioEvent
       Entry: 3
-      Data: 8
+      Data: 0
     - Name: ReferedSpell
       Entry: 10
       Data: 0
-    - Name: damage
+    - Name: effectDuration
+      Entry: 3
+      Data: 1
+    - Name: effect
       Entry: 4
       Data: 25
+    - Name: manaToRestaure
+      Entry: 3
+      Data: 18
+    - Name: restaureManaAt
+      Entry: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -67,11 +88,11 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Basic Attack
+  SpellName: Parry
   ManaCost: 0
-  TargetType: 1
+  TargetType: 0
   executionDurationBeforeCast: 0.3
   executionDurationAfterCast: 0.3
-  SpellDescription: Inflicts Medium DMG
+  SpellDescription: Simple Attack with turbo damage
   ExecutionType: 0
   SpellType: 0
