@@ -64,6 +64,11 @@ namespace TheFowler
                 SelectPrevious();
                 OnNavigate();
             }
+
+            if (Inputs.actions["A"].WasPressedThisFrame())
+            {
+                currentSelectedElement?.OnClick();
+            }
         }
 
         protected virtual void OnNavigate()
@@ -131,6 +136,11 @@ namespace TheFowler
         protected void ResetElements()
         {
             elements = new List<UISelectorElement>(all_elements);
+        }
+
+        protected void SelectFirst()
+        {
+            SelectElement();
         }
     }
 

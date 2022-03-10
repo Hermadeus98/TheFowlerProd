@@ -17,6 +17,8 @@ namespace TheFowler
         [SerializeField] private SpellTypeDatabase SpellTypeDatabase;
 
         [SerializeField] private Image selectableFeedback;
+
+        [SerializeField] private CanvasGroup CanvasGroup;
         
         public bool isSelectable { get; set; } = false;
         
@@ -42,6 +44,16 @@ namespace TheFowler
                     selectableFeedback.enabled = true;
                 }
             }
+        }
+
+        public override void Select()
+        {
+            //canvasGroup.alpha = 1f;
+        }
+
+        public override void DeSelect()
+        {
+            //canvasGroup.alpha = .5f;
         }
     }
 }

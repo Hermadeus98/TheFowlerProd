@@ -103,7 +103,15 @@ namespace TheFowler
         [Button]
         private void SetGraphicToNormal()
         {
-            head.sprite = normalSprite;
+            if (head.sprite == outlineSprite)
+            {
+                head.sprite = normalSprite;
+            }
+            else
+            {
+                head.sprite = normalSprite;
+            }
+            
             blood.fillAmount = 0;
 
             healthBar.color = hp_color;

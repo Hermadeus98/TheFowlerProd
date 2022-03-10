@@ -55,6 +55,8 @@ namespace TheFowler
                     return "Scene_Outro";
                 case SceneEnum.Scene_Credit:
                     return "Scene_Credit";
+                case SceneEnum.Scene_Main_Menu:
+                    return "Scene Main Menu";
                 default:
                     throw new ArgumentOutOfRangeException(nameof(scene), scene, null);
             }

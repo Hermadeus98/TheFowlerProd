@@ -21,6 +21,9 @@ namespace TheFowler
         [TitleGroup("Settings")]
         [SerializeField, Tooltip(ToolTips.TT_loadPlayer)] private bool loadPlayer;
 
+        [TitleGroup("Settings")] [SerializeField]
+        private bool loadMainMenu;
+        
         [TitleGroup("Difficulty Settings")] [SerializeField]
         private DifficultyEnum startDifficulty = DifficultyEnum.TEST;
         
@@ -30,6 +33,8 @@ namespace TheFowler
             RemoteSettingsManager.Fetch();
             
             //--<SCENE UI>
+            if(loadMainMenu)
+            Game.LoadSceneAdditive(SceneEnum.Scene_Main_Menu);
             Game.LoadSceneAdditive(SceneEnum.Scene_UI);
 
             yield return new WaitForEndOfFrame();

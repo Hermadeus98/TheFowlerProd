@@ -34,6 +34,9 @@ namespace TheFowler
         
         //OUTRO
         Scene_Outro,
-        Scene_Credit
+        Scene_Credit,
+        
+        //MAIN MENU
+        Scene_Main_Menu
     }
 }
