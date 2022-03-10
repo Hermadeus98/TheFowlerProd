@@ -52,33 +52,44 @@ namespace TheFowler
         public override void OnStateExecute()
         {
             base.OnStateExecute();
-
-            if (BattleManager.IsAllyTurn)
+            if (!Tutoriel.isTutoriel)
             {
-                TargetSelector.Navigate(inputs.actions["NavigateLeft"].WasPressedThisFrame(), inputs.actions["NavigateRight"].WasPressedThisFrame());
-                
-                if (TargetSelector.Select(inputs.actions["Select"].WasPressedThisFrame(), out var targets))
+                if (BattleManager.IsAllyTurn)
+                {
+                    if (!Tutoriel.LockTarget)
+                    {
+                        TargetSelector.Navigate(inputs.actions["NavigateLeft"].WasPressedThisFrame(), inputs.actions["NavigateRight"].WasPressedThisFrame());
+                    }
+                    
+
+                    if (TargetSelector.Select(inputs.actions["Select"].WasPressedThisFrame(), out var targets))
+                    {
+                        BattleManager.CurrentBattle.ChangeBattleState<BattleState_SkillExecution>(BattleStateEnum.SKILL_EXECUTION);
+                    }
+                    if (!Tutoriel.LockTarget)
+                    {
+                        if (inputs.actions["Return"].WasPressedThisFrame())
+                        {
+                            SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Cancel, gameObject);
+
+                            if (ReturnToActionMenu)
+                            {
+                                BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.ACTION_PICKING);
+                            }
+                            else
+                            {
+                                BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.SKILL_PICKING);
+                            }
+                        }
+                    }
+                      
+                }
+                else if (BattleManager.IsEnemyTurn)
                 {
                     BattleManager.CurrentBattle.ChangeBattleState<BattleState_SkillExecution>(BattleStateEnum.SKILL_EXECUTION);
                 }
-                if (inputs.actions["Return"].WasPressedThisFrame())
-                {
-                    SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Cancel, gameObject);
-
-                    if (ReturnToActionMenu)
-                    {
-                        BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.ACTION_PICKING);
-                    }
-                    else
-                    {
-                        BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.SKILL_PICKING);
-                    }
-                }
             }
-            else if (BattleManager.IsEnemyTurn)
-            {
-                BattleManager.CurrentBattle.ChangeBattleState<BattleState_SkillExecution>(BattleStateEnum.SKILL_EXECUTION);
-            }
+            
         }
 
         public override void OnStateExit(EventArgs arg)
