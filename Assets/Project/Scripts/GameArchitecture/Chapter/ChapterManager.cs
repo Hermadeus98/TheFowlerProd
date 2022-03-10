@@ -63,6 +63,10 @@ namespace TheFowler
             onChapterChange?.Invoke(Chapters.CurrentState as Chapter);
         }
 
+        public static void GoChapterOne() => ChangeChapter(ChapterEnum.CHAPTER_ONE);
+        public static void GoChapterTwo() => ChangeChapter(ChapterEnum.CHAPTER_TWO_PART1);
+        public static void GoChapterThree() => ChangeChapter(ChapterEnum.CHAPTER_THREE);
+
         public static T GetChapter<T>(ChapterEnum chapterEnum) where T : Chapter
         {
             return Chapters.GetState(GetChapterKey(chapterEnum)) as T;

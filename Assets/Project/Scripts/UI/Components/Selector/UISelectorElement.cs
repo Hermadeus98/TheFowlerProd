@@ -20,12 +20,12 @@ namespace TheFowler
         [TabGroup("Debug")]
         [ReadOnly] public bool interactable = true;
 
-        public void Select()
+        public virtual void Select()
         {
             transform.localScale = Vector3.one * 1.2f;
         }
 
-        public void DeSelect()
+        public virtual void DeSelect()
         {
             transform.localScale = Vector3.one;
         }
@@ -54,6 +54,11 @@ namespace TheFowler
             canvasGroup.alpha = 0;
             layoutElement.ignoreLayout = true;
             interactable = false;
+        }
+
+        public virtual void OnClick()
+        {
+            
         }
     }
 }
