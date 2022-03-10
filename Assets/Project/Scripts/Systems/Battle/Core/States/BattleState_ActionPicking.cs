@@ -7,12 +7,16 @@ namespace TheFowler
     public class BattleState_ActionPicking : BattleState
     {
         private ActionPickingView ActionPickingView;
+
+        private Coroutine openning, closing;
         
         public override void OnStateEnter(EventArgs arg)
         {
             base.OnStateEnter(arg);
 
-            StartCoroutine(OnStateEnterIE());
+            if(closing != null) StopCoroutine(closing);
+            if(openning != null) StopCoroutine(openning);
+            openning = StartCoroutine(OnStateEnterIE());
 
             if (BattleManager.IsAllyTurn)
             {
@@ -117,15 +121,19 @@ namespace TheFowler
         {
             base.OnStateExit(arg);
 
-            StartCoroutine(CloseView());
+            if(openning != null) StopCoroutine(openning);
+            if(closing != null) StopCoroutine(closing);
+
+            closing = StartCoroutine(CloseView());
 
             isActive = false;
         }
 
         private IEnumerator CloseView()
         {
-            yield return new WaitForSeconds(.5f);
+            //yield return new WaitForSeconds(.5f);
             UI.CloseView(UI.Views.ActionPicking);
+            yield break;
         }
     }
 }
