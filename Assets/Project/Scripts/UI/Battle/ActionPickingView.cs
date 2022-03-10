@@ -16,7 +16,7 @@ namespace TheFowler
         [SerializeField] private PlayerInput Inputs;
         [SerializeField] private ActionPickerElement[] actions;
 
-        public ActionPickerElement furyButton;
+        public ActionPickerElement furyButton, basicAttack, parry, skill;
         
         private Tween backAnim;
 
@@ -76,6 +76,21 @@ namespace TheFowler
             {
                 flamme.DOFade(0f, 0.01f);
             }
+        }
+
+        public void AllowSkill(bool state)
+        {
+            skill.canInput = state;
+        }
+
+        public void AllowBasicAttack(bool state)
+        {
+            basicAttack.canInput = state;
+        }
+
+        public void AllowParry(bool state)
+        {
+            parry.canInput = state;
         }
     }
 }

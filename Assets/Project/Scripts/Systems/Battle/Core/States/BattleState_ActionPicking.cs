@@ -27,12 +27,29 @@ namespace TheFowler
 
             //yield return new WaitForSeconds(UI.GetView<TurnTransitionView>(UI.Views.TurnTransition).WaitTime);
             yield return new WaitForSeconds(.2f);
-            
-            if (BattleManager.IsAllyTurn)
+            if (Tutoriel.isTutoriel)
             {
-                ActionPickingView = UI.OpenView<ActionPickingView>(UI.Views.ActionPicking);
-                ActionPickingView.Refresh(EventArgs.Empty);
+                if (BattleManager.IsAllyTurn)
+                {
+                    if (Tutoriel.BasicAttack)
+                    {
+                        ActionPickingView = UI.OpenView<ActionPickingView>(UI.Views.ActionPicking);
+                        ActionPickingView.Refresh(EventArgs.Empty);
+                        ActionPickingView.AllowBasicAttack(true);
+                        ActionPickingView.AllowParry(false);
+                        ActionPickingView.AllowSkill(false);
+                    }
+                }
             }
+            else
+            {
+                if (BattleManager.IsAllyTurn)
+                {
+                    ActionPickingView = UI.OpenView<ActionPickingView>(UI.Views.ActionPicking);
+                    ActionPickingView.Refresh(EventArgs.Empty);
+                }
+            }
+
 
             isActive = true;
             yield break;
