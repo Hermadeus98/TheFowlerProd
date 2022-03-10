@@ -7,6 +7,7 @@ namespace TheFowler
     public class VideoHandler : GameplayPhase
     {
         [SerializeField] private VideoClip video;
+        [SerializeField] private ActorActivator activator;
 
         private VideoView view;
         public override void PlayPhase()
@@ -18,6 +19,8 @@ namespace TheFowler
             view.Show(video);
 
             StartCoroutine(WaitEndVideo());
+
+            activator.DesactivateActor(false);
         }
         public override void EndPhase()
         {
