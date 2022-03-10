@@ -84,7 +84,7 @@ namespace TheFowler
         protected override void OnNavigate()
         {
             base.OnNavigate();
-            SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SkillSelection, gameObject);
+            SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Hover, gameObject);
         }
     }
 }
