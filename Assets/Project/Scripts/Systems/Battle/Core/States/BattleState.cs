@@ -54,5 +54,6 @@ namespace TheFowler
         NULL,
         CURRENT_ACTOR,
         CURRENT_ACTOR_PERSONALISE,
+        CURRENT_BATTLE,
     }
 }

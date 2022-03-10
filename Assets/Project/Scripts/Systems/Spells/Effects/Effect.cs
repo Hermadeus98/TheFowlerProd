@@ -16,6 +16,7 @@ namespace TheFowler
         [SerializeField] protected BattleCameraBatch battleCameraBatch = BattleCameraBatch.NULL;
         [SerializeField, ShowIf("@this.battleCameraBatch == BattleCameraBatch.NULL")] protected cameraPath cameraPath;
         [SerializeField, ShowIf("@this.battleCameraBatch == BattleCameraBatch.CURRENT_ACTOR_PERSONALISE")] private string cameraSpecificPath = "Default";
+        [SerializeField, ShowIf("@this.battleCameraBatch == BattleCameraBatch.CURRENT_BATTLE")] private string cameraBattlePath = "Default";
 
         public bool ImPreview = false;
         
@@ -46,6 +47,9 @@ namespace TheFowler
                     break;
                 case BattleCameraBatch.CURRENT_ACTOR_PERSONALISE:
                     CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle, cameraSpecificPath);
+                    break;
+                case BattleCameraBatch.CURRENT_BATTLE:
+                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, cameraBattlePath);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

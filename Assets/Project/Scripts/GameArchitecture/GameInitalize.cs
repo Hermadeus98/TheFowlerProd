@@ -34,7 +34,7 @@ namespace TheFowler
             
             //--<SCENE UI>
             if (loadMainMenu)
-                SceneManager.LoadSceneAsync("Scene_MenuPrincipal");
+                SceneManager.LoadSceneAsync("Scene_MenuPrincipal", LoadSceneMode.Additive);
             Game.LoadSceneAdditive(SceneEnum.Scene_UI);
 
             yield return new WaitForEndOfFrame();
