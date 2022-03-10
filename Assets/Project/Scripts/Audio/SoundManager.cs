@@ -66,13 +66,13 @@ namespace TheFowler
                 }
             }
         }
-
+        [Button]
         public static void Mute()
         {
             QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, "MUTE");
             PlaySound(AudioGenericEnum.TF_Main_SetMuteOn, null);
         }
-
+        [Button]
         public static void UnMute()
         {
             QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, "UNMUTE");
