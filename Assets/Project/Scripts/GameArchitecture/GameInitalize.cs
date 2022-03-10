@@ -33,8 +33,8 @@ namespace TheFowler
             RemoteSettingsManager.Fetch();
             
             //--<SCENE UI>
-            if(loadMainMenu)
-            Game.LoadSceneAdditive(SceneEnum.Scene_Main_Menu);
+            if (loadMainMenu)
+                SceneManager.LoadSceneAsync("Scene_MenuPrincipal");
             Game.LoadSceneAdditive(SceneEnum.Scene_UI);
 
             yield return new WaitForEndOfFrame();

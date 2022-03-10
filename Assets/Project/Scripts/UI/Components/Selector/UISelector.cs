@@ -37,6 +37,8 @@ namespace TheFowler
 
         protected Action<UISelectorElement> OnSelect;
 
+        public CanvasGroup CanvasGroup => canvasGroup;
+
         protected virtual void Update()
         {
             if(!isActive)

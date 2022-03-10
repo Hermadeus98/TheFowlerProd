@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace TheFowler
 {
@@ -19,6 +21,12 @@ namespace TheFowler
         [SerializeField] private MenuPanel currentPanel;
 
         [SerializeField] private PlayerInput input;
+
+        [SerializeField] private CanvasGroup openning, manette, menu;
+        public float fadeDuration = .2f;
+        public float showDuration = 2f;
+
+        public Image blackPanel;
         
         public enum MenuPanel
         {
@@ -35,10 +43,32 @@ namespace TheFowler
             main.StartNavigate();
             chapters.StartNavigate();
             settings.StartNavigate();
+
+            menu.alpha = 0;
+            openning.alpha = 0;
+            manette.alpha = 0;
             
-            main.ShowAnim();
-            chapters.HideAnim();
-            settings.HideAnim();
+            StartCoroutine(Opening());
+        }
+
+        IEnumerator Opening()
+        {
+            yield return new WaitForSeconds(showDuration);
+            openning.DOFade(1f, fadeDuration);
+            yield return new WaitForSeconds(fadeDuration);
+            yield return new WaitForSeconds(showDuration);
+            
+            openning.DOFade(0f, fadeDuration);
+            yield return new WaitForSeconds(fadeDuration);
+            manette.DOFade(1f, fadeDuration);
+            yield return new WaitForSeconds(fadeDuration);
+            yield return new WaitForSeconds(showDuration);
+
+            manette.DOFade(0f, fadeDuration);
+            yield return new WaitForSeconds(fadeDuration);
+            menu.DOFade(1f, fadeDuration);
+            
+            ReturnToMain();
         }
 
         private void Update()
@@ -92,8 +122,16 @@ namespace TheFowler
         
         public void ChooseChapter(int chapter)
         {
-            SceneManager.UnloadSceneAsync("Scene_MenuPrincipal");
+            StartCoroutine(ChooseChapterIE(chapter));
+        }
+
+        IEnumerator ChooseChapterIE(int chapter)
+        {
+            blackPanel.DOFade(1f, fadeDuration);
+            yield return new WaitForSeconds(fadeDuration + .1f);
             
+            SceneManager.UnloadSceneAsync("Scene_MenuPrincipal");
+
             if(chapter == 1)
                 ChapterManager.GoChapterOne();
             if(chapter == 2)
