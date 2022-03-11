@@ -110,6 +110,8 @@ namespace TheFowler
             ActionPickingView.AllowParry(true);
             ActionPickingView.AllowSkill(true);
 
+            UI.GetView<TutorielView>(UI.Views.Tuto).gameObject.SetActive(false);
+
             //this.enabled = false;
         }
         
