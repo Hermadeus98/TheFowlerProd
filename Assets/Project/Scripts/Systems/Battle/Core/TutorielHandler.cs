@@ -107,7 +107,7 @@ namespace TheFowler
             ActionPickingView.AllowParry(true);
             ActionPickingView.AllowSkill(true);
 
-            this.enabled = false;
+            //this.enabled = false;
         }
         
         private void WaitInput()
