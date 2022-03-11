@@ -22,6 +22,29 @@ MonoBehaviour:
   spellList:
   - Spell: {fileID: 11400000, guid: 5fafe1ee9e78d184494d182e2c518fda, type: 2}
     Chance: 0
+--- !u!114 &-6687556664085984303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: "PJ Al\xE9atoire 4"
+  m_EditorClassIdentifier: 
+  NodeName: "PJ Al\xE9atoire 4"
+  chance: 1
+  state: 0
+  started: 0
+  guid: b2081998fd053c741b86819038dd8403
+  position: {x: 561.7851, y: 464.6925}
+  children:
+  - {fileID: -3802333508360245875}
+  TargetIntention: 9
+  With: 0
+  value: 0
 --- !u!114 &-6686092193023682952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +138,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 1d5f16e8efbd2914a979b5f6b3d5bff9
-  position: {x: 463, y: 319}
+  position: {x: 740.72504, y: 320.3225}
   children:
   - {fileID: 1292580448383206562}
   - {fileID: -2482445739671215790}
@@ -129,6 +152,28 @@ MonoBehaviour:
     percent: 0
     NextNode: {fileID: -2482445739671215790}
   DefaultNextNode: {fileID: 1292580448383206562}
+--- !u!114 &-3802333508360245875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: Damage 4
+  m_EditorClassIdentifier: 
+  NodeName: Damage 4
+  chance: 1
+  state: 0
+  started: 0
+  guid: 4de1ae6322859714590b5af3fb6093aa
+  position: {x: 791.7851, y: 462.69254}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: 5fafe1ee9e78d184494d182e2c518fda, type: 2}
+    Chance: 0
 --- !u!114 &-2482445739671215790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +191,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 07d6862a8f514ae40b343f7137b2e288
-  position: {x: 732.99994, y: 448.53253}
+  position: {x: 986.92, y: 450.32257}
   children:
   - {fileID: -1762028940160291926}
   TargetIntention: 9
@@ -169,7 +214,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: c92c6237d751ac049a5e18dd7cc9daf2
-  position: {x: 940.99994, y: 449}
+  position: {x: 1194.92, y: 450.32257}
   children: []
   spellList:
   - Spell: {fileID: 11400000, guid: 5fafe1ee9e78d184494d182e2c518fda, type: 2}
@@ -206,17 +251,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
-  m_Name: TargetNode
+  m_Name: "PNJ Al\xE9atoire 2"
   m_EditorClassIdentifier: 
-  NodeName: 
+  NodeName: "PNJ Al\xE9atoire 2"
   chance: 1
   state: 0
   started: 0
   guid: 65627d904be28cc42864bd6d4c7512d0
-  position: {x: 733, y: 713.96}
+  position: {x: 727.4791, y: 718.5209}
   children:
   - {fileID: -1757520444484228338}
-  TargetIntention: 5
+  TargetIntention: 14
   With: 0
   value: 0
 --- !u!114 &11400000
@@ -232,6 +277,7 @@ MonoBehaviour:
   m_Name: AI_Booster
   m_EditorClassIdentifier: 
   rootNode: {fileID: -5137462194242084503}
+  actors: 
   treeState: 0
   nodes:
   - {fileID: -5137462194242084503}
@@ -248,6 +294,9 @@ MonoBehaviour:
   - {fileID: -5922080883698160397}
   - {fileID: -1623543769939691623}
   - {fileID: -1757520444484228338}
+  - {fileID: 6051665061293622168}
+  - {fileID: -6687556664085984303}
+  - {fileID: -3802333508360245875}
 --- !u!114 &1292580448383206562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,7 +314,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 2978e0f338bb123419f91f4206b5da88
-  position: {x: 733, y: 319}
+  position: {x: 986.92, y: 320.3225}
   children:
   - {fileID: 1467263115192644493}
   TargetIntention: 14
@@ -288,11 +337,42 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 1aec7479cee6b684c9f72f726400af9a
-  position: {x: 940.9653, y: 318.99997}
+  position: {x: 1194.92, y: 320.3225}
   children: []
   spellList:
   - Spell: {fileID: 11400000, guid: 8bc63c0ad1e7426409e820b4c889a2f6, type: 2}
     Chance: 0
+--- !u!114 &6051665061293622168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a16d7749e1191724db8102279a8920c3, type: 3}
+  m_Name: Is Booster last Enemy
+  m_EditorClassIdentifier: 
+  NodeName: Is Booster last Enemy
+  chance: 1
+  state: 0
+  started: 0
+  guid: e01e950264ef3974ea7e66aa0cdaed9e
+  position: {x: 353.42755, y: 430.09}
+  children:
+  - {fileID: -6687556664085984303}
+  - {fileID: 7343997417964285061}
+  Choices:
+  - isHardChoice: 0
+    hardChoice: 0
+    comparator_A: 5
+    component: 1
+    Operator: 0
+    comparator_B: 6
+    percent: 1
+    NextNode: {fileID: 7343997417964285061}
+  DefaultNextNode: {fileID: -4677017494967907431}
 --- !u!114 &6189216935421902975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,8 +392,8 @@ MonoBehaviour:
   guid: c2d846010e282d94a99d65f2349442e5
   position: {x: 232, y: 319}
   children:
+  - {fileID: 6051665061293622168}
   - {fileID: -4677017494967907431}
-  - {fileID: 7343997417964285061}
   Choices:
   - isHardChoice: 0
     hardChoice: 0
@@ -323,7 +403,7 @@ MonoBehaviour:
     comparator_B: 6
     percent: 2
     NextNode: {fileID: -4677017494967907431}
-  DefaultNextNode: {fileID: 7343997417964285061}
+  DefaultNextNode: {fileID: 6051665061293622168}
 --- !u!114 &7343997417964285061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,7 +421,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: b528667bf124cc248811819f43d6a816
-  position: {x: 471, y: 592}
+  position: {x: 472.5208, y: 592}
   children:
   - {fileID: 9072063718284060364}
   - {fileID: -1623543769939691623}
@@ -353,8 +433,8 @@ MonoBehaviour:
     Operator: 0
     comparator_B: 0
     percent: 0
-    NextNode: {fileID: 0}
-  DefaultNextNode: {fileID: 9072063718284060364}
+    NextNode: {fileID: 9072063718284060364}
+  DefaultNextNode: {fileID: -1623543769939691623}
 --- !u!114 &9072063718284060364
 MonoBehaviour:
   m_ObjectHideFlags: 0

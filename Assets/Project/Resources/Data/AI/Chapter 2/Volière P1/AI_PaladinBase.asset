@@ -17,7 +17,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 7ac4d5a27bd2c4542a3cf9e039a3d123
-  position: {x: 544, y: 600}
+  position: {x: 545.1501, y: 600}
   children:
   - {fileID: 6427429084130854397}
   - {fileID: -5053854091970528481}
@@ -41,30 +41,6 @@ MonoBehaviour:
   position: {x: 544, y: 336}
   children:
   - {fileID: 6911353644111915509}
-  - {fileID: -8418690745487713449}
---- !u!114 &-8418690745487713449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
-  m_Name: PNJ Aleatoire
-  m_EditorClassIdentifier: 
-  NodeName: PNJ Aleatoire
-  chance: 3
-  state: 0
-  started: 0
-  guid: 6b13466a558227843a6176625b4fae6e
-  position: {x: 737, y: 392}
-  children:
-  - {fileID: 5177374433368148577}
-  TargetIntention: 10
-  With: 0
-  value: 0
 --- !u!114 &-7857803635741738802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,7 +58,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: aeb7d3ced5a4d90468955106f61a3107
-  position: {x: 325, y: 336}
+  position: {x: 326.15, y: 336}
   children:
   - {fileID: -8540380997863591072}
   - {fileID: -8621342529632081554}
@@ -94,8 +70,8 @@ MonoBehaviour:
     Operator: 3
     comparator_B: 6
     percent: 2
-    NextNode: {fileID: -8540380997863591072}
-  DefaultNextNode: {fileID: -8621342529632081554}
+    NextNode: {fileID: -8621342529632081554}
+  DefaultNextNode: {fileID: -8540380997863591072}
 --- !u!114 &-6133228007811962470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +237,7 @@ MonoBehaviour:
   m_Name: AI_PaladinBase
   m_EditorClassIdentifier: 
   rootNode: {fileID: -3805551491774494258}
+  actors: 
   treeState: 0
   nodes:
   - {fileID: -3805551491774494258}
@@ -273,9 +250,7 @@ MonoBehaviour:
   - {fileID: -8540380997863591072}
   - {fileID: -8621342529632081554}
   - {fileID: 6911353644111915509}
-  - {fileID: -8418690745487713449}
   - {fileID: -3452677299924474748}
-  - {fileID: 5177374433368148577}
   - {fileID: 6427429084130854397}
   - {fileID: -5053854091970528481}
   - {fileID: 5923576821300547101}
@@ -327,28 +302,6 @@ MonoBehaviour:
     Chance: 1
   - Spell: {fileID: 11400000, guid: 258cd9a2c877a694f93fa7b6ef3b8e03, type: 2}
     Chance: 3
---- !u!114 &5177374433368148577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
-  m_Name: Nursery Rhyme of protection 1
-  m_EditorClassIdentifier: 
-  NodeName: Nursery Rhyme of protection 1
-  chance: 1
-  state: 0
-  started: 0
-  guid: 4f599f9ae4acab041865ea388cb6b7c0
-  position: {x: 939, y: 392}
-  children: []
-  spellList:
-  - Spell: {fileID: 11400000, guid: c2959de672e4a7b45a640ec7972c99af, type: 2}
-    Chance: 0
 --- !u!114 &5923576821300547101
 MonoBehaviour:
   m_ObjectHideFlags: 0
