@@ -47,6 +47,7 @@ namespace TheFowler
             base.Hide();
             player.Stop();
             texture.Release();
+            player.clip = null;
             
         }
 
