@@ -33,6 +33,14 @@ namespace TheFowler
             SetSkill(false);
         }
 
+        public void ShowInputs()
+        {
+            SetBasicAttack(true);
+            SetFury(false);
+            SetParry(true);
+            SetSkill(true);
+        }
+
         public void SetLockSkill(bool value)=> Tutoriel.LockSkill = value;
 
         public void SetBasicAttack(bool value) => Tutoriel.BasicAttack = value;
