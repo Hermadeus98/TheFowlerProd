@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,11 @@ namespace TheFowler
 
         private BattleActor actorTarget;
         private BattleActor actor;
+
+        private void Awake()
+        {
+            inputName = string.Empty;
+        }
 
         public void SetIsTutoriel(bool value)
         {
@@ -62,9 +68,6 @@ namespace TheFowler
 
             UI.GetView<ActionPickingView>(UI.Views.ActionPicking).Hide();
             UI.GetView<AlliesDataView>(UI.Views.AlliesDataView).Hide();
-
-
-
         }
 
         public void HidePanel()
@@ -112,7 +115,7 @@ namespace TheFowler
         
         private void WaitInput()
         {
-            if (inputName == "") return;
+            if (string.IsNullOrEmpty(inputName)) return;
 
             if (Input.actions[inputName].WasPerformedThisFrame())
             {
@@ -140,6 +143,7 @@ namespace TheFowler
 
         private void Update()
         {
+            
             WaitInput();
 
             if (isShowed)

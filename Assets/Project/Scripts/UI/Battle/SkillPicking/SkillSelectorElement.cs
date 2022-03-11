@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using QRCode;
 using Sirenix.OdinInspector;
 using TMPro;
@@ -19,6 +20,8 @@ namespace TheFowler
         [SerializeField] private Image selectableFeedback;
 
         [SerializeField] private CanvasGroup CanvasGroup;
+
+        [SerializeField] private Image soulignage;
         
         public bool isSelectable { get; set; } = false;
         
@@ -46,14 +49,19 @@ namespace TheFowler
             }
         }
 
+        private Tween s;
         public override void Select()
         {
             //canvasGroup.alpha = 1f;
+            s?.Kill();
+            s = soulignage.DOFillAmount(1f, .5f);
         }
 
         public override void DeSelect()
         {
             //canvasGroup.alpha = .5f;
+            s.Kill();
+            s = soulignage.DOFillAmount(0f, .5f);
         }
     }
 }
