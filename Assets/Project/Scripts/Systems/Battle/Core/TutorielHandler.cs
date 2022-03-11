@@ -17,6 +17,7 @@ namespace TheFowler
         private bool isShowed = false;
 
         private BattleActor actorTarget;
+        private BattleActor actor;
 
         public void SetIsTutoriel(bool value)
         {
@@ -85,6 +86,7 @@ namespace TheFowler
 
         public void SetInputName(string value) => inputName = value;
 
+        public void KillTuto() => Tutoriel.Kill();
         
         private void WaitInput()
         {
@@ -110,6 +112,9 @@ namespace TheFowler
         }
 
         public void SetTargetNull() => actorTarget = null;
+
+        public void SetData(BattleActorData data) => actor.BattleActorData = data;
+        public void SetActor(BattleActor act) => actor = act;
 
         private void Update()
         {

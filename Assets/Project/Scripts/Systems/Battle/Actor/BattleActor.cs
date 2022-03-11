@@ -40,7 +40,7 @@ namespace TheFowler
 
         //--<Properties>-----------------------------------------------------------------------------------------------<
         public CameraBatch CameraBatchBattle => cameraBatchBattle;
-        public BattleActorData BattleActorData => battleActorData;
+        public BattleActorData BattleActorData { get { return battleActorData; } set { battleActorData = value; } }
         public BattleActorInfo BattleActorInfo => battleActorInfo;
         public Health Health => health;
         public Mana Mana => mana;

@@ -13,6 +13,17 @@ namespace TheFowler
         public static bool Parry = false;
         public static bool LockTarget = false;
         public static bool LockSkill = false;
+
+        public static void Kill()
+        {
+            isTutoriel = false;
+            BasicAttack = false;
+            Fury = false;
+            Skill = false;
+            Parry = false;
+            LockTarget = false;
+            LockSkill = false;
+        }
     }
 }
 
