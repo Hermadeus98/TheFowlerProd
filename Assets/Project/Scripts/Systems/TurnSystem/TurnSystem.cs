@@ -36,6 +36,11 @@ namespace TheFowler
                 NewRound();
             }
         }
+
+        public void ResetTurn()
+        {
+            CurrentRound.OverrideTurn(BattleManager.CurrentBattleActor);
+        }
     }
 
     public interface ITurnActor

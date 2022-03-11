@@ -137,6 +137,10 @@ namespace TheFowler
         {
             TurnSystem.NextTurn();
         }
+        public void ResetTurn()
+        {
+            TurnSystem.ResetTurn();
+        }
 
         private void InitializeTurnSystem()
         {

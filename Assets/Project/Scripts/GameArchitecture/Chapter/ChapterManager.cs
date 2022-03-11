@@ -52,6 +52,7 @@ namespace TheFowler
                     StateName = "GymRoom",
                     ChapterData = Resources.Load<ChapterData>("Data/Scenes Datas/Others/GymRoom"),
                 }
+
             };
 
             Chapters = new StateMachine(chapters, UpdateMode.Update, GameState.gameArguments);
