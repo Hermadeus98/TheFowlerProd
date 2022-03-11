@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
-  m_Name: Middle HP
+  m_Name: Basic Attack
   m_EditorClassIdentifier: 
-  NodeName: Middle HP
+  NodeName: Basic Attack
   chance: 1
   state: 0
   started: 0
@@ -20,12 +20,8 @@ MonoBehaviour:
   position: {x: -51, y: -47}
   children: []
   spellList:
-  - Spell: {fileID: 11400000, guid: cb79d2f7e5a8fb34da52fb2e56374c56, type: 2}
-    Chance: 2
   - Spell: {fileID: 11400000, guid: 1252905fbb39a6f47a4cb0bc7ba007ca, type: 2}
-    Chance: 1
-  - Spell: {fileID: 11400000, guid: 1252905fbb39a6f47a4cb0bc7ba007ca, type: 2}
-    Chance: 1
+    Chance: 0
 --- !u!114 &-5002943791546989718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43,37 +39,20 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 716ef1726c9d0fe479a32a137b129274
-  position: {x: -481, y: -48}
+  position: {x: -479.8502, y: -48.000015}
   children:
-  - {fileID: 4151569233255065424}
   - {fileID: 5388224996074128664}
-  - {fileID: 5395469812233328941}
+  - {fileID: 227475884161370516}
   Choices:
   - isHardChoice: 0
     hardChoice: 0
-    comparator_A: 0
+    comparator_A: 1
     component: 0
-    Operator: 4
-    comparator_B: 4
-    percent: 75
-    NextNode: {fileID: 4151569233255065424}
-  - isHardChoice: 0
-    hardChoice: 0
-    comparator_A: 0
-    component: 0
-    Operator: 2
-    comparator_B: 4
-    percent: 40
-    NextNode: {fileID: 5388224996074128664}
-  - isHardChoice: 0
-    hardChoice: 0
-    comparator_A: 0
-    component: 0
-    Operator: 1
-    comparator_B: 4
-    percent: 75
-    NextNode: {fileID: 5395469812233328941}
-  DefaultNextNode: {fileID: 4151569233255065424}
+    Operator: 3
+    comparator_B: 6
+    percent: 90
+    NextNode: {fileID: 4554433209448224214}
+  DefaultNextNode: {fileID: 5388224996074128664}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,7 +63,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9cf5a2a104152e48a7bbaed625f399a, type: 3}
-  m_Name: AI_Saboteur - Tuto
+  m_Name: AI_Saboteur-Tuto
   m_EditorClassIdentifier: 
   rootNode: {fileID: -5002943791546989718}
   actors: 
@@ -93,11 +72,9 @@ MonoBehaviour:
   - {fileID: -5002943791546989718}
   - {fileID: 4554433209448224214}
   - {fileID: -5760006492523007491}
-  - {fileID: 8564941626517358859}
-  - {fileID: 4151569233255065424}
   - {fileID: 5388224996074128664}
-  - {fileID: 5395469812233328941}
---- !u!114 &4151569233255065424
+  - {fileID: 227475884161370516}
+--- !u!114 &227475884161370516
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,17 +84,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
-  m_Name: Random A
+  m_Name: TargetNode
   m_EditorClassIdentifier: 
-  NodeName: Random A
+  NodeName: 
   chance: 1
   state: 0
   started: 0
-  guid: 2843550e539117842bf2c0503c7c77c8
-  position: {x: -310, y: -150}
+  guid: d663f86c0e8783b43bdc7cb91c17889d
+  position: {x: -312.35016, y: -183.00003}
   children:
   - {fileID: 4554433209448224214}
-  TargetIntention: 9
+  TargetIntention: 6
   With: 0
   value: 0
 --- !u!114 &4554433209448224214
@@ -130,20 +107,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
-  m_Name: +75%HP
+  m_Name: Robyn
   m_EditorClassIdentifier: 
-  NodeName: +75%HP
+  NodeName: Robyn
   chance: 1
   state: 0
   started: 0
   guid: a9420b19c3f107c46a9a46696c727a80
-  position: {x: -49, y: -151}
+  position: {x: -52.300148, y: -184.30003}
   children: []
   spellList:
   - Spell: {fileID: 11400000, guid: cb79d2f7e5a8fb34da52fb2e56374c56, type: 2}
-    Chance: 3
-  - Spell: {fileID: 11400000, guid: 1252905fbb39a6f47a4cb0bc7ba007ca, type: 2}
-    Chance: 1
+    Chance: 0
 --- !u!114 &5388224996074128664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,63 +129,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
-  m_Name: Random B
+  m_Name: "Alli\xE9 avec le plus de vie"
   m_EditorClassIdentifier: 
-  NodeName: Random B
+  NodeName: "Alli\xE9 avec le plus de vie"
   chance: 1
   state: 0
   started: 0
   guid: b560c6d42326a314e8b46f4255b58e8d
-  position: {x: -311, y: -47}
+  position: {x: -307.5501, y: -48.150013}
   children:
   - {fileID: -5760006492523007491}
-  TargetIntention: 9
+  TargetIntention: 3
   With: 0
   value: 0
---- !u!114 &5395469812233328941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
-  m_Name: Random C
-  m_EditorClassIdentifier: 
-  NodeName: Random C
-  chance: 1
-  state: 0
-  started: 0
-  guid: 8f6e2d60b3b351d469935f224ce0a087
-  position: {x: -311, y: 65}
-  children:
-  - {fileID: 8564941626517358859}
-  TargetIntention: 9
-  With: 0
-  value: 0
---- !u!114 &8564941626517358859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
-  m_Name: -40%HP
-  m_EditorClassIdentifier: 
-  NodeName: -40%HP
-  chance: 1
-  state: 0
-  started: 0
-  guid: 50e8a4a7751e84944947ce3c0809012a
-  position: {x: -51, y: 65}
-  children: []
-  spellList:
-  - Spell: {fileID: 11400000, guid: 1252905fbb39a6f47a4cb0bc7ba007ca, type: 2}
-    Chance: 3
-  - Spell: {fileID: 11400000, guid: cb79d2f7e5a8fb34da52fb2e56374c56, type: 2}
-    Chance: 1
