@@ -1,4 +1,5 @@
 using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
 
 namespace TheFowler
@@ -9,7 +10,7 @@ namespace TheFowler
         public SkillSelector skillSelector;
 
         [TabGroup("References")] [SerializeField]
-        public AnimatedText descriptionText;
+        public TextMeshProUGUI descriptionText;
 
         public override void Show()
         {
