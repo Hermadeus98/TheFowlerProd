@@ -39,12 +39,14 @@ namespace TheFowler
                 if (BattleManager.CurrentBattleActor.Mana.HaveEnoughMana(referedSpell.ManaCost))
                 {
                     isSelectable = true;
-                    selectableFeedback.enabled = false;
+                    canvasGroup.alpha = 1f;
+                    //selectableFeedback.enabled = false;
                 }
                 else
                 {
                     isSelectable = false;
-                    selectableFeedback.enabled = true;
+                    canvasGroup.alpha = .5f;
+                    //selectableFeedback.enabled = true;
                 }
             }
         }
@@ -54,14 +56,14 @@ namespace TheFowler
         {
             //canvasGroup.alpha = 1f;
             s?.Kill();
-            s = soulignage.DOFillAmount(1f, .5f);
+            s = soulignage.DOFillAmount(1f, .35f);
         }
 
         public override void DeSelect()
         {
             //canvasGroup.alpha = .5f;
             s.Kill();
-            s = soulignage.DOFillAmount(0f, .5f);
+            s = soulignage.DOFillAmount(0f, .1f);
         }
     }
 }
