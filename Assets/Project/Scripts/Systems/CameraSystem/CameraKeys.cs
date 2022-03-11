@@ -17,10 +17,12 @@ namespace TheFowler
             public const string
                 ActionPicking = "ActionPicking",
                 SkillPicking = "SkillPicking",
-                TargetPickingDefault = "TargetPickingDefault",
+                TargetPickingDefault = "SkillExecutionDefault",
+                TargetPickingGuard = "TargetPickingGuard",
                 TargetPickingAllies = "TargetPickingAllies",
                 TargetPickingEnemies = "TargetPickingEnemies",
-                SkillExecutionDefault = "SkillExecutionDefault";
+                SkillExecutionDefault = "SkillExecutionDefault",
+                SkillExecutionGuard = "SkillExecutionGuard";
         }
         
         public class TPS

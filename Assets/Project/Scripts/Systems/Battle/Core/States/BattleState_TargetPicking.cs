@@ -30,7 +30,7 @@ namespace TheFowler
             }
             else if(BattleManager.IsEnemyTurn)
             {
-                SetCamera(CameraKeys.BattleKeys.TargetPickingDefault);
+                SetCamera(CameraKeys.BattleKeys.TargetPickingGuard);
             }
             
             PlaySpellPreview();

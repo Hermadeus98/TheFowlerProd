@@ -22,7 +22,7 @@ namespace TheFowler
             }
             else if (BattleManager.IsEnemyTurn)
             {
-                SetCamera(CameraKeys.BattleKeys.SkillExecutionDefault);
+                SetCamera(CameraKeys.BattleKeys.SkillExecutionGuard);
             }
 
             StartCoroutine(Cast());

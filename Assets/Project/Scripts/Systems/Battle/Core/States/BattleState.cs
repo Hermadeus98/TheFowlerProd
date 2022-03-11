@@ -41,6 +41,8 @@ namespace TheFowler
                     CameraManager.Instance.SetCamera(cameraPath);
                     break;
                 case BattleCameraBatch.CURRENT_ACTOR:
+                    Debug.Log(BattleManager.CurrentBattleActor);
+                    Debug.Log(BattleManager.CurrentBattleActor.CameraBatchBattle);
                     CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle, defaultCam);
                     break;
                 default:

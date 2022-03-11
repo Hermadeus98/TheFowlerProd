@@ -80,6 +80,11 @@ namespace TheFowler
         
         private void ChangeCamera(CameraBatch cameraBatch, string key = "Default")
         {
+            if (!cameraBatch.CameraReferences.ContainsKey(key)){
+                Debug.LogError("MISSING CAMERA KEY " + key);
+                return;
+            }
+
             var newCamera = cameraBatch.CameraReferences[key].virtualCamera;
             
             if(Current.IsNotNull())
