@@ -82,5 +82,9 @@ namespace TheFowler
         TF_Voice_Test_Narra02,
         TF_Voice_Test_Narra03,
 
+        //FUCK
+        TF_Main_SetTutoOff,
+        TF_Main_SetTutoOn,
+
     }
 }
