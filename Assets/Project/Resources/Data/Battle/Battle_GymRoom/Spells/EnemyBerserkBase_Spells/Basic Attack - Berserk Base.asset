@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: Nursery Rhyme of protection
+  m_Name: Basic Attack - Berserk Base
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -30,13 +30,13 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.DefendEffect, Assembly-CSharp
+      Data: 1|TheFowler.DamageEffect, Assembly-CSharp
     - Name: EffectName
       Entry: 1
       Data: NO NAME EFFECT
     - Name: TargetType
       Entry: 3
-      Data: 3
+      Data: 1
     - Name: battleCameraBatch
       Entry: 3
       Data: 3
@@ -57,7 +57,7 @@ MonoBehaviour:
       Data: 
     - Name: cameraSpecificPath
       Entry: 1
-      Data: TargetPickingAllies
+      Data: SkillExecutionAttack
     - Name: cameraBattlePath
       Entry: 1
       Data: TargetAllies
@@ -66,22 +66,13 @@ MonoBehaviour:
       Data: false
     - Name: audioEvent
       Entry: 3
-      Data: 0
+      Data: 8
     - Name: ReferedSpell
       Entry: 10
       Data: 0
-    - Name: effectDuration
-      Entry: 3
-      Data: 2
-    - Name: effect
+    - Name: damage
       Entry: 4
-      Data: 25
-    - Name: manaToRestaure
-      Entry: 3
-      Data: 0
-    - Name: restaureManaAt
-      Entry: 3
-      Data: 0
+      Data: 20
     - Name: 
       Entry: 8
       Data: 
@@ -91,11 +82,11 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Nursery Rhyme of Protection
+  SpellName: Basic Attack
   ManaCost: 0
-  TargetType: 3
+  TargetType: 1
   executionDurationBeforeCast: 1
   executionDurationAfterCast: 1
-  SpellDescription: Bonus Def
+  SpellDescription: Basic Attack
   ExecutionType: 0
   SpellType: 0
