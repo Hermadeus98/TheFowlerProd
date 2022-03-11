@@ -26,7 +26,6 @@ namespace TheFowler
         public float fadeDuration = .2f;
         public float showDuration = 2f;
 
-        public Image blackPanel;
         public RectTransform backGround;
         
         public enum MenuPanel
@@ -131,7 +130,7 @@ namespace TheFowler
             backGround.DOScale(backGround.localScale * 1.2f, 1f).SetEase(Ease.InOutSine);
             yield return new WaitForSeconds(1f + .1f);
             
-            blackPanel.DOFade(1f, fadeDuration);
+            BlackPanel.Instance.Show();
             yield return new WaitForSeconds(fadeDuration + .1f);
 
             SceneManager.UnloadSceneAsync("Scene_MenuPrincipal");

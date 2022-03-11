@@ -14,13 +14,13 @@ namespace TheFowler
         protected override void RegisterEvent()
         {
             base.RegisterEvent();
-            ChapterManager.onChapterLoaded += OnChapterLoaded;
+            //ChapterManager.onChapterLoaded += OnChapterLoaded;
         }
 
         protected override void UnregisterEvent()
         {
             base.UnregisterEvent();
-            ChapterManager.onChapterLoaded -= OnChapterLoaded;
+            //ChapterManager.onChapterLoaded -= OnChapterLoaded;
         }
 
         private void OnChapterLoaded(Chapter chapter)
