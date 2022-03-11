@@ -37,7 +37,7 @@ namespace TheFowler
 
         public void Refresh_Att(BattleActor actor)
         {
-            var att = actor.BattleActorInfo.debuffMalus + actor.BattleActorInfo.debuffMalus;
+            var att = actor.BattleActorInfo.buffBonus + actor.BattleActorInfo.debuffMalus;
 
             if (att != 0)
             {
