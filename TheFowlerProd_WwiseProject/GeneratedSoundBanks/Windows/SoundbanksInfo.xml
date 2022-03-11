@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Language="SFX" Hash="4209469615">
+		<SoundBank Id="1355168291" Language="SFX" Hash="3804031099">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
@@ -29,9 +29,16 @@
 						<State Id="930712164" Name="Off" ObjectPath="\States\Default Work Unit\Mute\Off" GUID="{BB0D7B2A-57C2-470B-90A9-FE079A4E2CDC}"/>
 					</States>
 				</StateGroup>
+				<StateGroup Id="3762955427" Name="Tutorial" ObjectPath="\States\Default Work Unit\Tutorial" GUID="{94153AC9-BF8B-43DF-B048-BD66D14A2F80}">
+					<States>
+						<State Id="748895195" Name="None" ObjectPath="\States\Default Work Unit\Tutorial\None" GUID="{5DADD638-2C2E-48BF-8CF4-0C0EA6B3B952}"/>
+						<State Id="1651971902" Name="On" ObjectPath="\States\Default Work Unit\Tutorial\On" GUID="{748269BD-C486-4DE3-AED5-7A9F3A4A5800}"/>
+						<State Id="930712164" Name="Off" ObjectPath="\States\Default Work Unit\Tutorial\Off" GUID="{5460DFC8-0F73-4233-899A-16FD23FD2307}"/>
+					</States>
+				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3787826988" Language="SFX" Hash="1535073536">
+		<SoundBank Id="3787826988" Language="SFX" Hash="377629408">
 			<ObjectPath>\SoundBanks\Default Work Unit\Core</ObjectPath>
 			<ShortName>Core</ShortName>
 			<Path>Core.bnk</Path>
@@ -79,6 +86,16 @@
 				<Event Id="1059030324" Name="TF_Main_SetMuteOn" ObjectPath="\Events\Default Work Unit\Utilities\TF_Main_SetMuteOn" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
 					<ActionSetState>
 						<ActionSetStateEntry Id="1651971902" Name="On" ObjectPath="\States\Default Work Unit\Mute\On"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="4166158089" Name="TF_Main_SetTutoOff" ObjectPath="\Events\Default Work Unit\Utilities\TF_Main_SetTutoOff" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionSetState>
+						<ActionSetStateEntry Id="930712164" Name="Off" ObjectPath="\States\Default Work Unit\Tutorial\Off"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="3365239869" Name="TF_Main_SetTutoOn" ObjectPath="\Events\Default Work Unit\Utilities\TF_Main_SetTutoOn" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionSetState>
+						<ActionSetStateEntry Id="1651971902" Name="On" ObjectPath="\States\Default Work Unit\Tutorial\On"/>
 					</ActionSetState>
 				</Event>
 				<Event Id="1242661300" Name="TF_Music_SetBattle" ObjectPath="\Events\Default Work Unit\Utilities\TF_Music_SetBattle" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
