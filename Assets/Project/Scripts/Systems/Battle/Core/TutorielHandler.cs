@@ -10,6 +10,7 @@ namespace TheFowler
     {
         [TabGroup("References"), SerializeField] private PlayerInput Input;
         [TabGroup("References"), SerializeField] private MMFeedbacks tutoFeedbacks;
+        [TabGroup("References"), SerializeField] private Battle battle;
 
         private ActionPickingView ActionPickingView;
         private string inputName;
@@ -94,7 +95,20 @@ namespace TheFowler
 
         public void SetInputName(string value) => inputName = value;
 
-        public void KillTuto() => Tutoriel.Kill();
+        public void KillTuto()
+        {
+            Tutoriel.Kill();
+
+            HidePanel();
+            SetTargetNull();
+            battle.ResetTurn();
+
+            ActionPickingView.AllowBasicAttack(true);
+            ActionPickingView.AllowParry(true);
+            ActionPickingView.AllowSkill(true);
+
+            //this.enabled = false;
+        }
         
         private void WaitInput()
         {
