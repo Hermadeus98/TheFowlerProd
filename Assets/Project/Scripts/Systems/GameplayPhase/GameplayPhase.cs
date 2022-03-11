@@ -55,10 +55,10 @@ public class GameplayPhase : GameplayMonoBehaviour
 
     protected virtual void Update()
     {
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        /*if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             EndPhase();
-        }
+        }*/
         
         if(!isActive)
             return;
