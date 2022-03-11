@@ -59,6 +59,7 @@ namespace TheFowler
 
         public static void ChangeChapter(ChapterEnum chapter)
         {
+            BlackPanel.Instance.Show();
             Chapters.SetState(GetChapterKey(chapter), GameState.gameArguments);
             onChapterChange?.Invoke(Chapters.CurrentState as Chapter);
         }
