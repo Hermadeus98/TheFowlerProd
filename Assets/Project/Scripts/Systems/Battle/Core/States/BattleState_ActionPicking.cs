@@ -23,6 +23,8 @@ namespace TheFowler
                 ActionPickingView = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
                 BattleManager.CurrentBattleActor.BattleActorAnimator.Idle();
             }
+
+            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.ACTIONPICKING);
         }
 
         IEnumerator OnStateEnterIE()
@@ -35,8 +37,12 @@ namespace TheFowler
 
             if (BattleManager.IsAllyTurn)
             {
-                ActionPickingView = UI.OpenView<ActionPickingView>(UI.Views.ActionPicking);
-                ActionPickingView.Refresh(EventArgs.Empty);
+                if(UI.GetView<ActionPickingView>(UI.Views.ActionPicking) != null)
+                {
+                    ActionPickingView = UI.OpenView<ActionPickingView>(UI.Views.ActionPicking);
+                    ActionPickingView.Refresh(EventArgs.Empty);
+                }
+
             }
 
 

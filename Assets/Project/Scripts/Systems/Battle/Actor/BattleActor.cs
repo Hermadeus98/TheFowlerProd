@@ -30,6 +30,9 @@ namespace TheFowler
         private Health health;
         [TabGroup("Components")] [SerializeField]
         private Mana mana;
+        [TabGroup("Components")] [SerializeField]
+        public Punchline punchline;
+
         
         [TabGroup("Datas")]
         [SerializeField] protected BattleActorInfo battleActorInfo;

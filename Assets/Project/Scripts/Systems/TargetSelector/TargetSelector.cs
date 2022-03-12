@@ -207,11 +207,28 @@ namespace TheFowler
             actors.ForEach(w => w.OnTarget());
         }
 
-        private static void Deselect(BattleActor actor)
+        public static void Deselect(BattleActor actor)
         {
             actor.OnEndTarget();
             EndPreview(actor);
         }
+
+        public static void DeselectAll()
+        {
+            
+            for (int i = 0; i < BattleManager.GetAllEnemies().Length; i++)
+            {
+                BattleManager.GetAllEnemies()[i].OnEndTarget();
+                EndPreview(BattleManager.GetAllEnemies()[i]);
+            }
+
+            for (int i = 0; i < BattleManager.GetAllAllies().Length; i++)
+            {
+                BattleManager.GetAllAllies()[i].OnEndTarget();
+                EndPreview(BattleManager.GetAllAllies()[i]);
+            }
+        }
+
 
         private static void Preview(BattleActor actor)
         {

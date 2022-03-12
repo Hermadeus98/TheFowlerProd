@@ -21,6 +21,8 @@ namespace TheFowler
             }
             
             BattleManager.CurrentRound.OverrideTurn(selectedActorForFury);
+
+            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.FURY);
         }
     }
 }

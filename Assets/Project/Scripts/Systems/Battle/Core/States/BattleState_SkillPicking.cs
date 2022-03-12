@@ -68,6 +68,8 @@ namespace TheFowler
             {
                 BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.TARGET_PICKING);
             }
+
+            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.SKILLPICKING);
         }
 
         public override void OnStateExit(EventArgs arg)

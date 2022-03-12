@@ -120,6 +120,48 @@ namespace TheFowler
             ReferedActor.BattleActorInfo.isDeath = true;
             ReferedActor.OnDeath();
             ReferedActor.BattleActorStats.health = currentHealth;
+
+            ReferedActor.punchline.PlayPunchline(PunchlineEnum.DEATH);
+            PunchlineAllyDeath();
+            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.KILL);
+
+        }
+
+        private void PunchlineAllyDeath()
+        {
+            if (BattleManager.GetAllAllies().Contains(ReferedActor))
+            {
+                for (int i = 0; i < BattleManager.GetAllAllies().Length; i++)
+                {
+                    BattleActor act = BattleManager.GetAllAllies()[i];
+
+                    if (act != ReferedActor)
+                    {
+                        if (act.BattleActorInfo.isDeath == false)
+                        {
+                            act.punchline.PlayPunchline(PunchlineEnum.ALLYDEATH);
+                        }
+
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < BattleManager.GetAllEnemies().Length; i++)
+                {
+                    BattleActor act = BattleManager.GetAllEnemies()[i];
+
+                    if (act != ReferedActor)
+                    {
+                        if (act.BattleActorInfo.isDeath == false)
+                        {
+                            act.punchline.PlayPunchline(PunchlineEnum.ALLYDEATH);
+                        }
+
+                    }
+                }
+
+            }
         }
 
         [Button]

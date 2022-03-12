@@ -19,11 +19,24 @@ namespace TheFowler
         private bool isShowed = false;
 
         private BattleActor actorTarget;
+        private BattleActor actorTargetEndPreview;
         private BattleActor actor;
 
+        private ActionPickingView actionView;
+        private AlliesDataView alliesView;
         private void Awake()
         {
             inputName = string.Empty;
+
+
+        }
+
+        private IEnumerator Start()
+        {
+            yield return new WaitForSeconds(.5f);
+            actionView = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
+
+            alliesView = UI.GetView<AlliesDataView>(UI.Views.AlliesDataView);
         }
 
         public void SetIsTutoriel(bool value)
@@ -66,8 +79,12 @@ namespace TheFowler
             var view = UI.GetView<TutorielView>(UI.Views.Tuto);
             view.Show((PanelTutoriel)System.Enum.Parse(typeof(PanelTutoriel), panel));
 
-            UI.GetView<ActionPickingView>(UI.Views.ActionPicking).Hide();
-            UI.GetView<AlliesDataView>(UI.Views.AlliesDataView).Hide();
+            //UI.GetView<ActionPickingView>(UI.Views.ActionPicking).Hide();
+            //UI.GetView<AlliesDataView>(UI.Views.AlliesDataView).Hide();
+
+            actionView?.HideTuto();
+            alliesView?.Hide();
+
         }
 
         public void HidePanel()
@@ -79,8 +96,9 @@ namespace TheFowler
             var view = UI.GetView<TutorielView>(UI.Views.Tuto);
             view.Hide();
 
-            UI.GetView<AlliesDataView>(UI.Views.AlliesDataView).Show();
-            UI.GetView<ActionPickingView>(UI.Views.ActionPicking).Show();
+
+            actionView?.Show();
+            alliesView?.Show();
 
             ActionPickingView = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
             if (Tutoriel.BasicAttack) ActionPickingView.AllowBasicAttack(true);
@@ -112,6 +130,9 @@ namespace TheFowler
 
             UI.GetView<TutorielView>(UI.Views.Tuto).gameObject.SetActive(false);
 
+            SetTargetNull();
+            SetTargetPreviewNull();
+
             //this.enabled = false;
         }
         
@@ -131,6 +152,7 @@ namespace TheFowler
             if (actor == null) { actorTarget = null; Tutoriel.LockTarget = false; return; }
             else
             {
+                
                 Tutoriel.LockTarget = true;
                 actorTarget = actor;
                 
@@ -138,7 +160,19 @@ namespace TheFowler
 
         }
 
+        public void EndPreview(BattleActor actor)
+        {
+            if (actor == null) {return; }
+            else
+            {
+                actorTargetEndPreview = actor;
+
+            }
+
+        }
+
         public void SetTargetNull() => actorTarget = null;
+        public void SetTargetPreviewNull() => actorTargetEndPreview = null;
 
         public void SetData(BattleActorData data) => actor.BattleActorData = data;
         public void SetActor(BattleActor act) => actor = act;
@@ -150,16 +184,34 @@ namespace TheFowler
 
             if (isShowed)
             {
-                UI.GetView<ActionPickingView>(UI.Views.ActionPicking).Hide();
-                UI.GetView<AlliesDataView>(UI.Views.AlliesDataView).Hide();
+                actionView?.HideTuto();
+                alliesView?.Hide();
             }
 
             if(actorTarget != null)
             {
+                
                 actorTarget.SelectAsTarget();
                 actorTarget.OnTarget();
+                PreviewManager.ShowActorPreview(actorTarget);
             }
 
+            if(actorTargetEndPreview != null)
+            {
+                actorTargetEndPreview.OnEndTarget();
+                PreviewManager.HideActorPreview(actorTargetEndPreview);
+            }
+
+        }
+
+        private IEnumerator WaitChangeActionView(bool value)
+        {
+
+            yield return new WaitForSeconds(.1f);
+
+            actionView.HideTuto();
+
+            alliesView.Hide();
         }
 
 

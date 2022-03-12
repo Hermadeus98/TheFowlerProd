@@ -28,7 +28,7 @@ namespace TheFowler
         [FoldoutGroup("Anim")] public Image X_box, Y_box, A_box, B_box;
         [FoldoutGroup("Anim")] public Image middle;
         [FoldoutGroup("Anim")] public TextMeshProUGUI X_text, Y_text, A_text, B_text;
-        [FoldoutGroup("Anim"), SerializeField] private float fillDuration = .2f;
+        [FoldoutGroup("Anim"), SerializeField] private float fillDurationHide = .2f, fillDurationShow = .2f;
 
         private Coroutine opening;
         
@@ -38,6 +38,12 @@ namespace TheFowler
             backAnim?.Kill();
             backAnim = backPart.DOFade(1f, .1f);
             ShowAnim();
+        }
+
+        public void HideTuto()
+        {
+            CanvasGroup.alpha = 0;
+
         }
 
         [Button]
@@ -68,23 +74,23 @@ namespace TheFowler
 
         IEnumerator ShowAnimIE()
         {
-            middle.DOFillAmount(1f, fillDuration * 4f);
+            middle.DOFillAmount(1f, fillDurationShow * 4f);
             
-            B.DOFillAmount(1f, fillDuration);
-            yield return new WaitForSeconds(fillDuration);
+            B.DOFillAmount(1f, fillDurationShow);
+            yield return new WaitForSeconds(fillDurationShow);
             
-            Y.DOFillAmount(1f, fillDuration);
-            A.DOFillAmount(1f, fillDuration);
-            yield return new WaitForSeconds(fillDuration);
+            Y.DOFillAmount(1f, fillDurationShow);
+            A.DOFillAmount(1f, fillDurationShow);
+            yield return new WaitForSeconds(fillDurationShow);
             
-            X.DOFillAmount(1f, fillDuration);
-            yield return new WaitForSeconds(fillDuration);
+            X.DOFillAmount(1f, fillDurationShow);
+            yield return new WaitForSeconds(fillDurationShow);
 
-            Y_box.DOFillAmount(1f, fillDuration);
-            A_box.DOFillAmount(1f, fillDuration);
-            X_box.DOFillAmount(1f, fillDuration);
-            B_box.DOFillAmount(1f, fillDuration);
-            yield return new WaitForSeconds(fillDuration);
+            Y_box.DOFillAmount(1f, fillDurationShow);
+            A_box.DOFillAmount(1f, fillDurationShow);
+            X_box.DOFillAmount(1f, fillDurationShow);
+            B_box.DOFillAmount(1f, fillDurationShow);
+            yield return new WaitForSeconds(fillDurationShow);
 
             X_text.gameObject.SetActive(true);
             Y_text.gameObject.SetActive(true);
@@ -101,30 +107,30 @@ namespace TheFowler
         
         IEnumerator HideAnimIE()
         {
-            middle.DOFillAmount(0f, fillDuration * 4f);
+            middle.DOFillAmount(0f, fillDurationHide * 4f);
             
             X_text.gameObject.SetActive(false);
             Y_text.gameObject.SetActive(false);
             B_text.gameObject.SetActive(false);
             A_text.gameObject.SetActive(false);
-            yield return new WaitForSeconds(fillDuration);
+            yield return new WaitForSeconds(fillDurationHide);
 
-            Y_box.DOFillAmount(0f, fillDuration);
-            A_box.DOFillAmount(0f, fillDuration);
-            X_box.DOFillAmount(0f, fillDuration);
-            B_box.DOFillAmount(0f, fillDuration);
-            yield return new WaitForSeconds(fillDuration);
+            Y_box.DOFillAmount(0f, fillDurationHide);
+            A_box.DOFillAmount(0f, fillDurationHide);
+            X_box.DOFillAmount(0f, fillDurationHide);
+            B_box.DOFillAmount(0f, fillDurationHide);
+            yield return new WaitForSeconds(fillDurationHide);
             
-            X.DOFillAmount(0f, fillDuration);
-            yield return new WaitForSeconds(fillDuration);
+            X.DOFillAmount(0f, fillDurationHide);
+            yield return new WaitForSeconds(fillDurationHide);
             
-            Y.DOFillAmount(0f, fillDuration);
-            A.DOFillAmount(0f, fillDuration);
-            yield return new WaitForSeconds(fillDuration);
+            Y.DOFillAmount(0f, fillDurationHide);
+            A.DOFillAmount(0f, fillDurationHide);
+            yield return new WaitForSeconds(fillDurationHide);
             
-            B.DOFillAmount(0f, fillDuration);
+            B.DOFillAmount(0f, fillDurationHide);
 
-            yield return new WaitForSeconds(fillDuration);
+            yield return new WaitForSeconds(fillDurationHide);
             CanvasGroup.alpha = 0;
         }
 

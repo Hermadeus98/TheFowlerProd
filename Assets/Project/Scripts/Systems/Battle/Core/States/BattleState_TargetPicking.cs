@@ -34,6 +34,8 @@ namespace TheFowler
             }
             
             PlaySpellPreview();
+
+            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.TARGETPICKING);
         }
 
 

@@ -26,6 +26,8 @@ namespace TheFowler
             }
 
             StartCoroutine(Cast());
+
+            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.SKILLEXECUTION);
         }
 
         IEnumerator Cast()

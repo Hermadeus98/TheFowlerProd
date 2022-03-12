@@ -57,5 +57,15 @@ namespace TheFowler
 
             oldList.Clear();
         }
+
+        public static void HideActorPreview(BattleActor actor)
+        {
+            actor.Health.FillBar?.HidePreview();
+        }
+
+        public static void ShowActorPreview(BattleActor actor)
+        {
+            actor.Health.FillBar?.ShowPreview();
+        }
     }
 }
