@@ -85,6 +85,12 @@ namespace TheFowler
                         return false;
                     }
                         break;
+                    case HardChoice.AT_LEAST_AN_ALLY_HAVE_TAUNT:
+                        var allies = TargetSelector.GetAllAllies().Where(w => w.BattleActorInfo.isTaunt).ToArray();
+                        if (allies.Length > 0)
+                            return true;
+
+                        return false;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -283,5 +289,6 @@ namespace TheFowler
     {
         AT_LEAST_AN_ENEMY_HAVE_BUFF,
         AT_LEAST_AN_ENEMY_HAVE_DEFEND_BUFF,
+        AT_LEAST_AN_ALLY_HAVE_TAUNT,
     }
 }

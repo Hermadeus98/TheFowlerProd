@@ -20,10 +20,13 @@ namespace TheFowler
         public SelectionPointer SelectionPointer;
         [TabGroup("References")]
         [SerializeField] protected StateIcons stateIcons;
+
+        [TabGroup("References")] public FeedbackHandler FeedbackHandler;
         
         [TabGroup("References")] public BattleActorAnimator BattleActorAnimator;
         [TabGroup("References")] public FeedbackReferences feedbackReferences;
-        
+        [TabGroup("References")] public AnimTriggerBase AnimTrigger;
+         
         [TabGroup("Components")] [SerializeField]
         private BattleActorComponent[] battleActorComponents;
         [TabGroup("Components")] [SerializeField]
@@ -58,6 +61,8 @@ namespace TheFowler
 
         protected override void OnStart()
         {
+            FeedbackHandler.Generate();
+            
             base.OnStart();
             
             OnChangeDifficulty(DifficultyManager.currentDifficulty);

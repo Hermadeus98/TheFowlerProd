@@ -21,7 +21,8 @@ namespace TheFowler
         public bool ImPreview = false;
         
         public AudioGenericEnum audioEvent;
-
+        public string eventName;
+        
         [ReadOnly] public Spell ReferedSpell;
 
         public virtual void PreviewEffect(BattleActor emitter)
