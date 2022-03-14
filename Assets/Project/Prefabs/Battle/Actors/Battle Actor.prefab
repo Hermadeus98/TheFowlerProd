@@ -63,6 +63,7 @@ MonoBehaviour:
   sockets: {fileID: 5934240025784311385}
   SelectionPointer: {fileID: 7542574822764082769}
   stateIcons: {fileID: 0}
+  FeedbackHandler: {fileID: 0}
   BattleActorAnimator: {fileID: 3185024958187003936}
   feedbackReferences: {fileID: 0}
   AnimTrigger: {fileID: 0}
@@ -266,6 +267,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3018868470752265347}
+  - component: {fileID: 5400599569438271829}
   m_Layer: 0
   m_Name: Attack Feedbacks
   m_TagString: Untagged
@@ -291,6 +293,99 @@ Transform:
   m_Father: {fileID: 9076889276042552686}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5400599569438271829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4925183308677114185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 600426fa97212a74e87d9d8203c2450d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 5435310747984560729}
+    - {fileID: 4572441591797687675}
+    - {fileID: 7618913456412426589}
+    - {fileID: 7483161009442615480}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: FeedbacksMap
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[MoreMountains.Feedbacks.MMFeedbacks,
+        MoreMountains.Feedbacks]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Attack Feedback
+    - Name: $v
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Charge Attack Feedback
+    - Name: $v
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Charge Attack Feedback Out
+    - Name: $v
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: ShockWaveEffect
+    - Name: $v
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!1 &5941579843641085622
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,6 +722,7 @@ GameObject:
   - component: {fileID: 348423152989892852}
   - component: {fileID: 7483161009442615480}
   - component: {fileID: 8370264426132891839}
+  - component: {fileID: 11221953342577923}
   m_Layer: 0
   m_Name: ShockWaveEffect
   m_TagString: Untagged
@@ -662,6 +758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Feedbacks:
+  - {fileID: 11221953342577923}
   - {fileID: 8370264426132891839}
   InitializationMode: 2
   SafeMode: 3
@@ -738,6 +835,49 @@ MonoBehaviour:
   StateOnStop: 1
   SetStateOnReset: 0
   StateOnReset: 1
+--- !u!114 &11221953342577923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7823400104564469499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66650ffe68eb1f548acc774ac2db1b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Active: 1
+  Label: Pause
+  Chance: 100
+  Timing:
+    TimescaleMode: 0
+    InitialDelay: 0
+    CooldownDuration: 0
+    ExcludeFromHoldingPauses: 0
+    InterruptsOnStop: 1
+    NumberOfRepeats: 0
+    RepeatForever: 0
+    DelayBetweenRepeats: 1
+    MMFeedbacksDirectionCondition: 0
+    PlayDirection: 0
+    ConstantIntensity: 0
+    UseIntensityInterval: 0
+    IntensityIntervalMin: 0
+    IntensityIntervalMax: 0
+    Sequence: {fileID: 0}
+    TrackID: 0
+    Quantized: 0
+    TargetBPM: 120
+  DebugActive: 0
+  PauseDuration: 1
+  RandomizePauseDuration: 0
+  MinPauseDuration: 1
+  MaxPauseDuration: 3
+  RandomizeOnEachPlay: 1
+  ScriptDriven: 0
+  AutoResume: 0
+  AutoResumeAfter: 0.25
 --- !u!1 &8142878564099548110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1648,6 +1788,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38aabdd5ea166934c83ac4d858f142bb, type: 3}
+--- !u!1 &7471454754974072842 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 985027197800157521, guid: 38aabdd5ea166934c83ac4d858f142bb, type: 3}
+  m_PrefabInstance: {fileID: 7639360094288220507}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &270530907740584654 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7621616600314817429, guid: 38aabdd5ea166934c83ac4d858f142bb, type: 3}
+  m_PrefabInstance: {fileID: 7639360094288220507}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5275145578759116895 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2535915214473316612, guid: 38aabdd5ea166934c83ac4d858f142bb, type: 3}
@@ -1659,16 +1809,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0f7b3fda4695934aab749a85745c29f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &7471454754974072842 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 985027197800157521, guid: 38aabdd5ea166934c83ac4d858f142bb, type: 3}
-  m_PrefabInstance: {fileID: 7639360094288220507}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &270530907740584654 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7621616600314817429, guid: 38aabdd5ea166934c83ac4d858f142bb, type: 3}
-  m_PrefabInstance: {fileID: 7639360094288220507}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8886765499235097706
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1856,11 +1996,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8352904456907692841, guid: b53a95500b71916408e88269ac22890c, type: 3}
   m_PrefabInstance: {fileID: 8896665345602334513}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &4791122927561968351 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4110151579525981678, guid: b53a95500b71916408e88269ac22890c, type: 3}
-  m_PrefabInstance: {fileID: 8896665345602334513}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7523836532537439499 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1377332413363362362, guid: b53a95500b71916408e88269ac22890c, type: 3}
@@ -1872,6 +2007,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d22c282a4bc7164297092b60bb2d70d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!198 &4791122927561968351 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4110151579525981678, guid: b53a95500b71916408e88269ac22890c, type: 3}
+  m_PrefabInstance: {fileID: 8896665345602334513}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9128378699351827531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1949,11 +2089,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7a89e91bb22fa74791210fae63a5bee, type: 3}
---- !u!4 &1826306089289248522 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7491407741457288001, guid: c7a89e91bb22fa74791210fae63a5bee, type: 3}
-  m_PrefabInstance: {fileID: 9128378699351827531}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &757522462316083585 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8371565786357112266, guid: c7a89e91bb22fa74791210fae63a5bee, type: 3}
@@ -1965,3 +2100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c00d52c17d0f8498b411e7da5e0f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1826306089289248522 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7491407741457288001, guid: c7a89e91bb22fa74791210fae63a5bee, type: 3}
+  m_PrefabInstance: {fileID: 9128378699351827531}
+  m_PrefabAsset: {fileID: 0}
