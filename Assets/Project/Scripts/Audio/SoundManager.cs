@@ -29,9 +29,11 @@ namespace TheFowler
             
             AudioDatabase.GetElement(key).Post(handler);
         }
-
+        [Button]
         public static void PlaySound(AK.Wwise.Event sound, GameObject handler)
         {
+            Debug.Log(handler.name);
+            
             sound.Stop(handler);
             sound.Post(handler);
         }

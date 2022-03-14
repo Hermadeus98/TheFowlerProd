@@ -25,6 +25,7 @@ namespace TheFowler
         [SerializeField] private Gradient fillColor;
 
         private Image backgroundImage, previewImage, fillImage;
+        [SerializeField] private Image cross, hearth;
 
         protected override void OnStart()
         {
@@ -62,6 +63,9 @@ namespace TheFowler
         public void HidePreview()
         {
             preview.gameObject.SetActive(false);
+            cross.gameObject.SetActive(false);
+            hearth.color = Color.white;
+
         }
         
         [Button]
@@ -82,6 +86,17 @@ namespace TheFowler
                 preview.SetLeft(RectTransform.rect.width - fill.GetRight());
                 preview.SetRight( ( 1 - (newValue / maxValue)) * RectTransform.rect.width);
                 previewImage.color = previewAdd;
+            }
+
+            if(newValue == 0)
+            {
+                cross.gameObject.SetActive(true);
+                hearth.color = Color.black;
+            }
+            else
+            {
+                cross.gameObject.SetActive(false);
+                hearth.color = Color.white;
             }
         }
 

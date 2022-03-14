@@ -175,7 +175,16 @@ namespace TheFowler
         public void SetTargetPreviewNull() => actorTargetEndPreview = null;
 
         public void SetData(BattleActorData data) => actor.BattleActorData = data;
+        public void SetAI(BehaviourTree AI)
+        {
+            EnemyActor newActor = actor as EnemyActor;
+            AIEnemy newAI = new AIEnemy(AI, newActor);
+            newActor.SetAI(newAI);
+            actor = newActor;
+
+        }
         public void SetActor(BattleActor act) => actor = act;
+
 
         private void Update()
         {

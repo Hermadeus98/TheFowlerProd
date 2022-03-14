@@ -40,6 +40,8 @@ namespace TheFowler
             actorTurn.OnTurnStart();
         }
 
+        public void SetAI(AIEnemy newAI) => ai = newAI;
+
         [Button]
         private void Think() => ai.DebugAI();
 

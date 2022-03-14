@@ -48,6 +48,7 @@ namespace TheFowler
 
             if (rand > punchlineStruct.porcentage) return;
 
+            if (punchlineStruct.Events.Count == 0) return;
 
             int rand2 = Random.Range(0, punchlineStruct.Events.Count);
             SoundManager.PlaySound(punchlineStruct.Events[rand2], gameObject);
