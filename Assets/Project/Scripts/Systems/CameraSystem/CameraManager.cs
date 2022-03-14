@@ -116,6 +116,8 @@ namespace TheFowler
         
         public static void RegisterBatch(CameraBatch batch)
         {
+            batch.Generate();
+
             if(!CameraBatches.ContainsKey(batch.batchName))
                 CameraBatches.Add(batch.batchName, batch);
         }

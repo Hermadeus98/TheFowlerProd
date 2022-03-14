@@ -28,7 +28,7 @@ namespace TheFowler
         }
 
         [Button]
-        private void Generate()
+        public void Generate()
         {
             CameraReferences.Clear();
             foreach (CinemachineVirtualCameraBase VM in transform.GetComponentsInChildren<CinemachineVirtualCameraBase>())
