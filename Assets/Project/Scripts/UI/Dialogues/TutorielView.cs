@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using MoreMountains.Feedbacks;
 using Sirenix.OdinInspector;
+
+
 namespace TheFowler
 {
     public class TutorielView : UIView
@@ -14,6 +16,7 @@ namespace TheFowler
 
         [TabGroup("References"), SerializeField] private MMFeedbacks feedbackIn, feedbackOut;
         [TabGroup("Panels"), SerializeField] private CanvasGroup basicAttack, basicAttack2, spell, types, fury, target, buff, parry, heal, done;
+        [TabGroup("References"), SerializeField] private AK.Wwise.Event tutoOn, tutoOff;
 
         private CanvasGroup currentPanel;
 
@@ -32,6 +35,7 @@ namespace TheFowler
             {
                 feedbackIn.PlayFeedbacks();
                 isShowed = true;
+                tutoOn.Post(gameObject);
             }
 
         }
@@ -111,6 +115,7 @@ namespace TheFowler
                 feedbackOut.PlayFeedbacks();
                 isShowed = false;
                 currentPanel.alpha = 0;
+                tutoOff.Post(gameObject);
             }
         }
     }
