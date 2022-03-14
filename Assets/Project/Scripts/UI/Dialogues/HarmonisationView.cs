@@ -41,22 +41,24 @@ namespace TheFowler
             {
                 var db = actorDatabase.GetElement(cast.Dialogue.ActorEnum);
 
-                var dbLeft = actorDatabase.GetElement(cast.Tree.actors[0]);
-                var dbRight = actorDatabase.GetElement(cast.Tree.actors[1]);
+                //var dbLeft = actorDatabase.GetElement(cast.Tree.actors[0]);
+                //var dbRight = actorDatabase.GetElement(cast.Tree.actors[1]);
 
-                portraitLeft.sprite = dbLeft.portraitBuste;
-                portraitRight.sprite = dbRight.portraitBuste;
+                //portraitLeft.sprite = dbLeft.portraitBuste;
+                //portraitRight.sprite = dbRight.portraitBuste;
 
-                if(cast.Tree.actors[0] == cast.Dialogue.ActorEnum)
-                {
-                    portraitLeft.DOColor(Color.white, .2f);
-                    portraitRight.DOColor(Color.grey, .2f);
-                }
-                else if(cast.Tree.actors[1] == cast.Dialogue.ActorEnum)
-                {
-                    portraitLeft.DOColor(Color.grey, .2f);
-                    portraitRight.DOColor(Color.white, .2f);
-                }
+                //if(cast.Tree.actors[0] == cast.Dialogue.ActorEnum)
+                //{
+                //    portraitLeft.DOColor(Color.white, .2f);
+                //    portraitRight.DOColor(Color.grey, .2f);
+                //}
+                //else if(cast.Tree.actors[1] == cast.Dialogue.ActorEnum)
+                //{
+                //    portraitLeft.DOColor(Color.grey, .2f);
+                //    portraitRight.DOColor(Color.white, .2f);
+                //}
+
+                portraitLeft.sprite = db.portraitBuste;
 
 
                 speakerName.SetText(db.actorName);
