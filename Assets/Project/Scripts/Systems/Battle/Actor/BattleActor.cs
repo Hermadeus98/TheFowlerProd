@@ -23,7 +23,8 @@ namespace TheFowler
         
         [TabGroup("References")] public BattleActorAnimator BattleActorAnimator;
         [TabGroup("References")] public FeedbackReferences feedbackReferences;
-        
+        [TabGroup("References")] public AnimTriggerBase AnimTrigger;
+         
         [TabGroup("Components")] [SerializeField]
         private BattleActorComponent[] battleActorComponents;
         [TabGroup("Components")] [SerializeField]
