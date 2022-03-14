@@ -286,6 +286,13 @@
 					<ObjectLists/>
 				</ActorMixer>
 				<ActorMixer Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" ShortID="665120169">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-6</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
@@ -785,6 +792,34 @@
 									<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
 								</Reference>
 							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="TF_Voice_MeetingPhoebe_Guard01" ID="{889647E5-0429-42C2-9519-E9D05CCBA891}" ShortID="732784938">
+									<PropertyList>
+										<Property Name="IsVoice" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="TF_Voice_MeetingPhoebe_Guard01" ID="{9463B2C9-6DBB-40A5-AFE7-8C17C5614A76}">
+											<Language>English(US)</Language>
+											<AudioFile>TF_Voice_MeetingPhoebe_Guard01.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="156144111"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="TF_Voice_MeetingPhoebe_Guard01" ID="{9463B2C9-6DBB-40A5-AFE7-8C17C5614A76}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
 							<ObjectLists/>
 						</ActorMixer>
 						<ActorMixer Name="Lieutenant" ID="{F74DB94D-AD31-4603-890A-539037D33F8D}" ShortID="468390526">
