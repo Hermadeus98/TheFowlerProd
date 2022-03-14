@@ -59,7 +59,10 @@ namespace TheFowler
                         Effects[i].SetCamera();
                         yield return new WaitForSeconds(.3f);
                         Coroutiner.Play(Effects[i].OnBeginCast(emitter, receivers));
+                        
                         Coroutiner.Play(Effects[i].OnCast(emitter, receivers));
+                        emitter.FeedbackHandler.PlayFeedback(Effects[i].eventName);
+
                         Coroutiner.Play(Effects[i].OnFinishCast(emitter, receivers));
                     }
                     break;
@@ -71,7 +74,10 @@ namespace TheFowler
                         
                         Effects[i].SetCamera();
                         yield return Effects[i].OnBeginCast(emitter, receivers);
+                        
                         yield return Effects[i].OnCast(emitter, receivers);
+                        emitter.FeedbackHandler.PlayFeedback(Effects[i].eventName);
+
                         yield return Effects[i].OnFinishCast(emitter, receivers);
                     }
                     break;
