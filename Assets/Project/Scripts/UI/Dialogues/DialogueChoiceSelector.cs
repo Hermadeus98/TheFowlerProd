@@ -17,7 +17,7 @@ namespace TheFowler
             ResetElements();
 
             HideAllElements();
-            DeselectedAll();
+            //DeselectedAll();
             elements.ForEach(w => w.Hide());
             elements.Clear();
             dialogueNodes = new List<DialogueNode>(nodes);
@@ -29,7 +29,7 @@ namespace TheFowler
                 elements[i].Refresh(new WrapperArgs<string>(nodes[i].dialogue.choiceText));
             }
             
-            SelectElement();
+            //SelectElement();
         }
 
         public override void Show()
