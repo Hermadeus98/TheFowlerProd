@@ -37,6 +37,19 @@ namespace TheFowler
                     background.enabled = true;
                     speakerName.enabled = true;
                     animatedText.enabled = true;
+
+
+                    if (cast.DialogueNode.dialogue.dialogueText.Length >= 20)
+                    {
+                        animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Left;
+                    }
+                    else
+                    {
+                        animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
+                    }
+
+                    animatedText.SetText(cast.Dialogue.dialogueText);
+
                     speakerName.SetText(db.actorName);
                     animatedText.SetText(cast.Dialogue.dialogueText);
                 }
@@ -45,7 +58,10 @@ namespace TheFowler
                     background.enabled = false;
                     speakerName.enabled = false;
                     animatedText.enabled = false;
-                    animatedText.SetText(cast.Dialogue.dialogueText);
+
+
+
+                    
                 }
 
             }
@@ -69,14 +85,6 @@ namespace TheFowler
         public void DisplaySentence(DialogueNode node)
         {
 
-            if (node.dialogue.dialogueText.Length >= 10)
-            {
-                animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Left;
-            }
-            else
-            {
-                animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
-            }
             speakerName.SetText(node.dialogue.ActorEnum.ToString());
             animatedText.SetText(node.dialogue.dialogueText);
 

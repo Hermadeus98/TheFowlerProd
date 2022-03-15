@@ -301,22 +301,22 @@ namespace TheFowler
         
         public static BattleActor GetWeakerAlly()
         {
-            return GetAllAllies().OrderBy(w => w.BattleActorData.health).First();
+            return GetAllAllies().OrderBy(w => w.Health.CurrentHealth).First();
         }
         
         public static BattleActor GetWeakerEnemy()
         {
-            return GetAllEnemies().OrderBy(w => w.BattleActorData.health).First();
+            return GetAllEnemies().OrderBy(w => w.Health.CurrentHealth).First();
         }
         
         public static BattleActor GetStrongerAlly()
         {
-            return GetAllAllies().OrderByDescending(w => w.BattleActorData.health).First();
+            return GetAllAllies().OrderByDescending(w => w.Health.CurrentHealth).First();
         }
         
         public static BattleActor GetStrongerEnemy()
         {
-            return GetAllEnemies().OrderByDescending(w => w.BattleActorData.health).First();
+            return GetAllEnemies().OrderByDescending(w => w.Health.CurrentHealth).First();
         }
 
         public static BattleActor GetRandomAlly()
