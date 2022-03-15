@@ -70,7 +70,7 @@ namespace TheFowler
                 switch (dialogueNodes.Count)
                 {
                     case 1:
-                        if (Inputs.actions["A"].WasPressedThisFrame())
+                        if (Inputs.actions["X"].WasPressedThisFrame())
                         {
                             currentIndex = 0;
 
@@ -81,7 +81,7 @@ namespace TheFowler
                         }
                         break;
                     case 2:
-                        if (Inputs.actions["A"].WasPressedThisFrame())
+                        if (Inputs.actions["X"].WasPressedThisFrame())
                         {
                             currentIndex = 0;
 
@@ -101,7 +101,7 @@ namespace TheFowler
                         }
                         break;
                     case 3:
-                        if (Inputs.actions["A"].WasPressedThisFrame())
+                        if (Inputs.actions["X"].WasPressedThisFrame())
                         {
                             currentIndex = 0;
 
