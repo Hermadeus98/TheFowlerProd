@@ -8,7 +8,7 @@ namespace TheFowler
 {
     public class TargetPickingView : UIView
     {
-        public TextMeshProUGUI spellName;
+        public TextMeshProUGUI spellName, targetText, easyDesc;
 
         private Tween opening, move;
 
@@ -39,6 +39,8 @@ namespace TheFowler
         public void Refresh(Spell spell)
         {
             spellName.SetText(spell.SpellName);
+            targetText.SetText(spell.TargetDescription);
+            easyDesc.SetText(spell.EasySpellDescription);
         }
     }
 }

@@ -12,6 +12,9 @@ namespace TheFowler
         [TabGroup("References")] [SerializeField]
         public TextMeshProUGUI descriptionText;
 
+        [TabGroup("References")] [SerializeField]
+        public TextMeshProUGUI easyDescriptionText, targetDescription;
+
         public override void Show()
         {
             base.Show();
