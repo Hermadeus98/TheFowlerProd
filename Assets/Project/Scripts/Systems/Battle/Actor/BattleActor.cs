@@ -242,13 +242,6 @@ namespace TheFowler
             return null;
         }
 
-        [Button]
-        private void Debugssss(float h, float c, float v)
-        {
-            Debug.Log(h * v / 100);
-            Debug.Log(c > h * v / 100);
-        }
-
         public bool IsWeakOf(Spell.SpellTypeEnum spellTypeEnum)
         {
             var result = DamageCalculator.CalculateSpellTypeBonus(spellTypeEnum, BattleActorData.actorType);
@@ -264,6 +257,11 @@ namespace TheFowler
         public virtual void OnDeath()
         {
             BattleActorAnimator.Death();
+        }
+
+        public virtual void ResetActor()
+        {
+            BattleActorAnimator.ResetAnimator();
         }
     }
 

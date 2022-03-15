@@ -90,7 +90,7 @@ namespace TheFowler
             TurnSystem = new TurnSystem(turnActors);
             TurnSystem.StartTurnSystem();
         }
-
+        
         private void InitializeUI()
         {
             var alliesDataView = UI.GetView<AlliesDataView>("AlliesDataView");
@@ -112,7 +112,7 @@ namespace TheFowler
             if (allies.All(w => w.BattleActorInfo.isDeath))
             {
                 Debug.Log("DEFEAT");
-                StopBattle();
+                Lose();
                 return true;
             }
             if (enemies.All(w => w.BattleActorInfo.isDeath))
@@ -200,6 +200,25 @@ namespace TheFowler
                 BattleStateEnum.FURY => "Fury",
                 _ => throw new ArgumentOutOfRangeException(nameof(key), key, null)
             };
+        }
+
+        [Button]
+        public void Lose()
+        {
+            StopBattle();
+            UI.OpenView("LoseView");
+        }
+
+        public Battle referenceBattle;
+        
+        [Button]
+        public void Restart()
+        {
+            var battle = this;
+            battle.gameObject.SetActive(false);
+            var newBattle = Instantiate(referenceBattle, battle.transform.position, battle.transform.rotation);
+            
+            newBattle.PlayPhase();
         }
         
         //---<EDITOR>--------------------------------------------------------------------------------------------------<
