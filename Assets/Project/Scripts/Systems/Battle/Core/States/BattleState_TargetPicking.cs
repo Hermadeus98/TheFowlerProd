@@ -15,13 +15,16 @@ namespace TheFowler
     {
         public bool ReturnToActionMenu { get; set; }
 
+        private TargetPickingView targetPickingView;
+
         public override void OnStateEnter(EventArgs arg)
         {
             base.OnStateEnter(arg);
 
             if (BattleManager.IsAllyTurn)
             {
-                UI.OpenView(UI.Views.TargetPicking);
+                targetPickingView =  UI.OpenView<TargetPickingView>(UI.Views.TargetPicking);
+                targetPickingView.Refresh(Player.SelectedSpell);
                 
                 TargetSelector.OnTargetChanged += PreviewManager.SetPreviews;
                 TargetSelector.Initialize(Player.SelectedSpell.TargetType);
@@ -105,6 +108,7 @@ namespace TheFowler
             }
             
             UI.CloseView(UI.Views.TargetPicking);
+            
             TargetSelector.Quit();
             ReturnToActionMenu = false;
         }
