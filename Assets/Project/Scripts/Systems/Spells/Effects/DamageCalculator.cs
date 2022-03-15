@@ -11,11 +11,12 @@ namespace TheFowler
         {
             var bonusesCoef = emitter.BattleActorInfo.buffBonus / 100;
             var malusesCoef = emitter.BattleActorInfo.debuffMalus / 100;
-            var defenseCoef = receiver.BattleActorInfo.defenseBonus == 0 ? 1f : receiver.BattleActorInfo.defenseBonus / 100;
+            var defenseCoef = receiver.BattleActorInfo.defenseBonus / 100;
+            defenseCoef *= -1f;
           
             var bonusesCalculate = initialDamage * (bonusesCoef - malusesCoef);
             
-            var result = (initialDamage + bonusesCalculate) * defenseCoef;
+            var result = (initialDamage + bonusesCalculate) + (initialDamage * defenseCoef);
             
             var resistance = CalculateSpellTypeBonus(spellType, receiver.BattleActorData.actorType);
             switch (resistance)
