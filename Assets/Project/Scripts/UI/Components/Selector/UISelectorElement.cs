@@ -13,7 +13,7 @@ namespace TheFowler
         [TabGroup("References")]
         [SerializeField] protected TextMeshProUGUI text;
         [TabGroup("References")]
-        [SerializeField, GetComponent] protected CanvasGroup canvasGroup;
+        [SerializeField, GetComponent] public CanvasGroup canvasGroup;
         [TabGroup("References")]
         [SerializeField, GetComponent] protected LayoutElement layoutElement;
         

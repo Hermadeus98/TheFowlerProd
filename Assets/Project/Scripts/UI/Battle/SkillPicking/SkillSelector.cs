@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using QRCode;
 using QRCode.Extensions;
@@ -39,8 +40,21 @@ namespace TheFowler
                 elements[i].Refresh(new WrapperArgs<Spell>(battleActorData.Spells[i]));
             }
 
+            StartCoroutine(ShowElements());
+
             currentIndex = 0;
             SelectElement();
+        }
+
+        private IEnumerator ShowElements()
+        {
+            elements.ForEach(w => w.canvasGroup.alpha = 0);
+
+            for (int i = 0; i < elements.Count(); i++)
+            {
+                elements.ElementAt(i).canvasGroup.DOFade(1f, .1f);
+                yield return new WaitForSeconds(.1f);
+            }
         }
 
         public override void Show()
