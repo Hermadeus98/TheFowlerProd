@@ -15,6 +15,8 @@ namespace TheFowler
         
         public Dictionary<string, CameraReference> CameraReferences = new Dictionary<string, CameraReference>();
 
+        public CinemachineVirtualCameraBase TPScam;
+
         protected override void RegisterEvent()
         {
             base.RegisterEvent();
@@ -38,6 +40,7 @@ namespace TheFowler
                     virtualCamera = VM
                 });
             }
+
         }
 
         [Button]

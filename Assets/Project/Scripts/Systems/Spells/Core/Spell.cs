@@ -25,6 +25,9 @@ namespace TheFowler
         
         [TitleGroup("Main Settings"), TextArea(3,5)] 
         public string SpellDescription;
+
+        [TitleGroup("Main Settings"), TextArea(3, 5)]
+        public string TargetDescription, EasySpellDescription;
         
         [TitleGroup("Main Settings")] 
         public ExecutionTypeEnum ExecutionType;

@@ -59,7 +59,14 @@ namespace TheFowler
                 //}
 
                 portraitLeft.sprite = db.portraitBuste;
-
+                if (cast.DialogueNode.dialogue.dialogueText.Length >= 20)
+                {
+                    animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Left;
+                }
+                else
+                {
+                    animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
+                }
 
                 speakerName.SetText(db.actorName);
                 animatedText.SetText(cast.Dialogue.dialogueText);

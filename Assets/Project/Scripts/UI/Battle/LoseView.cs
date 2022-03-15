@@ -38,7 +38,7 @@ namespace TheFowler
 
             base.Hide();
             anim?.Kill();
-            anim = CanvasGroup.DOFade(1f, .2f);
+            anim = CanvasGroup.DOFade(0, .2f);
         }
     }
 }
