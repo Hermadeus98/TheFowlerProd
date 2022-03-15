@@ -38,8 +38,12 @@ namespace TheFowler
             RemoteSettingsManager.AddFetchCompletedCallback(SetBalancingVersion);
             Refresh(null);
             fetchButton.onClick.AddListener(RemoteSettingsManager.Fetch);
+
+            isOpen = true;
+            Open();
+            
             if(mute)
-            SoundManager.Mute();
+                SoundManager.Mute();
         }
 
         protected override void RegisterEvent()

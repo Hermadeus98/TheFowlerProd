@@ -29,6 +29,8 @@ namespace TheFowler
         public float showDuration = 2f;
 
         public RectTransform backGround;
+
+        private bool isActive;
         
         public enum MenuPanel
         {
@@ -80,6 +82,9 @@ namespace TheFowler
 
         private void Update()
         {
+            if(!isActive)
+                return;
+            
             if (input.actions["B"].WasPressedThisFrame())
             {
                 switch (currentPanel)
@@ -120,6 +125,8 @@ namespace TheFowler
         public void ReturnToMain()
         {
             havePlayIntro = true;
+            isActive = true;
+            
             currentPanel = MenuPanel.MAIN;
             main.ShowAnim();
             chapters.HideAnim();
