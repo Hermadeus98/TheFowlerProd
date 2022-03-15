@@ -39,14 +39,13 @@ namespace TheFowler
         {
             base.Show();
             canvasGroup.alpha = 1;
-            dialogueText.SetActive(false);
         }
 
         public override void Hide()
         {
             base.Hide();
             canvasGroup.alpha = 0f;
-            dialogueText.SetActive(true);
+
         }
 
 
