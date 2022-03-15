@@ -21,6 +21,8 @@ namespace TheFowler
             StartCoroutine(WaitEndVideo());
 
             activator.DesactivateActor(false);
+
+            BlackPanel.Instance.Hide();
         }
         public override void EndPhase()
         {
@@ -34,8 +36,11 @@ namespace TheFowler
 
         private IEnumerator WaitEndVideo()
         {
-            yield return new WaitForSeconds((float)video.length);
+            yield return new WaitForSeconds((float)video.length - 1);
+            BlackPanel.Instance.Show();
+            yield return new WaitForSeconds(1);
             EndPhase();
+            BlackPanel.Instance.Hide(1);
             yield return null;
         }
     }

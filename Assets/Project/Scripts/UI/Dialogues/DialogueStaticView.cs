@@ -32,11 +32,11 @@ namespace TheFowler
                 var db = actorDatabase.GetElement(cast.Dialogue.ActorEnum);
                 portrait.sprite = db.portraitBuste;
 
-                if(cast.Dialogue.dialogueText != "")
+                if(!String.IsNullOrEmpty(cast.Dialogue.dialogueText))
                 {
                     background.enabled = true;
                     speakerName.enabled = true;
-                    animatedText.enabled = true;
+                    animatedText.GetComponent<TextMeshProUGUI>().enabled = true;
 
 
                     if (cast.DialogueNode.dialogue.dialogueText.Length >= 20)
@@ -57,7 +57,7 @@ namespace TheFowler
                 {
                     background.enabled = false;
                     speakerName.enabled = false;
-                    animatedText.enabled = false;
+                    animatedText.GetComponent<TextMeshProUGUI>().enabled = false;
 
 
 

@@ -223,6 +223,12 @@ namespace TheFowler
             alliesView.Hide();
         }
 
+        private void OnDisable()
+        {
+            Tutoriel.Kill();
+            ShowInputs();
+        }
+
 
     }
     [System.Serializable]
