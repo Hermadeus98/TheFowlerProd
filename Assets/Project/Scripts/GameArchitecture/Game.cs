@@ -17,6 +17,8 @@ namespace TheFowler
     /// </summary>
     public static class Game
     {
+        public static string lastBatchLoaded;
+        
         public static void Initialize()
         {
             GameEvent.AddListener(GameEventAddressCore.OnGameStart, () => QRDebug.Log("GameState", FrenchPallet.CARROT, "Start Game"));
@@ -50,6 +52,7 @@ namespace TheFowler
 
         public static void LoadSceneAdditive(string key, Action OnComplete)
         {
+            lastBatchLoaded = key;
             Coroutiner.Play(IELoadSceneAdditive(key, OnComplete));
         }
 
@@ -104,6 +107,13 @@ namespace TheFowler
                 var sceneName = SceneManager.GetSceneByPath(batch.sceneReferences[i].ScenePath).name;
                 SceneManager.UnloadSceneAsync(sceneName);
             }
+        }
+
+        public static void GoToMainMenu()
+        {
+            SceneManager.LoadSceneAsync("Scene_MenuPrincipal", LoadSceneMode.Additive);
+            Debug.Log(lastBatchLoaded);
+            UnloadScene(lastBatchLoaded);
         }
     }
 }

@@ -18,9 +18,10 @@ namespace TheFowler
             BattleManager.CurrentBattle.Restart();
         }
 
+        [Button]
         public void MainMenu()
         {
-            
+            Game.GoToMainMenu();
         }
 
         public override void Show()

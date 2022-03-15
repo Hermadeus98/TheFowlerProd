@@ -13,6 +13,8 @@ namespace TheFowler
 {
     public class MainMenuManager : SerializedMonoBehaviour
     {
+        public static bool havePlayIntro = false;
+        
         [SerializeField] private TextNavigation
             main,
             chapters,
@@ -48,7 +50,12 @@ namespace TheFowler
             openning.alpha = 0;
             manette.alpha = 0;
             
-            StartCoroutine(Opening());
+            if(!havePlayIntro)
+                StartCoroutine(Opening());
+            else
+            {
+                ReturnToMain();
+            }
         }
 
         IEnumerator Opening()
@@ -112,6 +119,7 @@ namespace TheFowler
 
         public void ReturnToMain()
         {
+            havePlayIntro = true;
             currentPanel = MenuPanel.MAIN;
             main.ShowAnim();
             chapters.HideAnim();
