@@ -11,7 +11,10 @@ namespace TheFowler
     {
         [TabGroup("Debug")]
         [SerializeField, ReadOnly] private List<DialogueNode> dialogueNodes = new List<DialogueNode>();
-        
+
+        [TabGroup("References")]
+        [SerializeField] private GameObject dialogueText;
+
         public void Refresh(DialogueNode[] nodes)
         {
             ResetElements();
@@ -36,12 +39,14 @@ namespace TheFowler
         {
             base.Show();
             canvasGroup.alpha = 1;
+            dialogueText.SetActive(false);
         }
 
         public override void Hide()
         {
             base.Hide();
             canvasGroup.alpha = 0f;
+            dialogueText.SetActive(true);
         }
 
 
