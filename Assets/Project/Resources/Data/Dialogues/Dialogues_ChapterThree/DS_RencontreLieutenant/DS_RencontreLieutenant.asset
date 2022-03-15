@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: b427c50425afe4c4d96694fa67651d5d
@@ -20,15 +21,16 @@ MonoBehaviour:
   children:
   - {fileID: 7040557895431755321}
   dialogue:
-    ActorEnum: 4
-    dialogueText: "Fascinating how you made your way to this place through your sheer
-      foolishness\u2026"
+    ActorEnum: 1
+    dialogueText: "Someone has to put a stop to the terror you\u2019re spreading
+      all around the Kingdom!"
     cameraPath:
-      genericKey: 4
+      genericKey: 6
       cameraName: Cam5
       batchName: 
-    displayDuration: 5
+    displayDuration: 8
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -47,20 +49,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: f1e65c227fe522e4fa5548e412d0a5cc
   position: {x: -58, y: 283}
-  children: []
+  children:
+  - {fileID: 7650237040381042636}
   dialogue:
-    ActorEnum: 0
-    dialogueText: "You jackass won\u2019t live to see the King fall!"
+    ActorEnum: 2
+    dialogueText: SHUT IT!
     cameraPath:
-      genericKey: 1
+      genericKey: 2
       cameraName: Middle
       batchName: 
-    displayDuration: 2.5
+    displayDuration: 2
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -79,6 +84,7 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: 6c6b6de9de9f6bc48bdb7223ba2f1a68
@@ -86,19 +92,55 @@ MonoBehaviour:
   children:
   - {fileID: -4107526493773237208}
   dialogue:
-    ActorEnum: 3
-    dialogueText: "You reprobates won\u2019t live to see the sunset!"
+    ActorEnum: 0
+    dialogueText: "That\u2019s en-"
     cameraPath:
       genericKey: 4
       cameraName: Cam4
       batchName: 
-    displayDuration: 2.5
+    displayDuration: 2
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
       WwiseObjectReference: {fileID: 11400000, guid: af54ae50bf89e674ab227505b994c800, type: 2}
     animationTrigger: 2
+--- !u!114 &-122593600501559760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 29fcbfed938d01f439369861151b2d32
+  position: {x: -66.46207, y: 379.53433}
+  children:
+  - {fileID: 5847105674972153666}
+  dialogue:
+    ActorEnum: 2
+    dialogueText: 'You can play with my feelings all you want '
+    cameraPath:
+      genericKey: 2
+      cameraName: Default
+      batchName: 
+    displayDuration: 4
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +154,7 @@ MonoBehaviour:
   m_Name: DS_RencontreLieutenant
   m_EditorClassIdentifier: 
   rootNode: {fileID: 6752816362832641983}
+  actors: 
   treeState: 0
   nodes:
   - {fileID: 6752816362832641983}
@@ -126,6 +169,83 @@ MonoBehaviour:
   - {fileID: -2315732437755560005}
   - {fileID: -4107526493773237208}
   - {fileID: 7167472155148708017}
+  - {fileID: 5857091806393846098}
+  - {fileID: 5082927426413146545}
+  - {fileID: 5847105674972153666}
+  - {fileID: -122593600501559760}
+  - {fileID: 1769914857000780012}
+  - {fileID: 2799991051818052389}
+  - {fileID: 7650237040381042636}
+--- !u!114 &1769914857000780012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 31a72a47f74025246b64dda6e0296653
+  position: {x: -201.13559, y: 374.28732}
+  children:
+  - {fileID: -122593600501559760}
+  dialogue:
+    ActorEnum: 1
+    dialogueText: You might act tough with your goons
+    cameraPath:
+      genericKey: 3
+      cameraName: Default
+      batchName: 
+    displayDuration: 3
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &2799991051818052389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 33a8a45fb25c69f49a80dedb2e624ee4
+  position: {x: 180.1478, y: 288.58603}
+  children:
+  - {fileID: 1769914857000780012}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: "Say what you will dirtbag\u2026\r\n"
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: 
+    displayDuration: 4
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
 --- !u!114 &3006069639674515101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,6 +259,7 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: 7dbe287373f08044c9c360466f4ed485
@@ -146,14 +267,15 @@ MonoBehaviour:
   children:
   - {fileID: 4283789776607903449}
   dialogue:
-    ActorEnum: 2
-    dialogueText: "It\u2019s over, Lieutenant, call down the guards."
+    ActorEnum: 4
+    dialogueText: "I told the Fowler that exile wasn\u2019t enough for you Phoebe!"
     cameraPath:
       genericKey: 2
       cameraName: Middle
       batchName: 
-    displayDuration: 3
+    displayDuration: 5
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -172,6 +294,7 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: 0dcc0a2baaf67e84abc6e426aa1ba951
@@ -180,13 +303,14 @@ MonoBehaviour:
   - {fileID: -2315732437755560005}
   dialogue:
     ActorEnum: 4
-    dialogueText: Be quick with them.
+    dialogueText: "Thank you, commander\u2026 You\u2026 are my hero"
     cameraPath:
       genericKey: 4
       cameraName: Cam4
       batchName: 
-    displayDuration: 2
+    displayDuration: 4
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -205,6 +329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: 9f8d777370305c0428e7ca34e76743f5
@@ -213,14 +338,14 @@ MonoBehaviour:
   - {fileID: 6353833769127480549}
   dialogue:
     ActorEnum: 4
-    dialogueText: "Ah, Phoebe, what a mistake you\u2019ve done. I, sadly, cannot
-      defend you any longer."
+    dialogueText: ' I always knew you were weak, unworthy to be a part of US!'
     cameraPath:
       genericKey: 4
       cameraName: Cam5
       batchName: 
     displayDuration: 5
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -239,6 +364,7 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: 07bfb9ba69718cd419bb43ebf6a0862e
@@ -246,19 +372,56 @@ MonoBehaviour:
   children:
   - {fileID: 5735598528036021076}
   dialogue:
-    ActorEnum: 0
-    dialogueText: Your turn now, arsehole!
+    ActorEnum: 4
+    dialogueText: 'You only got the position because SHE was by your side! Becoming
+      high commander because you wanted to help the kingdom but look at you! '
     cameraPath:
       genericKey: 1
       cameraName: Middle
       batchName: 
-    displayDuration: 2
+    displayDuration: 11
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
       WwiseObjectReference: {fileID: 11400000, guid: af54ae50bf89e674ab227505b994c800, type: 2}
     animationTrigger: 2
+--- !u!114 &5082927426413146545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: e8bca09562346be4ea0823196bea6844
+  position: {x: 223.87296, y: 384.78134}
+  children:
+  - {fileID: 5857091806393846098}
+  dialogue:
+    ActorEnum: 5
+    dialogueText: SO GET READY
+    cameraPath:
+      genericKey: 0
+      cameraName: Default
+      batchName: 
+    displayDuration: 2
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
 --- !u!114 &5735598528036021076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,6 +435,7 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: 0b6fd8c86923daf4cba92261e47afc2f
@@ -280,18 +444,88 @@ MonoBehaviour:
   - {fileID: 3922668644475884548}
   dialogue:
     ActorEnum: 4
-    dialogueText: "I\u2019d love to entertain you some more, but my time is too precious
-      and my guards aren\u2019t here for show."
+    dialogueText: "Your friends, Your lover\u2026 Your Queen\u2026 corpses littering
+      the ground behind you. The pure satisfaction when that\u2026 accident happened\u2026"
     cameraPath:
       genericKey: 4
       cameraName: Cam5
       batchName: 
-    displayDuration: 6
+    displayDuration: 11
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
       WwiseObjectReference: {fileID: 11400000, guid: af54ae50bf89e674ab227505b994c800, type: 2}
+    animationTrigger: 0
+--- !u!114 &5847105674972153666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 7bf4a93a07d6b0647b5a45d1bd395daf
+  position: {x: 78.705444, y: 383.03235}
+  children:
+  - {fileID: 5082927426413146545}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: "We\u2019re still gonna kick your arse"
+    cameraPath:
+      genericKey: 2
+      cameraName: Default
+      batchName: 
+    displayDuration: 3
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &5857091806393846098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 0f4edebf0af325a49beb888b173719d2
+  position: {x: -199.38658, y: 482.7257}
+  children: []
+  dialogue:
+    ActorEnum: 4
+    dialogueText: SEIZE THEM!
+    cameraPath:
+      genericKey: 0
+      cameraName: Default
+      batchName: 
+    displayDuration: 2
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
     animationTrigger: 0
 --- !u!114 &6353833769127480549
 MonoBehaviour:
@@ -306,6 +540,7 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: 6d78b5480ad53704abd6c4f00fd52c67
@@ -313,15 +548,16 @@ MonoBehaviour:
   children:
   - {fileID: 4988459808792245719}
   dialogue:
-    ActorEnum: 0
-    dialogueText: She can defend herself well enough, your soldiers down below are
-      proof enough!
+    ActorEnum: 4
+    dialogueText: Sharing my breath with such an insipid worm for years next to our
+      GOD!
     cameraPath:
       genericKey: 1
       cameraName: Middle
       batchName: 
-    displayDuration: 5
+    displayDuration: 6
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -340,6 +576,7 @@ MonoBehaviour:
   m_Name: Main
   m_EditorClassIdentifier: 
   NodeName: Main
+  chance: 1
   state: 0
   started: 0
   guid: 8384445cffb549845b2fcb34b055f73e
@@ -347,14 +584,16 @@ MonoBehaviour:
   children:
   - {fileID: 7167472155148708017}
   dialogue:
-    ActorEnum: 4
-    dialogueText: ...
+    ActorEnum: 0
+    dialogueText: "You\u2019ve been a pain in everyone\u2019s arse for too long,
+      Lieutenant! Now\u2019s time for payback!"
     cameraPath:
       genericKey: 4
       cameraName: Cam5
       batchName: 
-    displayDuration: 5
+    displayDuration: 8
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -373,6 +612,7 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: b7487a991ecc47a41a0dc65de6b5d321
@@ -380,15 +620,15 @@ MonoBehaviour:
   children:
   - {fileID: 3006069639674515101}
   dialogue:
-    ActorEnum: 1
-    dialogueText: "Someone has to put a stop to the terror you\u2019re spreading
-      all around the Kingdom!"
+    ActorEnum: 2
+    dialogueText: "It\u2019s over, Lieutenant, call down the guards."
     cameraPath:
-      genericKey: 3
+      genericKey: 2
       cameraName: Middle
       batchName: 
-    displayDuration: 5
+    displayDuration: 4
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -407,24 +647,63 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: b27cf383018127843b71edf725535388
-  position: {x: -369.59998, y: 102}
+  position: {x: -369.99988, y: 103.74903}
   children:
   - {fileID: -7260250312693069855}
   dialogue:
     ActorEnum: 4
-    dialogueText: "You\u2019ve been a pain in our arse for too long, now\u2019s time
-      for payback!"
+    dialogueText: "Fascinating how you made your way to this place through your sheer
+      foolishness\u2026"
     cameraPath:
       genericKey: 4
       cameraName: Cam5
       batchName: 
-    displayDuration: 4
+    displayDuration: 7
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
       WwiseObjectReference: {fileID: 11400000, guid: af54ae50bf89e674ab227505b994c800, type: 2}
+    animationTrigger: 0
+--- !u!114 &7650237040381042636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: be3e1a17d0dcb39479935f94fa84f914
+  position: {x: 29.73327, y: 286.837}
+  children:
+  - {fileID: 2799991051818052389}
+  dialogue:
+    ActorEnum: 4
+    dialogueText: 'You cannot change the past Pheobe! SUCCUMB TO YOUR DESPAIR!
+
+'
+    cameraPath:
+      genericKey: 0
+      cameraName: Default
+      batchName: 
+    displayDuration: 5
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
     animationTrigger: 0

@@ -1,37 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3584275940548991880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NodeName: 
-  state: 0
-  started: 0
-  guid: 2391aea32647b8b47b97ebc60f14355c
-  position: {x: 209, y: 101}
-  children: []
-  dialogue:
-    ActorEnum: 0
-    dialogueText: Bring it on, you knob head. My gals and I are gonna wipe you out!
-    cameraPath:
-      genericKey: 1
-      cameraName: Middle
-      batchName: 
-    displayDuration: 4
-    choiceText: 
-    voice:
-      idInternal: 0
-      valueGuidInternal: 
-      WwiseObjectReference: {fileID: 11400000, guid: af54ae50bf89e674ab227505b994c800, type: 2}
-    animationTrigger: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,13 +13,13 @@ MonoBehaviour:
   m_Name: DS_CombatLieutenant
   m_EditorClassIdentifier: 
   rootNode: {fileID: 6752816362832641983}
+  actors: 
   treeState: 0
   nodes:
   - {fileID: 6752816362832641983}
   - {fileID: 8204202044735990305}
   - {fileID: 1520390825497602242}
   - {fileID: 3230273218545667221}
-  - {fileID: -3584275940548991880}
 --- !u!114 &1520390825497602242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,6 +33,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: 0a2eff9095a20ac4490cfd8380ff1fa3
@@ -73,14 +42,15 @@ MonoBehaviour:
   - {fileID: 3230273218545667221}
   dialogue:
     ActorEnum: 4
-    dialogueText: "Enough! I won\u2019t let any depraved of your kind tarnish the
-      King\u2019s name anymore!"
+    dialogueText: "Laugh and contemplate all you want girls\u2026 you only prolonge
+      the inevitable."
     cameraPath:
       genericKey: 4
       cameraName: Cam5
       batchName: 
-    displayDuration: 6
+    displayDuration: 9
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -99,22 +69,22 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: 99ea13925976a54459c6763619bda197
   position: {x: 71, y: 101}
-  children:
-  - {fileID: -3584275940548991880}
+  children: []
   dialogue:
     ActorEnum: 4
-    dialogueText: I shall be the initiator of your demise! I only can bury your meager
-      attempt of a revolution!
+    dialogueText: You all shall be demised!
     cameraPath:
       genericKey: 4
       cameraName: Cam5
       batchName: 
-    displayDuration: 6
+    displayDuration: 4
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -133,6 +103,7 @@ MonoBehaviour:
   m_Name: Main
   m_EditorClassIdentifier: 
   NodeName: Main
+  chance: 1
   state: 0
   started: 0
   guid: 8384445cffb549845b2fcb34b055f73e
@@ -143,11 +114,12 @@ MonoBehaviour:
     ActorEnum: 0
     dialogueText: "And that's what you call \u201Cguards\u201D? Bunch of wankers!"
     cameraPath:
-      genericKey: 1
+      genericKey: 4
       cameraName: Middle
       batchName: 
-    displayDuration: 5
+    displayDuration: 7
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
@@ -166,6 +138,7 @@ MonoBehaviour:
   m_Name: DialogueNode
   m_EditorClassIdentifier: 
   NodeName: 
+  chance: 1
   state: 0
   started: 0
   guid: 8698f5192be841f4a9e2f7f1e07bcbbd
@@ -174,13 +147,14 @@ MonoBehaviour:
   - {fileID: 1520390825497602242}
   dialogue:
     ActorEnum: 2
-    dialogueText: "What a disappointment you\u2019ve all become."
+    dialogueText: NO MORE HIDING!
     cameraPath:
-      genericKey: 2
+      genericKey: 5
       cameraName: Middle
       batchName: 
     displayDuration: 4
     choiceText: 
+    isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 

@@ -11,6 +11,8 @@ namespace TheFowler
             base.OnStateEnter(arg);
             
             SetCamera("Default");
+            
+            UI.CloseView("LoseView");
 
             SoundManager.PlaySound(AudioGenericEnum.TF_Main_SetBattle, gameObject);
 
