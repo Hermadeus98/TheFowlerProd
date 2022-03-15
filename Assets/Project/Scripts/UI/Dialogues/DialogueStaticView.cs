@@ -68,9 +68,18 @@ namespace TheFowler
 
         public void DisplaySentence(DialogueNode node)
         {
-            
+
+            if (node.dialogue.dialogueText.Length >= 10)
+            {
+                animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Left;
+            }
+            else
+            {
+                animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
+            }
             speakerName.SetText(node.dialogue.ActorEnum.ToString());
             animatedText.SetText(node.dialogue.dialogueText);
+
         }
 
         public void RappelInputFeedback(float elapsedTime)

@@ -561,6 +561,12 @@ namespace TheFowler
             yield break;
         }
 
+        public void PlayComplicityView()
+        {
+            ComplicityView view = UI.GetView<ComplicityView>(UI.Views.Complicity);
+            view.Show();
+        }
+
 
 
     }

@@ -41,21 +41,21 @@ namespace TheFowler
             {
                 var db = actorDatabase.GetElement(cast.Dialogue.ActorEnum);
 
-                //var dbLeft = actorDatabase.GetElement(cast.Tree.actors[0]);
-                //var dbRight = actorDatabase.GetElement(cast.Tree.actors[1]);
+                //var dbleft = actordatabase.getelement(cast.tree.actors[0]);
+                //var dbright = actordatabase.getelement(cast.tree.actors[1]);
 
-                //portraitLeft.sprite = dbLeft.portraitBuste;
-                //portraitRight.sprite = dbRight.portraitBuste;
+                //portraitleft.sprite = dbleft.portraitbuste;
+                //portraitright.sprite = dbright.portraitbuste;
 
-                //if(cast.Tree.actors[0] == cast.Dialogue.ActorEnum)
+                //if (cast.tree.actors[0] == cast.dialogue.actorenum)
                 //{
-                //    portraitLeft.DOColor(Color.white, .2f);
-                //    portraitRight.DOColor(Color.grey, .2f);
+                //    portraitleft.docolor(color.white, .2f);
+                //    portraitright.docolor(color.grey, .2f);
                 //}
-                //else if(cast.Tree.actors[1] == cast.Dialogue.ActorEnum)
+                //else if (cast.tree.actors[1] == cast.dialogue.actorenum)
                 //{
-                //    portraitLeft.DOColor(Color.grey, .2f);
-                //    portraitRight.DOColor(Color.white, .2f);
+                //    portraitleft.docolor(color.grey, .2f);
+                //    portraitright.docolor(color.white, .2f);
                 //}
 
                 portraitLeft.sprite = db.portraitBuste;
@@ -68,12 +68,14 @@ namespace TheFowler
 
         public void SetChoices(DialogueNode dialogueNode)
         {
-            //var db = actorDatabase.GetElement(dialogueNode.children.Cast<DialogueNode>().Dialogue.ActorEnum);
+            DialogueNode newDN = dialogueNode.children[0] as DialogueNode;
+            var db = actorDatabase.GetElement(newDN.dialogue.ActorEnum);
 
             if (dialogueNode.hasMultipleChoices)
             {
                 choiceSelector.Refresh(dialogueNode.children.Cast<DialogueNode>().ToArray());
-                //speakerName.SetText(db.actorName);
+                speakerName.SetText(db.actorName);
+                portraitLeft.sprite = db.portraitBuste;
                 return;
             }
         }
@@ -87,8 +89,17 @@ namespace TheFowler
         public void DisplaySentence(DialogueNode node)
         {
 
+            if (node.dialogue.dialogueText.Length >= 10)
+            {
+                animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Left;
+            }
+            else
+            {
+                animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
+            }
             speakerName.SetText(node.dialogue.ActorEnum.ToString());
             animatedText.SetText(node.dialogue.dialogueText);
+
         }
 
         public void RappelInputFeedback(float elapsedTime)
