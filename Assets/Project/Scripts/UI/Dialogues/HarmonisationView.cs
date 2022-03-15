@@ -68,9 +68,12 @@ namespace TheFowler
 
         public void SetChoices(DialogueNode dialogueNode)
         {
+            //var db = actorDatabase.GetElement(dialogueNode.children.Cast<DialogueNode>().Dialogue.ActorEnum);
+
             if (dialogueNode.hasMultipleChoices)
             {
                 choiceSelector.Refresh(dialogueNode.children.Cast<DialogueNode>().ToArray());
+                //speakerName.SetText(db.actorName);
                 return;
             }
         }

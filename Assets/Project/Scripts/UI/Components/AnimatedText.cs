@@ -55,7 +55,7 @@ namespace TheFowler
                 else
                 {
                     textComponent.text += textToDisplay[i];
-                    yield return new WaitForSeconds(displayDuration);
+                    yield return new WaitForSeconds(displayDuration * Time.deltaTime);
                 }
             }
 
