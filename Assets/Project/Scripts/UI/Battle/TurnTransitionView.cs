@@ -49,6 +49,7 @@ namespace TheFowler
 
             transitionEvent?.Invoke();
 
+            Animator.ResetTrigger("play");
             Animator.SetTrigger("play");
 
             yield return new WaitForSeconds(transitionDuration);

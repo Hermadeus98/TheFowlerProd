@@ -25,6 +25,8 @@ namespace TheFowler
         [SerializeField] private Image soulignage;
 
         [SerializeField] private Color manaColorNormal, manaColorNotEnoughMana;
+
+        [SerializeField] private Image manaLogo;
         
         public bool isSelectable { get; set; } = false;
 
@@ -49,6 +51,7 @@ namespace TheFowler
 
                     crossAnim?.Kill();
                     cross.fillAmount = 0;
+                    manaLogo.DOFade(1f, 0.05f);
                     //selectableFeedback.enabled = false;
                 }
                 else
@@ -59,7 +62,9 @@ namespace TheFowler
                     
                     crossAnim?.Kill();
                     crossAnim = cross.DOFillAmount(1f, .25f);
+                    manaLogo.DOFade(.5f, 0.05f);
 
+                    
                     //selectableFeedback.enabled = true;
                 }
             }

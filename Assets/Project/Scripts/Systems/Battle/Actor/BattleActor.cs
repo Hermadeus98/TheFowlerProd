@@ -88,7 +88,6 @@ namespace TheFowler
 
             if (!Fury.IsInFury)
             {
-                Debug.Log(59646);
                 battleActorComponents.ForEach(w => w.OnTurnStart());
             }
 
