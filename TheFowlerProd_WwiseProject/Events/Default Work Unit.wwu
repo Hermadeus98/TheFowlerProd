@@ -706,314 +706,476 @@
 						</Folder>
 						<Folder Name="Robyn" ID="{212DC98A-D1E8-4AF3-9B4F-9609813F75F3}" ShortID="1042796319">
 							<ChildrenList>
-								<Event Name="TF_Voice_MeetingPhoebe_Robyn01" ID="{3C1BD5E4-F425-4345-A91A-DED1F7D1F202}">
+								<Folder Name="Combat" ID="{A9DDE083-6B52-4B98-B1F2-F569F1A880CF}" ShortID="263289531">
 									<ChildrenList>
-										<Action Name="" ID="{EE82203D-8B87-408E-A012-4AEB841281F1}" ShortID="343152972">
-											<PropertyList>
-												<Property Name="ActionType" Type="int16" Value="2"/>
-												<Property Name="Scope" Type="int16" Value="1"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-										<Action Name="" ID="{1C423B1B-BA95-4ED3-BCE4-479428A878DA}" ShortID="505261737">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="TF_Voice_MeetingPhoebe_Robyn01" ID="{00F5B1A0-AB42-4DFB-BCB4-F2A3F31391A5}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
+										<Event Name="TF_Voice_Generic_AllyDeath_Robyn" ID="{2757B344-32D6-4B0D-944E-384C708B9409}">
+											<ChildrenList>
+												<Action Name="" ID="{637CD047-A7FA-477E-B659-164CF9088928}" ShortID="825123148">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+														<Property Name="Scope" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{9F57D143-9B41-4B55-961F-B907BF102AF9}" ShortID="324915145">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="AllyDeath" ID="{D2A10669-3E3A-46FA-906B-05ED33807041}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="TF_Voice_Generic_Death_Robyn" ID="{A19B13EA-981F-4312-8E92-14947949BDBF}">
+											<ChildrenList>
+												<Action Name="" ID="{3652E17A-B8BC-485C-925F-F390987C055B}" ShortID="1038842045">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+														<Property Name="Scope" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{A3E078CE-4851-4D45-A269-E449081E3221}" ShortID="291424251">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Death" ID="{6DA947BF-4AEB-435A-9EAB-65B5C95E776B}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="TF_Voice_Generic_DamageTaken_Robyn" ID="{92C6612A-61BA-40CB-852B-12974A56EBF5}">
+											<ChildrenList>
+												<Action Name="" ID="{145F788F-476C-47FE-8269-D29A82C4AD24}" ShortID="584964524">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+														<Property Name="Scope" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{B9415163-D8E6-41E4-B1BF-3D9D008B4482}" ShortID="78567449">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="DamageTaken" ID="{EEEFEFFD-94F4-48D7-A9CB-E67D24153546}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="TF_Voice_Generic_Kill_Robyn" ID="{4CD2B833-A0BF-4FE9-BE43-87C9117FE227}">
+											<ChildrenList>
+												<Action Name="" ID="{FC89D2E2-9F8C-4222-8085-4C812CEC21AD}" ShortID="87318180">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+														<Property Name="Scope" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{0F2F1041-41B2-408E-AB46-35A832F21E6D}" ShortID="165864464">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Kill" ID="{8235E968-1205-4191-AABA-B59436419B94}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="TF_Voice_Generic_Fury_Robyn" ID="{5A142E62-1A67-4EF9-82D3-40ECCCAD6CFD}">
+											<ChildrenList>
+												<Action Name="" ID="{420488EE-660A-42AF-894E-8CECFE600A99}" ShortID="24023016">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+														<Property Name="Scope" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{2CF84076-0EA8-4C27-985E-BBEDD2102C8F}" ShortID="466127553">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Fury" ID="{6BD6DA86-E825-43D0-9F0B-69C8AECFE3B8}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="TF_Voice_Generic_SkillExecution_Robyn" ID="{696963AE-A39C-4720-A4E5-4DF6E96993DB}">
+											<ChildrenList>
+												<Action Name="" ID="{F968C728-E46C-4B80-9EC1-A28EA8BE67EE}" ShortID="347155603">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+														<Property Name="Scope" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{0CAFAC1B-C16E-460B-A18B-BBECBF1F2487}" ShortID="303968556">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="SkillExecution" ID="{3A35308F-2A1D-4708-81A9-2A3377B234B7}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="TF_Voice_Generic_StartBattle_Robyn" ID="{763B4EF3-03EE-4E08-A8CD-5CA76861C87C}">
+											<ChildrenList>
+												<Action Name="" ID="{8E305FE3-49E6-4048-8B3A-DED191E778C6}" ShortID="195303175">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+														<Property Name="Scope" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{0589A955-E9C7-4217-B272-D9F65748ACDB}" ShortID="506614811">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="StartBattle" ID="{A819703A-A32E-4CCC-B1E2-941C80E176C5}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
 									</ChildrenList>
-								</Event>
-								<Event Name="TF_Voice_MeetingPhoebe_Robyn02" ID="{C1519A30-B881-4984-959F-A9056552BA74}">
+								</Folder>
+								<Folder Name="Dialogues" ID="{3EAFE706-5E5D-4488-80BB-A85F3609C943}" ShortID="88792259">
 									<ChildrenList>
-										<Action Name="" ID="{4E453A1F-7856-4CE4-A944-EF7631D422C7}" ShortID="788543836">
-											<PropertyList>
-												<Property Name="ActionType" Type="int16" Value="2"/>
-												<Property Name="Scope" Type="int16" Value="1"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-										<Action Name="" ID="{905D9D31-0108-45DD-A205-84C6D28B6655}" ShortID="588808828">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="TF_Voice_MeetingPhoebe_Robyn02" ID="{4E411021-A063-425C-BC27-E46BDBDFA8AF}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
+										<Event Name="TF_Voice_EnteringTheGarden_Robyn01" ID="{2F5571C7-03A1-47F6-973E-ABD89DDE29B7}">
+											<ChildrenList>
+												<Action Name="" ID="{6A8130AB-CB5A-4FFC-91EB-0AAE52AACDE3}" ShortID="839781676">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+														<Property Name="Scope" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{8258518B-F161-4CCB-A24B-3F7573D239AE}" ShortID="649675797">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="TF_Voice_EnteringTheGarden_Robyn01" ID="{702CFCA1-C195-4E28-B0EF-99A8F4B4A3E8}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="TF_Voice_EnteringTheGarden_Robyn04" ID="{5578264C-3BF1-49E1-8379-ECF9DB01065F}">
+											<ChildrenList>
+												<Action Name="" ID="{8FC0F20C-08D8-4E53-A009-548230BE92C6}" ShortID="901706523">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+														<Property Name="Scope" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{B89A6DDC-0029-48CA-9FAB-F38A76674AB7}" ShortID="268414783">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="TF_Voice_EnteringTheGarden_Robyn04" ID="{92E5D395-243F-44C2-A81A-ED60509A4998}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="TF_Voice_Harmo_Robyn01" ID="{CC7395BD-C60C-4386-9063-6EA6355E1D9D}">
+											<ChildrenList>
+												<Action Name="" ID="{01414919-7016-49AE-A6CF-BBF83F0647F8}" ShortID="943384575">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+														<Property Name="Scope" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{703F421D-E4D0-4B4E-B60A-A70592520051}" ShortID="957674343">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="TF_Voice_Harmo_Robyn01" ID="{95E4B899-8A20-4F56-90D6-2A881A0A621A}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="TF_Voice_Harmo_Robyn02" ID="{58450EC0-9F7B-4C74-8982-49F79BA74159}">
+											<ChildrenList>
+												<Action Name="" ID="{D1DEB3D5-4346-4F82-958D-300B72414E0B}" ShortID="86343344">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+														<Property Name="Scope" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{18F1FE74-2CD4-4914-BDC0-34EE2E58F0BA}" ShortID="1036246080">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="TF_Voice_Harmo_Robyn02" ID="{EF57CC87-9C14-42A4-8D3C-D55F8857FD37}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="TF_Voice_MeetingPhoebe_Robyn03" ID="{EC76CBFE-0CDD-4903-A4B3-F98FB7601CAB}">
+											<ChildrenList>
+												<Action Name="" ID="{A53A3D60-5917-49AA-9A96-0BC56D414F60}" ShortID="990038761">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+														<Property Name="Scope" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{36E5C8EE-9350-46C7-B37F-B21A88772ECF}" ShortID="769571818">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="TF_Voice_MeetingPhoebe_Robyn03" ID="{D6144DD9-9FF0-4E8F-8C2F-45F529E73720}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="TF_Voice_MeetingPhoebeBattleBegin_Robyn01" ID="{0FD319A1-765A-446F-9FED-361FF1090085}">
+											<ChildrenList>
+												<Action Name="" ID="{2AAE5AB9-4A92-4EA6-AD89-8364755958E9}" ShortID="1000676841">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+														<Property Name="Scope" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{B08315F8-139C-4EE1-8C71-8E380DF03936}" ShortID="169909259">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="TF_Voice_MeetingPhoebeBattleBegin_Robyn01" ID="{80ED9066-6584-4F4A-BF0F-6353B3637593}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="TF_Voice_MeetingPhoebeAfterBattle_Robyn01" ID="{F8A43E70-DADF-413C-A9A0-9AB732E035C6}">
+											<ChildrenList>
+												<Action Name="" ID="{B507951B-8B14-4639-9863-EB7B196942DD}" ShortID="694493745">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+														<Property Name="Scope" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{384AB386-2D41-4E05-9968-239F1F8381E4}" ShortID="429010324">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="TF_Voice_MeetingPhoebeAfterBattle_Robyn01" ID="{0D38627F-E1BF-4859-A79D-8575D3ECACEB}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="TF_Voice_MeetingPhoebe_Robyn02" ID="{C1519A30-B881-4984-959F-A9056552BA74}">
+											<ChildrenList>
+												<Action Name="" ID="{4E453A1F-7856-4CE4-A944-EF7631D422C7}" ShortID="788543836">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+														<Property Name="Scope" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{905D9D31-0108-45DD-A205-84C6D28B6655}" ShortID="588808828">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="TF_Voice_MeetingPhoebe_Robyn02" ID="{4E411021-A063-425C-BC27-E46BDBDFA8AF}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="TF_Voice_EnteringTheGarden_Robyn02" ID="{A1677E2C-9502-475F-BDE9-F5F2552068F9}">
+											<ChildrenList>
+												<Action Name="" ID="{B00D047D-58D2-41E9-A41C-114062A54056}" ShortID="77887688">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+														<Property Name="Scope" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{B39B0FF1-2F77-466F-A2E3-5D104CE1E64F}" ShortID="56997942">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="TF_Voice_EnteringTheGarden_Robyn02" ID="{9BD5906C-156E-448A-9C6C-70E4DBD909BF}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="TF_Voice_MeetingPhoebeAfterBattle_Robyn02" ID="{A7E2B4A0-E99E-42A5-9461-D92331C54FC9}">
+											<ChildrenList>
+												<Action Name="" ID="{786D1538-F1CA-4690-AF3C-34ED9C31CBF9}" ShortID="413008462">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+														<Property Name="Scope" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{93055033-6D53-4020-AE39-C2CF06347657}" ShortID="901220707">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="TF_Voice_MeetingPhoebeAfterBattle_Robyn02" ID="{C002DB2D-04B0-4021-8F53-2933CFE90044}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="TF_Voice_MeetingPhoebeBattleEnd_Robyn01" ID="{BDA91E47-A471-4A74-89BF-C715A633B8D7}">
+											<ChildrenList>
+												<Action Name="" ID="{96FB947C-5190-497D-80C4-6B6763F8994F}" ShortID="790856618">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+														<Property Name="Scope" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{D6D94EB5-6CC6-4CDC-8744-1186AB283CF8}" ShortID="3257059">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="TF_Voice_MeetingPhoebeBattleEnd_Robyn01" ID="{0604866C-A43F-44F4-9DE1-CAEA2D8749AC}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="TF_Voice_BrokenInstrument_Robyn01" ID="{945F8E8A-7C84-4A32-AF76-1CEF5D41F2C3}">
+											<ChildrenList>
+												<Action Name="" ID="{F2A0DE0E-2E2B-4E65-8FD5-E9580CDFE491}" ShortID="290597516">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+														<Property Name="Scope" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{AD280812-B37A-4B1C-A96C-6B9F3AC027D4}" ShortID="664950393">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="TF_Voice_BrokenInstrument_Robyn01" ID="{7D74AA4B-9F3C-4085-BCD9-5D567994C465}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="TF_Voice_MeetingPhoebe_Robyn01" ID="{3C1BD5E4-F425-4345-A91A-DED1F7D1F202}">
+											<ChildrenList>
+												<Action Name="" ID="{EE82203D-8B87-408E-A012-4AEB841281F1}" ShortID="343152972">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+														<Property Name="Scope" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{1C423B1B-BA95-4ED3-BCE4-479428A878DA}" ShortID="505261737">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="TF_Voice_MeetingPhoebe_Robyn01" ID="{00F5B1A0-AB42-4DFB-BCB4-F2A3F31391A5}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="TF_Voice_EnteringTheGarden_Robyn03" ID="{D4EA2A0E-A348-450C-913F-8CC597F3BA05}">
+											<ChildrenList>
+												<Action Name="" ID="{2A648AE2-3450-497D-81E9-D7BB52703903}" ShortID="384548527">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="2"/>
+														<Property Name="Scope" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{2710A1F8-52F9-4612-835D-C6FC2979D13B}" ShortID="920171986">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="TF_Voice_EnteringTheGarden_Robyn03" ID="{C569CE81-4D3B-4661-ADE7-769FA2345FB0}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
 									</ChildrenList>
-								</Event>
-								<Event Name="TF_Voice_MeetingPhoebe_Robyn03" ID="{EC76CBFE-0CDD-4903-A4B3-F98FB7601CAB}">
-									<ChildrenList>
-										<Action Name="" ID="{A53A3D60-5917-49AA-9A96-0BC56D414F60}" ShortID="990038761">
-											<PropertyList>
-												<Property Name="ActionType" Type="int16" Value="2"/>
-												<Property Name="Scope" Type="int16" Value="1"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-										<Action Name="" ID="{36E5C8EE-9350-46C7-B37F-B21A88772ECF}" ShortID="769571818">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="TF_Voice_MeetingPhoebe_Robyn03" ID="{D6144DD9-9FF0-4E8F-8C2F-45F529E73720}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-									</ChildrenList>
-								</Event>
-								<Event Name="TF_Voice_EnteringTheGarden_Robyn01" ID="{2F5571C7-03A1-47F6-973E-ABD89DDE29B7}">
-									<ChildrenList>
-										<Action Name="" ID="{6A8130AB-CB5A-4FFC-91EB-0AAE52AACDE3}" ShortID="839781676">
-											<PropertyList>
-												<Property Name="ActionType" Type="int16" Value="2"/>
-												<Property Name="Scope" Type="int16" Value="1"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-										<Action Name="" ID="{8258518B-F161-4CCB-A24B-3F7573D239AE}" ShortID="649675797">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="TF_Voice_EnteringTheGarden_Robyn01" ID="{702CFCA1-C195-4E28-B0EF-99A8F4B4A3E8}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-									</ChildrenList>
-								</Event>
-								<Event Name="TF_Voice_EnteringTheGarden_Robyn02" ID="{A1677E2C-9502-475F-BDE9-F5F2552068F9}">
-									<ChildrenList>
-										<Action Name="" ID="{B00D047D-58D2-41E9-A41C-114062A54056}" ShortID="77887688">
-											<PropertyList>
-												<Property Name="ActionType" Type="int16" Value="2"/>
-												<Property Name="Scope" Type="int16" Value="1"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-										<Action Name="" ID="{B39B0FF1-2F77-466F-A2E3-5D104CE1E64F}" ShortID="56997942">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="TF_Voice_EnteringTheGarden_Robyn02" ID="{9BD5906C-156E-448A-9C6C-70E4DBD909BF}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-									</ChildrenList>
-								</Event>
-								<Event Name="TF_Voice_EnteringTheGarden_Robyn03" ID="{D4EA2A0E-A348-450C-913F-8CC597F3BA05}">
-									<ChildrenList>
-										<Action Name="" ID="{2A648AE2-3450-497D-81E9-D7BB52703903}" ShortID="384548527">
-											<PropertyList>
-												<Property Name="ActionType" Type="int16" Value="2"/>
-												<Property Name="Scope" Type="int16" Value="1"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-										<Action Name="" ID="{2710A1F8-52F9-4612-835D-C6FC2979D13B}" ShortID="920171986">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="TF_Voice_EnteringTheGarden_Robyn03" ID="{C569CE81-4D3B-4661-ADE7-769FA2345FB0}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-									</ChildrenList>
-								</Event>
-								<Event Name="TF_Voice_EnteringTheGarden_Robyn04" ID="{5578264C-3BF1-49E1-8379-ECF9DB01065F}">
-									<ChildrenList>
-										<Action Name="" ID="{8FC0F20C-08D8-4E53-A009-548230BE92C6}" ShortID="901706523">
-											<PropertyList>
-												<Property Name="ActionType" Type="int16" Value="2"/>
-												<Property Name="Scope" Type="int16" Value="1"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-										<Action Name="" ID="{B89A6DDC-0029-48CA-9FAB-F38A76674AB7}" ShortID="268414783">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="TF_Voice_EnteringTheGarden_Robyn04" ID="{92E5D395-243F-44C2-A81A-ED60509A4998}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-									</ChildrenList>
-								</Event>
-								<Event Name="TF_Voice_Harmo_Robyn01" ID="{CC7395BD-C60C-4386-9063-6EA6355E1D9D}">
-									<ChildrenList>
-										<Action Name="" ID="{01414919-7016-49AE-A6CF-BBF83F0647F8}" ShortID="943384575">
-											<PropertyList>
-												<Property Name="ActionType" Type="int16" Value="2"/>
-												<Property Name="Scope" Type="int16" Value="1"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-										<Action Name="" ID="{703F421D-E4D0-4B4E-B60A-A70592520051}" ShortID="957674343">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="TF_Voice_Harmo_Robyn01" ID="{95E4B899-8A20-4F56-90D6-2A881A0A621A}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-									</ChildrenList>
-								</Event>
-								<Event Name="TF_Voice_Harmo_Robyn02" ID="{58450EC0-9F7B-4C74-8982-49F79BA74159}">
-									<ChildrenList>
-										<Action Name="" ID="{D1DEB3D5-4346-4F82-958D-300B72414E0B}" ShortID="86343344">
-											<PropertyList>
-												<Property Name="ActionType" Type="int16" Value="2"/>
-												<Property Name="Scope" Type="int16" Value="1"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-										<Action Name="" ID="{18F1FE74-2CD4-4914-BDC0-34EE2E58F0BA}" ShortID="1036246080">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="TF_Voice_Harmo_Robyn02" ID="{EF57CC87-9C14-42A4-8D3C-D55F8857FD37}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-									</ChildrenList>
-								</Event>
-								<Event Name="TF_Voice_MeetingPhoebeAfterBattle_Robyn01" ID="{F8A43E70-DADF-413C-A9A0-9AB732E035C6}">
-									<ChildrenList>
-										<Action Name="" ID="{B507951B-8B14-4639-9863-EB7B196942DD}" ShortID="694493745">
-											<PropertyList>
-												<Property Name="ActionType" Type="int16" Value="2"/>
-												<Property Name="Scope" Type="int16" Value="1"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-										<Action Name="" ID="{384AB386-2D41-4E05-9968-239F1F8381E4}" ShortID="429010324">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="TF_Voice_MeetingPhoebeAfterBattle_Robyn01" ID="{0D38627F-E1BF-4859-A79D-8575D3ECACEB}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-									</ChildrenList>
-								</Event>
-								<Event Name="TF_Voice_MeetingPhoebeAfterBattle_Robyn02" ID="{A7E2B4A0-E99E-42A5-9461-D92331C54FC9}">
-									<ChildrenList>
-										<Action Name="" ID="{786D1538-F1CA-4690-AF3C-34ED9C31CBF9}" ShortID="413008462">
-											<PropertyList>
-												<Property Name="ActionType" Type="int16" Value="2"/>
-												<Property Name="Scope" Type="int16" Value="1"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-										<Action Name="" ID="{93055033-6D53-4020-AE39-C2CF06347657}" ShortID="901220707">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="TF_Voice_MeetingPhoebeAfterBattle_Robyn02" ID="{C002DB2D-04B0-4021-8F53-2933CFE90044}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-									</ChildrenList>
-								</Event>
-								<Event Name="TF_Voice_MeetingPhoebeBattleBegin_Robyn01" ID="{0FD319A1-765A-446F-9FED-361FF1090085}">
-									<ChildrenList>
-										<Action Name="" ID="{2AAE5AB9-4A92-4EA6-AD89-8364755958E9}" ShortID="1000676841">
-											<PropertyList>
-												<Property Name="ActionType" Type="int16" Value="2"/>
-												<Property Name="Scope" Type="int16" Value="1"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-										<Action Name="" ID="{B08315F8-139C-4EE1-8C71-8E380DF03936}" ShortID="169909259">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="TF_Voice_MeetingPhoebeBattleBegin_Robyn01" ID="{80ED9066-6584-4F4A-BF0F-6353B3637593}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-									</ChildrenList>
-								</Event>
-								<Event Name="TF_Voice_MeetingPhoebeBattleEnd_Robyn01" ID="{BDA91E47-A471-4A74-89BF-C715A633B8D7}">
-									<ChildrenList>
-										<Action Name="" ID="{96FB947C-5190-497D-80C4-6B6763F8994F}" ShortID="790856618">
-											<PropertyList>
-												<Property Name="ActionType" Type="int16" Value="2"/>
-												<Property Name="Scope" Type="int16" Value="1"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-										<Action Name="" ID="{D6D94EB5-6CC6-4CDC-8744-1186AB283CF8}" ShortID="3257059">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="TF_Voice_MeetingPhoebeBattleEnd_Robyn01" ID="{0604866C-A43F-44F4-9DE1-CAEA2D8749AC}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-									</ChildrenList>
-								</Event>
-								<Event Name="TF_Voice_BrokenInstrument_Robyn01" ID="{945F8E8A-7C84-4A32-AF76-1CEF5D41F2C3}">
-									<ChildrenList>
-										<Action Name="" ID="{F2A0DE0E-2E2B-4E65-8FD5-E9580CDFE491}" ShortID="290597516">
-											<PropertyList>
-												<Property Name="ActionType" Type="int16" Value="2"/>
-												<Property Name="Scope" Type="int16" Value="1"/>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-										<Action Name="" ID="{AD280812-B37A-4B1C-A96C-6B9F3AC027D4}" ShortID="664950393">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="TF_Voice_BrokenInstrument_Robyn01" ID="{7D74AA4B-9F3C-4085-BCD9-5D567994C465}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-									</ChildrenList>
-								</Event>
+								</Folder>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Phoebe" ID="{2E035B4E-BE99-4BB0-B097-03F044C8699A}" ShortID="678958406">
