@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 namespace TheFowler
 {
@@ -18,6 +19,7 @@ namespace TheFowler
         private delegate void ProfileReminder(InfoBoxButtons[] buttons);
         private event ProfileReminder OnProfileReminder;
         [SerializeField] private List<InfoBoxButtons> infoBoxReminder;
+        [SerializeField] private PlayerInput Inputs;
 
         public override void Refresh(EventArgs args)
         {
@@ -138,6 +140,14 @@ namespace TheFowler
                 }
             }
         }
+
+        //private void Update()
+        //{
+        //    if (Inputs.actions["Return"].WasPerformedThisFrame())
+        //    {
+
+        //    }
+        //}
 
     }
 
