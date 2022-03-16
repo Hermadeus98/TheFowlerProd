@@ -85,8 +85,13 @@ namespace TheFowler
         public virtual void OnTurnStart()
         {
             Debug.Log(gameObject.name + " start turn");
-            
-            battleActorComponents.ForEach(w => w.OnTurnStart());
+
+            if (!Fury.IsInFury)
+            {
+                Debug.Log(59646);
+                battleActorComponents.ForEach(w => w.OnTurnStart());
+            }
+
             AllyData?.Select();
         }
 

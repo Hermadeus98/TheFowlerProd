@@ -22,6 +22,8 @@ namespace TheFowler
         [SerializeField] private CanvasGroup CanvasGroup;
 
         [SerializeField] private Image soulignage;
+
+        [SerializeField] private Color manaColorNormal, manaColorNotEnoughMana;
         
         public bool isSelectable { get; set; } = false;
         
@@ -40,12 +42,15 @@ namespace TheFowler
                 {
                     isSelectable = true;
                     canvasGroup.alpha = 1f;
+                    manaCostText.color = manaColorNormal;
                     //selectableFeedback.enabled = false;
                 }
                 else
                 {
                     isSelectable = false;
                     canvasGroup.alpha = .5f;
+                    manaCostText.color = manaColorNotEnoughMana;
+
                     //selectableFeedback.enabled = true;
                 }
             }

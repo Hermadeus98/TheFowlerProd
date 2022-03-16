@@ -29,7 +29,14 @@ namespace TheFowler
 
         IEnumerator OnStateEnterIE()
         {
-            SetCamera(CameraKeys.BattleKeys.ActionPicking);
+            if (BattleManager.IsAllyTurn)
+            {
+                SetCamera(CameraKeys.BattleKeys.ActionPicking);
+            }
+            else if (BattleManager.IsEnemyTurn)
+            {
+                SetCamera(CameraKeys.BattleKeys.TargetPickingGuard);
+            }
 
             //yield return new WaitForSeconds(UI.GetView<TurnTransitionView>(UI.Views.TurnTransition).WaitTime);
             yield return new WaitForSeconds(.2f);

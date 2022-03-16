@@ -16,7 +16,9 @@ namespace TheFowler
                 //Manage Previous Targets
                 {
                     //---<GESTION DAMAGE EFFECT>-----------------------------------------------------------------------<
-                    if (Player.SelectedSpell.ContainEffect<DamageEffect>(out var damageEffect))
+                    DamageEffect damageEffect = null;
+                    
+                    if (Player.SelectedSpell.ContainEffect<DamageEffect>(out damageEffect))
                     {
                         if (!oldList.IsNullOrEmpty())
                         {
@@ -26,6 +28,7 @@ namespace TheFowler
                             }
                         }
                     }
+                    
                 }
                 
                 oldList = new List<BattleActor>(actors);
@@ -33,16 +36,20 @@ namespace TheFowler
                 //Manage Current Targets
                 {
                     //---<GESTION DAMAGE EFFECT>-----------------------------------------------------------------------<
-                    if (Player.SelectedSpell.ContainEffect<DamageEffect>(out var damageEffect))
+                    DamageEffect damageEffect = null;
+                    
+                    if (Player.SelectedSpell.ContainEffect<DamageEffect>(out damageEffect))
                     {
                         for (int i = 0; i < actors.Count; i++)
                         {
                             var damage = DamageCalculator.CalculateDamage(damageEffect.damage,
-                                BattleManager.CurrentBattleActor, actors[i], damageEffect.ReferedSpell.SpellType, out var result);
+                                BattleManager.CurrentBattleActor, actors[i], damageEffect.ReferedSpell.SpellType,
+                                out var result);
                             var previewFill = actors[i].Health.CurrentHealth - damage;
                             actors[i].Health.FillBar?.SetPreview(previewFill);
                         }
                     }
+                    
                 }
             }
         }
