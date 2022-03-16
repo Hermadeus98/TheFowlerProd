@@ -287,6 +287,7 @@
 				</ActorMixer>
 				<ActorMixer Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" ShortID="665120169">
 					<PropertyList>
+						<Property Name="3DSpatialization" Type="int16" Value="2"/>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
 								<Value>-6</Value>
@@ -1079,162 +1080,1133 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<Sound Name="TF_Voice_MeetingPhoebe_Guard01" ID="{889647E5-0429-42C2-9519-E9D05CCBA891}" ShortID="732784938">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
+								<Folder Name="Combat" ID="{79CC4350-5D98-4CA2-BE55-935DE5B55A02}" ShortID="577807536">
 									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_MeetingPhoebe_Guard01" ID="{9463B2C9-6DBB-40A5-AFE7-8C17C5614A76}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_MeetingPhoebe_Guard01.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="156144111"/>
-											</MediaIDList>
-										</AudioFileSource>
+										<RandomSequenceContainer Name="AllyDeath" ID="{CB67A66B-FB2C-4F98-8541-5D3E77B1E8F4}" ShortID="171388772">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="TF_Voice_Generic_AllyDeath_Guard01" ID="{F74F7CF0-854D-496A-8757-8346DDD0C9A8}" ShortID="548606831">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_AllyDeath_Guard01" ID="{6A1E25A3-08C6-41DE-AD76-215B853E545B}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_AllyDeath_Guard01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="837508755"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_AllyDeath_Guard01" ID="{6A1E25A3-08C6-41DE-AD76-215B853E545B}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_AllyDeath_Guard02" ID="{D8C5BC5D-C505-4660-87EE-B0313878A5EE}" ShortID="165148720">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_AllyDeath_Guard02" ID="{DC1B3254-E832-4DA2-9737-9F57A932570F}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_AllyDeath_Guard02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="398835764"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_AllyDeath_Guard02" ID="{DC1B3254-E832-4DA2-9737-9F57A932570F}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="DamageTaken" ID="{5AB251BA-75F6-4C41-86D8-E9457F8824A6}" ShortID="577471147">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="TF_Voice_Generic_DamageTaken_Guard11" ID="{BEAEB244-598A-4B56-AE62-704667BF7918}" ShortID="731889267">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_DamageTaken_Guard11" ID="{DED8A6C1-541B-4152-8574-003F3B32EAD2}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_DamageTaken_Guard11.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="637949182"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_DamageTaken_Guard11" ID="{DED8A6C1-541B-4152-8574-003F3B32EAD2}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_DamageTaken_Guard05" ID="{3A837C4A-9973-4520-9AFA-1F8FFE701EFB}" ShortID="4133777">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_DamageTaken_Guard05" ID="{CD32483C-A69B-4DF7-9759-35B2E0FEE200}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_DamageTaken_Guard05.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="175194424"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_DamageTaken_Guard05" ID="{CD32483C-A69B-4DF7-9759-35B2E0FEE200}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_DamageTaken_Guard06" ID="{414F0948-5297-494F-86BA-DD30EA2EEF77}" ShortID="1038464622">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_DamageTaken_Guard06" ID="{9F009AD6-3B0E-4A74-B209-13EA71DB57C4}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_DamageTaken_Guard06.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="364339728"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_DamageTaken_Guard06" ID="{9F009AD6-3B0E-4A74-B209-13EA71DB57C4}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_DamageTaken_Guard07" ID="{496480F0-D9AE-41CE-A74D-EAC0A17D60B5}" ShortID="343589892">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_DamageTaken_Guard07" ID="{5440514E-73C3-44DC-B95C-98CA79D340DC}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_DamageTaken_Guard07.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="76895758"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_DamageTaken_Guard07" ID="{5440514E-73C3-44DC-B95C-98CA79D340DC}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_DamageTaken_Guard09" ID="{AE2BB120-583D-4F1E-BF44-F300E3345F27}" ShortID="242305581">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_DamageTaken_Guard09" ID="{3613AC9F-4CF6-4231-939E-DC41CB68C27A}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_DamageTaken_Guard09.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="1055986995"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_DamageTaken_Guard09" ID="{3613AC9F-4CF6-4231-939E-DC41CB68C27A}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_DamageTaken_Guard08" ID="{3342B2D9-1F56-4243-9DC9-0918FBFAF4E9}" ShortID="226777141">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_DamageTaken_Guard08" ID="{CB17B1FF-CC75-43F4-BDA8-0ABBF89415D1}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_DamageTaken_Guard08.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="607483767"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_DamageTaken_Guard08" ID="{CB17B1FF-CC75-43F4-BDA8-0ABBF89415D1}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_DamageTaken_Guard10" ID="{087537CB-C306-4B94-8D9D-D9AA5A2829DD}" ShortID="821168402">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_DamageTaken_Guard10" ID="{2B919506-C972-4990-951B-FD35BE89B92C}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_DamageTaken_Guard10.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="208697416"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_DamageTaken_Guard10" ID="{2B919506-C972-4990-951B-FD35BE89B92C}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_DamageTaken_Guard01" ID="{2A7CB4B5-3288-43C3-8DE5-CEEF3C6FC2F6}" ShortID="219123388">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_DamageTaken_Guard01" ID="{4A7819C0-5A34-486B-8FA6-A6CCC7BB3E0A}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_DamageTaken_Guard01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="895964400"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_DamageTaken_Guard01" ID="{4A7819C0-5A34-486B-8FA6-A6CCC7BB3E0A}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_DamageTaken_Guard02" ID="{C956AD47-3B4C-47B4-B2A3-34DFBA1AABEC}" ShortID="248679603">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_DamageTaken_Guard02" ID="{1993155C-E8E2-4486-92F3-A260CCE06DED}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_DamageTaken_Guard02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="532436669"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_DamageTaken_Guard02" ID="{1993155C-E8E2-4486-92F3-A260CCE06DED}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_DamageTaken_Guard03" ID="{498EC78A-7F89-4F42-B941-2861A7E81774}" ShortID="230367721">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_DamageTaken_Guard03" ID="{EDF2806F-9C5F-4B40-9637-328A1BA5B411}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_DamageTaken_Guard03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="763761225"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_DamageTaken_Guard03" ID="{EDF2806F-9C5F-4B40-9637-328A1BA5B411}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_DamageTaken_Guard04" ID="{91C2A073-B968-46BC-8ECE-F0A27D78BD22}" ShortID="465057182">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_DamageTaken_Guard04" ID="{7E2998E9-7CFB-43E7-A5DE-B356F9BCC115}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_DamageTaken_Guard04.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="662172614"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_DamageTaken_Guard04" ID="{7E2998E9-7CFB-43E7-A5DE-B356F9BCC115}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_DamageTaken_Guard12" ID="{4D5E88A5-25E1-4C8B-8109-C0FC36F46FC7}" ShortID="907223056">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_DamageTaken_Guard12" ID="{8E9E9399-EE7A-47D9-92DE-39FB26C4B468}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_DamageTaken_Guard12.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="267912291"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_DamageTaken_Guard12" ID="{8E9E9399-EE7A-47D9-92DE-39FB26C4B468}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="Death" ID="{E3DB9170-6F2E-4CE0-A8D4-8168E7C6C84A}" ShortID="44282648">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="TF_Voice_Generic_Death_Guard03" ID="{347B6984-4A3B-4C2A-88D3-F2659A20D95C}" ShortID="1042753109">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_Death_Guard03" ID="{22A30A38-0321-4BB9-A2F7-C8BBD43C695B}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_Death_Guard03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="995102031"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_Death_Guard03" ID="{22A30A38-0321-4BB9-A2F7-C8BBD43C695B}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_Death_Guard01" ID="{4EE2DD48-0F34-4B82-AD65-C799856CE0B8}" ShortID="882249410">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_Death_Guard01" ID="{04E98EB2-5CA2-4D11-9BE8-7F9DA32804E3}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_Death_Guard01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="265339917"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_Death_Guard01" ID="{04E98EB2-5CA2-4D11-9BE8-7F9DA32804E3}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_Death_Guard02" ID="{6936F780-B971-4C6C-A3AB-012001826B41}" ShortID="666353918">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_Death_Guard02" ID="{8BC2E26A-F3ED-42CC-BC8D-110ADDDDE0A4}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_Death_Guard02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="189728661"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_Death_Guard02" ID="{8BC2E26A-F3ED-42CC-BC8D-110ADDDDE0A4}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="Kill" ID="{F6384229-1B7D-42EE-9869-1CBA53FFEFA6}" ShortID="263899432">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="TF_Voice_Generic_Kill_Guard03" ID="{F33A015D-28E1-4683-96B6-8F5915A21163}" ShortID="12577600">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_Kill_Guard03" ID="{2FD66FA7-7407-4477-9C11-6058D8A8F4D5}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_Kill_Guard03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="299100963"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_Kill_Guard03" ID="{2FD66FA7-7407-4477-9C11-6058D8A8F4D5}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_Kill_Guard02" ID="{5259220D-6DD4-4EFA-A1D6-B56FF23DE83F}" ShortID="348983708">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_Kill_Guard02" ID="{A13DCD63-279E-4946-97EC-613003CB76AC}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_Kill_Guard02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="299799213"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_Kill_Guard02" ID="{A13DCD63-279E-4946-97EC-613003CB76AC}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_Kill_Guard01" ID="{77086662-9736-44DF-912D-DE6ACB028C1A}" ShortID="131950227">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_Kill_Guard01" ID="{DBE36FEE-0820-41F9-924C-E768273A4373}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_Kill_Guard01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="759509531"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_Kill_Guard01" ID="{DBE36FEE-0820-41F9-924C-E768273A4373}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="SkillExecution" ID="{C598A65B-A651-4B8E-85F1-1547A5D0507B}" ShortID="1000424858">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="TF_Voice_Generic_SkillExecution_Guard08" ID="{B09D0190-3225-4C94-AB54-6C44185431A4}" ShortID="462830734">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_SkillExecution_Guard08" ID="{E5960B46-E67A-4361-9D56-439464EF54B6}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_SkillExecution_Guard08.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="211891536"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_SkillExecution_Guard08" ID="{E5960B46-E67A-4361-9D56-439464EF54B6}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_SkillExecution_Guard01" ID="{1EE3AD78-914C-400E-949D-5820BC76C552}" ShortID="747082820">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_SkillExecution_Guard01" ID="{DAC50491-CC1D-4793-BDAE-5D63B56FEF1B}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_SkillExecution_Guard01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="512445513"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_SkillExecution_Guard01" ID="{DAC50491-CC1D-4793-BDAE-5D63B56FEF1B}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_SkillExecution_Guard07" ID="{881E79A6-0DFF-47C3-97D5-205AFE070ED9}" ShortID="737951050">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_SkillExecution_Guard07" ID="{23BB3FF3-AD88-4DDC-AD14-D3B8EA6064FB}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_SkillExecution_Guard07.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="275420254"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_SkillExecution_Guard07" ID="{23BB3FF3-AD88-4DDC-AD14-D3B8EA6064FB}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_SkillExecution_Guard02" ID="{C28F9A7B-A7E8-4BF2-9ECC-4AB6D34A25A6}" ShortID="452065124">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_SkillExecution_Guard02" ID="{93EA6858-FDC7-44B6-ABFC-A0B163B073D6}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_SkillExecution_Guard02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="510690700"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_SkillExecution_Guard02" ID="{93EA6858-FDC7-44B6-ABFC-A0B163B073D6}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_SkillExecution_Guard05" ID="{F36671F7-77CD-484E-9825-8DAB2DC4C728}" ShortID="445054979">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_SkillExecution_Guard05" ID="{3AD4EFC3-562F-4F13-907B-4F2083A41873}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_SkillExecution_Guard05.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="421237213"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_SkillExecution_Guard05" ID="{3AD4EFC3-562F-4F13-907B-4F2083A41873}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_SkillExecution_Guard06" ID="{13FED44D-A354-42D8-962A-A5817E901CD0}" ShortID="180969786">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_SkillExecution_Guard06" ID="{B8BD5BA4-70C0-48D3-AED6-A84C78D3519B}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_SkillExecution_Guard06.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="2670880"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_SkillExecution_Guard06" ID="{B8BD5BA4-70C0-48D3-AED6-A84C78D3519B}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_SkillExecution_Guard03" ID="{20E58418-EEC8-41C2-AA63-DC5E88B076E6}" ShortID="670754908">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_SkillExecution_Guard03" ID="{29C6B02B-D189-4E26-B3A5-08628C1F52F1}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_SkillExecution_Guard03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="325152846"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_SkillExecution_Guard03" ID="{29C6B02B-D189-4E26-B3A5-08628C1F52F1}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_SkillExecution_Guard04" ID="{A0AAE8D3-78B2-4A08-8E41-54402932BDAD}" ShortID="969362719">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_SkillExecution_Guard04" ID="{28B84AB2-CBDB-4591-A9B2-8539CA724B42}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_SkillExecution_Guard04.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="871010906"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_SkillExecution_Guard04" ID="{28B84AB2-CBDB-4591-A9B2-8539CA724B42}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="StartBattle" ID="{98230F06-1DFE-4F1B-9BE1-43022AFA45F8}" ShortID="821095048">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="TF_Voice_Generic_StartBattle_Guard02" ID="{8B302E8D-1957-4008-8DE3-8943D568A514}" ShortID="780600747">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_StartBattle_Guard02" ID="{01EB6399-55C6-4982-9140-9631357978C9}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_StartBattle_Guard02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="471214217"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_StartBattle_Guard02" ID="{01EB6399-55C6-4982-9140-9631357978C9}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_StartBattle_Guard03" ID="{3E368874-EA69-412C-B709-BD347252203D}" ShortID="934445883">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_StartBattle_Guard03" ID="{4609D1BD-C09D-4D88-80E5-A452CFB7AC8E}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_StartBattle_Guard03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="943305650"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_StartBattle_Guard03" ID="{4609D1BD-C09D-4D88-80E5-A452CFB7AC8E}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_StartBattle_Guard04" ID="{399EE570-5EFD-46DE-B00B-5CA0343DB334}" ShortID="680330180">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_StartBattle_Guard04" ID="{F9DE156E-8848-4E49-B0E9-FAE685E1A8D9}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_StartBattle_Guard04.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="460581377"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_StartBattle_Guard04" ID="{F9DE156E-8848-4E49-B0E9-FAE685E1A8D9}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_StartBattle_Guard01" ID="{9A5D2D57-910F-4776-A249-CB8FD4BBCDF8}" ShortID="254094079">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_StartBattle_Guard01" ID="{3B9382F0-1431-410F-949A-885F628E8E2F}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_StartBattle_Guard01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="700546534"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_StartBattle_Guard01" ID="{3B9382F0-1431-410F-949A-885F628E8E2F}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
 									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_MeetingPhoebe_Guard01" ID="{9463B2C9-6DBB-40A5-AFE7-8C17C5614A76}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_BrokenInstrument_Guard01" ID="{2D2773FF-E756-4E0A-968D-AC63370AF6DB}" ShortID="922683986">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
+								</Folder>
+								<Folder Name="Dialogues" ID="{BDB2A779-8EC0-4929-9A02-79709F72233B}" ShortID="303038949">
 									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_BrokenInstrument_Guard01" ID="{4EA1FFA3-D62C-47B3-B40E-33AE243FE6EB}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_BrokenInstrument_Guard01.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="12492142"/>
-											</MediaIDList>
-										</AudioFileSource>
+										<Sound Name="TF_Voice_BrokenInstrument_Guard04" ID="{1FEA3E32-3113-4EC7-9058-2E5CEB56289E}" ShortID="190960671">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_BrokenInstrument_Guard04" ID="{238B0AF9-388C-48E2-AAAD-133EB08B3666}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_BrokenInstrument_Guard04.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="209640802"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_BrokenInstrument_Guard04" ID="{238B0AF9-388C-48E2-AAAD-133EB08B3666}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_BrokenInstrument_Guard03" ID="{BFB1835B-AC53-4CE3-8191-11C3DD8B258D}" ShortID="1058054664">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_BrokenInstrument_Guard03" ID="{29593C8F-4FCD-41E9-BEEC-5A891C70B664}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_BrokenInstrument_Guard03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="827992035"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_BrokenInstrument_Guard03" ID="{29593C8F-4FCD-41E9-BEEC-5A891C70B664}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_MeetingPhoebe_Guard01" ID="{889647E5-0429-42C2-9519-E9D05CCBA891}" ShortID="732784938">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_MeetingPhoebe_Guard01" ID="{9463B2C9-6DBB-40A5-AFE7-8C17C5614A76}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_MeetingPhoebe_Guard01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="156144111"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_MeetingPhoebe_Guard01" ID="{9463B2C9-6DBB-40A5-AFE7-8C17C5614A76}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_BrokenInstrument_Guard02" ID="{AF479F15-9AAA-4536-A37E-98250AB777BC}" ShortID="528043807">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_BrokenInstrument_Guard02" ID="{1BF3AD14-8EDC-47AD-B9FD-0F92986E5F24}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_BrokenInstrument_Guard02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="1036816128"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_BrokenInstrument_Guard02" ID="{1BF3AD14-8EDC-47AD-B9FD-0F92986E5F24}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_BrokenInstrument_Guard01" ID="{2D2773FF-E756-4E0A-968D-AC63370AF6DB}" ShortID="922683986">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_BrokenInstrument_Guard01" ID="{4EA1FFA3-D62C-47B3-B40E-33AE243FE6EB}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_BrokenInstrument_Guard01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="12492142"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_BrokenInstrument_Guard01" ID="{4EA1FFA3-D62C-47B3-B40E-33AE243FE6EB}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_BrokenInstrument_Guard05" ID="{0A34D074-748E-43AC-B7E1-63224C28E74E}" ShortID="211094632">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_BrokenInstrument_Guard05" ID="{2B7EF1C8-E06F-48A3-84D5-7D6FD92D07F7}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_BrokenInstrument_Guard05.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="647375978"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_BrokenInstrument_Guard05" ID="{2B7EF1C8-E06F-48A3-84D5-7D6FD92D07F7}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
 									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_BrokenInstrument_Guard01" ID="{4EA1FFA3-D62C-47B3-B40E-33AE243FE6EB}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_BrokenInstrument_Guard02" ID="{AF479F15-9AAA-4536-A37E-98250AB777BC}" ShortID="528043807">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_BrokenInstrument_Guard02" ID="{1BF3AD14-8EDC-47AD-B9FD-0F92986E5F24}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_BrokenInstrument_Guard02.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="1036816128"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_BrokenInstrument_Guard02" ID="{1BF3AD14-8EDC-47AD-B9FD-0F92986E5F24}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_BrokenInstrument_Guard03" ID="{BFB1835B-AC53-4CE3-8191-11C3DD8B258D}" ShortID="1058054664">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_BrokenInstrument_Guard03" ID="{29593C8F-4FCD-41E9-BEEC-5A891C70B664}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_BrokenInstrument_Guard03.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="827992035"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_BrokenInstrument_Guard03" ID="{29593C8F-4FCD-41E9-BEEC-5A891C70B664}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_BrokenInstrument_Guard04" ID="{1FEA3E32-3113-4EC7-9058-2E5CEB56289E}" ShortID="190960671">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_BrokenInstrument_Guard04" ID="{238B0AF9-388C-48E2-AAAD-133EB08B3666}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_BrokenInstrument_Guard04.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="209640802"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_BrokenInstrument_Guard04" ID="{238B0AF9-388C-48E2-AAAD-133EB08B3666}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_BrokenInstrument_Guard05" ID="{0A34D074-748E-43AC-B7E1-63224C28E74E}" ShortID="211094632">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_BrokenInstrument_Guard05" ID="{2B7EF1C8-E06F-48A3-84D5-7D6FD92D07F7}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_BrokenInstrument_Guard05.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="647375978"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_BrokenInstrument_Guard05" ID="{2B7EF1C8-E06F-48A3-84D5-7D6FD92D07F7}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
+								</Folder>
 							</ChildrenList>
 							<ObjectLists/>
 						</ActorMixer>
