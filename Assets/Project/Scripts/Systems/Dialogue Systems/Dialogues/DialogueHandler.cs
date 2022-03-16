@@ -48,6 +48,8 @@ namespace TheFowler
 
         [TabGroup("References")]
         [SerializeField] Animator robynAnim, phoebeAnim, abiAnim;
+        [TabGroup("References")]
+        [SerializeField] Sockets[] guardsSockets;
         [TabGroup("References"), ShowIf("@this.dialogueType == DialogueType.HARMONISATION")]
         [SerializeField] private Cinemachine.CinemachineVirtualCamera harmoVCam;
 
@@ -55,6 +57,8 @@ namespace TheFowler
         private AK.Wwise.Event currentSound;
 
         private UIView currentView;
+
+        private int idGuards = 0;
 
         [TabGroup("Debug")]
         private bool waitInput;
@@ -437,7 +441,7 @@ namespace TheFowler
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
+            idGuards = 0;
         }
 
         private void DisplayDialogue(Dialogue dialogue)
@@ -487,18 +491,62 @@ namespace TheFowler
                         });
                     }
                     
-                    SoundManager.PlaySound(dialogue.voice, gameObject);
+                    
 
                     switch (dialogue.ActorEnum)
                     {
                         case ActorEnum.ROBYN:
+                            if(robynAnim != null)
+                            {
+                                SoundManager.PlaySound(dialogue.voice, robynAnim.GetComponent<AnimTriggerBase>().Sockets.body_Middle.gameObject);
+                            }
+                            else
+                            {
+                                SoundManager.PlaySound(dialogue.voice, Player.Robyn.pawnTransform.gameObject);
+                            }
+
                             currentAnim = robynAnim;
                             break;
                         case ActorEnum.PHEOBE:
+                            if (robynAnim != null)
+                            {
+                                SoundManager.PlaySound(dialogue.voice, phoebeAnim.GetComponent<AnimTriggerBase>().Sockets.body_Middle.gameObject);
+                            }
+                            else
+                            {
+                                SoundManager.PlaySound(dialogue.voice, Player.Pheobe.pawnTransform.gameObject);
+
+                            }
+                            
                             currentAnim = phoebeAnim;
                             break;
                         case ActorEnum.ABIGAEL:
+                            if (robynAnim != null)
+                            {
+                                SoundManager.PlaySound(dialogue.voice, abiAnim.GetComponent<AnimTriggerBase>().Sockets.body_Middle.gameObject);
+                            }
+                            else
+                            {
+                                SoundManager.PlaySound(dialogue.voice, Player.Abigael.pawnTransform.gameObject);
+
+                            }
+
                             currentAnim = abiAnim;
+                            break;
+                        case ActorEnum.GUARD:
+
+                            if(guardsSockets[idGuards] != null)
+                            {
+                                SoundManager.PlaySound(dialogue.voice, guardsSockets[idGuards].body_Middle.gameObject);
+                                idGuards++;
+                            }
+
+                            break;
+                        case ActorEnum.LIEUTENANT:
+                            SoundManager.PlaySound(dialogue.voice, gameObject);
+                            break;
+                        default:
+                            SoundManager.PlaySound(dialogue.voice, gameObject);
                             break;
                     }
 

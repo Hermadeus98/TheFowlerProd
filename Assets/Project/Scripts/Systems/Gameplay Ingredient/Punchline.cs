@@ -40,6 +40,9 @@ namespace TheFowler
                 case PunchlineEnum.KILL:
                     CallPunchlineData(punchlinesData.KillPunchlines);
                     break;
+                case PunchlineEnum.DAMAGETAKEN:
+                    CallPunchlineData(punchlinesData.DamageTakenPunchline);
+                    break;
             }
         }
         public void CallPunchlineData(PunchlineStruct punchlineStruct)
@@ -66,7 +69,8 @@ namespace TheFowler
         SKILLPICKING,
         DEATH,
         ALLYDEATH,
-        KILL
+        KILL,
+        DAMAGETAKEN
     }
 }
 
