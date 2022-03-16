@@ -50,11 +50,15 @@ namespace TheFowler
             transitionEvent?.Invoke();
 
             Animator.SetTrigger("play");
+
+            yield return new WaitForSeconds(transitionDuration);
+            CanvasGroup.alpha = 0;
+
             
-            mask.DOFillAmount(0, transitionDuration).OnComplete(delegate
+            /*mask.DOFillAmount(0, transitionDuration).OnComplete(delegate
             {
                 CanvasGroup.alpha = 0;
-            });
+            });*/
             
             yield break;
         }

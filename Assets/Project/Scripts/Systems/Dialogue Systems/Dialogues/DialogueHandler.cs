@@ -508,7 +508,7 @@ namespace TheFowler
                             currentAnim = robynAnim;
                             break;
                         case ActorEnum.PHEOBE:
-                            if (robynAnim != null)
+                            if (phoebeAnim != null)
                             {
                                 SoundManager.PlaySound(dialogue.voice, phoebeAnim.GetComponent<AnimTriggerBase>().Sockets.body_Middle.gameObject);
                             }
@@ -521,7 +521,7 @@ namespace TheFowler
                             currentAnim = phoebeAnim;
                             break;
                         case ActorEnum.ABIGAEL:
-                            if (robynAnim != null)
+                            if (abiAnim != null)
                             {
                                 SoundManager.PlaySound(dialogue.voice, abiAnim.GetComponent<AnimTriggerBase>().Sockets.body_Middle.gameObject);
                             }
