@@ -43,6 +43,8 @@ namespace TheFowler
                     .allyDatas[cast];
                 element.Fury(true);
             }
+            
+            UI.OpenView("FuryView");
         }
         
         private static IEnumerator Feedback()
@@ -71,6 +73,7 @@ namespace TheFowler
         {
             var element = UI.GetView<AlliesDataView>(UI.Views.AlliesDataView).datas;
             element.ForEach(w => w.Fury(false));
+            UI.CloseView("FuryView");
         }
     }
 }

@@ -18,6 +18,7 @@ namespace TheFowler
         [SerializeField] private SpellTypeDatabase SpellTypeDatabase;
 
         [SerializeField] private Image selectableFeedback;
+        [SerializeField] private Image cross;
 
         [SerializeField] private CanvasGroup CanvasGroup;
 
@@ -26,6 +27,8 @@ namespace TheFowler
         [SerializeField] private Color manaColorNormal, manaColorNotEnoughMana;
         
         public bool isSelectable { get; set; } = false;
+
+        private Tween crossAnim;
         
         public override void Refresh(EventArgs args)
         {
@@ -43,6 +46,9 @@ namespace TheFowler
                     isSelectable = true;
                     canvasGroup.alpha = 1f;
                     manaCostText.color = manaColorNormal;
+
+                    crossAnim?.Kill();
+                    cross.fillAmount = 0;
                     //selectableFeedback.enabled = false;
                 }
                 else
@@ -50,6 +56,9 @@ namespace TheFowler
                     isSelectable = false;
                     canvasGroup.alpha = .5f;
                     manaCostText.color = manaColorNotEnoughMana;
+                    
+                    crossAnim?.Kill();
+                    crossAnim = cross.DOFillAmount(1f, .25f);
 
                     //selectableFeedback.enabled = true;
                 }
