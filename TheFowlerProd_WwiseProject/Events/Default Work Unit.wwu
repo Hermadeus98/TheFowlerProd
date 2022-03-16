@@ -340,29 +340,173 @@
 				</Event>
 				<Folder Name="Utilities" ID="{B1453998-B37A-4822-BDE6-E5C71CA995DD}" ShortID="458007305">
 					<ChildrenList>
-						<Event Name="TF_Music_SetBattle" ID="{26EEDCE8-9E0C-465B-A43D-F04585749B78}">
+						<Folder Name="Chapters" ID="{D0F60AEF-00AE-491F-A5D5-03495B47B27E}" ShortID="817552859">
 							<ChildrenList>
-								<Action Name="" ID="{E637783B-CA74-45B0-8BA8-86690E77B20C}" ShortID="860152106">
-									<PropertyList>
-										<Property Name="ActionType" Type="int16" Value="22"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Battle" ID="{16478AC6-5BF2-42C8-86D6-91C94808F876}" WorkUnitID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
+								<Event Name="TF_Main_SetIntro" ID="{1692C7AC-CE01-40EA-ADB6-2149E07D9C69}">
+									<ChildrenList>
+										<Action Name="" ID="{AAAB9130-2B33-4C4E-808B-175F26201252}" ShortID="854419679">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="22"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Intro" ID="{A2978F8C-41B2-4EFA-9C95-375AE3555236}" WorkUnitID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="TF_Main_SetOutro" ID="{2A74429A-69CC-4E0D-B865-CA44CFC754D9}">
+									<ChildrenList>
+										<Action Name="" ID="{DB8F48CF-7D66-4B2D-A600-1FDF85175BCE}" ShortID="314597024">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="22"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Outro" ID="{BA6F1642-33DF-4F12-888C-CFA108BF5774}" WorkUnitID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="TF_Main_SetScene1_TheGarden" ID="{0E472E89-D20A-472C-B020-9739583828E8}">
+									<ChildrenList>
+										<Action Name="" ID="{8AC29BF0-DDEF-4783-9BB8-86E3E297DBB0}" ShortID="880375986">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="22"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Scene1_TheGarden" ID="{9CDF30B7-4513-4CFA-9D35-A689207CC89D}" WorkUnitID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="TF_Main_SetScene2_TheAviary" ID="{C15325DE-FAB0-433A-8183-C22A16FBF17F}">
+									<ChildrenList>
+										<Action Name="" ID="{A83646B3-E177-407F-832E-41B96182B9F9}" ShortID="539776303">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="22"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Scene2_TheAviary" ID="{65540419-D4EF-4DD9-B468-DEB41C3A0F99}" WorkUnitID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="TF_Main_SetScene3_TheBallRoom" ID="{750B7EB1-A7DB-4D8B-8E76-C4423D149074}">
+									<ChildrenList>
+										<Action Name="" ID="{A46CF847-32AC-4929-AFBD-F093FDB06C42}" ShortID="221669297">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="22"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Scene3_TheBallRoom" ID="{2B960808-FAC3-482D-AFBB-0B7E76BA7728}" WorkUnitID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="TF_Main_SetScene4_TheTribunal" ID="{867BCD81-2F7A-4338-88A7-D333A0A0EAB2}">
+									<ChildrenList>
+										<Action Name="" ID="{E4E08310-7228-4F46-A380-DFA44FA4B089}" ShortID="1030414428">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="22"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Scene4_TheTribunal" ID="{FE294F59-3669-485C-83AC-DA13D5668902}" WorkUnitID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
-						</Event>
-						<Event Name="TF_Music_SetExplo" ID="{55469B46-5FF3-4E5F-BE24-F2260F7E4BD8}">
+						</Folder>
+						<Folder Name="Gameplay" ID="{ABB927D4-C17F-4B3B-A8F4-F5CDFCCD9D01}" ShortID="773784110">
 							<ChildrenList>
-								<Action Name="" ID="{0282386A-AA8A-432E-A866-39BE3CDC22C8}" ShortID="970159073">
+								<Event Name="TF_Music_SetIntro" ID="{F3A3D4B0-FF69-47FD-8CFD-00C3B957CE61}">
+									<ChildrenList>
+										<Action Name="" ID="{ABB684ED-6D9E-4EDE-A1CF-8E77D712ECE9}" ShortID="609746462">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="22"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Intro" ID="{CCC4B614-CA2D-49DA-9BA6-2CF2E282D17D}" WorkUnitID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{9FBF7909-3290-4C79-904D-5FE6D30D0458}" ShortID="90823592">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="22"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Intro" ID="{A2978F8C-41B2-4EFA-9C95-375AE3555236}" WorkUnitID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="TF_Music_SetBattle" ID="{26EEDCE8-9E0C-465B-A43D-F04585749B78}">
+									<ChildrenList>
+										<Action Name="" ID="{E637783B-CA74-45B0-8BA8-86690E77B20C}" ShortID="860152106">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="22"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Battle" ID="{16478AC6-5BF2-42C8-86D6-91C94808F876}" WorkUnitID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="TF_Music_SetExplo" ID="{55469B46-5FF3-4E5F-BE24-F2260F7E4BD8}">
+									<ChildrenList>
+										<Action Name="" ID="{0282386A-AA8A-432E-A866-39BE3CDC22C8}" ShortID="970159073">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="22"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Explo" ID="{9ADCD37D-AFCA-4EDE-823F-79A2510E4F0B}" WorkUnitID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="TF_Music_SetLoading" ID="{630C5DAE-E9CE-4095-B04E-9B3D19CD464D}">
+									<ChildrenList>
+										<Action Name="" ID="{0CD15821-6713-43E2-9AE5-57DB5B1409A6}" ShortID="287172267">
+											<PropertyList>
+												<Property Name="ActionType" Type="int16" Value="22"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="Loading" ID="{3C2CE232-FDCE-48BE-A4FC-9BB26A248470}" WorkUnitID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
+						<Event Name="TF_Main_SetTutoOff" ID="{C4DEECF2-2872-4801-83E0-97DCCEE675E8}">
+							<ChildrenList>
+								<Action Name="" ID="{7592EEC1-213D-4A38-AAAE-5AA16913DD64}" ShortID="595461980">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="22"/>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="Explo" ID="{9ADCD37D-AFCA-4EDE-823F-79A2510E4F0B}" WorkUnitID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}"/>
+											<ObjectRef Name="Off" ID="{5460DFC8-0F73-4233-899A-16FD23FD2307}" WorkUnitID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -382,20 +526,6 @@
 								</Action>
 							</ChildrenList>
 						</Event>
-						<Event Name="TF_Main_SetMuteOff" ID="{853D4F4C-8A14-42E0-916D-80BBF8FB70B8}">
-							<ChildrenList>
-								<Action Name="" ID="{F6CF27C1-4CDB-4270-A8B7-3C85F2D0E1DB}" ShortID="346491478">
-									<PropertyList>
-										<Property Name="ActionType" Type="int16" Value="22"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="Off" ID="{BB0D7B2A-57C2-470B-90A9-FE079A4E2CDC}" WorkUnitID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
 						<Event Name="TF_Main_SetTutoOn" ID="{5CE2B280-92AD-4EC6-9857-2F129519413F}">
 							<ChildrenList>
 								<Action Name="" ID="{5F2601BD-0FBB-4640-BDFF-626C1DF66B09}" ShortID="204309892">
@@ -410,15 +540,15 @@
 								</Action>
 							</ChildrenList>
 						</Event>
-						<Event Name="TF_Main_SetTutoOff" ID="{C4DEECF2-2872-4801-83E0-97DCCEE675E8}">
+						<Event Name="TF_Main_SetMuteOff" ID="{853D4F4C-8A14-42E0-916D-80BBF8FB70B8}">
 							<ChildrenList>
-								<Action Name="" ID="{7592EEC1-213D-4A38-AAAE-5AA16913DD64}" ShortID="595461980">
+								<Action Name="" ID="{F6CF27C1-4CDB-4270-A8B7-3C85F2D0E1DB}" ShortID="346491478">
 									<PropertyList>
 										<Property Name="ActionType" Type="int16" Value="22"/>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="Off" ID="{5460DFC8-0F73-4233-899A-16FD23FD2307}" WorkUnitID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}"/>
+											<ObjectRef Name="Off" ID="{BB0D7B2A-57C2-470B-90A9-FE079A4E2CDC}" WorkUnitID="{8367D88D-C4C1-4F72-82E4-1B5A1B852B59}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>

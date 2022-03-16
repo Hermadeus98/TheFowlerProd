@@ -15,13 +15,21 @@ namespace AK
     {
         static const AkUniqueID TEST_TICK = 564845035U;
         static const AkUniqueID TF_COREINIT = 3460945957U;
+        static const AkUniqueID TF_MAIN_SETINTRO = 3168517502U;
         static const AkUniqueID TF_MAIN_SETMUTEOFF = 2594094354U;
         static const AkUniqueID TF_MAIN_SETMUTEON = 1059030324U;
+        static const AkUniqueID TF_MAIN_SETOUTRO = 704949093U;
+        static const AkUniqueID TF_MAIN_SETSCENE1_THEGARDEN = 1063521790U;
+        static const AkUniqueID TF_MAIN_SETSCENE2_THEAVIARY = 3265035106U;
+        static const AkUniqueID TF_MAIN_SETSCENE3_THEBALLROOM = 1621106513U;
+        static const AkUniqueID TF_MAIN_SETSCENE4_THETRIBUNAL = 1868278513U;
         static const AkUniqueID TF_MAIN_SETTUTOOFF = 4166158089U;
         static const AkUniqueID TF_MAIN_SETTUTOON = 3365239869U;
         static const AkUniqueID TF_MUSIC_INTROPHOEBE = 3714947707U;
         static const AkUniqueID TF_MUSIC_SETBATTLE = 1242661300U;
         static const AkUniqueID TF_MUSIC_SETEXPLO = 117344976U;
+        static const AkUniqueID TF_MUSIC_SETINTRO = 1635662608U;
+        static const AkUniqueID TF_MUSIC_SETLOADING = 1810791326U;
         static const AkUniqueID TF_SFX_COMBAT_BASEATTACK_ABIGAIL_CAST = 1391113456U;
         static const AkUniqueID TF_SFX_COMBAT_BASEATTACK_ABIGAIL_HIT = 3899759664U;
         static const AkUniqueID TF_SFX_COMBAT_BASEATTACK_ROBYN_CAST = 3612941195U;
@@ -121,6 +129,8 @@ namespace AK
             {
                 static const AkUniqueID BATTLE = 2937832959U;
                 static const AkUniqueID EXPLO = 3814499265U;
+                static const AkUniqueID INTRO = 1125500713U;
+                static const AkUniqueID LOADING = 3573931707U;
                 static const AkUniqueID NONE = 748895195U;
             } // namespace STATE
         } // namespace GAMEPLAYPHASE
@@ -136,6 +146,22 @@ namespace AK
                 static const AkUniqueID ON = 1651971902U;
             } // namespace STATE
         } // namespace MUTE
+
+        namespace SCENE
+        {
+            static const AkUniqueID GROUP = 1926883983U;
+
+            namespace STATE
+            {
+                static const AkUniqueID INTRO = 1125500713U;
+                static const AkUniqueID NONE = 748895195U;
+                static const AkUniqueID OUTRO = 4184794294U;
+                static const AkUniqueID SCENE1_THEGARDEN = 939656739U;
+                static const AkUniqueID SCENE2_THEAVIARY = 887491963U;
+                static const AkUniqueID SCENE3_THEBALLROOM = 1261344916U;
+                static const AkUniqueID SCENE4_THETRIBUNAL = 3037376192U;
+            } // namespace STATE
+        } // namespace SCENE
 
         namespace TUTORIAL
         {
@@ -153,6 +179,7 @@ namespace AK
 
     namespace GAME_PARAMETERS
     {
+        static const AkUniqueID GAME_SIDECHAIN_DIALOGUES = 3296995986U;
         static const AkUniqueID GAME_VOLUME_AMBIANT = 1021071045U;
         static const AkUniqueID GAME_VOLUME_MUSIC = 1039087204U;
         static const AkUniqueID GAME_VOLUME_SFX = 1011990060U;

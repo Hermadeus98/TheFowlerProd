@@ -34,12 +34,8 @@
 							<Position X="3" Y="0"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="TF_Main_SetTutoOff" ID="{C4DEECF2-2872-4801-83E0-97DCCEE675E8}" WorkUnitID="{35049604-CF98-4DEE-8E8A-81CD7662A285}"/>
+							<ObjectRef Name="TF_Voice_Generic_SkillExecution_Robyn" ID="{696963AE-A39C-4720-A4E5-4DF6E96993DB}" WorkUnitID="{35049604-CF98-4DEE-8E8A-81CD7662A285}"/>
 							<Position X="3" Y="1"/>
-						</Module>
-						<Module>
-							<ObjectRef Name="TF_Main_SetTutoOn" ID="{5CE2B280-92AD-4EC6-9857-2F129519413F}" WorkUnitID="{35049604-CF98-4DEE-8E8A-81CD7662A285}"/>
-							<Position X="4" Y="1"/>
 						</Module>
 					</ModuleList>
 					<RTPCValueList ShowAll="true">
@@ -49,7 +45,7 @@
 						</RTPCValue>
 						<RTPCValue>
 							<GameParameterRef Name="Game_Volume_Music" ID="{F5E55303-8440-4258-932E-2B6D00904C2C}"/>
-							<Value>50</Value>
+							<Value>75</Value>
 						</RTPCValue>
 						<RTPCValue>
 							<GameParameterRef Name="Game_Volume_Voices" ID="{BDA4711F-49C1-4E14-AF99-5F398E53D66B}"/>
@@ -59,11 +55,16 @@
 							<GameParameterRef Name="Game_Volume_SFX" ID="{CE6B5706-B057-4E74-86AD-CE573F93AEAB}"/>
 							<Value>75</Value>
 						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="Game_SideChain_Dialogues" ID="{EFA15B8D-43E6-4F69-BC67-98A69A7FA91C}"/>
+							<Value>-6</Value>
+						</RTPCValue>
 					</RTPCValueList>
 					<CurrentStateList ShowAll="true">
 						<CurrentStateRef Name="Battle" ID="{16478AC6-5BF2-42C8-86D6-91C94808F876}"/>
-						<CurrentStateRef Name="On" ID="{748269BD-C486-4DE3-AED5-7A9F3A4A5800}"/>
+						<CurrentStateRef Name="Off" ID="{5460DFC8-0F73-4233-899A-16FD23FD2307}"/>
 						<CurrentStateRef Name="Off" ID="{BB0D7B2A-57C2-470B-90A9-FE079A4E2CDC}"/>
+						<CurrentStateRef Name="Intro" ID="{A2978F8C-41B2-4EFA-9C95-375AE3555236}"/>
 					</CurrentStateList>
 					<CurrentSwitchList ShowAll="true"/>
 				</SoundcasterSession>

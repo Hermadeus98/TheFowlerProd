@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Language="SFX" Hash="1530223301">
+		<SoundBank Id="1355168291" Language="SFX" Hash="939908256">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
@@ -20,6 +20,7 @@
 				<GameParameter Id="1021071045" Name="Game_Volume_Ambiant" ObjectPath="\Game Parameters\Default Work Unit\Game_Volume_Ambiant"/>
 				<GameParameter Id="1039087204" Name="Game_Volume_Music" ObjectPath="\Game Parameters\Default Work Unit\Game_Volume_Music"/>
 				<GameParameter Id="2065406626" Name="Game_Volume_Voices" ObjectPath="\Game Parameters\Default Work Unit\Game_Volume_Voices"/>
+				<GameParameter Id="3296995986" Name="Game_SideChain_Dialogues" ObjectPath="\Game Parameters\Default Work Unit\Game_SideChain_Dialogues"/>
 			</GameParameters>
 			<StateGroups>
 				<StateGroup Id="2974103762" Name="Mute" ObjectPath="\States\Default Work Unit\Mute" GUID="{F57996C9-5656-45C6-AFF6-CF6BDE346B6A}">
@@ -38,7 +39,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3787826988" Language="English(US)" Hash="3036139333">
+		<SoundBank Id="3787826988" Language="English(US)" Hash="3976817765">
 			<ObjectPath>\SoundBanks\Default Work Unit\Core</ObjectPath>
 			<ShortName>Core</ShortName>
 			<Path>English(US)\Core.bnk</Path>
@@ -78,6 +79,11 @@
 						<ActionSetStateEntry Id="3814499265" Name="Explo" ObjectPath="\States\Default Work Unit\GameplayPhase\Explo"/>
 					</ActionSetState>
 				</Event>
+				<Event Id="3168517502" Name="TF_Main_SetIntro" ObjectPath="\Events\Default Work Unit\Utilities\Chapters\TF_Main_SetIntro" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionSetState>
+						<ActionSetStateEntry Id="1125500713" Name="Intro" ObjectPath="\States\Default Work Unit\Scene\Intro"/>
+					</ActionSetState>
+				</Event>
 				<Event Id="2594094354" Name="TF_Main_SetMuteOff" ObjectPath="\Events\Default Work Unit\Utilities\TF_Main_SetMuteOff" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
 					<ActionSetState>
 						<ActionSetStateEntry Id="930712164" Name="Off" ObjectPath="\States\Default Work Unit\Mute\Off"/>
@@ -86,6 +92,31 @@
 				<Event Id="1059030324" Name="TF_Main_SetMuteOn" ObjectPath="\Events\Default Work Unit\Utilities\TF_Main_SetMuteOn" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
 					<ActionSetState>
 						<ActionSetStateEntry Id="1651971902" Name="On" ObjectPath="\States\Default Work Unit\Mute\On"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="704949093" Name="TF_Main_SetOutro" ObjectPath="\Events\Default Work Unit\Utilities\Chapters\TF_Main_SetOutro" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionSetState>
+						<ActionSetStateEntry Id="4184794294" Name="Outro" ObjectPath="\States\Default Work Unit\Scene\Outro"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="1063521790" Name="TF_Main_SetScene1_TheGarden" ObjectPath="\Events\Default Work Unit\Utilities\Chapters\TF_Main_SetScene1_TheGarden" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionSetState>
+						<ActionSetStateEntry Id="939656739" Name="Scene1_TheGarden" ObjectPath="\States\Default Work Unit\Scene\Scene1_TheGarden"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="3265035106" Name="TF_Main_SetScene2_TheAviary" ObjectPath="\Events\Default Work Unit\Utilities\Chapters\TF_Main_SetScene2_TheAviary" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionSetState>
+						<ActionSetStateEntry Id="887491963" Name="Scene2_TheAviary" ObjectPath="\States\Default Work Unit\Scene\Scene2_TheAviary"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="1621106513" Name="TF_Main_SetScene3_TheBallRoom" ObjectPath="\Events\Default Work Unit\Utilities\Chapters\TF_Main_SetScene3_TheBallRoom" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionSetState>
+						<ActionSetStateEntry Id="1261344916" Name="Scene3_TheBallRoom" ObjectPath="\States\Default Work Unit\Scene\Scene3_TheBallRoom"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="1868278513" Name="TF_Main_SetScene4_TheTribunal" ObjectPath="\Events\Default Work Unit\Utilities\Chapters\TF_Main_SetScene4_TheTribunal" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionSetState>
+						<ActionSetStateEntry Id="3037376192" Name="Scene4_TheTribunal" ObjectPath="\States\Default Work Unit\Scene\Scene4_TheTribunal"/>
 					</ActionSetState>
 				</Event>
 				<Event Id="4166158089" Name="TF_Main_SetTutoOff" ObjectPath="\Events\Default Work Unit\Utilities\TF_Main_SetTutoOff" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
@@ -106,14 +137,24 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1242661300" Name="TF_Music_SetBattle" ObjectPath="\Events\Default Work Unit\Utilities\TF_Music_SetBattle" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+				<Event Id="1242661300" Name="TF_Music_SetBattle" ObjectPath="\Events\Default Work Unit\Utilities\Gameplay\TF_Music_SetBattle" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
 					<ActionSetState>
 						<ActionSetStateEntry Id="2937832959" Name="Battle" ObjectPath="\States\Default Work Unit\GameplayPhase\Battle"/>
 					</ActionSetState>
 				</Event>
-				<Event Id="117344976" Name="TF_Music_SetExplo" ObjectPath="\Events\Default Work Unit\Utilities\TF_Music_SetExplo" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+				<Event Id="117344976" Name="TF_Music_SetExplo" ObjectPath="\Events\Default Work Unit\Utilities\Gameplay\TF_Music_SetExplo" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
 					<ActionSetState>
 						<ActionSetStateEntry Id="3814499265" Name="Explo" ObjectPath="\States\Default Work Unit\GameplayPhase\Explo"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="1635662608" Name="TF_Music_SetIntro" ObjectPath="\Events\Default Work Unit\Utilities\Gameplay\TF_Music_SetIntro" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionSetState>
+						<ActionSetStateEntry Id="1125500713" Name="Intro" ObjectPath="\States\Default Work Unit\GameplayPhase\Intro"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="1810791326" Name="TF_Music_SetLoading" ObjectPath="\Events\Default Work Unit\Utilities\Gameplay\TF_Music_SetLoading" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionSetState>
+						<ActionSetStateEntry Id="3573931707" Name="Loading" ObjectPath="\States\Default Work Unit\GameplayPhase\Loading"/>
 					</ActionSetState>
 				</Event>
 				<Event Id="1391113456" Name="TF_SFX_Combat_BaseAttack_Abigail_Cast" ObjectPath="\Events\Default Work Unit\Combat\Abigail\TF_SFX_Combat_BaseAttack_Abigail_Cast" DurationType="OneShot" DurationMin="0.677959" DurationMax="0.677959">
@@ -1058,7 +1099,13 @@
 				</Event>
 			</IncludedEvents>
 			<StateGroups>
-				<StateGroup Id="930712164" Name="Off" ObjectPath="\States\Default Work Unit\Mute\Off" GUID="{BB0D7B2A-57C2-470B-90A9-FE079A4E2CDC}">
+				<StateGroup Id="887491963" Name="Scene2_TheAviary" ObjectPath="\States\Default Work Unit\Scene\Scene2_TheAviary" GUID="{65540419-D4EF-4DD9-B468-DEB41C3A0F99}">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="930712164" Name="Off" ObjectPath="\States\Default Work Unit\Tutorial\Off" GUID="{5460DFC8-0F73-4233-899A-16FD23FD2307}">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="939656739" Name="Scene1_TheGarden" ObjectPath="\States\Default Work Unit\Scene\Scene1_TheGarden" GUID="{9CDF30B7-4513-4CFA-9D35-A689207CC89D}">
 					<States/>
 				</StateGroup>
 				<StateGroup Id="990169578" Name="GameplayPhase" ObjectPath="\States\Default Work Unit\GameplayPhase" GUID="{2A5EE531-77F5-40A3-AD77-55F44139FEB4}">
@@ -1066,7 +1113,15 @@
 						<State Id="748895195" Name="None" ObjectPath="\States\Default Work Unit\GameplayPhase\None" GUID="{0A47B512-815B-42FA-B0B2-F5DD4E26DC6A}"/>
 						<State Id="3814499265" Name="Explo" ObjectPath="\States\Default Work Unit\GameplayPhase\Explo" GUID="{9ADCD37D-AFCA-4EDE-823F-79A2510E4F0B}"/>
 						<State Id="2937832959" Name="Battle" ObjectPath="\States\Default Work Unit\GameplayPhase\Battle" GUID="{16478AC6-5BF2-42C8-86D6-91C94808F876}"/>
+						<State Id="3573931707" Name="Loading" ObjectPath="\States\Default Work Unit\GameplayPhase\Loading" GUID="{3C2CE232-FDCE-48BE-A4FC-9BB26A248470}"/>
+						<State Id="1125500713" Name="Intro" ObjectPath="\States\Default Work Unit\GameplayPhase\Intro" GUID="{CCC4B614-CA2D-49DA-9BA6-2CF2E282D17D}"/>
 					</States>
+				</StateGroup>
+				<StateGroup Id="1125500713" Name="Intro" ObjectPath="\States\Default Work Unit\Scene\Intro" GUID="{A2978F8C-41B2-4EFA-9C95-375AE3555236}">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="1261344916" Name="Scene3_TheBallRoom" ObjectPath="\States\Default Work Unit\Scene\Scene3_TheBallRoom" GUID="{2B960808-FAC3-482D-AFBB-0B7E76BA7728}">
+					<States/>
 				</StateGroup>
 				<StateGroup Id="1651971902" Name="On" ObjectPath="\States\Default Work Unit\Mute\On" GUID="{1FCE60A8-F134-43D4-AB90-C6E2F727BF4E}">
 					<States/>
@@ -1074,7 +1129,16 @@
 				<StateGroup Id="2937832959" Name="Battle" ObjectPath="\States\Default Work Unit\GameplayPhase\Battle" GUID="{16478AC6-5BF2-42C8-86D6-91C94808F876}">
 					<States/>
 				</StateGroup>
+				<StateGroup Id="3037376192" Name="Scene4_TheTribunal" ObjectPath="\States\Default Work Unit\Scene\Scene4_TheTribunal" GUID="{FE294F59-3669-485C-83AC-DA13D5668902}">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="3573931707" Name="Loading" ObjectPath="\States\Default Work Unit\GameplayPhase\Loading" GUID="{3C2CE232-FDCE-48BE-A4FC-9BB26A248470}">
+					<States/>
+				</StateGroup>
 				<StateGroup Id="3814499265" Name="Explo" ObjectPath="\States\Default Work Unit\GameplayPhase\Explo" GUID="{9ADCD37D-AFCA-4EDE-823F-79A2510E4F0B}">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="4184794294" Name="Outro" ObjectPath="\States\Default Work Unit\Scene\Outro" GUID="{BA6F1642-33DF-4F12-888C-CFA108BF5774}">
 					<States/>
 				</StateGroup>
 			</StateGroups>
