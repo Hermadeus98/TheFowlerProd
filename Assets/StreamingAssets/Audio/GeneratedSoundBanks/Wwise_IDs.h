@@ -19,6 +19,7 @@ namespace AK
         static const AkUniqueID TF_MAIN_SETMUTEON = 1059030324U;
         static const AkUniqueID TF_MAIN_SETTUTOOFF = 4166158089U;
         static const AkUniqueID TF_MAIN_SETTUTOON = 3365239869U;
+        static const AkUniqueID TF_MUSIC_INTROPHOEBE = 3714947707U;
         static const AkUniqueID TF_MUSIC_SETBATTLE = 1242661300U;
         static const AkUniqueID TF_MUSIC_SETEXPLO = 117344976U;
         static const AkUniqueID TF_SFX_COMBAT_BASEATTACK_ABIGAIL_CAST = 1391113456U;
