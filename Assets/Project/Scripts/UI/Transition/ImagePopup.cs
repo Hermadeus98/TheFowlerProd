@@ -16,7 +16,10 @@ namespace TheFowler
         [SerializeField] private Image icon;
         [SerializeField] private Sprite fury;
 
-        public void PopupFury() => Popup(fury);
+        public void PopupFury()
+        {
+            //Popup(fury);
+        }
 
         private void Awake()
         {
