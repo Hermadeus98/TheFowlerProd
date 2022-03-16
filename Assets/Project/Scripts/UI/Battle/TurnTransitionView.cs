@@ -18,11 +18,16 @@ namespace TheFowler
         [SerializeField] private RawImage image;
         [SerializeField] private Image mask;
         [SerializeField] private float transitionDuration = .2f;
+
+        [SerializeField] private Animator Animator;
         
         public float WaitTime =>
             InOutComponent.in_duration + InOutComponent.between_duration + InOutComponent.out_duration;
 
 
+        [Button]
+        private void Test() => CameraSwipTransition(null);
+        
         public void CameraSwipTransition(Action transitionEvent)
         {
             StartCoroutine(CameraSwipTransitionIE(transitionEvent));
@@ -44,6 +49,8 @@ namespace TheFowler
 
             transitionEvent?.Invoke();
 
+            Animator.SetTrigger("play");
+            
             mask.DOFillAmount(0, transitionDuration).OnComplete(delegate
             {
                 CanvasGroup.alpha = 0;
