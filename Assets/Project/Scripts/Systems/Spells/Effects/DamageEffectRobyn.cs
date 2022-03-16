@@ -7,7 +7,7 @@ namespace TheFowler
 {
     public class DamageEffectRobyn : DamageEffect
     {
-        public float damage;
+        //public float damage;
         public VisualEffect VisualEffectAttack;
         public float waitAttackEffect = 1f;
         public VisualEffect VisualEffectAttackShock;
