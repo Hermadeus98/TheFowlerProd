@@ -36,6 +36,9 @@ namespace TheFowler
         [Title("Kill")]
         public PunchlineStruct KillPunchlines;
 
+        [Title("Damage Taken")]
+        public PunchlineStruct DamageTakenPunchline;
+
     }
     [System.Serializable]
     public struct PunchlineStruct

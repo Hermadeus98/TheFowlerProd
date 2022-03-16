@@ -67,6 +67,10 @@ namespace TheFowler
                 currentHealth = 0;
                 Death();
             }
+            else
+            {
+                ReferedActor.punchline.PlayPunchline(PunchlineEnum.DAMAGETAKEN);
+            }
             
             popupDamageComponent.message = damage.ToString();
 

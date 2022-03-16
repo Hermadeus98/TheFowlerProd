@@ -11,7 +11,7 @@ namespace TheFowler
         [SerializeField] protected MMFeedbacks feedback_attack;
 
         [TabGroup("References")]
-        [SerializeField] protected Sockets Sockets;
+        [SerializeField] public Sockets Sockets;
         
         [TabGroup("Exploration")] [SerializeField]
         protected AudioGenericEnum audio_FootStep;
