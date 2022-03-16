@@ -1343,240 +1343,915 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<Sound Name="TF_Voice_EnteringTheGarden_Abigail01" ID="{D20B8AE2-BD6C-4913-BEFE-F4454FCBA452}" ShortID="658756494">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
+								<Folder Name="Combat" ID="{449375D1-2F29-4383-B69A-F4ACB28017E1}" ShortID="696744677">
 									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_EnteringTheGarden_Abigail01" ID="{45B9B030-893A-4103-B6AE-F33EA2AFE9C0}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_EnteringTheGarden_Abigail01.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="489107013"/>
-											</MediaIDList>
-										</AudioFileSource>
+										<RandomSequenceContainer Name="AllyDeath" ID="{89F0DCBF-4DB2-4F76-9861-9BB926B982C4}" ShortID="143886031">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="TF_Voice_Generic_AllyDeath_Abigail01" ID="{511433D0-8ECF-401B-BDC8-18413B083900}" ShortID="773438607">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_AllyDeath_Abigail01" ID="{16FF31A3-DF42-4F46-957C-4AA697F65E1C}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_AllyDeath_Abigail01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="43279641"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_AllyDeath_Abigail01" ID="{16FF31A3-DF42-4F46-957C-4AA697F65E1C}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="DamageTaken" ID="{5A4956B1-5270-4FBA-9166-61B6BB314026}" ShortID="116344454">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="TF_Voice_Generic_DamageTaken_Abigail03" ID="{831F5F66-1577-462F-850D-A170712A49B5}" ShortID="1030433158">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_DamageTaken_Abigail03" ID="{EE7A464B-CCB6-4172-9F58-08A960E8B7B2}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_DamageTaken_Abigail03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="235335969"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_DamageTaken_Abigail03" ID="{EE7A464B-CCB6-4172-9F58-08A960E8B7B2}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_DamageTaken_Abigail02" ID="{DF891D5B-4FD4-4EFC-B4B1-A03B3B8EB576}" ShortID="825401579">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_DamageTaken_Abigail02" ID="{CA9552ED-8293-4B31-86B1-01C6D7323A58}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_DamageTaken_Abigail02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="572523195"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_DamageTaken_Abigail02" ID="{CA9552ED-8293-4B31-86B1-01C6D7323A58}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_DamageTaken_Abigail04" ID="{219F267D-CD8E-46F4-99D6-BD3568ED0AB2}" ShortID="361802948">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_DamageTaken_Abigail04" ID="{D6A461AC-BB09-417E-9549-74441D906A9F}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_DamageTaken_Abigail04.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="738569353"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_DamageTaken_Abigail04" ID="{D6A461AC-BB09-417E-9549-74441D906A9F}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_DamageTaken_Abigail01" ID="{1D9CFEED-60CE-4DAF-B926-644D10F34D07}" ShortID="403448245">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_DamageTaken_Abigail01" ID="{AFCFA81B-98FC-4EAA-957B-10ED0D2C7546}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_DamageTaken_Abigail01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="85840492"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_DamageTaken_Abigail01" ID="{AFCFA81B-98FC-4EAA-957B-10ED0D2C7546}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="Death" ID="{334811D1-CEA7-4670-A687-CD092D47B52E}" ShortID="266434848">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="TF_Voice_Generic_Death_Abigail01" ID="{AFBB4099-8E08-40CF-B861-EDA2136ECAF1}" ShortID="486432859">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_Death_Abigail01" ID="{62FFE192-251F-408D-936D-A6EC0114410F}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_Death_Abigail01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="617248474"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_Death_Abigail01" ID="{62FFE192-251F-408D-936D-A6EC0114410F}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="Fury" ID="{0A8875DE-5F61-4DDE-9D73-97A5DF349BBD}" ShortID="532127432">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="TF_Voice_Generic_Fury_Abigail01" ID="{8F6E7939-BEA3-4F43-8C9F-E81221E4F919}" ShortID="162132739">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_Fury_Abigail01" ID="{28E48740-984A-4DC5-8218-BF2273BA762E}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_Fury_Abigail01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="678592410"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_Fury_Abigail01" ID="{28E48740-984A-4DC5-8218-BF2273BA762E}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_Fury_Abigail04" ID="{530826FB-4CCB-450C-81F7-C362BDDB6406}" ShortID="809829965">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_Fury_Abigail04" ID="{8C0818DC-1685-4228-A000-0E0C8771F267}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_Fury_Abigail04.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="486685256"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_Fury_Abigail04" ID="{8C0818DC-1685-4228-A000-0E0C8771F267}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_Fury_Abigail02" ID="{A9082406-7035-4D43-A3E6-1BFF5A742B92}" ShortID="1042119059">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_Fury_Abigail02" ID="{AA01A350-FDBD-4A89-A8FA-DB7AA5FE0710}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_Fury_Abigail02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="532379010"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_Fury_Abigail02" ID="{AA01A350-FDBD-4A89-A8FA-DB7AA5FE0710}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_Fury_Abigail03" ID="{C79DAA61-D49D-48E4-A676-3329015EEA84}" ShortID="360710452">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_Fury_Abigail03" ID="{BC988CC5-2FF6-4F2C-A879-93AB5829FFA8}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_Fury_Abigail03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="786624240"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_Fury_Abigail03" ID="{BC988CC5-2FF6-4F2C-A879-93AB5829FFA8}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="Kill" ID="{F870EB55-D217-401D-9226-66EECA2DAE51}" ShortID="723965010">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="TF_Voice_Generic_Kill_Abigail03" ID="{9A7BA8B9-4CC7-4CAA-B9A5-B6CFB5719FC4}" ShortID="103600540">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_Kill_Abigail03" ID="{03108665-AEFE-4133-AF08-6845AC4EE750}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_Kill_Abigail03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="1024461932"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_Kill_Abigail03" ID="{03108665-AEFE-4133-AF08-6845AC4EE750}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_Kill_Abigail02" ID="{7D5340DC-6134-497A-86C6-BDB5058B5758}" ShortID="117652625">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_Kill_Abigail02" ID="{21920372-BE71-499A-AB50-2D1F9EE0020F}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_Kill_Abigail02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="71061600"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_Kill_Abigail02" ID="{21920372-BE71-499A-AB50-2D1F9EE0020F}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_Kill_Abigail04" ID="{6837FDAC-1BA2-440E-8825-F93469E2D1A6}" ShortID="145179734">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_Kill_Abigail04" ID="{B412D659-D276-4CA2-A16A-5E0C252F7206}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_Kill_Abigail04.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="897920417"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_Kill_Abigail04" ID="{B412D659-D276-4CA2-A16A-5E0C252F7206}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_Kill_Abigail05" ID="{F803B03B-EB4E-475D-816C-C792410EF7BD}" ShortID="732296368">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_Kill_Abigail05" ID="{B5516E93-7B59-45F3-9BB6-E61B9652BD93}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_Kill_Abigail05.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="648221940"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_Kill_Abigail05" ID="{B5516E93-7B59-45F3-9BB6-E61B9652BD93}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_Kill_Abigail01" ID="{A0D517A8-E078-47D0-BBC2-4A6FF7E7CACF}" ShortID="655089054">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_Kill_Abigail01" ID="{74F89BA7-14C6-4299-8DB5-641E4B30EC25}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_Kill_Abigail01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="200233050"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_Kill_Abigail01" ID="{74F89BA7-14C6-4299-8DB5-641E4B30EC25}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="SkillExecution" ID="{518ED0B1-FD87-427F-97F2-EFA0DE3F4C66}" ShortID="839609910">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="TF_Voice_Generic_SkillExecution_Abigail05" ID="{27AD9345-C3EE-4B11-B736-6B6736ECF946}" ShortID="351054251">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_SkillExecution_Abigail05" ID="{7AD2240A-B5D4-4746-9271-EF691B74DE93}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_SkillExecution_Abigail05.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="364585217"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_SkillExecution_Abigail05" ID="{7AD2240A-B5D4-4746-9271-EF691B74DE93}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_SkillExecution_Abigail04" ID="{6D9A3D58-598F-4B6D-8641-10D49836F9F1}" ShortID="305727470">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_SkillExecution_Abigail04" ID="{DF10060A-6842-4620-9EC1-DDBBF23C6107}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_SkillExecution_Abigail04.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="190199996"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_SkillExecution_Abigail04" ID="{DF10060A-6842-4620-9EC1-DDBBF23C6107}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_SkillExecution_Abigail03" ID="{44BDB70C-FE10-4A38-B339-A78108985C4E}" ShortID="868307808">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_SkillExecution_Abigail03" ID="{A5CE8A51-931F-48D8-92DF-446045F17507}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_SkillExecution_Abigail03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="510278684"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_SkillExecution_Abigail03" ID="{A5CE8A51-931F-48D8-92DF-446045F17507}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_SkillExecution_Abigail02" ID="{3138E410-9C2E-470A-A58F-063FE476BE4F}" ShortID="516163089">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_SkillExecution_Abigail02" ID="{30A8EFA3-D60D-4021-80EC-D317A05BA8D6}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_SkillExecution_Abigail02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="235557658"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_SkillExecution_Abigail02" ID="{30A8EFA3-D60D-4021-80EC-D317A05BA8D6}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_SkillExecution_Abigail01" ID="{90A82BB3-C3FA-4236-A00C-712E0E4CF6E5}" ShortID="62790024">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_SkillExecution_Abigail01" ID="{AEA5FA50-89CA-48CF-96AE-A4F232F5593B}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_SkillExecution_Abigail01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="666754161"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_SkillExecution_Abigail01" ID="{AEA5FA50-89CA-48CF-96AE-A4F232F5593B}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="StartBattle" ID="{8FA5F5F7-D534-4B27-B41D-CADB18627191}" ShortID="995524934">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="TF_Voice_Generic_StartBattle_Abigail01" ID="{61BE70AB-DF8B-426F-9985-67A4E8BB20D3}" ShortID="755802666">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_StartBattle_Abigail01" ID="{B9E3A73E-AC14-4195-A247-C1F33F596381}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_StartBattle_Abigail01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="527445373"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_StartBattle_Abigail01" ID="{B9E3A73E-AC14-4195-A247-C1F33F596381}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
 									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_EnteringTheGarden_Abigail01" ID="{45B9B030-893A-4103-B6AE-F33EA2AFE9C0}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_EnteringTheGarden_Abigail02" ID="{4BB628B1-1A75-469B-B9C4-241CA4F0D02B}" ShortID="1014363306">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
+								</Folder>
+								<Folder Name="Dialogues" ID="{1AA25CE9-929C-4852-B163-A970804DD52F}" ShortID="547293645">
 									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_EnteringTheGarden_Abigail02" ID="{7942ED20-710E-46A4-B901-DE20F11CD3F5}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_EnteringTheGarden_Abigail02.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="753940275"/>
-											</MediaIDList>
-										</AudioFileSource>
+										<Sound Name="TF_Voice_EnteringTheGarden_Abigail01" ID="{D20B8AE2-BD6C-4913-BEFE-F4454FCBA452}" ShortID="658756494">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_EnteringTheGarden_Abigail01" ID="{45B9B030-893A-4103-B6AE-F33EA2AFE9C0}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_EnteringTheGarden_Abigail01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="489107013"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_EnteringTheGarden_Abigail01" ID="{45B9B030-893A-4103-B6AE-F33EA2AFE9C0}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_EnteringTheGarden_Abigail02" ID="{4BB628B1-1A75-469B-B9C4-241CA4F0D02B}" ShortID="1014363306">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_EnteringTheGarden_Abigail02" ID="{7942ED20-710E-46A4-B901-DE20F11CD3F5}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_EnteringTheGarden_Abigail02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="753940275"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_EnteringTheGarden_Abigail02" ID="{7942ED20-710E-46A4-B901-DE20F11CD3F5}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_EnteringTheGarden_Abigail03" ID="{2DE7C765-6AA8-47E3-BF79-75DADDB4383C}" ShortID="368800024">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_EnteringTheGarden_Abigail03" ID="{6B6B9BF3-406A-441F-A330-E01E79FD0DE4}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_EnteringTheGarden_Abigail03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="949558916"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_EnteringTheGarden_Abigail03" ID="{6B6B9BF3-406A-441F-A330-E01E79FD0DE4}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_MeetingPhoebe_Abigail01" ID="{FD5C8F0B-3D12-4314-8F29-85B3D72AEA43}" ShortID="684708373">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_MeetingPhoebe_Abigail01" ID="{87EBF97C-E7FA-4567-B692-4B5CCFA4E270}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_MeetingPhoebe_Abigail01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="344172371"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_MeetingPhoebe_Abigail01" ID="{87EBF97C-E7FA-4567-B692-4B5CCFA4E270}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_MeetingPhoebe_Abigail02" ID="{C6DEDBBC-2AF3-4B2F-A852-5E94970A5E40}" ShortID="103737284">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_MeetingPhoebe_Abigail02" ID="{B8F097E7-12AC-429D-871F-2D404B690AD3}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_MeetingPhoebe_Abigail02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="710550977"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_MeetingPhoebe_Abigail02" ID="{B8F097E7-12AC-429D-871F-2D404B690AD3}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_Harmo_Abigail01" ID="{B9B9C4C2-14AC-475A-8025-BCF3DEF03754}" ShortID="996120196">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_Harmo_Abigail01" ID="{1456121B-354C-4FD3-82A8-25D3C59EB866}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_Harmo_Abigail01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="726973975"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_Harmo_Abigail01" ID="{1456121B-354C-4FD3-82A8-25D3C59EB866}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_Harmo_Abigail02" ID="{1ECB656F-9DEA-49A6-AE71-87B2D04C96ED}" ShortID="360013306">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_Harmo_Abigail02" ID="{F26AA024-9D8A-423A-B4E1-3157EFC59161}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_Harmo_Abigail02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="302338997"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_Harmo_Abigail02" ID="{F26AA024-9D8A-423A-B4E1-3157EFC59161}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_MeetingPhoebeAfterBattle_Abigail01" ID="{BD5DAF89-DF15-4351-9DC1-7C286272167E}" ShortID="907955434">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_MeetingPhoebeAfterBattle_Abigail01" ID="{7472B00F-FDFE-4B22-944D-1C33165EE2FC}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_MeetingPhoebeAfterBattle_Abigail01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="470486372"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_MeetingPhoebeAfterBattle_Abigail01" ID="{7472B00F-FDFE-4B22-944D-1C33165EE2FC}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_BrokenInstrument_Abigail01" ID="{244728EB-F043-4558-B141-314101A43CB0}" ShortID="306956177">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_BrokenInstrument_Abigail01" ID="{D3F6C394-933D-494F-9D37-72F21F101498}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_BrokenInstrument_Abigail01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="14649585"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_BrokenInstrument_Abigail01" ID="{D3F6C394-933D-494F-9D37-72F21F101498}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
 									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_EnteringTheGarden_Abigail02" ID="{7942ED20-710E-46A4-B901-DE20F11CD3F5}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_EnteringTheGarden_Abigail03" ID="{2DE7C765-6AA8-47E3-BF79-75DADDB4383C}" ShortID="368800024">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_EnteringTheGarden_Abigail03" ID="{6B6B9BF3-406A-441F-A330-E01E79FD0DE4}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_EnteringTheGarden_Abigail03.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="949558916"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_EnteringTheGarden_Abigail03" ID="{6B6B9BF3-406A-441F-A330-E01E79FD0DE4}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_MeetingPhoebe_Abigail01" ID="{FD5C8F0B-3D12-4314-8F29-85B3D72AEA43}" ShortID="684708373">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_MeetingPhoebe_Abigail01" ID="{87EBF97C-E7FA-4567-B692-4B5CCFA4E270}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_MeetingPhoebe_Abigail01.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="344172371"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_MeetingPhoebe_Abigail01" ID="{87EBF97C-E7FA-4567-B692-4B5CCFA4E270}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_MeetingPhoebe_Abigail02" ID="{C6DEDBBC-2AF3-4B2F-A852-5E94970A5E40}" ShortID="103737284">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_MeetingPhoebe_Abigail02" ID="{B8F097E7-12AC-429D-871F-2D404B690AD3}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_MeetingPhoebe_Abigail02.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="710550977"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_MeetingPhoebe_Abigail02" ID="{B8F097E7-12AC-429D-871F-2D404B690AD3}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_Harmo_Abigail01" ID="{B9B9C4C2-14AC-475A-8025-BCF3DEF03754}" ShortID="996120196">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_Harmo_Abigail01" ID="{1456121B-354C-4FD3-82A8-25D3C59EB866}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_Harmo_Abigail01.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="726973975"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_Harmo_Abigail01" ID="{1456121B-354C-4FD3-82A8-25D3C59EB866}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_Harmo_Abigail02" ID="{1ECB656F-9DEA-49A6-AE71-87B2D04C96ED}" ShortID="360013306">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_Harmo_Abigail02" ID="{F26AA024-9D8A-423A-B4E1-3157EFC59161}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_Harmo_Abigail02.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="302338997"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_Harmo_Abigail02" ID="{F26AA024-9D8A-423A-B4E1-3157EFC59161}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_MeetingPhoebeAfterBattle_Abigail01" ID="{BD5DAF89-DF15-4351-9DC1-7C286272167E}" ShortID="907955434">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_MeetingPhoebeAfterBattle_Abigail01" ID="{7472B00F-FDFE-4B22-944D-1C33165EE2FC}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_MeetingPhoebeAfterBattle_Abigail01.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="470486372"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_MeetingPhoebeAfterBattle_Abigail01" ID="{7472B00F-FDFE-4B22-944D-1C33165EE2FC}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_BrokenInstrument_Abigail01" ID="{244728EB-F043-4558-B141-314101A43CB0}" ShortID="306956177">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_BrokenInstrument_Abigail01" ID="{D3F6C394-933D-494F-9D37-72F21F101498}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_BrokenInstrument_Abigail01.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="14649585"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_BrokenInstrument_Abigail01" ID="{D3F6C394-933D-494F-9D37-72F21F101498}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
+								</Folder>
 							</ChildrenList>
 							<ObjectLists/>
 						</ActorMixer>
