@@ -313,370 +313,1023 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<Sound Name="TF_Voice_EnteringTheGarden_Robyn01" ID="{702CFCA1-C195-4E28-B0EF-99A8F4B4A3E8}" ShortID="514069587">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
+								<Folder Name="Combat" ID="{D3C6B776-433E-4E8A-8FE8-3FEB92F5448C}" ShortID="405242620">
 									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_EnteringTheGarden_Robyn01" ID="{021D8EDA-4EBE-4582-8A0F-AED1FF43B2C0}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_EnteringTheGarden_Robyn01.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="741870825"/>
-											</MediaIDList>
-										</AudioFileSource>
+										<RandomSequenceContainer Name="AllyDeath" ID="{D2A10669-3E3A-46FA-906B-05ED33807041}" ShortID="518486707">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="TF_Voice_Generic_AllyDeath_Robyn01" ID="{26DF238E-CDAF-48CC-A16E-3C060A7899DF}" ShortID="343736210">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_AllyDeath_Robyn01" ID="{EA1C94F9-0193-4294-9AF5-23DE0A4CC465}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_AllyDeath_Robyn01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="75677520"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_AllyDeath_Robyn01" ID="{EA1C94F9-0193-4294-9AF5-23DE0A4CC465}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="DamageTaken" ID="{EEEFEFFD-94F4-48D7-A9CB-E67D24153546}" ShortID="85875709">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="TF_Voice_Generic_DamageTaken_Robyn02" ID="{DC76F6A3-3085-4428-8BED-CF4497B75A34}" ShortID="774241998">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_DamageTaken_Robyn02" ID="{3FCCE9BC-AD66-4FE2-BDAE-045698D0C147}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_DamageTaken_Robyn02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="416974429"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_DamageTaken_Robyn02" ID="{3FCCE9BC-AD66-4FE2-BDAE-045698D0C147}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_DamageTaken_Robyn03" ID="{25685B01-C751-483A-AF40-92A5CEB58BD2}" ShortID="305438514">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_DamageTaken_Robyn03" ID="{FE046FC6-7AB1-4C6C-B4E2-5BEBE350241D}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_DamageTaken_Robyn03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="934787513"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_DamageTaken_Robyn03" ID="{FE046FC6-7AB1-4C6C-B4E2-5BEBE350241D}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_DamageTaken_Robyn04" ID="{EC56EB92-1290-4E7F-B1A2-71D294A69BC9}" ShortID="688772692">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_DamageTaken_Robyn04" ID="{80308155-1AD6-47E4-9078-EF43EF0F8E4B}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_DamageTaken_Robyn04.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="95441867"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_DamageTaken_Robyn04" ID="{80308155-1AD6-47E4-9078-EF43EF0F8E4B}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_DamageTaken_Robyn01" ID="{638FE335-9282-4097-B364-E8AD7EBE0E0E}" ShortID="936961006">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_DamageTaken_Robyn01" ID="{8D14B682-9C2B-4E49-8010-4C0175D4CA86}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_DamageTaken_Robyn01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="93775558"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_DamageTaken_Robyn01" ID="{8D14B682-9C2B-4E49-8010-4C0175D4CA86}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="Death" ID="{6DA947BF-4AEB-435A-9EAB-65B5C95E776B}" ShortID="299287503">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="TF_Voice_Generic_Death_Robyn01" ID="{63820AB3-7D72-4189-83BD-EAA729647E03}" ShortID="1047074960">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_Death_Robyn01" ID="{A902CC63-15B8-4B64-9614-FA7A3F903852}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_Death_Robyn01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="458151814"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_Death_Robyn01" ID="{A902CC63-15B8-4B64-9614-FA7A3F903852}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_Death_Robyn02" ID="{56ABD113-5CB1-47C3-9CF8-2A881B68026F}" ShortID="322360057">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_Death_Robyn02" ID="{893E8407-52EB-480B-B8E7-BC4EF254E3EB}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_Death_Robyn02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="617089091"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_Death_Robyn02" ID="{893E8407-52EB-480B-B8E7-BC4EF254E3EB}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="Fury" ID="{6BD6DA86-E825-43D0-9F0B-69C8AECFE3B8}" ShortID="838553593">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="TF_Voice_Generic_Fury_Robyn01" ID="{CFC855B8-F38F-4E40-B668-326678ED7A7D}" ShortID="708429502">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_Fury_Robyn01" ID="{16518376-DB7F-4DC6-B1C2-96AED439BD3D}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_Fury_Robyn01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="209472311"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_Fury_Robyn01" ID="{16518376-DB7F-4DC6-B1C2-96AED439BD3D}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_Fury_Robyn02" ID="{D18967E3-B2E5-4C6D-A70A-21BD290BEAB4}" ShortID="680455257">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_Fury_Robyn02" ID="{71573530-56BF-44E1-B022-391D63C601D3}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_Fury_Robyn02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="70577007"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_Fury_Robyn02" ID="{71573530-56BF-44E1-B022-391D63C601D3}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_Fury_Robyn03" ID="{F780B11D-0485-45D8-BBD6-55A45FA85566}" ShortID="312864640">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_Fury_Robyn03" ID="{ADD6E580-9F95-4B62-8D45-349B1040FB0B}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_Fury_Robyn03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="459902928"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_Fury_Robyn03" ID="{ADD6E580-9F95-4B62-8D45-349B1040FB0B}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="Kill" ID="{8235E968-1205-4191-AABA-B59436419B94}" ShortID="237204959">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="TF_Voice_Generic_Kill_Robyn02" ID="{34719AAD-DFD0-4515-AB2A-CF9783EBD36B}" ShortID="597634799">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_Kill_Robyn02" ID="{7089AF6F-F071-4FD0-9999-022735AEEEAC}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_Kill_Robyn02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="3908702"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_Kill_Robyn02" ID="{7089AF6F-F071-4FD0-9999-022735AEEEAC}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_Kill_Robyn01" ID="{E2A8C7DD-7A82-4292-A6B4-94DB9C2353B9}" ShortID="834740810">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_Kill_Robyn01" ID="{9681925B-A62D-4D6C-B124-21D62CB717A4}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_Kill_Robyn01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="964364768"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_Kill_Robyn01" ID="{9681925B-A62D-4D6C-B124-21D62CB717A4}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="SkillExecution" ID="{3A35308F-2A1D-4708-81A9-2A3377B234B7}" ShortID="537703887">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="TF_Voice_Generic_SkillExecution_Robyn05" ID="{97C18E20-1C4A-4E59-A3CE-EA54124E2B4A}" ShortID="234958767">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_SkillExecution_Robyn05" ID="{C9255FA2-730E-4D49-959E-AB041E426546}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_SkillExecution_Robyn05.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="766827057"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_SkillExecution_Robyn05" ID="{C9255FA2-730E-4D49-959E-AB041E426546}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_SkillExecution_Robyn03" ID="{E5E0283A-72C6-48FC-993C-22027A76A3A9}" ShortID="403663921">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_SkillExecution_Robyn03" ID="{8BB4339C-C331-40C3-B9D0-9DFD989181D4}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_SkillExecution_Robyn03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="638787444"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_SkillExecution_Robyn03" ID="{8BB4339C-C331-40C3-B9D0-9DFD989181D4}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_SkillExecution_Robyn01" ID="{B861A8B8-6825-4B81-8D3D-D01225124BEC}" ShortID="671392364">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_SkillExecution_Robyn01" ID="{8C143FAC-D4FA-43D5-A176-9E277ED113AE}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_SkillExecution_Robyn01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="1054823526"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_SkillExecution_Robyn01" ID="{8C143FAC-D4FA-43D5-A176-9E277ED113AE}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_SkillExecution_Robyn04" ID="{A2233FB3-374F-412E-B083-75FA914CB976}" ShortID="424502356">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_SkillExecution_Robyn04" ID="{FBEF1EE5-A383-42DD-A0EE-A66FACA938BA}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_SkillExecution_Robyn04.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="234461980"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_SkillExecution_Robyn04" ID="{FBEF1EE5-A383-42DD-A0EE-A66FACA938BA}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_SkillExecution_Robyn02" ID="{22380E22-A3AD-4ED6-9D93-21579AA13432}" ShortID="517814595">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_SkillExecution_Robyn02" ID="{2FD08864-ABE6-4C2E-ADFD-CF0F5C833798}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_SkillExecution_Robyn02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="566610929"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_SkillExecution_Robyn02" ID="{2FD08864-ABE6-4C2E-ADFD-CF0F5C833798}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="StartBattle" ID="{A819703A-A32E-4CCC-B1E2-941C80E176C5}" ShortID="808341169">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="TF_Voice_Generic_StartBattle_Robyn01" ID="{7961456A-070F-4611-8561-AE4BD282020E}" ShortID="212258698">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_StartBattle_Robyn01" ID="{3DC53F03-EC5C-4956-AA92-3A81140F9D93}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_StartBattle_Robyn01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="755364044"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_StartBattle_Robyn01" ID="{3DC53F03-EC5C-4956-AA92-3A81140F9D93}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_StartBattle_Robyn02" ID="{8337DF8B-7450-4F53-B252-74C5E6E13191}" ShortID="168910941">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_StartBattle_Robyn02" ID="{C1D53247-B0E4-4262-9155-6D7084926783}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_StartBattle_Robyn02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="23246706"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_StartBattle_Robyn02" ID="{C1D53247-B0E4-4262-9155-6D7084926783}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="TF_Voice_Generic_StartBattle_Robyn03" ID="{CA47F371-FC54-4F43-83B8-75082C91F4C0}" ShortID="1068470389">
+													<PropertyList>
+														<Property Name="3DSpatialization" Type="int16" Value="2"/>
+														<Property Name="IsVoice" Type="bool" Value="True"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="TF_Voice_Generic_StartBattle_Robyn03" ID="{E6D698C6-A962-4CD0-90C7-AF886E2FD10A}">
+															<Language>English(US)</Language>
+															<AudioFile>TF_Voice_Generic_StartBattle_Robyn03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="306889958"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="TF_Voice_Generic_StartBattle_Robyn03" ID="{E6D698C6-A962-4CD0-90C7-AF886E2FD10A}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+										</RandomSequenceContainer>
 									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_EnteringTheGarden_Robyn01" ID="{021D8EDA-4EBE-4582-8A0F-AED1FF43B2C0}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_EnteringTheGarden_Robyn02" ID="{9BD5906C-156E-448A-9C6C-70E4DBD909BF}" ShortID="459720785">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
+								</Folder>
+								<Folder Name="Dialogues" ID="{4E0CFCA2-32F8-41BF-BBED-F1AF92B75016}" ShortID="935895959">
 									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_EnteringTheGarden_Robyn02" ID="{7239960A-0A92-4EEC-90D3-F4BC57221918}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_EnteringTheGarden_Robyn02.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="839532656"/>
-											</MediaIDList>
-										</AudioFileSource>
+										<Sound Name="TF_Voice_Harmo_Robyn02" ID="{EF57CC87-9C14-42A4-8D3C-D55F8857FD37}" ShortID="1012998933">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_Harmo_Robyn02" ID="{B4791BB4-7F3E-4E98-BF18-950E3A270A01}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_Harmo_Robyn02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="929021919"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_Harmo_Robyn02" ID="{B4791BB4-7F3E-4E98-BF18-950E3A270A01}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_EnteringTheGarden_Robyn01" ID="{702CFCA1-C195-4E28-B0EF-99A8F4B4A3E8}" ShortID="514069587">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_EnteringTheGarden_Robyn01" ID="{021D8EDA-4EBE-4582-8A0F-AED1FF43B2C0}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_EnteringTheGarden_Robyn01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="741870825"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_EnteringTheGarden_Robyn01" ID="{021D8EDA-4EBE-4582-8A0F-AED1FF43B2C0}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_EnteringTheGarden_Robyn02" ID="{9BD5906C-156E-448A-9C6C-70E4DBD909BF}" ShortID="459720785">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_EnteringTheGarden_Robyn02" ID="{7239960A-0A92-4EEC-90D3-F4BC57221918}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_EnteringTheGarden_Robyn02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="839532656"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_EnteringTheGarden_Robyn02" ID="{7239960A-0A92-4EEC-90D3-F4BC57221918}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_MeetingPhoebe_Robyn01" ID="{00F5B1A0-AB42-4DFB-BCB4-F2A3F31391A5}" ShortID="450271778">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_MeetingPhoebe_Robyn01" ID="{57C21848-6137-44B2-A791-242854463DE8}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_MeetingPhoebe_Robyn01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="256357879"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_MeetingPhoebe_Robyn01" ID="{57C21848-6137-44B2-A791-242854463DE8}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_MeetingPhoebe_Robyn02" ID="{4E411021-A063-425C-BC27-E46BDBDFA8AF}" ShortID="922276646">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_MeetingPhoebe_Robyn02" ID="{17A71342-71ED-4D4B-BE59-97CA42F4B486}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_MeetingPhoebe_Robyn02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="402698424"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_MeetingPhoebe_Robyn02" ID="{17A71342-71ED-4D4B-BE59-97CA42F4B486}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_EnteringTheGarden_Robyn04" ID="{92E5D395-243F-44C2-A81A-ED60509A4998}" ShortID="135330002">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_EnteringTheGarden_Robyn04" ID="{F4AD0184-B02F-48AC-AC29-7C7709021417}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_EnteringTheGarden_Robyn04.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="501760718"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_EnteringTheGarden_Robyn04" ID="{F4AD0184-B02F-48AC-AC29-7C7709021417}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_MeetingPhoebe_Robyn03" ID="{D6144DD9-9FF0-4E8F-8C2F-45F529E73720}" ShortID="291975986">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_MeetingPhoebe_Robyn03" ID="{25256BF3-0320-45D0-963E-FBB0CB3762E6}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_MeetingPhoebe_Robyn03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="194824909"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_MeetingPhoebe_Robyn03" ID="{25256BF3-0320-45D0-963E-FBB0CB3762E6}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_Harmo_Robyn01" ID="{95E4B899-8A20-4F56-90D6-2A881A0A621A}" ShortID="175342488">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_Harmo_Robyn01" ID="{DA2BB66E-3EA8-4184-807B-E0DB0A47D2D9}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_Harmo_Robyn01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="674221734"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_Harmo_Robyn01" ID="{DA2BB66E-3EA8-4184-807B-E0DB0A47D2D9}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_EnteringTheGarden_Robyn03" ID="{C569CE81-4D3B-4661-ADE7-769FA2345FB0}" ShortID="636828974">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_EnteringTheGarden_Robyn03" ID="{4EC0B2E1-A21B-4C1D-A83A-BF49E38AFDCB}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_EnteringTheGarden_Robyn03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="478087807"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_EnteringTheGarden_Robyn03" ID="{4EC0B2E1-A21B-4C1D-A83A-BF49E38AFDCB}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_MeetingPhoebeAfterBattle_Robyn01" ID="{0D38627F-E1BF-4859-A79D-8575D3ECACEB}" ShortID="935578408">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_MeetingPhoebeAfterBattle_Robyn01" ID="{8B81712C-4A3F-4745-B93D-7AF741CBEF2A}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_MeetingPhoebeAfterBattle_Robyn01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="1053803835"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_MeetingPhoebeAfterBattle_Robyn01" ID="{8B81712C-4A3F-4745-B93D-7AF741CBEF2A}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_MeetingPhoebeAfterBattle_Robyn02" ID="{C002DB2D-04B0-4021-8F53-2933CFE90044}" ShortID="590672596">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_MeetingPhoebeAfterBattle_Robyn02" ID="{6823100F-302D-4985-83A7-1A63AF74DD25}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_MeetingPhoebeAfterBattle_Robyn02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="560239217"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_MeetingPhoebeAfterBattle_Robyn02" ID="{6823100F-302D-4985-83A7-1A63AF74DD25}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_BrokenInstrument_Robyn01" ID="{7D74AA4B-9F3C-4085-BCD9-5D567994C465}" ShortID="247013607">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_BrokenInstrument_Robyn01" ID="{43D630C6-CB88-4D0A-B5D2-65E54BDE9A0D}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_BrokenInstrument_Robyn01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="650184652"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_BrokenInstrument_Robyn01" ID="{43D630C6-CB88-4D0A-B5D2-65E54BDE9A0D}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_MeetingPhoebeBattleBegin_Robyn01" ID="{80ED9066-6584-4F4A-BF0F-6353B3637593}" ShortID="218159532">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_MeetingPhoebeBattleBegin_Robyn01" ID="{4E0B64CE-CD3D-48E5-A841-D2FE4A4AEF83}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_MeetingPhoebeBattleBegin_Robyn01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="876259911"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_MeetingPhoebeBattleBegin_Robyn01" ID="{4E0B64CE-CD3D-48E5-A841-D2FE4A4AEF83}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="TF_Voice_MeetingPhoebeBattleEnd_Robyn01" ID="{0604866C-A43F-44F4-9DE1-CAEA2D8749AC}" ShortID="208017187">
+											<PropertyList>
+												<Property Name="3DSpatialization" Type="int16" Value="2"/>
+												<Property Name="IsVoice" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Voices" ID="{F6B18488-1BA4-4149-AC3D-0E65424B4707}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Voice_MeetingPhoebeBattleEnd_Robyn01" ID="{7085080A-AFED-4E22-9C6C-508EEB2DC29F}">
+													<Language>English(US)</Language>
+													<AudioFile>TF_Voice_MeetingPhoebeBattleEnd_Robyn01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="209804508"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="TF_Voice_MeetingPhoebeBattleEnd_Robyn01" ID="{7085080A-AFED-4E22-9C6C-508EEB2DC29F}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
 									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_EnteringTheGarden_Robyn02" ID="{7239960A-0A92-4EEC-90D3-F4BC57221918}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_EnteringTheGarden_Robyn03" ID="{C569CE81-4D3B-4661-ADE7-769FA2345FB0}" ShortID="636828974">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_EnteringTheGarden_Robyn03" ID="{4EC0B2E1-A21B-4C1D-A83A-BF49E38AFDCB}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_EnteringTheGarden_Robyn03.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="478087807"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_EnteringTheGarden_Robyn03" ID="{4EC0B2E1-A21B-4C1D-A83A-BF49E38AFDCB}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_EnteringTheGarden_Robyn04" ID="{92E5D395-243F-44C2-A81A-ED60509A4998}" ShortID="135330002">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_EnteringTheGarden_Robyn04" ID="{F4AD0184-B02F-48AC-AC29-7C7709021417}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_EnteringTheGarden_Robyn04.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="501760718"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_EnteringTheGarden_Robyn04" ID="{F4AD0184-B02F-48AC-AC29-7C7709021417}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_MeetingPhoebe_Robyn01" ID="{00F5B1A0-AB42-4DFB-BCB4-F2A3F31391A5}" ShortID="450271778">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_MeetingPhoebe_Robyn01" ID="{57C21848-6137-44B2-A791-242854463DE8}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_MeetingPhoebe_Robyn01.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="256357879"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_MeetingPhoebe_Robyn01" ID="{57C21848-6137-44B2-A791-242854463DE8}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_MeetingPhoebe_Robyn02" ID="{4E411021-A063-425C-BC27-E46BDBDFA8AF}" ShortID="922276646">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_MeetingPhoebe_Robyn02" ID="{17A71342-71ED-4D4B-BE59-97CA42F4B486}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_MeetingPhoebe_Robyn02.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="402698424"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_MeetingPhoebe_Robyn02" ID="{17A71342-71ED-4D4B-BE59-97CA42F4B486}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_MeetingPhoebe_Robyn03" ID="{D6144DD9-9FF0-4E8F-8C2F-45F529E73720}" ShortID="291975986">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_MeetingPhoebe_Robyn03" ID="{25256BF3-0320-45D0-963E-FBB0CB3762E6}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_MeetingPhoebe_Robyn03.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="194824909"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_MeetingPhoebe_Robyn03" ID="{25256BF3-0320-45D0-963E-FBB0CB3762E6}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_Harmo_Robyn01" ID="{95E4B899-8A20-4F56-90D6-2A881A0A621A}" ShortID="175342488">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_Harmo_Robyn01" ID="{DA2BB66E-3EA8-4184-807B-E0DB0A47D2D9}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_Harmo_Robyn01.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="674221734"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_Harmo_Robyn01" ID="{DA2BB66E-3EA8-4184-807B-E0DB0A47D2D9}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_Harmo_Robyn02" ID="{EF57CC87-9C14-42A4-8D3C-D55F8857FD37}" ShortID="1012998933">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_Harmo_Robyn02" ID="{B4791BB4-7F3E-4E98-BF18-950E3A270A01}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_Harmo_Robyn02.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="929021919"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_Harmo_Robyn02" ID="{B4791BB4-7F3E-4E98-BF18-950E3A270A01}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_MeetingPhoebeAfterBattle_Robyn01" ID="{0D38627F-E1BF-4859-A79D-8575D3ECACEB}" ShortID="935578408">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_MeetingPhoebeAfterBattle_Robyn01" ID="{8B81712C-4A3F-4745-B93D-7AF741CBEF2A}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_MeetingPhoebeAfterBattle_Robyn01.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="1053803835"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_MeetingPhoebeAfterBattle_Robyn01" ID="{8B81712C-4A3F-4745-B93D-7AF741CBEF2A}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_MeetingPhoebeAfterBattle_Robyn02" ID="{C002DB2D-04B0-4021-8F53-2933CFE90044}" ShortID="590672596">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_MeetingPhoebeAfterBattle_Robyn02" ID="{6823100F-302D-4985-83A7-1A63AF74DD25}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_MeetingPhoebeAfterBattle_Robyn02.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="560239217"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_MeetingPhoebeAfterBattle_Robyn02" ID="{6823100F-302D-4985-83A7-1A63AF74DD25}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_MeetingPhoebeBattleBegin_Robyn01" ID="{80ED9066-6584-4F4A-BF0F-6353B3637593}" ShortID="218159532">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_MeetingPhoebeBattleBegin_Robyn01" ID="{4E0B64CE-CD3D-48E5-A841-D2FE4A4AEF83}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_MeetingPhoebeBattleBegin_Robyn01.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="876259911"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_MeetingPhoebeBattleBegin_Robyn01" ID="{4E0B64CE-CD3D-48E5-A841-D2FE4A4AEF83}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_MeetingPhoebeBattleEnd_Robyn01" ID="{0604866C-A43F-44F4-9DE1-CAEA2D8749AC}" ShortID="208017187">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_MeetingPhoebeBattleEnd_Robyn01" ID="{7085080A-AFED-4E22-9C6C-508EEB2DC29F}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_MeetingPhoebeBattleEnd_Robyn01.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="209804508"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_MeetingPhoebeBattleEnd_Robyn01" ID="{7085080A-AFED-4E22-9C6C-508EEB2DC29F}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="TF_Voice_BrokenInstrument_Robyn01" ID="{7D74AA4B-9F3C-4085-BCD9-5D567994C465}" ShortID="247013607">
-									<PropertyList>
-										<Property Name="IsVoice" Type="bool" Value="True"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="TF_Voice_BrokenInstrument_Robyn01" ID="{43D630C6-CB88-4D0A-B5D2-65E54BDE9A0D}">
-											<Language>English(US)</Language>
-											<AudioFile>TF_Voice_BrokenInstrument_Robyn01.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="650184652"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="TF_Voice_BrokenInstrument_Robyn01" ID="{43D630C6-CB88-4D0A-B5D2-65E54BDE9A0D}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
+								</Folder>
 							</ChildrenList>
 							<ObjectLists/>
 						</ActorMixer>
