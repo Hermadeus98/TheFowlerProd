@@ -579,6 +579,7 @@ GameObject:
   - component: {fileID: 2501430064179663728}
   - component: {fileID: 2516067067758567215}
   - component: {fileID: 2501430064179663743}
+  - component: {fileID: 776498533975152473}
   m_Layer: 5
   m_Name: View - InfoBox
   m_TagString: Untagged
@@ -631,10 +632,12 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
+  isActive: 0
   registerView: 1
   viewName: InfoBoxView
   useDefaultAnimShow: 1
   useDefaultAnimHide: 1
+  AudioEventShow: 0
   canvasGroup: {fileID: 2501430064179663743}
   profile1: {fileID: 2703905776896451544}
   profile2: {fileID: 4283598546242173896}
@@ -644,6 +647,7 @@ MonoBehaviour:
   back: {fileID: 4914319635943725537}
   characters: {fileID: 2693291052481569350}
   infoBoxReminder: 
+  Inputs: {fileID: 776498533975152473}
 --- !u!225 &2501430064179663743
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -656,6 +660,36 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &776498533975152473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2501430064179663729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: dfa5b6de00faebf44b53636be128b3eb, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: UI
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &2549519428599023849
 GameObject:
   m_ObjectHideFlags: 0

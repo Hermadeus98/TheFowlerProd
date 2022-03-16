@@ -145,11 +145,11 @@ namespace TheFowler
                 }
             }
 
-            if (Inputs.actions["InfoBox"].WasPressedThisFrame())
-            {
+            //if (Inputs.actions["InfoBox"].WasPressedThisFrame())
+            //{
 
-                infoView.CheckInfoBox();
-            }
+            //    infoView.CheckInfoBox();
+            //}
 
         }
 
