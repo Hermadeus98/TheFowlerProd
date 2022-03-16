@@ -5,7 +5,7 @@ using UnityEngine.VFX;
 
 namespace TheFowler
 {
-    public class DamageEffectRobyn : Effect
+    public class DamageEffectRobyn : DamageEffect
     {
         public float damage;
         public VisualEffect VisualEffectAttack;

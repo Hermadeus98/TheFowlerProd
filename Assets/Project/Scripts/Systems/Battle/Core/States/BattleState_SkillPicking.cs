@@ -25,9 +25,13 @@ namespace TheFowler
                 
                 openning = StartCoroutine(OpenView());
                 BattleManager.CurrentBattleActor.BattleActorAnimator.Idle();
+                SetCamera(CameraKeys.BattleKeys.SkillPicking);
+            }
+            else if (BattleManager.IsEnemyTurn)
+            {
+                SetCamera(CameraKeys.BattleKeys.TargetPickingGuard);
             }
 
-            SetCamera(CameraKeys.BattleKeys.SkillPicking);
         }
 
         private IEnumerator OpenView()

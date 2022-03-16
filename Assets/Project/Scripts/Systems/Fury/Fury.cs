@@ -17,8 +17,11 @@ namespace TheFowler
         public static void PlayFury()
         {
             //Pas de fury si le dernier ennemie meurt.
-            if(BattleManager.CurrentBattle.Enemies.All(w => w.BattleActorInfo.isDeath))
+            if (BattleManager.CurrentBattle.Enemies.All(w => w.BattleActorInfo.isDeath))
+            {
+                StopFury();
                 return;
+            }
             
             QRDebug.Log("FURY", FrenchPallet.TOMATO_RED, "START");
 
