@@ -33,7 +33,7 @@ namespace TheFowler
 
         public override void Hide()
         {
-            base.Show();
+            base.Hide();
             CloseProfiles();
             CloseButtons();
             DeleteAllEvents();
@@ -41,6 +41,8 @@ namespace TheFowler
 
         public void ShowProfile(InfoBoxButtons[] buttons)
         {
+            Show();
+
             infoBoxReminder.Clear();
             for (int i = 0; i < buttons.Length; i++)
             {
@@ -141,13 +143,17 @@ namespace TheFowler
             }
         }
 
-        //private void Update()
-        //{
-        //    if (Inputs.actions["Return"].WasPerformedThisFrame())
-        //    {
+        private void Update()
+        {
+            if (isActive)
+            {
+                if (Inputs.actions["InfoBox"].WasPressedThisFrame())
+                {
+                    CheckInfoBox();
+                }
+            }
 
-        //    }
-        //}
+        }
 
     }
 
