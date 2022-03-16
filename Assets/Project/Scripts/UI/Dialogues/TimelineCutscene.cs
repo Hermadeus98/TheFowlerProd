@@ -14,6 +14,7 @@ namespace TheFowler
         [SerializeField] private DialogueHandler dialogueHandler;
         [SerializeField] Animator robynAnim, phoebeAnim, abiAnim;
         [SerializeField] UnityEngine.Events.UnityEvent[] evs;
+        [SerializeField] AK.Wwise.Event[] sounds;
         private Animator currentAnim;
         public void ShowTwoDCutscene(Sprite overrideSprite)
         {
@@ -28,6 +29,11 @@ namespace TheFowler
         public void PlaySound(AK.Wwise.Event sound)
         {
             sound.Post(this.gameObject);
+        }
+
+        public void PlaySound(int id)
+        {
+            sounds[id].Post(this.gameObject);
         }
 
         public void SetAnim(string animationTrigger)
