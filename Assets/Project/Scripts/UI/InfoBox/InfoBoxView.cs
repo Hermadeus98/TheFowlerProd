@@ -29,6 +29,9 @@ namespace TheFowler
         public override void Show()
         {
             base.Show();
+
+            var actionPicking = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
+            actionPicking.ShowDescription(true);
         }
 
         public override void Hide()
@@ -121,12 +124,18 @@ namespace TheFowler
                 if(OnProfileReminder != null)
                 {
                     OnProfileReminder.Invoke(infoBoxReminder.ToArray());
+                    
+                    var actionPicking = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
+                    actionPicking.ShowDescription(true);
                 }
 
             }
             else
             {
                 ShowProfilesUp();
+                
+                var actionPicking = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
+                actionPicking.ShowDescription(false);
             }
         }
 

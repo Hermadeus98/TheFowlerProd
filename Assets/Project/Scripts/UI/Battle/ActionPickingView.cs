@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -32,6 +33,8 @@ namespace TheFowler
         [FoldoutGroup("Anim"), SerializeField] private float fillDurationHide = .2f, fillDurationShow = .2f;
 
         private Coroutine opening;
+
+        public GameObject[] decriptions;
         
         public override void Show()
         {
@@ -178,13 +181,12 @@ namespace TheFowler
             if (state)
             {
                 flamme.DOFade(1f, 0.01f);
-                fury_desc.SetActive(true);
+                //fury_desc.SetActive(true);
             }
             else
             {
                 flamme.DOFade(0f, 0.01f);
-                fury_desc.SetActive(false);
-
+                //fury_desc.SetActive(false);
             }
         }
 
@@ -202,5 +204,7 @@ namespace TheFowler
         {
             parry.canInput = state;
         }
+
+        public void ShowDescription(bool state) => decriptions.ForEach(w => w.SetActive(state));
     }
 }
