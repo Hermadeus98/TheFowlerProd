@@ -23,6 +23,7 @@ namespace TheFowler
         private Tween backAnim;
 
         [SerializeField] private Image flamme;
+        [SerializeField] private GameObject fury_desc;
 
         [FoldoutGroup("Anim")] public Image X, Y, A, B;
         [FoldoutGroup("Anim")] public Image X_box, Y_box, A_box, B_box;
@@ -177,10 +178,13 @@ namespace TheFowler
             if (state)
             {
                 flamme.DOFade(1f, 0.01f);
+                fury_desc.SetActive(true);
             }
             else
             {
                 flamme.DOFade(0f, 0.01f);
+                fury_desc.SetActive(false);
+
             }
         }
 
