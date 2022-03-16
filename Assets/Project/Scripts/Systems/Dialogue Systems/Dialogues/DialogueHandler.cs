@@ -32,7 +32,7 @@ namespace TheFowler
         [TabGroup("Debug")]
         [SerializeField, ReadOnly] private DialogueNode currentDialogueNode;
         private Dialogue currentDialogue => currentDialogueNode.dialogue;
-        
+
         [TabGroup("Debug")]
         [SerializeField, ReadOnly] private float elapsedTime = 0, elapsedTimePassCutscene = 0;
 
@@ -40,7 +40,7 @@ namespace TheFowler
         [SerializeField] private DialogueType dialogueType;
         [TabGroup("References")]
         [SerializeField] private ActorActivator actorActivator;
-        
+
         [TabGroup("References")]
         [SerializeField] private PlayerInput Inputs;
         [TabGroup("References")]
@@ -58,7 +58,7 @@ namespace TheFowler
 
         private UIView currentView;
 
-        private int idGuards = 0;
+        [SerializeField] private int idGuards = 0;
 
         [TabGroup("Debug")]
         private bool waitInput;
@@ -490,11 +490,10 @@ namespace TheFowler
                             Tree = BehaviourTree,
                         });
                     }
-                    
-                    
 
                     switch (dialogue.ActorEnum)
                     {
+                        
                         case ActorEnum.ROBYN:
                             if(robynAnim != null)
                             {
@@ -534,7 +533,7 @@ namespace TheFowler
                             currentAnim = abiAnim;
                             break;
                         case ActorEnum.GUARD:
-
+                            
                             if(guardsSockets[idGuards] != null)
                             {
                                 SoundManager.PlaySound(dialogue.voice, guardsSockets[idGuards].body_Middle.gameObject);
@@ -569,7 +568,70 @@ namespace TheFowler
                         Dialogue = dialogue,
                         DialogueNode = currentDialogueNode,
                     });
-                    SoundManager.PlaySound(dialogue.voice, gameObject);
+                    switch (dialogue.ActorEnum)
+                    {
+
+                        case ActorEnum.ROBYN:
+                            if (robynAnim != null)
+                            {
+                                SoundManager.PlaySound(dialogue.voice, robynAnim.GetComponent<AnimTriggerBase>().Sockets.body_Middle.gameObject);
+                            }
+                            else
+                            {
+                                SoundManager.PlaySound(dialogue.voice, Player.Robyn.pawnTransform.gameObject);
+                            }
+
+                            currentAnim = robynAnim;
+                            break;
+                        case ActorEnum.PHEOBE:
+                            if (phoebeAnim != null)
+                            {
+                                SoundManager.PlaySound(dialogue.voice, phoebeAnim.GetComponent<AnimTriggerBase>().Sockets.body_Middle.gameObject);
+                            }
+                            else
+                            {
+                                SoundManager.PlaySound(dialogue.voice, Player.Pheobe.pawnTransform.gameObject);
+
+                            }
+
+                            currentAnim = phoebeAnim;
+                            break;
+                        case ActorEnum.ABIGAEL:
+                            if (abiAnim != null)
+                            {
+                                SoundManager.PlaySound(dialogue.voice, abiAnim.GetComponent<AnimTriggerBase>().Sockets.body_Middle.gameObject);
+                            }
+                            else
+                            {
+                                SoundManager.PlaySound(dialogue.voice, Player.Abigael.pawnTransform.gameObject);
+
+                            }
+
+                            currentAnim = abiAnim;
+                            break;
+                        case ActorEnum.GUARD:
+
+                            if (guardsSockets[idGuards] != null)
+                            {
+                                
+                                SoundManager.PlaySound(dialogue.voice, guardsSockets[idGuards].body_Middle.gameObject);
+                                idGuards++;
+                            }
+                            else
+                            {
+                                SoundManager.PlaySound(dialogue.voice, gameObject);
+  
+                            }
+
+                            break;
+                        case ActorEnum.LIEUTENANT:
+                            SoundManager.PlaySound(dialogue.voice, gameObject);
+                            break;
+                        default:
+                            SoundManager.PlaySound(dialogue.voice, gameObject);
+                            break;
+                    }
+
                     break;
                 case DialogueType.HARMONISATION:
                     UI.RefreshView(UI.Views.Harmo, new DialogueArg()
