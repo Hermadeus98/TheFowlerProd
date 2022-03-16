@@ -11,7 +11,6 @@ namespace TheFowler
         public VisualEffect VisualEffectAttack;
         public float waitAttackEffect = 1f;
         public VisualEffect VisualEffectAttackShock;
-        public float waitAttackEffectShock = 1f;
         public ShockWave ShockWaveEffect;
 
         public override void PreviewEffect(BattleActor emitter)

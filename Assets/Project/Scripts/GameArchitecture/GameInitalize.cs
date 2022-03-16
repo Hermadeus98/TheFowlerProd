@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using QRCode;
 using Sirenix.OdinInspector;
@@ -26,7 +27,12 @@ namespace TheFowler
         
         [TitleGroup("Difficulty Settings")] [SerializeField]
         private DifficultyEnum startDifficulty = DifficultyEnum.TEST;
-        
+
+        private void Awake()
+        {
+            Cursor.visible = false;
+        }
+
         private IEnumerator Start()
         {
             //--<REMOTE SETTINGS>
