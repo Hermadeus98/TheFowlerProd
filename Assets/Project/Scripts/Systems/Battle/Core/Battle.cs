@@ -51,6 +51,7 @@ namespace TheFowler
         {
             base.OnAwake();
             SetActorState(false);
+
         }
 
         private IEnumerator Start()

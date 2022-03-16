@@ -23,6 +23,12 @@ namespace TheFowler
             BattleManager.CurrentRound.OverrideTurn(selectedActorForFury);
 
             BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.FURY);
+
+            InfoBoxButtons[] infoButtons = new InfoBoxButtons[2];
+            infoButtons[0] = InfoBoxButtons.CONFIRM;
+            infoButtons[1] = InfoBoxButtons.BACK;
+
+            UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
         }
     }
 }

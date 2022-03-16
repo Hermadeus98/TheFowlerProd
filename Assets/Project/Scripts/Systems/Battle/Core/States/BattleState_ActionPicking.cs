@@ -25,6 +25,8 @@ namespace TheFowler
             }
 
             BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.ACTIONPICKING);
+
+            UI.GetView<InfoBoxView>(UI.Views.InfoBox).Hide();
         }
 
         IEnumerator OnStateEnterIE()

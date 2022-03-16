@@ -14,6 +14,9 @@ namespace TheFowler
             base.OnStateEnter(arg);
             FinishBattle();
             BattleManager.CurrentBattle.EndPhase();
+
+
+            UI.GetView<InfoBoxView>(UI.Views.InfoBox).Hide();
         }
 
         private void FinishBattle()

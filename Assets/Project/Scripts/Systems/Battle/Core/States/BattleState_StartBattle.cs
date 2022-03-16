@@ -18,6 +18,8 @@ namespace TheFowler
 
             if (BattleManager.CurrentBattle.FinishDirectly)
                 StartCoroutine(Stop());
+
+            UI.GetView<InfoBoxView>(UI.Views.InfoBox).Hide();
         }
 
         IEnumerator Stop()
