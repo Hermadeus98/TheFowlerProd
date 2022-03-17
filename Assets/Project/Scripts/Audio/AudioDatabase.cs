@@ -85,6 +85,7 @@ namespace TheFowler
         //FUCK
         TF_Main_SetTutoOff,
         TF_Main_SetTutoOn,
+        TF_Main_SetLoading,
 
     }
 }
