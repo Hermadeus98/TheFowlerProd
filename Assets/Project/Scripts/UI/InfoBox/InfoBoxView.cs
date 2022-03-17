@@ -79,6 +79,16 @@ namespace TheFowler
                 SwitchButtons(buttons[i]);
             }
 
+            if (!isOpen)
+            {
+                ShowProfilesUp();
+
+                var actionPicking = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
+                actionPicking.ShowDescription(false);
+            }
+
+
+
         }
 
 
@@ -134,11 +144,13 @@ namespace TheFowler
             {
                 if(OnProfileReminder != null)
                 {
+                    isOpen = true;
+
                     OnProfileReminder.Invoke(infoBoxReminder.ToArray());
                     
                     var actionPicking = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
                     actionPicking.ShowDescription(true);
-                    isOpen = true;
+
                 }
 
             }
