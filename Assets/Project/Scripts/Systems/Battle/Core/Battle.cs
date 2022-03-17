@@ -47,6 +47,9 @@ namespace TheFowler
 
         public bool IsFinish { get; set; }
         
+        [Sirenix.OdinInspector.FilePath] public string referenceBattlePath;
+
+        
         protected override void OnAwake()
         {
             base.OnAwake();
@@ -209,15 +212,16 @@ namespace TheFowler
             StopBattle();
             UI.OpenView("LoseView");
         }
-
-        public Battle referenceBattle;
         
         [Button]
         public void Restart()
         {
             var battle = this;
             battle.gameObject.SetActive(false);
-            var newBattle = Instantiate(referenceBattle, battle.transform.position, battle.transform.rotation);
+
+            var newBattle = Instantiate(Resources.Load<Battle>(referenceBattlePath), battle.transform.position, battle.transform.rotation);
+            
+            DestroyImmediate(battle);
             
             newBattle.PlayPhase();
         }

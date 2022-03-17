@@ -16,12 +16,14 @@ namespace TheFowler
         public void Restart()
         {
             BattleManager.CurrentBattle.Restart();
+            Hide();
         }
 
         [Button]
         public void MainMenu()
         {
             Game.GoToMainMenu();
+            Hide();
         }
 
         public override void Show()

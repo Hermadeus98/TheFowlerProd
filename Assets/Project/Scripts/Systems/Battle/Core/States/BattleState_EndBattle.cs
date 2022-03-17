@@ -17,6 +17,13 @@ namespace TheFowler
 
 
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).Hide();
+            
+            UI.CloseView(UI.Views.SkillPicking);
+            UI.CloseView(UI.Views.ActionPicking);
+            UI.CloseView(UI.Views.TargetPicking);
+
+            TargetSelector.Quit();
+            TargetSelector.ResetSelectedTargets();
         }
 
         private void FinishBattle()
