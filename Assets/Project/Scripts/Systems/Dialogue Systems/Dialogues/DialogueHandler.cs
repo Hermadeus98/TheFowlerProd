@@ -274,7 +274,7 @@ namespace TheFowler
 
         private void CallRappelInput()
         {
-            var view = new UIView();
+            UIView view = currentView;
 
             if (currentView == null) return;
 
