@@ -67,13 +67,18 @@ namespace TheFowler
         protected override void RegisterEvent()
         {
             base.RegisterEvent();
-            ChapterManager.onChapterChange += delegate(Chapter chapter) { EndPhase(); };
+            ChapterManager.onChapterChange += delegate(Chapter chapter) { Finish(); };
         }
 
         protected override void UnregisterEvent()
         {
             base.UnregisterEvent();
-            ChapterManager.onChapterChange -= delegate(Chapter chapter) { EndPhase(); };
+            ChapterManager.onChapterChange -= delegate(Chapter chapter) { Finish(); };
+        }
+
+        private void Finish()
+        {
+            if (isActive) { EndPhase(); }
         }
 
         public override void PlayPhase()
@@ -274,7 +279,7 @@ namespace TheFowler
 
         private void CallRappelInput()
         {
-            var view = new UIView();
+            var view = currentView;
 
             if (currentView == null) return;
 
@@ -292,36 +297,46 @@ namespace TheFowler
                     if(view.rappelInput != null)
                         view.rappelInput?.RappelInputFeedback(elapsedTimePassCutscene);
 
-                    if (!hasPassChoices)
+                    if(BehaviourTree.dialogueType == DialogueType.HARMONISATION)
                     {
-                        for (int i = 0; i < BehaviourTree.nodes.Count; i++)
+                        if (!hasPassChoices)
+                        {
+                            for (int i = 0; i < BehaviourTree.nodes.Count; i++)
+                            {
+
+
+                                DialogueNode newNode = BehaviourTree.nodes[i] as DialogueNode;
+
+                                if (currentDialogue == newNode.dialogue)
+                                {
+                                    if (newNode.hasMultipleChoices)
+                                    {
+                                        DisplayDialogue(newNode.dialogue);
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        Next();
+                                    }
+                                }
+
+
+                            }
+                        }
+                        else
                         {
 
-                            
-                            DialogueNode newNode = BehaviourTree.nodes[i] as DialogueNode;
 
-                            if (currentDialogue == newNode.dialogue)
-                            {
-                                if (newNode.hasMultipleChoices)
-                                {
-                                    DisplayDialogue(newNode.dialogue);
-                                    break;
-                                }
-                                else
-                                {
-                                    Next();
-                                }
-                            }
-
-                                
+                            EndPhase();
                         }
+
                     }
-                    else
+
+                    else if (BehaviourTree.dialogueType == DialogueType.STATIC)
                     {
-
-
                         EndPhase();
                     }
+
 
                 }
 

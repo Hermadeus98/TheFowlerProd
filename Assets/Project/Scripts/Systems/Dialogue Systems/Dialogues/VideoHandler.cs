@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.InputSystem;
+
 namespace TheFowler
 {
     public class VideoHandler : GameplayPhase
@@ -14,12 +15,28 @@ namespace TheFowler
         private float elapsedTimePassCutscene;
         private bool videoPassed = false;
 
+        public bool PlayWWISESTate;
+
         private VideoView view;
+
+        public System.Action chapterLoader;
         public override void PlayPhase()
         {
             base.PlayPhase();
+            PlayElements();
+        }
+
+        public void PlayPhase(System.Action action)
+        {
+            base.PlayPhase();
+            PlayElements();
+            chapterLoader = action;
+        }
 
 
+
+        private void PlayElements()
+        {
             videoPassed = false;
             view = UI.GetView<VideoView>(UI.Views.Video);
 
@@ -27,12 +44,17 @@ namespace TheFowler
 
             StartCoroutine(WaitEndVideo());
 
-            activator.DesactivateActor(false);
+            if (activator != null)
+                activator.DesactivateActor(false);
 
             BlackPanel.Instance.Hide();
 
-            AkSoundEngine.SetState("GameplayPhase", "Intro");
-            AkSoundEngine.SetState("Scene", "Intro");
+            if (PlayWWISESTate)
+            {
+                AkSoundEngine.SetState("GameplayPhase", "Intro");
+                AkSoundEngine.SetState("Scene", "Intro");
+            }
+
         }
         public override void EndPhase()
         {
@@ -40,12 +62,18 @@ namespace TheFowler
 
             view.Hide();
 
+            if (PlayWWISESTate)
+            {
+                AkSoundEngine.SetState("Scene", "Scene1_TheGarden");
+                AkSoundEngine.SetState("GameplayPhase", "Explo");
 
-            AkSoundEngine.SetState("Scene", "Scene1_TheGarden");
-            AkSoundEngine.SetState("GameplayPhase", "Explo");
-            
+            }
 
             StopAllCoroutines();
+
+            if(chapterLoader != null)
+                chapterLoader.Invoke();
+
         }
 
         private IEnumerator WaitEndVideo()

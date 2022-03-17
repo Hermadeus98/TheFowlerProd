@@ -70,6 +70,8 @@ namespace TheFowler
         {
             base.PlayPhase();
 
+            Debug.Log(gameObject.name);
+
             BattleManager.CurrentBattle = this;
             
             InitializeUI();
