@@ -264,7 +264,7 @@ namespace TheFowler
             return result switch
             {
                 DamageCalculator.ResistanceFaiblesseResult.NEUTRE => false,
-                DamageCalculator.ResistanceFaiblesseResult.FAIBLESSE => true,
+                DamageCalculator.ResistanceFaiblesseResult.FAIBLESSE => false,
                 DamageCalculator.ResistanceFaiblesseResult.RESISTANCE => true,
                 _ => throw new ArgumentOutOfRangeException()
             };
