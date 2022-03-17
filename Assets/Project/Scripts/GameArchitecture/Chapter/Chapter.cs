@@ -17,6 +17,9 @@ namespace TheFowler
         
         public override void OnStateEnter(EventArgs arg)
         {
+            if(GameState.gameArguments.currentChapterData != null)
+                SoundManager.PlaySound(GameState.gameArguments.currentChapterData.audioEventOnChapterEnded, null);
+            
             GameState.gameArguments.currentChapter = this;
 
             if (ChapterData.IsNull())
