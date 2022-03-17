@@ -45,6 +45,7 @@ namespace TheFowler
         {
             base.EndPhase();
 
+            Debug.Log(video.length);
             view.Hide();
             if (!string.IsNullOrEmpty(in_StateGroupe1))
             {
@@ -60,7 +61,7 @@ namespace TheFowler
 
         private IEnumerator WaitEndVideo()
         {
-            Debug.Log(video.length);
+            
             yield return new WaitForSeconds((float)video.length - 1);
             BlackPanel.Instance.Show();
             yield return new WaitForSeconds(1);
@@ -70,7 +71,7 @@ namespace TheFowler
         }
 
         private IEnumerator WaitEndVideoInput()
-        {
+        {Debug.Log(video.length);
             videoPassed = true;
             BlackPanel.Instance.Show();
             yield return new WaitForSeconds(1);
