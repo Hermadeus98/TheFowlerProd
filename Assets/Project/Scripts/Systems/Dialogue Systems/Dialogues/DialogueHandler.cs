@@ -292,36 +292,42 @@ namespace TheFowler
                     if(view.rappelInput != null)
                         view.rappelInput?.RappelInputFeedback(elapsedTimePassCutscene);
 
-                    if (!hasPassChoices)
+
+                    if(BehaviourTree.dialogueType == DialogueType.STATIC)
                     {
-                        for (int i = 0; i < BehaviourTree.nodes.Count; i++)
-                        {
-
-                            
-                            DialogueNode newNode = BehaviourTree.nodes[i] as DialogueNode;
-
-                            if (currentDialogue == newNode.dialogue)
-                            {
-                                if (newNode.hasMultipleChoices)
-                                {
-                                    DisplayDialogue(newNode.dialogue);
-                                    break;
-                                }
-                                else
-                                {
-                                    Next();
-                                }
-                            }
-
-                                
-                        }
-                    }
-                    else
-                    {
-
-
                         EndPhase();
+                        
                     }
+
+                    else if (BehaviourTree.dialogueType == DialogueType.HARMONISATION)
+                    {
+                        if (!hasPassChoices)
+                        {
+                            for (int i = 0; i < BehaviourTree.nodes.Count; i++)
+                            {
+
+
+                                DialogueNode newNode = BehaviourTree.nodes[i] as DialogueNode;
+
+                                if (currentDialogue == newNode.dialogue)
+                                {
+                                    if (newNode.hasMultipleChoices)
+                                    {
+                                        DisplayDialogue(newNode.dialogue);
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        Next();
+                                    }
+                                }
+
+
+                            }
+                        }
+
+                    }
+
 
                 }
 
@@ -690,10 +696,11 @@ namespace TheFowler
             yield break;
         }
 
-        public void PlayComplicityView()
+        public void PlayComplicityView(string actor)
         {
+
             ComplicityView view = UI.GetView<ComplicityView>(UI.Views.Complicity);
-            view.Show();
+            view.Show((ComplicityActor)System.Enum.Parse(typeof(ComplicityActor), actor));
         }
 
 

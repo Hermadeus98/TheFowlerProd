@@ -15,6 +15,8 @@ namespace TheFowler
         private bool videoPassed = false;
 
         private VideoView view;
+
+        [SerializeField] private string in_StateGroupe1, in_State1, in_StateGroupe2, in_State2, in_StateGroupe3, in_State3;
         public override void PlayPhase()
         {
             base.PlayPhase();
@@ -27,22 +29,31 @@ namespace TheFowler
 
             StartCoroutine(WaitEndVideo());
 
-            activator.DesactivateActor(false);
+            if(activator != null)
+                activator.DesactivateActor(false);
 
             BlackPanel.Instance.Hide();
 
-            AkSoundEngine.SetState("GameplayPhase", "Intro");
-            AkSoundEngine.SetState("Scene", "Intro");
+            if (!string.IsNullOrEmpty(in_StateGroupe1))
+            {
+                AkSoundEngine.SetState(in_StateGroupe1, in_State1);
+                AkSoundEngine.SetState(in_StateGroupe2, in_State2);
+            }
+
         }
         public override void EndPhase()
         {
             base.EndPhase();
 
+            Debug.Log(video.length);
             view.Hide();
+            if (!string.IsNullOrEmpty(in_StateGroupe1))
+            {
+                AkSoundEngine.SetState(in_StateGroupe2, in_StateGroupe3);
+                AkSoundEngine.SetState(in_StateGroupe1, in_State3);
+            }
 
 
-            AkSoundEngine.SetState("Scene", "Scene1_TheGarden");
-            AkSoundEngine.SetState("GameplayPhase", "Explo");
             
 
             StopAllCoroutines();
@@ -50,6 +61,7 @@ namespace TheFowler
 
         private IEnumerator WaitEndVideo()
         {
+            
             yield return new WaitForSeconds((float)video.length - 1);
             BlackPanel.Instance.Show();
             yield return new WaitForSeconds(1);
@@ -59,7 +71,7 @@ namespace TheFowler
         }
 
         private IEnumerator WaitEndVideoInput()
-        {
+        {Debug.Log(video.length);
             videoPassed = true;
             BlackPanel.Instance.Show();
             yield return new WaitForSeconds(1);
