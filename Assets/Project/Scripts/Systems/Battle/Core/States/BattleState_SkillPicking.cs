@@ -33,9 +33,10 @@ namespace TheFowler
             }
 
 
-            InfoBoxButtons[] infoButtons = new InfoBoxButtons[2];
+            InfoBoxButtons[] infoButtons = new InfoBoxButtons[3];
             infoButtons[0] = InfoBoxButtons.CONFIRM;
             infoButtons[1] = InfoBoxButtons.BACK;
+            infoButtons[2] = InfoBoxButtons.SELECTSKILL;
 
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
 

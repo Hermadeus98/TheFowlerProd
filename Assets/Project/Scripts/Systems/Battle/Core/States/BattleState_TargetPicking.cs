@@ -40,9 +40,11 @@ namespace TheFowler
 
             BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.TARGETPICKING);
 
-            InfoBoxButtons[] infoButtons = new InfoBoxButtons[2];
+            InfoBoxButtons[] infoButtons = new InfoBoxButtons[3];
             infoButtons[0] = InfoBoxButtons.CONFIRM;
             infoButtons[1] = InfoBoxButtons.BACK;
+            infoButtons[2] = InfoBoxButtons.SELECTTARGET;
+
 
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
         }

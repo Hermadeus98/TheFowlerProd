@@ -15,11 +15,13 @@ namespace TheFowler
         [TabGroup("References")]
         [SerializeField] private GameObject profile1, profile2, profile3, profileUp;
         [TabGroup("References")]
-        [SerializeField] private GameObject confirm, back, characters;
+        [SerializeField] private GameObject confirm, back, characters, selectSkill, selectTarget;
         private delegate void ProfileReminder(InfoBoxButtons[] buttons);
         private event ProfileReminder OnProfileReminder;
         [SerializeField] private List<InfoBoxButtons> infoBoxReminder;
         [SerializeField] private PlayerInput Inputs;
+
+        private bool isOpen;
 
         public override void Refresh(EventArgs args)
         {
@@ -76,6 +78,7 @@ namespace TheFowler
             {
                 SwitchButtons(buttons[i]);
             }
+
         }
 
 
@@ -91,6 +94,8 @@ namespace TheFowler
             confirm.SetActive(false);
             back.SetActive(false);
             characters.SetActive(false);
+            selectSkill.SetActive(false);
+            selectTarget.SetActive(false);
         }
 
         private void SwitchButtons(InfoBoxButtons button)
@@ -105,6 +110,12 @@ namespace TheFowler
                     break;
                 case InfoBoxButtons.CHARACTERS:
                     characters.SetActive(true);
+                    break;
+                case InfoBoxButtons.SELECTSKILL:
+                    selectSkill.SetActive(true);
+                    break;
+                case InfoBoxButtons.SELECTTARGET:
+                    selectTarget.SetActive(true);
                     break;
             }
         }
@@ -127,6 +138,7 @@ namespace TheFowler
                     
                     var actionPicking = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
                     actionPicking.ShowDescription(true);
+                    isOpen = true;
                 }
 
             }
@@ -136,6 +148,7 @@ namespace TheFowler
                 
                 var actionPicking = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
                 actionPicking.ShowDescription(false);
+                isOpen = false;
             }
         }
 
@@ -170,7 +183,9 @@ namespace TheFowler
     {
         CONFIRM,
         BACK,
-        CHARACTERS
+        CHARACTERS,
+        SELECTSKILL,
+        SELECTTARGET
     }
 
 }
