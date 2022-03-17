@@ -39,7 +39,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3787826988" Language="English(US)" Hash="1342754815">
+		<SoundBank Id="3787826988" Language="English(US)" Hash="699944358">
 			<ObjectPath>\SoundBanks\Default Work Unit\Core</ObjectPath>
 			<ShortName>Core</ShortName>
 			<Path>English(US)\Core.bnk</Path>
@@ -56,23 +56,44 @@
 					<IncludedMemoryFiles>
 						<File Id="48130237" Language="SFX">
 							<ShortName>TF_Music_Explo_120BPM.wav</ShortName>
-							<Path>SFX\TF_Music_Explo_120BPM_8E194C5B.wem</Path>
+							<Path>SFX\TF_Music_Explo_120BPM_D79FB2B7.wem</Path>
 						</File>
 						<File Id="648708101" Language="SFX">
 							<ShortName>TF_M_Battle.wav</ShortName>
-							<Path>SFX\TF_M_Battle_8E194C5B.wem</Path>
+							<Path>SFX\TF_M_Battle_D79FB2B7.wem</Path>
+						</File>
+						<File Id="782069622" Language="SFX">
+							<ShortName>TF_Music_BattleAviary_190BPM.wav</ShortName>
+							<Path>SFX\TF_Music_BattleAviary_190BPM_D79FB2B7.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 					<SwitchContainers>
 						<SwitchContainer SwitchValue="{16478AC6-5BF2-42C8-86D6-91C94808F876}">
-							<Media>
-								<File Id="648708101"/>
-							</Media>
+							<Children>
+								<SwitchContainer SwitchValue="{610DA068-6F12-49ED-A20D-B05F69BD9E62}">
+									<Media>
+										<File Id="648708101"/>
+									</Media>
+								</SwitchContainer>
+							</Children>
 						</SwitchContainer>
 						<SwitchContainer SwitchValue="{9ADCD37D-AFCA-4EDE-823F-79A2510E4F0B}">
-							<Media>
-								<File Id="48130237"/>
-							</Media>
+							<Children>
+								<SwitchContainer SwitchValue="{610DA068-6F12-49ED-A20D-B05F69BD9E62}">
+									<Media>
+										<File Id="48130237"/>
+									</Media>
+								</SwitchContainer>
+							</Children>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{16478AC6-5BF2-42C8-86D6-91C94808F876}">
+							<Children>
+								<SwitchContainer SwitchValue="{65540419-D4EF-4DD9-B468-DEB41C3A0F99}">
+									<Media>
+										<File Id="782069622"/>
+									</Media>
+								</SwitchContainer>
+							</Children>
 						</SwitchContainer>
 					</SwitchContainers>
 					<ActionSetState>
@@ -1125,6 +1146,17 @@
 				</StateGroup>
 				<StateGroup Id="1651971902" Name="On" ObjectPath="\States\Default Work Unit\Mute\On" GUID="{1FCE60A8-F134-43D4-AB90-C6E2F727BF4E}">
 					<States/>
+				</StateGroup>
+				<StateGroup Id="1926883983" Name="Scene" ObjectPath="\States\Default Work Unit\Scene" GUID="{610DA068-6F12-49ED-A20D-B05F69BD9E62}">
+					<States>
+						<State Id="748895195" Name="None" ObjectPath="\States\Default Work Unit\Scene\None" GUID="{CB92A6AE-77F8-456E-8EAE-0EE41AB07D9E}"/>
+						<State Id="1125500713" Name="Intro" ObjectPath="\States\Default Work Unit\Scene\Intro" GUID="{A2978F8C-41B2-4EFA-9C95-375AE3555236}"/>
+						<State Id="939656739" Name="Scene1_TheGarden" ObjectPath="\States\Default Work Unit\Scene\Scene1_TheGarden" GUID="{9CDF30B7-4513-4CFA-9D35-A689207CC89D}"/>
+						<State Id="887491963" Name="Scene2_TheAviary" ObjectPath="\States\Default Work Unit\Scene\Scene2_TheAviary" GUID="{65540419-D4EF-4DD9-B468-DEB41C3A0F99}"/>
+						<State Id="1261344916" Name="Scene3_TheBallRoom" ObjectPath="\States\Default Work Unit\Scene\Scene3_TheBallRoom" GUID="{2B960808-FAC3-482D-AFBB-0B7E76BA7728}"/>
+						<State Id="3037376192" Name="Scene4_TheTribunal" ObjectPath="\States\Default Work Unit\Scene\Scene4_TheTribunal" GUID="{FE294F59-3669-485C-83AC-DA13D5668902}"/>
+						<State Id="4184794294" Name="Outro" ObjectPath="\States\Default Work Unit\Scene\Outro" GUID="{BA6F1642-33DF-4F12-888C-CFA108BF5774}"/>
+					</States>
 				</StateGroup>
 				<StateGroup Id="2937832959" Name="Battle" ObjectPath="\States\Default Work Unit\GameplayPhase\Battle" GUID="{16478AC6-5BF2-42C8-86D6-91C94808F876}">
 					<States/>
