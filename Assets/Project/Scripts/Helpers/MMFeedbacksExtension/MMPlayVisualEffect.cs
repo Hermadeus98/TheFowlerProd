@@ -14,7 +14,10 @@ namespace TheFowler
         
         protected override void CustomPlayFeedback(Vector3 position, float feedbacksIntensity = 1)
         {
-            VisualEffect?.Play();
+            if (VisualEffect != null)
+            {
+                VisualEffect.Play();
+            }
         }
     }
 }
