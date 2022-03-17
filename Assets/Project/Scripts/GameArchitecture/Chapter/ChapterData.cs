@@ -18,5 +18,9 @@ namespace TheFowler
         public bool ShowChapterTitle = true;
 
         public GameplayPhaseEnum OnStartGamephase_Id;
+
+        [TitleGroup("Audio")]
+        public AudioGenericEnum audioEventOnChapterStart;
+        public AudioGenericEnum audioEventOnChapterEnded;
     }
 }

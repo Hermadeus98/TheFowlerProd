@@ -27,7 +27,10 @@ namespace TheFowler
 
         public virtual void PreviewEffect(BattleActor emitter)
         {
-            emitter.BattleActorAnimator.AttackPreview();
+            if (this.GetType() != typeof(DefendEffect))
+            {
+                emitter.BattleActorAnimator.AttackPreview();
+            }
         }
         
         public abstract IEnumerator OnBeginCast(BattleActor emitter, BattleActor[] receivers);
