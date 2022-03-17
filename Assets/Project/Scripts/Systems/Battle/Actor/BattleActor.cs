@@ -257,6 +257,18 @@ namespace TheFowler
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
+        
+        public bool IsResistantOf(Spell.SpellTypeEnum spellTypeEnum)
+        {
+            var result = DamageCalculator.CalculateSpellTypeBonus(spellTypeEnum, BattleActorData.actorType);
+            return result switch
+            {
+                DamageCalculator.ResistanceFaiblesseResult.NEUTRE => false,
+                DamageCalculator.ResistanceFaiblesseResult.FAIBLESSE => true,
+                DamageCalculator.ResistanceFaiblesseResult.RESISTANCE => true,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+        }
 
         public virtual void OnDeath()
         {

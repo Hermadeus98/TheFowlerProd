@@ -88,6 +88,10 @@ namespace TheFowler
                 var weak = AvailableTargets.Cast<EnemyActor>().Where(w => w.IsWeakOf(Player.SelectedSpell.SpellType));
                 weak.ForEach(w => w.weak.gameObject.SetActive(true));
 
+                var resist = AvailableTargets.Cast<EnemyActor>()
+                    .Where(w => w.IsResistantOf(Player.SelectedSpell.SpellType));
+                resist.ForEach(w => w.resist.gameObject.SetActive(false));
+                
                 if (weak.Count() > 0)
                 {
                     SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_WeakDisplay, null);
@@ -115,6 +119,7 @@ namespace TheFowler
                     if (AvailableTargets[i] is EnemyActor enemyActor)
                     {
                         enemyActor.weak.SetActive(false);
+                        enemyActor.resist.SetActive(false);
                     }
                     EndPreview(AvailableTargets[i]);
                 }
