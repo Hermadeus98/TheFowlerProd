@@ -90,9 +90,5 @@ namespace TheFowler
 
         }
 
-        public void RappelInputFeedback(float elapsedTime)
-        {
-            rappelInputFill.fillAmount = elapsedTime;
-        }
     }
 }

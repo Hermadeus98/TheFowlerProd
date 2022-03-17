@@ -146,10 +146,7 @@ namespace TheFowler
                     else
                     {
                         Next();
-                        //Timeline.time = currentDialogue.displayDuration;
-                        //Timeline.Pause();
 
-                        //Next();
                     }
                 }
                 
@@ -161,64 +158,17 @@ namespace TheFowler
         {
             if (isActive)
             {
-                if (Inputs.actions["Next"].WasPressedThisFrame() && !waitInput)
+                if (Inputs.actions["Next"].WasReleasedThisFrame() && !waitInput)
                 {
-                    Next();
-                    //if (hasPassedDialogue)
-                    //{
-
-                    //    Next();
-                    //    Timeline.Play();
-                    //    hasPassedDialogue = false;
-                    //}
-                    //else
-                    //{
-
-                    //    hasPassedDialogue = true;
-                    //    var view = UI.GetView<HarmonisationView>(UI.Views.Harmo);
-                    //    view.EndDialog(currentDialogue.dialogueText);
-
-                    //    var view2 = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
-                    //    view2.EndDialog(currentDialogue.dialogueText);
-                    //}
-                }
-                if(dialogueType == DialogueType.STATIC)
-                {
-                    if (Inputs.actions["Return"].IsPressed() && !waitInput)
+                    if(elapsedTimePassCutscene < 0.1f)
                     {
-                        elapsedTimePassCutscene += Time.deltaTime;
-                        if (currentView.GetType() == typeof(HarmonisationView))
-                        {
-                            var view = UI.GetView<HarmonisationView>(UI.Views.Harmo);
-                            view.RappelInputFeedback(elapsedTimePassCutscene);
-                        }
-
-                        else if (currentView.GetType() == typeof(DialogueStaticView))
-                        {
-                            var view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
-                            view.RappelInputFeedback(elapsedTimePassCutscene);
-                        }
-
-                        if (elapsedTimePassCutscene >= 1)
-                        {
-                            
-                            elapsedTimePassCutscene = 0;
-                            var view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
-                            view.RappelInputFeedback(elapsedTimePassCutscene);
-                            var view2 = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
-                            view2.RappelInputFeedback(elapsedTimePassCutscene);
-                            EndPhase();
-                        }
+                        Next();
                     }
-                    if (Inputs.actions["Return"].WasReleasedThisFrame())
-                    {
-                        elapsedTimePassCutscene = 0;
-                        var view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
-                        view.RappelInputFeedback(elapsedTimePassCutscene);
-                        var view2 = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
-                        view2.RappelInputFeedback(elapsedTimePassCutscene);
-                    }
+                    
                 }
+
+                CallRappelInput();
+
 
 
                 if (waitInput)
@@ -323,6 +273,32 @@ namespace TheFowler
             }
         }
 
+        private void CallRappelInput()
+        {
+            var view = new UIView();
+
+            if (currentView.GetType() == typeof(HarmonisationView)) {  view = UI.GetView<HarmonisationView>(UI.Views.Harmo); }
+            else if (currentView.GetType() == typeof(DialogueStaticView)) { view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs); }
+
+            if (Inputs.actions["Select"].IsPressed() && !waitInput)
+            {
+                elapsedTimePassCutscene += Time.deltaTime;
+                view.rappelInput.RappelInputFeedback(elapsedTimePassCutscene);
+
+                if (elapsedTimePassCutscene >= 1)
+                {
+                    elapsedTimePassCutscene = 0;
+                    view.rappelInput.RappelInputFeedback(elapsedTimePassCutscene);
+                    EndPhase();
+                }
+            }
+            else if (Inputs.actions["Select"].WasReleasedThisFrame())
+            {
+                elapsedTimePassCutscene = 0;
+                view.rappelInput.RappelInputFeedback(elapsedTimePassCutscene);
+            }
+
+        }
         private void Next()
         {
             if (currentDialogueNode != null)

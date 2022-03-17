@@ -11,11 +11,16 @@ namespace TheFowler
         [SerializeField] private ActorActivator activator;
         [SerializeField] private PlayerInput Inputs;
 
+        private float elapsedTimePassCutscene;
+        private bool videoPassed = false;
+
         private VideoView view;
         public override void PlayPhase()
         {
             base.PlayPhase();
 
+
+            videoPassed = false;
             view = UI.GetView<VideoView>(UI.Views.Video);
 
             view.Show(video);
@@ -48,6 +53,7 @@ namespace TheFowler
 
         private IEnumerator WaitEndVideoInput()
         {
+            videoPassed = true;
             BlackPanel.Instance.Show();
             yield return new WaitForSeconds(1);
             EndPhase();
@@ -58,14 +64,34 @@ namespace TheFowler
         protected override void Update()
         {
             base.Update();
-            if (isActive)
+            if (isActive && !videoPassed)
             {
-                if (Inputs.actions["Start"].WasPressedThisFrame())
+                CallRappelInput();
+                
+            }
+        }
+
+        private void CallRappelInput()
+        {
+
+            if (Inputs.actions["Select"].IsPressed())
+            {
+                elapsedTimePassCutscene += Time.deltaTime;
+                view.rappelInput.RappelInputFeedback(elapsedTimePassCutscene);
+
+                if (elapsedTimePassCutscene >= 1)
                 {
+                    elapsedTimePassCutscene = 0;
+                    view.rappelInput.RappelInputFeedback(elapsedTimePassCutscene);
                     StartCoroutine(WaitEndVideoInput());
-                    isActive = false;
                 }
             }
+            else if (Inputs.actions["Select"].WasReleasedThisFrame())
+            {
+                elapsedTimePassCutscene = 0;
+                view.rappelInput.RappelInputFeedback(elapsedTimePassCutscene);
+            }
+
         }
     }
 }
