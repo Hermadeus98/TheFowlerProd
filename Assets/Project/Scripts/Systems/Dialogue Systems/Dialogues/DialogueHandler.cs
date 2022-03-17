@@ -59,7 +59,7 @@ namespace TheFowler
         private UIView currentView;
 
         [SerializeField] private int idGuards = 0;
-
+        private bool hasPassChoices;
         [TabGroup("Debug")]
         private bool waitInput;
 
@@ -170,7 +170,6 @@ namespace TheFowler
                 CallRappelInput();
 
 
-
                 if (waitInput)
                 {
                     if (displayChoiceResult)
@@ -277,6 +276,8 @@ namespace TheFowler
         {
             var view = new UIView();
 
+            if (currentView == null) return;
+
             if (currentView.GetType() == typeof(HarmonisationView)) {  view = UI.GetView<HarmonisationView>(UI.Views.Harmo); }
             else if (currentView.GetType() == typeof(DialogueStaticView)) { view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs); }
 
@@ -288,19 +289,53 @@ namespace TheFowler
                 if (elapsedTimePassCutscene >= 1)
                 {
                     elapsedTimePassCutscene = 0;
-                    view.rappelInput.RappelInputFeedback(elapsedTimePassCutscene);
-                    EndPhase();
+                    if(view.rappelInput != null)
+                        view.rappelInput?.RappelInputFeedback(elapsedTimePassCutscene);
+
+                    if (!hasPassChoices)
+                    {
+                        for (int i = 0; i < BehaviourTree.nodes.Count; i++)
+                        {
+
+                            
+                            DialogueNode newNode = BehaviourTree.nodes[i] as DialogueNode;
+
+                            if (currentDialogue == newNode.dialogue)
+                            {
+                                if (newNode.hasMultipleChoices)
+                                {
+                                    DisplayDialogue(newNode.dialogue);
+                                    break;
+                                }
+                                else
+                                {
+                                    Next();
+                                }
+                            }
+
+                                
+                        }
+                    }
+                    else
+                    {
+
+
+                        EndPhase();
+                    }
+
                 }
 
                 else if(elapsedTimePassCutscene > .2f && elapsedTimePassCutscene < 1)
                 {
-                    view.rappelInput.RappelInputFeedback(elapsedTimePassCutscene);
+                    if (view.rappelInput != null)
+                        view.rappelInput?.RappelInputFeedback(elapsedTimePassCutscene);
                 }
             }
             else if (Inputs.actions["Select"].WasReleasedThisFrame())
             {
                 elapsedTimePassCutscene = 0;
-                view.rappelInput.RappelInputFeedback(elapsedTimePassCutscene);
+                if (view.rappelInput != null)
+                    view.rappelInput?.RappelInputFeedback(elapsedTimePassCutscene);
             }
 
         }
@@ -312,6 +347,7 @@ namespace TheFowler
                 {
                     if (currentDialogueNode.hasMultipleChoices)
                     {
+                        hasPassChoices = true;
                         waitInput = true;
                         switch (dialogueType)
                         {
@@ -384,6 +420,7 @@ namespace TheFowler
 
         public override void EndPhase()
         {
+            hasPassChoices = false;
 
             if (dialogueType == DialogueType.STATIC && IsActive)
             {
