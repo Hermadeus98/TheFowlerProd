@@ -19,6 +19,7 @@ namespace TheFowler
         [SerializeField] private MMFeedbacks MMfadeIn, MMfadeOut;
 
         [SerializeField] private Image portraitLeft,portraitRight, rappelInputFill;
+
         [SerializeField] private ActorDatabase actorDatabase;
 
         [SerializeField] private AnimatedText animatedText;
@@ -41,22 +42,6 @@ namespace TheFowler
             {
                 var db = actorDatabase.GetElement(cast.Dialogue.ActorEnum);
 
-                //var dbleft = actordatabase.getelement(cast.tree.actors[0]);
-                //var dbright = actordatabase.getelement(cast.tree.actors[1]);
-
-                //portraitleft.sprite = dbleft.portraitbuste;
-                //portraitright.sprite = dbright.portraitbuste;
-
-                //if (cast.tree.actors[0] == cast.dialogue.actorenum)
-                //{
-                //    portraitleft.docolor(color.white, .2f);
-                //    portraitright.docolor(color.grey, .2f);
-                //}
-                //else if (cast.tree.actors[1] == cast.dialogue.actorenum)
-                //{
-                //    portraitleft.docolor(color.grey, .2f);
-                //    portraitright.docolor(color.white, .2f);
-                //}
 
                 portraitLeft.sprite = db.portraitBuste;
                 if (cast.DialogueNode.dialogue.dialogueText.Length >= 20)
@@ -109,10 +94,7 @@ namespace TheFowler
 
         }
 
-        public void RappelInputFeedback(float elapsedTime)
-        {
-            rappelInputFill.fillAmount = elapsedTime;
-        }
+
 
         public override void Show()
         {

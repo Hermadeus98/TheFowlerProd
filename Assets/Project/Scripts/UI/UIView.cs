@@ -3,6 +3,7 @@ using Nrjwolf.Tools.AttachAttributes;
 using QRCode.Extensions;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TheFowler
 {
@@ -24,6 +25,8 @@ namespace TheFowler
         
         [TabGroup("References")]
         [SerializeField, GetComponent] private CanvasGroup canvasGroup;
+        public RappelInput rappelInput;
+
 
         protected CanvasGroup CanvasGroup
         {
@@ -76,5 +79,7 @@ namespace TheFowler
             base.UnregisterEvent();
             if(registerView) UI.UnregisterView(this);
         }
+
+
     }
 }
