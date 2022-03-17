@@ -12,7 +12,7 @@ namespace TheFowler
         [SerializeField] private BehaviourTree brain;
         [SerializeField] private AIEnemy ai;
         [SerializeField] private TypeIcon TypeIcon;
-        public GameObject weak;
+        public GameObject weak, resist;
 
         public BehaviourTree Brain => brain;
         public AIEnemy AI => ai;
@@ -27,6 +27,7 @@ namespace TheFowler
             Health.onDeath.AddListener(delegate
             {
                 weak.SetActive(false);
+                resist.SetActive(false);
             });
             
             TypeIcon.Refresh(BattleActorData.actorType);
