@@ -49,12 +49,15 @@ namespace TheFowler
                     {
                         case ChapterEnum.CHAPTER_TWO_PART1:
                             Transition(transitionChapter_Two_PartOne, action);
+                            AkSoundEngine.SetState("Scene", "Scene2_TheAviary");
                             break;
                         case ChapterEnum.CHAPTER_TWO_PART2:
                             Transition(transitionChapter_Two_PartTwo, action);
+                            AkSoundEngine.SetState("Scene", "Scene3_TheBallRoom");
                             break;
                         case ChapterEnum.CHAPTER_THREE:
                             Transition(transitionChapter_Three, action);
+                            AkSoundEngine.SetState("Scene", "Scene4_TheTribunal");
                             break;
                     }
                     

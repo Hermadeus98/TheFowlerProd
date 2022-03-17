@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using QRCode.Utils;
 using TheFowler;
 
@@ -24,5 +25,12 @@ public class ChapterOne : Chapter
         base.OnStateExit(arg);
         
         Game.UnloadScene("Scenes Chapter One");
+    }
+
+    protected override IEnumerator OnChapterLoaded(EventArgs arg)
+    {
+
+        return base.OnChapterLoaded(arg);
+
     }
 }

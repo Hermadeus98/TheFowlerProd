@@ -25,12 +25,19 @@ namespace TheFowler
             activator.DesactivateActor(false);
 
             BlackPanel.Instance.Hide();
+
+            AkSoundEngine.SetState("GameplayPhase", "Intro");
+            AkSoundEngine.SetState("Scene", "Intro");
         }
         public override void EndPhase()
         {
             base.EndPhase();
 
             view.Hide();
+
+
+            AkSoundEngine.SetState("Scene", "Scene1_TheGarden");
+            AkSoundEngine.SetState("GameplayPhase", "Explo");
             
 
             StopAllCoroutines();
