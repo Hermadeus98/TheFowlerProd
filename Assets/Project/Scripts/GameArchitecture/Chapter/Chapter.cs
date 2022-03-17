@@ -17,8 +17,7 @@ namespace TheFowler
         
         public override void OnStateEnter(EventArgs arg)
         {
-            if(GameState.gameArguments.currentChapterData != null)
-                SoundManager.PlaySound(GameState.gameArguments.currentChapterData.audioEventOnChapterEnded, null);
+            SoundManager.PlaySound(ChapterData.audioEventOnChapterStart, null);
             
             GameState.gameArguments.currentChapter = this;
 
@@ -39,6 +38,7 @@ namespace TheFowler
         public override void OnStateExit(EventArgs arg)
         {
             QRDebug.Log("Chapter Exit", FrenchPallet.EMERALD, ChapterName);
+            SoundManager.PlaySound(ChapterData.audioEventOnChapterEnded, null);
         }
 
         protected virtual IEnumerator OnChapterLoaded(EventArgs arg)
@@ -50,7 +50,6 @@ namespace TheFowler
             ChapterManager.onChapterLoaded?.Invoke(this);
             GameState.ChangeState(GameState.gameArguments.currentChapterData.InitialGameState);
             GameState.gameArguments.currentChapterData.InitialGameInstructions.Call();
-            SoundManager.PlaySound(GameState.gameArguments.currentChapterData.audioEventOnChapterStart, null);
             yield return new WaitForEndOfFrame();
             GameplayPhaseManager.PlayGameplayPhase(ChapterData.OnStartGamephase_Id);
         }
