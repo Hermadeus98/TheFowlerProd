@@ -160,7 +160,7 @@ namespace TheFowler
             {
                 if (Inputs.actions["Next"].WasReleasedThisFrame() && !waitInput)
                 {
-                    if(elapsedTimePassCutscene < 0.1f)
+                    if(elapsedTimePassCutscene < 0.3f)
                     {
                         Next();
                     }
@@ -283,13 +283,18 @@ namespace TheFowler
             if (Inputs.actions["Select"].IsPressed() && !waitInput)
             {
                 elapsedTimePassCutscene += Time.deltaTime;
-                view.rappelInput.RappelInputFeedback(elapsedTimePassCutscene);
+                
 
                 if (elapsedTimePassCutscene >= 1)
                 {
                     elapsedTimePassCutscene = 0;
                     view.rappelInput.RappelInputFeedback(elapsedTimePassCutscene);
                     EndPhase();
+                }
+
+                else if(elapsedTimePassCutscene > .2f && elapsedTimePassCutscene < 1)
+                {
+                    view.rappelInput.RappelInputFeedback(elapsedTimePassCutscene);
                 }
             }
             else if (Inputs.actions["Select"].WasReleasedThisFrame())
