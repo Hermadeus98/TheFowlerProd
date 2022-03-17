@@ -29,6 +29,16 @@ namespace TheFowler
                         }
                     }
                     
+                    if (Player.SelectedSpell.ContainEffect<VampirismeEffect>(out var vampirisme))
+                    {
+                        if (!oldList.IsNullOrEmpty())
+                        {
+                            for (int i = 0; i < oldList.Count; i++)
+                            {
+                                oldList[i].Health.FillBar?.HidePreview();
+                            }
+                        }
+                    }
                 }
                 
                 oldList = new List<BattleActor>(actors);
@@ -50,6 +60,18 @@ namespace TheFowler
                         }
                     }
                     
+                    
+                    if (Player.SelectedSpell.ContainEffect<VampirismeEffect>(out var vampirisme))
+                    {
+                        for (int i = 0; i < actors.Count; i++)
+                        {
+                            var damage = DamageCalculator.CalculateDamage(vampirisme.damage,
+                                BattleManager.CurrentBattleActor, actors[i], vampirisme.ReferedSpell.SpellType,
+                                out var result);
+                            var previewFill = actors[i].Health.CurrentHealth - damage;
+                            actors[i].Health.FillBar?.SetPreview(previewFill);
+                        }
+                    }
                 }
             }
         }
