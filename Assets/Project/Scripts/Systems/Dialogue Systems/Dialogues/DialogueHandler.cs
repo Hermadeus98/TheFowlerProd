@@ -422,6 +422,7 @@ namespace TheFowler
         {
             hasPassChoices = false;
 
+
             if (dialogueType == DialogueType.STATIC && IsActive)
             {
                 
