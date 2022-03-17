@@ -9,10 +9,12 @@ namespace TheFowler
 {
     public class RappelInput : GameplayMonoBehaviour
     {
-        [SerializeField] private Touch Touch;
+        [SerializeField] public Touch Touch;
         [SerializeField] private RappelInputDatabase rappelInputDatabase;
         [SerializeField] private PlayerInput Inputs;
         [SerializeField] private Image touchImage;
+        [SerializeField]
+        private Image rappelInputFill;
         private Sequence feedbackFade;
 
         protected override void OnStart()
@@ -39,6 +41,11 @@ namespace TheFowler
             feedbackFade.Append(touchImage.DOFade(1f, inout.in_duration).SetEase(inout.in_ease));
             feedbackFade.Append(touchImage.DOFade( rappelInputDatabase.initialFade, inout.out_duration).SetDelay(inout.between_duration).SetEase(inout.out_ease));
             feedbackFade.Play();
+        }
+
+        public void RappelInputFeedback(float elapsedTime)
+        {
+            rappelInputFill.fillAmount = elapsedTime;
         }
     }
 }
