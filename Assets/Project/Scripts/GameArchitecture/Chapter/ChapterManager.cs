@@ -61,6 +61,12 @@ namespace TheFowler
         public static void ChangeChapter(ChapterEnum chapter)
         {
             BlackPanel.Instance.Show();
+            
+            if(((Chapter) Chapters.CurrentState) != null)
+            {
+                SoundManager.PlaySound(((Chapter) Chapters.CurrentState).ChapterData.audioEventOnChapterEnded, null);
+            }
+            
             Chapters.SetState(GetChapterKey(chapter), GameState.gameArguments);
             onChapterChange?.Invoke(Chapters.CurrentState as Chapter);
         }
