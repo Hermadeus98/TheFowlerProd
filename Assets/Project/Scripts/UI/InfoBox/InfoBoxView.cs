@@ -15,7 +15,7 @@ namespace TheFowler
         [TabGroup("References")]
         [SerializeField] private GameObject profile1, profile2, profile3, profileUp;
         [TabGroup("References")]
-        [SerializeField] private GameObject confirm, back, characters, selectSkill, selectTarget;
+        [SerializeField] private GameObject confirm, back, characters, selectSkill, selectTarget, hide;
         private delegate void ProfileReminder(InfoBoxButtons[] buttons);
         private event ProfileReminder OnProfileReminder;
         [SerializeField] private List<InfoBoxButtons> infoBoxReminder;
