@@ -106,6 +106,7 @@ namespace TheFowler
             characters.SetActive(false);
             selectSkill.SetActive(false);
             selectTarget.SetActive(false);
+            hide.SetActive(false);
         }
 
         private void SwitchButtons(InfoBoxButtons button)
@@ -126,6 +127,9 @@ namespace TheFowler
                     break;
                 case InfoBoxButtons.SELECTTARGET:
                     selectTarget.SetActive(true);
+                    break;
+                case InfoBoxButtons.HIDE:
+                    hide.SetActive(true);
                     break;
             }
         }
@@ -197,7 +201,8 @@ namespace TheFowler
         BACK,
         CHARACTERS,
         SELECTSKILL,
-        SELECTTARGET
+        SELECTTARGET,
+        HIDE
     }
 
 }
