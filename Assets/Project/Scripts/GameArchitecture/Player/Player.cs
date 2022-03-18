@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using QRCode.Extensions;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace TheFowler

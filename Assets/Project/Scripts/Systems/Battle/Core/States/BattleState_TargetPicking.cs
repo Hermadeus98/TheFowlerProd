@@ -85,7 +85,6 @@ namespace TheFowler
                     {
                         TargetSelector.Navigate(inputs.actions["NavigateLeft"].WasPressedThisFrame(), inputs.actions["NavigateRight"].WasPressedThisFrame());
                     }
-                    
 
                     if (TargetSelector.Select(inputs.actions["Select"].WasPressedThisFrame(), out var targets))
                     {
@@ -96,6 +95,12 @@ namespace TheFowler
                         if (inputs.actions["Return"].WasPressedThisFrame())
                         {
                             SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Cancel, gameObject);
+
+                            if (Fury.IsInFury)
+                            {
+                                var skillEx = BattleManager.CurrentBattle.BattleState.GetState("SkillExecution") as BattleState_SkillExecution;
+                                skillEx.fury = false;
+                            }
 
                             if (ReturnToActionMenu)
                             {

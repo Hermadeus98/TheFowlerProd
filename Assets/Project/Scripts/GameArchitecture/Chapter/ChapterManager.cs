@@ -51,7 +51,8 @@ namespace TheFowler
                 {
                     StateName = "GymRoom",
                     ChapterData = Resources.Load<ChapterData>("Data/Scenes Datas/Others/GymRoom"),
-                }
+                },
+
 
             };
 
@@ -85,6 +86,7 @@ namespace TheFowler
                 ChapterEnum.INTRO => "ChapterIntro",
                 ChapterEnum.OUTRO => "ChapterOutro",
                 ChapterEnum.GYMROOM => "GymRoom",
+                ChapterEnum.MENU=>"Menu",
                 _ => throw new ArgumentOutOfRangeException(nameof(key), key, null)
             };
         }
@@ -100,5 +102,6 @@ namespace TheFowler
         CHAPTER_TWO_PART2,
         CHAPTER_THREE,
         OUTRO,
+        MENU
     }
 }

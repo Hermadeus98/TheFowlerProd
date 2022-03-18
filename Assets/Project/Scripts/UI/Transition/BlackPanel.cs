@@ -17,6 +17,11 @@ namespace TheFowler
             panel.DOFade(1f, duration);
         }
 
+        public void Show(float delay = 1)
+        {
+            panel.DOFade(1f, delay);
+        }
+
         public void Hide(float delay = 2f)
         {
             panel.DOFade(0f, duration).SetDelay(delay);

@@ -11,12 +11,33 @@ namespace TheFowler
     public class SceneLoaderComponent : SerializedMonoBehaviour
     {
         [SerializeField] private ChapterEnum chapterToLoad;
+        [SerializeField] private ChapterData chapterdata;
 
         [SerializeField] private VideoHandler video;
         [Button]
         public void ChangeChapter()
         {
-            video.PlayPhase(() => ChapterManager.ChangeChapter(chapterToLoad));
+            StartCoroutine(WaitTransition());
+        }
+
+        private void EndChapterLoaded()
+        {
+            SoundManager.PlaySound(chapterdata.audioEventOnChapterStart, gameObject);
+            ChapterManager.ChangeChapter(chapterToLoad);
+
+
+        }
+
+        IEnumerator WaitTransition()
+        {
+            BlackPanel.Instance.Show();
+            SoundManager.PlaySound(chapterdata.audioEventOnChapterEnded, gameObject);
+            yield return new WaitForSeconds(.5f);
+            video.PlayPhase(EndChapterLoaded); ;
+            
+            BlackPanel.Instance.Hide(.5f);
+
+            yield return null;
 
         }
         

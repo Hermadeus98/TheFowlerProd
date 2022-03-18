@@ -167,7 +167,24 @@ namespace TheFowler
                 {
                     if(elapsedTimePassCutscene < 0.3f)
                     {
-                        Next();
+                        if (!hasPassedDialogue && !String.IsNullOrEmpty(currentDialogue.dialogueText))
+                        {
+                            if (currentView.GetType() == typeof(HarmonisationView))
+                            {
+                                UI.GetView<HarmonisationView>(UI.Views.Harmo).EndDialog(currentDialogue.dialogueText);
+                            }
+                            else if (currentView.GetType() == typeof(DialogueStaticView))
+                            {
+                                UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs).EndDialog(currentDialogue.dialogueText);
+                            }
+
+                            hasPassedDialogue = true;
+                        }
+                        else
+                        {
+                            Next();
+                        }
+
                     }
                     
                 }
@@ -356,12 +373,14 @@ namespace TheFowler
         }
         private void Next()
         {
+            hasPassedDialogue = false;
             if (currentDialogueNode != null)
             {
                 if (!currentDialogueNode.isLast)
                 {
                     if (currentDialogueNode.hasMultipleChoices)
                     {
+                        
                         hasPassChoices = true;
                         waitInput = true;
                         switch (dialogueType)
