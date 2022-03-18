@@ -99,7 +99,7 @@ namespace TheFowler
             else
                 OverrideTurn(turnActor);
 
-            BlockNextTurn();
+            //BlockNextTurn();
         }
 
         public void BlockNextTurn()

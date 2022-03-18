@@ -139,10 +139,11 @@ namespace TheFowler
         }
 
         [Button]
-        private void NextTurn()
+        public void NextTurn()
         {
             TurnSystem.NextTurn();
         }
+        
         public void ResetTurn()
         {
             TurnSystem.ResetTurn();
