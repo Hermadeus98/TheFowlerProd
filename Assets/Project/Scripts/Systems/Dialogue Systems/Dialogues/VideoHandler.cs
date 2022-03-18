@@ -47,7 +47,7 @@ namespace TheFowler
             if (activator != null)
                 activator.DesactivateActor(false);
 
-            BlackPanel.Instance.Hide();
+            BlackPanel.Instance.Hide(.5f);
 
             if (PlayWWISESTate)
             {
@@ -79,7 +79,7 @@ namespace TheFowler
         private IEnumerator WaitEndVideo()
         {
             yield return new WaitForSeconds((float)video.length - 1);
-            BlackPanel.Instance.Show();
+            BlackPanel.Instance.Show(.5f);
             yield return new WaitForSeconds(1);
             EndPhase();
             BlackPanel.Instance.Hide(1);

@@ -21,7 +21,7 @@ namespace TheFowler
         [SerializeField] private List<InfoBoxButtons> infoBoxReminder;
         [SerializeField] private PlayerInput Inputs;
 
-        private bool isOpen;
+        private bool isOpen = true;
 
         public override void Refresh(EventArgs args)
         {

@@ -39,23 +39,20 @@ namespace TheFowler
 
         private void SetActor(Character chara, HarmonisationData data)
         {
+            if (chara == null) return;
 
-            if(chara != null)
+            chara?.harmonisationComponent.InitializeHarmonisation(data.phaseToPlay, data.harmonisationpoint);
+            chara.Controller.SetController(ControllerEnum.NAV_MESH_CONTROLLER);
+            for (int j = 0; j < chara?.Controller.controllers.Length; j++)
             {
-                chara?.harmonisationComponent.InitializeHarmonisation(data.phaseToPlay, data.harmonisationpoint);
-                chara.Controller.SetController(ControllerEnum.NAV_MESH_CONTROLLER);
-                for (int j = 0; j < chara?.Controller.controllers.Length; j++)
+                if (chara?.Controller.controllers[j] as NavMeshController)
                 {
-                    if (chara?.Controller.controllers[j] as NavMeshController)
-                    {
-                        NavMeshController var = chara?.Controller.controllers[j] as NavMeshController;
-                        StartCoroutine(WaitToGoToDestination(var, data.harmonisationpoint));
+                    NavMeshController var = chara?.Controller.controllers[j] as NavMeshController;
+                    StartCoroutine(WaitToGoToDestination(var, data.harmonisationpoint));
 
-                    }
                 }
-
-
             }
+
 
         }
 
