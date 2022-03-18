@@ -4194,29 +4194,6 @@
 								<ActiveSource Name="TF_SFX_Combat_UI_Turn_EnemyTurn" ID="{AA52EE8E-9397-434F-B430-13B69C7433BD}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
-						<Sound Name="TF_Music_IntroPhoebe" ID="{AF51D34D-9C66-4879-8DD7-73893449A9EE}" ShortID="229576425">
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="TF_Music_IntroPhoebe" ID="{5B6885A5-6B9D-4748-9E78-93E55EF47815}">
-									<Language>SFX</Language>
-									<AudioFile>TF_Music_IntroPhoebe.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="1022612157"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="TF_Music_IntroPhoebe" ID="{5B6885A5-6B9D-4748-9E78-93E55EF47815}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
 					</ChildrenList>
 					<ObjectLists/>
 				</ActorMixer>
@@ -4692,6 +4669,63 @@
 								</Sound>
 							</ChildrenList>
 						</Folder>
+					</ChildrenList>
+					<ObjectLists/>
+				</ActorMixer>
+				<ActorMixer Name="Staging" ID="{5547DA82-68C4-4F61-B4DA-D3FA3C55C17C}" ShortID="433504328">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-10</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+						</Reference>
+						<Reference Name="Effect0">
+							<Custom>
+								<Effect Name="Wwise Meter (Custom)" ID="{C899DD1F-D6DA-4C10-94AA-D7FE8FF64567}" ShortID="952599509" PluginName="Wwise Meter" CompanyID="0" PluginID="129" PluginType="3">
+									<PropertyList>
+										<Property Name="AttackTime" Type="Real32" Value="0.1"/>
+										<Property Name="Min" Type="Real32" Value="-12"/>
+										<Property Name="ReleaseTime" Type="Real32" Value="0.5"/>
+									</PropertyList>
+									<PluginData>
+	<GameParameter Name="Game_SideChain_Dialogues" ID="{EFA15B8D-43E6-4F69-BC67-98A69A7FA91C}"/>
+</PluginData>
+								</Effect>
+							</Custom>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="SFX" ID="{CF07BEC0-CE11-4353-9123-AAD7CF5AD52D}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="TF_Jingle_IntroPhoebe" ID="{AF51D34D-9C66-4879-8DD7-73893449A9EE}" ShortID="229576425">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX" ID="{CF07BEC0-CE11-4353-9123-AAD7CF5AD52D}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="TF_Music_IntroPhoebe" ID="{5B6885A5-6B9D-4748-9E78-93E55EF47815}">
+									<Language>SFX</Language>
+									<AudioFile>TF_Music_IntroPhoebe.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="1022612157"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="TF_Music_IntroPhoebe" ID="{5B6885A5-6B9D-4748-9E78-93E55EF47815}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 					<ObjectLists/>
 				</ActorMixer>
