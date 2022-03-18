@@ -25,7 +25,8 @@ namespace TheFowler
                 AlliesDataView = "AlliesDataView",
                 Video = "VideoView",
                 Tuto = "TutorielView",
-                Complicity = "ComplicityView";
+                Complicity = "ComplicityView",
+                End = "EndView";
         }
         
         private static Dictionary<string, UIView> views = new Dictionary<string, UIView>();

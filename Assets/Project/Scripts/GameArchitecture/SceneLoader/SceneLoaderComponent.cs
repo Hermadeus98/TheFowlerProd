@@ -49,6 +49,22 @@ namespace TheFowler
             yield return null;
 
         }
+
+        [Button]
+        public void LoadEnd()
+        {
+            StartCoroutine(WaitEnd());
+        }
+
+        private IEnumerator WaitEnd()
+        {
+            BlackPanel.Instance.Show();
+            yield return new WaitForSeconds(1);
+            UI.GetView<EndView>(UI.Views.End).Show();
+            Player.Robyn?.gameObject.SetActive(false);
+            Player.Abigael?.gameObject.SetActive(false);
+            Player.Pheobe?.gameObject.SetActive(false);
+        }
         
         //---<EDITOR>--------------------------------------------------------------------------------------------------<
 #if UNITY_EDITOR

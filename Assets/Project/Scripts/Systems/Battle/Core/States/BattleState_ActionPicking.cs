@@ -26,10 +26,8 @@ namespace TheFowler
 
             BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.ACTIONPICKING);
 
-            
-            InfoBoxButtons[] infoButtons = new InfoBoxButtons[2];
-            infoButtons[0] = InfoBoxButtons.CONFIRM;
-            infoButtons[1] = InfoBoxButtons.BACK;
+
+            InfoBoxButtons[] infoButtons = new InfoBoxButtons[0];
 
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
         }
