@@ -724,10 +724,10 @@ namespace TheFowler
             yield break;
         }
 
-        public void PlayComplicityView()
+        public void PlayComplicityView(string actor)
         {
             ComplicityView view = UI.GetView<ComplicityView>(UI.Views.Complicity);
-            view.Show();
+            view.Show((ActorEnum)Enum.Parse(typeof(ActorEnum), actor));
         }
 
 
