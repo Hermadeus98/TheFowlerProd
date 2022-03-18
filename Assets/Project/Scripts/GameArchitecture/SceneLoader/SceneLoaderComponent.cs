@@ -30,9 +30,18 @@ namespace TheFowler
 
         IEnumerator WaitTransition()
         {
+            
+
             BlackPanel.Instance.Show();
             SoundManager.PlaySound(chapterdata.audioEventOnChapterEnded, gameObject);
             yield return new WaitForSeconds(.5f);
+
+            Player.Robyn?.gameObject.SetActive(false);
+            Player.Abigael?.gameObject.SetActive(false);
+            Player.Pheobe?.gameObject.SetActive(false);
+
+
+
             video.PlayPhase(EndChapterLoaded); ;
             
             BlackPanel.Instance.Hide(.5f);
