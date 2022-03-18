@@ -87,6 +87,7 @@ namespace TheFowler
             if (currentIndex >= elements.Count)
             {
                 currentIndex = elements.Count - 1;
+                return;
             }
 
             SelectElement();
@@ -98,6 +99,7 @@ namespace TheFowler
             if (currentIndex < 0)
             {
                 currentIndex = 0;
+                return;
             }
 
             SelectElement();
