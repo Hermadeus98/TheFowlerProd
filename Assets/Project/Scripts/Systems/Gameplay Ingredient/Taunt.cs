@@ -27,6 +27,7 @@ namespace TheFowler
             this.taunter = taunter;
             waitTurn = turnCount;
             OnTauntStart?.Invoke();
+            ReferedActor.StateIcons.taunt.Show();
         }
 
         [Button]
@@ -36,6 +37,7 @@ namespace TheFowler
             taunter = null;
             waitTurn = 0;
             OnTauntEnd?.Invoke();
+            ReferedActor.StateIcons.taunt.Hide();
         }
 
         public override void OnTurnStart()
