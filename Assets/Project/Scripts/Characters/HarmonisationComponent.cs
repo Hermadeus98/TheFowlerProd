@@ -77,7 +77,7 @@ namespace TheFowler
             switch (actor)
             {
                 case ActorEnum.ABIGAEL:
-                    if (Vector3.Distance(Player.Abigael.pawnTransform.position, dest.position) < 1)
+                    if (Vector3.Distance(Player.Abigael.pawnTransform.position, dest.position) < 10)
                     {
                         validDist = true;
                     }
@@ -87,7 +87,7 @@ namespace TheFowler
                     }
                     break;
                 case ActorEnum.PHEOBE:
-                    if (Vector3.Distance(Player.Pheobe.pawnTransform.position, dest.position) < 1)
+                    if (Vector3.Distance(Player.Pheobe.pawnTransform.position, dest.position) < 10)
                     {
                         validDist = true;
                     }
