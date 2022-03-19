@@ -167,23 +167,42 @@ namespace TheFowler
                 {
                     if(elapsedTimePassCutscene < 0.3f)
                     {
-                        if (!hasPassedDialogue && !String.IsNullOrEmpty(currentDialogue.dialogueText))
+                        if (currentView.GetType() == typeof(HarmonisationView))
                         {
-                            if (currentView.GetType() == typeof(HarmonisationView))
+                            if (!hasPassedDialogue && 
+                                !String.IsNullOrEmpty(currentDialogue.dialogueText)&&
+                                UI.GetView<HarmonisationView>(UI.Views.Harmo).AnimatedText.TextComponent.text != currentDialogue.dialogueText)
                             {
+
                                 UI.GetView<HarmonisationView>(UI.Views.Harmo).EndDialog(currentDialogue.dialogueText);
+                                hasPassedDialogue = true;
                             }
-                            else if (currentView.GetType() == typeof(DialogueStaticView))
+                            else
                             {
-                                UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs).EndDialog(currentDialogue.dialogueText);
+                                Next();
                             }
 
-                            hasPassedDialogue = true;
+                            
                         }
-                        else
+                        else if (currentView.GetType() == typeof(DialogueStaticView))
                         {
-                            Next();
+                            if (!hasPassedDialogue &&
+                                !String.IsNullOrEmpty(currentDialogue.dialogueText) &&
+                                UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs).AnimatedText.TextComponent.text != currentDialogue.dialogueText)
+                            {
+
+                                UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs).EndDialog(currentDialogue.dialogueText);
+                                hasPassedDialogue = true;
+                            }
+                            else
+                            {
+                                Next();
+                            }
+
+                            
                         }
+
+                       
 
                     }
                     
@@ -324,20 +343,21 @@ namespace TheFowler
 
                                 DialogueNode newNode = BehaviourTree.nodes[i] as DialogueNode;
 
-                                if (currentDialogue == newNode.dialogue)
+                                //if (newNode.hasMultipleChoices)
+                                //{
+
+                                //    DisplayDialogue(newNode.dialogue);
+                                //    break;
+                                //}
+                                 if (!newNode.hasMultipleChoices)
                                 {
-                                    if (newNode.hasMultipleChoices)
-                                    {
-                                        DisplayDialogue(newNode.dialogue);
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        Next();
-                                    }
+                                    Next();
+
                                 }
-
-
+                                else
+                                {
+                                    break;
+                                }
                             }
                         }
                         else
