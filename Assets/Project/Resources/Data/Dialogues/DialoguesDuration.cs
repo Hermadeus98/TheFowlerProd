@@ -10,10 +10,12 @@ namespace TheFowler
     {
         public BehaviourTree[] dialogues;
         public BehaviourTree[] battle;
+        public BehaviourTree[] harmo;
 
         [Title("Durations")]
         public float durationDS;
         public float durationBattle;
+        public float durationHarmo;
         public float durationAll;
 
         [Title("Porcentage")]
@@ -55,10 +57,28 @@ namespace TheFowler
             return durationBattle;
         }
 
+        private float GetHarmoDuration()
+        {
+            durationHarmo = 0;
+            for (int i = 0; i < harmo.Length; i++)
+            {
+                for (int j = 0; j < harmo[i].nodes.Count; j++)
+                {
+                    DialogueNode newNode = harmo[i].nodes[j] as DialogueNode;
+                    durationHarmo += newNode.dialogue.displayDuration;
+                }
+
+            }
+
+            durationHarmo = (durationHarmo / 60) *.5f;
+
+            return durationHarmo;
+        }
+
         [Button]
         public void GetData()
         {
-            durationAll = GetDialoguesDuration() + GetBattleDuration();
+            durationAll = GetDialoguesDuration() + GetBattleDuration() + GetHarmoDuration();
             twenty = durationAll * 100 / 20;
             thirty = durationAll * 100 / 30;
 
