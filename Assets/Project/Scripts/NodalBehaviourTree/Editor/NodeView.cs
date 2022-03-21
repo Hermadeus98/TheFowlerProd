@@ -31,6 +31,9 @@ namespace TheFowler
 
             CreateInputPorts();
             CreateOutputPorts();
+
+            
+            
         }
 
         private void CreateInputPorts()
@@ -58,7 +61,7 @@ namespace TheFowler
                 inputContainer.Add(input);
             }
         }
-        
+
         private void CreateOutputPorts()
         {
             if (node is ActionNode)
