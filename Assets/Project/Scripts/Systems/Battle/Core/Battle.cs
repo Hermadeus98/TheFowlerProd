@@ -212,6 +212,8 @@ namespace TheFowler
         [Button]
         public void Lose()
         {
+            callOnEnd = false;
+
             StopBattle();
             UI.OpenView("LoseView");
         }
