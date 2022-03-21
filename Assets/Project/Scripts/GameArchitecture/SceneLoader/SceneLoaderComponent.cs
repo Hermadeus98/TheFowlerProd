@@ -20,6 +20,8 @@ namespace TheFowler
             StartCoroutine(WaitTransition());
         }
 
+
+
         private void EndChapterLoaded()
         {
             SoundManager.PlaySound(chapterdata.audioEventOnChapterStart, gameObject);
