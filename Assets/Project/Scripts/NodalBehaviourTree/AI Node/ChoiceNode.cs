@@ -49,13 +49,16 @@ namespace TheFowler
     [Serializable]
     public class AI_Choice
     {
+        [TitleGroup("Main Settings")]
         [SerializeField] private bool isHardChoice = false;
         [SerializeField, ShowIf("@this.isHardChoice == true")] private HardChoice hardChoice;
         
+        [TitleGroup("Logic")]
         [SerializeField, ShowIf("@this.isHardChoice == false")] private ComparableActor comparator_A;
         [SerializeField, ShowIf("@this.isHardChoice == false")] private ComparableComponent component;
         [SerializeField, ShowIf("@this.isHardChoice == false")] private OPERATOR Operator;
         [SerializeField, ShowIf("@this.isHardChoice == false")] private ComparableActor comparator_B;
+
         [SerializeField, ShowIf("@this.comparator_B == ComparableActor.VALUE")] private float percent = 0;
 
         [SerializeField]
