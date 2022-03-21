@@ -158,6 +158,68 @@ namespace TheFowler
             NodeView nodeView = new NodeView(node);
             nodeView.OnNodeSelected += OnNodeSelected;
             AddElement(nodeView);
+            
+            PersonalizeStyle(nodeView);
+        }
+
+        void PersonalizeStyle(NodeView nv)
+        {
+            if (nv.node is ChoiceNode choiceNode)
+            {
+                var color = new Color().ToColor("#284B63");
+                nv.titleContainer.Q("title").style.backgroundColor = color;
+            }
+            
+            if (nv.node is TargetNode targetNode)
+            {
+                var color = new Color().ToColor("#BA274A");
+                nv.titleContainer.Q("title").style.backgroundColor = color;
+            }
+            
+            if (nv.node is CastNode castNode)
+            {
+                var color = new Color().ToColor("#DC493A");
+                nv.titleContainer.Q("title").style.backgroundColor = color;
+            }
+            
+            if (nv.node is AleatoryChoiceNode ran)
+            {
+                var color = new Color().ToColor("#284B63");
+                nv.titleContainer.Q("title").style.backgroundColor = color;
+            }
+            
+            if (nv.node is DialogueNode dialogueNode)
+            {
+                
+                switch (dialogueNode.dialogue.ActorEnum)
+                {
+                    case ActorEnum.ROBYN:
+                        var color1 = new Color().ToColor("#DC493A");
+                        nv.titleContainer.Q("title").style.backgroundColor = color1;
+                        break;
+                    case ActorEnum.ABIGAEL:
+                        var color2 = new Color().ToColor("#9F8219");
+                        nv.titleContainer.Q("title").style.backgroundColor = color2;
+                        break;
+                    case ActorEnum.PHEOBE:
+                        var color3 = new Color().ToColor("#284B63");
+                        nv.titleContainer.Q("title").style.backgroundColor = color3;
+                        break;
+                    case ActorEnum.GUARD:
+                        var color4 = new Color(0.19f, 0.19f, 0.19f);
+                        nv.titleContainer.Q("title").style.backgroundColor = color4;
+                        break;
+                    case ActorEnum.LIEUTENANT:
+                        var color5 = new Color(0.19f, 0.19f, 0.19f);
+                        nv.titleContainer.Q("title").style.backgroundColor = color5;
+                        break;
+                    case ActorEnum.EMPTY:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+                
+            }
         }
 
         void SetRootNode()
