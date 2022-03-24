@@ -44,8 +44,27 @@ namespace TheFowler
                 {
                     if (Player.SelectedSpell.IsNotNull())
                     {
-                        BattleManager.CurrentBattleActor.Mana.RemoveMana(Player.SelectedSpell.ManaCost);
-                        yield return Player.SelectedSpell.Cast(BattleManager.CurrentBattleActor, TargetSelector.SelectedTargets.ToArray());
+                        var actor = BattleManager.CurrentBattleActor;
+                        actor.Mana.RemoveMana(Player.SelectedSpell.ManaCost);
+
+                        if (Player.SelectedSpell.sequenceBinding != SequenceEnum.NULL)
+                        {
+                            var action = actor.SignalReceiver_CastSpell.GetReaction(actor.SignalAsset_CastSpell);
+                            action.AddListener(delegate
+                            {
+                                Player.SelectedSpell.SimpleCast(actor, TargetSelector.SelectedTargets.ToArray());
+                            });
+                            
+                            var sequence = actor.SequenceHandler.GetSequence(Player.SelectedSpell.sequenceBinding);
+                            sequence.Play();
+                            yield return new WaitForSeconds((float)sequence.duration);
+                            
+                            action.RemoveAllListeners();
+                        }
+                        else
+                        {
+                            yield return Player.SelectedSpell.Cast(actor, TargetSelector.SelectedTargets.ToArray());
+                        }
                     }    
                 }
                 else if (BattleManager.IsEnemyTurn)

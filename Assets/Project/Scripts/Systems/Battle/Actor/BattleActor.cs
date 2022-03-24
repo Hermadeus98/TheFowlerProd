@@ -3,6 +3,7 @@ using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using Unity.RemoteConfig;
 using UnityEngine;
+using UnityEngine.Timeline;
 
 namespace TheFowler
 {
@@ -26,7 +27,10 @@ namespace TheFowler
         [TabGroup("References")] public BattleActorAnimator BattleActorAnimator;
         [TabGroup("References")] public FeedbackReferences feedbackReferences;
         [TabGroup("References")] public AnimTriggerBase AnimTrigger;
-         
+        [TabGroup("References")] public SignalAsset SignalAsset_CastSpell;
+        [TabGroup("References")] public SignalReceiver SignalReceiver_CastSpell;
+        [TabGroup("References")] public SequenceHandler SequenceHandler;
+          
         [TabGroup("Components")] [SerializeField]
         private BattleActorComponent[] battleActorComponents;
         [TabGroup("Components")] [SerializeField]

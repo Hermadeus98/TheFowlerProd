@@ -42,6 +42,8 @@ namespace TheFowler
         [TitleGroup("Effects")] 
         public Effect[] Effects;
 
+        public SequenceEnum sequenceBinding;
+
         private void OnEnable()
         {
             Effects.ForEach(w => w.ReferedSpell = this);
@@ -91,6 +93,11 @@ namespace TheFowler
             yield return new WaitForSeconds(executionDurationAfterCast);
         }
 
+        public void SimpleCast(BattleActor emitter, BattleActor[] receivers)
+        {
+            Effects.ForEach(w => w.OnSimpleCast(emitter, receivers));
+        }
+        
         public bool ContainEffect<T>(out T component) where T : Effect
         {
             for (int i = 0; i < Effects.Length; i++)

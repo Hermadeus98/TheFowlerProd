@@ -59,5 +59,10 @@ namespace TheFowler
                     throw new ArgumentOutOfRangeException();
             }
         }
+
+        public virtual void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
+        {
+            Debug.Log("CAST");
+        }
     }
 }

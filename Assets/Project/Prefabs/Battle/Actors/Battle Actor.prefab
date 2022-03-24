@@ -33,6 +33,7 @@ Transform:
   - {fileID: 8465648332750942498}
   - {fileID: 7192094108273076158}
   - {fileID: 3018868470752265347}
+  - {fileID: 7324989482619613594}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -63,7 +64,7 @@ MonoBehaviour:
   sockets: {fileID: 5934240025784311385}
   SelectionPointer: {fileID: 7542574822764082769}
   stateIcons: {fileID: 0}
-  FeedbackHandler: {fileID: 0}
+  FeedbackHandler: {fileID: 3038340472484755803}
   BattleActorAnimator: {fileID: 3185024958187003936}
   feedbackReferences: {fileID: 0}
   AnimTrigger: {fileID: 0}
@@ -258,6 +259,78 @@ MonoBehaviour:
   BoundParticleSystem: {fileID: 0}
   MoveToPosition: 0
   RandomParticleSystems: []
+--- !u!1 &4796244744337659442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7324989482619613594}
+  - component: {fileID: 3038340472484755803}
+  m_Layer: 0
+  m_Name: Battle Sequences
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7324989482619613594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4796244744337659442}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9076889276042552686}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3038340472484755803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4796244744337659442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 600426fa97212a74e87d9d8203c2450d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: FeedbacksMap
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[MoreMountains.Feedbacks.MMFeedbacks,
+        MoreMountains.Feedbacks]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!1 &4925183308677114185
 GameObject:
   m_ObjectHideFlags: 0
@@ -1244,6 +1317,11 @@ PrefabInstance:
       objectReference: {fileID: 9097889425863633117, guid: e53204a73f5a8f440a30f2f10caee737, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e53204a73f5a8f440a30f2f10caee737, type: 3}
+--- !u!4 &2481672662460331432 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3983560063382817727, guid: e53204a73f5a8f440a30f2f10caee737, type: 3}
+  m_PrefabInstance: {fileID: 1529217156169039383}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7744762939583829706 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9097889425863633117, guid: e53204a73f5a8f440a30f2f10caee737, type: 3}
@@ -1255,11 +1333,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaacfd35cfc4ac64e9f5c7cb2a2f9c1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &2481672662460331432 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3983560063382817727, guid: e53204a73f5a8f440a30f2f10caee737, type: 3}
-  m_PrefabInstance: {fileID: 1529217156169039383}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2105365254136388892
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2015,9 +2088,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b53a95500b71916408e88269ac22890c, type: 3}
---- !u!4 &620432042808914968 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8352904456907692841, guid: b53a95500b71916408e88269ac22890c, type: 3}
+--- !u!198 &4791122927561968351 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4110151579525981678, guid: b53a95500b71916408e88269ac22890c, type: 3}
   m_PrefabInstance: {fileID: 8896665345602334513}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &7523836532537439499 stripped
@@ -2031,9 +2104,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d22c282a4bc7164297092b60bb2d70d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!198 &4791122927561968351 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4110151579525981678, guid: b53a95500b71916408e88269ac22890c, type: 3}
+--- !u!4 &620432042808914968 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8352904456907692841, guid: b53a95500b71916408e88269ac22890c, type: 3}
   m_PrefabInstance: {fileID: 8896665345602334513}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9128378699351827531
