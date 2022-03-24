@@ -20,5 +20,6 @@ namespace TheFowler
     {
         NULL,
         ROBYN_BASIC_ATTACK,
+        ABY_BASIC_ATTACK,
     }
 }

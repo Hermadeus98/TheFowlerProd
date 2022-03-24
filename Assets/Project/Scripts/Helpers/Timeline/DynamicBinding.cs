@@ -9,7 +9,7 @@ public class DynamicBinding : MonoBehaviour
 {
     public TimelineAsset TimlineAsset;
     public string TrackName = "Cinemachine Track";
-    public CinemachineBrain cineCam;
+    [HideInInspector] public CinemachineBrain cineCam;
  
  
     private void Start()

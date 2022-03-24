@@ -16,7 +16,7 @@ namespace TheFowler
         public Vector3 offsetMovement = new Vector3(0f,1f,0f);
 
         public Color color = Color.red;
-        
+
         protected override void CustomPlayFeedback(Vector3 position, float feedbacksIntensity = 1)
         {
             var popup = Spawnables.Instance.PopupText;

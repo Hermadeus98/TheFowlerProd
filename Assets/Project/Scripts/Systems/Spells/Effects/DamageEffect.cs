@@ -23,10 +23,10 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-            emitter.BattleActorAnimator.AttackCast();
-            SoundManager.PlaySound(audioEvent, emitter.gameObject);
+            //emitter.BattleActorAnimator.AttackCast();
+            //SoundManager.PlaySound(audioEvent, emitter.gameObject);
 
-            yield return new WaitForSeconds(emitter.BattleActorAnimator.AttackCastDuration());
+            //yield return new WaitForSeconds(emitter.BattleActorAnimator.AttackCastDuration());
 
             foreach (var receiver in receivers)
             {
@@ -44,6 +44,21 @@ namespace TheFowler
         public override IEnumerator OnFinishCast(BattleActor emitter, BattleActor[] receivers)
         {
             yield break;
+        }
+
+        public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
+        {
+            base.OnSimpleCast(emitter, receivers);
+            foreach (var receiver in receivers)
+            {
+                var _damage = DamageCalculator.CalculateDamage(damage, emitter, receiver, ReferedSpell.SpellType, out var resistanceFaiblesseResult);
+
+                SoundManager.PlaySoundDamageTaken(receiver, resistanceFaiblesseResult);
+                
+                receiver.Health.TakeDamage(
+                    _damage
+                );
+            }
         }
     }
 }
