@@ -29,6 +29,8 @@ namespace TheFowler
             //SoundManager.PlaySound(audioEvent, emitter.gameObject);
             //yield return new WaitForSeconds(emitter.BattleActorAnimator.AttackCastDuration());
 
+            Debug.Log(151212);
+            
             for (int i = 0; i < receivers.Length; i++)
             {
                 var attackEffect = GameObject.Instantiate(VisualEffectAttack, receivers[i].transform.position, Quaternion.identity);
@@ -66,7 +68,7 @@ namespace TheFowler
 
         public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
         {
-            base.OnSimpleCast(emitter, receivers);
+            //base.OnSimpleCast(emitter, receivers);
             emitter.StartCoroutine(OnCast(emitter, receivers));
         }
     }
