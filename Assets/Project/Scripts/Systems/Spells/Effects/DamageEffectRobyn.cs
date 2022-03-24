@@ -25,10 +25,9 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-            emitter.BattleActorAnimator.AttackCast();
-            SoundManager.PlaySound(audioEvent, emitter.gameObject);
-
-            yield return new WaitForSeconds(emitter.BattleActorAnimator.AttackCastDuration());
+            //emitter.BattleActorAnimator.AttackCast();
+            //SoundManager.PlaySound(audioEvent, emitter.gameObject);
+            //yield return new WaitForSeconds(emitter.BattleActorAnimator.AttackCastDuration());
 
             for (int i = 0; i < receivers.Length; i++)
             {
@@ -63,6 +62,12 @@ namespace TheFowler
         public override IEnumerator OnFinishCast(BattleActor emitter, BattleActor[] receivers)
         {
             yield break;
+        }
+
+        public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
+        {
+            base.OnSimpleCast(emitter, receivers);
+            emitter.StartCoroutine(OnCast(emitter, receivers));
         }
     }
 }

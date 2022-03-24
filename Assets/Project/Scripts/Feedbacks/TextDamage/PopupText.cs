@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace TheFowler
 {
@@ -15,6 +16,7 @@ namespace TheFowler
         public Vector3 offset;
         public Color Color = Color.red;
 
+        public float randomOffsetX = 0, randomOffsetY = 0, randomOffsetZ = 0;
         
         [Button]
         public void Play(string message)
@@ -22,7 +24,9 @@ namespace TheFowler
             text.text = message;
             text.color = Color;
 
-            transform.DOMove(transform.position + offset, duration).SetEase(Ease.OutCubic).OnComplete(delegate
+            var _offset = new Vector3(offset.x + Random.Range(-randomOffsetX, randomOffsetX), offset.y + Random.Range(-randomOffsetY, randomOffsetY), offset.z + Random.Range(-randomOffsetZ, randomOffsetZ));
+            
+            transform.DOMove(transform.position + _offset, duration).SetEase(Ease.OutCubic).OnComplete(delegate
             {
                 DOTween.To(
                     () => text.color,
