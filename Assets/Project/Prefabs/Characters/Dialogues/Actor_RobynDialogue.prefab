@@ -296,6 +296,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 22100000, guid: d40537aab70ad9c4b9cdf3ad0a605892, type: 2}
+    - target: {fileID: 6992130105972624615, guid: 61b1fc66f12d1574f9ff7e886f1eaad1, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61b1fc66f12d1574f9ff7e886f1eaad1, type: 3}
 --- !u!1 &9072596353822565773 stripped
@@ -328,11 +332,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -9002447075851921865, guid: 61b1fc66f12d1574f9ff7e886f1eaad1, type: 3}
   m_PrefabInstance: {fileID: 8154118424823601372}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &614557562588825609 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8768059158973321429, guid: 61b1fc66f12d1574f9ff7e886f1eaad1, type: 3}
+  m_PrefabInstance: {fileID: 8154118424823601372}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2339237558014137462 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3359795638207558486, guid: 61b1fc66f12d1574f9ff7e886f1eaad1, type: 3}
   m_PrefabInstance: {fileID: 8154118424823601372}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &378133100147225997
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614557562588825609}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0156231485, y: 0.017581614, z: 0.0033597103}
+  m_Center: {x: 0.0000000016298145, y: 0.007929232, z: -0.000099500954}
+--- !u!114 &8904349798789903873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614557562588825609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3319ed7757279e42a2c072742f4c58c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_listeners:
+    initialListenerList: []
+    useDefaultListeners: 1
+  isEnvironmentAware: 1
+  isStaticObject: 0
+  m_positionOffsetData:
+    KeepMe: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
+--- !u!54 &7180964054367132595
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614557562588825609}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &3734396786601308871
 MonoBehaviour:
   m_ObjectHideFlags: 0

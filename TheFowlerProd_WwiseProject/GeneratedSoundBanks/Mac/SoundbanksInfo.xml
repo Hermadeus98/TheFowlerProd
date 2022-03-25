@@ -11,10 +11,15 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Language="SFX" Hash="3908116646">
+		<SoundBank Id="1355168291" Language="SFX" Hash="588757418">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
+			<IncludedAuxBusses>
+				<AuxBus Id="454437293" Name="Chapter1_EXT" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\Reverbs\Chapter1_EXT"/>
+				<AuxBus Id="1227258787" Name="Chapter1_BRIDGE" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\Reverbs\Chapter1_BRIDGE"/>
+				<AuxBus Id="3208245866" Name="Chapter1_CORRIDOR" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\Reverbs\Chapter1_CORRIDOR"/>
+			</IncludedAuxBusses>
 			<GameParameters>
 				<GameParameter Id="1011990060" Name="Game_Volume_SFX" ObjectPath="\Game Parameters\Default Work Unit\Game_Volume_SFX"/>
 				<GameParameter Id="1021071045" Name="Game_Volume_Ambiant" ObjectPath="\Game Parameters\Default Work Unit\Game_Volume_Ambiant"/>
@@ -39,7 +44,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3787826988" Language="English(US)" Hash="3731109232">
+		<SoundBank Id="3787826988" Language="English(US)" Hash="1069682140">
 			<ObjectPath>\SoundBanks\Default Work Unit\Core</ObjectPath>
 			<ShortName>Core</ShortName>
 			<Path>English(US)\Core.bnk</Path>
@@ -57,6 +62,10 @@
 						<File Id="48130237" Language="SFX">
 							<ShortName>TF_Music_Explo_120BPM.wav</ShortName>
 							<Path>SFX\TF_Music_Explo_120BPM_D79FB2B7.wem</Path>
+						</File>
+						<File Id="138360806" Language="SFX">
+							<ShortName>TF_Music_BattleStinger140_01.wav</ShortName>
+							<Path>SFX\TF_Music_BattleStinger140_01_D79FB2B7.wem</Path>
 						</File>
 						<File Id="281310275" Language="SFX">
 							<ShortName>TF_Music_Intro_129BPM.wav</ShortName>
@@ -80,6 +89,7 @@
 							<Children>
 								<SwitchContainer SwitchValue="{610DA068-6F12-49ED-A20D-B05F69BD9E62}">
 									<Media>
+										<File Id="138360806"/>
 										<File Id="648708101"/>
 									</Media>
 								</SwitchContainer>
@@ -254,6 +264,9 @@
 							<Path>SFX\TF_SFX_Combat_Generic_Enemy_DamageTaken_Neutral_05F9AB7E.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
+					<ActionTrigger>
+						<ActionTriggerEntry Id="2473873224" Name="CombatHit" ObjectPath="\Triggers\Default Work Unit\CombatHit"/>
+					</ActionTrigger>
 				</Event>
 				<Event Id="2730268465" Name="TF_SFX_Combat_Generic_Enemy_DamageTaken_Resist" ObjectPath="\Events\Default Work Unit\Combat\TF_SFX_Combat_Generic_Enemy_DamageTaken_Resist" DurationType="OneShot" DurationMin="1.098798" DurationMax="1.098798">
 					<IncludedMemoryFiles>
@@ -270,6 +283,9 @@
 							<Path>SFX\TF_SFX_Combat_Generic_Enemy_DamageTaken_Weak_05F9AB7E.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
+					<ActionTrigger>
+						<ActionTriggerEntry Id="2473873224" Name="CombatHit" ObjectPath="\Triggers\Default Work Unit\CombatHit"/>
+					</ActionTrigger>
 				</Event>
 				<Event Id="777422854" Name="TF_SFX_Combat_Generic_Skill_Buff" ObjectPath="\Events\Default Work Unit\Combat\TF_SFX_Combat_Generic_Skill_Buff" DurationType="OneShot" DurationMin="2.002375" DurationMax="2.002375">
 					<IncludedMemoryFiles>
@@ -438,6 +454,9 @@
 							<Path>SFX\TF_SFX_Explo_Generic_Footsteps06_05F9AB7E.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
+					<AuxBusSends>
+						<AuxBus Id="454437293" Name="Chapter1_EXT" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\Reverbs\Chapter1_EXT"/>
+					</AuxBusSends>
 				</Event>
 				<Event Id="2900756258" Name="TF_Voice_BrokenInstrument_Abigail01" ObjectPath="\Events\Default Work Unit\Voices\Abigail\Dialogues\TF_Voice_BrokenInstrument_Abigail01" DurationType="OneShot" DurationMin="2.602667" DurationMax="2.602667">
 					<IncludedMemoryFiles>
@@ -598,6 +617,9 @@
 							<Path>Voices\English(US)\TF_Voice_Generic_AllyDeath_Abigail01_05F9AB7E.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
+					<AuxBusSends>
+						<AuxBus Id="454437293" Name="Chapter1_EXT" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\Reverbs\Chapter1_EXT"/>
+					</AuxBusSends>
 				</Event>
 				<Event Id="3191130585" Name="TF_Voice_Generic_AllyDeath_Guard" ObjectPath="\Events\Default Work Unit\Voices\Guard\Combat\TF_Voice_Generic_AllyDeath_Guard" DurationType="OneShot" DurationMin="1.384694" DurationMax="1.47873">
 					<IncludedMemoryFiles>
@@ -718,6 +740,9 @@
 							<Path>Voices\English(US)\TF_Voice_Generic_AllyDeath_Abigail01_05F9AB7E.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
+					<AuxBusSends>
+						<AuxBus Id="454437293" Name="Chapter1_EXT" ObjectPath="\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus\Reverbs\Chapter1_EXT"/>
+					</AuxBusSends>
 				</Event>
 				<Event Id="3328447723" Name="TF_Voice_Generic_Death_Guard" ObjectPath="\Events\Default Work Unit\Voices\Guard\Combat\TF_Voice_Generic_Death_Guard" DurationType="OneShot" DurationMin="1.721701" DurationMax="2.308685">
 					<IncludedMemoryFiles>
@@ -1203,6 +1228,9 @@
 					<States/>
 				</StateGroup>
 			</StateGroups>
+			<Triggers>
+				<Trigger Id="2473873224" Name="CombatHit" ObjectPath="\Triggers\Default Work Unit\CombatHit"/>
+			</Triggers>
 		</SoundBank>
 	</SoundBanks>
 </SoundBanksInfo>

@@ -46,6 +46,9 @@
 						<Bus Name="Music" ID="{F60F5731-1202-4C84-AEE8-51F9AE0A2082}">
 							<PropertyList>
 								<Property Name="BusVolume" Type="Real64">
+									<ValueList>
+										<Value>-200</Value>
+									</ValueList>
 									<RTPCList>
 										<RTPC Name="" ID="{2C6D8DB9-73D9-4D18-9DCF-B2F85AB657AF}" ShortID="821243764">
 											<ReferenceList>
@@ -191,6 +194,35 @@
 									</RTPCList>
 								</Property>
 							</PropertyList>
+							<ObjectLists/>
+						</Bus>
+						<Bus Name="Reverbs" ID="{4506B8C7-6FF7-44CA-BA90-1E41781EC76B}">
+							<ChildrenList>
+								<AuxBus Name="Chapter1_EXT" ID="{39ED9839-9DAE-41E2-A49A-45DB4C119812}">
+									<ReferenceList>
+										<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+											<ObjectRef Name="Have_U_Ever_Been_Outside" ID="{FE29AE8D-FD86-4652-A95D-68D32F5760EC}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+										</Reference>
+									</ReferenceList>
+									<ObjectLists/>
+								</AuxBus>
+								<AuxBus Name="Chapter1_BRIDGE" ID="{2E8CF2C1-138C-43A5-B519-7606DC48AA79}">
+									<ReferenceList>
+										<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+											<ObjectRef Name="Medium" ID="{AEB3F175-958B-45F2-A4C2-3FBD4F456568}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+										</Reference>
+									</ReferenceList>
+									<ObjectLists/>
+								</AuxBus>
+								<AuxBus Name="Chapter1_CORRIDOR" ID="{0B8545DD-0FB5-41CE-8DB3-956F7262502A}">
+									<ReferenceList>
+										<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+											<ObjectRef Name="Have_U_Ever_Been_Outside" ID="{FE29AE8D-FD86-4652-A95D-68D32F5760EC}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+										</Reference>
+									</ReferenceList>
+									<ObjectLists/>
+								</AuxBus>
+							</ChildrenList>
 							<ObjectLists/>
 						</Bus>
 					</ChildrenList>

@@ -186,6 +186,11 @@ namespace AK
         static const AkUniqueID GAME_VOLUME_VOICES = 2065406626U;
     } // namespace GAME_PARAMETERS
 
+    namespace TRIGGERS
+    {
+        static const AkUniqueID COMBATHIT = 2473873224U;
+    } // namespace TRIGGERS
+
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;
@@ -197,9 +202,17 @@ namespace AK
         static const AkUniqueID AMBIANT = 78669895U;
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
         static const AkUniqueID MUSIC = 3991942870U;
+        static const AkUniqueID REVERBS = 3545700988U;
         static const AkUniqueID SFX = 393239870U;
         static const AkUniqueID VOICES = 3313685232U;
     } // namespace BUSSES
+
+    namespace AUX_BUSSES
+    {
+        static const AkUniqueID CHAPTER1_BRIDGE = 1227258787U;
+        static const AkUniqueID CHAPTER1_CORRIDOR = 3208245866U;
+        static const AkUniqueID CHAPTER1_EXT = 454437293U;
+    } // namespace AUX_BUSSES
 
     namespace AUDIO_DEVICES
     {

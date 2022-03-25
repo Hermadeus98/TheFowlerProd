@@ -6,6 +6,7 @@
 				<ActorMixer Name="SFX" ID="{1744DB88-7BD7-4A23-A27C-3A0D26DB4B61}" ShortID="1017830680">
 					<PropertyList>
 						<Property Name="3DSpatialization" Type="int16" Value="2"/>
+						<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
 								<Value>-6</Value>
@@ -67,6 +68,9 @@
 										</Reference>
 										<Reference Name="OutputBus">
 											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+										</Reference>
+										<Reference Name="UserAuxSend0">
+											<ObjectRef Name="Chapter1_EXT" ID="{39ED9839-9DAE-41E2-A49A-45DB4C119812}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
@@ -289,9 +293,10 @@
 				<ActorMixer Name="Voices" ID="{171A67FD-87EE-4463-BDE5-B1561F465021}" ShortID="665120169">
 					<PropertyList>
 						<Property Name="3DSpatialization" Type="int16" Value="2"/>
+						<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
-								<Value>-6</Value>
+								<Value>-4</Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -310,6 +315,17 @@
 									<PluginData>
 	<GameParameter Name="Game_SideChain_Dialogues" ID="{EFA15B8D-43E6-4F69-BC67-98A69A7FA91C}"/>
 </PluginData>
+								</Effect>
+							</Custom>
+						</Reference>
+						<Reference Name="Effect1">
+							<Custom>
+								<Effect Name="Wwise Parametric EQ (Custom)" ID="{43D71EE6-86E2-4719-A61E-1098F9910BC2}" ShortID="330623600" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+									<PropertyList>
+										<Property Name="FrequencyBand1" Type="Real32" Value="850"/>
+										<Property Name="GainBand1" Type="Real32" Value="-6"/>
+										<Property Name="GainBand3" Type="Real32" Value="-6"/>
+									</PropertyList>
 								</Effect>
 							</Custom>
 						</Reference>
@@ -1367,6 +1383,9 @@
 												</Reference>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+												<Reference Name="UserAuxSend0">
+													<ObjectRef Name="Chapter1_EXT" ID="{39ED9839-9DAE-41E2-A49A-45DB4C119812}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
@@ -3829,6 +3848,9 @@
 					<ObjectLists/>
 				</ActorMixer>
 				<ActorMixer Name="Ambiant" ID="{7ECC41FF-8D99-4B18-A981-F9444266669C}" ShortID="29342811">
+					<PropertyList>
+						<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="SFX Conversion" ID="{07DA66DE-FE0A-453A-AC45-AA2E4E31BFD5}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
