@@ -29,8 +29,6 @@ namespace TheFowler
             //SoundManager.PlaySound(audioEvent, emitter.gameObject);
             //yield return new WaitForSeconds(emitter.BattleActorAnimator.AttackCastDuration());
 
-            Debug.Log(151212);
-            
             for (int i = 0; i < receivers.Length; i++)
             {
                 var attackEffect = GameObject.Instantiate(VisualEffectAttack, receivers[i].transform.position, Quaternion.identity);
