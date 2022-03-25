@@ -11,6 +11,7 @@ using UnityEditor;
 #endif
 
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace TheFowler
 {
@@ -45,16 +46,27 @@ namespace TheFowler
 
         public AllyActor robyn, abi, phoebe;
 
+        
+        public bool StartWithSavedData = false;
+        
+        public bool HasRestart { get; set; }
         public bool IsFinish { get; set; }
         
         [Sirenix.OdinInspector.FilePath] public string referenceBattlePath;
 
-        
+        private void FixedUpdate()
+        {
+            if (isActive)
+            {
+                if(Keyboard.current.rightArrowKey.wasPressedThisFrame)
+                    NextTurn();
+            }
+        }
+
         protected override void OnAwake()
         {
             base.OnAwake();
             SetActorState(false);
-
         }
 
         private IEnumerator Start()
@@ -69,8 +81,6 @@ namespace TheFowler
         public override void PlayPhase()
         {
             base.PlayPhase();
-
-            Debug.Log(gameObject.name);
 
             BattleManager.CurrentBattle = this;
             
@@ -136,6 +146,29 @@ namespace TheFowler
         {
             IsFinish = true;
             ChangeBattleState(BattleStateEnum.END_BATTLE);
+            
+            SaveData();
+        }
+
+        private void SaveData()
+        {
+            if (robyn != null)
+            {
+                Player.RobynSavedData.health = robyn.Health.CurrentHealth;
+                Player.RobynSavedData.mana = robyn.Mana.CurrentMana;
+            }
+
+            if (abi != null)
+            {
+                Player.AbiSavedData.health = abi.Health.CurrentHealth;
+                Player.AbiSavedData.mana = abi.Mana.CurrentMana;
+            }
+
+            if (phoebe != null)
+            {
+                Player.PhoebeSavedData.health = phoebe.Health.CurrentHealth;
+                Player.PhoebeSavedData.mana = phoebe.Mana.CurrentMana;
+            }
         }
 
         [Button]
@@ -227,7 +260,8 @@ namespace TheFowler
             var newBattle = Instantiate(Resources.Load<Battle>(referenceBattlePath), battle.transform.position, battle.transform.rotation);
             
             DestroyImmediate(battle);
-            
+
+            newBattle.HasRestart = true;
             newBattle.PlayPhase();
         }
         

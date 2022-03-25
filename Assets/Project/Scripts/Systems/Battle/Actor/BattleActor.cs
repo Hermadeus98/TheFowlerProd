@@ -83,6 +83,32 @@ namespace TheFowler
             BattleActorInfo.isTaunt = false;
             battleActorInfo.buffBonus = 0;
             battleActorInfo.debuffMalus = 0;
+
+            var currentBattle = BattleManager.CurrentBattle;
+            
+            if (currentBattle.HasRestart || currentBattle.StartWithSavedData)
+            {
+                if(currentBattle.robyn != null)
+                    if (currentBattle.robyn == this)
+                    {
+                        health?.SetCurrentHealth(Player.RobynSavedData.health);
+                        mana?.SetMana(Player.RobynSavedData.mana);
+                    }
+                
+                if(currentBattle.abi != null)
+                    if (currentBattle.abi == this)
+                    {
+                        health?.SetCurrentHealth(Player.AbiSavedData.health);
+                        mana?.SetMana(Player.AbiSavedData.mana);
+                    }
+                
+                if(currentBattle.phoebe != null)
+                    if (currentBattle.phoebe == this)
+                    {
+                        health?.SetCurrentHealth(Player.PhoebeSavedData.health);
+                        mana?.SetMana(Player.PhoebeSavedData.mana);
+                    }
+            }
         }
 
         [Button]
