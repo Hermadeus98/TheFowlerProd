@@ -18,6 +18,8 @@ namespace TheFowler
         [SerializeField]
         private VisualEffect vfx_attack_anticipation, vfx_attack_explosion, vfx_attack_landing;
 
+        public Transform handTrail_attack;
+
 
         public void VFX_Slap()
         {
@@ -57,11 +59,15 @@ namespace TheFowler
             ve?.Play();
         }
 
-        private void Update()
+        protected override void Update()
         {
+            base.Update();
+            
             if (Sockets.IsNotNull())
             {
                 if(vfx_slap_particles.IsNotNull()) vfx_slap_particles.transform.position = Sockets.hand_Left.position;
+
+                if(handTrail_attack.IsNotNull()) handTrail_attack.transform.position = Sockets.hand_Right.position;
             }
         }
     }

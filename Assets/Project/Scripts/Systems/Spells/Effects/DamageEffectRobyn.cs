@@ -11,7 +11,6 @@ namespace TheFowler
         public VisualEffect VisualEffectAttack;
         public float waitAttackEffect = 1f;
         public VisualEffect VisualEffectAttackShock;
-        public ShockWave ShockWaveEffect;
 
         public override void PreviewEffect(BattleActor emitter)
         {
@@ -41,9 +40,6 @@ namespace TheFowler
             {
                 var attackEffect = GameObject.Instantiate(VisualEffectAttackShock, receivers[i].transform.position, Quaternion.identity);
                 attackEffect.Play();
-                
-                var shockWave = GameObject.Instantiate(ShockWaveEffect, receivers[i].transform.position, Quaternion.identity);
-
             }
 
             foreach (var receiver in receivers)

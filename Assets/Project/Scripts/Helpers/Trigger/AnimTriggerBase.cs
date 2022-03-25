@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.Feedbacks;
@@ -6,6 +7,7 @@ using UnityEngine;
 
 namespace TheFowler
 {
+    [ExecuteInEditMode]
     public class AnimTriggerBase : SerializedMonoBehaviour
     {
         [SerializeField] protected MMFeedbacks feedback_attack;
@@ -41,6 +43,11 @@ namespace TheFowler
         public void Audio_Run_Foot_R()
         {
             SoundManager.PlaySound(audio_FootStep, Sockets.foot_Right.gameObject);
+        }
+
+        protected virtual void Update()
+        {
+            
         }
     }
 }
