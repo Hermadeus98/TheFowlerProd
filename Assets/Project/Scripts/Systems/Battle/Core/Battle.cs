@@ -60,6 +60,9 @@ namespace TheFowler
             {
                 if(Keyboard.current.rightArrowKey.wasPressedThisFrame)
                     NextTurn();
+                
+                if(Keyboard.current.rKey.wasPressedThisFrame)
+                    TurnSystem.CurrentRound.OverrideTurn(robyn);
             }
         }
 
