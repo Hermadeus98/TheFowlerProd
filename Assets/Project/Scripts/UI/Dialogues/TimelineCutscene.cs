@@ -5,6 +5,8 @@ using UnityEngine.Playables;
 using AK.Wwise;
 using System;
 using Sirenix.OdinInspector;
+using UnityEngine.Timeline;
+using System.Linq;
 
 namespace TheFowler
 {
@@ -16,6 +18,11 @@ namespace TheFowler
         [SerializeField] UnityEngine.Events.UnityEvent[] evs;
         [SerializeField] AK.Wwise.Event[] sounds;
         private Animator currentAnim;
+
+        public TrackAsset track;
+        public object trackObject;
+        private float id;
+        private DialogueNode node;
         public void ShowTwoDCutscene(Sprite overrideSprite)
         {
             UI.GetView<TwoDCutsceneView>(UI.Views.CutsceneView).Show(overrideSprite);
@@ -93,6 +100,97 @@ namespace TheFowler
         {
             Timeline.time = Timeline.duration;
         }
+
+        [Button]
+        public  void CreateClips()
+        {
+            id = 0;
+
+            for (int i = 0; i < 100; i++)
+            {
+
+                TimelineAsset timeline = Timeline.playableAsset as TimelineAsset;
+                track = timeline.GetOutputTrack(i);
+
+                trackObject = Timeline.GetGenericBinding(track);
+
+                if(trackObject != null)
+                {
+                    if (trackObject.GetType() == typeof(BehaviourTree))
+                    {
+                        BehaviourTree tree = trackObject as BehaviourTree;
+
+                        foreach (TimelineClip item in track.GetClips().ToArray())
+                        {
+                            track.DeleteClip(item);
+                        }
+
+
+                        for (int j = 0; j < tree.nodes.Count; j++)
+                        {
+
+                            TimelineClip clip =  track.CreateDefaultClip();
+
+                            DialogueControlClip asset = clip.asset as DialogueControlClip;
+
+                            DialogueNode node = tree.nodes[j] as DialogueNode;
+
+                            asset.template.dialogue = node;
+
+                            clip.start = id;
+                            clip.duration = node.dialogue.displayDuration;
+
+                            id += (float)clip.duration;
+                        }
+
+
+                        break;
+                    }
+                }
+
+            }
+
+
+        }
+
+        [Button]
+        public void DeleteClips()
+        {
+            id = 0;
+            for (int h = 0; h < 10; h++)
+            {
+                for (int i = 0; i < 100; i++)
+                {
+
+                    TimelineAsset timeline = Timeline.playableAsset as TimelineAsset;
+                    track = timeline.GetOutputTrack(i);
+
+                    trackObject = Timeline.GetGenericBinding(track);
+
+                    if (trackObject != null)
+                    {
+                        if (trackObject.GetType() == typeof(BehaviourTree))
+                        {
+
+                            for (int j = 0; j < track.GetClips().ToArray().Length; j++)
+                            {
+                                track.DeleteClip(track.GetClips().ToArray()[j]);
+                            }
+
+
+                            break;
+                        }
+                    }
+
+                }
+            }
+
+            
+
+        }
+
+
+
     }
 }
 
