@@ -85,6 +85,14 @@ namespace TheFowler
             if (lifeTxt != null) lifeTxt.text = currentHealth.ToString();
         }
 
+        public void SetCurrentHealth(float value)
+        {
+            currentHealth = value;
+            ReferedActor.BattleActorStats.health = currentHealth;
+            ReferedActor.AllyData?.Refresh();
+            ReferedActor.AllyData?.ShakeHearth();
+        }
+
         [Button]
         public void Heal(float heal)
         {

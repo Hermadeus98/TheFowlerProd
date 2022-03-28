@@ -50,6 +50,12 @@ namespace TheFowler
             ReferedActor.AllyData?.Refresh();
         }
 
+        public void SetMana(int mana)
+        {
+            currentMana = mana;
+            ReferedActor.AllyData?.Refresh();
+        }
+
         [Button]
         public void RemoveMana(int mana)
         {

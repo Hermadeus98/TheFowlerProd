@@ -15,6 +15,14 @@ namespace TheFowler
         
         public static Spell SelectedSpell { get; set; }
 
+        public struct SavedData
+        {
+            public float health;
+            public int mana;
+        }
+
+        public static SavedData RobynSavedData, AbiSavedData, PhoebeSavedData;
+        
         public static void Initialize()
         {
             if (GameState.gameArguments.noloadingChapter)
