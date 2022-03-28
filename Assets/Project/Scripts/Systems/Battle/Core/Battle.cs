@@ -63,6 +63,9 @@ namespace TheFowler
                 
                 if(Keyboard.current.rKey.wasPressedThisFrame)
                     TurnSystem.CurrentRound.OverrideTurn(robyn);
+                
+                if(Keyboard.current.qKey.wasPressedThisFrame)
+                    TurnSystem.CurrentRound.OverrideTurn(abi);
             }
         }
 

@@ -32,7 +32,7 @@ namespace TheFowler
 
         public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
         {
-            base.OnSimpleCast(emitter, receivers);
+            //base.OnSimpleCast(emitter, receivers);
             emitter.StartCoroutine(OnCast(emitter, receivers));
         }
     }
