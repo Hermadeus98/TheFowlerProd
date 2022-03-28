@@ -131,7 +131,21 @@
 									<TransitionInfo/>
 								</MusicTransition>
 							</TransitionList>
-							<ObjectLists/>
+							<ObjectLists>
+								<ObjectList Name="Stingers">
+									<Reference>
+										<Local>
+											<MusicStinger Name="" ID="{721B8889-93A8-430A-906A-A090B0F0BD7F}">
+												<PropertyList>
+													<Property Name="PlaySegmentAt" Type="int16" Value="3"/>
+												</PropertyList>
+												<TriggerRef Name="CombatHit" ID="{2F728B35-B2E1-4F9D-9305-86E690A66000}" WorkUnitID="{8154EE78-E4F0-49F7-AFD0-DE545067F8CD}"/>
+												<SegmentRef Name="TF_Music_BattleStinger140_01" ID="{AB82AE4C-77C4-4C00-997E-897BD43300D4}" WorkUnitID="{912F3122-A24C-4B99-884A-0DC9FAC759AE}"/>
+											</MusicStinger>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
 							<Playlist>
 								<MusicPlaylistItem Name="" ID="{92E0DAA1-EEB7-42CE-8715-00C89B2B134D}" ShortID="231766641">
 									<PropertyList>
@@ -754,6 +768,262 @@
 								</MusicPlaylistItem>
 							</Playlist>
 						</MusicPlaylistContainer>
+						<Folder Name="BattleStingers" ID="{E81149BE-8650-4143-A4CF-C7F3B1157DFB}" ShortID="534010870">
+							<ChildrenList>
+								<MusicSegment Name="TF_Music_BattleStinger140_03" ID="{264C1E63-C8FC-4DBF-B614-00AD67B6FBA6}" ShortID="701710143">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="6553.56009070295"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Music" ID="{F60F5731-1202-4C84-AEE8-51F9AE0A2082}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="TF_Music_BattleStinger140_03" ID="{4D664295-C912-40D3-B1F0-E99AD2AEF7B4}" ShortID="585079626">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Music_BattleStinger140_03" ID="{DAB8B333-4A6F-4329-9D4E-9A571A788EC3}">
+													<Language>SFX</Language>
+													<AudioFile>TF_Music_BattleStinger140_03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="529979945"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<TransitionList>
+												<MusicTransition Name="Root" ID="{B3008A20-1C4E-43A3-94B0-27B815ECC83A}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</TransitionList>
+											<ObjectLists>
+												<ObjectList Name="Sequences">
+													<Reference>
+														<Local>
+															<MusicTrackSequence Name="" ID="{5D53570E-2EAF-423A-A841-27FE40325439}">
+																<ObjectLists>
+																	<ObjectList Name="Clips">
+																		<Reference>
+																			<Local>
+																				<MusicClip Name="TF_Music_BattleStinger140_03" ID="{57E66A09-2015-40C8-B03F-698ED3EF46A3}">
+																					<PropertyList>
+																						<Property Name="EndTrimOffset" Type="Real64" Value="6553.56009070295"/>
+																						<Property Name="FadeInMode" Type="int16" Value="0"/>
+																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																					</PropertyList>
+																					<AudioSourceRef Name="TF_Music_BattleStinger140_03" ID="{DAB8B333-4A6F-4329-9D4E-9A571A788EC3}"/>
+																				</MusicClip>
+																			</Local>
+																		</Reference>
+																	</ObjectList>
+																</ObjectLists>
+															</MusicTrackSequence>
+														</Local>
+													</Reference>
+												</ObjectList>
+											</ObjectLists>
+										</MusicTrack>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Cues">
+											<Reference>
+												<Local>
+													<MusicCue Name="Entry Cue" ID="{3DC08199-62C6-4AA8-AD98-5922653D3EFA}"/>
+												</Local>
+											</Reference>
+											<Reference>
+												<Local>
+													<MusicCue Name="Exit Cue" ID="{DF5962E3-8A9D-4994-909E-346FAE254A59}">
+														<PropertyList>
+															<Property Name="CueType" Type="int16" Value="1"/>
+															<Property Name="TimeMs" Type="Real64" Value="6553.56009070295"/>
+														</PropertyList>
+													</MusicCue>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicSegment>
+								<MusicSegment Name="TF_Music_BattleStinger140_02" ID="{24D4EA49-F545-434B-A379-111CD6EE2AFB}" ShortID="227531680">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="6589.29705215419"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Music" ID="{F60F5731-1202-4C84-AEE8-51F9AE0A2082}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="TF_Music_BattleStinger140_02" ID="{391D4563-8F69-483D-9891-FAB85C326BB0}" ShortID="420891030">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Music_BattleStinger140_02" ID="{89F3A4DB-5A4B-4A42-8243-FCEEC69DA6A8}">
+													<Language>SFX</Language>
+													<AudioFile>TF_Music_BattleStinger140_02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="971863282"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<TransitionList>
+												<MusicTransition Name="Root" ID="{1C2CE80F-BA01-4D72-BA70-6C4BDBBF31F7}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</TransitionList>
+											<ObjectLists>
+												<ObjectList Name="Sequences">
+													<Reference>
+														<Local>
+															<MusicTrackSequence Name="" ID="{C6556A3D-8BB4-4386-AC70-1CC5653A2974}">
+																<ObjectLists>
+																	<ObjectList Name="Clips">
+																		<Reference>
+																			<Local>
+																				<MusicClip Name="TF_Music_BattleStinger140_02" ID="{573BBF24-E088-4749-9D98-E188DF562429}">
+																					<PropertyList>
+																						<Property Name="EndTrimOffset" Type="Real64" Value="6589.29705215419"/>
+																						<Property Name="FadeInMode" Type="int16" Value="0"/>
+																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																					</PropertyList>
+																					<AudioSourceRef Name="TF_Music_BattleStinger140_02" ID="{89F3A4DB-5A4B-4A42-8243-FCEEC69DA6A8}"/>
+																				</MusicClip>
+																			</Local>
+																		</Reference>
+																	</ObjectList>
+																</ObjectLists>
+															</MusicTrackSequence>
+														</Local>
+													</Reference>
+												</ObjectList>
+											</ObjectLists>
+										</MusicTrack>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Cues">
+											<Reference>
+												<Local>
+													<MusicCue Name="Entry Cue" ID="{CB5BA723-2648-49C1-BDDB-95BA1DA5FDA4}"/>
+												</Local>
+											</Reference>
+											<Reference>
+												<Local>
+													<MusicCue Name="Exit Cue" ID="{B1693856-92CF-472F-945E-8C865D249F3A}">
+														<PropertyList>
+															<Property Name="CueType" Type="int16" Value="1"/>
+															<Property Name="TimeMs" Type="Real64" Value="6589.29705215419"/>
+														</PropertyList>
+													</MusicCue>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicSegment>
+								<MusicSegment Name="TF_Music_BattleStinger140_01" ID="{AB82AE4C-77C4-4C00-997E-897BD43300D4}" ShortID="38972585">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="6575.89569160998"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Music" ID="{F60F5731-1202-4C84-AEE8-51F9AE0A2082}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="TF_Music_BattleStinger140_01" ID="{F8FFF017-18A5-4B09-82AE-4567051823EA}" ShortID="863898223">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="TF_Music_BattleStinger140_01" ID="{1F583D1A-588D-41CB-8B79-1479D2EA03D1}">
+													<Language>SFX</Language>
+													<AudioFile>TF_Music_BattleStinger140_01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="138360806"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<TransitionList>
+												<MusicTransition Name="Root" ID="{4A7B6295-4F65-4F43-817D-429161775344}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</TransitionList>
+											<ObjectLists>
+												<ObjectList Name="Sequences">
+													<Reference>
+														<Local>
+															<MusicTrackSequence Name="" ID="{C7137CE0-4F9B-45AA-8A7A-1CC238FFF86D}">
+																<ObjectLists>
+																	<ObjectList Name="Clips">
+																		<Reference>
+																			<Local>
+																				<MusicClip Name="TF_Music_BattleStinger140_01" ID="{52631CE8-64C2-49F1-97F9-3544BBA7841F}">
+																					<PropertyList>
+																						<Property Name="EndTrimOffset" Type="Real64" Value="6575.89569160998"/>
+																						<Property Name="FadeInMode" Type="int16" Value="0"/>
+																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																					</PropertyList>
+																					<AudioSourceRef Name="TF_Music_BattleStinger140_01" ID="{1F583D1A-588D-41CB-8B79-1479D2EA03D1}"/>
+																				</MusicClip>
+																			</Local>
+																		</Reference>
+																	</ObjectList>
+																</ObjectLists>
+															</MusicTrackSequence>
+														</Local>
+													</Reference>
+												</ObjectList>
+											</ObjectLists>
+										</MusicTrack>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Cues">
+											<Reference>
+												<Local>
+													<MusicCue Name="Entry Cue" ID="{0CECFAF4-BF2C-417F-812A-0586FCDCD3C4}"/>
+												</Local>
+											</Reference>
+											<Reference>
+												<Local>
+													<MusicCue Name="Exit Cue" ID="{E1EC543D-1C8D-4EB3-B2E1-8400A15EE8B6}">
+														<PropertyList>
+															<Property Name="CueType" Type="int16" Value="1"/>
+															<Property Name="TimeMs" Type="Real64" Value="6575.89569160998"/>
+														</PropertyList>
+													</MusicCue>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicSegment>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 					<TransitionList>
 						<MusicTransition Name="Root" ID="{A131AC55-6001-4475-89F0-0605C6651F56}">
