@@ -86,6 +86,9 @@ namespace TheFowler
             base.PlayPhase();
 
             BattleManager.CurrentBattle = this;
+
+            if (!StartWithSavedData)
+                Fury.FuryPoint = 0;
             
             InitializeUI();
 

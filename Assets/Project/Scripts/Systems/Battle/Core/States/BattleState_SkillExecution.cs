@@ -10,7 +10,7 @@ namespace TheFowler
 {
     public class BattleState_SkillExecution : BattleState
     {
-        public bool fury;
+        [ShowInInspector] public bool fury { get; set; }
         
         public override void OnStateEnter(EventArgs arg)
         {
@@ -100,7 +100,7 @@ namespace TheFowler
                 BattleManager.CurrentRound.ResetOverrideTurn();
             }
             
-            fury = false;
+            //fury = false;
 
             TargetSelector.ResetSelectedTargets();
         }

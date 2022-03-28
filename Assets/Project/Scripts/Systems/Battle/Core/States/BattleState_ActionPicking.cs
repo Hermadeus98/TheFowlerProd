@@ -22,6 +22,13 @@ namespace TheFowler
             {
                 ActionPickingView = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
                 BattleManager.CurrentBattleActor.BattleActorAnimator.Idle();
+                
+                UI.OpenView("FuryView");
+            }
+
+            if (BattleManager.IsEnemyTurn)
+            {
+                UI.CloseView("FuryView");
             }
 
             BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.ACTIONPICKING);
@@ -102,15 +109,8 @@ namespace TheFowler
                                 }
                                 break;
                             case ActionPickerElement.PlayerActionType.FURY:
-                                Player.SelectedSpell = BattleManager.CurrentBattleActor.BattleActorData.BatonPass;
-                                var skillExecutionState = BattleManager.CurrentBattle.BattleState.GetState("SkillExecution") as BattleState_SkillExecution;
-                                skillExecutionState.fury = true;
-                                {
-                                    var skillPickingView =
-                                        BattleManager.CurrentBattle.ChangeBattleState<BattleState_TargetPicking>(BattleStateEnum
-                                            .TARGET_PICKING);
-                                    skillPickingView.ReturnToActionMenu = true;
-                                }
+                                //Fury.BatonPass();
+                                StartCoroutine(DebugFury());
                                 break;
                             default:
                                 throw new ArgumentOutOfRangeException();
@@ -123,8 +123,17 @@ namespace TheFowler
                 }
 
             }
+        }
 
-
+        private IEnumerator DebugFury()
+        {
+            Debug.Log("FURYYYYYYYYYYYYYYY");
+            CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Default");
+            yield return new WaitForSeconds(2f);
+            BattleManager.CurrentRound.ResetOverrideTurn();
+            BattleManager.CurrentBattle.NextTurn();
+            Fury.StopJam();
+            yield break;
         }
 
         public override void OnStateExit(EventArgs arg)
