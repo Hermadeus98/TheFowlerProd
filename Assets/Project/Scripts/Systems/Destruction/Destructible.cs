@@ -27,6 +27,8 @@ namespace TheFowler
 
         public List<DestructionData> destructionDatas;
 
+        public Vector3 minTorque, maxTorque;
+
         [Button]
         private void Bake()
         {
@@ -89,6 +91,7 @@ namespace TheFowler
                 if (Explosed)
                 {
                     rb.AddExplosionForce(explosionForce, emissionPos.transform.position, 20f);
+                    rb.AddTorque(Random.Range(minTorque.x, maxTorque.x), Random.Range(minTorque.y, maxTorque.y), Random.Range(minTorque.z, maxTorque.z), ForceMode.Impulse);
                 }
             }
         }
