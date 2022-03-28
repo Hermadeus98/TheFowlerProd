@@ -88,6 +88,7 @@ namespace TheFowler
         public void ResetOverrideTurn()
         {
             Debug.Log("RESET OVERRIDE TURN");
+            overrideTurnActor?.OnTurnEnd();
             overrideTurnActor = null;
         }
 

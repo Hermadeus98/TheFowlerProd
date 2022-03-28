@@ -55,6 +55,7 @@ namespace TheFowler
             base.OnDeath();
             
             Fury.PlayFury();
+            Fury.AddFuryPoint(20);
         }
     }
 }

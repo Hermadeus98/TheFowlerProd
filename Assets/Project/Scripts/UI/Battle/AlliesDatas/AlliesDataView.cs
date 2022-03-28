@@ -92,5 +92,10 @@ namespace TheFowler
         }
 
         public void RefreshDatas() => datas.ForEach(w => w.Refresh());
+
+        public void StopFury()
+        {
+            datas.ForEach(w => w.Fury(false));
+        }
     }
 }

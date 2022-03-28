@@ -29,6 +29,9 @@ namespace TheFowler
             infoButtons[1] = InfoBoxButtons.BACK;
 
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+            
+            var skillExecutionState = BattleManager.CurrentBattle.BattleState.GetState("SkillExecution") as BattleState_SkillExecution;
+            skillExecutionState.fury = false;
         }
     }
 }
