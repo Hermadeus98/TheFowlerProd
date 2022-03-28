@@ -13,7 +13,6 @@ namespace TheFowler
     public static class Fury
     {
         public static bool IsInFury { get; private set; }
-
         public static int FuryPoint = 0;
 
         public static void AddFuryPoint(int point)
@@ -22,7 +21,7 @@ namespace TheFowler
 
             if (FuryPoint >= 20)
             {
-                AllowJam();
+                AllowFury();
             }
 
             var furyView = UI.GetView<FuryView>("FuryView");
@@ -31,73 +30,50 @@ namespace TheFowler
             QRDebug.Log("FURY", FrenchPallet.TOMATO_RED, $"You have {FuryPoint} FuryPoints.");
         }
         
-        public static void PlayFury()
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void PlayBreakDown()
         {
-            //Pas de fury si le dernier ennemie meurt.
+            //Pas de breakdown si le dernier ennemie meurt.
             if (BattleManager.CurrentBattle.Enemies.All(w => w.BattleActorInfo.isDeath))
             {
-                StopFury();
+                StopBreakDown();
                 return;
             }
             
             QRDebug.Log("FURY", FrenchPallet.TOMATO_RED, "START");
-
             IsInFury = true;
-
-            //FeedbackFury();
-
-            
-
-            Coroutiner.Play(Feedback());
+            Coroutiner.Play(LaunchBatonPass());
         }
 
-        private static void FeedbackFury()
-        {
-            /*var actor = BattleManager.CurrentBattleActor;
-            if (actor is AllyActor cast)
-            {
-                var element = UI.GetView<AlliesDataView>(UI.Views.AlliesDataView)
-                    .allyDatas[cast];
-                element.Fury(true);
-            }*/
-            
-            UI.GetView<FuryView>("FuryView").FeedbackFury(true);
-        }
-        
-        private static IEnumerator Feedback()
+        /// <summary>
+        /// Permet de lancer le baton Pass après un leger délais (lié à la fin du spell).
+        /// </summary>
+        /// <returns></returns>
+        private static IEnumerator LaunchBatonPass()
         {
             yield return new WaitForSeconds(1f);
-            ImagePopup.Instance.PopupFury();
-            
-            
             BattleManager.CurrentRound.BlockNextTurn();
             BatonPass();
-
-            /*var actionPickingView = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
-            actionPickingView.AllowFury(true);*/
-            
-            //BattleManager.CurrentRound.RestartTurn();
         }
-        
-        public static void StopFury()
+
+        public static void StopBreakDown()
         {
             QRDebug.Log("FURY", FrenchPallet.TOMATO_RED, "END");
-            
             IsInFury = false;
-            /*var actionPickingView = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
-            actionPickingView.AllowFury(false);*/
-            
-            StopFeedback();
-            
-            UI.GetView<FuryView>("FuryView").FeedbackFury(false);
+            StopFeedbackBreackDown();
         }
 
-        private static void StopFeedback()
+        private static void StopFeedbackBreackDown()
         {
             var element = UI.GetView<AlliesDataView>(UI.Views.AlliesDataView).datas;
             element.ForEach(w => w.Fury(false));
         }
 
+        /// <summary>
+        /// Permet de donner le tour à un adversaire.
+        /// </summary>
         public static void BatonPass()
         {
             Player.SelectedSpell = BattleManager.CurrentBattleActor.BattleActorData.BatonPass;
@@ -110,27 +86,49 @@ namespace TheFowler
             skillPickingView.ReturnToActionMenu = true;
         }
 
-        public static void AllowJam()
+        public static void AllowFury()
         {
-            /*var actor = BattleManager.CurrentBattleActor;
-            if (actor is AllyActor cast)
-            {
-                var element = UI.GetView<AlliesDataView>(UI.Views.AlliesDataView)
-                    .allyDatas[cast];
-                element.Fury(true);
-            }*/
-            
             var actionPickingView = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
             actionPickingView.AllowFury(true);
         }
 
-        public static void StopJam()
+        private static void StopFury()
         {
             var actionPickingView = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
             actionPickingView.AllowFury(false);
 
             var alliesDataView = UI.GetView<AlliesDataView>(UI.Views.AlliesDataView);
             alliesDataView.StopFury();
+        }
+
+        public static void PlayFury()
+        {
+            Coroutiner.Play(DebugFury());
+        }
+
+        private static IEnumerator DebugFury()
+        {
+            Debug.Log("FURYYYYYYYYYYYYYYY");
+            CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Default");
+            FeedbackFury();
+            yield return new WaitForSeconds(2f);
+            StopFeedbackFury();
+            BattleManager.CurrentRound.ResetOverrideTurn();
+            BattleManager.CurrentBattle.NextTurn();
+            StopFury();
+        }
+        
+        /// <summary>
+        /// Feedback quand le joueur est dans le mini jeu de la fury
+        /// </summary>
+        private static void FeedbackFury()
+        {
+            UI.GetView<FuryView>("FuryView").FeedbackFury(true);
+        }
+
+        private static void StopFeedbackFury()
+        {
+            UI.GetView<FuryView>("FuryView").FeedbackFury(false);
         }
     }
 }

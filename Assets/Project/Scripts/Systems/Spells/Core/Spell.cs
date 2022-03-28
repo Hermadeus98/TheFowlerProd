@@ -59,7 +59,7 @@ namespace TheFowler
                     for (int i = 0; i < Effects.Length; i++)
                     {
                         if(Effects[i].GetType() != typeof(BatonPassEffect))
-                            Fury.StopFury();
+                            Fury.StopBreakDown();
                         
                         Effects[i].SetCamera();
                         yield return new WaitForSeconds(.3f);
@@ -75,7 +75,7 @@ namespace TheFowler
                     for (int i = 0; i < Effects.Length; i++)
                     {
                         if(Effects[i].GetType() != typeof(BatonPassEffect))
-                            Fury.StopFury();
+                            Fury.StopBreakDown();
                         
                         Effects[i].SetCamera();
                         yield return Effects[i].OnBeginCast(emitter, receivers);

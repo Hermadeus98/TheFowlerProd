@@ -110,7 +110,7 @@ namespace TheFowler
                                 break;
                             case ActionPickerElement.PlayerActionType.FURY:
                                 //Fury.BatonPass();
-                                StartCoroutine(DebugFury());
+                                Fury.PlayFury();
                                 break;
                             default:
                                 throw new ArgumentOutOfRangeException();
@@ -123,17 +123,6 @@ namespace TheFowler
                 }
 
             }
-        }
-
-        private IEnumerator DebugFury()
-        {
-            Debug.Log("FURYYYYYYYYYYYYYYY");
-            CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Default");
-            yield return new WaitForSeconds(2f);
-            BattleManager.CurrentRound.ResetOverrideTurn();
-            BattleManager.CurrentBattle.NextTurn();
-            Fury.StopJam();
-            yield break;
         }
 
         public override void OnStateExit(EventArgs arg)
