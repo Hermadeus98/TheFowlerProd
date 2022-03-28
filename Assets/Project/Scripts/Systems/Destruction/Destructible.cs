@@ -13,8 +13,8 @@ namespace TheFowler
 {
     public class Destructible : SerializedMonoBehaviour, IDesctructible
     {
-        public MeshFilter meshFilter;
-        public MeshCollider collider;
+        //public MeshFilter meshFilter;
+        //public MeshCollider collider;
         public DestructionIteration[] iterations;
 
         [SerializeField] private int currentIteration = 0;
@@ -28,6 +28,11 @@ namespace TheFowler
         public List<DestructionData> destructionDatas;
 
         public Vector3 minTorque, maxTorque;
+
+        private void OnEnable()
+        {
+            Destruct();
+        }
 
         [Button]
         private void Bake()
@@ -71,10 +76,10 @@ namespace TheFowler
             if(currentIteration > iterations.Length - 1)
                 return;
 
-            meshFilter.mesh = null;
+            /*meshFilter.mesh = null;
             if (DisableCollider && collider != null)
                 collider.enabled = false;
-           if(collider != null) collider.sharedMesh = iterations[currentIteration].newMesh;
+           if(collider != null) collider.sharedMesh = iterations[currentIteration].newMesh;*/
             
             iterations[currentIteration].elements.ForEach(DestroyElement);
            
