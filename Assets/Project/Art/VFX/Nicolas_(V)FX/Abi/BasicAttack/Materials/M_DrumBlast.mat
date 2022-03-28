@@ -7,12 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Abi_Atk_Notes
-  m_Shader: {fileID: 4800000, guid: 56657bf892b680b46a85451560fa9b3f, type: 3}
-  m_ShaderKeywords: _ENABLE_FOG_ON_TRANSPARENT _NORMALMAP_TANGENT_SPACE _SURFACE_TYPE_TRANSPARENT
+  m_Name: M_DrumBlast
+  m_Shader: {fileID: 4800000, guid: b643c8592a86e804bbc9cb45bf875bb3, type: 3}
+  m_ShaderKeywords: _DOUBLESIDED_ON _EDGEFADE_ENABLE_ON _ENABLECUSTOMDATA_ON _NORMALMAP_TANGENT_SPACE
+    _SURFACE_TYPE_TRANSPARENT _USETEXTUREALPHA_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
+  m_DoubleSidedGI: 1
   m_CustomRenderQueue: 3000
   stringTagMap:
     MotionVector: User
@@ -65,7 +66,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 976050b2176fb744982da374347cb9e2, type: 3}
+        m_Texture: {fileID: 2800000, guid: 94aa86ba77c380d43801bf4b283c01e5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskMap:
@@ -80,6 +81,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _PanningTex:
+        m_Texture: {fileID: 2800000, guid: 95cc73dbc162d9a4ba755846bd0e1937, type: 3}
+        m_Scale: {x: 1.6, y: 0.8}
+        m_Offset: {x: 0.04, y: -0.3}
     - _SpecularColorMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -104,6 +109,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -121,6 +130,7 @@ Material:
     - _AORemapMin: 0
     - _ATDistance: 1
     - _AddPrecomputedVelocity: 0
+    - _AddedEdgeFade: 0
     - _AlbedoAffectEmissive: 0
     - _Alpha: 1
     - _AlphaCutoff: 0.5
@@ -129,17 +139,23 @@ Material:
     - _AlphaCutoffPrepass: 0.5
     - _AlphaCutoffShadow: 0.5
     - _AlphaDstBlend: 10
+    - _AlphaLerp_TexInfluence: 0.64
+    - _AlphaMul: 1
+    - _AlphaSharp_OneMinus: 0
+    - _AlphaSmoothness: 0.1
     - _AlphaSrcBlend: 1
+    - _AlphaThreshold: -0.2
     - _AlphaToMask: 0
     - _AlphaToMaskInspectorValue: 0
     - _Anisotropy: 0
     - _BicolorSmoothness: 1
-    - _BicolorThreshold: 0
+    - _BicolorThreshold: -0.02
     - _Bicolor_OneMinus: 0
     - _BlendMode: 0
     - _CoatMask: 0
-    - _CullMode: 2
-    - _CullModeForward: 2
+    - _ColorTex: 0.3
+    - _CullMode: 0
+    - _CullModeForward: 0
     - _Cutoff: 0.5
     - _DF_Distance: 0.5
     - _DF_OneMinus: 0
@@ -154,15 +170,17 @@ Material:
     - _DisplacementMode: 0
     - _DistortionEnable: 0
     - _DistortionOnly: 0
-    - _DoubleSidedEnable: 0
+    - _DoubleSidedEnable: 1
     - _DoubleSidedNormalMode: 1
     - _DstBlend: 10
+    - _EdgeFade_Enable: 1
     - _EmissiveColorMode: 1
     - _EmissiveExposureWeight: 1
     - _EmissiveIntensity: 1
     - _EmissiveIntensityUnit: 0
     - _EnableBlendModePreserveSpecularLighting: 1
-    - _EnableFogOnTransparent: 1
+    - _EnableCustomData: 1
+    - _EnableFogOnTransparent: 0
     - _EnableGeometricSpecularAA: 0
     - _EnergyConservingSpecularColor: 1
     - _HeightAmplitude: 0.02
@@ -192,6 +210,8 @@ Material:
     - _PPDMinSamples: 5
     - _PPDPrimitiveLength: 1
     - _PPDPrimitiveWidth: 1
+    - _PanningTex_InvertUV: 0
+    - _PanningTex_ManualOffset: 0
     - _RayTracing: 0
     - _ReceivesSSR: 1
     - _ReceivesSSRTransparent: 0
@@ -234,7 +254,7 @@ Material:
     - _UVEmissive: 0
     - _UseEmissiveIntensity: 0
     - _UseShadowThreshold: 0
-    - _UseTextureAlpha: 0
+    - _UseTextureAlpha: 1
     - _ZTestDepthEqualForOpaque: 4
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 4
@@ -243,10 +263,12 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorA: {r: 1.6933062, g: 0.5530557, b: 0, a: 1}
-    - _ColorB: {r: 6.498019, g: 4.0517063, b: 1.0957445, a: 1}
+    - _ColorA: {r: 0.254717, g: 0.114362724, b: 0, a: 1}
+    - _ColorB: {r: 1.4980392, g: 1.0745099, b: 0.21176471, a: 1}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
+    - _EdgeFadeU: {r: 0, g: 0, b: 0, a: 0}
+    - _EdgeFadeV: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
@@ -259,7 +281,7 @@ Material:
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &3515885443988843385
+--- !u!114 &1954115015024991684
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
