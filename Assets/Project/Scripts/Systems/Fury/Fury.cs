@@ -75,5 +75,18 @@ namespace TheFowler
             element.ForEach(w => w.Fury(false));
             UI.CloseView("FuryView");
         }
+
+        public static void BatonPass()
+        {
+            Player.SelectedSpell = BattleManager.CurrentBattleActor.BattleActorData.BatonPass;
+            var skillExecutionState = BattleManager.CurrentBattle.BattleState.GetState("SkillExecution") as BattleState_SkillExecution;
+            skillExecutionState.fury = true;
+            {
+                var skillPickingView =
+                    BattleManager.CurrentBattle.ChangeBattleState<BattleState_TargetPicking>(BattleStateEnum
+                        .TARGET_PICKING);
+                skillPickingView.ReturnToActionMenu = true;
+            }
+        }
     }
 }
