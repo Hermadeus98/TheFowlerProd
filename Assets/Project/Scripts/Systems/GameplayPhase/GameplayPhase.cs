@@ -38,20 +38,30 @@ public class GameplayPhase : GameplayMonoBehaviour
     public virtual void PlayPhase()
     {
         isActive = true;
+        GeneralInputsHandler.Instance.enabled = false;
+
+        UI.GetView<InfoBoxView>(UI.Views.InfoBox).Hide();
+
         QRDebug.Log("GAMEPLAY PHASE", FrenchPallet.PETER_RIVER, $"{gameplayPhase_id} STARTED");
 
         OnStart.Call();
         onStartEvent?.Invoke();
+
+
     }
 
     [Button]
     public virtual void EndPhase()
     {
         isActive = false;
+
+        GeneralInputsHandler.Instance.enabled = true;
+
         OnEnd.Call();
         onEndEvent?.Invoke();
         if(onEndGameplayPhase_id != GameplayPhaseEnum.NULL)
             GameplayPhaseManager.PlayGameplayPhase(onEndGameplayPhase_id);
+
     }
 
 

@@ -18,6 +18,7 @@ namespace TheFowler
         {
             base.PlayPhase();
             feedbacks?.PlayFeedbacks();
+            
         }
 
 
@@ -43,6 +44,12 @@ namespace TheFowler
             Player.Robyn?.gameObject.SetActive(true);
             Player.Abigael?.gameObject.SetActive(true);
             Player.Pheobe?.gameObject.SetActive(true);
+        }
+
+        public void ShowGainSkill(int value)
+        {
+            GainSkillView view = UI.GetView<GainSkillView>(UI.Views.GainSkill);
+            view.Show(value);
         }
 
     }

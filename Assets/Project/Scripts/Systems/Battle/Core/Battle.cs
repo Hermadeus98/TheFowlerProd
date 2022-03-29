@@ -273,6 +273,8 @@ namespace TheFowler
             newBattle.HasRestart = true;
             newBattle.PlayPhase();
         }
+
+
         
         //---<EDITOR>--------------------------------------------------------------------------------------------------<
 #if UNITY_EDITOR

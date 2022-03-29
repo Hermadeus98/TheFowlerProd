@@ -40,6 +40,16 @@ namespace TheFowler
         public float health = 15.5f;
         [TitleGroup("Data Binding"), ShowIf("@this.bindingType == BindingType.DEFAULT")]
         public int mana = 3;
+
+        public void AddComplicity(int addValue)
+        {
+            complicityLevel += addValue;
+        }
+
+        public void ChangeComplicityLevel(int newValue)
+        {
+            complicityLevel = newValue;
+        }
     }
 
     

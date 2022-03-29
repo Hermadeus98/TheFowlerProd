@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using QRCode;
 
 namespace TheFowler
 {
-    public class GeneralInputsHandler : MonoBehaviour
+    public class GeneralInputsHandler : MonoBehaviourSingleton<GeneralInputsHandler>
     {
-        [SerializeField] private UnityEngine.InputSystem.PlayerInput Inputs;
+        public UnityEngine.InputSystem.PlayerInput Inputs;
+        public UnityEngine.InputSystem.PlayerInput RobynInputs;
         [TabGroup("SkillTree")] [SerializeField] private UnityEngine.Events.UnityEvent skillIn, skillOut;
         [TabGroup("SkillTree")] private bool isSkillTree = false;
         void Update()
