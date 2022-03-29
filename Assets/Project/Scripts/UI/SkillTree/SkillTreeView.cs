@@ -39,10 +39,17 @@ namespace TheFowler
         private UnityEngine.EventSystems.EventSystem eventSytem;
         private Spell currentSpell;
         private BattleActorData currentBattleActorData;
+        public CustomElement currentCustomElement;
 
         public override void Show()
         {
             base.Show();
+
+            InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
+            infoButtons[0] = InfoBoxButtons.BACK;
+
+            UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+
 
             if (VolumesManager.Instance != null)
                 VolumesManager.Instance.BlurryUI.enabled = true;
@@ -61,6 +68,8 @@ namespace TheFowler
         {
             base.Hide();
 
+            UI.GetView<InfoBoxView>(UI.Views.InfoBox).Hide();
+
             if (VolumesManager.Instance != null)
                 VolumesManager.Instance.BlurryUI.enabled = false;
         }
@@ -73,6 +82,22 @@ namespace TheFowler
 
             currentSpell = spell;
 
+            if (currentCustomElement.isClickable)
+            {
+                InfoBoxButtons[] infoButtons = new InfoBoxButtons[2];
+                infoButtons[0] = InfoBoxButtons.CONFIRM;
+                infoButtons[1] = InfoBoxButtons.BACK;
+
+                UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+            }
+            else
+            {
+                InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
+                infoButtons[0] = InfoBoxButtons.BACK;
+
+                UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+            }
+
         }
 
         public void ShowTreeSkillData(SkillSelectorElement skillSelector)
@@ -80,13 +105,25 @@ namespace TheFowler
             descriptionText.SetText(skillSelector.referedSpell.SpellDescription);
             easyDescriptionText.SetText(skillSelector.referedSpell.EasySpellDescription.ToString());
             targetText.SetText(skillSelector.referedSpell.TargetDescription);
+
+            InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
+            infoButtons[0] = InfoBoxButtons.BACK;
+
+            UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
         }
 
         public void ChangeDataCharacter(int ID)
         {
-            if (currentBattleActorData.complicityLevel <= ID) return;
+            if (currentBattleActorData.complicityLevel < ID)
+            {
+                // Insérer feedback négatifs lorsqu'on clique sur un sort qui n'est pas encore débloqué.
 
-            if(ID > currentBattleActorData.Spells.Length -1)
+                return;
+            }
+
+
+            // Insérer feedback positifs car le click est réussi
+            if (ID > currentBattleActorData.Spells.Length -1)
             {
                 Spell[] reminder = new Spell[currentBattleActorData.Spells.Length];
                 
@@ -101,12 +138,12 @@ namespace TheFowler
                 {
                     currentBattleActorData.Spells[i] = reminder[i];
                 }
-
+                
             }
+
+
             currentBattleActorData.Spells[ID] = currentSpell;
             ChangeSkillSelector(currentBattleActorData);
-
-
 
         }
 
@@ -163,6 +200,11 @@ namespace TheFowler
 
         public void ChangeSkillSelector(BattleActorData data)
         {
+            InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
+            infoButtons[0] = InfoBoxButtons.BACK;
+
+            UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+
             ChangeSkill(skillSelectorsRobyn, data);
             ChangeSkill(skillSelectorsAbi, data);
             ChangeSkill(skillSelectorsPhoebe, data);

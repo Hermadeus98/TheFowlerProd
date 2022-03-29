@@ -27,7 +27,8 @@ namespace TheFowler
                 Tuto = "TutorielView",
                 Complicity = "ComplicityView",
                 End = "EndView",
-                SkillTree = "SkillTreeView";
+                SkillTree = "SkillTreeView",
+                GainSkill = "GainSkillView";
         }
         
         private static Dictionary<string, UIView> views = new Dictionary<string, UIView>();

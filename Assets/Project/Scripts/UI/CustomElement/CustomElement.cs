@@ -11,12 +11,14 @@ namespace TheFowler
     public class CustomElement : Button
     {
         [SerializeField] private MMFeedbacks _OnActivation, _OnDisable;
-
+        public bool isClickable;
 
 
         public override void OnSelect(BaseEventData eventData)
         {
             base.OnSelect(eventData);
+            UI.GetView<SkillTreeView>(UI.Views.SkillTree).currentCustomElement = this;
+
             _OnActivation.PlayFeedbacks();
         }
 
