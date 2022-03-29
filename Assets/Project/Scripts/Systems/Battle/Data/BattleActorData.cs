@@ -20,7 +20,9 @@ namespace TheFowler
             BatonPass;
 
         [TitleGroup("Identity")] public Spell.SpellTypeEnum actorType;
-        
+
+        [TitleGroup("Identity")] public int complicityLevel = 1;
+
         [TitleGroup("Data Binding")]
         public enum BindingType{DEFAULT,REMOTE_SETTINGS}
         public BindingType bindingType = BindingType.DEFAULT;
@@ -39,5 +41,6 @@ namespace TheFowler
         [TitleGroup("Data Binding"), ShowIf("@this.bindingType == BindingType.DEFAULT")]
         public int mana = 3;
     }
+
     
 }

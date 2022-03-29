@@ -27,6 +27,7 @@ namespace TheFowler
         [SerializeField] private Color manaColorNormal, manaColorNotEnoughMana;
 
         [SerializeField] private Image manaLogo;
+
         
         public bool isSelectable { get; set; } = false;
 
@@ -68,6 +69,14 @@ namespace TheFowler
                     //selectableFeedback.enabled = true;
                 }
             }
+        }
+
+        public void Refresh(Spell spell)
+        {
+            referedSpell = spell;
+            text.SetText(referedSpell.SpellName);
+            manaCostText.SetText(referedSpell.ManaCost.ToString());
+            spellTypeIcon.sprite = SpellTypeDatabase.GetElement(referedSpell.SpellType);
         }
 
         private Tween s;
