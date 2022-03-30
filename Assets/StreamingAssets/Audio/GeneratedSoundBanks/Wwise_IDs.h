@@ -45,6 +45,7 @@ namespace AK
         static const AkUniqueID TF_SFX_COMBAT_GENERIC_SKILL_STUN = 2654934017U;
         static const AkUniqueID TF_SFX_COMBAT_GENERIC_SKILL_TAUNT = 2034208103U;
         static const AkUniqueID TF_SFX_COMBAT_UI_ACTIONWHEEL_OPEN = 936410632U;
+        static const AkUniqueID TF_SFX_COMBAT_UI_CAMERASWITCH_HEAVY = 4031584479U;
         static const AkUniqueID TF_SFX_COMBAT_UI_CAMERASWITCH_LIGHT = 3528936142U;
         static const AkUniqueID TF_SFX_COMBAT_UI_CANCEL = 1612741184U;
         static const AkUniqueID TF_SFX_COMBAT_UI_CONFIRM = 1091842654U;

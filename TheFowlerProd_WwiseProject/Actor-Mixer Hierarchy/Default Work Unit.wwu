@@ -4217,6 +4217,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<RandomSequenceContainer Name="TF_SFX_Combat_UI_SwitchCamera_Light" ID="{4F269061-22A7-476E-ABE6-A2BDEBE4413A}" ShortID="656526353">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>3</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
@@ -4362,6 +4369,95 @@
 									<ObjectLists/>
 									<ActiveSourceList>
 										<ActiveSource Name="TF_SFX_Combat_UI_SwitchCamera2" ID="{4799EB9F-1084-4EBD-9BA6-7B717F1A3C75}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+							<ObjectLists/>
+						</RandomSequenceContainer>
+						<RandomSequenceContainer Name="TF_SFX_Combat_UI_SwitchCamera_Heavy" ID="{AEDB750F-4727-4ED3-9CF9-40D46C056F1D}" ShortID="570935239">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>6</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="TF_SFX_Combat_UI_SwitchCamera_Heavy1" ID="{51266FE0-FE68-4D79-84F6-3A728DAC58E9}" ShortID="729001563">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="TF_SFX_Combat_UI_SwitchCamera_Heavy1" ID="{29A36724-90E6-45D9-BC5B-33E0AE6E03FE}">
+											<Language>SFX</Language>
+											<AudioFile>TF_SFX_Combat_UI_SwitchCamera_Heavy1.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="364651538"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="TF_SFX_Combat_UI_SwitchCamera_Heavy1" ID="{29A36724-90E6-45D9-BC5B-33E0AE6E03FE}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="TF_SFX_Combat_UI_SwitchCamera_Heavy2" ID="{F8FB731D-BF20-43FB-AEC6-06779FDEC714}" ShortID="694094848">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="TF_SFX_Combat_UI_SwitchCamera_Heavy2" ID="{13206467-7587-4BFB-86E1-9950953B245B}">
+											<Language>SFX</Language>
+											<AudioFile>TF_SFX_Combat_UI_SwitchCamera_Heavy2.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="913654090"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="TF_SFX_Combat_UI_SwitchCamera_Heavy2" ID="{13206467-7587-4BFB-86E1-9950953B245B}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="TF_SFX_Combat_UI_SwitchCamera_Heavy3" ID="{5105E04D-8F59-40AE-9501-9F3C6020E1BE}" ShortID="813190161">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="TF_SFX_Combat_UI_SwitchCamera_Heavy3" ID="{24C7C7CC-3962-41AE-8E0F-5F6E72CFF639}">
+											<Language>SFX</Language>
+											<AudioFile>TF_SFX_Combat_UI_SwitchCamera_Heavy3.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="1037918729"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="TF_SFX_Combat_UI_SwitchCamera_Heavy3" ID="{24C7C7CC-3962-41AE-8E0F-5F6E72CFF639}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>

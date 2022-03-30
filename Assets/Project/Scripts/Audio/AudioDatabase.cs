@@ -87,5 +87,8 @@ namespace TheFowler
         TF_Main_SetTutoOn,
         TF_Main_SetLoading,
 
+        TF_SFX_Combat_UI_SwitchCamera_Light,
+        TF_SFX_Combat_UI_SwitchCamera_Heavy,
+
     }
 }

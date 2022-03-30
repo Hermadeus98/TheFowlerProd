@@ -103,10 +103,12 @@ namespace TheFowler
                             if (ReturnToActionMenu)
                             {
                                 BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.ACTION_PICKING);
+                                SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SwitchCamera_Light, gameObject);
                             }
                             else
                             {
                                 BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.SKILL_PICKING);
+                                SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SwitchCamera_Light, gameObject);
                             }
                         }
                     }
@@ -151,10 +153,12 @@ namespace TheFowler
                     break;
                 case TargetTypeEnum.SOLO_ALLY:
                     CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies");
+                    SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SwitchCamera_Heavy, gameObject);
                     //SetCamera(CameraKeys.BattleKeys.TargetPickingAllies);
                     break;
                 case TargetTypeEnum.ALL_ALLIES:
                     CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies");
+                    SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SwitchCamera_Heavy, gameObject);
                     //SetCamera(CameraKeys.BattleKeys.TargetPickingAllies);
                     break;
                 default:

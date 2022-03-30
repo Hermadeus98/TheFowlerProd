@@ -88,8 +88,10 @@ namespace TheFowler
         {
             base.OnStateExit(arg);
             UI.CloseView(UI.Views.SkillPicking);
-            
-            if(openning != null)
+
+            SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SwitchCamera_Light, gameObject);
+
+            if (openning != null)
                 StopCoroutine(openning);
         }
     }

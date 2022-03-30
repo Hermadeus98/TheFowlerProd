@@ -136,6 +136,8 @@ namespace TheFowler
             closing = StartCoroutine(CloseView());
 
             isActive = false;
+
+            SoundManager.PlaySound( AudioGenericEnum.TF_SFX_Combat_UI_SwitchCamera_Light, gameObject);
         }
 
         private IEnumerator CloseView()
