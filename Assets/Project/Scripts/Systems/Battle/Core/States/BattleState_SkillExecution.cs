@@ -11,7 +11,7 @@ namespace TheFowler
     public class BattleState_SkillExecution : BattleState
     {
         [ShowInInspector] public bool fury { get; set; }
-        
+
         public override void OnStateEnter(EventArgs arg)
         {
             base.OnStateEnter(arg);
@@ -82,6 +82,14 @@ namespace TheFowler
                 }
 
                 yield return new WaitForSeconds(2f);
+
+                if (BattleManager.IsEnemyTurn)
+                {
+                    //EVENT DEATH
+                    if(BattleManager.CurrentBattle.BattleEvents.OnDeath != null)
+                        yield return BattleManager.CurrentBattle.BattleEvents.OnDeath;
+                }
+                
                 BattleManager.CurrentBattle.TurnSystem.NextTurn();
             }
         }

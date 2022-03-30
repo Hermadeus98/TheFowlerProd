@@ -53,6 +53,8 @@ public class GameplayPhase : GameplayMonoBehaviour
     [Button]
     public virtual void EndPhase()
     {
+        QRDebug.Log("GAMEPLAY PHASE", FrenchPallet.PETER_RIVER, $"{gameplayPhase_id} FINISH");
+        
         isActive = false;
 
         GeneralInputsHandler.Instance.enabled = true;

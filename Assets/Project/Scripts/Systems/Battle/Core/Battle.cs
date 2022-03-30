@@ -48,12 +48,18 @@ namespace TheFowler
 
         
         public bool StartWithSavedData = false;
+
+        public BattleNarrationComponent BattleNarrationComponent;
         
         public bool HasRestart { get; set; }
         public bool IsFinish { get; set; }
         
         [Sirenix.OdinInspector.FilePath] public string referenceBattlePath;
 
+        [HideInInspector] public BattleEvents BattleEvents;
+        
+        public BattleActor lastDeath { get; set; }
+        
         private void FixedUpdate()
         {
             if (isActive)
@@ -77,6 +83,7 @@ namespace TheFowler
 
         private IEnumerator Start()
         {
+            BattleEvents = new BattleEvents();
             yield return new WaitForSeconds(1f);
             if(playAtStart)
                 PlayPhase();
@@ -92,20 +99,29 @@ namespace TheFowler
 
             if (!StartWithSavedData)
                 Fury.FuryPoint = 0;
-            
-            InitializeUI();
 
             RegisterActors();
             InitializeTurnSystem();
             
-            StartBattle();
+            BattleNarrationComponent.RegisterEvents(this);
+
+            StartCoroutine(StartBattle());
         }
 
-        private void StartBattle()
+        private IEnumerator StartBattle()
         {
             IsFinish = false;
+
+            if (BattleEvents.OnStartBattle != null)
+                yield return BattleEvents.OnStartBattle;
+            
+            InitializeUI();
+
             ChangeBattleState(BattleStateEnum.START_BATTLE);
             CreateTurnSystem();
+            
+            
+            yield break;
         }
 
         private void CreateTurnSystem()
@@ -153,10 +169,16 @@ namespace TheFowler
         [Button]
         public void StopBattle()
         {
+            StartCoroutine(StopBattleCoroutine());
+        }
+
+        private IEnumerator StopBattleCoroutine()
+        {
             IsFinish = true;
             ChangeBattleState(BattleStateEnum.END_BATTLE);
             
             SaveData();
+            yield break;
         }
 
         private void SaveData()
@@ -301,5 +323,12 @@ namespace TheFowler
         FURY,
         END_BATTLE,
         
+    }
+
+    public class BattleEvents
+    {
+        public IEnumerator OnStartBattle;
+        public IEnumerator OnEndBattle;
+        public IEnumerator OnDeath;
     }
 }

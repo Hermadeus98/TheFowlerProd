@@ -44,6 +44,7 @@ namespace TheFowler
             
             QRDebug.Log("FURY", FrenchPallet.TOMATO_RED, "START");
             IsInFury = true;
+
             Coroutiner.Play(LaunchBatonPass());
         }
 
@@ -55,7 +56,17 @@ namespace TheFowler
         {
             yield return new WaitForSeconds(1f);
             BattleManager.CurrentRound.BlockNextTurn();
+
+            //EVENT DEATH
+            if (BattleManager.CurrentBattle.BattleEvents.OnDeath != null)
+            {
+                Debug.Log(1);
+                yield return BattleManager.CurrentBattle.BattleEvents.OnDeath;
+            }
+
             BatonPass();
+            
+            yield break;
         }
 
         public static void StopBreakDown()

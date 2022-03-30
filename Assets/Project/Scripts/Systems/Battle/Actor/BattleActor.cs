@@ -45,7 +45,6 @@ namespace TheFowler
         [SerializeField] protected BattleActorInfo battleActorInfo;
         public BattleActorStats BattleActorStats;
         
-        
         protected Turn actorTurn;
 
         //--<Properties>-----------------------------------------------------------------------------------------------<
@@ -302,6 +301,7 @@ namespace TheFowler
 
         public virtual void OnDeath()
         {
+            BattleManager.CurrentBattle.lastDeath = this;
             BattleActorAnimator.Death();
         }
 

@@ -53,7 +53,7 @@ namespace TheFowler
         public override void OnDeath()
         {
             base.OnDeath();
-            
+
             Fury.PlayBreakDown();
             Fury.AddFuryPoint(20);
         }

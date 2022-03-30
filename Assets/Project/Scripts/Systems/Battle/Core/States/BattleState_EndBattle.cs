@@ -12,10 +12,12 @@ namespace TheFowler
         public override void OnStateEnter(EventArgs arg)
         {
             base.OnStateEnter(arg);
-            FinishBattle();
-            BattleManager.CurrentBattle.EndPhase();
 
+            StartCoroutine(FinishIE());
+        }
 
+        IEnumerator FinishIE()
+        {
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).Hide();
             
             UI.CloseView(UI.Views.SkillPicking);
@@ -23,6 +25,16 @@ namespace TheFowler
             UI.CloseView(UI.Views.TargetPicking);
             UI.CloseView("FuryView");
 
+            if (BattleManager.CurrentBattle.BattleEvents.OnEndBattle != null)
+            {
+                yield return BattleManager.CurrentBattle.BattleEvents.OnEndBattle;
+            }
+
+            yield return new WaitForEndOfFrame();
+            FinishBattle();
+            yield return new WaitForEndOfFrame();
+            BattleManager.CurrentBattle.EndPhase();
+            
             TargetSelector.Quit();
             TargetSelector.ResetSelectedTargets();
         }
