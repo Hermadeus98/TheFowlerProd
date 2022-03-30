@@ -179,6 +179,7 @@ namespace AK
 
     namespace GAME_PARAMETERS
     {
+        static const AkUniqueID GAME_MAINCAM_VELOCITY = 1963623180U;
         static const AkUniqueID GAME_SIDECHAIN_DIALOGUES = 3296995986U;
         static const AkUniqueID GAME_VOLUME_AMBIANT = 1021071045U;
         static const AkUniqueID GAME_VOLUME_MUSIC = 1039087204U;

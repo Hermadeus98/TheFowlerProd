@@ -4216,6 +4216,73 @@
 								<ActiveSource Name="TF_SFX_Combat_UI_Turn_EnemyTurn" ID="{AA52EE8E-9397-434F-B430-13B69C7433BD}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<Sound Name="TF_SFX_Combat_UI_SwitchCamera" ID="{0E2AD4AF-E084-4A0B-A32B-8D2B003F3348}" ShortID="430945124">
+							<PropertyList>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-4</Value>
+									</ValueList>
+									<RTPCList>
+										<RTPC Name="" ID="{6F9A78AE-D8F8-427C-9136-51758CD8277E}" ShortID="2776911">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="Game_MainCam_Velocity" ID="{E9AF0830-C3CD-427F-A56A-4B769D079053}" WorkUnitID="{4683D363-CD52-4128-B32E-E7DC2A00DB57}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{81945E4F-450F-41F3-8B09-44D0E66314D2}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>0.5</XPos>
+														<YPos>-200</YPos>
+														<Flags>0</Flags>
+													</Point>
+													<Point>
+														<XPos>2.5</XPos>
+														<YPos>-0</YPos>
+														<Flags>0</Flags>
+													</Point>
+													<Point>
+														<XPos>10</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{393AEF64-E7BC-45A0-8AEC-9FF96981029C}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{81183AAE-8EFE-46AF-A543-EB6565DE205A}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="TF_SFX_Combat_UI_SwitchCamera" ID="{3482DDEE-4D46-46A8-97B3-FE5A3971E9EA}">
+									<Language>SFX</Language>
+									<AudioFile>TF_SFX_Combat_UI_SwitchCamera.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="1003674466"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="TF_SFX_Combat_UI_SwitchCamera" ID="{3482DDEE-4D46-46A8-97B3-FE5A3971E9EA}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 					<ObjectLists/>
 				</ActorMixer>
