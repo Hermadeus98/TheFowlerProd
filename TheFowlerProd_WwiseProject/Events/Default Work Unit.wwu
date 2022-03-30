@@ -313,6 +313,21 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Folder Name="Camera" ID="{1638CB3F-2CC9-41D4-AF35-79EE250B5FA5}" ShortID="1022464550">
+							<ChildrenList>
+								<Event Name="TF_SFX_Combat_UI_CameraSwitch_Light" ID="{D6C96796-4F66-4605-868D-6F56A2AC3A8F}">
+									<ChildrenList>
+										<Action Name="" ID="{BD09EB54-D62A-4BB3-A86F-6AC17A047DD5}" ShortID="59312822">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="TF_SFX_Combat_UI_SwitchCamera_Light" ID="{4F269061-22A7-476E-ABE6-A2BDEBE4413A}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 				<Event Name="TF_CoreInit" ID="{491272F8-7396-4DFB-A0BC-CFEBE9008309}">
@@ -342,24 +357,6 @@
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="GameplayPhase" ID="{AA39F08F-B600-44EA-B6D0-871E9D9A2379}" WorkUnitID="{912F3122-A24C-4B99-884A-0DC9FAC759AE}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
-						<Action Name="" ID="{B93C1895-9DE1-4BB1-86B0-99771EFDB6F2}" ShortID="44981521">
-							<PropertyList>
-								<Property Name="ActionType" Type="int16" Value="2"/>
-								<Property Name="Scope" Type="int16" Value="1"/>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="TF_SFX_Combat_UI_SwitchCamera" ID="{0E2AD4AF-E084-4A0B-A32B-8D2B003F3348}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
-						<Action Name="" ID="{3672C91F-7BBC-461C-BC8D-EB27FEC2D750}" ShortID="1039287816">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="TF_SFX_Combat_UI_SwitchCamera" ID="{0E2AD4AF-E084-4A0B-A32B-8D2B003F3348}" WorkUnitID="{FE972788-3429-4208-8790-69B9CC9BE7C8}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

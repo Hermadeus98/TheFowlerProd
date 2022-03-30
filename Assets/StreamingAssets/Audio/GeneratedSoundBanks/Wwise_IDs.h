@@ -45,6 +45,7 @@ namespace AK
         static const AkUniqueID TF_SFX_COMBAT_GENERIC_SKILL_STUN = 2654934017U;
         static const AkUniqueID TF_SFX_COMBAT_GENERIC_SKILL_TAUNT = 2034208103U;
         static const AkUniqueID TF_SFX_COMBAT_UI_ACTIONWHEEL_OPEN = 936410632U;
+        static const AkUniqueID TF_SFX_COMBAT_UI_CAMERASWITCH_LIGHT = 3528936142U;
         static const AkUniqueID TF_SFX_COMBAT_UI_CANCEL = 1612741184U;
         static const AkUniqueID TF_SFX_COMBAT_UI_CONFIRM = 1091842654U;
         static const AkUniqueID TF_SFX_COMBAT_UI_HOVER = 2681612572U;
@@ -179,7 +180,6 @@ namespace AK
 
     namespace GAME_PARAMETERS
     {
-        static const AkUniqueID GAME_MAINCAM_VELOCITY = 1963623180U;
         static const AkUniqueID GAME_SIDECHAIN_DIALOGUES = 3296995986U;
         static const AkUniqueID GAME_VOLUME_AMBIANT = 1021071045U;
         static const AkUniqueID GAME_VOLUME_MUSIC = 1039087204U;
