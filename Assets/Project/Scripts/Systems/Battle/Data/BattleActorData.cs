@@ -17,7 +17,8 @@ namespace TheFowler
         [TitleGroup("Identity")] public Spell
             BasicAttackSpell,
             DefendSpell,
-            BatonPass;
+            BatonPass,
+            FurySpell;
 
         [TitleGroup("Identity")] public Spell.SpellTypeEnum actorType;
 

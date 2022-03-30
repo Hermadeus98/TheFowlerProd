@@ -101,18 +101,21 @@ namespace TheFowler
             alliesDataView.StopFury();
         }
 
-        public static void PlayFury()
+        public static void PlayFury(Spell spell)
         {
-            Coroutiner.Play(DebugFury());
+            Coroutiner.Play(DebugFury(spell));
         }
 
-        private static IEnumerator DebugFury()
+        private static IEnumerator DebugFury(Spell spell)
         {
-            Debug.Log("FURYYYYYYYYYYYYYYY");
-            CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Default");
+            QRDebug.Log("FURY", FrenchPallet.TOMATO_RED, $"MINI GAME {spell.SpellName}");
+
             FeedbackFury();
-            yield return new WaitForSeconds(2f);
+            yield return spell.Cast(BattleManager.CurrentBattleActor, TargetSelector.GetAllEnemies());
             StopFeedbackFury();
+
+            yield return new WaitForSeconds(2f);
+            
             BattleManager.CurrentRound.ResetOverrideTurn();
             BattleManager.CurrentBattle.NextTurn();
             StopFury();

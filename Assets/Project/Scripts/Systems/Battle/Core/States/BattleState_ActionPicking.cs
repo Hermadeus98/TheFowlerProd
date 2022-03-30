@@ -110,7 +110,8 @@ namespace TheFowler
                                 break;
                             case ActionPickerElement.PlayerActionType.FURY:
                                 //Fury.BatonPass();
-                                Fury.PlayFury();
+                                
+                                Fury.PlayFury(BattleManager.CurrentBattleActor.BattleActorData.FurySpell);
                                 break;
                             default:
                                 throw new ArgumentOutOfRangeException();

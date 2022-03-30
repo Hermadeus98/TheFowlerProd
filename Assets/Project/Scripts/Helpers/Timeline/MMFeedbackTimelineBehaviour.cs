@@ -14,14 +14,17 @@ namespace TheFowler
         
         public override void ProcessFrame(Playable playable, FrameData info, object playerData)
         {
-            var feedback = playerData as MMFeedbacks;
-
-            if (feedback != null)
+            if (Application.isPlaying)
             {
-                if (!firstFrameHappened)
+                var feedback = playerData as MMFeedbacks;
+
+                if (feedback != null)
                 {
-                    feedback.PlayFeedbacks();
-                    firstFrameHappened = true;
+                    if (!firstFrameHappened)
+                    {
+                        feedback.PlayFeedbacks();
+                        firstFrameHappened = true;
+                    }
                 }
             }
         }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using UnityEngine;
 
 namespace TheFowler
@@ -63,6 +64,25 @@ namespace TheFowler
         public virtual void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
         {
             Debug.Log("CAST");
+        }
+        
+        protected void Damage(float damage, BattleActor emitter, BattleActor[] receivers)
+        {
+            foreach (var receiver in receivers)
+            {
+                var _damage = DamageCalculator.CalculateDamage(damage, emitter, receiver, ReferedSpell.SpellType, out var resistanceFaiblesseResult);
+
+                SoundManager.PlaySoundDamageTaken(receiver, resistanceFaiblesseResult);
+                
+                receiver.Health.TakeDamage(
+                    _damage
+                );
+            }
+        }
+
+        protected void Heal(float heal, BattleActor emitter, BattleActor[] receivers)
+        {
+            receivers.ForEach(w => w.Health.Heal(heal));
         }
     }
 }
