@@ -26,10 +26,6 @@ namespace TheFowler
         public bool replaceActorAtTheEnd = true;
         [TabGroup("References")] [SerializeField]
         private Istate[] battleStates;
-        [TitleGroup("General Settings")] [SerializeField]
-        public bool enableProgression = true;
-
-        private bool wantProgression = false;
 
         [TabGroup("References")] public CameraBatch BattleCameraBatch;
         
@@ -50,14 +46,19 @@ namespace TheFowler
 
         public AllyActor robyn, abi, phoebe;
 
-        
         public bool StartWithSavedData = false;
+
+        public BattleNarrationComponent BattleNarrationComponent;
         
         public bool HasRestart { get; set; }
         public bool IsFinish { get; set; }
+
+        public int EnemyDeathCount { get; set; } = 0;
         
         [Sirenix.OdinInspector.FilePath] public string referenceBattlePath;
 
+        public BattleActor lastDeath { get; set; }
+        
         private void FixedUpdate()
         {
             if (isActive)
@@ -81,59 +82,47 @@ namespace TheFowler
 
         private IEnumerator Start()
         {
-            wantProgression = false;
-
             yield return new WaitForSeconds(1f);
-
-            if (playAtStart)
-            {
-                if (enableProgression)
-                {
-                    UI.GetView<SkillTreeView>(UI.Views.SkillTree).Show(this);
-                }
-                else
-                {
-                    PlayPhase();
-                }
-            }
-                
+            if(playAtStart)
+                PlayPhase();
             
             yield break;
         }
 
         public override void PlayPhase()
         {
-            if (enableProgression)
-            {
-                UI.GetView<SkillTreeView>(UI.Views.SkillTree).Show(this);
-                enableProgression = false;
-                wantProgression = true;
-                return;
-            }
-
             base.PlayPhase();
 
             BattleManager.CurrentBattle = this;
 
             if (!StartWithSavedData)
                 Fury.FuryPoint = 0;
-            
-            InitializeUI();
 
             RegisterActors();
             InitializeTurnSystem();
-            
-            StartBattle();
 
-            enableProgression = wantProgression;
-
+            StartCoroutine(StartBattle());
         }
 
-        private void StartBattle()
+        private IEnumerator StartBattle()
         {
             IsFinish = false;
+
+            //Event On Start
+            Debug.Log("EVENT - ON_BATTLE_START");
+            if (BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnStartBattle() != null)
+            {
+                yield return BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnStartBattle()
+                    .NarrativeEvent();
+            }
+            
+            InitializeUI();
+
             ChangeBattleState(BattleStateEnum.START_BATTLE);
             CreateTurnSystem();
+            
+            
+            yield break;
         }
 
         private void CreateTurnSystem()
@@ -160,6 +149,7 @@ namespace TheFowler
             SetActorState(true);
         }
 
+        [Button]
         public bool CheckVictory()
         {
             if (allies.All(w => w.BattleActorInfo.isDeath))
@@ -171,25 +161,38 @@ namespace TheFowler
             if (enemies.All(w => w.BattleActorInfo.isDeath))
             {
                 Debug.Log("VICTORY");
-                StopBattle();
+                StartCoroutine(OnWin());
                 return true;
             }
 
             return false;
         }
 
+        IEnumerator OnWin()
+        {
+            Debug.Log("EVENT : ON_WIN");
+            if (BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnWin() != null)
+            {
+                yield return BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnWin()
+                    .NarrativeEvent();
+            }
+            
+            StopBattle();
+        }
+
         [Button]
         public void StopBattle()
+        {
+            StartCoroutine(StopBattleCoroutine());
+        }
+
+        private IEnumerator StopBattleCoroutine()
         {
             IsFinish = true;
             ChangeBattleState(BattleStateEnum.END_BATTLE);
             
             SaveData();
-
-            for (int i = 0; i < allies.Count; i++)
-            {
-                allies[i].BattleActorData.AddComplicity(1);
-            }
+            yield break;
         }
 
         private void SaveData()
@@ -287,8 +290,20 @@ namespace TheFowler
         [Button]
         public void Lose()
         {
+            StartCoroutine(LoseIE());
+        }
+
+        private IEnumerator LoseIE()
+        {
             callOnEnd = false;
 
+            Debug.Log("EVENT : ON_LOSE");
+            if (BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnLose() != null)
+            {
+                yield return BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnLose()
+                    .NarrativeEvent();
+            }
+            
             StopBattle();
             UI.OpenView("LoseView");
         }
@@ -307,8 +322,6 @@ namespace TheFowler
             newBattle.PlayPhase();
         }
 
-
-        
         //---<EDITOR>--------------------------------------------------------------------------------------------------<
 #if UNITY_EDITOR
         [MenuItem("GameObject/LD/Battle/Simple Battle", false, 20)]
