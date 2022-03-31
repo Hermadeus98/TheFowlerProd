@@ -19673,6 +19673,56 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5169649083189797912, guid: 6cb3119e7aedec042b9815bd781418ee, type: 3}
   m_PrefabInstance: {fileID: 2097628236}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &709155393
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709155392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad95dc195b728254b91bc773b15ad303, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Active: 1
+  Label: UnityEvent
+  Chance: 100
+  Timing:
+    TimescaleMode: 0
+    InitialDelay: 0
+    CooldownDuration: 0
+    ExcludeFromHoldingPauses: 0
+    InterruptsOnStop: 1
+    NumberOfRepeats: 0
+    RepeatForever: 0
+    DelayBetweenRepeats: 1
+    MMFeedbacksDirectionCondition: 0
+    PlayDirection: 0
+    ConstantIntensity: 0
+    UseIntensityInterval: 0
+    IntensityIntervalMin: 0
+    IntensityIntervalMax: 0
+    Sequence: {fileID: 0}
+    TrackID: 0
+    Quantized: 0
+    TargetBPM: 120
+  DebugActive: 0
+  InstantEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2097628238}
+        m_TargetAssemblyTypeName: TheFowler.TransitionHandler, Assembly-CSharp
+        m_MethodName: ShowGainSkill
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &709155394 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4289967281195788845, guid: 6cb3119e7aedec042b9815bd781418ee, type: 3}
@@ -39624,7 +39674,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1422348887
 Transform:
   m_ObjectHideFlags: 0
@@ -67950,7 +68000,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4535904677597570535, guid: 6cb3119e7aedec042b9815bd781418ee, type: 3}
       propertyPath: Feedbacks.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4535904677597570535, guid: 6cb3119e7aedec042b9815bd781418ee, type: 3}
       propertyPath: Feedbacks.Array.data[0]
@@ -67975,7 +68025,7 @@ PrefabInstance:
     - target: {fileID: 4535904677597570535, guid: 6cb3119e7aedec042b9815bd781418ee, type: 3}
       propertyPath: Feedbacks.Array.data[5]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 709155393}
     - target: {fileID: 4535904677597570535, guid: 6cb3119e7aedec042b9815bd781418ee, type: 3}
       propertyPath: Feedbacks.Array.data[6]
       value: 
