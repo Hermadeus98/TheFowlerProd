@@ -14,6 +14,12 @@ namespace TheFowler
         [TitleGroup("Identity")] 
         public Spell[] Spells;
 
+        [TitleGroup("Identity")]
+        public Spell[] DefaultSpells;
+
+        [TitleGroup("Identity")]
+        public BattleActorData defaultData;
+
         [TitleGroup("Identity")] public Spell
             BasicAttackSpell,
             DefendSpell,
@@ -50,6 +56,18 @@ namespace TheFowler
         public void ChangeComplicityLevel(int newValue)
         {
             complicityLevel = newValue;
+        }
+
+        public void Reset()
+        {
+            Spells = new Spell[DefaultSpells.Length];
+
+            for (int i = 0; i < Spells.Length; i++)
+            {
+                Spells[i] = DefaultSpells[i];
+            }
+
+            complicityLevel = 1;
         }
     }
 

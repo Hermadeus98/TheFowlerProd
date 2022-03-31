@@ -65,6 +65,11 @@ namespace TheFowler
 
         protected override void OnStart()
         {
+            if (!BattleManager.CurrentBattle.enableProgression)
+            {
+                battleActorData = battleActorData.defaultData;
+            }
+
             FeedbackHandler.Generate();
             
             base.OnStart();

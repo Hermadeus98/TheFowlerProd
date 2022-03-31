@@ -26,6 +26,10 @@ namespace TheFowler
         public bool replaceActorAtTheEnd = true;
         [TabGroup("References")] [SerializeField]
         private Istate[] battleStates;
+        [TitleGroup("General Settings")] [SerializeField]
+        public bool enableProgression = true;
+
+        private bool wantProgression = false;
 
         [TabGroup("References")] public CameraBatch BattleCameraBatch;
         
@@ -77,15 +81,36 @@ namespace TheFowler
 
         private IEnumerator Start()
         {
+            wantProgression = false;
+
             yield return new WaitForSeconds(1f);
-            if(playAtStart)
-                PlayPhase();
+
+            if (playAtStart)
+            {
+                if (enableProgression)
+                {
+                    UI.GetView<SkillTreeView>(UI.Views.SkillTree).Show(this);
+                }
+                else
+                {
+                    PlayPhase();
+                }
+            }
+                
             
             yield break;
         }
 
         public override void PlayPhase()
         {
+            if (enableProgression)
+            {
+                UI.GetView<SkillTreeView>(UI.Views.SkillTree).Show(this);
+                enableProgression = false;
+                wantProgression = true;
+                return;
+            }
+
             base.PlayPhase();
 
             BattleManager.CurrentBattle = this;
@@ -99,6 +124,9 @@ namespace TheFowler
             InitializeTurnSystem();
             
             StartBattle();
+
+            enableProgression = wantProgression;
+
         }
 
         private void StartBattle()
@@ -157,6 +185,11 @@ namespace TheFowler
             ChangeBattleState(BattleStateEnum.END_BATTLE);
             
             SaveData();
+
+            for (int i = 0; i < allies.Count; i++)
+            {
+                allies[i].BattleActorData.AddComplicity(1);
+            }
         }
 
         private void SaveData()

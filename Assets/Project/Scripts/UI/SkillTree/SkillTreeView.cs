@@ -12,6 +12,7 @@ namespace TheFowler
     {
         [TabGroup("References")] [SerializeField] private GameObject  firstSelectedObject;
         [TabGroup("References")] [SerializeField] private int complicityLevelRobyn, complicityLevelAbi, complicityLevelPhoebe;
+        [TabGroup("References")] [SerializeField] private UnityEngine.InputSystem.PlayerInput Inputs;
         [TabGroup("Tree References")] [SerializeField] private TMPro.TextMeshProUGUI spellName, spellDescription;
 
         [TabGroup("Spell References") ]
@@ -40,6 +41,7 @@ namespace TheFowler
         private Spell currentSpell;
         private BattleActorData currentBattleActorData;
         public CustomElement currentCustomElement;
+        private Battle battle;
 
         public override void Show()
         {
@@ -64,6 +66,13 @@ namespace TheFowler
             eventSytem.SetSelectedGameObject(firstSelectedObject);
         }
 
+        public void Show(Battle newBattle)
+        {
+            battle = newBattle;
+
+            Show();
+        }
+
         public override void Hide()
         {
             base.Hide();
@@ -72,6 +81,21 @@ namespace TheFowler
 
             if (VolumesManager.Instance != null)
                 VolumesManager.Instance.BlurryUI.enabled = false;
+
+            if (battle != null)
+            {
+                battle.PlayPhase();
+                battle = null;
+            }
+        }
+
+        private void Update()
+        {
+            if (!isActive) return;
+            if (Inputs.actions["Return"].WasPressedThisFrame())
+            {
+                Hide();
+            }
         }
 
         public void ShowTreeSkillData(Spell spell)
