@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
+using MoreMountains.Feedbacks;
 using QRCode.Utils;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
@@ -113,17 +115,41 @@ namespace TheFowler
         public NarrativeEventCallMoment callMoment;
         [SerializeField] private string debug;
         
-        public BattleActor deadActor;
+        [ShowIf("@this.callMoment == NarrativeEventCallMoment.ON_DEATH_OF")] public BattleActor deadActor;
 
-        public int deathCount;
+        [ShowIf("@this.callMoment == NarrativeEventCallMoment.ON_DEATH_COUNT")] public int deathCount;
 
+        public BattleDialog[] Dialogues;
         
         public IEnumerator NarrativeEvent()
         {
             Debug.Log("NARRATION EVENT : " + debug);
-            CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch);
-            yield return new WaitForSeconds(2f);
+
+            var battleDialogue = UI.OpenView<BattleDialogView>(UI.Views.BattleDialog);
+            
+            for (int i = 0; i < Dialogues.Length; i++)
+            {
+                CameraManager.Instance.SetCamera(Dialogues[i].CameraPath);
+                battleDialogue.Refresh(Dialogues[i]);
+                Dialogues[i].optionalFeedback?.PlayFeedbacks();
+                
+                yield return new WaitForSeconds(Dialogues[i].displayDuration);
+            }
+            
+            battleDialogue.Hide();
         }
+    }
+
+    [Serializable]
+    public class BattleDialog
+    {
+        public string speaker;
+        [TextArea(3,5)] public string dialogue;
+        public CinemachineVirtualCameraBase CameraPath;
+        public float displayDuration = 2f;
+        public AK.Wwise.Event voices;
+
+        public MMFeedbacks optionalFeedback;
     }
 
     public enum NarrativeEventCallMoment

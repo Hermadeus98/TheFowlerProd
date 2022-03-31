@@ -28,7 +28,8 @@ namespace TheFowler
                 Complicity = "ComplicityView",
                 End = "EndView",
                 SkillTree = "SkillTreeView",
-                GainSkill = "GainSkillView";
+                GainSkill = "GainSkillView",
+                BattleDialog = "BattleDialog";
         }
         
         private static Dictionary<string, UIView> views = new Dictionary<string, UIView>();
