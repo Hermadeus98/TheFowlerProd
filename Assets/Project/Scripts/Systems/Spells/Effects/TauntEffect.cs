@@ -25,5 +25,12 @@ namespace TheFowler
         {
             yield break;
         }
+
+        public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
+        {
+            base.OnSimpleCast(emitter, receivers);
+            emitter.BattleActorAnimator.AttackCast();
+            receivers.ForEach(w => w.GetBattleComponent<Taunt>().TauntActor(turnDuration, emitter));
+        }
     }
 }

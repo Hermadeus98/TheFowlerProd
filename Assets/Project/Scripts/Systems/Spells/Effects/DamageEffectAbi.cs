@@ -27,7 +27,7 @@ namespace TheFowler
                 impact.Play();
             }
 
-            ApplyDamage(emitter, receivers);
+            Damage(damage, emitter, receivers);
         }
 
         public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)

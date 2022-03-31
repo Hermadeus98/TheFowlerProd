@@ -40,5 +40,25 @@ namespace TheFowler
         {
             yield break;
         }
+
+        public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
+        {
+            base.OnSimpleCast(emitter, receivers);
+            if (TargetType == TargetTypeEnum.SELF)
+            {
+                var buff = emitter.GetBattleComponent<Buff>();
+                buff.BuffPercent = buffBonus;
+                buff.BuffActor(turnDuration);
+            }
+            else
+            {
+                foreach (var receiver in receivers)
+                {
+                    var buff = receiver.GetBattleComponent<Buff>();
+                    buff.BuffPercent = buffBonus;
+                    buff.BuffActor(turnDuration);
+                }
+            }
+        }
     }
 }

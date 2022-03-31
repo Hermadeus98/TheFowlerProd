@@ -28,7 +28,7 @@ namespace TheFowler
 
             //yield return new WaitForSeconds(emitter.BattleActorAnimator.AttackCastDuration());
 
-            ApplyDamage(emitter, receivers);
+            Damage(damage, emitter, receivers);
             yield break;
         }
 
@@ -46,18 +46,6 @@ namespace TheFowler
 
                 SoundManager.PlaySoundDamageTaken(receiver, resistanceFaiblesseResult);
                 
-                receiver.Health.TakeDamage(
-                    _damage
-                );
-            }
-        }
-
-        protected void ApplyDamage(BattleActor emitter, BattleActor[] receivers)
-        {
-            foreach (var receiver in receivers)
-            {
-                var _damage = DamageCalculator.CalculateDamage(damage, emitter, receiver, ReferedSpell.SpellType, out var resistanceFaiblesseResult);
-                SoundManager.PlaySoundDamageTaken(receiver, resistanceFaiblesseResult);
                 receiver.Health.TakeDamage(
                     _damage
                 );

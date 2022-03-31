@@ -66,6 +66,7 @@ namespace TheFowler
             Debug.Log("CAST");
         }
         
+        
         protected void Damage(float damage, BattleActor emitter, BattleActor[] receivers)
         {
             foreach (var receiver in receivers)
