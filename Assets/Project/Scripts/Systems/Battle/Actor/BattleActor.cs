@@ -44,7 +44,8 @@ namespace TheFowler
         [TabGroup("Datas")]
         [SerializeField] protected BattleActorInfo battleActorInfo;
         public BattleActorStats BattleActorStats;
-        
+
+        public int TurnCount { get; set; } = 0;
         
         protected Turn actorTurn;
 
@@ -114,6 +115,8 @@ namespace TheFowler
         [Button]
         public virtual void OnTurnStart()
         {
+            TurnCount++;
+            
             Debug.Log(gameObject.name + " start turn");
 
             if (!Fury.IsInFury)
@@ -302,6 +305,7 @@ namespace TheFowler
 
         public virtual void OnDeath()
         {
+            BattleManager.CurrentBattle.lastDeath = this;
             BattleActorAnimator.Death();
         }
 

@@ -1,53 +1,139 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using QRCode.Utils;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using UnityEngine;
 
 namespace TheFowler
 {
     public class BattleNarrationComponent : SerializedMonoBehaviour
     {
-        [SerializeField] private Battle battle;
-        
-        public void RegisterEvents()
+        public BattleNarrationEvent[] events;
+
+        public BattleNarrationEvent TryGetEvent_OnStartBattle()
         {
-            
+            if (!events.IsNullOrEmpty())
+            {
+                for (int i = 0; i < events.Length; i++)
+                {
+                    if (events[i].callMoment == NarrativeEventCallMoment.ON_BATTLE_START)
+                        return events[i];
+                }
+            }
+
+            return null;
+        }
+        
+        public BattleNarrationEvent TryGetEvent_OnEndBattle()
+        {
+            if (!events.IsNullOrEmpty())
+            {
+                for (int i = 0; i < events.Length; i++)
+                {
+                    if (events[i].callMoment == NarrativeEventCallMoment.ON_BATTLE_END)
+                        return events[i];
+                }
+            }
+
+            return null;
+        }
+        
+        public BattleNarrationEvent TryGetEvent_OnWin()
+        {
+            if (!events.IsNullOrEmpty())
+            {
+                for (int i = 0; i < events.Length; i++)
+                {
+                    if (events[i].callMoment == NarrativeEventCallMoment.ON_WIN)
+                        return events[i];
+                }
+            }
+
+            return null;
+        }
+        
+        public BattleNarrationEvent TryGetEvent_OnLose()
+        {
+            if (!events.IsNullOrEmpty())
+            {
+                for (int i = 0; i < events.Length; i++)
+                {
+                    if (events[i].callMoment == NarrativeEventCallMoment.ON_LOSE)
+                        return events[i];
+                }
+            }
+
+            return null;
+        }
+
+        public BattleNarrationEvent TryGetEvent_OnDeathOf()
+        {
+            if (!events.IsNullOrEmpty())
+            {
+                for (int i = 0; i < events.Length; i++)
+                {
+                    if (events[i].callMoment == NarrativeEventCallMoment.ON_DEATH_OF)
+                    {
+                        if (BattleManager.CurrentBattle.lastDeath == events[i].deadActor)
+                        {
+                            return events[i];
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+        
+        public BattleNarrationEvent TryGetEvent_OnDeathCount()
+        {
+            if (!events.IsNullOrEmpty())
+            {
+                for (int i = 0; i < events.Length; i++)
+                {
+                    if (events[i].callMoment == NarrativeEventCallMoment.ON_DEATH_COUNT)
+                    {
+                        if (BattleManager.CurrentBattle.EnemyDeathCount == events[i].deathCount)
+                        {
+                            return events[i];
+                        }
+                    }
+                }
+            }
+
+            return null;
         }
     }
 
     [Serializable]
-    public class BattleNarrationElement
+    public class BattleNarrationEvent
     {
-        public NarrationType NarrationType;
-        public NarrationCallState NarrationCallState;
+        public NarrativeEventCallMoment callMoment;
+        [SerializeField] private string debug;
+        
+        public BattleActor deadActor;
+
+        public int deathCount;
 
         
-        
-        public virtual IEnumerator NarrationEvent()
+        public IEnumerator NarrativeEvent()
         {
-            yield break;
+            Debug.Log("NARRATION EVENT : " + debug);
+            CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch);
+            yield return new WaitForSeconds(2f);
         }
     }
 
-    public enum NarrationType
+    public enum NarrativeEventCallMoment
     {
         NULL,
-        ON_START_BATTLE,
-        ON_END_BATTLE,
+        ON_BATTLE_START,
+        ON_BATTLE_END,
         ON_DEATH_OF,
-        ON_TURN_COUNT,
+        ON_DEATH_COUNT,
         ON_WIN,
         ON_LOSE
-    }
-
-    public enum NarrationCallState
-    {
-        ON_START_TURN,
-        ON_END_TURN,
-        ON_CHOOSE_SPELL,
-        ON_BEFORE_CAST,
-        ON_AFTER_CAST,
-        ON_TARGET
     }
 }
