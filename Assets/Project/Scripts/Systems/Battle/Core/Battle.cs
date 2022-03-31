@@ -46,18 +46,17 @@ namespace TheFowler
 
         public AllyActor robyn, abi, phoebe;
 
-        
         public bool StartWithSavedData = false;
 
         public BattleNarrationComponent BattleNarrationComponent;
         
         public bool HasRestart { get; set; }
         public bool IsFinish { get; set; }
+
+        public int EnemyDeathCount { get; set; } = 0;
         
         [Sirenix.OdinInspector.FilePath] public string referenceBattlePath;
 
-        [HideInInspector] public BattleEvents BattleEvents;
-        
         public BattleActor lastDeath { get; set; }
         
         private void FixedUpdate()
@@ -83,7 +82,6 @@ namespace TheFowler
 
         private IEnumerator Start()
         {
-            BattleEvents = new BattleEvents();
             yield return new WaitForSeconds(1f);
             if(playAtStart)
                 PlayPhase();
@@ -102,8 +100,6 @@ namespace TheFowler
 
             RegisterActors();
             InitializeTurnSystem();
-            
-            BattleNarrationComponent.RegisterEvents(this);
 
             StartCoroutine(StartBattle());
         }
@@ -112,8 +108,13 @@ namespace TheFowler
         {
             IsFinish = false;
 
-            if (BattleEvents.OnStartBattle != null)
-                yield return BattleEvents.OnStartBattle;
+            //Event On Start
+            Debug.Log("EVENT - ON_BATTLE_START");
+            if (BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnStartBattle() != null)
+            {
+                yield return BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnStartBattle()
+                    .NarrativeEvent();
+            }
             
             InitializeUI();
 
@@ -148,6 +149,7 @@ namespace TheFowler
             SetActorState(true);
         }
 
+        [Button]
         public bool CheckVictory()
         {
             if (allies.All(w => w.BattleActorInfo.isDeath))
@@ -159,11 +161,23 @@ namespace TheFowler
             if (enemies.All(w => w.BattleActorInfo.isDeath))
             {
                 Debug.Log("VICTORY");
-                StopBattle();
+                StartCoroutine(OnWin());
                 return true;
             }
 
             return false;
+        }
+
+        IEnumerator OnWin()
+        {
+            Debug.Log("EVENT : ON_WIN");
+            if (BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnWin() != null)
+            {
+                yield return BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnWin()
+                    .NarrativeEvent();
+            }
+            
+            StopBattle();
         }
 
         [Button]
@@ -276,8 +290,20 @@ namespace TheFowler
         [Button]
         public void Lose()
         {
+            StartCoroutine(LoseIE());
+        }
+
+        private IEnumerator LoseIE()
+        {
             callOnEnd = false;
 
+            Debug.Log("EVENT : ON_LOSE");
+            if (BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnLose() != null)
+            {
+                yield return BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnLose()
+                    .NarrativeEvent();
+            }
+            
             StopBattle();
             UI.OpenView("LoseView");
         }
@@ -296,8 +322,6 @@ namespace TheFowler
             newBattle.PlayPhase();
         }
 
-
-        
         //---<EDITOR>--------------------------------------------------------------------------------------------------<
 #if UNITY_EDITOR
         [MenuItem("GameObject/LD/Battle/Simple Battle", false, 20)]
@@ -323,12 +347,5 @@ namespace TheFowler
         FURY,
         END_BATTLE,
         
-    }
-
-    public class BattleEvents
-    {
-        public IEnumerator OnStartBattle;
-        public IEnumerator OnEndBattle;
-        public IEnumerator OnDeath;
     }
 }

@@ -54,6 +54,7 @@ namespace TheFowler
         {
             base.OnDeath();
 
+            BattleManager.CurrentBattle.EnemyDeathCount++;
             Fury.PlayBreakDown();
             Fury.AddFuryPoint(20);
         }

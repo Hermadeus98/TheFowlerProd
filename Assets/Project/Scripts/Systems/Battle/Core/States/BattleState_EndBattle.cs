@@ -25,9 +25,12 @@ namespace TheFowler
             UI.CloseView(UI.Views.TargetPicking);
             UI.CloseView("FuryView");
 
-            if (BattleManager.CurrentBattle.BattleEvents.OnEndBattle != null)
+            //End Battle Event
+            Debug.Log("EVENT : ON_BATTLE_END");
+            if (BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnEndBattle() != null)
             {
-                yield return BattleManager.CurrentBattle.BattleEvents.OnEndBattle;
+                yield return BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnEndBattle()
+                    .NarrativeEvent();
             }
 
             yield return new WaitForEndOfFrame();

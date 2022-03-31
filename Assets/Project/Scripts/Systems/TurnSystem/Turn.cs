@@ -21,6 +21,10 @@ namespace TheFowler
 
         IEnumerator ActorTransition()
         {
+            var curActor = BattleManager.CurrentBattleActor;
+            
+            Debug.Log("EVENT : ON_TURN_OF");
+            
             BattleManager.CurrentBattle.ChangeBattleState<BattleState_ActionPicking>(BattleStateEnum.ACTION_PICKING);
 
             

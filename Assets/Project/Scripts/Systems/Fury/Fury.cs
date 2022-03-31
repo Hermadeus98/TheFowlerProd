@@ -29,6 +29,8 @@ namespace TheFowler
             
             QRDebug.Log("FURY", FrenchPallet.TOMATO_RED, $"You have {FuryPoint} FuryPoints.");
         }
+
+        private static Coroutine batonPass;
         
         /// <summary>
         /// 
@@ -45,7 +47,9 @@ namespace TheFowler
             QRDebug.Log("FURY", FrenchPallet.TOMATO_RED, "START");
             IsInFury = true;
 
-            Coroutiner.Play(LaunchBatonPass());
+            if (batonPass != null)
+                Coroutiner.Instance.StopCoroutine(batonPass);
+            Coroutiner.Instance.StartCoroutine(LaunchBatonPass());
         }
 
         /// <summary>
@@ -58,10 +62,17 @@ namespace TheFowler
             BattleManager.CurrentRound.BlockNextTurn();
 
             //EVENT DEATH
-            if (BattleManager.CurrentBattle.BattleEvents.OnDeath != null)
+            Debug.Log("EVENT : ON_DEATH_OF (Enemy Death)");
+            if (BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnDeathOf() != null)
             {
-                Debug.Log(1);
-                yield return BattleManager.CurrentBattle.BattleEvents.OnDeath;
+                yield return BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnDeathOf()
+                    .NarrativeEvent();
+            }
+            
+            if (BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnDeathCount() != null)
+            {
+                yield return BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnDeathCount()
+                    .NarrativeEvent();
             }
 
             BatonPass();
