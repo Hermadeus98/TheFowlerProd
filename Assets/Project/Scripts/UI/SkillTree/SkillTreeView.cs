@@ -113,8 +113,8 @@ namespace TheFowler
                 if(currentCustomElement.skillTreeSelector.complicityLevel <= currentBattleActorData.complicityLevel)
                 {
                     InfoBoxButtons[] infoButtons = new InfoBoxButtons[2];
-                    infoButtons[0] = InfoBoxButtons.CONFIRM;
-                    infoButtons[1] = InfoBoxButtons.BACK;
+                    infoButtons[0] = InfoBoxButtons.SELECT;
+                    infoButtons[1] = InfoBoxButtons.CLOSE;
 
 
                     UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
@@ -122,7 +122,7 @@ namespace TheFowler
                 else
                 {
                     InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
-                    infoButtons[0] = InfoBoxButtons.BACK;
+                    infoButtons[0] = InfoBoxButtons.CLOSE;
 
                     UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
                 }
@@ -132,7 +132,7 @@ namespace TheFowler
             else
             {
                 InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
-                infoButtons[0] = InfoBoxButtons.BACK;
+                infoButtons[0] = InfoBoxButtons.CLOSE;
 
                 UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
             }
@@ -147,7 +147,7 @@ namespace TheFowler
             targetText.SetText(skillSelector.referedSpell.TargetDescription);
 
             InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
-            infoButtons[0] = InfoBoxButtons.BACK;
+            infoButtons[0] = InfoBoxButtons.CLOSE;
 
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
         }
@@ -241,7 +241,7 @@ namespace TheFowler
         public void ChangeSkillSelector(BattleActorData data)
         {
             InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
-            infoButtons[0] = InfoBoxButtons.BACK;
+            infoButtons[0] = InfoBoxButtons.CLOSE;
 
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
 

@@ -149,8 +149,16 @@ namespace TheFowler
 
             ChangeBattleState(BattleStateEnum.START_BATTLE);
             CreateTurnSystem();
-            
-            
+
+            if (!enableProgression)
+            {
+                for (int i = 0; i < allies.Count; i++)
+                {
+                    allies[i].BattleActorData = allies[i].BattleActorData.defaultData;
+                }
+            }
+
+
             yield break;
         }
 

@@ -25,6 +25,7 @@ namespace TheFowler
                     break;
                 case ResistanceFaiblesseResult.FAIBLESSE:
                     result *= 1.5f;
+
                     break;
                 case ResistanceFaiblesseResult.RESISTANCE:
                     result *= 0.5f;

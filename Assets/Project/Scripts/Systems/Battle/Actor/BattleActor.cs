@@ -71,6 +71,7 @@ namespace TheFowler
             base.OnStart();
             
             OnChangeDifficulty(DifficultyManager.currentDifficulty);
+
         }
 
         protected virtual void InitializeComponents()
