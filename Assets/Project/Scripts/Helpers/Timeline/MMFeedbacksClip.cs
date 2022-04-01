@@ -11,6 +11,8 @@ namespace TheFowler
     [Serializable]
     public class MMFeedbacksClip : PlayableAsset, ITimelineClipAsset
     {
+        public ExposedReference<MMFeedbacks> feedback;
+
         [SerializeField] private MMFeedbackTimelineBehaviour template = new MMFeedbackTimelineBehaviour();
         
         public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)

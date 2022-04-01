@@ -85,6 +85,8 @@
             /// </summary>
             private void OnGUI()
             {
+                compositionObject = FindObjectOfType<CompositionOverlay>().transform.parent.gameObject;
+                
                 if (compositionObject == null)
                     compositionObject = Instantiate(Resources.Load<GameObject>("Prefabs/Camera Composition"));
 
