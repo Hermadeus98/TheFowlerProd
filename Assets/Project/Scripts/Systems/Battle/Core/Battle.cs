@@ -29,7 +29,7 @@ namespace TheFowler
         [SerializeField]
         public bool enableProgression = true;
 
-        private bool wantProgression = false;
+        private bool hasPlayed = false;
 
 
         [TabGroup("References")] [SerializeField]
@@ -90,6 +90,7 @@ namespace TheFowler
 
         private IEnumerator Start()
         {
+            
 
             yield return new WaitForSeconds(1f);
             if (playAtStart)
@@ -97,6 +98,7 @@ namespace TheFowler
                 if (enableProgression)
                 {
                     UI.GetView<SkillTreeView>(UI.Views.SkillTree).Show(this);
+                    hasPlayed = true;
                 }
                 else
                 {
@@ -116,13 +118,15 @@ namespace TheFowler
                     allies[i].BattleActorData = allies[i].BattleActorData.defaultData;
                 }
             }
-            
-            if (enableProgression)
+            else 
             {
-                UI.GetView<SkillTreeView>(UI.Views.SkillTree).Show(this);
-                enableProgression = false;
-                wantProgression = true;
-                return;
+                if (!hasPlayed)
+                {
+                    UI.GetView<SkillTreeView>(UI.Views.SkillTree).Show(this);
+                    hasPlayed = true;
+                    return;
+                }
+
             }
 
             base.PlayPhase();
@@ -137,7 +141,6 @@ namespace TheFowler
 
             StartCoroutine(StartBattle());
 
-            enableProgression = wantProgression;
         }
 
         private IEnumerator StartBattle()
@@ -225,6 +228,8 @@ namespace TheFowler
             {
                 allies[i].BattleActorData.AddComplicity(1);
             }
+
+            hasPlayed = false;
         }
 
         private IEnumerator StopBattleCoroutine()

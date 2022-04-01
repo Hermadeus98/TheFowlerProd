@@ -17,10 +17,11 @@ namespace TheFowler
 
         public void StopBattleComponentsFB()
         {
-            for (int i = 0; i < FeedbackFromComponents.Count; i++)
-            {
-                FeedbackFromComponents[i].StopFeedbacks();
-            }
+            //if (FeedbackFromComponents == null) return;
+            //for (int i = 0; i < FeedbackFromComponents.Count; i++)
+            //{
+            //    FeedbackFromComponents[i].StopFeedbacks();
+            //}
         }
 
     }

@@ -32,7 +32,8 @@ namespace TheFowler
                 {
                     case RestaureManaAt.Cast:
                         //receiver.Mana.AddMana(manaToRestaure);
-                        emitter.GetBattleComponent<SpellHandler>().LoseCoolDown(manaToRestaure);
+                        if(emitter.GetBattleComponent<SpellHandler>() != null)
+                            emitter.GetBattleComponent<SpellHandler>().LoseCoolDown(1);
                         break;
                     case RestaureManaAt.Start_Turn:
                         //receiver.GetBattleComponent<Defense>().RestaureMana.AddListener(() => receiver.Mana.AddMana(manaToRestaure));
