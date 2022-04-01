@@ -30,6 +30,15 @@ namespace TheFowler
             QRDebug.Log("FURY", FrenchPallet.TOMATO_RED, $"You have {FuryPoint} FuryPoints.");
         }
 
+        public static void ResetFury()
+        {
+            FuryPoint = 0;
+
+            var furyView = UI.GetView<FuryView>("FuryView");
+            furyView.SetFuryFill(FuryPoint, 100);
+
+        }
+
         private static Coroutine batonPass;
         
         /// <summary>

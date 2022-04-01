@@ -24,7 +24,7 @@ namespace TheFowler
 
             BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.FURY);
 
-            InfoBoxButtons[] infoButtons = new InfoBoxButtons[2];
+             InfoBoxButtons[] infoButtons = new InfoBoxButtons[2];
             infoButtons[0] = InfoBoxButtons.CONFIRM;
             infoButtons[1] = InfoBoxButtons.BACK;
 
@@ -32,6 +32,8 @@ namespace TheFowler
             
             var skillExecutionState = BattleManager.CurrentBattle.BattleState.GetState("SkillExecution") as BattleState_SkillExecution;
             skillExecutionState.fury = false;
+
+            Fury.ResetFury();
         }
     }
 }

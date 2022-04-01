@@ -35,6 +35,12 @@ namespace TheFowler
         {
             base.OnTurnStart();
 
+            if (Fury.IsInFury && !BattleManager.CurrentBattleActor == ReferedActor)
+                return;
+
+            if (spells == null)
+                return;
+
             foreach (var s in spells)
             {
                 s.cooldown--;
