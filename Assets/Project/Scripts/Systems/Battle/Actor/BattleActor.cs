@@ -120,10 +120,7 @@ namespace TheFowler
             
             Debug.Log(gameObject.name + " start turn");
 
-            if (!Fury.IsInFury)
-            {
-                battleActorComponents.ForEach(w => w.OnTurnStart());
-            }
+            battleActorComponents.ForEach(w => w.OnTurnStart());
 
             AllyData?.Select();
         }

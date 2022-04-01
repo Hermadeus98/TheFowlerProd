@@ -17,6 +17,8 @@ namespace TheFowler
         [TitleGroup("Main Settings")]
         public int ManaCost;
 
+        [TitleGroup("Main Settings")] public int Cooldown;
+
         [TitleGroup("Main Settings")] public TargetTypeEnum TargetType;
 
         [TitleGroup("Main Settings")] public float

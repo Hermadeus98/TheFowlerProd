@@ -90,6 +90,7 @@ namespace TheFowler
 
         private IEnumerator Start()
         {
+
             yield return new WaitForSeconds(1f);
             if (playAtStart)
             {
@@ -108,6 +109,14 @@ namespace TheFowler
 
         public override void PlayPhase()
         {
+            if (!enableProgression)
+            {
+                for (int i = 0; i < allies.Count; i++)
+                {
+                    allies[i].BattleActorData = allies[i].BattleActorData.defaultData;
+                }
+            }
+            
             if (enableProgression)
             {
                 UI.GetView<SkillTreeView>(UI.Views.SkillTree).Show(this);
@@ -115,8 +124,6 @@ namespace TheFowler
                 wantProgression = true;
                 return;
             }
-
-
 
             base.PlayPhase();
 
@@ -149,15 +156,6 @@ namespace TheFowler
 
             ChangeBattleState(BattleStateEnum.START_BATTLE);
             CreateTurnSystem();
-
-            if (!enableProgression)
-            {
-                for (int i = 0; i < allies.Count; i++)
-                {
-                    allies[i].BattleActorData = allies[i].BattleActorData.defaultData;
-                }
-            }
-
 
             yield break;
         }

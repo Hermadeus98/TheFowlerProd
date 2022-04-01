@@ -25,7 +25,7 @@ namespace TheFowler
             OnSelect -= RepositionningCursor;
         }
 
-        public void Refresh(BattleActorData battleActorData)
+        public void Refresh(SpellHandler spellHandler)
         {
             ResetElements();
             HideAllElements();
@@ -33,11 +33,11 @@ namespace TheFowler
             elements.ForEach(w => w.Hide());
             elements.Clear();
 
-            for (int i = 0; i < battleActorData.Spells.Length; i++)
+            for (int i = 0; i < spellHandler.spells.Count; i++)
             {
                 elements.Add(transform.GetChild(i).GetComponent<SkillSelectorElement>());
                 elements[i].Show();
-                elements[i].Refresh(new WrapperArgs<Spell>(battleActorData.Spells[i]));
+                elements[i].Refresh(new WrapperArgs<SpellHandler.SpellHandled>(spellHandler.spells[i]));
             }
 
             StartCoroutine(ShowElements());
