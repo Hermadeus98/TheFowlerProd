@@ -31,10 +31,12 @@ namespace TheFowler
                 switch (restaureManaAt)
                 {
                     case RestaureManaAt.Cast:
-                        receiver.Mana.AddMana(manaToRestaure);
+                        //receiver.Mana.AddMana(manaToRestaure);
+                        emitter.GetBattleComponent<SpellHandler>().LoseCoolDown(manaToRestaure);
                         break;
                     case RestaureManaAt.Start_Turn:
-                        receiver.GetBattleComponent<Defense>().RestaureMana.AddListener(() => receiver.Mana.AddMana(manaToRestaure));
+                        //receiver.GetBattleComponent<Defense>().RestaureMana.AddListener(() => receiver.Mana.AddMana(manaToRestaure));
+                        //emitter.GetBattleComponent<SpellHandler>().re
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();

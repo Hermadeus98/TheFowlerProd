@@ -44,6 +44,15 @@ namespace TheFowler
                     s.cooldown = 0;
             }
         }
+
+        public void LoseCoolDown(int cooldownToRemove)
+        {
+            for (int i = 0; i < spells.Count; i++)
+            {
+                spells[i].cooldown -= cooldownToRemove;
+                spells[i].cooldown = Mathf.Clamp(spells[i].cooldown, 0, int.MaxValue);
+            }
+        }
     }
 }
 
