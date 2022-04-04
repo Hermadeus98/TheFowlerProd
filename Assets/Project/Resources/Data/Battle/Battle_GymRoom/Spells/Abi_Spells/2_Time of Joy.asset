@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: 9th Chord
+  m_Name: 2_Time of Joy
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -30,13 +30,13 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.DamageEffect, Assembly-CSharp
+      Data: 1|TheFowler.VampirismeEffect, Assembly-CSharp
     - Name: EffectName
       Entry: 1
-      Data: Damage
+      Data: NO NAME EFFECT
     - Name: TargetType
       Entry: 3
-      Data: 2
+      Data: 0
     - Name: battleCameraBatch
       Entry: 3
       Data: 2
@@ -56,14 +56,14 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: eventName
-      Entry: 1
-      Data: ShockWaveEffect
+      Entry: 6
+      Data: 
     - Name: ReferedSpell
       Entry: 10
       Data: 0
     - Name: damage
       Entry: 4
-      Data: 25
+      Data: 20
     - Name: 
       Entry: 8
       Data: 
@@ -73,14 +73,15 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: 9th Chord
-  ManaCost: 12
-  TargetType: 2
+  SpellName: Time of Joy
+  ManaCost: 16
+  Cooldown: 2
+  TargetType: 1
   executionDurationBeforeCast: 0.3
   executionDurationAfterCast: 0.3
-  SpellDescription: Inflict damages
+  SpellDescription: Convert damages on self-healing
   TargetDescription: Single Enemy
-  EasySpellDescription: <color=#FF0000>Medium DMG</color><size=35><sprite=0></size>
-  ExecutionType: 0
-  SpellType: 1
-  sequenceBinding: 3
+  EasySpellDescription: <color=#FF0000>Light DMG</color><size=35><sprite=0></size>
+  ExecutionType: 1
+  SpellType: 2
+  sequenceBinding: 2

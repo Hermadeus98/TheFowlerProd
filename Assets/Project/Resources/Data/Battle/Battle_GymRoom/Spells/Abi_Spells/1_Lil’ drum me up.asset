@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: Healing Percussion
+  m_Name: "1_Lil\u2019 drum me up"
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -30,13 +30,13 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.VampirismeEffect, Assembly-CSharp
+      Data: 1|TheFowler.HealEffect, Assembly-CSharp
     - Name: EffectName
       Entry: 1
-      Data: NO NAME EFFECT
+      Data: Heal
     - Name: TargetType
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: battleCameraBatch
       Entry: 3
       Data: 2
@@ -45,7 +45,7 @@ MonoBehaviour:
       Data: 
     - Name: cameraSpecificPath
       Entry: 1
-      Data: SkillExecutionAttack
+      Data: TargetPickingAllies
     - Name: cameraBattlePath
       Entry: 6
       Data: 
@@ -61,9 +61,9 @@ MonoBehaviour:
     - Name: ReferedSpell
       Entry: 10
       Data: 0
-    - Name: damage
+    - Name: healValue
       Entry: 4
-      Data: 20
+      Data: 60
     - Name: 
       Entry: 8
       Data: 
@@ -73,18 +73,15 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Healing Percussion
-  ManaCost: 18
-  Cooldown: 3
-  TargetType: 1
+  SpellName: "Lil\u2019 drum me up"
+  ManaCost: 11
+  Cooldown: 1
+  TargetType: 3
   executionDurationBeforeCast: 0.3
   executionDurationAfterCast: 0.3
-  SpellDescription: Heal allies and give them defend bonus during 1 turn
-  TargetDescription: All Aliies
-  EasySpellDescription: '<color=#FF0000>Low Heal</color><size=35><sprite=0></size>
-
-    Defend
-    Bonus'
-  ExecutionType: 1
-  SpellType: 2
+  SpellDescription: Heal an ally
+  TargetDescription: Single Ally
+  EasySpellDescription: <color=#FF0000>Heavy Heal</color><size=35><sprite=0></size>
+  ExecutionType: 0
+  SpellType: 0
   sequenceBinding: 2
