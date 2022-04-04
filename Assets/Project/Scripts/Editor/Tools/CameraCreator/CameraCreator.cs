@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEditor;
+using UnityEditor.ShortcutManagement;
 using UnityEngine;
 using MenuCommand = System.ComponentModel.Design.MenuCommand;
 

@@ -20,8 +20,6 @@ namespace TheFowler
             StartCoroutine(WaitTransition());
         }
 
-
-
         private void EndChapterLoaded()
         {
             SoundManager.PlaySound(chapterdata.audioEventOnChapterStart, gameObject);
@@ -44,7 +42,7 @@ namespace TheFowler
 
 
 
-            video.PlayPhase(EndChapterLoaded); ;
+            video.PlayPhase(EndChapterLoaded);
             
             BlackPanel.Instance.Hide(.5f);
 
