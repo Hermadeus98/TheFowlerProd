@@ -18,9 +18,9 @@ namespace TheFowler
             
             var result = (initialDamage + bonusesCalculate) + (initialDamage * defenseCoef);
 
-            Debug.Log(initialDamage);
+            /*Debug.Log(initialDamage);
             Debug.Log(bonusesCalculate);
-            Debug.Log(result);
+            Debug.Log(result);*/
             
             var resistance = CalculateSpellTypeBonus(spellType, receiver.BattleActorData.actorType);
             switch (resistance)
