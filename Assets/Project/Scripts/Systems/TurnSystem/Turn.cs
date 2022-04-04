@@ -44,7 +44,7 @@ namespace TheFowler
                     }
                     else
                     {
-                        
+                        SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SwitchTurn, null);
                     }
                 }
                 else if (BattleManager.IsEnemyTurn)
@@ -56,7 +56,7 @@ namespace TheFowler
                     }
                     else
                     {
-                        
+                        SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SwitchTurn, null);
                     }
                 }
             });

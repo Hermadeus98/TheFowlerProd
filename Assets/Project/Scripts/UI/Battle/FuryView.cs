@@ -11,6 +11,8 @@ namespace TheFowler
         public Image fury;
 
         public Image furyFill;
+
+        private bool isFilling;
         
         public void FeedbackFury(bool state)
         {
@@ -20,7 +22,18 @@ namespace TheFowler
         public void SetFuryFill(int current, int max)
         {
             float percent = (float) current / (float) max;
-            furyFill.DOFillAmount(percent, .2f);
+
+            isFilling = true;
+
+            furyFill.DOFillAmount(percent, 1f).OnComplete(() => isFilling = false);
+        }
+
+        private void Update()
+        {
+            if (isFilling)
+            {
+                AkSoundEngine.SetRTPCValue("Game_Fury", furyFill.fillAmount);
+            }
         }
     }
 }
