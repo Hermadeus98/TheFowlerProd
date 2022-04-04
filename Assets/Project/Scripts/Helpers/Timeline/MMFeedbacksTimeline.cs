@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.Feedbacks;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
 namespace TheFowler
@@ -11,6 +12,9 @@ namespace TheFowler
     [TrackClipType(typeof(MMFeedbacksClip))]
     public class MmFeedbacksTimeline : TrackAsset
     {
-        
+        public override Playable CreateTrackMixer(PlayableGraph graph, GameObject go, int inputCount)
+        {
+            return ScriptPlayable<MMFeedbackTimelineBehaviour>.Create(graph, inputCount);
+        }
     }
 }
