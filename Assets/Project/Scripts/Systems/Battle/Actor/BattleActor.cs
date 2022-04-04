@@ -76,21 +76,29 @@ namespace TheFowler
 
         protected virtual void InitializeComponents()
         {
-            battleActorComponents.ForEach(w => w.Initialize());
+            
             health?.Initialize(BattleActorStats.health);
             mana?.Initialize(BattleActorStats.mana);
 
-            battleActorInfo.isDeath = false;
             battleActorInfo.isStun = false;
             BattleActorInfo.isTaunt = false;
-            battleActorInfo.buffBonus = 0;
-            battleActorInfo.debuffMalus = 0;
 
             var currentBattle = BattleManager.CurrentBattle;
             
             if (currentBattle.HasRestart || currentBattle.StartWithSavedData)
             {
-                if(currentBattle.robyn != null)
+                for (int i = 0; i < battleActorComponents.Length; i++)
+                {
+                    if (battleActorComponents[i].GetType() != typeof(SpellHandler))
+                    {
+                        battleActorComponents[i].Initialize();
+                    }
+
+                }
+
+
+
+                if (currentBattle.robyn != null)
                     if (currentBattle.robyn == this)
                     {
                         health?.SetCurrentHealth(Player.RobynSavedData.health);
@@ -110,6 +118,17 @@ namespace TheFowler
                         health?.SetCurrentHealth(Player.PhoebeSavedData.health);
                         mana?.SetMana(Player.PhoebeSavedData.mana);
                     }
+
+
+
+            }
+
+            else
+            {
+                battleActorComponents.ForEach(w => w.Initialize());
+                battleActorInfo.isDeath = false;
+                battleActorInfo.buffBonus = 0;
+                battleActorInfo.debuffMalus = 0;
             }
         }
 
