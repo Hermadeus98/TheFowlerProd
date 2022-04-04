@@ -17,7 +17,7 @@ namespace TheFowler
             if (Application.isPlaying)
             {
                 var feedback = playerData as MMFeedbacks;
-
+                
                 if (feedback != null)
                 {
                     if (!firstFrameHappened)

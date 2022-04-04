@@ -66,11 +66,17 @@ namespace TheFowler
             Debug.Log("CAST");
         }
         
+        
         protected void Damage(float damage, BattleActor emitter, BattleActor[] receivers)
         {
             foreach (var receiver in receivers)
             {
                 var _damage = DamageCalculator.CalculateDamage(damage, emitter, receiver, ReferedSpell.SpellType, out var resistanceFaiblesseResult);
+
+                if(resistanceFaiblesseResult == DamageCalculator.ResistanceFaiblesseResult.FAIBLESSE)
+                {
+                    Fury.AddFuryPoint(15);
+                }
 
                 SoundManager.PlaySoundDamageTaken(receiver, resistanceFaiblesseResult);
                 

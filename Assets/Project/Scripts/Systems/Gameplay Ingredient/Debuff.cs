@@ -43,6 +43,9 @@ namespace TheFowler
         {
             base.OnTurnStart();
 
+            if (Fury.IsInFury)
+                return;
+
             if (waitTurn == 0)
             {
                 EndDebuff();

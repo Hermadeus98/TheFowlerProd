@@ -31,10 +31,13 @@ namespace TheFowler
                 switch (restaureManaAt)
                 {
                     case RestaureManaAt.Cast:
-                        receiver.Mana.AddMana(manaToRestaure);
+                        //receiver.Mana.AddMana(manaToRestaure);
+                        if(emitter.GetBattleComponent<SpellHandler>() != null)
+                            emitter.GetBattleComponent<SpellHandler>().LoseCoolDown(1);
                         break;
                     case RestaureManaAt.Start_Turn:
-                        receiver.GetBattleComponent<Defense>().RestaureMana.AddListener(() => receiver.Mana.AddMana(manaToRestaure));
+                        //receiver.GetBattleComponent<Defense>().RestaureMana.AddListener(() => receiver.Mana.AddMana(manaToRestaure));
+                        //emitter.GetBattleComponent<SpellHandler>().re
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -50,6 +53,12 @@ namespace TheFowler
         public override IEnumerator OnFinishCast(BattleActor emitter, BattleActor[] receivers)
         {
             yield break;
+        }
+
+        public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
+        {
+            base.OnSimpleCast(emitter, receivers);
+            emitter.StartCoroutine(OnCast(emitter, receivers));
         }
     }
 }

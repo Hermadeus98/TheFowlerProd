@@ -21,7 +21,7 @@ namespace TheFowler
             if (BattleManager.IsAllyTurn)
             {
                 skillPickingView = UI.GetView<SkillPickingView>(UI.Views.SkillPicking);
-                skillPickingView.skillSelector.Refresh(BattleManager.CurrentBattleActor.BattleActorData);
+                skillPickingView.skillSelector.Refresh(BattleManager.CurrentBattleActor.GetBattleComponent<SpellHandler>());
                 
                 openning = StartCoroutine(OpenView());
                 BattleManager.CurrentBattleActor.BattleActorAnimator.Idle();
@@ -31,7 +31,6 @@ namespace TheFowler
             {
                 SetCamera(CameraKeys.BattleKeys.TargetPickingGuard);
             }
-
 
             InfoBoxButtons[] infoButtons = new InfoBoxButtons[3];
             infoButtons[0] = InfoBoxButtons.CONFIRM;

@@ -37,14 +37,16 @@ namespace TheFowler
         {
             base.Refresh(args);
 
-            if (args is WrapperArgs<Spell> cast)
+            if (args is WrapperArgs<SpellHandler.SpellHandled> cast)
             {
-                referedSpell = cast.Arg;
+                referedSpell = cast.Arg.Spell;
                 text.SetText(referedSpell.SpellName);
-                manaCostText.SetText(referedSpell.ManaCost.ToString());
+                //manaCostText.SetText(referedSpell.ManaCost.ToString());
+                manaCostText.SetText(cast.Arg.cooldown.ToString() + "/"+ referedSpell.Cooldown.ToString());
                 spellTypeIcon.sprite = SpellTypeDatabase.GetElement(referedSpell.SpellType);
                 
-                if (BattleManager.CurrentBattleActor.Mana.HaveEnoughMana(referedSpell.ManaCost))
+                //if (BattleManager.CurrentBattleActor.Mana.HaveEnoughMana(referedSpell.ManaCost))
+                if(cast.Arg.cooldown == 0)
                 {
                     isSelectable = true;
                     canvasGroup.alpha = 1f;

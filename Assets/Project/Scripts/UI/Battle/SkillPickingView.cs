@@ -18,7 +18,7 @@ namespace TheFowler
         public override void Show()
         {
             base.Show();
-            skillSelector.Refresh(BattleManager.CurrentBattleActor.BattleActorData);
+            skillSelector.Refresh(BattleManager.CurrentBattleActor.GetBattleComponent<SpellHandler>());
             skillSelector.Show();
         }
 

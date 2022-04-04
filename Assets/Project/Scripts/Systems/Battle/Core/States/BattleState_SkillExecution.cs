@@ -45,7 +45,9 @@ namespace TheFowler
                     if (Player.SelectedSpell.IsNotNull())
                     {
                         var actor = BattleManager.CurrentBattleActor;
-                        actor.Mana.RemoveMana(Player.SelectedSpell.ManaCost);
+                        
+                        //actor.Mana.RemoveMana(Player.SelectedSpell.ManaCost);
+                        actor.GetBattleComponent<SpellHandler>().ApplyCooldown(Player.SelectedSpell);
 
                         if (Player.SelectedSpell.sequenceBinding != SequenceEnum.NULL)
                         {

@@ -15,8 +15,8 @@ namespace TheFowler
         [TabGroup("References")] [SerializeField] private UnityEngine.InputSystem.PlayerInput Inputs;
         [TabGroup("Tree References")] [SerializeField] private TMPro.TextMeshProUGUI spellName, spellDescription;
 
-        [TabGroup("Spell References") ]
-        [SerializeField] private TMPro.TextMeshProUGUI descriptionText, easyDescriptionText, targetText;
+        [TabGroup("Spell References")]
+        [SerializeField] private TMPro.TextMeshProUGUI descriptionText, easyDescriptionText, targetText, titleText;
 
         [TabGroup("Spell References")]
         [Title("Robyn")]
@@ -48,7 +48,7 @@ namespace TheFowler
             base.Show();
 
             InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
-            infoButtons[0] = InfoBoxButtons.BACK;
+            infoButtons[0] = InfoBoxButtons.CLOSE;
 
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
 
@@ -100,24 +100,39 @@ namespace TheFowler
 
         public void ShowTreeSkillData(Spell spell)
         {
+            titleText.SetText(spell.SpellName);
             descriptionText.SetText(spell.SpellDescription);
             easyDescriptionText.SetText(spell.EasySpellDescription.ToString());
             targetText.SetText(spell.TargetDescription);
 
             currentSpell = spell;
 
-            if (currentCustomElement.isClickable)
+            if (currentCustomElement.skillTreeSelector.isClickable)
             {
-                InfoBoxButtons[] infoButtons = new InfoBoxButtons[2];
-                infoButtons[0] = InfoBoxButtons.CONFIRM;
-                infoButtons[1] = InfoBoxButtons.BACK;
 
-                UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+                if(currentCustomElement.skillTreeSelector.complicityLevel <= currentBattleActorData.complicityLevel)
+                {
+                    InfoBoxButtons[] infoButtons = new InfoBoxButtons[2];
+                    infoButtons[0] = InfoBoxButtons.SELECT;
+                    infoButtons[1] = InfoBoxButtons.CLOSE;
+
+
+                    UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+                }
+                else
+                {
+                    InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
+                    infoButtons[0] = InfoBoxButtons.CLOSE;
+
+                    UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+                }
+
+
             }
             else
             {
                 InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
-                infoButtons[0] = InfoBoxButtons.BACK;
+                infoButtons[0] = InfoBoxButtons.CLOSE;
 
                 UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
             }
@@ -126,12 +141,13 @@ namespace TheFowler
 
         public void ShowTreeSkillData(SkillSelectorElement skillSelector)
         {
+            titleText.SetText(skillSelector.referedSpell.SpellName);
             descriptionText.SetText(skillSelector.referedSpell.SpellDescription);
             easyDescriptionText.SetText(skillSelector.referedSpell.EasySpellDescription.ToString());
             targetText.SetText(skillSelector.referedSpell.TargetDescription);
 
             InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
-            infoButtons[0] = InfoBoxButtons.BACK;
+            infoButtons[0] = InfoBoxButtons.CLOSE;
 
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
         }
@@ -225,7 +241,7 @@ namespace TheFowler
         public void ChangeSkillSelector(BattleActorData data)
         {
             InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
-            infoButtons[0] = InfoBoxButtons.BACK;
+            infoButtons[0] = InfoBoxButtons.CLOSE;
 
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
 

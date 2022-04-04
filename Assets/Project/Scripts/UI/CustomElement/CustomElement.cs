@@ -11,7 +11,15 @@ namespace TheFowler
     public class CustomElement : Button
     {
         [SerializeField] private MMFeedbacks _OnActivation, _OnDisable;
-        public bool isClickable;
+        public SkillTreeSelector skillTreeSelector;
+
+        protected override void OnEnable()
+        {
+            if(skillTreeSelector == null)
+            {
+                skillTreeSelector = transform.parent.GetComponent<SkillTreeSelector>();
+            }
+        }
 
 
         public override void OnSelect(BaseEventData eventData)

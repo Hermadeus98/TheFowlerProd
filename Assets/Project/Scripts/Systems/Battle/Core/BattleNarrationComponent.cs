@@ -125,18 +125,22 @@ namespace TheFowler
         {
             Debug.Log("NARRATION EVENT : " + debug);
 
+            UIBattleBatch.Instance.Hide();
             var battleDialogue = UI.OpenView<BattleDialogView>(UI.Views.BattleDialog);
             
             for (int i = 0; i < Dialogues.Length; i++)
             {
-                CameraManager.Instance.SetCamera(Dialogues[i].CameraPath);
+                Dialogues[i].CameraPath.m_Priority = 1000;
                 battleDialogue.Refresh(Dialogues[i]);
                 Dialogues[i].optionalFeedback?.PlayFeedbacks();
                 
                 yield return new WaitForSeconds(Dialogues[i].displayDuration);
+                Dialogues[i].CameraPath.m_Priority = 0;
             }
             
             battleDialogue.Hide();
+            
+            UIBattleBatch.Instance.Show();
         }
     }
 

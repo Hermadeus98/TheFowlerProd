@@ -29,7 +29,7 @@ namespace TheFowler
         [SerializeField]
         public bool enableProgression = true;
 
-        private bool wantProgression = false;
+        private bool hasPlayed = false;
 
 
         [TabGroup("References")] [SerializeField]
@@ -90,12 +90,15 @@ namespace TheFowler
 
         private IEnumerator Start()
         {
+            
+
             yield return new WaitForSeconds(1f);
             if (playAtStart)
             {
                 if (enableProgression)
                 {
                     UI.GetView<SkillTreeView>(UI.Views.SkillTree).Show(this);
+                    hasPlayed = true;
                 }
                 else
                 {
@@ -108,15 +111,33 @@ namespace TheFowler
 
         public override void PlayPhase()
         {
-            if (enableProgression)
+            if (!enableProgression)
             {
-                UI.GetView<SkillTreeView>(UI.Views.SkillTree).Show(this);
-                enableProgression = false;
-                wantProgression = true;
-                return;
+                for (int i = 0; i < allies.Count; i++)
+                {
+                    allies[i].BattleActorData = allies[i].BattleActorData.defaultData;
+                }
+            }
+            else 
+            {
+                if (!hasPlayed)
+                {
+                    UI.GetView<SkillTreeView>(UI.Views.SkillTree).Show(this);
+                    hasPlayed = true;
+                    return;
+                }
+
             }
 
+            for (int i = 0; i < Allies.Count; i++)
+            {
+                Allies[i].CameraBatchBattle.Generate();
+            }
 
+            for (int i = 0; i < Enemies.Count; i++)
+            {
+                Enemies[i].CameraBatchBattle.Generate();
+            }
 
             base.PlayPhase();
 
@@ -130,7 +151,6 @@ namespace TheFowler
 
             StartCoroutine(StartBattle());
 
-            enableProgression = wantProgression;
         }
 
         private IEnumerator StartBattle()
@@ -149,8 +169,7 @@ namespace TheFowler
 
             ChangeBattleState(BattleStateEnum.START_BATTLE);
             CreateTurnSystem();
-            
-            
+
             yield break;
         }
 
@@ -219,6 +238,8 @@ namespace TheFowler
             {
                 allies[i].BattleActorData.AddComplicity(1);
             }
+
+            hasPlayed = false;
         }
 
         private IEnumerator StopBattleCoroutine()

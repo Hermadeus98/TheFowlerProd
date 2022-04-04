@@ -19,15 +19,24 @@ namespace TheFowler
         {
             FuryPoint += point;
 
-            if (FuryPoint >= 20)
+            if (FuryPoint >= 100)
             {
                 AllowFury();
             }
 
             var furyView = UI.GetView<FuryView>("FuryView");
-            furyView.SetFuryFill(FuryPoint, 20);
+            furyView.SetFuryFill(FuryPoint, 100);
             
             QRDebug.Log("FURY", FrenchPallet.TOMATO_RED, $"You have {FuryPoint} FuryPoints.");
+        }
+
+        public static void ResetFury()
+        {
+            FuryPoint = 0;
+
+            var furyView = UI.GetView<FuryView>("FuryView");
+            furyView.SetFuryFill(FuryPoint, 100);
+
         }
 
         private static Coroutine batonPass;
@@ -106,6 +115,8 @@ namespace TheFowler
                 BattleManager.CurrentBattle.ChangeBattleState<BattleState_TargetPicking>(BattleStateEnum
                     .TARGET_PICKING);
             skillPickingView.ReturnToActionMenu = true;
+
+            Fury.AddFuryPoint(15);
         }
 
         public static void AllowFury()
