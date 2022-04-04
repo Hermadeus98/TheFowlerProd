@@ -8,6 +8,8 @@ namespace QRCode
     {
         [SerializeField] private Dictionary<T, U> database = new Dictionary<T, U>();
 
+        public Dictionary<T, U> Get => database;
+        
         public U GetElement(T key)
         {
             return database[key];

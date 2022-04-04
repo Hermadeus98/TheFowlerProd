@@ -24,10 +24,16 @@ namespace TheFowler
                 return;
             }
 
+            if (!AudioDatabase.Get.ContainsKey(key))
+            {
+                QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, "Key is not set in the database", AudioDatabase);
+                return;
+            }
+            
             if (handler == null)
                 handler = Instance.gameObject;
             
-            AudioDatabase.GetElement(key).Post(handler);
+            AudioDatabase.GetElement(key)?.Post(handler);
         }
         [Button]
         public static void PlaySound(AK.Wwise.Event sound, GameObject handler)
