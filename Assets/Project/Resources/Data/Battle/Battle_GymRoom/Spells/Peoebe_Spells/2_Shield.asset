@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: Jam
+  m_Name: 2_Shield
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -30,13 +30,73 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.DamageEffect, Assembly-CSharp
+      Data: 1|TheFowler.DefendEffect, Assembly-CSharp
     - Name: EffectName
       Entry: 1
-      Data: Damage
+      Data: NO NAME EFFECT
     - Name: TargetType
       Entry: 3
+      Data: 4
+    - Name: battleCameraBatch
+      Entry: 3
+      Data: 2
+    - Name: cameraPath
+      Entry: 7
+      Data: 2|TheFowler.cameraPath, Assembly-CSharp
+    - Name: genericKey
+      Entry: 3
+      Data: 0
+    - Name: cameraName
+      Entry: 1
+      Data: Default
+    - Name: batchName
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: cameraSpecificPath
+      Entry: 1
+      Data: TargetPickingAllies
+    - Name: cameraBattlePath
+      Entry: 6
+      Data: 
+    - Name: ImPreview
+      Entry: 5
+      Data: false
+    - Name: audioEvent
+      Entry: 3
+      Data: 0
+    - Name: eventName
+      Entry: 6
+      Data: 
+    - Name: ReferedSpell
+      Entry: 10
+      Data: 0
+    - Name: effectDuration
+      Entry: 3
       Data: 1
+    - Name: effect
+      Entry: 4
+      Data: 35
+    - Name: manaToRestaure
+      Entry: 3
+      Data: 0
+    - Name: restaureManaAt
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|TheFowler.DamageEffect, Assembly-CSharp
+    - Name: EffectName
+      Entry: 1
+      Data: NO NAME EFFECT
+    - Name: TargetType
+      Entry: 3
+      Data: 2
     - Name: battleCameraBatch
       Entry: 3
       Data: 2
@@ -47,8 +107,8 @@ MonoBehaviour:
       Entry: 1
       Data: SkillExecutionAttack
     - Name: cameraBattlePath
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: Default
     - Name: ImPreview
       Entry: 5
       Data: false
@@ -63,49 +123,7 @@ MonoBehaviour:
       Data: 0
     - Name: damage
       Entry: 4
-      Data: 22
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 2|TheFowler.DamageBonus, Assembly-CSharp
-    - Name: EffectName
-      Entry: 1
-      Data: Buff
-    - Name: TargetType
-      Entry: 3
-      Data: 0
-    - Name: battleCameraBatch
-      Entry: 3
-      Data: 2
-    - Name: cameraPath
-      Entry: 6
-      Data: 
-    - Name: cameraSpecificPath
-      Entry: 1
-      Data: SkillExecutionAttack
-    - Name: cameraBattlePath
-      Entry: 6
-      Data: 
-    - Name: ImPreview
-      Entry: 5
-      Data: false
-    - Name: audioEvent
-      Entry: 3
-      Data: 0
-    - Name: eventName
-      Entry: 6
-      Data: 
-    - Name: ReferedSpell
-      Entry: 10
-      Data: 0
-    - Name: buffBonus
-      Entry: 4
-      Data: 50
-    - Name: turnDuration
-      Entry: 3
-      Data: 2
+      Data: 10
     - Name: 
       Entry: 8
       Data: 
@@ -115,15 +133,16 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Jam
-  ManaCost: 6
-  Cooldown: 1
-  TargetType: 1
+  SpellName: Shield
+  ManaCost: 4
+  Cooldown: 3
+  TargetType: 4
   executionDurationBeforeCast: 0.3
   executionDurationAfterCast: 0.3
-  SpellDescription: <size=35><sprite=6></size> Increase Robyn's attacks for 2 turns
-  TargetDescription: Single Enemy
-  EasySpellDescription: <color=#FF0000>Light DMG</color><size=35><sprite=0></size>
-  ExecutionType: 1
-  SpellType: 1
-  sequenceBinding: 1
+  SpellDescription: <size=35><sprite=7></size>Increase defense and inglict damages
+    to all enemies
+  TargetDescription: All Allies
+  EasySpellDescription: <color=#FF0000>35% Defense</color><size=35><sprite=0></size>
+  ExecutionType: 0
+  SpellType: 0
+  sequenceBinding: 3
