@@ -25,6 +25,7 @@ namespace TheFowler
         private void EndChapterLoaded()
         {
             SoundManager.PlaySound(chapterdata.audioEventOnChapterStart, gameObject);
+            SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Explo_Generic_ChangeChapter_In, gameObject);
             ChapterManager.ChangeChapter(chapterToLoad);
 
 
@@ -36,6 +37,7 @@ namespace TheFowler
 
             BlackPanel.Instance.Show();
             SoundManager.PlaySound(chapterdata.audioEventOnChapterEnded, gameObject);
+            SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Explo_Generic_ChangeChapter_Out, gameObject);
             yield return new WaitForSeconds(.5f);
 
             Player.Robyn?.gameObject.SetActive(false);

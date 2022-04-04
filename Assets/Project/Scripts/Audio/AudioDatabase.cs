@@ -90,5 +90,11 @@ namespace TheFowler
         TF_SFX_Combat_UI_SwitchCamera_Light,
         TF_SFX_Combat_UI_SwitchCamera_Heavy,
 
+        TF_SFX_Combat_Generic_ManaGain,
+        TF_SFX_Combat_Generic_FuryGain,
+        TF_SFX_Combat_UI_SwitchTurn,
+        TF_SFX_Explo_Generic_ChangeChapter_In,
+        TF_SFX_Explo_Generic_ChangeChapter_Out,
+
     }
 }
