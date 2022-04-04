@@ -17,6 +17,8 @@ namespace TheFowler
 
         public static void AddFuryPoint(int point)
         {
+            SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_Generic_FuryGain, null);
+
             FuryPoint += point;
 
             if (FuryPoint >= 100)
