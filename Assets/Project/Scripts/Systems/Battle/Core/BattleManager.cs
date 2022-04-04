@@ -33,5 +33,7 @@ namespace TheFowler
 
         public static BattleActor[] GetAllAllies() => CurrentBattle.Allies.Where(w => !w.BattleActorInfo.isDeath).ToArray();
         public static BattleActor[] GetAllEnemies() => CurrentBattle.Enemies.Where(w => !w.BattleActorInfo.isDeath).ToArray();
+
+        public static bool lastTurnWasAlly { get; set; } = false;
     }
 }
