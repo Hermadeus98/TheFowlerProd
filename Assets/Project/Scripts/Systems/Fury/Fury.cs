@@ -118,7 +118,7 @@ namespace TheFowler
                     .TARGET_PICKING);
             skillPickingView.ReturnToActionMenu = true;
 
-            Fury.AddFuryPoint(15);
+            
         }
 
         public static void AllowFury()

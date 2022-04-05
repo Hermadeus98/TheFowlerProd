@@ -75,7 +75,7 @@ namespace TheFowler
 
                 if(resistanceFaiblesseResult == DamageCalculator.ResistanceFaiblesseResult.FAIBLESSE)
                 {
-                    Fury.AddFuryPoint(15);
+                    Fury.AddFuryPoint(10);
                 }
 
                 SoundManager.PlaySoundDamageTaken(receiver, resistanceFaiblesseResult);

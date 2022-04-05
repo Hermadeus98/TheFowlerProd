@@ -100,7 +100,7 @@ namespace TheFowler
         [Button]
         public void Heal(float heal)
         {
-            if(heal == 0)
+            if(currentHealth == 0)
                 return;
 
             popupHealComponent.message = heal.ToString();
@@ -184,6 +184,8 @@ namespace TheFowler
         [Button]
         public void Resurect(float healthPercent)
         {
+            if (currentHealth > 0) return;
+
             healthPercent /= 100f;
             float x = maxHealth * healthPercent;
             x = Mathf.CeilToInt(x);
