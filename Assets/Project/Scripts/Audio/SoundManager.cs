@@ -18,8 +18,7 @@ namespace TheFowler
         [Button]
         public static void PlaySound(AudioGenericEnum key, GameObject handler)
         {
-            return;
-            
+
             if (key == AudioGenericEnum.NULL)
             {
                 QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, "Audio Generic Enum is equal to NULL.");
@@ -41,21 +40,18 @@ namespace TheFowler
         [Button]
         public static void PlaySound(AK.Wwise.Event sound, GameObject handler)
         {
-            return;
             sound.Stop(handler);
             sound.Post(handler);
         }
 
         public static void StopSound(AK.Wwise.Event sound, GameObject handler)
         {
-            return;
             if (sound == null) return;
             sound.Stop(handler);
         }
 
         public static void PlaySoundDamageTaken(BattleActor target, DamageCalculator.ResistanceFaiblesseResult result)
         {
-            return;
             if (target is AllyActor)
             {
                 PlaySound(AudioGenericEnum.TF_SFX_Combat_Generic_Ally_DamageTaken, target.gameObject);
@@ -81,14 +77,12 @@ namespace TheFowler
         [Button]
         public static void Mute()
         {
-            return;
             QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, "MUTE");
             PlaySound(AudioGenericEnum.TF_Main_SetMuteOn, null);
         }
         [Button]
         public static void UnMute()
         {
-            return;
             QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, "UNMUTE");
             PlaySound(AudioGenericEnum.TF_Main_SetMuteOff, null);
         }
