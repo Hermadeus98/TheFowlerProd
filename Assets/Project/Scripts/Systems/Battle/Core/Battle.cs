@@ -257,18 +257,21 @@ namespace TheFowler
             {
                 Player.RobynSavedData.health = robyn.Health.CurrentHealth;
                 Player.RobynSavedData.mana = robyn.Mana.CurrentMana;
+                Player.RobynSavedData.spellHandler = robyn.GetBattleComponent<SpellHandler>();
             }
 
             if (abi != null)
             {
                 Player.AbiSavedData.health = abi.Health.CurrentHealth;
                 Player.AbiSavedData.mana = abi.Mana.CurrentMana;
+                Player.AbiSavedData.spellHandler = abi.GetBattleComponent<SpellHandler>();
             }
 
             if (phoebe != null)
             {
                 Player.PhoebeSavedData.health = phoebe.Health.CurrentHealth;
                 Player.PhoebeSavedData.mana = phoebe.Mana.CurrentMana;
+                Player.PhoebeSavedData.spellHandler = phoebe.GetBattleComponent<SpellHandler>();
             }
         }
 

@@ -31,7 +31,7 @@ namespace TheFowler
             }
         }
 
-        public void InitializeWithData()
+        public void InitializeWithData(SpellHandler handler)
         {
             base.Initialize();
             spells = new List<SpellHandled>();
@@ -40,7 +40,8 @@ namespace TheFowler
             {
                 spells.Add(new SpellHandled()
                 {
-                    Spell = ReferedActor.BattleActorData.Spells[i],
+                    Spell = handler.spells[i].Spell,
+                    cooldown = handler.spells[i].cooldown
                 });
             }
         }
