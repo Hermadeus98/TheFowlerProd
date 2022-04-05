@@ -19,6 +19,7 @@ namespace TheFowler
         {
             public float health;
             public int mana;
+            public SpellHandler spellHandler;
         }
 
         public static SavedData RobynSavedData, AbiSavedData, PhoebeSavedData;

@@ -87,10 +87,14 @@ namespace TheFowler
 
         public void SetCurrentHealth(float value)
         {
+
+
             currentHealth = value;
             ReferedActor.BattleActorStats.health = currentHealth;
             ReferedActor.AllyData?.Refresh();
             ReferedActor.AllyData?.ShakeHearth();
+
+            if (value == 0) Kill();
         }
 
         [Button]
@@ -125,6 +129,7 @@ namespace TheFowler
 
             Death();
         }
+
 
         private void Death()
         {

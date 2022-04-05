@@ -92,7 +92,24 @@ namespace TheFowler
                     if (battleActorComponents[i].GetType() == typeof(SpellHandler))
                     {
                         SpellHandler sh  = battleActorComponents[i] as SpellHandler;
-                        sh.InitializeWithData();
+
+                        if (currentBattle.robyn != null)
+                            if (currentBattle.robyn == this)
+                            {
+                                sh.InitializeWithData(Player.RobynSavedData.spellHandler);
+                            }
+
+                        if (currentBattle.abi != null)
+                            if (currentBattle.abi == this)
+                            {
+                                sh.InitializeWithData(Player.AbiSavedData.spellHandler);
+                            }
+
+                        if (currentBattle.phoebe != null)
+                            if (currentBattle.phoebe == this)
+                            {
+                                sh.InitializeWithData(Player.PhoebeSavedData.spellHandler);
+                            }
                     }
                     else
                     {

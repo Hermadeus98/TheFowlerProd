@@ -46,6 +46,7 @@ namespace TheFowler
 
         public SequenceEnum sequenceBinding;
 
+        BattleActor[] receiversReminder;
         private void OnEnable()
         {
             Effects.ForEach(w => w.ReferedSpell = this);
@@ -55,6 +56,8 @@ namespace TheFowler
         {
             yield return new WaitForSeconds(executionDurationBeforeCast);
 
+            receiversReminder = new BattleActor[0];
+
             switch (ExecutionType)
             {
                 case ExecutionTypeEnum.SIMULTANEOUS:
@@ -63,14 +66,55 @@ namespace TheFowler
                         if(Effects[i].GetType() != typeof(BatonPassEffect))
                             Fury.StopBreakDown();
                         
-                        Effects[i].SetCamera();
+                        if(i == 0)
+                        {
+                            Effects[i].SetCamera();
+                            receiversReminder = new BattleActor[receivers.Length];
+                            for (int j = 0; j < receivers.Length; j++)
+                            {
+                                receiversReminder[j] = receivers[j];
+                            }
+
+
+                        }
+
+                        else
+                        {
+                            switch (Effects[i].TargetType)
+                            {
+                                case TargetTypeEnum.SELF:
+                                    receivers = new BattleActor[1];
+                                    receivers[0] = BattleManager.CurrentBattleActor;
+                                    break;
+                                case TargetTypeEnum.ALL_ENEMIES:
+                                    receivers = new BattleActor[BattleManager.CurrentBattle.Enemies.Count];
+                                    for (int j = 0; j < BattleManager.CurrentBattle.Enemies.Count; j++)
+                                    {
+                                        receivers[j] = BattleManager.CurrentBattle.Enemies[j];
+                                    }
+                                    break;
+                                case TargetTypeEnum.ALL_ALLIES:
+                                    receivers = new BattleActor[BattleManager.CurrentBattle.Allies.Count];
+                                    for (int j = 0; j < BattleManager.CurrentBattle.Allies.Count; j++)
+                                    {
+                                        receivers[j] = BattleManager.CurrentBattle.Allies[j];
+                                    }
+                                    break;
+                                default:
+                                    receivers = receiversReminder;
+                                    break;
+
+
+                            }
+                        }
                         yield return new WaitForSeconds(.3f);
                         Coroutiner.Play(Effects[i].OnBeginCast(emitter, receivers));
-                        
+
                         Coroutiner.Play(Effects[i].OnCast(emitter, receivers));
                         emitter.FeedbackHandler.PlayFeedback(Effects[i].eventName);
 
                         Coroutiner.Play(Effects[i].OnFinishCast(emitter, receivers));
+
                     }
                     break;
                 case ExecutionTypeEnum.CONSECUTIVE:
@@ -97,7 +141,55 @@ namespace TheFowler
 
         public void SimpleCast(BattleActor emitter, BattleActor[] receivers)
         {
-            Effects.ForEach(w => w.OnSimpleCast(emitter, receivers));
+            receiversReminder = new BattleActor[0];
+            Effects[0].SetCamera();
+
+            for (int i = 0; i < Effects.Length; i++)
+            {
+                if (i == 0)
+                {
+                    
+                    receiversReminder = new BattleActor[receivers.Length];
+                    for (int j = 0; j < receivers.Length; j++)
+                    {
+                        receiversReminder[j] = receivers[j];
+                    }
+
+                }
+                else
+                {
+                    switch (Effects[i].TargetType)
+                    {
+                        case TargetTypeEnum.SELF:
+                            receivers = new BattleActor[1];
+                            receivers[0] = BattleManager.CurrentBattleActor;
+                            break;
+                        case TargetTypeEnum.ALL_ENEMIES:
+                            receivers = new BattleActor[BattleManager.CurrentBattle.Enemies.Count];
+                            for (int j = 0; j < BattleManager.CurrentBattle.Enemies.Count; j++)
+                            {
+                                receivers[j] = BattleManager.CurrentBattle.Enemies[j];
+                            }
+                            break;
+                        case TargetTypeEnum.ALL_ALLIES:
+                            receivers = new BattleActor[BattleManager.CurrentBattle.Allies.Count];
+                            for (int j = 0; j < BattleManager.CurrentBattle.Allies.Count; j++)
+                            {
+                                receivers[j] = BattleManager.CurrentBattle.Allies[j];
+                            }
+                            break;
+                        default:
+                            receivers = receiversReminder;
+                            break;
+
+
+                    }
+                }
+
+                Effects[i].OnSimpleCast(emitter, receivers);
+            }
+
+            
         }
         
         public bool ContainEffect<T>(out T component) where T : Effect
