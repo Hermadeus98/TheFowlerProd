@@ -21,6 +21,8 @@ namespace TheFowler
             Damage(damage, emitter, receivers);
 
             yield return new WaitForSeconds(1f);
+
+            
             
             yield break;
         }
