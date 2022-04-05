@@ -43,7 +43,6 @@ namespace TheFowler
                         throw new ArgumentOutOfRangeException();
                 }
                 receiver.GetBattleComponent<Defense>().DefendActor(effectDuration, effect);
-                receiver.BattleActorAnimator.Parry();
             }
             
             

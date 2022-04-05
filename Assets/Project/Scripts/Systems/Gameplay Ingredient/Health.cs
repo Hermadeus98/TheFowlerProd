@@ -182,9 +182,13 @@ namespace TheFowler
         }
 
         [Button]
-        public void Resurect(int health)
+        public void Resurect(float healthPercent)
         {
-            currentHealth = health;
+            healthPercent /= 100f;
+            float x = maxHealth * healthPercent;
+            x = Mathf.CeilToInt(x);
+                
+            currentHealth = x;
             onHealed?.Invoke(currentHealth);
             fillBar?.SetFill(currentHealth);
             ReferedActor.AllyData?.Refresh();
@@ -192,6 +196,7 @@ namespace TheFowler
 
             onResurect?.Invoke();
             ReferedActor.BattleActorInfo.isDeath = false;
+            ReferedActor.Resurect();
 
             if (lifeTxt != null) lifeTxt.text = currentHealth.ToString();
         }

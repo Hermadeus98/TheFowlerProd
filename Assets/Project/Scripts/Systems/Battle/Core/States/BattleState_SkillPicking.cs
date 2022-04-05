@@ -24,7 +24,6 @@ namespace TheFowler
                 skillPickingView.skillSelector.Refresh(BattleManager.CurrentBattleActor.GetBattleComponent<SpellHandler>());
                 
                 openning = StartCoroutine(OpenView());
-                BattleManager.CurrentBattleActor.BattleActorAnimator.Idle();
                 SetCamera(CameraKeys.BattleKeys.SkillPicking);
             }
             else if (BattleManager.IsEnemyTurn)

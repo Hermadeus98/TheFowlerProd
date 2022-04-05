@@ -15,10 +15,10 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-            emitter.BattleActorAnimator.AttackCast();
+            //emitter.BattleActorAnimator.AttackCast();
             SoundManager.PlaySound(audioEvent, emitter.gameObject);
 
-            yield return new WaitForSeconds(emitter.BattleActorAnimator.AttackCastDuration());
+            //yield return new WaitForSeconds(emitter.BattleActorAnimator.AttackCastDuration());
 
             foreach (var receiver in receivers)
             {

@@ -30,7 +30,7 @@ namespace TheFowler
         {
             if (this.GetType() != typeof(DefendEffect))
             {
-                emitter.BattleActorAnimator.AttackPreview();
+                //emitter.BattleActorAnimator.AttackPreview();
             }
         }
         
