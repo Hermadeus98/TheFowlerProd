@@ -26,6 +26,8 @@ namespace TheFowler
             ReferedActor.BattleActorInfo.defenseBonus = bonus;
             OnDefendStart?.Invoke();
             
+            ReferedActor.BattleActorAnimator.SetDefend(true);
+            
             ReferedActor.StateIcons?.buff_def.Show();
             ReferedActor.StateIcons?.RefreshBuff_Def(ReferedActor);
         }
@@ -36,6 +38,8 @@ namespace TheFowler
             ReferedActor.BattleActorInfo.defenseBonus = 0;
             OnDefendEnd?.Invoke();
             
+            ReferedActor.BattleActorAnimator.SetDefend(false);
+
             RestaureMana?.Invoke();
             RestaureMana?.RemoveAllListeners();
             

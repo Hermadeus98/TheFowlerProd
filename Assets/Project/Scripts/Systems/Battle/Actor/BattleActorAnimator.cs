@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -10,6 +11,9 @@ namespace TheFowler
         public Animator Animator;
 
         [SerializeField] private AnimationClip attackClip;
+        
+        
+        private static readonly int DefendBlend = Animator.StringToHash("DefendBlend");
 
         public void Death()
         {
@@ -39,6 +43,36 @@ namespace TheFowler
         {
             ResetTriggers();
             Animator.SetTrigger("AttackPreview");
+        }
+
+        public void SetDefend(bool state)
+        {
+            if (state)
+            {
+                float x = 0f;
+                DOTween.To(
+                    () => x,
+                    (x) => x = x,
+                    1f,
+                    .5f
+                    ).OnUpdate(delegate
+                {
+                    Animator.SetFloat(DefendBlend, x);
+                });
+            }
+            else
+            {
+                float x = 1f;
+                DOTween.To(
+                    () => x,
+                    (x) => x = x,
+                    0f,
+                    .5f
+                ).OnUpdate(delegate
+                {
+                    Animator.SetFloat(DefendBlend, x);
+                });
+            }
         }
 
         public float AttackCastDuration() => attackClip.length;
