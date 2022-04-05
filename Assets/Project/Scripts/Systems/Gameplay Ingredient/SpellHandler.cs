@@ -31,6 +31,20 @@ namespace TheFowler
             }
         }
 
+        public void InitializeWithData()
+        {
+            base.Initialize();
+            spells = new List<SpellHandled>();
+
+            for (int i = 0; i < ReferedActor.BattleActorData.Spells.Length; i++)
+            {
+                spells.Add(new SpellHandled()
+                {
+                    Spell = ReferedActor.BattleActorData.Spells[i],
+                });
+            }
+        }
+
 
         public override void OnTurnStart()
         {

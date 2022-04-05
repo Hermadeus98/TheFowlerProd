@@ -89,7 +89,12 @@ namespace TheFowler
             {
                 for (int i = 0; i < battleActorComponents.Length; i++)
                 {
-                    if (battleActorComponents[i].GetType() != typeof(SpellHandler))
+                    if (battleActorComponents[i].GetType() == typeof(SpellHandler))
+                    {
+                        SpellHandler sh  = battleActorComponents[i] as SpellHandler;
+                        sh.InitializeWithData();
+                    }
+                    else
                     {
                         battleActorComponents[i].Initialize();
                     }

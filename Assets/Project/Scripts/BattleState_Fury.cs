@@ -33,7 +33,7 @@ namespace TheFowler
             var skillExecutionState = BattleManager.CurrentBattle.BattleState.GetState("SkillExecution") as BattleState_SkillExecution;
             skillExecutionState.fury = false;
 
-            Fury.ResetFury();
+            
         }
     }
 }
