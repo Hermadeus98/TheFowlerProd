@@ -155,6 +155,34 @@ namespace TheFowler
                         receiversReminder[j] = receivers[j];
                     }
 
+                    switch (Effects[i].TargetType)
+                    {
+                        case TargetTypeEnum.SELF:
+                            receivers = new BattleActor[1];
+                            receivers[0] = BattleManager.CurrentBattleActor;
+                            break;
+                        case TargetTypeEnum.ALL_ENEMIES:
+                            receivers = new BattleActor[BattleManager.CurrentBattle.Enemies.Count];
+                            for (int j = 0; j < BattleManager.CurrentBattle.Enemies.Count; j++)
+                            {
+                                receivers[j] = BattleManager.CurrentBattle.Enemies[j];
+                            }
+                            break;
+                        case TargetTypeEnum.ALL_ALLIES:
+                            receivers = new BattleActor[BattleManager.CurrentBattle.Allies.Count];
+                            for (int j = 0; j < BattleManager.CurrentBattle.Allies.Count; j++)
+                            {
+                                receivers[j] = BattleManager.CurrentBattle.Allies[j];
+                            }
+                            break;
+                        default:
+                            receivers = new BattleActor[1];
+                            receivers[0] = TargetSelector.SelectedTargets[0];
+                            break;
+
+
+                    }
+
                 }
                 else
                 {
@@ -179,7 +207,8 @@ namespace TheFowler
                             }
                             break;
                         default:
-                            receivers = receiversReminder;
+                            receivers = new BattleActor[1];
+                            receivers[0] = TargetSelector.SelectedTargets[0];
                             break;
 
 
