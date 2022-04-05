@@ -331,9 +331,11 @@ namespace TheFowler
             BattleActorAnimator.Death();
         }
 
-        public virtual void ResetActor()
+        public virtual void Resurect(float healthPercent = 100f)
         {
-            BattleActorAnimator.ResetAnimator();
+            health.Resurect(healthPercent);
+            BattleActorAnimator.Resurect();
+            AllyData?.Refresh();
         }
     }
 
