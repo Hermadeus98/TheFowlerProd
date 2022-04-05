@@ -34,12 +34,21 @@ namespace TheFowler
             if (handler == null)
                 handler = Instance.gameObject;
             
+            if(!handler.gameObject.activeInHierarchy)
+                return;
+            
             AudioDatabase.GetElement(key)?.Post(handler);
         }
         
         [Button]
         public static void PlaySound(AK.Wwise.Event sound, GameObject handler)
         {
+            if (handler == null)
+                handler = Instance.gameObject;
+            
+            if(!handler.gameObject.activeInHierarchy)
+                return;
+            
             sound.Stop(handler);
             sound.Post(handler);
         }

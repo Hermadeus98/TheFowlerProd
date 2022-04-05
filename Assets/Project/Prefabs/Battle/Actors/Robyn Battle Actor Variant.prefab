@@ -3454,62 +3454,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841b72de2996c5c40bfb394f3d0e0a98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8932620218437837997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5253048105870749646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2711a00b31123ba4abc04b9947119d37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  isParticipant: 1
-  battleActorData: {fileID: 11400000, guid: 53b1e392033767845be194f54be70079, type: 2}
-  cameraBatchBattle: {fileID: 127604809703714736}
-  sockets: {fileID: 2118408734657673500}
-  SelectionPointer: {fileID: 2850819861044908308}
-  stateIcons: {fileID: 0}
-  FeedbackHandler: {fileID: 418402554815401488}
-  BattleActorAnimator: {fileID: 7138140585103247205}
-  feedbackReferences: {fileID: 8720621545266404890}
-  AnimTrigger: {fileID: 0}
-  SignalAsset_CastSpell: {fileID: 11400000, guid: 4f03555df6bf2cb47b6d56032c6244ea, type: 2}
-  SignalReceiver_CastSpell: {fileID: 1775136047105979298}
-  SequenceHandler: {fileID: 8108863857690927169}
-  battleActorComponents:
-  - {fileID: 3800826091915082386}
-  - {fileID: 305521321923943642}
-  - {fileID: 5026013831942840004}
-  - {fileID: 4215005197330088366}
-  - {fileID: 7327677409291848264}
-  - {fileID: 2613867368427598223}
-  - {fileID: 2834654429655700046}
-  - {fileID: 6690255843339054381}
-  health: {fileID: 3800826091915082386}
-  mana: {fileID: 305521321923943642}
-  punchline: {fileID: 435066501221154586}
-  battleActorInfo:
-    isDeath: 0
-    isStun: 0
-    buffBonus: 0
-    debuffMalus: 0
-    isTaunt: 0
-    defenseBonus: 0
-  BattleActorStats:
-    health: 0
-    mana: 0
 --- !u!114 &5909643015654692861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3585,45 +3529,6 @@ MonoBehaviour:
     TargetBPM: 120
   DebugActive: 0
   VisualEffect: {fileID: 0}
---- !u!114 &5975749401308367319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8180346730688724205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39520b9a5fb723c47b7cc2ff24d18c20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Active: 1
-  Label: VFX Graph Play
-  Chance: 100
-  Timing:
-    TimescaleMode: 0
-    InitialDelay: 0
-    CooldownDuration: 0
-    ExcludeFromHoldingPauses: 0
-    InterruptsOnStop: 1
-    NumberOfRepeats: 0
-    RepeatForever: 0
-    DelayBetweenRepeats: 1
-    MMFeedbacksDirectionCondition: 0
-    PlayDirection: 0
-    ConstantIntensity: 0
-    UseIntensityInterval: 0
-    IntensityIntervalMin: 0
-    IntensityIntervalMax: 0
-    Sequence: {fileID: 0}
-    TrackID: 0
-    Quantized: 0
-    TargetBPM: 120
-  DebugActive: 0
-  Mode: 0
-  BoundParticleSystem: {fileID: 6303551025544778906}
-  MoveToPosition: 0
-  RandomParticleSystems: []
 --- !u!114 &8788591904515790790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3660,6 +3565,101 @@ MonoBehaviour:
     TargetBPM: 120
   DebugActive: 0
   Mode: 1
+  BoundParticleSystem: {fileID: 6303551025544778906}
+  MoveToPosition: 0
+  RandomParticleSystems: []
+--- !u!114 &8932620218437837997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5253048105870749646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2711a00b31123ba4abc04b9947119d37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  isParticipant: 1
+  battleActorData: {fileID: 11400000, guid: 53b1e392033767845be194f54be70079, type: 2}
+  cameraBatchBattle: {fileID: 127604809703714736}
+  sockets: {fileID: 2118408734657673500}
+  SelectionPointer: {fileID: 2850819861044908308}
+  stateIcons: {fileID: 0}
+  FeedbackHandler: {fileID: 418402554815401488}
+  BattleActorAnimator: {fileID: 7138140585103247205}
+  feedbackReferences: {fileID: 8720621545266404890}
+  AnimTrigger: {fileID: 0}
+  SignalAsset_CastSpell: {fileID: 11400000, guid: 4f03555df6bf2cb47b6d56032c6244ea, type: 2}
+  SignalReceiver_CastSpell: {fileID: 1775136047105979298}
+  SequenceHandler: {fileID: 8108863857690927169}
+  battleActorComponents:
+  - {fileID: 3800826091915082386}
+  - {fileID: 305521321923943642}
+  - {fileID: 5026013831942840004}
+  - {fileID: 4215005197330088366}
+  - {fileID: 7327677409291848264}
+  - {fileID: 2613867368427598223}
+  - {fileID: 2834654429655700046}
+  - {fileID: 6690255843339054381}
+  health: {fileID: 3800826091915082386}
+  mana: {fileID: 305521321923943642}
+  punchline: {fileID: 435066501221154586}
+  battleActorInfo:
+    isDeath: 0
+    isStun: 0
+    buffBonus: 0
+    debuffMalus: 0
+    isTaunt: 0
+    defenseBonus: 0
+  BattleActorStats:
+    health: 0
+    mana: 0
+--- !u!114 &5975749401308367319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8180346730688724205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39520b9a5fb723c47b7cc2ff24d18c20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Active: 1
+  Label: VFX Graph Play
+  Chance: 100
+  Timing:
+    TimescaleMode: 0
+    InitialDelay: 0
+    CooldownDuration: 0
+    ExcludeFromHoldingPauses: 0
+    InterruptsOnStop: 1
+    NumberOfRepeats: 0
+    RepeatForever: 0
+    DelayBetweenRepeats: 1
+    MMFeedbacksDirectionCondition: 0
+    PlayDirection: 0
+    ConstantIntensity: 0
+    UseIntensityInterval: 0
+    IntensityIntervalMin: 0
+    IntensityIntervalMax: 0
+    Sequence: {fileID: 0}
+    TrackID: 0
+    Quantized: 0
+    TargetBPM: 120
+  DebugActive: 0
+  Mode: 0
   BoundParticleSystem: {fileID: 6303551025544778906}
   MoveToPosition: 0
   RandomParticleSystems: []

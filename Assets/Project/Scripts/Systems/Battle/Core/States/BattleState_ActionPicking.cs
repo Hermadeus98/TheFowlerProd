@@ -109,6 +109,12 @@ namespace TheFowler
                                 break;
                             case ActionPickerElement.PlayerActionType.FURY:
                                 //Fury.BatonPass();
+
+                                if (BattleManager.CurrentBattleActor.BattleActorData.FurySpell == null)
+                                {
+                                    Debug.LogError($"Il manque le spell de fury dans : {BattleManager.CurrentBattleActor.BattleActorData}", BattleManager.CurrentBattleActor.BattleActorData);
+                                    break;
+                                }
                                 
                                 Fury.PlayFury(BattleManager.CurrentBattleActor.BattleActorData.FurySpell);
                                 break;
