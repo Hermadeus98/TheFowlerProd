@@ -10,93 +10,72 @@ namespace TheFowler
     {
         public Animator Animator;
 
-        [SerializeField] private AnimationClip attackClip;
+        private const string DefendName = "Defend";
+        private static readonly int DefendTrigger = Animator.StringToHash(DefendName);
         
+        private const string IdleBlendName = "IdleBlend";
+        private static readonly int IdleBlend = Animator.StringToHash(IdleBlendName);
+        private float IdleBlendValue;
+        [SerializeField] private float IdleBlendDuration = .50f;
         
-        private static readonly int DefendBlend = Animator.StringToHash("DefendBlend");
-
-        public void Death()
-        {
-            ResetTriggers();
-            Animator.SetTrigger("Death");
-        }
-
-        public void ResetAnimator()
-        {
-            ResetTriggers();
-            Animator.SetTrigger("Reset");
-        }
-
-        public void Idle()
-        {
-            ResetTriggers();
-            Animator.SetTrigger("Idle");
-        }
-
-        public void Parry()
-        {
-            ResetTriggers();
-            Animator.SetTrigger("Parry");
-        }
-
-        public void AttackPreview()
-        {
-            ResetTriggers();
-            Animator.SetTrigger("AttackPreview");
-        }
-
-        public void SetDefend(bool state)
-        {
-            if (state)
-            {
-                float x = 0f;
-                DOTween.To(
-                    () => x,
-                    (x) => x = x,
-                    1f,
-                    .5f
-                    ).OnUpdate(delegate
-                {
-                    Animator.SetFloat(DefendBlend, x);
-                });
-            }
-            else
-            {
-                float x = 1f;
-                DOTween.To(
-                    () => x,
-                    (x) => x = x,
-                    0f,
-                    .5f
-                ).OnUpdate(delegate
-                {
-                    Animator.SetFloat(DefendBlend, x);
-                });
-            }
-        }
-
-        public float AttackCastDuration() => attackClip.length;
-        public void AttackCast()
-        {
-            ResetTriggers();
-            Animator.SetTrigger("AttackCast");
-        }
-
-        public void Hit()
-        {
-            ResetTriggers();
-            Animator.SetTrigger("Hit");
-        }
+        private const string HitName = "Hit";
+        private static readonly int HitTrigger = Animator.StringToHash(HitName);
+        
+        private const string ResurectName = "Resurect";
+        private static readonly int ResurectTrigger = Animator.StringToHash(ResurectName);
+        
+        private const string DeathName = "Death";
+        private static readonly int DeathTrigger = Animator.StringToHash(DeathName);
 
         private void ResetTriggers()
         {
-            Animator.ResetTrigger("Death");
-            Animator.ResetTrigger("AttackCast");
-            Animator.ResetTrigger("AttackPreview");
-            Animator.ResetTrigger("Idle");
-            Animator.ResetTrigger("Reset");
-            Animator.ResetTrigger("Hit");
-            Animator.ResetTrigger("Parry");
+            Animator.ResetTrigger(DefendTrigger);
+        }
+
+        [Button]
+        public void StartDefend()
+        {
+            ResetTriggers();
+            Animator.SetTrigger(DefendTrigger);
+            IdleBlendValue = 1f;
+            Animator.SetFloat(IdleBlend, IdleBlendValue);
+        }
+
+        [Button]
+        public void EndDefend()
+        {
+            ResetTriggers();
+
+            DOTween.To(
+                () => IdleBlendValue,
+                (x) => IdleBlendValue = x,
+                0f,
+                IdleBlendDuration
+                ).OnUpdate(delegate
+                    {
+                        Animator.SetFloat(IdleBlend, IdleBlendValue);
+                    });
+        }
+        
+        [Button]
+        public void Death()
+        {
+            ResetTriggers();
+            Animator.SetTrigger(DeathTrigger);
+        }
+
+        [Button]
+        public void Resurect()
+        {
+            ResetTriggers();
+            Animator.SetTrigger(ResurectTrigger);
+        }
+
+        [Button]
+        public void Hit()
+        {
+            ResetTriggers();
+            Animator.SetTrigger(HitTrigger);
         }
     }
 }
