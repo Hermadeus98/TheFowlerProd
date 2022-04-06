@@ -62,6 +62,9 @@ namespace TheFowler
                             yield return new WaitForSeconds((float)sequence.duration);
                             
                             action.RemoveAllListeners();
+                            
+                            BattleManager.CurrentBattle.TurnSystem.NextTurn();
+                            yield break;
                         }
                         else
                         {
