@@ -96,19 +96,19 @@ namespace TheFowler
                         if (currentBattle.robyn != null)
                             if (currentBattle.robyn == this)
                             {
-                                sh.InitializeWithData(Player.RobynSavedData.spellHandler);
+                                sh.InitializeWithData();
                             }
 
                         if (currentBattle.abi != null)
                             if (currentBattle.abi == this)
                             {
-                                sh.InitializeWithData(Player.AbiSavedData.spellHandler);
+                                sh.InitializeWithData();
                             }
 
                         if (currentBattle.phoebe != null)
                             if (currentBattle.phoebe == this)
                             {
-                                sh.InitializeWithData(Player.PhoebeSavedData.spellHandler);
+                                sh.InitializeWithData();
                             }
                     }
                     else

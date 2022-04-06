@@ -27,16 +27,16 @@ MonoBehaviour:
       Data: 0|TheFowler.Effect[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.VampirismeEffect, Assembly-CSharp
+      Data: 1|TheFowler.DamageEffect, Assembly-CSharp
     - Name: EffectName
       Entry: 1
       Data: NO NAME EFFECT
     - Name: TargetType
       Entry: 3
-      Data: 4
+      Data: 2
     - Name: battleCameraBatch
       Entry: 3
       Data: 2
@@ -47,8 +47,8 @@ MonoBehaviour:
       Entry: 1
       Data: SkillExecutionAttack
     - Name: cameraBattlePath
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: Default
     - Name: ImPreview
       Entry: 5
       Data: false
@@ -63,7 +63,46 @@ MonoBehaviour:
       Data: 0
     - Name: damage
       Entry: 4
-      Data: 15
+      Data: 25
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|TheFowler.HealEffect, Assembly-CSharp
+    - Name: EffectName
+      Entry: 1
+      Data: NO NAME EFFECT
+    - Name: TargetType
+      Entry: 3
+      Data: 4
+    - Name: battleCameraBatch
+      Entry: 3
+      Data: 0
+    - Name: cameraPath
+      Entry: 6
+      Data: 
+    - Name: cameraSpecificPath
+      Entry: 1
+      Data: Default
+    - Name: cameraBattlePath
+      Entry: 1
+      Data: Default
+    - Name: ImPreview
+      Entry: 5
+      Data: false
+    - Name: audioEvent
+      Entry: 3
+      Data: 0
+    - Name: eventName
+      Entry: 6
+      Data: 
+    - Name: ReferedSpell
+      Entry: 10
+      Data: 0
+    - Name: healValue
+      Entry: 4
+      Data: 25
     - Name: 
       Entry: 8
       Data: 
@@ -76,6 +115,7 @@ MonoBehaviour:
   SpellName: Heavy Vibrations
   ManaCost: 16
   Cooldown: 4
+  CurrentCooldown: 0
   TargetType: 2
   executionDurationBeforeCast: 0.3
   executionDurationAfterCast: 0.3
