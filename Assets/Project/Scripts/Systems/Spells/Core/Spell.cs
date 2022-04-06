@@ -18,6 +18,7 @@ namespace TheFowler
         public int ManaCost;
 
         [TitleGroup("Main Settings")] public int Cooldown;
+        [TitleGroup("Main Settings")] public int CurrentCooldown;
 
         [TitleGroup("Main Settings")] public TargetTypeEnum TargetType;
 
@@ -220,7 +221,12 @@ namespace TheFowler
 
             
         }
-        
+
+        private void OnDisable()
+        {
+            CurrentCooldown = 0;
+        }
+
         public bool ContainEffect<T>(out T component) where T : Effect
         {
             for (int i = 0; i < Effects.Length; i++)
