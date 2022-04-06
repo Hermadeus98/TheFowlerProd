@@ -90,9 +90,8 @@ namespace TheFowler
 
         private IEnumerator Start()
         {
-            
-
             yield return new WaitForSeconds(1f);
+            
             if (playAtStart)
             {
                 if (enableProgression)
@@ -126,7 +125,6 @@ namespace TheFowler
                     hasPlayed = true;
                     return;
                 }
-
             }
 
             for (int i = 0; i < Allies.Count; i++)
@@ -312,6 +310,8 @@ namespace TheFowler
             allies.Clear();
             enemies.Clear();
 
+            SortByInitiative();
+            
             for (var i = 0; i < alliesBatch.childCount; i++)
             {
                 if (alliesBatch.GetChild(i).GetComponent<BattleActor>().isParticipant)
@@ -328,6 +328,16 @@ namespace TheFowler
                     enemiesBatch.GetChild(i).gameObject.SetActive(state);
                     enemies.Add(enemiesBatch.GetChild(i).GetComponent<BattleActor>());
                 }
+            }
+        }
+
+        private void SortByInitiative()
+        {
+            if (Player.useInitiative)
+            {
+                robyn?.transform.SetSiblingIndex(Player.RobynSavedData.initiative);
+                abi?.transform.SetSiblingIndex(Player.AbiSavedData.initiative);
+                phoebe?.transform.SetSiblingIndex(Player.PhoebeSavedData.initiative);
             }
         }
 

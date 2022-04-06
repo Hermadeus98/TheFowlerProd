@@ -15,11 +15,14 @@ namespace TheFowler
         
         public static Spell SelectedSpell { get; set; }
 
+        public static bool useInitiative = false;
+        
         public struct SavedData
         {
             public float health;
             public int mana;
             public SpellHandler spellHandler;
+            public int initiative;
         }
 
         public static SavedData RobynSavedData, AbiSavedData, PhoebeSavedData;
