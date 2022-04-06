@@ -1,0 +1,199 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6642321078143833144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: Main
+  m_EditorClassIdentifier: 
+  NodeName: Main
+  chance: 1
+  state: 0
+  started: 0
+  guid: f60670f95dc38cf408eafe19015b1aed
+  position: {x: 0, y: 0}
+  children:
+  - {fileID: 1466105759028814102}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: IS THAT YOUR AMBITION?! IS THAT WHY YOU FOLLOW THE FOWLER?!?
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: 
+    displayDuration: 8
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &-4542809427349163145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 97b7e76a9c25d674bb928951a6c446d9
+  position: {x: 333.88522, y: 2.0113347}
+  children:
+  - {fileID: 7818983122399377829}
+  dialogue:
+    ActorEnum: 2
+    dialogueText: "HOW DARE YOU ?!! THE FOWLER IS NOT WHY I\u2019M HERE!"
+    cameraPath:
+      genericKey: 2
+      cameraName: Default
+      batchName: 
+    displayDuration: 7
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cf5a2a104152e48a7bbaed625f399a, type: 3}
+  m_Name: DS_Battle_Phoebe_PhoebeQuarterLife
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: -6642321078143833144}
+  actors: 
+  treeState: 0
+  nodes:
+  - {fileID: -6642321078143833144}
+  - {fileID: 8838685816219231954}
+  - {fileID: 7818983122399377829}
+  - {fileID: -4542809427349163145}
+  - {fileID: 1466105759028814102}
+  dialogueType: 0
+--- !u!114 &1466105759028814102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 9085c8532ef8d5e4b998b07127fbdaad
+  position: {x: 170.96532, y: -0.000022411346}
+  children:
+  - {fileID: -4542809427349163145}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: YOU HAVE TO MAKE HIS MONSTROSITY TO GET WHAT YOU WANT?!?
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: 
+    displayDuration: 8
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &7818983122399377829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: f818178b448a5b94b8815afb10913499
+  position: {x: 507.98828, y: 2.0113347}
+  children:
+  - {fileID: 8838685816219231954}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: "Save the pity story for yourself! Abby and I are gonna stop y\u2019all
+      ONCE AND FOR ALL!"
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: 
+    displayDuration: 9
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &8838685816219231954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: ee6102843f6fde946aebce4e04528676
+  position: {x: 691.74585, y: 2.0113347}
+  children: []
+  dialogue:
+    ActorEnum: 2
+    dialogueText: THEN SHOW ME WHAT YOU GOT!
+    cameraPath:
+      genericKey: 2
+      cameraName: Default
+      batchName: 
+    displayDuration: 5
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0

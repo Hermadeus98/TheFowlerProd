@@ -1,6 +1,113 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1248799063095595835
+--- !u!114 &-8808810579933953923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: d540fc07bd35d534593229fca6a8896c
+  position: {x: -274.59393, y: 12.243054}
+  children:
+  - {fileID: -6912653026870541735}
+  dialogue:
+    ActorEnum: 1
+    dialogueText: "Well, it\u2019s been kind of a rollercoaster of emotions left
+      and right. First, there\u2019s\u2026"
+    cameraPath:
+      genericKey: 3
+      cameraName: Default
+      batchName: 
+    displayDuration: 9
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &-6912653026870541735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: df0a03f41c193e949bc6a259851af3e5
+  position: {x: -124.179405, y: 10.494048}
+  children:
+  - {fileID: -2896133851270899614}
+  dialogue:
+    ActorEnum: 1
+    dialogueText: "this and then Phoebe joining us\u2026It\u2019s just a lot you
+      know\u2026"
+    cameraPath:
+      genericKey: 3
+      cameraName: Default
+      batchName: 
+    displayDuration: 7
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &-2896133851270899614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 2533c7bbc5c0b8a429e8f5bf4d86ed12
+  position: {x: 33.23115, y: 10.494048}
+  children:
+  - {fileID: 4112460796251337495}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: "You know I\u2019ve got your back, no matter what!"
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: 
+    displayDuration: 6
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &-1272769318422141683
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13,6 +120,41 @@ MonoBehaviour:
   m_Name: Main
   m_EditorClassIdentifier: 
   NodeName: Main
+  chance: 1
+  state: 0
+  started: 0
+  guid: 0aa36b24e40be6e49a80ee08fdd728aa
+  position: {x: -433.75345, y: 17.490072}
+  children:
+  - {fileID: -8808810579933953923}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: "Hey\u2026 feeling better?"
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: 
+    displayDuration: 3
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &-1248799063095595835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NodeName: 
   chance: 1
   state: 0
   started: 0
@@ -57,6 +199,48 @@ MonoBehaviour:
   - {fileID: 7413616161941266586}
   - {fileID: 6665712545289257312}
   - {fileID: 6965270673268810762}
+  - {fileID: -2896133851270899614}
+  - {fileID: 4112460796251337495}
+  - {fileID: -6912653026870541735}
+  - {fileID: -8808810579933953923}
+  - {fileID: -1272769318422141683}
+  dialogueType: 0
+--- !u!114 &4112460796251337495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 55f7bffa32c1b66409a1159915559f79
+  position: {x: 197.74907, y: 12.000036}
+  children:
+  - {fileID: -1248799063095595835}
+  dialogue:
+    ActorEnum: 2
+    dialogueText: "Not that I want to interrupt this emotional moment but, take a
+      look at what\u2019s coming."
+    cameraPath:
+      genericKey: 2
+      cameraName: Default
+      batchName: 
+    displayDuration: 10
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
 --- !u!114 &5338549579494542790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,7 +258,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 6ab1ecb4f97aaa9469ff0ab103ef1a7c
-  position: {x: 23, y: 161}
+  position: {x: 24.749048, y: 161.00002}
   children:
   - {fileID: 7413616161941266586}
   dialogue:

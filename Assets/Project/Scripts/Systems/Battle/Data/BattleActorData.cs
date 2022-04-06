@@ -65,10 +65,13 @@ namespace TheFowler
             for (int i = 0; i < Spells.Length; i++)
             {
                 Spells[i] = DefaultSpells[i];
+                Spells[i].CurrentCooldown = 0;
             }
 
             complicityLevel = 1;
         }
+
+
     }
 
     

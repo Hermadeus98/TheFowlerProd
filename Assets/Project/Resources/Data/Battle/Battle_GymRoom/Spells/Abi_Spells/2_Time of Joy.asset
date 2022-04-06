@@ -15,8 +15,7 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 11400000}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -27,16 +26,16 @@ MonoBehaviour:
       Data: 0|TheFowler.Effect[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.VampirismeEffect, Assembly-CSharp
+      Data: 1|TheFowler.DamageEffect, Assembly-CSharp
     - Name: EffectName
       Entry: 1
       Data: NO NAME EFFECT
     - Name: TargetType
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: battleCameraBatch
       Entry: 3
       Data: 2
@@ -47,8 +46,8 @@ MonoBehaviour:
       Entry: 1
       Data: SkillExecutionAttack
     - Name: cameraBattlePath
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: Default
     - Name: ImPreview
       Entry: 5
       Data: false
@@ -59,9 +58,48 @@ MonoBehaviour:
       Entry: 6
       Data: 
     - Name: ReferedSpell
-      Entry: 10
-      Data: 0
+      Entry: 6
+      Data: 
     - Name: damage
+      Entry: 4
+      Data: 20
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|TheFowler.HealEffect, Assembly-CSharp
+    - Name: EffectName
+      Entry: 1
+      Data: NO NAME EFFECT
+    - Name: TargetType
+      Entry: 3
+      Data: 0
+    - Name: battleCameraBatch
+      Entry: 3
+      Data: 0
+    - Name: cameraPath
+      Entry: 6
+      Data: 
+    - Name: cameraSpecificPath
+      Entry: 1
+      Data: Default
+    - Name: cameraBattlePath
+      Entry: 1
+      Data: Default
+    - Name: ImPreview
+      Entry: 5
+      Data: false
+    - Name: audioEvent
+      Entry: 3
+      Data: 0
+    - Name: eventName
+      Entry: 6
+      Data: 
+    - Name: ReferedSpell
+      Entry: 6
+      Data: 
+    - Name: healValue
       Entry: 4
       Data: 20
     - Name: 
@@ -76,12 +114,13 @@ MonoBehaviour:
   SpellName: Time of Joy
   ManaCost: 16
   Cooldown: 3
+  CurrentCooldown: 3
   TargetType: 1
   executionDurationBeforeCast: 0.3
   executionDurationAfterCast: 0.3
   SpellDescription: Convert damages on self-healing
   TargetDescription: Single Enemy
   EasySpellDescription: <color=#FF0000>Light DMG</color><size=35><sprite=0></size>
-  ExecutionType: 1
+  ExecutionType: 0
   SpellType: 2
   sequenceBinding: 2
