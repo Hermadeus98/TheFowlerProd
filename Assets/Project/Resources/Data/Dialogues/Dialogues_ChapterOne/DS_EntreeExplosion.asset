@@ -1,147 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7214292604845814895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  NodeName: 
-  chance: 1
-  state: 0
-  started: 0
-  guid: 4e2903fdd1a23d3459a0be5e17ea9e98
-  position: {x: 245, y: 149}
-  children:
-  - {fileID: 3613758704685960693}
-  dialogue:
-    ActorEnum: 0
-    dialogueText: "Look, Abby, the quicker we move, the quicker we can kick the Fowler\u2019s
-      Arse your way! Hell, I\u2019ll even let you punch him first if you want! We\u2019re
-      right there! It\u2019s\u2026well, it\u2019s closer!"
-    cameraPath:
-      genericKey: 1
-      cameraName: Middle
-      batchName: 
-    displayDuration: 10
-    choiceText: 
-    isHarmonisation: 0
-    voice:
-      idInternal: 0
-      valueGuidInternal: 
-      WwiseObjectReference: {fileID: 11400000, guid: ad60543136b45434e8e68c9fe318cb7c, type: 2}
-    animationTrigger: 0
---- !u!114 &-6678709383925107726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: Main
-  m_EditorClassIdentifier: 
-  NodeName: Main
-  chance: 1
-  state: 0
-  started: 0
-  guid: 3b92d53a590965147af9cbfab9ce5257
-  position: {x: 98, y: -11.919998}
-  children:
-  - {fileID: -4533192282024139248}
-  dialogue:
-    ActorEnum: 5
-    dialogueText: (coughing)
-    cameraPath:
-      genericKey: 6
-      cameraName: Cam1
-      batchName: 
-    displayDuration: 2
-    choiceText: 
-    isHarmonisation: 0
-    voice:
-      idInternal: 0
-      valueGuidInternal: 
-      WwiseObjectReference: {fileID: 0}
-    animationTrigger: 0
---- !u!114 &-5107852449827197770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NodeName: 
-  chance: 1
-  state: 0
-  started: 0
-  guid: ecc75782eb4ac2f45943c9ca25462fa5
-  position: {x: 626, y: -2}
-  children:
-  - {fileID: -7214292604845814895}
-  dialogue:
-    ActorEnum: 1
-    dialogueText: Un-bloody-believable!
-    cameraPath:
-      genericKey: 3
-      cameraName: Middle
-      batchName: 
-    displayDuration: 2.5
-    choiceText: 
-    isHarmonisation: 0
-    voice:
-      idInternal: 0
-      valueGuidInternal: 
-      WwiseObjectReference: {fileID: 11400000, guid: 1c3d0ad9dba2e9b4d8f6dd77495be0f5, type: 2}
-    animationTrigger: 0
---- !u!114 &-4533192282024139248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  NodeName: DialogueNode
-  chance: 1
-  state: 0
-  started: 0
-  guid: 64ded563c2497cf43aca5920883ea92a
-  position: {x: 207, y: -2}
-  children:
-  - {fileID: 2363980503230762533}
-  dialogue:
-    ActorEnum: 0
-    dialogueText: Coming through!
-    cameraPath:
-      genericKey: 6
-      cameraName: Cam3
-      batchName: 
-    displayDuration: 2
-    choiceText: 
-    isHarmonisation: 0
-    voice:
-      idInternal: 0
-      valueGuidInternal: 
-      WwiseObjectReference: {fileID: 11400000, guid: f625537357183824d97a4173fe433c66, type: 2}
-    animationTrigger: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,18 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9cf5a2a104152e48a7bbaed625f399a, type: 3}
   m_Name: DS_EntreeExplosion
   m_EditorClassIdentifier: 
-  rootNode: {fileID: -6678709383925107726}
+  rootNode: {fileID: 0}
   actors: 
   treeState: 0
   nodes:
-  - {fileID: -6678709383925107726}
-  - {fileID: -5107852449827197770}
-  - {fileID: 3097418602955434166}
-  - {fileID: 2363980503230762533}
-  - {fileID: -4533192282024139248}
-  - {fileID: -7214292604845814895}
   - {fileID: 3613758704685960693}
   - {fileID: 1787085230858905682}
+  dialogueType: 0
 --- !u!114 &1787085230858905682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,8 +40,8 @@ MonoBehaviour:
   children: []
   dialogue:
     ActorEnum: 0
-    dialogueText: "Yes but actually no! I mean, look up there, it\u2019s the Tribunal!
-      Once we\u2019re up there, we\u2019ll be at the King\u2019s door! Now come on!"
+    dialogueText: "Look up there for a sec, it\u2019s the Tribunal! Once we reach
+      it, the king will shit his pants! Now come on!"
     cameraPath:
       genericKey: 1
       cameraName: Left
@@ -201,78 +54,6 @@ MonoBehaviour:
       valueGuidInternal: 
       WwiseObjectReference: {fileID: 11400000, guid: 28eb7c90754cdb2488bc8fa407ed8efb, type: 2}
     animationTrigger: 0
---- !u!114 &2363980503230762533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NodeName: 
-  chance: 1
-  state: 0
-  started: 0
-  guid: 5aaad91e502a7f144822850bdd576db8
-  position: {x: 361, y: -2}
-  children:
-  - {fileID: 3097418602955434166}
-  dialogue:
-    ActorEnum: 1
-    dialogueText: "Goddamnit Robyn! It hasn\u2019t been a minute yet and we\u2019re
-      about to alert the guards!!"
-    cameraPath:
-      genericKey: 6
-      cameraName: Cam2
-      batchName: 
-    displayDuration: 4.5
-    choiceText: 
-    isHarmonisation: 0
-    voice:
-      idInternal: 0
-      valueGuidInternal: 
-      WwiseObjectReference: {fileID: 11400000, guid: a4af4620c6f8d9542ac1033db350543a, type: 2}
-    animationTrigger: 0
---- !u!114 &3097418602955434166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  NodeName: 
-  chance: 1
-  state: 0
-  started: 0
-  guid: 6565faafa7b48b945b0cb12b89f3e5ac
-  position: {x: 477, y: -2}
-  children:
-  - {fileID: -5107852449827197770}
-  dialogue:
-    ActorEnum: 0
-    dialogueText: "I know but\u2026discreet ain\u2019t exactly my style, you know
-      that! "
-    cameraPath:
-      genericKey: 1
-      cameraName: Middle
-      batchName: 
-    displayDuration: 4
-    choiceText: 
-    isHarmonisation: 0
-    voice:
-      idInternal: 0
-      valueGuidInternal: 
-      WwiseObjectReference: {fileID: 11400000, guid: 79f2c5cf2e2cae745bc9147178ccb24f, type: 2}
-    animationTrigger: 0
 --- !u!114 &3613758704685960693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,9 +64,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
+  m_Name: Main
   m_EditorClassIdentifier: 
-  NodeName: 
+  NodeName: Main
   chance: 1
   state: 0
   started: 0
@@ -295,8 +76,8 @@ MonoBehaviour:
   - {fileID: 1787085230858905682}
   dialogue:
     ActorEnum: 1
-    dialogueText: "It has been months you\u2019ve been saying we\u2019re getting
-      closer! Now, what\u2019s this, a garden?"
+    dialogueText: "Now, what\u2019s this, a garden? Are we even getting closer to
+      the Fowler at this rate?"
     cameraPath:
       genericKey: 3
       cameraName: Left
