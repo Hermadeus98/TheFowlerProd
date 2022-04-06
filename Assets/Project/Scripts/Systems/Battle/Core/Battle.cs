@@ -144,6 +144,7 @@ namespace TheFowler
             if (!StartWithSavedData)
                 Fury.FuryPoint = 0;
 
+            SortByInitiative();
             RegisterActors();
             InitializeTurnSystem();
 
@@ -310,8 +311,6 @@ namespace TheFowler
             allies.Clear();
             enemies.Clear();
 
-            SortByInitiative();
-            
             for (var i = 0; i < alliesBatch.childCount; i++)
             {
                 if (alliesBatch.GetChild(i).GetComponent<BattleActor>().isParticipant)
@@ -333,11 +332,25 @@ namespace TheFowler
 
         private void SortByInitiative()
         {
+            Player.useInitiative = true;
+
+            robyn.Initiative = Player.RobynSavedData.initiative;
+            abi.Initiative = Player.AbiSavedData.initiative;
+            phoebe.Initiative = Player.PhoebeSavedData.initiative;
+
+            var initiativeList = new List<BattleActor>();
+            initiativeList.Add(robyn);
+            initiativeList.Add(abi);
+            if(phoebe != null) initiativeList.Add(phoebe);
+
+            var orderedEnumerable = initiativeList.OrderByDescending(w => w.Initiative);
+
             if (Player.useInitiative)
             {
-                robyn?.transform.SetSiblingIndex(Player.RobynSavedData.initiative);
-                abi?.transform.SetSiblingIndex(Player.AbiSavedData.initiative);
-                phoebe?.transform.SetSiblingIndex(Player.PhoebeSavedData.initiative);
+                for (int i = 0; i < orderedEnumerable.Count(); i++)
+                {
+                    orderedEnumerable.ElementAt(i).transform.SetSiblingIndex(i);
+                }
             }
         }
 

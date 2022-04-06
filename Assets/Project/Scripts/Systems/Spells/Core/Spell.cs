@@ -47,6 +47,7 @@ namespace TheFowler
         public SequenceEnum sequenceBinding;
 
         BattleActor[] receiversReminder;
+        
         private void OnEnable()
         {
             Effects.ForEach(w => w.ReferedSpell = this);

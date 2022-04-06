@@ -46,6 +46,7 @@ namespace TheFowler
         public BattleActorStats BattleActorStats;
 
         public int TurnCount { get; set; } = 0;
+        [ShowInInspector, ReadOnly] public int Initiative { get; set; }
         
         protected Turn actorTurn;
 
