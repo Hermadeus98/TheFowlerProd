@@ -10,18 +10,18 @@ namespace TheFowler
         [SerializeField] private float resurrectPorcentage = 25;
         public override IEnumerator OnBeginCast(BattleActor emitter, BattleActor[] receivers)
         {
-            throw new System.NotImplementedException();
+            yield break;
         }
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-
-            throw new System.NotImplementedException();
+            receivers.ForEach(w => w.Health.Resurect(resurrectPorcentage));
+            yield break;
         }
 
         public override IEnumerator OnFinishCast(BattleActor emitter, BattleActor[] receivers)
         {
-            throw new System.NotImplementedException();
+            yield break;
         }
 
         public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)

@@ -20,11 +20,11 @@ namespace TheFowler
         {
             yield return base.OnCast(emitter, receivers);
 
-            Damage(damage, emitter, receivers);
+            //Damage(damage, emitter, receivers);
 
             yield return new WaitForSeconds(1f);
             
-            Heal(heal, emitter, TargetSelector.GetAllAllies());
+            //Heal(heal, emitter, TargetSelector.GetAllAllies());
             
             yield return new WaitForSeconds(1f);
 
