@@ -22,7 +22,7 @@ MonoBehaviour:
   - {fileID: -2674370478497785880}
   dialogue:
     ActorEnum: 0
-    dialogueText: "Hey, Abby\u2019s right! We all know the truth is you wanna quit!"
+    dialogueText: Hey! Abby and I trust you!
     cameraPath:
       genericKey: 1
       cameraName: Middle
@@ -93,13 +93,12 @@ MonoBehaviour:
   - {fileID: -8564205301945677103}
   dialogue:
     ActorEnum: 2
-    dialogueText: "Don\u2019t mention that past event, Abigail. it was merely a moment
-      of weakness.\r"
+    dialogueText: "A mere a moment of weakness.\r Do not mention it again."
     cameraPath:
       genericKey: 2
       cameraName: Right
       batchName: 
-    displayDuration: 8
+    displayDuration: 5
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -124,13 +123,13 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 34a938352f76c504a8c9ef6c5d246dd8
-  position: {x: 370.8296, y: 74.965904}
+  position: {x: 155, y: 71}
   children:
   - {fileID: -7440063835730218569}
   dialogue:
     ActorEnum: 1
-    dialogueText: "What\u2019s a lass like you still doing at the Fowler\u2019s side?
-      After all you\u2019ve done against-"
+    dialogueText: Phoebe please! How can you still be on their side? After last time
+      I-
     cameraPath:
       genericKey: 3
       cameraName: Left
@@ -160,14 +159,14 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 4c9cbdbf8777bce4195f79c27aa72ba2
-  position: {x: 154.65993, y: 186.10223}
+  position: {x: 156, y: 186}
   children:
   - {fileID: -1064586774952767642}
   dialogue:
-    ActorEnum: 2
-    dialogueText: " Only fools would think a revolt is achievable\u2026"
+    ActorEnum: 0
+    dialogueText: Don't act like you're not convinced by what you're sayin'!
     cameraPath:
-      genericKey: 2
+      genericKey: 1
       cameraName: Middle
       batchName: 
     displayDuration: 5
@@ -235,7 +234,7 @@ MonoBehaviour:
   - {fileID: 1260005331524244585}
   dialogue:
     ActorEnum: 2
-    dialogueText: "None can go against the King, Robyn \u2026"
+    dialogueText: Fools
     cameraPath:
       genericKey: 5
       cameraName: Cam5
@@ -258,9 +257,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: Main
+  m_Name: Dialogue
   m_EditorClassIdentifier: 
-  NodeName: Main
+  NodeName: Dialogue
   chance: 1
   state: 0
   started: 0
@@ -270,13 +269,12 @@ MonoBehaviour:
   - {fileID: 1381106977690102191}
   dialogue:
     ActorEnum: 0
-    dialogueText: "You again? What a coincidence! Seems like we can\u2019t stop running
-      into each other! "
+    dialogueText: You again? Not tired of all this yet?
     cameraPath:
       genericKey: 1
       cameraName: Middle
       batchName: 
-    displayDuration: 7
+    displayDuration: 6
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -284,42 +282,6 @@ MonoBehaviour:
       valueGuidInternal: 
       WwiseObjectReference: {fileID: 11400000, guid: 3da0e842b0b03eb4b80f9ae8a03bd13c, type: 2}
     animationTrigger: 2
---- !u!114 &-239121040925737785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  NodeName: 
-  chance: 1
-  state: 0
-  started: 0
-  guid: efc8979a9eedfe84faa37ec6f1a041da
-  position: {x: 196.09029, y: 73.80635}
-  children:
-  - {fileID: -4554204248828434210}
-  dialogue:
-    ActorEnum: 2
-    dialogueText: "But don\u2019t worry, you\u2019ll soon be punished for that childish
-      revolt of yours\u2026"
-    cameraPath:
-      genericKey: 2
-      cameraName: Default
-      batchName: 
-    displayDuration: 2
-    choiceText: 
-    isHarmonisation: 0
-    voice:
-      idInternal: 0
-      valueGuidInternal: 
-      WwiseObjectReference: {fileID: 0}
-    animationTrigger: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9cf5a2a104152e48a7bbaed625f399a, type: 3}
   m_Name: DS_RencontrePhoebe
   m_EditorClassIdentifier: 
-  rootNode: {fileID: 0}
+  rootNode: {fileID: -923025069718162834}
   actors: 
   treeState: 0
   nodes:
@@ -347,7 +309,7 @@ MonoBehaviour:
   - {fileID: 2398258738841510536}
   - {fileID: -923025069718162834}
   - {fileID: 1260005331524244585}
-  - {fileID: -239121040925737785}
+  - {fileID: 2397581135023331156}
   dialogueType: 0
 --- !u!114 &1260005331524244585
 MonoBehaviour:
@@ -371,7 +333,7 @@ MonoBehaviour:
   - {fileID: -7571500343918965555}
   dialogue:
     ActorEnum: 2
-    dialogueText: No one.
+    dialogueText: "None can go against the King, Robyn \u2026 No one."
     cameraPath:
       genericKey: 5
       cameraName: Cam5
@@ -401,24 +363,59 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 0f004ab269b701347bfe4e4e43c7258c
-  position: {x: 84, y: 72}
+  position: {x: 34, y: 71}
   children:
-  - {fileID: -239121040925737785}
+  - {fileID: -4554204248828434210}
   dialogue:
     ActorEnum: 2
-    dialogueText: "I\u2019d rather not have any more encounters with puny rebels
-      of your like."
+    dialogueText: Stop it. You know this little rebellion of yours won't change a
+      thing.
     cameraPath:
       genericKey: 4
       cameraName: Cam3
       batchName: 
-    displayDuration: 6
+    displayDuration: 7
     choiceText: 
     isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
       WwiseObjectReference: {fileID: 11400000, guid: d7cf8812482604c41afcf1fda5de047d, type: 2}
+    animationTrigger: 0
+--- !u!114 &2397581135023331156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: Main
+  m_EditorClassIdentifier: 
+  NodeName: Main
+  chance: 1
+  state: 0
+  started: 0
+  guid: e8d5170cf3cc1ff44bf57cefc4caac65
+  position: {x: -245, y: 67.76}
+  children:
+  - {fileID: -923025069718162834}
+  dialogue:
+    ActorEnum: 5
+    dialogueText: 
+    cameraPath:
+      genericKey: 5
+      cameraName: Cam 2
+      batchName: 
+    displayDuration: 15
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
     animationTrigger: 0
 --- !u!114 &2398258738841510536
 MonoBehaviour:
