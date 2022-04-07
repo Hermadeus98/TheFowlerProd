@@ -20,9 +20,9 @@ namespace TheFowler
         [SerializeField] private float transitionDuration = .2f;
 
         [SerializeField] private Animator Animator;
-        
-        public float WaitTime =>
-            InOutComponent.in_duration + InOutComponent.between_duration + InOutComponent.out_duration;
+
+        public float WaitTime => transitionDuration;
+            //InOutComponent.in_duration + InOutComponent.between_duration + InOutComponent.out_duration;
 
 
         [Button]

@@ -58,8 +58,6 @@ namespace TheFowler
         public bool isDollyTrackCamera = false;
         
         [ShowIf("@this.isDollyTrackCamera"), BoxGroup("Dolly Track Settings")]
-        public bool lauchAtStart = true;
-        [ShowIf("@this.isDollyTrackCamera"), BoxGroup("Dolly Track Settings")]
         public float delay = 0;
         [ShowIf("@this.isDollyTrackCamera"), BoxGroup("Dolly Track Settings")]
         public float moveDuration = 2f;

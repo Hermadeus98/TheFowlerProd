@@ -127,16 +127,6 @@ namespace TheFowler
                 }
             }
 
-            for (int i = 0; i < Allies.Count; i++)
-            {
-                Allies[i].CameraBatchBattle.Generate();
-            }
-
-            for (int i = 0; i < Enemies.Count; i++)
-            {
-                Enemies[i].CameraBatchBattle.Generate();
-            }
-
             base.PlayPhase();
 
             BattleManager.CurrentBattle = this;
