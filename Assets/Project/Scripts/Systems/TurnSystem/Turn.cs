@@ -32,7 +32,8 @@ namespace TheFowler
             _turnTransitionView.CameraSwipTransition(delegate
             {
                 var actor = BattleManager.CurrentBattleActor;
-                CameraManager.Instance.SetCamera(actor.CameraBatchBattle, CameraKeys.BattleKeys.ActionPicking);
+                
+                CameraManager.Instance.SetCamera(actor.CameraBatchBattle, "EnterTurn");
 
                 
                 if (BattleManager.IsAllyTurn)
@@ -62,8 +63,10 @@ namespace TheFowler
             });
 
             //_turnTransitionView = UI.OpenView<TurnTransitionView>(UI.Views.TurnTransition);
-            yield return new WaitForSeconds(_turnTransitionView.WaitTime);
+            yield return new WaitForSeconds(_turnTransitionView.WaitTime - .2f);
             
+            CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle, CameraKeys.BattleKeys.ActionPicking);
+
             yield break;
         }
     }

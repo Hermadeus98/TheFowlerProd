@@ -21,8 +21,9 @@ namespace TheFowler
             if (BattleManager.IsAllyTurn)
             {
                 ActionPickingView = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
-                
                 UI.OpenView("FuryView");
+                
+                //CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle, CameraKeys.BattleKeys.ActionPicking);
             }
 
             if (BattleManager.IsEnemyTurn)
