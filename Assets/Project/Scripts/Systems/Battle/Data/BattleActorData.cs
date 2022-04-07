@@ -28,7 +28,9 @@ namespace TheFowler
 
         [TitleGroup("Identity")] public Spell.SpellTypeEnum actorType;
 
-        [TitleGroup("Identity")] public int complicityLevel = 1;
+        [TitleGroup("Progression")] public Spell[] AllSpells;
+
+        [TitleGroup("Progression")] public int complicityLevel = 1;
 
         [TitleGroup("Data Binding")]
         public enum BindingType{DEFAULT,REMOTE_SETTINGS}

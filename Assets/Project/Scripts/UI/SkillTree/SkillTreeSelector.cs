@@ -2,62 +2,136 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.Feedbacks;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using Unity.Collections;
 
 namespace TheFowler
 {
-    public class SkillTreeSelector : MonoBehaviour
+    public class SkillTreeSelector : CustomElement
     {
-        [SerializeField] private GameObject Picken, Unactive, Disable, Clickable;
-        public Spell linkedSpell;
-        public int complicityLevel = 0;
-        public bool isPassive = false;
-        public bool isClickable = false;
+        [SerializeField] private Spell associatedSpell;
 
-        public MMFeedbacks UnlockFeedback;
-        public MMFeedbacks ClickableFeedback;
-        public void SetPicken()
+        [SerializeField] private SkillTreeSelector associatedSkill;
+
+        [SerializeField] private BattleActorData associatedData;
+
+        [SerializeField] private SkillState skillState;
+        
+        [SerializeField] private GameObject equipped, unequipped, locked;
+        [SerializeField] private GameObject hover, unHover;
+
+        [SerializeField] private Color equippedColor, lockedColor;
+
+        private Spell[] spellReminder;
+        public override void OnSelect(BaseEventData eventData)
         {
-            Picken.gameObject.SetActive(true);
-            Unactive.gameObject.SetActive(false);
-            Disable.gameObject.SetActive(false);
+            base.OnSelect(eventData);
 
-            if(isClickable)
+            hover.SetActive(true);
+            unHover.SetActive(false);
+        }
+
+        public override void OnDeselect(BaseEventData eventData)
+        {
+            base.OnDeselect(eventData);
+
+            hover.SetActive(false);
+            unHover.SetActive(true);
+        }
+
+        public void Equip()
+        {
+            skillState = SkillState.EQUIPPED;
+
+            FeedbackEquipped();
+
+
+            SetSpellArray();
+
+
+            if (associatedSkill == null) return;
+
+            associatedSkill.UnEquip();
+        }
+
+        public void UnEquip()
+        {
+            skillState = SkillState.UNEQUIPPED;
+
+            FeedbackUnEquipped();
+        }
+
+        public void SetState()
+        {
+            switch (skillState)
             {
-                Clickable.SetActive(true);
-                if(!ClickableFeedback.IsPlaying)
-                    ClickableFeedback.PlayFeedbacks();
-            }
-            else
-            {
-                Clickable.SetActive(false);
+                case SkillState.BASIC:
+                    FeedbackEquipped();
+                    break;
+                case SkillState.EQUIPPED:
+                    FeedbackEquipped();
+                    break;
+                case SkillState.UNEQUIPPED:
+                    FeedbackUnEquipped();
+                    break;
+                case SkillState.LOCKED:
+                    FeedbackLocked();
+                    break;
             }
         }
 
-        public void SetUnactive()
+        private void FeedbackEquipped()
         {
-            Picken.gameObject.SetActive(false);
-            Unactive.gameObject.SetActive(true);
-            Disable.gameObject.SetActive(false);
-            if (isClickable)
-            {
-                Clickable.SetActive(true);
-                if (!ClickableFeedback.IsPlaying)
-                    ClickableFeedback.PlayFeedbacks();
-            }
-            else
-            {
-                Clickable.SetActive(false);
-            }
+            equipped.SetActive(true);
+            unequipped.SetActive(false);
+            locked.SetActive(false);
+
+            image.color = equippedColor;
+
         }
 
-        public void SetDisable()
+        private void FeedbackUnEquipped()
         {
-            Picken.gameObject.SetActive(false);
-            Unactive.gameObject.SetActive(false);
-            Disable.gameObject.SetActive(true);
-            Clickable.SetActive(false);
+            equipped.SetActive(false);
+            unequipped.SetActive(true);
+            locked.SetActive(false);
+
+            image.color = lockedColor;
+        }
+
+        private void FeedbackLocked()
+        {
+            equipped.SetActive(false);
+            unequipped.SetActive(false);
+            locked.SetActive(true);
+
+            image.color = lockedColor;
+        }
+
+        private void SetSpellArray()
+        {
+            if (associatedData.Spells.Length <= associatedSpell.unlockOrder)
+            {
+                spellReminder = new Spell[associatedData.Spells.Length];
+
+                for (int i = 0; i < spellReminder.Length; i++)
+                {
+                    spellReminder[i] = associatedData.Spells[i];
+                }
+
+                associatedData.Spells = new Spell[associatedData.Spells.Length + 1];
+
+                for (int i = 0; i < associatedData.Spells.Length; i++)
+                {
+                    associatedData.Spells[i] = spellReminder[i];
+                }
+            }
+
+            associatedData.Spells[associatedSpell.unlockOrder] = associatedSpell;
         }
 
     }
+
 }
 

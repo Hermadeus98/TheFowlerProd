@@ -34,6 +34,7 @@ namespace TheFowler
         
         [TitleGroup("Main Settings")] 
         public ExecutionTypeEnum ExecutionType;
+
         public enum ExecutionTypeEnum
         {
             SIMULTANEOUS,
@@ -48,7 +49,15 @@ namespace TheFowler
         public SequenceEnum sequenceBinding;
 
         BattleActor[] receiversReminder;
-        
+
+
+        [TitleGroup("Progression")]
+        public Sprite sprite;
+        [TitleGroup("Progression")]
+        public SkillState spellState;
+        [TitleGroup("Progression")]
+        public int unlockOrder;
+
         private void OnEnable()
         {
             Effects.ForEach(w => w.ReferedSpell = this);
