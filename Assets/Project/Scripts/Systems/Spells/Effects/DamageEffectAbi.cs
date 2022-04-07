@@ -23,7 +23,7 @@ namespace TheFowler
             
             for (int i = 0; i < receivers.Length; i++)
             {
-                var impact = GameObject.Instantiate(visualImpact, receivers[i].transform.position, Quaternion.identity);
+                var impact = GameObject.Instantiate(visualImpact, receivers[i].transform.position + receivers[i].transform.forward, Quaternion.identity);
                 impact.Play();
             }
 
