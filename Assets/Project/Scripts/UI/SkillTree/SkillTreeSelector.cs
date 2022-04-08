@@ -17,19 +17,28 @@ namespace TheFowler
         [SerializeField] private BattleActorData associatedData;
 
         [SerializeField] private SkillState skillState;
+        [SerializeField] private SkillType skillType;
         
         [SerializeField] private GameObject equipped, unequipped, locked;
         [SerializeField] private GameObject hover, unHover;
 
         [SerializeField] private Color equippedColor, lockedColor;
 
+        [SerializeField] private UnityEngine.InputSystem.PlayerInput Inputs;
+
         private Spell[] spellReminder;
+
+        private bool canInteract = false;
+        private bool isHover;
         public override void OnSelect(BaseEventData eventData)
         {
             base.OnSelect(eventData);
 
             hover.SetActive(true);
             unHover.SetActive(false);
+            isHover = true;
+            SetState();
+            
         }
 
         public override void OnDeselect(BaseEventData eventData)
@@ -38,11 +47,22 @@ namespace TheFowler
 
             hover.SetActive(false);
             unHover.SetActive(true);
+            isHover = false;
+        }
+
+        private void Update()
+        {
+            if(canInteract && isHover && Inputs.actions["Select"].WasPressedThisFrame())
+            {
+                Equip();
+            }
         }
 
         public void Equip()
         {
-            skillState = SkillState.EQUIPPED;
+            if (associatedSkill == null) return;
+
+            associatedSkill.UnEquip();
 
             FeedbackEquipped();
 
@@ -50,21 +70,17 @@ namespace TheFowler
             SetSpellArray();
 
 
-            if (associatedSkill == null) return;
-
-            associatedSkill.UnEquip();
+            
         }
 
         public void UnEquip()
         {
-            skillState = SkillState.UNEQUIPPED;
-
             FeedbackUnEquipped();
         }
 
         public void SetState()
         {
-            switch (skillState)
+            switch (associatedSpell.spellState)
             {
                 case SkillState.BASIC:
                     FeedbackEquipped();
@@ -79,34 +95,91 @@ namespace TheFowler
                     FeedbackLocked();
                     break;
             }
+
+
+        }
+
+        public BattleActorData Data
+        {
+            get
+            {
+                return associatedData;
+            }
+            set
+            {
+                associatedData = value;
+            }
+        }
+
+        public void SetDatas(int ID)
+        {
+
+            associatedSpell = associatedData.AllSpells[ID];
+            skillState = associatedSpell.spellState;
+            image.sprite = associatedSpell.sprite;
         }
 
         private void FeedbackEquipped()
         {
+
+
+            skillState = SkillState.EQUIPPED;
+
             equipped.SetActive(true);
             unequipped.SetActive(false);
             locked.SetActive(false);
 
             image.color = equippedColor;
 
+            canInteract = false;
+
+            associatedSpell.spellState = SkillState.EQUIPPED;
+
+            InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
+            infoButtons[0] = InfoBoxButtons.BACK;
+            UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+
         }
 
         private void FeedbackUnEquipped()
         {
+
+            skillState = SkillState.UNEQUIPPED;
+
+
             equipped.SetActive(false);
             unequipped.SetActive(true);
             locked.SetActive(false);
 
             image.color = lockedColor;
+
+            canInteract = true;
+
+            associatedSpell.spellState = SkillState.UNEQUIPPED;
+
+            InfoBoxButtons[] infoButtons = new InfoBoxButtons[2];
+            infoButtons[0] = InfoBoxButtons.CONFIRM;
+            infoButtons[1] = InfoBoxButtons.BACK;
+            UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
         }
 
         private void FeedbackLocked()
         {
+            skillState = SkillState.LOCKED;
+
             equipped.SetActive(false);
             unequipped.SetActive(false);
             locked.SetActive(true);
 
             image.color = lockedColor;
+            canInteract = false;
+
+            associatedSpell.spellState = SkillState.LOCKED;
+
+            InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
+            infoButtons[0] = InfoBoxButtons.BACK;
+            UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+
         }
 
         private void SetSpellArray()
@@ -122,7 +195,7 @@ namespace TheFowler
 
                 associatedData.Spells = new Spell[associatedData.Spells.Length + 1];
 
-                for (int i = 0; i < associatedData.Spells.Length; i++)
+                for (int i = 0; i < spellReminder.Length; i++)
                 {
                     associatedData.Spells[i] = spellReminder[i];
                 }
@@ -131,6 +204,12 @@ namespace TheFowler
             associatedData.Spells[associatedSpell.unlockOrder] = associatedSpell;
         }
 
+    }
+
+    public enum SkillType
+    {
+        ACTIVE,
+        PASSIVE
     }
 
 }

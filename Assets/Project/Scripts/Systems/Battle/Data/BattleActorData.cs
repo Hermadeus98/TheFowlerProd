@@ -50,16 +50,35 @@ namespace TheFowler
         [TitleGroup("Data Binding"), ShowIf("@this.bindingType == BindingType.DEFAULT")]
         public int mana = 3;
 
+        [Button]
         public void AddComplicity(int addValue)
         {
             complicityLevel += addValue;
+            ChangeState();
         }
 
         public void ChangeComplicityLevel(int newValue)
         {
             complicityLevel = newValue;
+
+            ChangeState();
         }
 
+        private void ChangeState()
+        {
+            for (int i = 0; i < AllSpells.Length; i++)
+            {
+                if(AllSpells[i].unlockOrder <= complicityLevel)
+                {
+                    if(AllSpells[i].spellState == SkillState.LOCKED)
+                    {
+                        AllSpells[i].spellState = SkillState.UNEQUIPPED;
+                    }
+                }
+            }
+        }
+
+        [Button]
         public void Reset()
         {
             Spells = new Spell[DefaultSpells.Length];
@@ -71,6 +90,19 @@ namespace TheFowler
             }
 
             complicityLevel = 1;
+
+            for (int i = 0; i < AllSpells.Length; i++)
+            {
+                if (AllSpells[i].unlockOrder <= complicityLevel)
+                {
+                    AllSpells[i].spellState = SkillState.EQUIPPED;
+                }
+                else
+                {
+                    AllSpells[i].spellState = SkillState.LOCKED;
+
+                }
+            }
         }
 
 

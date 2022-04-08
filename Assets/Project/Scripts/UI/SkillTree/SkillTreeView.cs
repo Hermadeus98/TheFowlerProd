@@ -12,21 +12,33 @@ namespace TheFowler
     {
         [TabGroup("References")] [SerializeField] private GameObject  firstSelectedObject;
         [TabGroup("References")] [SerializeField] private UnityEngine.InputSystem.PlayerInput Inputs;
-        [TabGroup("References")] [SerializeField] private SkillTreeSelector[] skills;
+        [TabGroup("Tree")] [SerializeField] private SkillTreeSelector[] skills;
+        [TabGroup("Tree")] [SerializeField] private BattleActorData[] datas;
+        [TabGroup("Tree")] private BattleActorData currentData;
+        [TabGroup("Tree")] [SerializeField] private TMPro.TextMeshProUGUI descriptionName, descriptionText;
+        [TabGroup("Tree")] [SerializeField] private Image targetImage, typeImage;
+        [TabGroup("Tree")] [SerializeField] private Sprite targetSprite, typeSprite;
+        [TabGroup("Tree")] [SerializeField] private Image[] hearts;
+        [TabGroup("Tree")] [SerializeField] private Sprite heartEmpty, heartFilled;
+        [TabGroup("Tree")] [SerializeField] private SpellTypeDatabase spellTypeDatabase;
+        [TabGroup("Tree")] [SerializeField] private TargetTypeDatabase targetTypeDatabase;
+
+
+        [TabGroup("Character")] [SerializeField] private Image character;
+        [TabGroup("Character")] [SerializeField] private TMPro.TextMeshProUGUI characterName;
+        [TabGroup("Character")] [SerializeField] private Sprite[] characterSprites;
 
         private GameObject eventSytemGO;
         private UnityEngine.EventSystems.EventSystem eventSytem;
-
+        private int ID;
 
         public override void Show()
         {
             base.Show();
 
-            InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
-            infoButtons[0] = InfoBoxButtons.CLOSE;
+            CharacterPicker(0);
 
-            UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
-
+            SetCharacter();
 
             if (VolumesManager.Instance != null)
                 VolumesManager.Instance.BlurryUI.enabled = true;
@@ -40,10 +52,7 @@ namespace TheFowler
             }
             eventSytem.SetSelectedGameObject(firstSelectedObject);
 
-            for (int i = 0; i < skills.Length; i++)
-            {
-                skills[i].SetState();
-            }
+
 
         }
 
@@ -57,6 +66,78 @@ namespace TheFowler
             if (VolumesManager.Instance != null)
                 VolumesManager.Instance.BlurryUI.enabled = false;
 
+        }
+
+        private void Update()
+        {
+            if (isActive)
+            {
+                if (Inputs.actions["RightBumper"].WasPressedThisFrame())
+                {
+                    ID++;
+                    if (ID == 3) ID = 0;
+                }
+                else if (Inputs.actions["LeftBumper"].WasPressedThisFrame())
+                {
+                    ID--;
+                    if (ID == -1) ID = 2;
+                }
+
+                CharacterPicker(ID);
+                SetCharacter();
+                eventSytem.SetSelectedGameObject(firstSelectedObject);
+            }
+
+        }
+
+        private void CharacterPicker(int newID)
+        {
+            currentData = datas[newID];
+
+            switch (newID)
+            {
+                case 0:
+                    character.sprite = characterSprites[0];
+                    characterName.text = "ROBYN";
+                    break;
+                case 1:
+                    character.sprite = characterSprites[1];
+                    characterName.text = "ABIGAIL";
+                    break;
+                case 2:
+                    character.sprite = characterSprites[2];
+                    characterName.text = "PHOEBE";
+                    break;
+            }
+
+            
+
+        }
+
+        private void SetCharacter()
+        {
+            for (int i = 0; i < skills.Length; i++)
+            {
+
+                skills[i].Data = currentData;
+                skills[i].SetDatas(i);
+                skills[i].SetState();
+
+            }
+        }
+
+        public void SetDescription(Spell spell)
+        {
+            descriptionName.text = spell.SpellName;
+            descriptionText.text = spell.SpellDescription;
+
+            targetImage.sprite = targetTypeDatabase.GetElement(spell.TargetType);
+            typeImage.sprite = spellTypeDatabase.GetElement(spell.SpellType);
+
+            for (int i = 0; i < hearts.Length; i++)
+            {
+
+            }
         }
 
 

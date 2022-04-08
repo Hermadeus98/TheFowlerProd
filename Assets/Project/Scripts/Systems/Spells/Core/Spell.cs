@@ -259,5 +259,13 @@ namespace TheFowler
             BEAK = 2,
             FEATHER = 3,
         }
+
+        public enum SpellPowerEnum
+        {
+            NULL = 0,
+            EASY = 1,
+            MEDIUM = 2,
+            HARD = 3
+        }
     }
 }
