@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: 2_Dazzling Riff
+  m_Name: 2_Hard Chord
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000}
+    - {fileID: 7922360473775969288, guid: 480f25f6abbaa1d489b233750eb0b964, type: 3}
+    - {fileID: 8584810612643639328, guid: 40d7f8ea95e648d44b34a9f121241d8b, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -30,13 +32,13 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.DamageEffect, Assembly-CSharp
+      Data: 1|TheFowler.DamageEffectRobyn, Assembly-CSharp
     - Name: EffectName
       Entry: 1
-      Data: Damage
+      Data: NO NAME EFFECT
     - Name: TargetType
       Entry: 3
-      Data: 2
+      Data: 1
     - Name: battleCameraBatch
       Entry: 3
       Data: 2
@@ -47,8 +49,8 @@ MonoBehaviour:
       Entry: 1
       Data: SkillExecutionAttack
     - Name: cameraBattlePath
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: Default
     - Name: ImPreview
       Entry: 5
       Data: false
@@ -63,7 +65,16 @@ MonoBehaviour:
       Data: 0
     - Name: damage
       Entry: 4
-      Data: 20
+      Data: 35
+    - Name: VisualEffectAttack
+      Entry: 10
+      Data: 1
+    - Name: waitAttackEffect
+      Entry: 4
+      Data: 0.85
+    - Name: VisualEffectAttackShock
+      Entry: 10
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -73,19 +84,19 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Dazzling Riff
-  ManaCost: 8
-  Cooldown: 3
+  SpellName: Hard Chord
+  ManaCost: 7
+  Cooldown: 5
   CurrentCooldown: 0
-  TargetType: 2
+  TargetType: 1
   executionDurationBeforeCast: 0.3
   executionDurationAfterCast: 0.3
-  SpellDescription: Inflict damages to all enemies
-  TargetDescription: All Enemies
-  EasySpellDescription: <color=#FF0000>Light DMG</color><size=35><sprite=0></size>
-  ExecutionType: 1
-  SpellType: 3
+  SpellDescription: Inflict many damages
+  TargetDescription: Single Enemy
+  EasySpellDescription: <color=#FF0000>Heavy DMG</color><size=35><sprite=0></size>
+  ExecutionType: 0
+  SpellType: 1
   sequenceBinding: 1
   sprite: {fileID: 21300000, guid: 435c8350319bead4abe311c6efd4e27f, type: 3}
-  spellState: 2
+  spellState: 3
   unlockOrder: 2

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: 1_Sudden Strike
+  m_Name: 2_Vital String
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000}
-    - {fileID: 1422429224235755760, guid: 7475432b1044077409565cfe0bdc6d4b, type: 3}
-    - {fileID: 1422429224235755760, guid: 95f7f4071015fcc4ebe47d6f36f24324, type: 3}
+    - {fileID: 7922360473775969288, guid: 480f25f6abbaa1d489b233750eb0b964, type: 3}
+    - {fileID: 8584810612643639328, guid: 40d7f8ea95e648d44b34a9f121241d8b, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -29,10 +29,10 @@ MonoBehaviour:
       Data: 0|TheFowler.Effect[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.DamageEffectAbi, Assembly-CSharp
+      Data: 1|TheFowler.DamageEffectRobyn, Assembly-CSharp
     - Name: EffectName
       Entry: 1
       Data: NO NAME EFFECT
@@ -65,16 +65,55 @@ MonoBehaviour:
       Data: 0
     - Name: damage
       Entry: 4
-      Data: 25
-    - Name: visualTrail
+      Data: 23
+    - Name: VisualEffectAttack
       Entry: 10
       Data: 1
-    - Name: trailDuration
+    - Name: waitAttackEffect
       Entry: 4
       Data: 0.85
-    - Name: visualImpact
+    - Name: VisualEffectAttackShock
       Entry: 10
       Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|TheFowler.HealEffect, Assembly-CSharp
+    - Name: EffectName
+      Entry: 1
+      Data: Heal
+    - Name: TargetType
+      Entry: 3
+      Data: 0
+    - Name: battleCameraBatch
+      Entry: 3
+      Data: 0
+    - Name: cameraPath
+      Entry: 6
+      Data: 
+    - Name: cameraSpecificPath
+      Entry: 1
+      Data: Default
+    - Name: cameraBattlePath
+      Entry: 1
+      Data: Default
+    - Name: ImPreview
+      Entry: 5
+      Data: false
+    - Name: audioEvent
+      Entry: 3
+      Data: 0
+    - Name: eventName
+      Entry: 6
+      Data: 
+    - Name: ReferedSpell
+      Entry: 10
+      Data: 0
+    - Name: healValue
+      Entry: 4
+      Data: 23
     - Name: 
       Entry: 8
       Data: 
@@ -84,19 +123,19 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Sudden Strike
-  ManaCost: 11
-  Cooldown: 4
+  SpellName: Vital String
+  ManaCost: 7
+  Cooldown: 6
   CurrentCooldown: 0
   TargetType: 1
   executionDurationBeforeCast: 0.3
   executionDurationAfterCast: 0.3
-  SpellDescription: Inflict damages
+  SpellDescription: Convert damages on self-healing
   TargetDescription: Single Enemy
   EasySpellDescription: <color=#FF0000>Medium DMG</color><size=35><sprite=0></size>
   ExecutionType: 0
   SpellType: 2
-  sequenceBinding: 2
-  sprite: {fileID: 0}
-  spellState: 0
-  unlockOrder: 0
+  sequenceBinding: 1
+  sprite: {fileID: 21300000, guid: 435c8350319bead4abe311c6efd4e27f, type: 3}
+  spellState: 3
+  unlockOrder: 2
