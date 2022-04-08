@@ -96,5 +96,8 @@ namespace TheFowler
         TF_SFX_Explo_Generic_ChangeChapter_In,
         TF_SFX_Explo_Generic_ChangeChapter_Out,
 
+        TF_SFX_Explo_Generic_Presence_Short,
+        TF_SFX_Explo_Generic_Presence_Long,
+
     }
 }
