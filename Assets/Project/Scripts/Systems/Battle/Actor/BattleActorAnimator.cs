@@ -37,8 +37,18 @@ namespace TheFowler
         {
             ResetTriggers();
             Animator.SetTrigger(DefendTrigger);
-            IdleBlendValue = 1f;
-            Animator.SetFloat(IdleBlend, IdleBlendValue);
+            
+            DOTween.To(() => IdleBlendValue,
+                (x) => IdleBlendValue = x,
+                1f,
+                IdleBlendDuration)
+                    .SetDelay(.25f)
+                    .OnUpdate(delegate
+                        {
+                            Animator.SetFloat(IdleBlend, IdleBlendValue);
+                        });
+            
+            //Animator.SetFloat(IdleBlend, IdleBlendValue);
         }
 
         [Button]
