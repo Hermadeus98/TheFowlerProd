@@ -9,8 +9,10 @@ namespace TheFowler
     {
         //public float damage;
         public VisualEffect VisualEffectAttack;
-        public float waitAttackEffect = 1f;
+        
         public VisualEffect VisualEffectAttackShock;
+        
+        protected float waitAttackEffect = .85f;
 
         public override void PreviewEffect(BattleActor emitter)
         {
@@ -42,17 +44,6 @@ namespace TheFowler
                 var attackEffect = GameObject.Instantiate(VisualEffectAttackShock, receivers[i].transform.position, Quaternion.identity);
                 attackEffect.Play();
             }
-
-            /*foreach (var receiver in receivers)
-            {
-                var _damage = DamageCalculator.CalculateDamage(damage, emitter, receiver, ReferedSpell.SpellType, out var resistanceFaiblesseResult);
-
-                SoundManager.PlaySoundDamageTaken(receiver, resistanceFaiblesseResult);
-                
-                receiver.Health.TakeDamage(
-                    _damage
-                );
-            }*/
             
             Damage(damage, emitter, receivers);
             yield break;
@@ -65,7 +56,6 @@ namespace TheFowler
 
         public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
         {
-            //base.OnSimpleCast(emitter, receivers);
             emitter.StartCoroutine(OnCast(emitter, receivers));
         }
     }

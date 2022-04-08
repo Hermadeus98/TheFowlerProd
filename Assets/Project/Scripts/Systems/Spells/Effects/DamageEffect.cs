@@ -40,6 +40,7 @@ namespace TheFowler
         public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
         {
             base.OnSimpleCast(emitter, receivers);
+            Damage(damage, emitter, receivers);
         }
     }
 }
