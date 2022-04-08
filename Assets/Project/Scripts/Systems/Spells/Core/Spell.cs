@@ -21,6 +21,7 @@ namespace TheFowler
         [TitleGroup("Main Settings")] public int CurrentCooldown;
 
         [TitleGroup("Main Settings")] public TargetTypeEnum TargetType;
+        [TitleGroup("Main Settings")] public SpellPowerEnum SpellPower;
 
         [TitleGroup("Main Settings")] public float
             executionDurationBeforeCast = .3f,

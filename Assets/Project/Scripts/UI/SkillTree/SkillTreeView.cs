@@ -6,18 +6,19 @@ using Sirenix.OdinInspector;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using QRCode;
+using DG.Tweening;
 namespace TheFowler
 {
     public class SkillTreeView : UIView
     {
-        [TabGroup("References")] [SerializeField] private GameObject  firstSelectedObject;
+        [TabGroup("References")] [SerializeField] private SkillSelector firstSelectedObject;
         [TabGroup("References")] [SerializeField] private UnityEngine.InputSystem.PlayerInput Inputs;
         [TabGroup("Tree")] [SerializeField] private SkillTreeSelector[] skills;
         [TabGroup("Tree")] [SerializeField] private BattleActorData[] datas;
         [TabGroup("Tree")] private BattleActorData currentData;
+        [TabGroup("Tree")] [SerializeField] private RectTransform descriptionBox;
         [TabGroup("Tree")] [SerializeField] private TMPro.TextMeshProUGUI descriptionName, descriptionText;
         [TabGroup("Tree")] [SerializeField] private Image targetImage, typeImage;
-        [TabGroup("Tree")] [SerializeField] private Sprite targetSprite, typeSprite;
         [TabGroup("Tree")] [SerializeField] private Image[] hearts;
         [TabGroup("Tree")] [SerializeField] private Sprite heartEmpty, heartFilled;
         [TabGroup("Tree")] [SerializeField] private SpellTypeDatabase spellTypeDatabase;
@@ -50,7 +51,7 @@ namespace TheFowler
                 eventSytem = eventSytemGO.GetComponent<EventSystem>();
 
             }
-            eventSytem.SetSelectedGameObject(firstSelectedObject);
+            eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
 
 
 
@@ -76,16 +77,23 @@ namespace TheFowler
                 {
                     ID++;
                     if (ID == 3) ID = 0;
+
+                    if (eventSytem != null)
+                        eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
+
+                    
                 }
                 else if (Inputs.actions["LeftBumper"].WasPressedThisFrame())
                 {
                     ID--;
                     if (ID == -1) ID = 2;
+
+                    if (eventSytem != null)
+                        eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
                 }
 
                 CharacterPicker(ID);
                 SetCharacter();
-                eventSytem.SetSelectedGameObject(firstSelectedObject);
             }
 
         }
@@ -110,7 +118,7 @@ namespace TheFowler
                     break;
             }
 
-            
+
 
         }
 
@@ -126,7 +134,7 @@ namespace TheFowler
             }
         }
 
-        public void SetDescription(Spell spell)
+        public void SetDescription(SkillTreeSelector selector, Spell spell)
         {
             descriptionName.text = spell.SpellName;
             descriptionText.text = spell.SpellDescription;
@@ -134,13 +142,30 @@ namespace TheFowler
             targetImage.sprite = targetTypeDatabase.GetElement(spell.TargetType);
             typeImage.sprite = spellTypeDatabase.GetElement(spell.SpellType);
 
-            for (int i = 0; i < hearts.Length; i++)
+            switch (spell.SpellPower)
             {
-
+                case Spell.SpellPowerEnum.EASY:
+                    hearts[0].sprite = heartFilled;
+                    hearts[1].sprite = heartEmpty;
+                    hearts[2].sprite = heartEmpty;
+                    break;
+                case Spell.SpellPowerEnum.MEDIUM:
+                    hearts[0].sprite = heartFilled;
+                    hearts[1].sprite = heartFilled;
+                    hearts[2].sprite = heartEmpty;
+                    break;
+                case Spell.SpellPowerEnum.HARD:
+                    hearts[0].sprite = heartFilled;
+                    hearts[1].sprite = heartFilled;
+                    hearts[2].sprite = heartFilled;
+                    break;
             }
+
+            descriptionBox.anchoredPosition = selector.Rect.anchoredPosition;
+
         }
 
 
-    }
+        }
 
-}
+    }

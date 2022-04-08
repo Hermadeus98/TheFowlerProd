@@ -17,7 +17,6 @@ namespace TheFowler
         [SerializeField] private BattleActorData associatedData;
 
         [SerializeField] private SkillState skillState;
-        [SerializeField] private SkillType skillType;
         
         [SerializeField] private GameObject equipped, unequipped, locked;
         [SerializeField] private GameObject hover, unHover;
@@ -26,6 +25,11 @@ namespace TheFowler
 
         [SerializeField] private UnityEngine.InputSystem.PlayerInput Inputs;
 
+        [SerializeField] private RectTransform rect;
+
+        public RectTransform Rect => rect;
+        [SerializeField] private SkillTreeView view;
+
         private Spell[] spellReminder;
 
         private bool canInteract = false;
@@ -33,12 +37,7 @@ namespace TheFowler
         public override void OnSelect(BaseEventData eventData)
         {
             base.OnSelect(eventData);
-
-            hover.SetActive(true);
-            unHover.SetActive(false);
-            isHover = true;
-            SetState();
-            
+            _Select();
         }
 
         public override void OnDeselect(BaseEventData eventData)
@@ -48,6 +47,15 @@ namespace TheFowler
             hover.SetActive(false);
             unHover.SetActive(true);
             isHover = false;
+        }
+
+        public void _Select()
+        {
+            hover.SetActive(true);
+            unHover.SetActive(false);
+            isHover = true;
+            SetState();
+            view.SetDescription(this, associatedSpell);
         }
 
         private void Update()
@@ -206,11 +214,7 @@ namespace TheFowler
 
     }
 
-    public enum SkillType
-    {
-        ACTIVE,
-        PASSIVE
-    }
+
 
 }
 
