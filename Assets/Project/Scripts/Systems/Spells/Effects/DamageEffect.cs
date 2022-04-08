@@ -40,21 +40,6 @@ namespace TheFowler
         public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
         {
             base.OnSimpleCast(emitter, receivers);
-            foreach (var receiver in receivers)
-            {
-                var _damage = DamageCalculator.CalculateDamage(damage, emitter, receiver, ReferedSpell.SpellType, out var resistanceFaiblesseResult);
-
-                if(resistanceFaiblesseResult == DamageCalculator.ResistanceFaiblesseResult.FAIBLESSE)
-                {
-                    Fury.AddFuryPoint(10);
-                }
-
-                SoundManager.PlaySoundDamageTaken(receiver, resistanceFaiblesseResult);
-                
-                receiver.Health.TakeDamage(
-                    _damage
-                );
-            }
         }
     }
 }

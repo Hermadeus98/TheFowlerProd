@@ -1,5 +1,8 @@
+using System;
 using QRCode.Extensions;
 using Sirenix.OdinInspector;
+using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -26,6 +29,26 @@ namespace TheFowler
 #if UNITY_EDITOR
                 Selection.activeGameObject = Player.Robyn.gameObject;
 #endif
+            }
+        }
+
+        private bool itPause;
+
+
+        private void Update()
+        {
+            if (GetComponent<PlayerInput>().actions["Pause"].WasPressedThisFrame())
+            {
+                if (!itPause)
+                {
+                    Time.timeScale = 0;
+                    itPause = true;
+                }
+                else if (itPause)
+                {
+                    Time.timeScale = 1;
+                    itPause = false;
+                }
             }
         }
     }

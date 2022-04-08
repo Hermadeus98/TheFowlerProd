@@ -17,6 +17,7 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000}
+    - {fileID: 19800000, guid: 52d1d26dc5a4b2a49bbe45703761cd5f, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -30,7 +31,7 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.DamageEffect, Assembly-CSharp
+      Data: 1|TheFowler.DamageEffectGuard, Assembly-CSharp
     - Name: EffectName
       Entry: 1
       Data: NO NAME EFFECT
@@ -41,23 +42,11 @@ MonoBehaviour:
       Entry: 3
       Data: 3
     - Name: cameraPath
-      Entry: 7
-      Data: 2|TheFowler.cameraPath, Assembly-CSharp
-    - Name: genericKey
-      Entry: 3
-      Data: 8
-    - Name: cameraName
-      Entry: 1
-      Data: TargetAllies
-    - Name: batchName
       Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
       Data: 
     - Name: cameraSpecificPath
       Entry: 1
-      Data: SkillExecutionAttack
+      Data: Default
     - Name: cameraBattlePath
       Entry: 1
       Data: TargetAllies
@@ -66,13 +55,28 @@ MonoBehaviour:
       Data: false
     - Name: audioEvent
       Entry: 3
-      Data: 8
+      Data: 0
+    - Name: eventName
+      Entry: 6
+      Data: 
     - Name: ReferedSpell
       Entry: 10
       Data: 0
     - Name: damage
       Entry: 4
       Data: 20
+    - Name: attackParticle
+      Entry: 10
+      Data: 1
+    - Name: attackDuration
+      Entry: 4
+      Data: 2
+    - Name: impactParticle
+      Entry: 10
+      Data: 1
+    - Name: impactDuration
+      Entry: 4
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -84,9 +88,17 @@ MonoBehaviour:
       Data: 
   SpellName: Basic Attack
   ManaCost: 0
+  Cooldown: 0
+  CurrentCooldown: 0
   TargetType: 1
   executionDurationBeforeCast: 1
   executionDurationAfterCast: 1
   SpellDescription: Basic Attack
+  TargetDescription: 
+  EasySpellDescription: 
   ExecutionType: 0
   SpellType: 0
+  sequenceBinding: 4
+  sprite: {fileID: 0}
+  spellState: 0
+  unlockOrder: 0
