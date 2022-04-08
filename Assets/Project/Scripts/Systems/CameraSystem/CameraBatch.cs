@@ -17,9 +17,15 @@ namespace TheFowler
 
         public CinemachineVirtualCameraBase TPScam;
 
+        public bool RegenerateOnStart = false;
+        
         protected override void RegisterEvent()
         {
             base.RegisterEvent();
+            
+            if(RegenerateOnStart)
+                Generate();
+            
             if(registerBatch) CameraManager.RegisterBatch(this);
         }
 
