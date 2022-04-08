@@ -31,6 +31,7 @@ namespace TheFowler
             for (int i = 0; i < receivers.Length; i++)
             {
                 var attackEffect = GameObject.Instantiate(VisualEffectAttack, receivers[i].transform.position, Quaternion.identity);
+                attackEffect.gameObject.AddComponent<BillBoard>();
                 attackEffect.Play();
             }
 
@@ -42,7 +43,7 @@ namespace TheFowler
                 attackEffect.Play();
             }
 
-            foreach (var receiver in receivers)
+            /*foreach (var receiver in receivers)
             {
                 var _damage = DamageCalculator.CalculateDamage(damage, emitter, receiver, ReferedSpell.SpellType, out var resistanceFaiblesseResult);
 
@@ -51,7 +52,9 @@ namespace TheFowler
                 receiver.Health.TakeDamage(
                     _damage
                 );
-            }
+            }*/
+            
+            Damage(damage, emitter, receivers);
             yield break;
         }
 

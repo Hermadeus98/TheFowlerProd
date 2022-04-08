@@ -680,6 +680,8 @@ PlayableDirector:
     value: {fileID: 206399144249247538}
   - key: {fileID: 2941035179259509607, guid: 7be7dee90af8c8948afa76f21167af9f, type: 2}
     value: {fileID: 206399144249247538}
+  - key: {fileID: -2577388955996069144, guid: 7be7dee90af8c8948afa76f21167af9f, type: 2}
+    value: {fileID: 3637478018410684839}
   m_ExposedReferences:
     m_References:
     - 1d2bc54d2ab3ac1469bfc60daef754c8: {fileID: 3188469307746826963}
@@ -822,7 +824,7 @@ GameObject:
   - component: {fileID: 897000422720810749}
   - component: {fileID: 5901945792705728406}
   - component: {fileID: 2591788928060154121}
-  - component: {fileID: 8238975899814179811}
+  - component: {fileID: 3637478018410684839}
   m_Layer: 0
   m_Name: TimeModifier
   m_TagString: Untagged
@@ -858,7 +860,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Feedbacks:
   - {fileID: 2591788928060154121}
-  - {fileID: 8238975899814179811}
   InitializationMode: 2
   SafeMode: 3
   Direction: 0
@@ -907,47 +908,6 @@ MonoBehaviour:
   Chance: 100
   Timing:
     TimescaleMode: 0
-    InitialDelay: 0.5
-    CooldownDuration: 0
-    ExcludeFromHoldingPauses: 0
-    InterruptsOnStop: 1
-    NumberOfRepeats: 0
-    RepeatForever: 0
-    DelayBetweenRepeats: 1
-    MMFeedbacksDirectionCondition: 0
-    PlayDirection: 0
-    ConstantIntensity: 0
-    UseIntensityInterval: 0
-    IntensityIntervalMin: 0
-    IntensityIntervalMax: 0
-    Sequence: {fileID: 0}
-    TrackID: 0
-    Quantized: 0
-    TargetBPM: 120
-  DebugActive: 0
-  Mode: 0
-  TimeScale: 0.5
-  TimeScaleDuration: 0.5
-  TimeScaleLerp: 0
-  TimeScaleLerpSpeed: 1
-  ResetTimescaleOnStop: 0
---- !u!114 &8238975899814179811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5798602127921813607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f3e1ec70856fe5439234683b34b4737, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Active: 1
-  Label: Timescale Modifier
-  Chance: 100
-  Timing:
-    TimescaleMode: 0
     InitialDelay: 0
     CooldownDuration: 0
     ExcludeFromHoldingPauses: 0
@@ -967,11 +927,41 @@ MonoBehaviour:
     TargetBPM: 120
   DebugActive: 0
   Mode: 0
-  TimeScale: 1.5
-  TimeScaleDuration: 0.5
-  TimeScaleLerp: 0
-  TimeScaleLerpSpeed: 1
-  ResetTimescaleOnStop: 0
+  TimeScale: 0.5
+  TimeScaleDuration: 1
+  TimeScaleLerp: 1
+  TimeScaleLerpSpeed: 3
+  ResetTimescaleOnStop: 1
+--- !u!114 &3637478018410684839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5798602127921813607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 397dd6e4a58724d46bb2b8aaf59dba3d, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5901945792705728406}
+          m_TargetAssemblyTypeName: MoreMountains.Feedbacks.MMFeedbacks, MoreMountains.Feedbacks
+          m_MethodName: PlayFeedbacks
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &6557349529241465616
 GameObject:
   m_ObjectHideFlags: 0
@@ -2748,15 +2738,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 58f4c857e48937845816b441ae03ff10, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.42958722
+      value: -0.58450353
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 58f4c857e48937845816b441ae03ff10, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.3904829
+      value: 1.3780986
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 58f4c857e48937845816b441ae03ff10, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.05444458
+      value: -0.03068015
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 58f4c857e48937845816b441ae03ff10, type: 3}
       propertyPath: m_LocalRotation.w
