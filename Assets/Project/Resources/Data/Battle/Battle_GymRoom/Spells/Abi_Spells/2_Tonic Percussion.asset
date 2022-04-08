@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: 1_Sudden Strike
+  m_Name: 2_Tonic Percussion
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000}
-    - {fileID: 1422429224235755760, guid: 7475432b1044077409565cfe0bdc6d4b, type: 3}
-    - {fileID: 1422429224235755760, guid: 95f7f4071015fcc4ebe47d6f36f24324, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -29,16 +27,16 @@ MonoBehaviour:
       Data: 0|TheFowler.Effect[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.DamageEffectAbi, Assembly-CSharp
+      Data: 1|TheFowler.HealEffect, Assembly-CSharp
     - Name: EffectName
       Entry: 1
-      Data: NO NAME EFFECT
+      Data: Heal
     - Name: TargetType
       Entry: 3
-      Data: 1
+      Data: 3
     - Name: battleCameraBatch
       Entry: 3
       Data: 2
@@ -47,7 +45,46 @@ MonoBehaviour:
       Data: 
     - Name: cameraSpecificPath
       Entry: 1
-      Data: SkillExecutionAttack
+      Data: TargetPickingAllies
+    - Name: cameraBattlePath
+      Entry: 6
+      Data: 
+    - Name: ImPreview
+      Entry: 5
+      Data: false
+    - Name: audioEvent
+      Entry: 3
+      Data: 0
+    - Name: eventName
+      Entry: 6
+      Data: 
+    - Name: ReferedSpell
+      Entry: 10
+      Data: 0
+    - Name: healValue
+      Entry: 4
+      Data: 40
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|TheFowler.DamageBonus, Assembly-CSharp
+    - Name: EffectName
+      Entry: 1
+      Data: Buff
+    - Name: TargetType
+      Entry: 3
+      Data: 3
+    - Name: battleCameraBatch
+      Entry: 3
+      Data: 0
+    - Name: cameraPath
+      Entry: 6
+      Data: 
+    - Name: cameraSpecificPath
+      Entry: 1
+      Data: Default
     - Name: cameraBattlePath
       Entry: 1
       Data: Default
@@ -61,19 +98,13 @@ MonoBehaviour:
       Entry: 6
       Data: 
     - Name: ReferedSpell
-      Entry: 10
-      Data: 0
-    - Name: damage
+      Entry: 6
+      Data: 
+    - Name: buffBonus
       Entry: 4
       Data: 25
-    - Name: visualTrail
-      Entry: 10
-      Data: 1
-    - Name: trailDuration
-      Entry: 4
-      Data: 0.85
-    - Name: visualImpact
-      Entry: 10
+    - Name: turnDuration
+      Entry: 3
       Data: 2
     - Name: 
       Entry: 8
@@ -84,18 +115,18 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Sudden Strike
-  ManaCost: 11
-  Cooldown: 4
+  SpellName: Tonic Percussion
+  ManaCost: 7
+  Cooldown: 5
   CurrentCooldown: 0
-  TargetType: 1
+  TargetType: 3
   executionDurationBeforeCast: 0.3
   executionDurationAfterCast: 0.3
-  SpellDescription: Inflict damages
-  TargetDescription: Single Enemy
-  EasySpellDescription: <color=#FF0000>Medium DMG</color><size=35><sprite=0></size>
+  SpellDescription: Light Heal and bonus damage
+  TargetDescription: Single Ally
+  EasySpellDescription: <color=#FF0000>Medium Heal</color><size=35><sprite=0></size>
   ExecutionType: 0
-  SpellType: 2
+  SpellType: 0
   sequenceBinding: 2
   sprite: {fileID: 0}
   spellState: 0
