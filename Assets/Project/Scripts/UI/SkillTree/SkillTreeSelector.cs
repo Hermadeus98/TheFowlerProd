@@ -30,6 +30,8 @@ namespace TheFowler
         public RectTransform Rect => rect;
         [SerializeField] private SkillTreeView view;
 
+        [SerializeField] private Image[] lines;
+
         private Spell[] spellReminder;
 
         private bool canInteract = false;
@@ -43,10 +45,9 @@ namespace TheFowler
         public override void OnDeselect(BaseEventData eventData)
         {
             base.OnDeselect(eventData);
+            _Deselect();
 
-            hover.SetActive(false);
-            unHover.SetActive(true);
-            isHover = false;
+
         }
 
         public void _Select()
@@ -56,6 +57,16 @@ namespace TheFowler
             isHover = true;
             SetState();
             view.SetDescription(this, associatedSpell);
+            CheckSpells();
+            //SetLines(true);
+        }
+
+        public void _Deselect()
+        {
+            hover.SetActive(false);
+            unHover.SetActive(true);
+            isHover = false;
+            //SetLines(false);
         }
 
         private void Update()
@@ -77,13 +88,31 @@ namespace TheFowler
 
             SetSpellArray();
 
+            view.SetSpells();
+            CheckSpells();
 
-            
         }
+
 
         public void UnEquip()
         {
             FeedbackUnEquipped();
+        }
+
+        public void SetLines(bool value)
+        {
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (value)
+                {
+                    lines[i].color = Color.white;
+                }
+                else
+                {
+                    lines[i].color = Color.grey;
+                }
+
+            }
         }
 
         public void SetState()
@@ -147,6 +176,8 @@ namespace TheFowler
             infoButtons[0] = InfoBoxButtons.BACK;
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
 
+
+
         }
 
         private void FeedbackUnEquipped()
@@ -187,6 +218,27 @@ namespace TheFowler
             InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
             infoButtons[0] = InfoBoxButtons.BACK;
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+
+        }
+
+        private void CheckSpells()
+        {
+            for (int i = 0; i < view.SpellTreeSelectors.Length; i++)
+            {
+                view.SpellTreeSelectors[i].SetUnHover();
+                
+            }
+            for (int i = 0; i < view.SpellTreeSelectors.Length; i++)
+            {
+                if (view.SpellTreeSelectors[i].associatedSpell == associatedSpell)
+                {
+                    view.SpellTreeSelectors[i].SetHover();
+                    
+                }
+
+            }
+
+
 
         }
 

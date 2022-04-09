@@ -11,7 +11,7 @@ namespace TheFowler
 {
     public class SkillTreeView : UIView
     {
-        [TabGroup("References")] [SerializeField] private SkillSelector firstSelectedObject;
+        [TabGroup("References")] [SerializeField] private SkillTreeSelector firstSelectedObject;
         [TabGroup("References")] [SerializeField] private UnityEngine.InputSystem.PlayerInput Inputs;
         [TabGroup("Tree")] [SerializeField] private SkillTreeSelector[] skills;
         [TabGroup("Tree")] [SerializeField] private BattleActorData[] datas;
@@ -29,6 +29,20 @@ namespace TheFowler
         [TabGroup("Character")] [SerializeField] private TMPro.TextMeshProUGUI characterName;
         [TabGroup("Character")] [SerializeField] private Sprite[] characterSprites;
 
+        [TabGroup("Spell")] [SerializeField] private SpellTreeSelector[] spellTreeSelectors;
+
+        public SpellTreeSelector[] SpellTreeSelectors
+        {
+            get
+            {
+                return spellTreeSelectors;
+            }
+            set
+            {
+                spellTreeSelectors = value;
+            }
+        }
+
         private GameObject eventSytemGO;
         private UnityEngine.EventSystems.EventSystem eventSytem;
         private int ID;
@@ -37,9 +51,16 @@ namespace TheFowler
         {
             base.Show();
 
+            for (int i = 0; i < skills.Length; i++)
+            {
+                skills[i]._Deselect();
+            }
+
             CharacterPicker(0);
 
             SetCharacter();
+
+            SetSpells();
 
             if (VolumesManager.Instance != null)
                 VolumesManager.Instance.BlurryUI.enabled = true;
@@ -78,22 +99,40 @@ namespace TheFowler
                     ID++;
                     if (ID == 3) ID = 0;
 
-                    if (eventSytem != null)
-                        eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
+                    for (int i = 0; i < skills.Length; i++)
+                    {
+                        skills[i]._Deselect();
+                    }
 
-                    
+                    CharacterPicker(ID);
+                    SetCharacter();
+                    SetSpells();
+
+                    firstSelectedObject._Select();
+                    eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
+
+
+
+
                 }
                 else if (Inputs.actions["LeftBumper"].WasPressedThisFrame())
                 {
                     ID--;
                     if (ID == -1) ID = 2;
 
-                    if (eventSytem != null)
-                        eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
+                    for (int i = 0; i < skills.Length; i++)
+                    {
+                        skills[i]._Deselect();
+                    }
+
+                    CharacterPicker(ID);
+                    SetCharacter();
+                    SetSpells();
+
+                    firstSelectedObject._Select();
+                    eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
                 }
 
-                CharacterPicker(ID);
-                SetCharacter();
             }
 
         }
@@ -131,6 +170,22 @@ namespace TheFowler
                 skills[i].SetDatas(i);
                 skills[i].SetState();
 
+            }
+        }
+
+        public void SetSpells()
+        {
+            for (int i = 0; i < spellTreeSelectors.Length; i++)
+            {
+                if(i >= currentData.Spells.Length)
+                {
+                    spellTreeSelectors[i].SetSpells(null);
+                }
+                else
+                {
+                    spellTreeSelectors[i].SetSpells(currentData.Spells[i]);
+                }
+                
             }
         }
 
