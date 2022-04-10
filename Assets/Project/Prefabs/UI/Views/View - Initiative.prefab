@@ -30,8 +30,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7642648017776250363}
-  - {fileID: 4230085504551024839}
   - {fileID: 2438793248436181503}
+  - {fileID: 4230085504551024839}
   m_Father: {fileID: 8498044703470998694}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -122,8 +122,8 @@ CanvasGroup:
   m_GameObject: {fileID: 8498044703470998689}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!114 &5445880612658242254
 MonoBehaviour:
@@ -160,6 +160,7 @@ MonoBehaviour:
   - {fileID: 4950709827480074887}
   Inputs: {fileID: 1935371568838821065}
   parentSelectors: {fileID: 1795412480166817500}
+  menuView: {fileID: 0}
   isSelecting: 0
 --- !u!114 &1935371568838821065
 MonoBehaviour:
@@ -207,9 +208,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1795412480166817500}
     - target: {fileID: 1169550313766312119, guid: 72e4735f068e17545b7beae3384cfe87, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 4950709827480074887}
+    - target: {fileID: 1169550313766312119, guid: 72e4735f068e17545b7beae3384cfe87, type: 3}
       propertyPath: m_Navigation.m_SelectOnDown
       value: 
-      objectReference: {fileID: 6906386064984644543}
+      objectReference: {fileID: 0}
     - target: {fileID: 2289583826620871233, guid: 72e4735f068e17545b7beae3384cfe87, type: 3}
       propertyPath: m_Name
       value: Robyn Initiative
@@ -334,7 +339,7 @@ PrefabInstance:
     - target: {fileID: 503383669660017136, guid: a140d055910a27248897b4dde27a9dbc, type: 3}
       propertyPath: m_Navigation.m_SelectOnUp
       value: 
-      objectReference: {fileID: 1115769227285982851}
+      objectReference: {fileID: 0}
     - target: {fileID: 503383669660017136, guid: a140d055910a27248897b4dde27a9dbc, type: 3}
       propertyPath: m_Navigation.m_SelectOnDown
       value: 
@@ -353,7 +358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7174305767645086344, guid: a140d055910a27248897b4dde27a9dbc, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7174305767645086344, guid: a140d055910a27248897b4dde27a9dbc, type: 3}
       propertyPath: m_AnchorMax.x
@@ -464,6 +469,10 @@ PrefabInstance:
       propertyPath: m_Navigation.m_SelectOnUp
       value: 
       objectReference: {fileID: 6906386064984644543}
+    - target: {fileID: 3953776005056482742, guid: 13a0d41d1e959074b929602ed0310004, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 1115769227285982851}
     - target: {fileID: 4117290444357986112, guid: 13a0d41d1e959074b929602ed0310004, type: 3}
       propertyPath: m_Name
       value: Phoebe Initiative
@@ -478,7 +487,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6031027464557178574, guid: 13a0d41d1e959074b929602ed0310004, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6031027464557178574, guid: 13a0d41d1e959074b929602ed0310004, type: 3}
       propertyPath: m_AnchorMax.x
