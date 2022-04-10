@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 290734984342119762}
   - component: {fileID: 5001917884544525359}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Vertical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,8 +29,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4230085504551024839}
   - {fileID: 7642648017776250363}
+  - {fileID: 4230085504551024839}
   - {fileID: 2438793248436181503}
   m_Father: {fileID: 8498044703470998694}
   m_RootOrder: 0
@@ -147,13 +147,20 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   isActive: 0
-  registerView: 0
-  viewName: 
+  registerView: 1
+  viewName: InitiativeView
   useDefaultAnimShow: 1
   useDefaultAnimHide: 1
   AudioEventShow: 0
   canvasGroup: {fileID: 8498044703470998692}
   rappelInput: {fileID: 0}
+  selectors:
+  - {fileID: 1115769227285982851}
+  - {fileID: 6906386064984644543}
+  - {fileID: 4950709827480074887}
+  Inputs: {fileID: 1935371568838821065}
+  parentSelectors: {fileID: 1795412480166817500}
+  isSelecting: 0
 --- !u!114 &1935371568838821065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +198,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1795412480166817500}
     m_Modifications:
+    - target: {fileID: 1169550313766312119, guid: 72e4735f068e17545b7beae3384cfe87, type: 3}
+      propertyPath: view
+      value: 
+      objectReference: {fileID: 5445880612658242254}
+    - target: {fileID: 1169550313766312119, guid: 72e4735f068e17545b7beae3384cfe87, type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 1795412480166817500}
+    - target: {fileID: 1169550313766312119, guid: 72e4735f068e17545b7beae3384cfe87, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 6906386064984644543}
     - target: {fileID: 2289583826620871233, guid: 72e4735f068e17545b7beae3384cfe87, type: 3}
       propertyPath: m_Name
       value: Robyn Initiative
@@ -205,7 +224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8455281810650708943, guid: 72e4735f068e17545b7beae3384cfe87, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8455281810650708943, guid: 72e4735f068e17545b7beae3384cfe87, type: 3}
       propertyPath: m_AnchorMax.x
@@ -286,6 +305,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8455281810650708943, guid: 72e4735f068e17545b7beae3384cfe87, type: 3}
   m_PrefabInstance: {fileID: 2253789805400667700}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1115769227285982851 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1169550313766312119, guid: 72e4735f068e17545b7beae3384cfe87, type: 3}
+  m_PrefabInstance: {fileID: 2253789805400667700}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1ba906eb795904fbbfbbd5c7cc1baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6423269203894041167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -293,6 +323,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1795412480166817500}
     m_Modifications:
+    - target: {fileID: 503383669660017136, guid: a140d055910a27248897b4dde27a9dbc, type: 3}
+      propertyPath: view
+      value: 
+      objectReference: {fileID: 5445880612658242254}
+    - target: {fileID: 503383669660017136, guid: a140d055910a27248897b4dde27a9dbc, type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 1795412480166817500}
+    - target: {fileID: 503383669660017136, guid: a140d055910a27248897b4dde27a9dbc, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 1115769227285982851}
+    - target: {fileID: 503383669660017136, guid: a140d055910a27248897b4dde27a9dbc, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 4950709827480074887}
     - target: {fileID: 648887007343987462, guid: a140d055910a27248897b4dde27a9dbc, type: 3}
       propertyPath: m_Name
       value: Abigail Initiative
@@ -307,7 +353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7174305767645086344, guid: a140d055910a27248897b4dde27a9dbc, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7174305767645086344, guid: a140d055910a27248897b4dde27a9dbc, type: 3}
       propertyPath: m_AnchorMax.x
@@ -388,6 +434,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7174305767645086344, guid: a140d055910a27248897b4dde27a9dbc, type: 3}
   m_PrefabInstance: {fileID: 6423269203894041167}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6906386064984644543 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 503383669660017136, guid: a140d055910a27248897b4dde27a9dbc, type: 3}
+  m_PrefabInstance: {fileID: 6423269203894041167}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1ba906eb795904fbbfbbd5c7cc1baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8244637430756865841
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -395,6 +452,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1795412480166817500}
     m_Modifications:
+    - target: {fileID: 3953776005056482742, guid: 13a0d41d1e959074b929602ed0310004, type: 3}
+      propertyPath: view
+      value: 
+      objectReference: {fileID: 5445880612658242254}
+    - target: {fileID: 3953776005056482742, guid: 13a0d41d1e959074b929602ed0310004, type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 1795412480166817500}
+    - target: {fileID: 3953776005056482742, guid: 13a0d41d1e959074b929602ed0310004, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 6906386064984644543}
     - target: {fileID: 4117290444357986112, guid: 13a0d41d1e959074b929602ed0310004, type: 3}
       propertyPath: m_Name
       value: Phoebe Initiative
@@ -490,3 +559,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6031027464557178574, guid: 13a0d41d1e959074b929602ed0310004, type: 3}
   m_PrefabInstance: {fileID: 8244637430756865841}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4950709827480074887 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3953776005056482742, guid: 13a0d41d1e959074b929602ed0310004, type: 3}
+  m_PrefabInstance: {fileID: 8244637430756865841}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1ba906eb795904fbbfbbd5c7cc1baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

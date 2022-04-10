@@ -31,6 +31,7 @@ namespace TheFowler
         [TitleGroup("Progression")] public Spell[] AllSpells;
 
         [TitleGroup("Progression")] public int complicityLevel = 1;
+        [TitleGroup("Progression")] public int initiativeOrder = 0;
 
         [TitleGroup("Data Binding")]
         public enum BindingType{DEFAULT,REMOTE_SETTINGS}
@@ -103,6 +104,7 @@ namespace TheFowler
 
                 }
             }
+
         }
 
 

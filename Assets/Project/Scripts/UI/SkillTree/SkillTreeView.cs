@@ -31,6 +31,8 @@ namespace TheFowler
 
         [TabGroup("Spell")] [SerializeField] private SpellTreeSelector[] spellTreeSelectors;
 
+        [SerializeField] private MenuCharactersView menuView;
+
         public SpellTreeSelector[] SpellTreeSelectors
         {
             get
@@ -74,7 +76,7 @@ namespace TheFowler
             }
             eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
 
-
+            menuView.onMenu = false;
 
         }
 
@@ -87,6 +89,12 @@ namespace TheFowler
 
             if (VolumesManager.Instance != null)
                 VolumesManager.Instance.BlurryUI.enabled = false;
+
+     
+            if(menuView != null)
+            {
+                menuView.Show();
+            }
 
         }
 
@@ -131,6 +139,11 @@ namespace TheFowler
 
                     firstSelectedObject._Select();
                     eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
+                }
+
+                else if (Inputs.actions["Return"].WasPressedThisFrame())
+                {
+                    Hide();
                 }
 
             }

@@ -23,6 +23,7 @@ namespace TheFowler
         {
             base.OnSelect(eventData);
 
+            if(_OnSelect != null)
             _OnSelect.PlayFeedbacks();
         }
 
@@ -30,6 +31,7 @@ namespace TheFowler
         {
             base.OnDeselect(eventData);
 
+            if(_OnDeselect != null)
             _OnDeselect.PlayFeedbacks();
         }
 
