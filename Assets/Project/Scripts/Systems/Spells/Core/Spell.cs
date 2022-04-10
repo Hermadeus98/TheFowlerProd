@@ -21,6 +21,7 @@ namespace TheFowler
         [TitleGroup("Main Settings")] public int CurrentCooldown;
 
         [TitleGroup("Main Settings")] public TargetTypeEnum TargetType;
+        [TitleGroup("Main Settings")] public SpellPowerEnum SpellPower;
 
         [TitleGroup("Main Settings")] public float
             executionDurationBeforeCast = .3f,
@@ -258,6 +259,14 @@ namespace TheFowler
             CLAW = 1,
             BEAK = 2,
             FEATHER = 3,
+        }
+
+        public enum SpellPowerEnum
+        {
+            NULL = 0,
+            EASY = 1,
+            MEDIUM = 2,
+            HARD = 3
         }
     }
 }

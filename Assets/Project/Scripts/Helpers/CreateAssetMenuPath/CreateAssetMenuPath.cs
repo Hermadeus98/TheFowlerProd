@@ -32,5 +32,7 @@ namespace TheFowler
 
         public const string battleActorData = battle + "BattleActor";
         public const string spell = data + "Spell";
+
+        public const string targetTypeDB = ui + "TargetTypeDatabase";
     }
 }

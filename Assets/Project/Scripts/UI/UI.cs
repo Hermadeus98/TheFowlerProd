@@ -28,6 +28,8 @@ namespace TheFowler
                 Complicity = "ComplicityView",
                 End = "EndView",
                 SkillTree = "SkillTreeView",
+                Initiative = "InitiativeView",
+                MenuCharacters = "MenuCharactersView",
                 GainSkill = "GainSkillView",
                 BattleDialog = "BattleDialog";
         }

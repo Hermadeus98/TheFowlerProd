@@ -96,7 +96,7 @@ namespace TheFowler
             {
                 if (enableProgression)
                 {
-                    //UI.GetView<SkillTreeView>(UI.Views.SkillTree).Show(this);
+                    UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Show(this);
                     hasPlayed = true;
                 }
                 else
@@ -121,7 +121,7 @@ namespace TheFowler
             {
                 if (!hasPlayed)
                 {
-                   // UI.GetView<SkillTreeView>(UI.Views.SkillTree).Show(this);
+                   UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Show(this);
                     hasPlayed = true;
                     return;
                 }
