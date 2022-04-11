@@ -36,6 +36,12 @@ namespace TheFowler
             initiativeView.Show(false);
 
             StartCoroutine(WaitOnMenu());
+
+            InfoBoxButtons[] infoButtons = new InfoBoxButtons[2];
+            infoButtons[0] = InfoBoxButtons.CONFIRM;
+            infoButtons[1] = InfoBoxButtons.CLOSE;
+
+            UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
         }
 
         public void Show(Battle _battle)
@@ -78,6 +84,12 @@ namespace TheFowler
                         background.SetActive(false);
 
                         initiativeView.gameObject.SetActive(false);
+
+                        InfoBoxButtons[] infoButtons = new InfoBoxButtons[2];
+                        infoButtons[0] = InfoBoxButtons.SELECT;
+                        infoButtons[1] = InfoBoxButtons.BACK;
+
+                        UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
                     }
                     else
                     {
@@ -88,6 +100,12 @@ namespace TheFowler
 
                         eventSytem.SetSelectedGameObject(firstSelectedObject);
                         initiativeView.gameObject.SetActive(true);
+
+                        InfoBoxButtons[] infoButtons = new InfoBoxButtons[2];
+                        infoButtons[0] = InfoBoxButtons.SELECT;
+                        infoButtons[1] = InfoBoxButtons.CLOSE;
+
+                        UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
                     }
 
                 }
