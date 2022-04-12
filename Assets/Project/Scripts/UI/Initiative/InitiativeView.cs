@@ -50,6 +50,11 @@ namespace TheFowler
 
                 StartCoroutine(WaitCanInput());
 
+                InfoBoxButtons[] infoButtons = new InfoBoxButtons[2];
+                infoButtons[0] = InfoBoxButtons.SELECT;
+                infoButtons[1] = InfoBoxButtons.BACK;
+
+                UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
             }
 
         }
