@@ -59,6 +59,8 @@ namespace TheFowler
 
             confirmation.SetActive(false);
             background.SetActive(true);
+            initiativeView.gameObject.SetActive(true);
+
 
             if (VolumesManager.Instance != null)
                 VolumesManager.Instance.BlurryUI.enabled = false;

@@ -31,6 +31,8 @@ namespace TheFowler
 
         private bool hasPlayed = false;
 
+        [SerializeField] private UnityEngine.Events.UnityEvent OnStartProgression;
+
 
         [TabGroup("References")] [SerializeField]
         private Istate[] battleStates;
@@ -96,7 +98,8 @@ namespace TheFowler
             {
                 if (enableProgression)
                 {
-                    UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Show(this);
+                    OnStartProgression.Invoke()
+;                    UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Show(this);
                     hasPlayed = true;
                 }
                 else
@@ -121,6 +124,7 @@ namespace TheFowler
             {
                 if (!hasPlayed)
                 {
+                    OnStartProgression.Invoke();
                    UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Show(this);
                     hasPlayed = true;
                     return;
@@ -131,12 +135,14 @@ namespace TheFowler
 
             BattleManager.CurrentBattle = this;
 
-            if (!StartWithSavedData)
-                Fury.FuryPoint = 0;
+            
+                
 
             SortByInitiative();
             RegisterActors();
             InitializeTurnSystem();
+
+            
 
             StartCoroutine(StartBattle());
 
@@ -222,12 +228,6 @@ namespace TheFowler
         {
             StartCoroutine(StopBattleCoroutine());
 
-
-            for (int i = 0; i < allies.Count; i++)
-            {
-                allies[i].BattleActorData.AddComplicity(1);
-            }
-
             hasPlayed = false;
         }
 
@@ -307,6 +307,7 @@ namespace TheFowler
                 {
                     allies.Add(alliesBatch.GetChild(i).GetComponent<BattleActor>());
                     alliesBatch.GetChild(i).gameObject.SetActive(state);
+                    
                 }
             }
 
@@ -333,7 +334,7 @@ namespace TheFowler
             initiativeList.Add(abi);
             if(phoebe != null) initiativeList.Add(phoebe);
 
-            var orderedEnumerable = initiativeList.OrderByDescending(w => w.Initiative);
+            var orderedEnumerable = initiativeList.OrderBy(w => w.Initiative);
 
             if (Player.useInitiative)
             {
