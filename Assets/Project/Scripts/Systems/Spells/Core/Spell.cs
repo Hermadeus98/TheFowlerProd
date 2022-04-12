@@ -19,6 +19,7 @@ namespace TheFowler
 
         [TitleGroup("Main Settings")] public int Cooldown;
         [TitleGroup("Main Settings")] public int CurrentCooldown;
+        [TitleGroup("Main Settings")] public bool isRechargingCooldown;
 
         [TitleGroup("Main Settings")] public TargetTypeEnum TargetType;
         [TitleGroup("Main Settings")] public SpellPowerEnum SpellPower;
@@ -80,7 +81,7 @@ namespace TheFowler
                         
                         if(i == 0)
                         {
-                            Effects[i].SetCamera();
+                            //Effects[i].SetCamera();
                             receiversReminder = new BattleActor[receivers.Length];
                             for (int j = 0; j < receivers.Length; j++)
                             {

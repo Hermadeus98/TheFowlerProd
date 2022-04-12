@@ -22,6 +22,8 @@ namespace TheFowler
         [TitleGroup("Settings")]
         [SerializeField, Tooltip(ToolTips.TT_loadPlayer)] private bool loadPlayer;
 
+        [TitleGroup("Settings"), SerializeField] private bool loadUI;
+
         [TitleGroup("Settings")] [SerializeField]
         private bool loadMainMenu;
         
@@ -41,7 +43,9 @@ namespace TheFowler
             //--<SCENE UI>
             if (loadMainMenu)
                 SceneManager.LoadSceneAsync("Scene_MenuPrincipal", LoadSceneMode.Additive);
-            Game.LoadSceneAdditive(SceneEnum.Scene_UI);
+            
+            if(loadUI)
+                Game.LoadSceneAdditive(SceneEnum.Scene_UI);
 
             yield return new WaitForEndOfFrame();
             

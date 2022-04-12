@@ -51,6 +51,8 @@ namespace TheFowler
         [TitleGroup("Data Binding"), ShowIf("@this.bindingType == BindingType.DEFAULT")]
         public int mana = 3;
 
+
+
         [Button]
         public void AddComplicity(int addValue)
         {
@@ -74,6 +76,8 @@ namespace TheFowler
                     if(AllSpells[i].spellState == SkillState.LOCKED)
                     {
                         AllSpells[i].spellState = SkillState.UNEQUIPPED;
+
+                        
                     }
                 }
             }
@@ -87,7 +91,8 @@ namespace TheFowler
             for (int i = 0; i < Spells.Length; i++)
             {
                 Spells[i] = DefaultSpells[i];
-                Spells[i].CurrentCooldown = 0;
+                Spells[i].CurrentCooldown = Spells[i].Cooldown;
+                Spells[i].isRechargingCooldown = false;
             }
 
             complicityLevel = 1;

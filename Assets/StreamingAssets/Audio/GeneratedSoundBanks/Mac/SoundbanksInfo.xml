@@ -44,7 +44,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3787826988" Language="English(US)" Hash="555966419">
+		<SoundBank Id="3787826988" Language="English(US)" Hash="2329645954">
 			<ObjectPath>\SoundBanks\Default Work Unit\Core</ObjectPath>
 			<ShortName>Core</ShortName>
 			<Path>English(US)\Core.bnk</Path>
@@ -63,13 +63,17 @@
 							<ShortName>TF_Music_Explo_120BPM.wav</ShortName>
 							<Path>SFX\TF_Music_Explo_120BPM_D79FB2B7.wem</Path>
 						</File>
-						<File Id="138360806" Language="SFX">
-							<ShortName>TF_Music_BattleStinger140_01.wav</ShortName>
-							<Path>SFX\TF_Music_BattleStinger140_01_D79FB2B7.wem</Path>
+						<File Id="275649466" Language="SFX">
+							<ShortName>TF_Music_BattleStinger190_02.wav</ShortName>
+							<Path>SFX\TF_Music_BattleStinger190_02_D79FB2B7.wem</Path>
 						</File>
 						<File Id="281310275" Language="SFX">
 							<ShortName>TF_Music_Intro_129BPM.wav</ShortName>
 							<Path>SFX\TF_Music_Intro_129BPM_D79FB2B7.wem</Path>
+						</File>
+						<File Id="620777709" Language="SFX">
+							<ShortName>TF_Music_BattleStinger190_03.wav</ShortName>
+							<Path>SFX\TF_Music_BattleStinger190_03_D79FB2B7.wem</Path>
 						</File>
 						<File Id="648708101" Language="SFX">
 							<ShortName>TF_M_Battle.wav</ShortName>
@@ -78,6 +82,10 @@
 						<File Id="782069622" Language="SFX">
 							<ShortName>TF_Music_BattleAviary_190BPM.wav</ShortName>
 							<Path>SFX\TF_Music_BattleAviary_190BPM_D79FB2B7.wem</Path>
+						</File>
+						<File Id="1015060177" Language="SFX">
+							<ShortName>TF_Music_BattleStinger190_01.wav</ShortName>
+							<Path>SFX\TF_Music_BattleStinger190_01_D79FB2B7.wem</Path>
 						</File>
 						<File Id="1047084377" Language="SFX">
 							<ShortName>TF_Music_BattleRegular_190BPM.wav</ShortName>
@@ -89,7 +97,6 @@
 							<Children>
 								<SwitchContainer SwitchValue="{610DA068-6F12-49ED-A20D-B05F69BD9E62}">
 									<Media>
-										<File Id="138360806"/>
 										<File Id="648708101"/>
 									</Media>
 								</SwitchContainer>
@@ -129,6 +136,9 @@
 							<Children>
 								<SwitchContainer SwitchValue="{9CDF30B7-4513-4CFA-9D35-A689207CC89D}">
 									<Media>
+										<File Id="275649466"/>
+										<File Id="620777709"/>
+										<File Id="1015060177"/>
 										<File Id="1047084377"/>
 									</Media>
 								</SwitchContainer>
@@ -483,7 +493,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="700122192" Name="TF_SFX_Cutscene_Guard_GroundHit01" ObjectPath="\Events\Default Work Unit\Cutscenes\DS_AfterFirstTuto\TF_SFX_Cutscene_Guard_GroundHit01" MaxAttenuation="50." DurationType="OneShot" DurationMin="1.227959" DurationMax="1.227959">
+				<Event Id="700122192" Name="TF_SFX_Cutscene_Guard_GroundHit01" ObjectPath="\Events\Default Work Unit\Cutscenes\DS_AfterFirstTuto\TF_SFX_Cutscene_Guard_GroundHit01" DurationType="OneShot" DurationMin="1.227959" DurationMax="1.227959">
 					<IncludedMemoryFiles>
 						<File Id="749631462" Language="SFX">
 							<ShortName>TF_SFX_Cutscene_Guard_GroundHit01.wav</ShortName>
@@ -491,7 +501,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="700122195" Name="TF_SFX_Cutscene_Guard_GroundHit02" ObjectPath="\Events\Default Work Unit\Cutscenes\DS_AfterFirstTuto\TF_SFX_Cutscene_Guard_GroundHit02" MaxAttenuation="50." DurationType="OneShot" DurationMin="1.113333" DurationMax="1.113333">
+				<Event Id="700122195" Name="TF_SFX_Cutscene_Guard_GroundHit02" ObjectPath="\Events\Default Work Unit\Cutscenes\DS_AfterFirstTuto\TF_SFX_Cutscene_Guard_GroundHit02" DurationType="OneShot" DurationMin="1.113333" DurationMax="1.113333">
 					<IncludedMemoryFiles>
 						<File Id="1034799315" Language="SFX">
 							<ShortName>TF_SFX_Cutscene_Guard_GroundHit02.wav</ShortName>
@@ -499,11 +509,19 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="827163671" Name="TF_SFX_Cutscene_Impact" ObjectPath="\Events\Default Work Unit\Cutscenes\DS_AfterFirstTuto\TF_SFX_Cutscene_Impact" MaxAttenuation="50." DurationType="OneShot" DurationMin="1." DurationMax="1.">
+				<Event Id="827163671" Name="TF_SFX_Cutscene_Impact" ObjectPath="\Events\Default Work Unit\Cutscenes\DS_AfterFirstTuto\TF_SFX_Cutscene_Impact" DurationType="OneShot" DurationMin="1." DurationMax="1.">
 					<IncludedMemoryFiles>
 						<File Id="120074100" Language="SFX">
 							<ShortName>TF_SFX_Cutscene_Impact.wav</ShortName>
 							<Path>SFX\TF_SFX_Cutscene_Impact_05F9AB7E.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="717798479" Name="TF_SFX_Cutscene_WallExplodes" ObjectPath="\Events\Default Work Unit\Cutscenes\DS_EntreeExplosion\TF_SFX_Cutscene_WallExplodes" DurationType="OneShot" DurationMin="5.600567" DurationMax="5.600567">
+					<IncludedMemoryFiles>
+						<File Id="592787323" Language="SFX">
+							<ShortName>TF_SFX_Cutscene_WallExplodes.wav</ShortName>
+							<Path>SFX\TF_SFX_Cutscene_WallExplodes_05F9AB7E.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

@@ -94,12 +94,14 @@ namespace TheFowler
             }
 
             canInput = false;
+
         }
 
         public void Hide(bool value)
         {
             isMenu = value;
             Hide();
+
         }
 
         public void InitializeSelectors()

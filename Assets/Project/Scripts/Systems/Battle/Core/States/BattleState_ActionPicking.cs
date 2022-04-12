@@ -9,7 +9,7 @@ namespace TheFowler
         private ActionPickingView ActionPickingView;
 
         private Coroutine openning, closing;
-        
+
         public override void OnStateEnter(EventArgs arg)
         {
             base.OnStateEnter(arg);
@@ -22,7 +22,8 @@ namespace TheFowler
             {
                 ActionPickingView = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
                 UI.OpenView("FuryView");
-                
+                BattleManager.lastTurnWasEnemiesTurn = false;
+
                 //CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle, CameraKeys.BattleKeys.ActionPicking);
             }
 
@@ -48,12 +49,21 @@ namespace TheFowler
             }
             else if (BattleManager.IsEnemyTurn)
             {
-                SetCamera(CameraKeys.BattleKeys.TargetPickingGuard);
+                if (!BattleManager.lastTurnWasEnemiesTurn)
+                {
+                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Enemies");
+                }
             }
 
             //yield return new WaitForSeconds(UI.GetView<TurnTransitionView>(UI.Views.TurnTransition).WaitTime);
-            yield return new WaitForSeconds(.2f);
-
+            if (!BattleManager.lastTurnWasEnemiesTurn)
+            {
+                yield return new WaitForSeconds(.2f);
+            }
+            else
+            {
+                yield return new WaitForSeconds(.2f);
+            }
 
             if (BattleManager.IsAllyTurn)
             {
@@ -62,9 +72,7 @@ namespace TheFowler
                     ActionPickingView = UI.OpenView<ActionPickingView>(UI.Views.ActionPicking);
                     ActionPickingView.Refresh(EventArgs.Empty);
                 }
-
             }
-
 
             isActive = true;
             yield break;
@@ -142,6 +150,11 @@ namespace TheFowler
             closing = StartCoroutine(CloseView());
 
             isActive = false;
+
+            if (BattleManager.IsEnemyTurn)
+            {
+                BattleManager.lastTurnWasEnemiesTurn = true;
+            }
 
             SoundManager.PlaySound( AudioGenericEnum.TF_SFX_Combat_UI_SwitchCamera_Light, gameObject);
         }

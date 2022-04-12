@@ -27,8 +27,28 @@ namespace TheFowler
             
             BattleManager.CurrentBattle.ChangeBattleState<BattleState_ActionPicking>(BattleStateEnum.ACTION_PICKING);
 
-            
+            if (BattleManager.IsEnemyTurn && !BattleManager.lastTurnWasEnemiesTurn)
+            {
+                yield return Transition();
+            }
+            else if(BattleManager.IsAllyTurn)
+            {
+                yield return Transition();
+            }
+
             _turnTransitionView = UI.GetView<TurnTransitionView>(UI.Views.TurnTransition);
+            yield return new WaitForSeconds(_turnTransitionView.WaitTime - .2f);
+            
+            if(BattleManager.IsAllyTurn)
+                CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle, CameraKeys.BattleKeys.ActionPicking);
+
+            yield break;
+        }
+
+        private IEnumerator Transition()
+        {
+            _turnTransitionView = UI.GetView<TurnTransitionView>(UI.Views.TurnTransition);
+
             _turnTransitionView.CameraSwipTransition(delegate
             {
                 var actor = BattleManager.CurrentBattleActor;
@@ -62,12 +82,7 @@ namespace TheFowler
                 }
             });
 
-            //_turnTransitionView = UI.OpenView<TurnTransitionView>(UI.Views.TurnTransition);
-            yield return new WaitForSeconds(_turnTransitionView.WaitTime - .2f);
-            
-            CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle, CameraKeys.BattleKeys.ActionPicking);
-
-            yield break;
+            yield return null;
         }
     }
 }
