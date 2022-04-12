@@ -8,8 +8,9 @@ namespace TheFowler
     public class SpellTreeSelector : MonoBehaviour
     {
         [SerializeField] private GameObject hover, unhover;
-        [SerializeField] private Image spellSprite;
+        [SerializeField] private Image spellSprite, cooldownSprite;
         [SerializeField] private TMPro.TextMeshProUGUI spellNameTxt, cooldownTxt;
+
 
         public Spell associatedSpell;
 
