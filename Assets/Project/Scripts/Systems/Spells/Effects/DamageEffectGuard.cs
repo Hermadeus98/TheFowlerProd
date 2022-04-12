@@ -6,33 +6,22 @@ namespace TheFowler
 {
     public class DamageEffectGuard : DamageEffect
     {
-        public ParticleSystem attackParticle;
-        public float attackDuration = 2f;
-        public ParticleSystem impactParticle;
-        public float impactDuration = 1f;
-        
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
             foreach (var r in receivers)
             {
                 CameraManager.Instance.GetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "EnemiesSpell").LookAt = r.transform;
                 
-                if (attackParticle != null)
-                {
-                    var attack = GameObject.Instantiate(attackParticle);
-                }
+                var attack = GameObject.Instantiate(SpellData.Instance.Guard_PS_BasicAttack_Projectile);
 
-                yield return new WaitForSeconds(attackDuration);
+                yield return new WaitForSeconds(SpellData.Instance.Guard_Timer_BasicAttack_ProjectileDuration);
 
-                if (impactParticle != null)
-                {
-                    var impact = GameObject.Instantiate(impactParticle, r.transform);
-                }
+                var impact = GameObject.Instantiate(SpellData.Instance.Guard_PS_BasicAttack_Impact, r.transform);
             }
             
-            Damage(damage, emitter, receivers);
+            Damage(500, emitter, receivers);
             
-            yield return new WaitForSeconds(impactDuration);
+            yield return new WaitForSeconds(SpellData.Instance.Guard_Timer_BasicAttack_ImpactDuration);
         }
 
         public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)

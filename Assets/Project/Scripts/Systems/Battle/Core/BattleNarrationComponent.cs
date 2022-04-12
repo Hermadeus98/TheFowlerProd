@@ -130,12 +130,16 @@ namespace TheFowler
             
             for (int i = 0; i < Dialogues.Length; i++)
             {
-                Dialogues[i].CameraPath.m_Priority = 1000;
+                if(Dialogues[i].CameraPath != null)
+                    Dialogues[i].CameraPath.m_Priority = 1000;
+                
                 battleDialogue.Refresh(Dialogues[i]);
                 Dialogues[i].optionalFeedback?.PlayFeedbacks();
                 
                 yield return new WaitForSeconds(Dialogues[i].displayDuration);
-                Dialogues[i].CameraPath.m_Priority = 0;
+                
+                if(Dialogues[i].CameraPath != null)
+                    Dialogues[i].CameraPath.m_Priority = 0;
             }
             
             battleDialogue.Hide();

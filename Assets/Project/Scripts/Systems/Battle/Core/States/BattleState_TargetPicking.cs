@@ -125,9 +125,10 @@ namespace TheFowler
             {
                 TargetSelector.OnTargetChanged -= PreviewManager.SetPreviews;
                 PreviewManager.EndPreviews();
+                
+                UI.CloseView(UI.Views.TargetPicking);
             }
             
-            UI.CloseView(UI.Views.TargetPicking);
             
             TargetSelector.Quit();
             ReturnToActionMenu = false;

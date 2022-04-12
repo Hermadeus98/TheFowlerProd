@@ -53,6 +53,7 @@ namespace TheFowler
         public override void OnDeath()
         {
             base.OnDeath();
+            BattleActorAnimator.Death();
 
             BattleManager.CurrentBattle.EnemyDeathCount++;
             Fury.PlayBreakDown();
