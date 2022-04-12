@@ -12,12 +12,13 @@ namespace TheFowler
         [SerializeField] private InitiativeView view;
         public BattleActorData associatedData;
         [SerializeField] private Transform parent;
-        [SerializeField] private Image portrait;
+        [SerializeField] private Image portrait, lifeFilled;
         [SerializeField] private GameObject arrow;
+        [SerializeField] private TMPro.TextMeshProUGUI lifeTxt;
         
         public bool isHover;
 
-        
+
         public override void OnSelect(BaseEventData eventData)
         {
 
@@ -56,6 +57,26 @@ namespace TheFowler
             arrow.SetActive(false);
         }
 
+        private void SetLife()
+        {
+            switch (associatedData.actorName)
+            {
+                case "Robyn":
+                    lifeFilled.fillAmount = Player.RobynSavedData.health / 100;
+                    lifeTxt.text = Player.RobynSavedData.health.ToString() + "/100";
+                    break;
+                case "Abigael":
+                    lifeFilled.fillAmount = Player.AbiSavedData.health / 100;
+                    lifeTxt.text = Player.AbiSavedData.health.ToString() + "/100";
+                    break;
+                case "Phoebe":
+                    lifeFilled.fillAmount = Player.PhoebeSavedData.health / 100;
+                    lifeTxt.text = Player.PhoebeSavedData.health.ToString() + "/100";
+                    break;
+
+            }
+        }
+
         public void InitialState()
         {
             associatedData.initiativeOrder = transform.GetSiblingIndex() + 1;
@@ -63,16 +84,18 @@ namespace TheFowler
             switch (associatedData.actorName)
             {
                 case "Robyn":
-                    Player.RobynSavedData.initiative = associatedData.initiativeOrder;
+                    Player.RobynSavedData.initiative = transform.GetSiblingIndex() + 1;
                     break;
-                case "Abigael":
-                    Player.AbiSavedData.initiative = associatedData.initiativeOrder;
+                case "Abigail":
+                    Player.AbiSavedData.initiative = transform.GetSiblingIndex() + 1;
                     break;
                 case "Phoebe":
-                    Player.PhoebeSavedData.initiative = associatedData.initiativeOrder;
+                    Player.PhoebeSavedData.initiative = transform.GetSiblingIndex() + 1;
                     break;
 
             }
+
+            
 
             Navigation customNav = new Navigation();
             customNav.mode = Navigation.Mode.Explicit;
@@ -95,6 +118,8 @@ namespace TheFowler
 
             portrait.color = Color.white;
             arrow.SetActive(false);
+
+            SetLife();
         }
 
         public void InitializeMenu()
@@ -103,6 +128,7 @@ namespace TheFowler
             customNav.mode = Navigation.Mode.Explicit;
             navigation = customNav;
         }
+
 
 
     }

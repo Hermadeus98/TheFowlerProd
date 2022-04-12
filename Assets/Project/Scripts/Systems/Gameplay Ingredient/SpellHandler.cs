@@ -41,7 +41,7 @@ namespace TheFowler
                 spells.Add(new SpellHandled()
                 {
                     Spell = ReferedActor.BattleActorData.Spells[i],
-                    cooldown = ReferedActor.BattleActorData.Spells[i].CurrentCooldown,
+                    //cooldown = ReferedActor.BattleActorData.Spells[i].CurrentCooldown,
                 });
             }
         }
@@ -62,7 +62,11 @@ namespace TheFowler
                 s.cooldown--;
                 
                 if (s.cooldown < 0)
+                {
                     s.cooldown = 0;
+                    s.Spell.isRechargingCooldown = false;
+                }
+
 
                 s.Spell.CurrentCooldown = s.cooldown;
             }
@@ -87,6 +91,8 @@ namespace TheFowler
             {
                 GetSpellHandled(s).cooldown = s.Cooldown;
                 s.CurrentCooldown = s.Cooldown;
+
+                s.isRechargingCooldown = true;
             }
         }
 
@@ -97,6 +103,7 @@ namespace TheFowler
                 spells[i].cooldown -= cooldownToRemove;
                 spells[i].cooldown = Mathf.Clamp(spells[i].cooldown, 0, int.MaxValue);
                 spells[i].Spell.CurrentCooldown = spells[i].cooldown;
+
             }
         }
     }

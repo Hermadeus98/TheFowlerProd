@@ -55,7 +55,7 @@ namespace TheFowler
 
         private void Navigate()
         {
-            if(!isActive)
+            if(!isActive )
                 return;
             
             if (Inputs.actions["NavigateDown"].WasPressedThisFrame())

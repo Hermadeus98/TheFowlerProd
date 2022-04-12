@@ -75,7 +75,7 @@ namespace TheFowler
 
         }
 
-        protected virtual void InitializeComponents()
+        public virtual void InitializeComponents()
         {
             
             health?.Initialize(BattleActorStats.health);
@@ -166,6 +166,7 @@ namespace TheFowler
 
             AllyData?.Select();
         }
+
 
         public virtual void OnTurnEnd()
         {

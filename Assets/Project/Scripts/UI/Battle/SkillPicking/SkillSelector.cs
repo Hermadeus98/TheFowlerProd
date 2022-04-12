@@ -12,6 +12,7 @@ namespace TheFowler
     public class SkillSelector : UISelector
     {
         [SerializeField] private RectTransform cursor;
+
         
         protected override void RegisterEvent()
         {
@@ -43,8 +44,11 @@ namespace TheFowler
             StartCoroutine(ShowElements());
 
             currentIndex = 0;
+
             SelectElement();
         }
+
+
 
         private IEnumerator ShowElements()
         {

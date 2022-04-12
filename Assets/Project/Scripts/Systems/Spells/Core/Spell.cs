@@ -19,6 +19,7 @@ namespace TheFowler
 
         [TitleGroup("Main Settings")] public int Cooldown;
         [TitleGroup("Main Settings")] public int CurrentCooldown;
+        [TitleGroup("Main Settings")] public bool isRechargingCooldown;
 
         [TitleGroup("Main Settings")] public TargetTypeEnum TargetType;
         [TitleGroup("Main Settings")] public SpellPowerEnum SpellPower;

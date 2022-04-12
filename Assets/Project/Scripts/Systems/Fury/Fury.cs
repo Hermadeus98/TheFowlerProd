@@ -19,7 +19,7 @@ namespace TheFowler
         {
             SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_Generic_FuryGain, null);
 
-            FuryPoint += point;
+            //FuryPoint += point;
 
             if (FuryPoint >= 100)
             {
@@ -61,6 +61,8 @@ namespace TheFowler
             if (batonPass != null)
                 Coroutiner.Instance.StopCoroutine(batonPass);
             Coroutiner.Instance.StartCoroutine(LaunchBatonPass());
+
+            UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Show(true);
         }
 
         /// <summary>
@@ -96,6 +98,8 @@ namespace TheFowler
             QRDebug.Log("FURY", FrenchPallet.TOMATO_RED, "END");
             IsInFury = false;
             StopFeedbackBreackDown();
+
+            UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Hide();
         }
 
         private static void StopFeedbackBreackDown()
