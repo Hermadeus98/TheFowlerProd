@@ -28,7 +28,7 @@ namespace TheFowler
             }
             else if (BattleManager.IsEnemyTurn)
             {
-                SetCamera(CameraKeys.BattleKeys.TargetPickingGuard);
+                //SetCamera(CameraKeys.BattleKeys.TargetPickingGuard);
             }
 
             InfoBoxButtons[] infoButtons = new InfoBoxButtons[3];

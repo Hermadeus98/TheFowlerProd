@@ -10,6 +10,8 @@ namespace TheFowler
 {
     public class DestructionSystem : SerializedMonoBehaviour
     {
+        public static DestructionSystem Instance;
+        
         private class LevelOfDestruction
         {
             public GameObject[] ObjectsToDesactivate;
