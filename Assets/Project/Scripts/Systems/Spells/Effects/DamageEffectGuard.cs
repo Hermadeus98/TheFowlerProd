@@ -15,6 +15,8 @@ namespace TheFowler
         {
             foreach (var r in receivers)
             {
+                CameraManager.Instance.GetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "EnemiesSpell").LookAt = r.transform;
+                
                 if (attackParticle != null)
                 {
                     var attack = GameObject.Instantiate(attackParticle);

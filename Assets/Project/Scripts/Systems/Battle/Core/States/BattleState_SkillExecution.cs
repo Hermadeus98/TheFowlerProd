@@ -15,16 +15,7 @@ namespace TheFowler
         public override void OnStateEnter(EventArgs arg)
         {
             base.OnStateEnter(arg);
-
-            if (BattleManager.IsAllyTurn)
-            {
-                //SetCamera(CameraKeys.BattleKeys.SkillExecutionDefault);
-            }
-            else if (BattleManager.IsEnemyTurn)
-            {
-                SetCamera(CameraKeys.BattleKeys.SkillExecutionGuard);
-            }
-
+            
             StartCoroutine(Cast());
 
             BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.SKILLEXECUTION);
@@ -74,6 +65,17 @@ namespace TheFowler
                 }
                 else if (BattleManager.IsEnemyTurn)
                 {
+                    if (!BattleManager.lastTurnWasEnemiesTurn)
+                    {
+                        CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "EnemiesSpellStart");
+                        yield return new WaitForSeconds(2f);
+                        CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "EnemiesSpell");
+                    }
+                    else
+                    {
+                        CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "EnemiesSpell");
+                    }
+                    
                     if (BattleManager.CurrentBattleActor is EnemyActor enemyActor)
                     {
                         if (enemyActor.Brain != null)

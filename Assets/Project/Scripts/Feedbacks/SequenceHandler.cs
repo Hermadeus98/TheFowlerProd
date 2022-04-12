@@ -23,5 +23,7 @@ namespace TheFowler
         ABY_BASIC_ATTACK,
         PHOEBE_BASIC_ATTACK,
         ENEMY_BASIC_ATTACK,
+        
+        ROBYN_ATTACK_FINISHER,
     }
 }

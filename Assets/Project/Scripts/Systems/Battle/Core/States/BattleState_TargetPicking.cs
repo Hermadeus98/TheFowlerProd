@@ -41,17 +41,12 @@ namespace TheFowler
                 }
                 else
                 {
-
                     InfoBoxButtons[] infoButtons = new InfoBoxButtons[3];
                     infoButtons[0] = InfoBoxButtons.CONFIRM;
                     infoButtons[1] = InfoBoxButtons.BACK;
                     infoButtons[2] = InfoBoxButtons.SELECTTARGET;
                     UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
                 }
-            }
-            else if(BattleManager.IsEnemyTurn)
-            {
-                SetCamera(CameraKeys.BattleKeys.TargetPickingGuard);
             }
             
             PlaySpellPreview();
