@@ -25,19 +25,18 @@ namespace TheFowler
                 
                 openning = StartCoroutine(OpenView());
                 SetCamera(CameraKeys.BattleKeys.SkillPicking);
+                
+                InfoBoxButtons[] infoButtons = new InfoBoxButtons[3];
+                infoButtons[0] = InfoBoxButtons.CONFIRM;
+                infoButtons[1] = InfoBoxButtons.BACK;
+                infoButtons[2] = InfoBoxButtons.SELECTSKILL;
+
+                UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
             }
             else if (BattleManager.IsEnemyTurn)
             {
                 //SetCamera(CameraKeys.BattleKeys.TargetPickingGuard);
             }
-
-            InfoBoxButtons[] infoButtons = new InfoBoxButtons[3];
-            infoButtons[0] = InfoBoxButtons.CONFIRM;
-            infoButtons[1] = InfoBoxButtons.BACK;
-            infoButtons[2] = InfoBoxButtons.SELECTSKILL;
-
-            UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
-
         }
 
         private IEnumerator OpenView()

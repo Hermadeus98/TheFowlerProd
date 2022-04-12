@@ -93,9 +93,14 @@ namespace TheFowler
                 if (BattleManager.IsEnemyTurn)
                 {
                     //EVENT DEATH
-                    if (BattleManager.CurrentBattle.lastDeath is AllyActor)
+                    if (BattleManager.CurrentBattle.lastDeath is AllyActor deadActor)
                     {
                         Debug.Log("EVENT : ON_DEATH_OF (Ally Death)");
+                        Debug.Log(BattleManager.CurrentBattle.lastDeath.gameObject.name);
+
+                        yield return deadActor.OnDeathSequence();
+                        
+                        
                     }
                 }
                 

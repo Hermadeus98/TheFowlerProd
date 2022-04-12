@@ -25,6 +25,11 @@ namespace TheFowler
                 BattleManager.lastTurnWasEnemiesTurn = false;
 
                 //CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle, CameraKeys.BattleKeys.ActionPicking);
+                
+                InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
+                            infoButtons[0] = InfoBoxButtons.HIDE;
+                
+                            UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
             }
 
             if (BattleManager.IsEnemyTurn)
@@ -32,13 +37,8 @@ namespace TheFowler
                 UI.CloseView("FuryView");
             }
 
-            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.ACTIONPICKING);
-
+            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.ACTIONPICKING);           
             
-            InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
-            infoButtons[0] = InfoBoxButtons.HIDE;
-
-            UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
         }
 
         IEnumerator OnStateEnterIE()

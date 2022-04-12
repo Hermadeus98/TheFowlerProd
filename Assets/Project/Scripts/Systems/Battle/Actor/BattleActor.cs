@@ -347,7 +347,6 @@ namespace TheFowler
         public virtual void OnDeath()
         {
             BattleManager.CurrentBattle.lastDeath = this;
-            BattleActorAnimator.Death();
         }
 
         public virtual void Resurect(float healthPercent = 100f)
