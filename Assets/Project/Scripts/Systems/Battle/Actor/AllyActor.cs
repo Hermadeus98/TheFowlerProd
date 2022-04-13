@@ -9,6 +9,8 @@ namespace TheFowler
     public class AllyActor : BattleActor
     {
         [SerializeField] private CinemachineVirtualCamera deathCam;
+
+        [HideInInspector] public bool hasShowDeathSequence = false;
         
         public override void OnTurnStart()
         {
@@ -24,6 +26,11 @@ namespace TheFowler
 
         public IEnumerator OnDeathSequence()
         {
+            if(hasShowDeathSequence)
+                yield break;
+            
+            hasShowDeathSequence = true;
+            
             UIBattleBatch.Instance.Hide();
             SplitScreen.Instance.Show(deathCam, BattleManager.CurrentBattleActor.CameraBatchBattle.CameraReferences["OnDeathJoking"].virtualCamera);
             SplitScreen.Instance.SetPunchLine("HAHAHA TU ES MORT SALE NOOB");
