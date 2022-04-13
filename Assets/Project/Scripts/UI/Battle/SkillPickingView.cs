@@ -1,6 +1,7 @@
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TheFowler
 {
@@ -26,6 +27,7 @@ namespace TheFowler
         private bool isBreakdown;
 
         private BattleActor battleActor;
+
 
         public override void Show()
         {
