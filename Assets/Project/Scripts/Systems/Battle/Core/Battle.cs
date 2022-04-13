@@ -28,6 +28,9 @@ namespace TheFowler
         [TitleGroup("General Settings")]
         [SerializeField]
         public bool enableProgression = true;
+        [TitleGroup("General Settings")] [ShowIf("enableProgression")]
+        [SerializeField]
+        public bool showSkillTree = true;
 
         private bool hasPlayed = false;
 
@@ -98,9 +101,18 @@ namespace TheFowler
             {
                 if (enableProgression)
                 {
-                    OnStartProgression.Invoke()
-;                    UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Show(this);
-                    hasPlayed = true;
+                    if (showSkillTree)
+                    {
+
+                        OnStartProgression.Invoke();
+                        UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Show(this);
+                        hasPlayed = true;
+                    }
+                    else
+                    {
+                        PlayPhase();
+                    }
+
                 }
                 else
                 {
@@ -115,19 +127,30 @@ namespace TheFowler
         {
             if (!enableProgression)
             {
-                for (int i = 0; i < allies.Count; i++)
+                if (!showSkillTree)
                 {
-                    allies[i].BattleActorData = allies[i].BattleActorData.defaultData;
+                    for (int i = 0; i < allies.Count; i++)
+                    {
+                        allies[i].BattleActorData = allies[i].BattleActorData.defaultData;
+                    }
                 }
+
+
+
+
             }
             else 
             {
                 if (!hasPlayed)
                 {
-                    OnStartProgression.Invoke();
-                   UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Show(this);
-                    hasPlayed = true;
-                    return;
+                    if (showSkillTree)
+                    {
+                        OnStartProgression.Invoke();
+                        UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Show(this);
+                        hasPlayed = true;
+                        return;
+                    }
+
                 }
             }
 

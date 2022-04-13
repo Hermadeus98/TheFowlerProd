@@ -17,8 +17,17 @@ namespace TheFowler
         public override void PlayPhase()
         {
             base.PlayPhase();
-            feedbacks?.PlayFeedbacks();
-            
+
+            if(transitionType != TransitionType.TURNTRANSITION)
+            {
+                feedbacks?.PlayFeedbacks();
+
+            }
+            else
+            {
+                UI.GetView<TurnTransitionView>(UI.Views.TurnTransition).CameraSwipTransition(EndPhase);
+            }
+
         }
 
 
@@ -51,6 +60,7 @@ namespace TheFowler
             GainSkillView view = UI.GetView<GainSkillView>(UI.Views.GainSkill);
             view.Show(value);
         }
+
 
     }
 

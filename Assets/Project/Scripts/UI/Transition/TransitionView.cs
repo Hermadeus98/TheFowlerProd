@@ -16,6 +16,9 @@ namespace TheFowler
         [TabGroup("References")]
         [SerializeField] private MMFeedbacks transitionHarmonisation, transitionStatic, transitionBattleIn,
             transitionChapter_One, transitionChapter_Two_PartOne, transitionChapter_Two_PartTwo, transitionChapter_Three;
+
+        [SerializeField]
+        private TurnTransitionView turnTransitionView;
         [ReadOnly]
         public ChapterEnum chapterType;
 
@@ -66,10 +69,14 @@ namespace TheFowler
                 case TransitionType.BATTLE:
                     Transition(transitionBattleIn, action);
                     break;
+                case TransitionType.TURNTRANSITION:
+                    turnTransitionView.CameraSwipTransition(null);
+                    return;
             }
 
             Show();
         }
+
 
         private void Transition(MMFeedbacks transition,UnityEngine.Events.UnityAction action)
         {
@@ -102,7 +109,8 @@ namespace TheFowler
         MOVEMENT,
         HARMONISATION,
         BATTLE,
-        CHAPTER
+        CHAPTER,
+        TURNTRANSITION
     }
 
 }
