@@ -77,6 +77,11 @@ namespace TheFowler
         {
             return cameraBatches[cameraPath.batchName].CameraReferences[cameraPath.cameraName].virtualCamera as T;
         }
+        
+        public T GetCamera<T>(string batch, string key) where T : CinemachineVirtualCameraBase
+        {
+            return cameraBatches[batch].CameraReferences[key].virtualCamera as T;
+        }
 
         public CinemachineVirtualCameraBase GetCamera(CameraBatch batch, string key)
         {
