@@ -31,7 +31,8 @@ namespace TheFowler
                 Initiative = "InitiativeView",
                 MenuCharacters = "MenuCharactersView",
                 GainSkill = "GainSkillView",
-                BattleDialog = "BattleDialog";
+                BattleDialog = "BattleDialog",
+                ContextualAction = "ContextualActionView";
         }
         
         private static Dictionary<string, UIView> views = new Dictionary<string, UIView>();
