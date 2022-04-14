@@ -17,8 +17,6 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000}
-    - {fileID: 7922360473775969288, guid: 480f25f6abbaa1d489b233750eb0b964, type: 3}
-    - {fileID: 8584810612643639328, guid: 40d7f8ea95e648d44b34a9f121241d8b, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -56,22 +54,19 @@ MonoBehaviour:
       Data: false
     - Name: audioEvent
       Entry: 3
-      Data: 0
+      Data: 8
     - Name: eventName
       Entry: 6
       Data: 
     - Name: ReferedSpell
       Entry: 10
       Data: 0
+    - Name: rage
+      Entry: 5
+      Data: false
     - Name: damage
       Entry: 4
-      Data: 15
-    - Name: VisualEffectAttack
-      Entry: 10
-      Data: 1
-    - Name: VisualEffectAttackShock
-      Entry: 10
-      Data: 2
+      Data: 18
     - Name: 
       Entry: 8
       Data: 
@@ -83,10 +78,12 @@ MonoBehaviour:
       Data: 
   SpellName: Dazzling Riff
   ManaCost: 8
-  Cooldown: 4
+  Cooldown: 5
   CurrentCooldown: 4
+  isRechargingCooldown: 0
+  logoBuff: {fileID: 0}
   TargetType: 2
-  SpellPower: 2
+  SpellPower: 1
   executionDurationBeforeCast: 0.3
   executionDurationAfterCast: 0.3
   SpellDescription: Inflict damages to all enemies
