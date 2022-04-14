@@ -47,7 +47,11 @@ namespace TheFowler
             image.texture = targettex;
             image.rectTransform.sizeDelta = new Vector2((int)dim.x, (int)dim.y);
 
-            transitionEvent?.Invoke();
+            if(transitionEvent != null)
+            {
+                transitionEvent?.Invoke();
+            }
+
 
             Animator.ResetTrigger("play");
             Animator.SetTrigger("play");
