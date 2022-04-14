@@ -101,7 +101,7 @@ namespace TheFowler
             {
                 if (AllSpells[i].unlockOrder <= complicityLevel)
                 {
-                    AllSpells[i].spellState = SkillState.EQUIPPED;
+                    AllSpells[i].spellState = SkillState.BASIC;
                 }
                 else
                 {
