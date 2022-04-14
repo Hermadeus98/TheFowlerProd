@@ -43,7 +43,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 716ef1726c9d0fe479a32a137b129274
-  position: {x: -481, y: -48}
+  position: {x: -480, y: -47}
   children:
   - {fileID: 4151569233255065424}
   - {fileID: 5388224996074128664}
@@ -54,7 +54,7 @@ MonoBehaviour:
     comparator_A: 0
     component: 0
     Operator: 4
-    comparator_B: 4
+    comparator_B: 6
     percent: 75
     NextNode: {fileID: 4151569233255065424}
   - isHardChoice: 0
@@ -62,17 +62,17 @@ MonoBehaviour:
     comparator_A: 0
     component: 0
     Operator: 2
-    comparator_B: 4
+    comparator_B: 6
     percent: 40
-    NextNode: {fileID: 5388224996074128664}
+    NextNode: {fileID: 5395469812233328941}
   - isHardChoice: 0
     hardChoice: 0
     comparator_A: 0
     component: 0
     Operator: 1
-    comparator_B: 4
+    comparator_B: 6
     percent: 75
-    NextNode: {fileID: 5395469812233328941}
+    NextNode: {fileID: 5388224996074128664}
   DefaultNextNode: {fileID: 4151569233255065424}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -87,6 +87,7 @@ MonoBehaviour:
   m_Name: AI_Squire
   m_EditorClassIdentifier: 
   rootNode: {fileID: -5002943791546989718}
+  actors: 
   treeState: 0
   nodes:
   - {fileID: -5002943791546989718}
@@ -96,6 +97,7 @@ MonoBehaviour:
   - {fileID: 4151569233255065424}
   - {fileID: 5388224996074128664}
   - {fileID: 5395469812233328941}
+  dialogueType: 0
 --- !u!114 &4151569233255065424
 MonoBehaviour:
   m_ObjectHideFlags: 0

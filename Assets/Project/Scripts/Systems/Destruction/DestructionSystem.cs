@@ -43,7 +43,7 @@ namespace TheFowler
             if(iteration >= LevelOfDestructions.Length)
                 return;
 
-            feedback.PlayFeedbacks();
+            feedback?.PlayFeedbacks();
             LevelOfDestructions[iteration].ObjectsToDesactivate.ForEach(w => w.SetActive(false));
             LevelOfDestructions[iteration].ObjectToActivate.ForEach(w => w.SetActive(true));
         }

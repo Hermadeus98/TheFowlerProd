@@ -15,7 +15,8 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 11400000}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -54,12 +55,18 @@ MonoBehaviour:
     - Name: audioEvent
       Entry: 3
       Data: 0
-    - Name: ReferedSpell
+    - Name: eventName
       Entry: 6
       Data: 
+    - Name: ReferedSpell
+      Entry: 10
+      Data: 0
+    - Name: rage
+      Entry: 5
+      Data: false
     - Name: damage
       Entry: 4
-      Data: 25
+      Data: 12
     - Name: 
       Entry: 8
       Data: 
@@ -71,9 +78,20 @@ MonoBehaviour:
       Data: 
   SpellName: Energy Absorbtion
   ManaCost: 0
+  Cooldown: 0
+  CurrentCooldown: 0
+  isRechargingCooldown: 0
+  logoBuff: {fileID: 0}
   TargetType: 1
+  SpellPower: 0
   executionDurationBeforeCast: 1
   executionDurationAfterCast: 1
   SpellDescription: Basic Attack Absorb HP
+  TargetDescription: 
+  EasySpellDescription: 
   ExecutionType: 0
   SpellType: 0
+  sequenceBinding: 0
+  sprite: {fileID: 0}
+  spellState: 0
+  unlockOrder: 0
