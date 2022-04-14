@@ -14,11 +14,9 @@ namespace TheFowler
     public class TransitionView : UIView
     {
         [TabGroup("References")]
-        [SerializeField] private MMFeedbacks transitionHarmonisation, transitionStatic, transitionBattleIn,
-            transitionChapter_One, transitionChapter_Two_PartOne, transitionChapter_Two_PartTwo, transitionChapter_Three;
-
         [SerializeField]
-        private TurnTransitionView turnTransitionView;
+        private MMFeedbacks transitionHarmonisation, transitionStatic, transitionBattleIn,
+            transitionChapter_One, transitionChapter_Two_PartOne, transitionChapter_Two_PartTwo, transitionChapter_Three, transitionCutscene;
         [ReadOnly]
         public ChapterEnum chapterType;
 
@@ -69,8 +67,8 @@ namespace TheFowler
                 case TransitionType.BATTLE:
                     Transition(transitionBattleIn, action);
                     break;
-                case TransitionType.TURNTRANSITION:
-                    turnTransitionView.CameraSwipTransition(null);
+                case TransitionType.CUTSCENE:
+                    Transition(transitionCutscene, action);
                     return;
             }
 
@@ -110,7 +108,8 @@ namespace TheFowler
         HARMONISATION,
         BATTLE,
         CHAPTER,
-        TURNTRANSITION
+        TURNTRANSITION,
+        CUTSCENE
     }
 
 }
