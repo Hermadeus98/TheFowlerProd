@@ -15,10 +15,7 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 11400000}
-    - {fileID: 1422429224235755760, guid: 7475432b1044077409565cfe0bdc6d4b, type: 3}
-    - {fileID: 1422429224235755760, guid: 95f7f4071015fcc4ebe47d6f36f24324, type: 3}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -29,10 +26,10 @@ MonoBehaviour:
       Data: 0|TheFowler.Effect[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.DamageEffectAbi, Assembly-CSharp
+      Data: 1|TheFowler.VampirismeEffect, Assembly-CSharp
     - Name: EffectName
       Entry: 1
       Data: NO NAME EFFECT
@@ -56,62 +53,17 @@ MonoBehaviour:
       Data: false
     - Name: audioEvent
       Entry: 3
-      Data: 0
+      Data: 8
     - Name: eventName
       Entry: 6
       Data: 
     - Name: ReferedSpell
-      Entry: 10
-      Data: 0
-    - Name: damage
-      Entry: 4
-      Data: 15
-    - Name: visualTrail
-      Entry: 10
-      Data: 1
-    - Name: trailDuration
-      Entry: 4
-      Data: 0.85
-    - Name: visualImpact
-      Entry: 10
-      Data: 2
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 2|TheFowler.HealEffect, Assembly-CSharp
-    - Name: EffectName
-      Entry: 1
-      Data: NO NAME EFFECT
-    - Name: TargetType
-      Entry: 3
-      Data: 0
-    - Name: battleCameraBatch
-      Entry: 3
-      Data: 0
-    - Name: cameraPath
       Entry: 6
       Data: 
-    - Name: cameraSpecificPath
-      Entry: 1
-      Data: Default
-    - Name: cameraBattlePath
-      Entry: 1
-      Data: Default
-    - Name: ImPreview
+    - Name: rage
       Entry: 5
       Data: false
-    - Name: audioEvent
-      Entry: 3
-      Data: 0
-    - Name: eventName
-      Entry: 6
-      Data: 
-    - Name: ReferedSpell
-      Entry: 10
-      Data: 0
-    - Name: healValue
+    - Name: damage
       Entry: 4
       Data: 15
     - Name: 
@@ -127,8 +79,10 @@ MonoBehaviour:
   ManaCost: 16
   Cooldown: 3
   CurrentCooldown: 0
+  isRechargingCooldown: 0
+  logoBuff: {fileID: 0}
   TargetType: 1
-  SpellPower: 2
+  SpellPower: 1
   executionDurationBeforeCast: 0.3
   executionDurationAfterCast: 0.3
   SpellDescription: Convert damages on self-healing

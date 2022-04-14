@@ -61,9 +61,12 @@ MonoBehaviour:
     - Name: ReferedSpell
       Entry: 10
       Data: 0
+    - Name: rage
+      Entry: 5
+      Data: false
     - Name: damage
       Entry: 4
-      Data: 20
+      Data: 18
     - Name: 
       Entry: 8
       Data: 
@@ -75,7 +78,12 @@ MonoBehaviour:
       Data: 
   SpellName: Basic Attack
   ManaCost: 0
+  Cooldown: 0
+  CurrentCooldown: 0
+  isRechargingCooldown: 0
+  logoBuff: {fileID: 0}
   TargetType: 1
+  SpellPower: 0
   executionDurationBeforeCast: 0.3
   executionDurationAfterCast: 0.3
   SpellDescription: 
@@ -84,3 +92,6 @@ MonoBehaviour:
   ExecutionType: 0
   SpellType: 0
   sequenceBinding: 3
+  sprite: {fileID: 0}
+  spellState: 0
+  unlockOrder: 0
