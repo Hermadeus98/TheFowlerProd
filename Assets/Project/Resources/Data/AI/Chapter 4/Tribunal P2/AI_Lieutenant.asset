@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
-  m_Name: Damage
+  m_Name: Heal_1
   m_EditorClassIdentifier: 
-  NodeName: Damage
+  NodeName: Heal_1
   chance: 1
   state: 0
   started: 0
@@ -20,7 +20,7 @@ MonoBehaviour:
   position: {x: 406.36, y: 98}
   children: []
   spellList:
-  - Spell: {fileID: 11400000, guid: 5fafe1ee9e78d184494d182e2c518fda, type: 2}
+  - Spell: {fileID: 11400000, guid: c5dbb892be094234abf715a13de6c180, type: 2}
     Chance: 0
 --- !u!114 &-6687556664085984303
 MonoBehaviour:
@@ -32,14 +32,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
-  m_Name: "PJ Al\xE9atoire 4"
+  m_Name: "PJ Al\xE9atoire_3"
   m_EditorClassIdentifier: 
-  NodeName: "PJ Al\xE9atoire 4"
+  NodeName: "PJ Al\xE9atoire_3"
   chance: 1
   state: 0
   started: 0
   guid: b2081998fd053c741b86819038dd8403
-  position: {x: 561.7851, y: 464.6925}
+  position: {x: 614, y: 927}
   children:
   - {fileID: -3802333508360245875}
   TargetIntention: 9
@@ -55,17 +55,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
-  m_Name: PJ Aleatoire
+  m_Name: WeakerPNJ
   m_EditorClassIdentifier: 
-  NodeName: PJ Aleatoire
+  NodeName: WeakerPNJ
   chance: 1
   state: 0
   started: 0
   guid: 9b67102c1cdbc954db72af119214b88d
-  position: {x: 241, y: 98}
+  position: {x: 238, y: 98}
   children:
   - {fileID: -7517385446224719497}
-  TargetIntention: 9
+  TargetIntention: 4
   With: 0
   value: 20
 --- !u!114 &-5922080883698160397
@@ -78,17 +78,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
-  m_Name: Damage
+  m_Name: Heal
   m_EditorClassIdentifier: 
-  NodeName: Damage
+  NodeName: Heal
   chance: 1
   state: 0
   started: 0
   guid: 08c9601540b2ac9449f2569ff67ac4c0
-  position: {x: 924, y: 592.00006}
+  position: {x: 960, y: 585}
   children: []
   spellList:
-  - Spell: {fileID: 11400000, guid: 5fafe1ee9e78d184494d182e2c518fda, type: 2}
+  - Spell: {fileID: 11400000, guid: c5dbb892be094234abf715a13de6c180, type: 2}
     Chance: 0
 --- !u!114 &-5137462194242084503
 MonoBehaviour:
@@ -107,7 +107,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: c9e37a36e02354b43b1a29b87a5dee47
-  position: {x: -113, y: 98}
+  position: {x: -117.52002, y: 98}
   children:
   - {fileID: -6686092193023682952}
   - {fileID: 6189216935421902975}
@@ -131,9 +131,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a16d7749e1191724db8102279a8920c3, type: 3}
-  m_Name: PNJ Have buff ?
+  m_Name: Lieutenant have buff ?_1
   m_EditorClassIdentifier: 
-  NodeName: PNJ Have buff ?
+  NodeName: Lieutenant have buff ?_1
   chance: 1
   state: 0
   started: 0
@@ -143,13 +143,13 @@ MonoBehaviour:
   - {fileID: 1292580448383206562}
   - {fileID: -2482445739671215790}
   Choices:
-  - isHardChoice: 1
+  - isHardChoice: 0
     hardChoice: 0
     comparator_A: 0
-    component: 0
+    component: 2
     Operator: 0
-    comparator_B: 0
-    percent: 0
+    comparator_B: 6
+    percent: 1
     NextNode: {fileID: -2482445739671215790}
   DefaultNextNode: {fileID: 1292580448383206562}
 --- !u!114 &-3802333508360245875
@@ -162,17 +162,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
-  m_Name: Damage 4
+  m_Name: Basic Atk_3
   m_EditorClassIdentifier: 
-  NodeName: Damage 4
+  NodeName: Basic Atk_3
   chance: 1
   state: 0
   started: 0
   guid: 4de1ae6322859714590b5af3fb6093aa
-  position: {x: 791.7851, y: 462.69254}
+  position: {x: 783, y: 927}
   children: []
   spellList:
-  - Spell: {fileID: 11400000, guid: 5fafe1ee9e78d184494d182e2c518fda, type: 2}
+  - Spell: {fileID: 11400000, guid: 3f4f46a3a5933b945b4442ea6490c515, type: 2}
     Chance: 0
 --- !u!114 &-2482445739671215790
 MonoBehaviour:
@@ -184,9 +184,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
-  m_Name: PJ Aleatoire 2
+  m_Name: PJ Aleatoire_2
   m_EditorClassIdentifier: 
-  NodeName: PJ Aleatoire 2
+  NodeName: PJ Aleatoire_2
   chance: 1
   state: 0
   started: 0
@@ -207,9 +207,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
-  m_Name: Damage
+  m_Name: Basic Atk_1
   m_EditorClassIdentifier: 
-  NodeName: Damage
+  NodeName: Basic Atk_1
   chance: 1
   state: 0
   started: 0
@@ -217,31 +217,9 @@ MonoBehaviour:
   position: {x: 1194.92, y: 450.32257}
   children: []
   spellList:
-  - Spell: {fileID: 11400000, guid: 5fafe1ee9e78d184494d182e2c518fda, type: 2}
+  - Spell: {fileID: 11400000, guid: 3f4f46a3a5933b945b4442ea6490c515, type: 2}
     Chance: 0
---- !u!114 &-1757520444484228338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
-  m_Name: Fowler's Motivation
-  m_EditorClassIdentifier: 
-  NodeName: Fowler's Motivation
-  chance: 1
-  state: 0
-  started: 0
-  guid: e48a8284571c49448a7b1d8af9a1d764
-  position: {x: 924, y: 714}
-  children: []
-  spellList:
-  - Spell: {fileID: 11400000, guid: d60dd0e504aad9a4b91c72a199f81103, type: 2}
-    Chance: 0
---- !u!114 &-1623543769939691623
+--- !u!114 &-579483139517182759
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -251,17 +229,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
-  m_Name: "PNJ Al\xE9atoire 2"
+  m_Name: Weaker Ally_1
   m_EditorClassIdentifier: 
-  NodeName: "PNJ Al\xE9atoire 2"
+  NodeName: Weaker Ally_1
   chance: 1
   state: 0
   started: 0
-  guid: 65627d904be28cc42864bd6d4c7512d0
-  position: {x: 727.4791, y: 718.5209}
+  guid: 34a5446ba85c10a47a70082ea2771e79
+  position: {x: 815, y: 687}
   children:
-  - {fileID: -1757520444484228338}
-  TargetIntention: 14
+  - {fileID: 4254713018752558149}
+  TargetIntention: 2
   With: 0
   value: 0
 --- !u!114 &11400000
@@ -274,7 +252,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9cf5a2a104152e48a7bbaed625f399a, type: 3}
-  m_Name: AI_Booster
+  m_Name: AI_Lieutenant
   m_EditorClassIdentifier: 
   rootNode: {fileID: -5137462194242084503}
   actors: 
@@ -289,14 +267,14 @@ MonoBehaviour:
   - {fileID: 1467263115192644493}
   - {fileID: -2482445739671215790}
   - {fileID: -1762028940160291926}
-  - {fileID: 7343997417964285061}
   - {fileID: 9072063718284060364}
   - {fileID: -5922080883698160397}
-  - {fileID: -1623543769939691623}
-  - {fileID: -1757520444484228338}
   - {fileID: 6051665061293622168}
   - {fileID: -6687556664085984303}
   - {fileID: -3802333508360245875}
+  - {fileID: 6977718253787576658}
+  - {fileID: -579483139517182759}
+  - {fileID: 4254713018752558149}
   dialogueType: 0
 --- !u!114 &1292580448383206562
 MonoBehaviour:
@@ -308,9 +286,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
-  m_Name: Select All PNJ
+  m_Name: "PJ Al\xE9atoire_1"
   m_EditorClassIdentifier: 
-  NodeName: Select All PNJ
+  NodeName: "PJ Al\xE9atoire_1"
   chance: 1
   state: 0
   started: 0
@@ -318,7 +296,7 @@ MonoBehaviour:
   position: {x: 986.92, y: 320.3225}
   children:
   - {fileID: 1467263115192644493}
-  TargetIntention: 14
+  TargetIntention: 9
   With: 0
   value: 0
 --- !u!114 &1467263115192644493
@@ -331,9 +309,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
-  m_Name: Fowler's Rage
+  m_Name: Shrill Vibration_1
   m_EditorClassIdentifier: 
-  NodeName: Fowler's Rage
+  NodeName: Shrill Vibration_1
   chance: 1
   state: 0
   started: 0
@@ -341,7 +319,29 @@ MonoBehaviour:
   position: {x: 1194.92, y: 320.3225}
   children: []
   spellList:
-  - Spell: {fileID: 11400000, guid: 8bc63c0ad1e7426409e820b4c889a2f6, type: 2}
+  - Spell: {fileID: 11400000, guid: d442644fd4b7b53479ab9b1f3e6b380c, type: 2}
+    Chance: 0
+--- !u!114 &4254713018752558149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: Basic Atk_2
+  m_EditorClassIdentifier: 
+  NodeName: Basic Atk_2
+  chance: 1
+  state: 0
+  started: 0
+  guid: 25184383771d346439429ff2a04479ee
+  position: {x: 960, y: 687}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: 3f4f46a3a5933b945b4442ea6490c515, type: 2}
     Chance: 0
 --- !u!114 &6051665061293622168
 MonoBehaviour:
@@ -353,27 +353,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a16d7749e1191724db8102279a8920c3, type: 3}
-  m_Name: Is Booster last Enemy
+  m_Name: An Enemie have less to 45% hp
   m_EditorClassIdentifier: 
-  NodeName: Is Booster last Enemy
+  NodeName: An Enemie have less to 45% hp
   chance: 1
   state: 0
   started: 0
   guid: e01e950264ef3974ea7e66aa0cdaed9e
-  position: {x: 353.42755, y: 430.09}
+  position: {x: 353, y: 585}
   children:
   - {fileID: -6687556664085984303}
-  - {fileID: 7343997417964285061}
+  - {fileID: 6977718253787576658}
   Choices:
   - isHardChoice: 0
     hardChoice: 0
     comparator_A: 5
-    component: 1
-    Operator: 0
+    component: 0
+    Operator: 2
     comparator_B: 6
-    percent: 1
-    NextNode: {fileID: -6687556664085984303}
-  DefaultNextNode: {fileID: 7343997417964285061}
+    percent: 45
+    NextNode: {fileID: 6977718253787576658}
+  DefaultNextNode: {fileID: -6687556664085984303}
 --- !u!114 &6189216935421902975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,14 +384,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a16d7749e1191724db8102279a8920c3, type: 3}
-  m_Name: PNJ > 2
+  m_Name: PNJ > 3
   m_EditorClassIdentifier: 
-  NodeName: PNJ > 2
+  NodeName: PNJ > 3
   chance: 1
   state: 0
   started: 0
   guid: c2d846010e282d94a99d65f2349442e5
-  position: {x: 232, y: 319}
+  position: {x: 238, y: 320}
   children:
   - {fileID: 6051665061293622168}
   - {fileID: -4677017494967907431}
@@ -402,10 +402,10 @@ MonoBehaviour:
     component: 1
     Operator: 3
     comparator_B: 6
-    percent: 2
+    percent: 3
     NextNode: {fileID: -4677017494967907431}
   DefaultNextNode: {fileID: 6051665061293622168}
---- !u!114 &7343997417964285061
+--- !u!114 &6977718253787576658
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -414,28 +414,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a16d7749e1191724db8102279a8920c3, type: 3}
-  m_Name: None PNJ Buff
+  m_Script: {fileID: 11500000, guid: 1884b09a793565145a2ecfeff2b70fbc, type: 3}
+  m_Name: Aleatory_1
   m_EditorClassIdentifier: 
-  NodeName: None PNJ Buff
+  NodeName: Aleatory_1
   chance: 1
   state: 0
   started: 0
-  guid: b528667bf124cc248811819f43d6a816
-  position: {x: 472.5208, y: 592}
+  guid: fd07c342f55b34541af01bfe9d6b72b8
+  position: {x: 595, y: 585}
   children:
   - {fileID: 9072063718284060364}
-  - {fileID: -1623543769939691623}
-  Choices:
-  - isHardChoice: 1
-    hardChoice: 0
-    comparator_A: 0
-    component: 0
-    Operator: 0
-    comparator_B: 0
-    percent: 0
-    NextNode: {fileID: 9072063718284060364}
-  DefaultNextNode: {fileID: -1623543769939691623}
+  - {fileID: -579483139517182759}
 --- !u!114 &9072063718284060364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -446,16 +436,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
-  m_Name: PJ Aleatoire 3
+  m_Name: WeakerEmy
   m_EditorClassIdentifier: 
-  NodeName: PJ Aleatoire 3
-  chance: 1
+  NodeName: WeakerEmy
+  chance: 2
   state: 0
   started: 0
   guid: 242530bdc2a6e9045ac063d034e4bd1a
-  position: {x: 733, y: 592}
+  position: {x: 815, y: 585}
   children:
   - {fileID: -5922080883698160397}
-  TargetIntention: 11
+  TargetIntention: 4
   With: 0
   value: 0

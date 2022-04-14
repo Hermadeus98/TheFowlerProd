@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: Energy Absorbtion
+  m_Name: Fowler's Benediction
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 11400000}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -27,16 +26,16 @@ MonoBehaviour:
       Data: 0|TheFowler.Effect[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.VampirismeEffect, Assembly-CSharp
+      Data: 1|TheFowler.HealEffect, Assembly-CSharp
     - Name: EffectName
       Entry: 1
       Data: NO NAME EFFECT
     - Name: TargetType
       Entry: 3
-      Data: 1
+      Data: 3
     - Name: battleCameraBatch
       Entry: 3
       Data: 3
@@ -48,25 +47,70 @@ MonoBehaviour:
       Data: Default
     - Name: cameraBattlePath
       Entry: 1
-      Data: TargetAllies
+      Data: Enemies
     - Name: ImPreview
       Entry: 5
       Data: false
     - Name: audioEvent
       Entry: 3
-      Data: 0
+      Data: 10
     - Name: eventName
       Entry: 6
       Data: 
     - Name: ReferedSpell
-      Entry: 10
-      Data: 0
+      Entry: 6
+      Data: 
     - Name: rage
       Entry: 5
       Data: false
-    - Name: damage
+    - Name: healValue
       Entry: 4
-      Data: 12
+      Data: 25
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|TheFowler.DamageBonus, Assembly-CSharp
+    - Name: EffectName
+      Entry: 1
+      Data: NO NAME EFFECT
+    - Name: TargetType
+      Entry: 3
+      Data: 3
+    - Name: battleCameraBatch
+      Entry: 3
+      Data: 0
+    - Name: cameraPath
+      Entry: 6
+      Data: 
+    - Name: cameraSpecificPath
+      Entry: 1
+      Data: Default
+    - Name: cameraBattlePath
+      Entry: 1
+      Data: Default
+    - Name: ImPreview
+      Entry: 5
+      Data: false
+    - Name: audioEvent
+      Entry: 3
+      Data: 7
+    - Name: eventName
+      Entry: 6
+      Data: 
+    - Name: ReferedSpell
+      Entry: 6
+      Data: 
+    - Name: rage
+      Entry: 5
+      Data: false
+    - Name: buffBonus
+      Entry: 4
+      Data: 25
+    - Name: turnDuration
+      Entry: 3
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -76,17 +120,17 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Energy Absorbtion
+  SpellName: Fowler's Benediction
   ManaCost: 0
   Cooldown: 0
   CurrentCooldown: 0
   isRechargingCooldown: 0
   logoBuff: {fileID: 0}
-  TargetType: 1
+  TargetType: 3
   SpellPower: 0
   executionDurationBeforeCast: 1
   executionDurationAfterCast: 1
-  SpellDescription: Basic Attack Absorb HP
+  SpellDescription: Basic Attack
   TargetDescription: 
   EasySpellDescription: 
   ExecutionType: 0
