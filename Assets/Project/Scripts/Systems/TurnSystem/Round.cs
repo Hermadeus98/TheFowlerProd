@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.Utilities;
 using UnityEngine;
 
 namespace TheFowler
@@ -107,6 +108,38 @@ namespace TheFowler
         {
             blockNextTurn = true;
             Debug.Log("BlockNextTurn");
+        }
+
+        public ITurnActor GetNextAlly()
+        {
+            if (TurnActors.IsNullOrEmpty())
+                return null;
+            
+            if (currentTurnIndex + 1 < TurnActors.Count)
+            {
+                if (TurnActors[currentTurnIndex + 1] is AllyActor ally)
+                {
+                    if (!ally.BattleActorInfo.isDeath)
+                    {
+                        return ally;
+                    }
+                }
+                
+                if (currentTurnIndex + 2 < TurnActors.Count)
+                {
+                    if(TurnActors[currentTurnIndex + 2] is AllyActor nextAlly)
+                    {
+                        if (!nextAlly.BattleActorInfo.isDeath)
+                        {
+                            return nextAlly;
+                        }
+                    }
+                }
+                
+                return TurnActors[currentTurnIndex + 1];
+            }
+
+            return null;
         }
     }
 }

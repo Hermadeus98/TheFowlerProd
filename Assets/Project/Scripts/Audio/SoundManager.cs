@@ -71,9 +71,11 @@ namespace TheFowler
                 {
                     case DamageCalculator.ResistanceFaiblesseResult.NEUTRE:
                         PlaySound(AudioGenericEnum.TF_SFX_Combat_Generic_Enemy_DamageTaken_Neutral, target.gameObject);
+                        AkSoundEngine.PostTrigger("CombatHit", null);
                         break;
                     case DamageCalculator.ResistanceFaiblesseResult.FAIBLESSE:
                         PlaySound(AudioGenericEnum.TF_SFX_Combat_Generic_Enemy_DamageTaken_Weak, target.gameObject);
+                        AkSoundEngine.PostTrigger("CombatHit", null);
                         break;
                     case DamageCalculator.ResistanceFaiblesseResult.RESISTANCE:
                         PlaySound(AudioGenericEnum.TF_SFX_Combat_Generic_Enemy_DamageTaken_Resist, target.gameObject);

@@ -6,6 +6,7 @@ using DG.Tweening;
 using QRCode;
 using QRCode.Extensions;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TheFowler
 {
@@ -13,6 +14,7 @@ namespace TheFowler
     {
         [SerializeField] private RectTransform cursor;
 
+        [SerializeField] private Image up, down;
         
         protected override void RegisterEvent()
         {
@@ -105,6 +107,24 @@ namespace TheFowler
         {
             base.OnNavigate();
             SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Hover, gameObject);
+
+            if (currentIndex == 0)
+            {
+                up.rectTransform.DOScale(0f, .2f).SetEase(Ease.InOutSine);
+            }
+            else
+            {
+                up.rectTransform.DOScale(1f, .2f).SetEase(Ease.InOutSine);
+            }
+            
+            if (currentIndex == elements.Count - 1)
+            {
+                down.rectTransform.DOScale(0f, .2f).SetEase(Ease.InOutSine);
+            }
+            else
+            {
+                down.rectTransform.DOScale(1f, .2f).SetEase(Ease.InOutSine);
+            }
         }
     }
 }
