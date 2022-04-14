@@ -17,8 +17,6 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000}
-    - {fileID: 1422429224235755760, guid: 7475432b1044077409565cfe0bdc6d4b, type: 3}
-    - {fileID: 1422429224235755760, guid: 95f7f4071015fcc4ebe47d6f36f24324, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -56,25 +54,19 @@ MonoBehaviour:
       Data: false
     - Name: audioEvent
       Entry: 3
-      Data: 0
+      Data: 8
     - Name: eventName
       Entry: 6
       Data: 
     - Name: ReferedSpell
       Entry: 10
       Data: 0
+    - Name: rage
+      Entry: 5
+      Data: false
     - Name: damage
       Entry: 4
       Data: 25
-    - Name: visualTrail
-      Entry: 10
-      Data: 1
-    - Name: trailDuration
-      Entry: 4
-      Data: 0.85
-    - Name: visualImpact
-      Entry: 10
-      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -86,10 +78,12 @@ MonoBehaviour:
       Data: 
   SpellName: Sudden Strike
   ManaCost: 11
-  Cooldown: 4
+  Cooldown: 3
   CurrentCooldown: 0
+  isRechargingCooldown: 0
+  logoBuff: {fileID: 0}
   TargetType: 1
-  SpellPower: 0
+  SpellPower: 2
   executionDurationBeforeCast: 0.3
   executionDurationAfterCast: 0.3
   SpellDescription: Inflict damages

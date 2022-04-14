@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: Basic Attack - Phoebe
+  m_Name: 3_Encouraging Roll
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -30,13 +30,13 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.DamageEffect, Assembly-CSharp
+      Data: 1|TheFowler.HealEffect, Assembly-CSharp
     - Name: EffectName
       Entry: 1
-      Data: Damage
+      Data: Heal
     - Name: TargetType
       Entry: 3
-      Data: 1
+      Data: 4
     - Name: battleCameraBatch
       Entry: 3
       Data: 2
@@ -45,7 +45,7 @@ MonoBehaviour:
       Data: 
     - Name: cameraSpecificPath
       Entry: 1
-      Data: SkillExecutionAttack
+      Data: TargetPickingAllies
     - Name: cameraBattlePath
       Entry: 6
       Data: 
@@ -64,9 +64,9 @@ MonoBehaviour:
     - Name: rage
       Entry: 5
       Data: false
-    - Name: damage
+    - Name: healValue
       Entry: 4
-      Data: 18
+      Data: 40
     - Name: 
       Entry: 8
       Data: 
@@ -76,22 +76,22 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Basic Attack
-  ManaCost: 0
-  Cooldown: 0
+  SpellName: Encouraging Roll
+  ManaCost: 20
+  Cooldown: 5
   CurrentCooldown: 0
   isRechargingCooldown: 0
   logoBuff: {fileID: 0}
-  TargetType: 1
-  SpellPower: 0
+  TargetType: 4
+  SpellPower: 1
   executionDurationBeforeCast: 0.3
   executionDurationAfterCast: 0.3
-  SpellDescription: 
-  TargetDescription: Single Enemy
-  EasySpellDescription: <color=#FF0000>Light DMG</color><sprite=0>
+  SpellDescription: Heal all allies
+  TargetDescription: All Allies
+  EasySpellDescription: <color=#FF0000>Light Heal</color><size=35><sprite=0></size>
   ExecutionType: 0
   SpellType: 0
-  sequenceBinding: 3
-  sprite: {fileID: 0}
-  spellState: 0
-  unlockOrder: 0
+  sequenceBinding: 2
+  sprite: {fileID: 21300000, guid: f5cb5b9ebeff8634fb6ef8f940012401, type: 3}
+  spellState: 2
+  unlockOrder: 2
