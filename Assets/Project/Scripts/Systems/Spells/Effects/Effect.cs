@@ -26,6 +26,8 @@ namespace TheFowler
         
         [ReadOnly] public Spell ReferedSpell;
 
+        public bool rage = false;
+
         public virtual void PreviewEffect(BattleActor emitter)
         {
             if (this.GetType() != typeof(DefendEffect))
@@ -69,21 +71,39 @@ namespace TheFowler
         
         protected void Damage(float damage, BattleActor emitter, BattleActor[] receivers)
         {
-            foreach (var receiver in receivers)
+            if (TargetType == TargetTypeEnum.SELF)
             {
-                var _damage = DamageCalculator.CalculateDamage(damage, emitter, receiver, ReferedSpell.SpellType, out var resistanceFaiblesseResult);
-
-                if(resistanceFaiblesseResult == DamageCalculator.ResistanceFaiblesseResult.FAIBLESSE)
-                {
-                    //Fury.AddFuryPoint(10);
-                }
-
-                SoundManager.PlaySoundDamageTaken(receiver, resistanceFaiblesseResult);
-                
-                receiver.Health.TakeDamage(
-                    _damage
-                );
+                DamageSolo(damage, emitter, emitter);
             }
+            else
+            {
+                foreach (var receiver in receivers)
+                {
+                    DamageSolo(damage, emitter, receiver);
+                }
+            }
+        }
+
+        private void DamageSolo(float damage, BattleActor emitter, BattleActor receiver)
+        {
+            var _damage = DamageCalculator.CalculateDamage(damage, emitter, receiver, ReferedSpell.SpellType, out var resistanceFaiblesseResult);
+
+            if (rage)
+            {
+                var healthLosePercent = 1 - emitter.Health.NormalizedHealth;
+                _damage += damage * (1 + healthLosePercent);
+            }
+
+            if(resistanceFaiblesseResult == DamageCalculator.ResistanceFaiblesseResult.FAIBLESSE)
+            {
+                //Fury.AddFuryPoint(10);
+            }
+
+            SoundManager.PlaySoundDamageTaken(receiver, resistanceFaiblesseResult);
+                
+            receiver.Health.TakeDamage(
+                _damage
+            );
         }
 
         protected void Heal(float heal, BattleActor emitter, BattleActor[] receivers)
