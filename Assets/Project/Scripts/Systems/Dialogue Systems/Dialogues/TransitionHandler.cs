@@ -3,7 +3,7 @@ using QRCode;
 using QRCode.Extensions;
 using UnityEngine;
 using MoreMountains.Feedbacks;
-
+using System.Collections;
 
 namespace TheFowler
 {
@@ -17,22 +17,14 @@ namespace TheFowler
         public override void PlayPhase()
         {
             base.PlayPhase();
-
-            if(transitionType != TransitionType.TURNTRANSITION)
-            {
-                feedbacks?.PlayFeedbacks();
-
-            }
-            else
-            {
-                UI.GetView<TurnTransitionView>(UI.Views.TurnTransition).CameraSwipTransition(EndPhase);
-            }
+            feedbacks?.PlayFeedbacks();
 
         }
 
 
         public override void EndPhase()
         {
+            if(!IsActive) return;
             base.EndPhase();
             if(nextPhase != null)
             {
@@ -44,6 +36,7 @@ namespace TheFowler
 
         public void Transition()
         {
+
             UI.GetView<TransitionView>(UI.Views.TransitionView).Show(transitionType, null);
         }
 
