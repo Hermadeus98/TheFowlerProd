@@ -36,11 +36,7 @@ namespace TheFowler
 
         public void Transition()
         {
-            if (transitionType == TransitionType.CUTSCENE)
-            {
-                UI.GetView<TransitionView>(UI.Views.TransitionView).Show(transitionType, EndPhase);
-                return;
-            }
+
             UI.GetView<TransitionView>(UI.Views.TransitionView).Show(transitionType, null);
         }
 
