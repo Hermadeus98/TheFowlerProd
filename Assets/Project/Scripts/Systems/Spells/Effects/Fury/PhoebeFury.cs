@@ -24,8 +24,8 @@ namespace TheFowler
             foreach (var ally in allies)
             {
                 var buff = ally.GetBattleComponent<Buff>();
-                buff.BuffPercent = buffBonus;
-                buff.BuffActor(turnDuration);
+                /*buff.BuffPercent = buffBonus;
+                buff.BuffActor(turnDuration);*/
             }
 
             yield return new WaitForSeconds(1f);

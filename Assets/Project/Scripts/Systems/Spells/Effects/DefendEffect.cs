@@ -7,18 +7,15 @@ namespace TheFowler
 {
     public class DefendEffect : Effect
     {
-        [SerializeField] private int effectDuration = 1;
-        [SerializeField, Range(0, 100)] private float effect = 25;
-        [SerializeField] private int manaToRestaure = 2;
-        
-        public enum RestaureManaAt
+        public enum DefenseBonusType
         {
-            Cast,
-            Start_Turn
+            Buff,
+            Debuff,
         }
 
-        [SerializeField] private RestaureManaAt restaureManaAt = RestaureManaAt.Cast;
-        
+        public DefenseBonusType bonusType;
+        public bool isAOE = false;
+
         public override IEnumerator OnBeginCast(BattleActor emitter, BattleActor[] receivers)
         {
             yield break;
@@ -28,24 +25,22 @@ namespace TheFowler
         {
             foreach (var receiver in receivers)
             {
-                switch (restaureManaAt)
+                if(emitter.GetBattleComponent<SpellHandler>() != null)
+                    emitter.GetBattleComponent<SpellHandler>().LoseCoolDown(1);
+
+                switch (bonusType)
                 {
-                    case RestaureManaAt.Cast:
-                        //receiver.Mana.AddMana(manaToRestaure);
-                        if(emitter.GetBattleComponent<SpellHandler>() != null)
-                            emitter.GetBattleComponent<SpellHandler>().LoseCoolDown(1);
+                    case DefenseBonusType.Buff:
+                        receiver.GetBattleComponent<Defense>().BuffDefense(isAOE ? DamageCalculator.buffDefenseAOE : DamageCalculator.buffDefense);
                         break;
-                    case RestaureManaAt.Start_Turn:
-                        //receiver.GetBattleComponent<Defense>().RestaureMana.AddListener(() => receiver.Mana.AddMana(manaToRestaure));
-                        //emitter.GetBattleComponent<SpellHandler>().re
+                    case DefenseBonusType.Debuff:
+                        receiver.GetBattleComponent<Defense>().DebuffDefense(isAOE ? DamageCalculator.debuffDefenseAOE : DamageCalculator.debuffDefense);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
-                receiver.GetBattleComponent<Defense>().DefendActor(effectDuration, effect);
             }
-            
-            
+
             yield break;
         }
 

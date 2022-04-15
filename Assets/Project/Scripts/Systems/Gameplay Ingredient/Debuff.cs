@@ -8,7 +8,7 @@ namespace TheFowler
 {
     public class Debuff : BattleActorComponent
     {
-        [SerializeField] private int waitTurn;
+        /*[SerializeField] private int waitTurn;
         [SerializeField, Range(0, 100)] private float debuffPercent = 25f;
 
         public UnityEvent OnDebuffStart, OnDebuffEnd;
@@ -56,6 +56,6 @@ namespace TheFowler
                 if(waitTurn == 0)
                     EndDebuff();
             }
-        }
+        }*/
     }
 }

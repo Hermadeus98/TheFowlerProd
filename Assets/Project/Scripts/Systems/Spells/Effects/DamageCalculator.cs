@@ -7,20 +7,28 @@ namespace TheFowler
 {
     public static class DamageCalculator
     {
+        public static int buffDefense = 25;
+        public static int buffDefenseAOE = 20;
+        public static int debuffDefense = 25;
+        public static int debuffDefenseAOE = 20;
+        public static int maxBuffDefense = 100;
+        public static int minBuffDefense = -100;
+
+        public static int buffAttack = 25;
+        public static int buffAttackAOE = 25;
+        public static int debuffAttack = 25;
+        public static int debuffAttackAOE = 25;
+        public static int maxBuffAttack = 100;
+        public static int minBuffAttack = -100;
+        
         public static float CalculateDamage(float initialDamage, BattleActor emitter, BattleActor receiver, Spell.SpellTypeEnum spellType, out ResistanceFaiblesseResult ResistanceFaiblesseResult)
         {
-            var bonusesCoef = emitter.BattleActorInfo.buffBonus / 100;
-            var malusesCoef = emitter.BattleActorInfo.debuffMalus / 100;
-            var defenseCoef = receiver.BattleActorInfo.defenseBonus / 100;
-            defenseCoef *= -1f;
-          
-            var bonusesCalculate = initialDamage * (bonusesCoef - malusesCoef);
-            
-            var result = (initialDamage + bonusesCalculate) + (initialDamage * defenseCoef);
+            var attackBonus = emitter.BattleActorInfo.attackBonus;
+            var defenseBonus = receiver.BattleActorInfo.defenseBonus;
 
-            /*Debug.Log(initialDamage);
-            Debug.Log(bonusesCalculate);
-            Debug.Log(result);*/
+            var bonus = (attackBonus - defenseBonus) / 100;
+
+            var result = initialDamage + initialDamage * bonus;
             
             var resistance = CalculateSpellTypeBonus(spellType, receiver.BattleActorData.actorType);
             switch (resistance)
@@ -28,11 +36,11 @@ namespace TheFowler
                 case ResistanceFaiblesseResult.NEUTRE:
                     break;
                 case ResistanceFaiblesseResult.FAIBLESSE:
-                    result *= 1.5f;
+                    result *= 1.3f;
 
                     break;
                 case ResistanceFaiblesseResult.RESISTANCE:
-                    result *= 0.5f;
+                    result *= 0.7f;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

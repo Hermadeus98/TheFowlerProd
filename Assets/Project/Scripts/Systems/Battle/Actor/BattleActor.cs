@@ -141,17 +141,13 @@ namespace TheFowler
                         health?.SetCurrentHealth(Player.PhoebeSavedData.health);
                         mana?.SetMana(Player.PhoebeSavedData.mana);
                     }
-
-
-
             }
 
             else
             {
                 battleActorComponents.ForEach(w => w.Initialize());
                 battleActorInfo.isDeath = false;
-                battleActorInfo.buffBonus = 0;
-                battleActorInfo.debuffMalus = 0;
+                battleActorInfo.attackBonus = 0;
             }
         }
 
@@ -362,9 +358,9 @@ namespace TheFowler
     {
         public bool isDeath;
         public bool isStun;
-        public float buffBonus;
-        public float debuffMalus;
         public bool isTaunt;
-        public float defenseBonus;
+        
+        public int attackBonus;
+        public int defenseBonus;
     }
 }
