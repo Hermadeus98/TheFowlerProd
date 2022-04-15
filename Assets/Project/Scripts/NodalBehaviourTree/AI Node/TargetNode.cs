@@ -66,7 +66,7 @@ namespace TheFowler
                         case SelectTargetWith.NONE:
                             break;
                         case SelectTargetWith.WITH_DEFEND_BUFF:
-                            TargetSelector.GetAllAllies().First(w => w.BattleActorInfo.buffBonus > 0).SelectAsTarget();
+                            TargetSelector.GetAllAllies().First(w => w.BattleActorInfo.attackBonus > 0).SelectAsTarget();
                             break;
                         case SelectTargetWith.WITH_LESS_HEALTH_THAN:
                         {
@@ -104,7 +104,7 @@ namespace TheFowler
                         case SelectTargetWith.NONE:
                             break;
                         case SelectTargetWith.WITH_DEFEND_BUFF:
-                            TargetSelector.GetAllEnemies().First(w => w.BattleActorInfo.buffBonus > 0).SelectAsTarget();
+                            TargetSelector.GetAllEnemies().First(w => w.BattleActorInfo.attackBonus > 0).SelectAsTarget();
                             break;
                         case SelectTargetWith.WITH_LESS_HEALTH_THAN:
                         {
