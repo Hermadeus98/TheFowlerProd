@@ -121,6 +121,7 @@ namespace TheFowler
 
         public BattleDialog[] Dialogues;
 
+
         
         public IEnumerator NarrativeEvent()
         {
@@ -137,7 +138,9 @@ namespace TheFowler
                 
                 battleDialogue.Refresh(Dialogues[i]);
                 Dialogues[i].optionalFeedback?.PlayFeedbacks();
+
                 
+
                 yield return new WaitForSeconds(Dialogues[i].displayDuration);
                 
                 if(Dialogues[i].CameraPath != null)
@@ -145,6 +148,8 @@ namespace TheFowler
 
                 Dialogues[i].Event.Invoke();
             }
+
+            
 
 
             
