@@ -8,7 +8,39 @@ namespace TheFowler
 {
     public class Buff : BattleActorComponent
     {
-        [SerializeField] private int waitTurn;
+        [Button]
+        public void BuffAttack(int value)
+        {
+            ReferedActor.BattleActorInfo.attackBonus += value;
+
+            if (ReferedActor.BattleActorInfo.attackBonus > DamageCalculator.maxBuffAttack)
+                ReferedActor.BattleActorInfo.attackBonus = DamageCalculator.maxBuffAttack;
+            
+            ReferedActor.StateIcons?.Refresh_Att(ReferedActor);
+        }
+
+        [Button]
+        public void DebuffAttack(int value)
+        {
+            ReferedActor.BattleActorInfo.attackBonus -= value;
+            
+            if (ReferedActor.BattleActorInfo.defenseBonus < DamageCalculator.minBuffAttack)
+                ReferedActor.BattleActorInfo.defenseBonus = DamageCalculator.minBuffAttack;
+            
+            ReferedActor.StateIcons?.Refresh_Att(ReferedActor);
+
+        }
+
+        [Button]
+        public void ResetDefense()
+        {
+            ReferedActor.BattleActorInfo.attackBonus = 0;
+            
+            ReferedActor.StateIcons?.Refresh_Att(ReferedActor);
+
+        }
+        
+        /*[SerializeField] private int waitTurn;
         [SerializeField, Range(0,100)] private float buffPercent = 25f;
 
         public UnityEvent OnBuffStart, OnBuffEnd;
@@ -75,6 +107,6 @@ namespace TheFowler
                 if(waitTurn == 0)
                     EndBuff();
             }
-        }
+        }*/
     }
 }

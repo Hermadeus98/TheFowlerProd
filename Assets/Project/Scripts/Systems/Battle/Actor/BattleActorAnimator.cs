@@ -10,6 +10,7 @@ namespace TheFowler
     {
         public Animator Animator;
 
+        private bool isDefending = false;
         private const string DefendName = "Defend";
         private static readonly int DefendTrigger = Animator.StringToHash(DefendName);
         
@@ -35,6 +36,11 @@ namespace TheFowler
         [Button]
         public void StartDefend()
         {
+            if(isDefending)
+                return;
+
+            isDefending = true;
+            
             ResetTriggers();
             Animator.SetTrigger(DefendTrigger);
             
@@ -47,13 +53,16 @@ namespace TheFowler
                         {
                             Animator.SetFloat(IdleBlend, IdleBlendValue);
                         });
-            
-            //Animator.SetFloat(IdleBlend, IdleBlendValue);
         }
 
         [Button]
         public void EndDefend()
         {
+            if(!isDefending)
+                return;
+
+            isDefending = false;
+            
             ResetTriggers();
 
             DOTween.To(

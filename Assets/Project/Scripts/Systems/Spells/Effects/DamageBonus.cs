@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.Utilities;
@@ -7,8 +8,14 @@ namespace TheFowler
 {
     public class DamageBonus : Effect
     {
-        [SerializeField, Range(0,100)] private float buffBonus = 25f;
-        [SerializeField] private int turnDuration = 1;
+        public enum AttackBonusType
+        {
+            BONUS,
+            MALUS,
+        }
+
+        public AttackBonusType attackBonusType;
+        public bool isAOE = false;
         
         public override IEnumerator OnBeginCast(BattleActor emitter, BattleActor[] receivers)
         {
@@ -20,20 +27,33 @@ namespace TheFowler
             if (TargetType == TargetTypeEnum.SELF)
             {
                 var buff = emitter.GetBattleComponent<Buff>();
-                buff.BuffPercent = buffBonus;
-                buff.BuffActor(turnDuration);
+                Apply(buff);
             }
             else
             {
                 foreach (var receiver in receivers)
                 {
                     var buff = receiver.GetBattleComponent<Buff>();
-                    buff.BuffPercent = buffBonus;
-                    buff.BuffActor(turnDuration);
+                    Apply(buff);
                 }
             }
 
             yield break;
+        }
+
+        private void Apply(Buff buff)
+        {
+            switch (attackBonusType)
+            {
+                case AttackBonusType.BONUS:
+                    buff.BuffAttack(isAOE ? DamageCalculator.buffAttackAOE : DamageCalculator.buffAttack);
+                    break;
+                case AttackBonusType.MALUS:
+                    buff.DebuffAttack(isAOE ? DamageCalculator.debuffAttackAOE : DamageCalculator.debuffAttack);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         public override IEnumerator OnFinishCast(BattleActor emitter, BattleActor[] receivers)
@@ -43,22 +63,7 @@ namespace TheFowler
 
         public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
         {
-            base.OnSimpleCast(emitter, receivers);
-            if (TargetType == TargetTypeEnum.SELF)
-            {
-                var buff = emitter.GetBattleComponent<Buff>();
-                buff.BuffPercent = buffBonus;
-                buff.BuffActor(turnDuration);
-            }
-            else
-            {
-                foreach (var receiver in receivers)
-                {
-                    var buff = receiver.GetBattleComponent<Buff>();
-                    buff.BuffPercent = buffBonus;
-                    buff.BuffActor(turnDuration);
-                }
-            }
+            emitter.StartCoroutine(OnCast(emitter, receivers));
         }
     }
 }

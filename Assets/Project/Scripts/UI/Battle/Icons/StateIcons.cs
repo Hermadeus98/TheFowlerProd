@@ -21,34 +21,24 @@ namespace TheFowler
 
         public void RefreshBuff_Def(BattleActor actor)
         {
-            var def = actor.BattleActorInfo.defenseBonus;
-            
-            if (def != 0)
-            {
-                buff_def.Show();
-                buff_def.Refresh(def);
-            }
+            if(actor.BattleActorInfo.defenseBonus == 0)
+                buff_def.gameObject.SetActive(false);
             else
             {
-                buff_def.Hide();
+                buff_def.gameObject.SetActive(true);
+                buff_def.Refresh(actor.BattleActorInfo.defenseBonus);
             }
-            
         }
 
         public void Refresh_Att(BattleActor actor)
         {
-            var att = actor.BattleActorInfo.buffBonus + actor.BattleActorInfo.debuffMalus;
-
-            if (att != 0)
-            {
-                buff_att.Show();
-                buff_att.Refresh(att);
-            }
+            if(actor.BattleActorInfo.attackBonus == 0)
+                buff_att.gameObject.SetActive(false);
             else
             {
-                buff_att.Hide();
+                buff_att.gameObject.SetActive(true);
+                buff_att.Refresh(actor.BattleActorInfo.attackBonus);
             }
-            
         }
     }
 }
