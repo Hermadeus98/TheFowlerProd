@@ -26,6 +26,9 @@ namespace TheFowler
 
         [TitleGroup("Settings")] [SerializeField]
         private bool loadMainMenu;
+        [TitleGroup("Settings")] [SerializeField]
+        private bool loadBattles;
+
         
         [TitleGroup("Difficulty Settings")] [SerializeField]
         private DifficultyEnum startDifficulty = DifficultyEnum.TEST;
@@ -43,8 +46,11 @@ namespace TheFowler
             //--<SCENE UI>
             if (loadMainMenu)
                 SceneManager.LoadSceneAsync("Scene_MenuPrincipal", LoadSceneMode.Additive);
-            
-            if(loadUI)
+
+            if (loadBattles)
+                SceneManager.LoadSceneAsync("Scene_Playtest_Edrick", LoadSceneMode.Additive);
+
+            if (loadUI)
                 Game.LoadSceneAdditive(SceneEnum.Scene_UI);
 
             yield return new WaitForEndOfFrame();
