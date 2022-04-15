@@ -120,6 +120,7 @@ namespace TheFowler
         [ShowIf("@this.callMoment == NarrativeEventCallMoment.ON_DEATH_COUNT")] public int deathCount;
 
         public BattleDialog[] Dialogues;
+
         
         public IEnumerator NarrativeEvent()
         {
@@ -133,6 +134,7 @@ namespace TheFowler
                 if(Dialogues[i].CameraPath != null)
                     Dialogues[i].CameraPath.m_Priority = 1000;
                 
+                
                 battleDialogue.Refresh(Dialogues[i]);
                 Dialogues[i].optionalFeedback?.PlayFeedbacks();
                 
@@ -140,7 +142,11 @@ namespace TheFowler
                 
                 if(Dialogues[i].CameraPath != null)
                     Dialogues[i].CameraPath.m_Priority = 0;
+
+                Dialogues[i].Event.Invoke();
             }
+
+
             
             battleDialogue.Hide();
             
@@ -158,6 +164,8 @@ namespace TheFowler
         public AK.Wwise.Event voices;
 
         public MMFeedbacks optionalFeedback;
+
+        public UnityEngine.Events.UnityEvent Event;
     }
 
     public enum NarrativeEventCallMoment
