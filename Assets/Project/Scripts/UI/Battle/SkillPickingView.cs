@@ -35,7 +35,7 @@ namespace TheFowler
             skillSelector.Refresh(BattleManager.CurrentBattleActor.GetBattleComponent<SpellHandler>());
             skillSelector.Show();
 
-            GetComponent<RectTransform>().anchoredPosition = basicPosition;
+            //GetComponent<RectTransform>().anchoredPosition = basicPosition;
         }
 
         public void Show(bool _isBreakdown)

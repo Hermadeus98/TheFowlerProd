@@ -94,10 +94,12 @@ namespace TheFowler
         private IEnumerator WaitEndVideoInput()
         {
             videoPassed = true;
-            BlackPanel.Instance.Show();
+            if(playBlackPanel)
+                BlackPanel.Instance.Show();
             yield return new WaitForSeconds(1);
             EndPhase();
-            BlackPanel.Instance.Hide(1);
+            if (playBlackPanel)
+                BlackPanel.Instance.Hide(1);
             yield return null;
         }
 

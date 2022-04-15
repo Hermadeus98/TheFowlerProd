@@ -62,7 +62,7 @@ namespace TheFowler
                 Coroutiner.Instance.StopCoroutine(batonPass);
             Coroutiner.Instance.StartCoroutine(LaunchBatonPass());
 
-            UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Show(true);
+            //UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Show(true);
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace TheFowler
             IsInFury = false;
             StopFeedbackBreackDown();
 
-            UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Hide();
+            //UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Hide();
         }
 
         private static void StopFeedbackBreackDown()
