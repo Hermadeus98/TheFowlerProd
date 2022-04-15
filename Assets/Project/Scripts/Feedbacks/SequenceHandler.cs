@@ -8,12 +8,24 @@ namespace TheFowler
 {
     public class SequenceHandler : SerializedMonoBehaviour
     {
-        public Dictionary<SequenceEnum, PlayableDirector> database = new Dictionary<SequenceEnum, PlayableDirector>();
+        public SequenceKeys[] sequences;
 
         public PlayableDirector GetSequence(SequenceEnum key)
         {
-            return database[key];
+            for (int i = 0; i < sequences.Length; i++)
+            {
+                if (sequences[i].key == key)
+                    return sequences[i].value;
+            }
+
+            return null;
         }
+    }
+
+    public class SequenceKeys
+    {
+        public SequenceEnum key;
+        public PlayableDirector value;
     }
 
     public enum SequenceEnum
