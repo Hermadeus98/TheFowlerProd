@@ -36,7 +36,7 @@ MonoBehaviour:
       Data: NO NAME EFFECT
     - Name: TargetType
       Entry: 3
-      Data: 3
+      Data: 1
     - Name: battleCameraBatch
       Entry: 3
       Data: 3
@@ -73,18 +73,15 @@ MonoBehaviour:
     - Name: ReferedSpell
       Entry: 10
       Data: 0
-    - Name: effectDuration
-      Entry: 3
-      Data: 3
-    - Name: effect
-      Entry: 4
-      Data: 25
-    - Name: manaToRestaure
+    - Name: rage
+      Entry: 5
+      Data: false
+    - Name: bonusType
       Entry: 3
       Data: 0
-    - Name: restaureManaAt
-      Entry: 3
-      Data: 0
+    - Name: isAOE
+      Entry: 5
+      Data: false
     - Name: 
       Entry: 8
       Data: 
@@ -96,7 +93,12 @@ MonoBehaviour:
       Data: 
   SpellName: Nursery Rhyme of Protection
   ManaCost: 0
+  Cooldown: 0
+  CurrentCooldown: 0
+  isRechargingCooldown: 0
+  logoBuff: {fileID: 0}
   TargetType: 3
+  SpellPower: 0
   executionDurationBeforeCast: 1
   executionDurationAfterCast: 1
   SpellDescription: Bonus Def
@@ -104,3 +106,7 @@ MonoBehaviour:
   EasySpellDescription: 
   ExecutionType: 0
   SpellType: 0
+  sequenceBinding: 0
+  sprite: {fileID: 0}
+  spellState: 0
+  unlockOrder: 0
