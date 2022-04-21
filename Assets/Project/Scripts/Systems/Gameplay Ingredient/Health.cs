@@ -58,7 +58,7 @@ namespace TheFowler
         [Button]
         public void TakeDamage(float damage)
         {
-            if(damage == 0)
+            if(damage == 0 ||currentHealth <= 0)
                 return;
             
             currentHealth -= damage;

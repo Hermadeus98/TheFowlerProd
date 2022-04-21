@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using DG.Tweening;
 using System.Collections;
 using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 namespace TheFowler
 {
@@ -150,7 +151,15 @@ namespace TheFowler
                     }
                     else
                     {
-                        Next();
+                        if (String.IsNullOrEmpty(currentDialogue.dialogueText))
+                        {
+                            Next();
+                        }
+                        else
+                        {
+                            Timeline.Pause();
+                        }
+
 
                     }
                 }
@@ -517,10 +526,12 @@ namespace TheFowler
             idGuards = 0;
         }
 
+  
+
         private void DisplayDialogue(Dialogue dialogue)
         {
-            
-            
+            Timeline.Play();
+
             switch (dialogueType)
             {
                 case DialogueType.STATIC:
