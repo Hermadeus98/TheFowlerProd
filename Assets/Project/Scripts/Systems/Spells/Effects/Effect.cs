@@ -73,18 +73,18 @@ namespace TheFowler
         {
             if (TargetType == TargetTypeEnum.SELF)
             {
-                DamageSolo(damage, emitter, emitter);
+                ApplyDamage(damage, emitter, emitter);
             }
             else
             {
                 foreach (var receiver in receivers)
                 {
-                    DamageSolo(damage, emitter, receiver);
+                    ApplyDamage(damage, emitter, receiver);
                 }
             }
         }
 
-        private void DamageSolo(float damage, BattleActor emitter, BattleActor receiver)
+        private void ApplyDamage(float damage, BattleActor emitter, BattleActor receiver)
         {
             var _damage = DamageCalculator.CalculateDamage(damage, emitter, receiver, ReferedSpell.SpellType, out var resistanceFaiblesseResult);
 

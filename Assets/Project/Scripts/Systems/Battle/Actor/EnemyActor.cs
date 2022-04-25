@@ -20,6 +20,8 @@ namespace TheFowler
         protected override void OnStart()
         {
             base.OnStart();
+
+            brain = BattleActorData.brain;
             
             if(brain.IsNotNull())
                 ai = new AIEnemy(brain, this);

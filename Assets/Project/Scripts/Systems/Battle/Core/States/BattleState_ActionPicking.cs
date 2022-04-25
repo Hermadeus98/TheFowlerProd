@@ -51,7 +51,7 @@ namespace TheFowler
             {
                 if (!BattleManager.lastTurnWasEnemiesTurn)
                 {
-                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Enemies");
+                    //CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Enemies");
                 }
             }
 

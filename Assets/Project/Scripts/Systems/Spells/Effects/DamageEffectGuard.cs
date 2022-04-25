@@ -10,7 +10,7 @@ namespace TheFowler
         {
             foreach (var r in receivers)
             {
-                CameraManager.Instance.GetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "EnemiesSpell").LookAt = r.transform;
+                //CameraManager.Instance.GetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "EnemiesSpell").LookAt = r.transform;
                 
                 var attack = GameObject.Instantiate(SpellData.Instance.Guard_PS_BasicAttack_Projectile);
 
@@ -19,7 +19,7 @@ namespace TheFowler
                 var impact = GameObject.Instantiate(SpellData.Instance.Guard_PS_BasicAttack_Impact, r.transform);
             }
             
-            Damage(damage, emitter, receivers);
+            Damage(500, emitter, receivers);
             
             yield return new WaitForSeconds(SpellData.Instance.Guard_Timer_BasicAttack_ImpactDuration);
         }

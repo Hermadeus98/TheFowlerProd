@@ -142,6 +142,9 @@ namespace TheFowler
                 case TargetIntention.ALL_ENEMIES:
                     TargetSelector.GetAllEnemies().SelectAsTargets();
                     break;
+                case TargetIntention.SELF:
+                    BattleManager.CurrentBattleActor.SelectAsTarget();
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -179,6 +182,7 @@ namespace TheFowler
         ENEMY = 12,
         ALL_ALLIES = 13,
         ALL_ENEMIES = 14,
+        SELF,
     }
         
     public enum SelectTargetWith
