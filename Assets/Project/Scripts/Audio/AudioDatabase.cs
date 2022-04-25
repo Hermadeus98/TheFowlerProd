@@ -102,5 +102,6 @@ namespace TheFowler
         TF_SFX_Cutscene_Guard_GroundHit01,
         TF_SFX_Cutscene_Guard_GroundHit02,
 
+        TF_SFX_Explo_Phoebe_Footstep,
     }
 }
