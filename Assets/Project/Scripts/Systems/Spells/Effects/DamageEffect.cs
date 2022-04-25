@@ -23,11 +23,6 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-            //emitter.BattleActorAnimator.AttackCast();
-            //SoundManager.PlaySound(audioEvent, emitter.gameObject);
-
-            //yield return new WaitForSeconds(emitter.BattleActorAnimator.AttackCastDuration());
-
             Damage(damage, emitter, receivers);
             yield break;
         }

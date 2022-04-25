@@ -24,7 +24,7 @@ namespace TheFowler
                 {
                     case GameInstructionEnum.SET_PLAYER_CONTROLLER_TO_PLAYER_CONTROLLER:
                         var controller = Player.Robyn?.Controller.SetController<ThirdPersonController>(ControllerEnum.PLAYER_CONTROLLER);
-                        controller.SetCameraToTPSCamera();
+                        controller?.SetCameraToTPSCamera();
                         break;
                     
                     case GameInstructionEnum.SET_PLAYER_CONTROLLER_TO_NAVMESH_CONTROLLER:
