@@ -27,6 +27,8 @@ namespace TheFowler
             FurySpell;
 
         [TitleGroup("Identity")] public Spell.SpellTypeEnum actorType;
+        [TitleGroup("Identity")] public BehaviourTree brain;
+
 
         [TitleGroup("Progression")] public Spell[] AllSpells;
 
@@ -50,8 +52,6 @@ namespace TheFowler
         public float health = 15.5f;
         [TitleGroup("Data Binding"), ShowIf("@this.bindingType == BindingType.DEFAULT")]
         public int mana = 3;
-
-
 
         [Button]
         public void AddComplicity(int addValue)

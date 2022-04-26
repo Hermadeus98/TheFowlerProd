@@ -19,15 +19,10 @@ namespace TheFowler
 
         [TitleGroup("Main Settings")] public int Cooldown;
         [TitleGroup("Main Settings")] public int CurrentCooldown;
-        [TitleGroup("Main Settings")] public bool isRechargingCooldown;
         [TitleGroup("Main Settings")] public Sprite logoBuff;
 
         [TitleGroup("Main Settings")] public TargetTypeEnum TargetType;
         [TitleGroup("Main Settings")] public SpellPowerEnum SpellPower;
-
-        [TitleGroup("Main Settings")] public float
-            executionDurationBeforeCast = .3f,
-            executionDurationAfterCast = .3f;
         
         [TitleGroup("Main Settings"), TextArea(3,5)] 
         public string SpellDescription;
@@ -35,15 +30,6 @@ namespace TheFowler
         [TitleGroup("Main Settings"), TextArea(3, 5)]
         public string TargetDescription, EasySpellDescription;
         
-        [TitleGroup("Main Settings")] 
-        public ExecutionTypeEnum ExecutionType;
-
-        public enum ExecutionTypeEnum
-        {
-            SIMULTANEOUS,
-            CONSECUTIVE,
-        }
-
         [TitleGroup("Effects")] public SpellTypeEnum SpellType;
         
         [TitleGroup("Effects")] 
@@ -51,7 +37,7 @@ namespace TheFowler
 
         public SequenceEnum sequenceBinding;
 
-        BattleActor[] receiversReminder;
+        private BattleActor[] receiversReminder { get; set; }
 
 
         [TitleGroup("Progression")]
@@ -61,6 +47,8 @@ namespace TheFowler
         [TitleGroup("Progression")]
         public int unlockOrder;
 
+        [ReadOnly] public bool isRechargingCooldown;
+
         private void OnEnable()
         {
             Effects.ForEach(w => w.ReferedSpell = this);
@@ -68,171 +56,19 @@ namespace TheFowler
 
         public IEnumerator Cast(BattleActor emitter, BattleActor[] receivers)
         {
-            yield return new WaitForSeconds(executionDurationBeforeCast);
+            yield return new WaitForSeconds(.3f);
 
-            receiversReminder = new BattleActor[0];
-
-            switch (ExecutionType)
+            for (int i = 0; i < Effects.Length; i++)
             {
-                case ExecutionTypeEnum.SIMULTANEOUS:
-                    for (int i = 0; i < Effects.Length; i++)
-                    {
-                        if(Effects[i].GetType() != typeof(BatonPassEffect))
-                            Fury.StopBreakDown();
-                        
-                        if(i == 0)
-                        {
-                            //Effects[i].SetCamera();
-                            receiversReminder = new BattleActor[receivers.Length];
-                            for (int j = 0; j < receivers.Length; j++)
-                            {
-                                receiversReminder[j] = receivers[j];
-                            }
-
-
-                        }
-
-                        else
-                        {
-                            switch (Effects[i].TargetType)
-                            {
-                                case TargetTypeEnum.SELF:
-                                    receivers = new BattleActor[1];
-                                    receivers[0] = BattleManager.CurrentBattleActor;
-                                    break;
-                                case TargetTypeEnum.ALL_ENEMIES:
-                                    receivers = new BattleActor[BattleManager.CurrentBattle.Enemies.Count];
-                                    for (int j = 0; j < BattleManager.CurrentBattle.Enemies.Count; j++)
-                                    {
-                                        receivers[j] = BattleManager.CurrentBattle.Enemies[j];
-                                    }
-                                    break;
-                                case TargetTypeEnum.ALL_ALLIES:
-                                    receivers = new BattleActor[BattleManager.CurrentBattle.Allies.Count];
-                                    for (int j = 0; j < BattleManager.CurrentBattle.Allies.Count; j++)
-                                    {
-                                        receivers[j] = BattleManager.CurrentBattle.Allies[j];
-                                    }
-                                    break;
-                                default:
-                                    receivers = receiversReminder;
-                                    break;
-
-
-                            }
-                        }
-                        yield return new WaitForSeconds(.3f);
-                        Coroutiner.Play(Effects[i].OnBeginCast(emitter, receivers));
-
-                        Coroutiner.Play(Effects[i].OnCast(emitter, receivers));
-                        emitter.FeedbackHandler.PlayFeedback(Effects[i].eventName);
-
-                        Coroutiner.Play(Effects[i].OnFinishCast(emitter, receivers));
-
-                    }
-                    break;
-                case ExecutionTypeEnum.CONSECUTIVE:
-                    for (int i = 0; i < Effects.Length; i++)
-                    {
-                        if(Effects[i].GetType() != typeof(BatonPassEffect))
-                            Fury.StopBreakDown();
-                        
-                        Effects[i].SetCamera();
-                        yield return Effects[i].OnBeginCast(emitter, receivers);
-                        
-                        yield return Effects[i].OnCast(emitter, receivers);
-                        emitter.FeedbackHandler.PlayFeedback(Effects[i].eventName);
-
-                        yield return Effects[i].OnFinishCast(emitter, receivers);
-                    }
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                yield return Effects[i].OnCast(emitter, receivers);
             }
             
-            yield return new WaitForSeconds(executionDurationAfterCast);
+            yield return new WaitForSeconds(.3f);
         }
 
         public void SimpleCast(BattleActor emitter, BattleActor[] receivers)
         {
-            receiversReminder = new BattleActor[0];
-            Effects[0].SetCamera();
-
-            for (int i = 0; i < Effects.Length; i++)
-            {
-                if (i == 0)
-                {
-                    
-                    receiversReminder = new BattleActor[receivers.Length];
-                    for (int j = 0; j < receivers.Length; j++)
-                    {
-                        receiversReminder[j] = receivers[j];
-                    }
-
-                    switch (Effects[i].TargetType)
-                    {
-                        case TargetTypeEnum.SELF:
-                            receivers = new BattleActor[1];
-                            receivers[0] = BattleManager.CurrentBattleActor;
-                            break;
-                        case TargetTypeEnum.ALL_ENEMIES:
-                            receivers = new BattleActor[BattleManager.CurrentBattle.Enemies.Count];
-                            for (int j = 0; j < BattleManager.CurrentBattle.Enemies.Count; j++)
-                            {
-                                receivers[j] = BattleManager.CurrentBattle.Enemies[j];
-                            }
-                            break;
-                        case TargetTypeEnum.ALL_ALLIES:
-                            receivers = new BattleActor[BattleManager.CurrentBattle.Allies.Count];
-                            for (int j = 0; j < BattleManager.CurrentBattle.Allies.Count; j++)
-                            {
-                                receivers[j] = BattleManager.CurrentBattle.Allies[j];
-                            }
-                            break;
-                        default:
-                            receivers = new BattleActor[1];
-                            receivers[0] = TargetSelector.SelectedTargets[0];
-                            break;
-
-
-                    }
-
-                }
-                else
-                {
-                    switch (Effects[i].TargetType)
-                    {
-                        case TargetTypeEnum.SELF:
-                            receivers = new BattleActor[1];
-                            receivers[0] = BattleManager.CurrentBattleActor;
-                            break;
-                        case TargetTypeEnum.ALL_ENEMIES:
-                            receivers = new BattleActor[BattleManager.CurrentBattle.Enemies.Count];
-                            for (int j = 0; j < BattleManager.CurrentBattle.Enemies.Count; j++)
-                            {
-                                receivers[j] = BattleManager.CurrentBattle.Enemies[j];
-                            }
-                            break;
-                        case TargetTypeEnum.ALL_ALLIES:
-                            receivers = new BattleActor[BattleManager.CurrentBattle.Allies.Count];
-                            for (int j = 0; j < BattleManager.CurrentBattle.Allies.Count; j++)
-                            {
-                                receivers[j] = BattleManager.CurrentBattle.Allies[j];
-                            }
-                            break;
-                        default:
-                            receivers = new BattleActor[1];
-                            receivers[0] = TargetSelector.SelectedTargets[0];
-                            break;
-
-
-                    }
-                }
-
-                Effects[i].OnSimpleCast(emitter, receivers);
-            }
-
-            
+            Effects.ForEach(w => w.OnSimpleCast(emitter, receivers));
         }
 
         private void OnDisable()
