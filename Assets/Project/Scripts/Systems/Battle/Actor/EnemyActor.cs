@@ -17,6 +17,8 @@ namespace TheFowler
         public BehaviourTree Brain => brain;
         public AIEnemy AI => ai;
 
+        public CanvasGroup UI;
+
         protected override void OnStart()
         {
             base.OnStart();

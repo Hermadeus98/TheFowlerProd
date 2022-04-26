@@ -55,38 +55,8 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   referedActor: {fileID: 0}
-  waitTurn: 0
-  buffPercent: 25
-  OnBuffStart:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7986989945519654756}
-        m_TargetAssemblyTypeName: MoreMountains.Feedbacks.MMFeedbacks, MoreMountains.Feedbacks
-        m_MethodName: PlayFeedbacks
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnBuffEnd:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8897449466199101834}
-        m_TargetAssemblyTypeName: MoreMountains.Feedbacks.MMFeedbacks, MoreMountains.Feedbacks
-        m_MethodName: PlayFeedbacks
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  buff: {fileID: 7986989945519654756}
+  debuff: {fileID: 8897449466199101834}
 --- !u!1001 &2514106074190465990
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -105,7 +75,7 @@ PrefabInstance:
     - target: {fileID: 6456456529021180492, guid: 9f2b5d1ea87287a4eab069c7aad523a7, type: 3}
       propertyPath: Feedbacks.Array.data[0]
       value: 
-      objectReference: {fileID: 6828187358562162568}
+      objectReference: {fileID: 7399325126570895433}
     - target: {fileID: 8944569005892394062, guid: 9f2b5d1ea87287a4eab069c7aad523a7, type: 3}
       propertyPath: Mode
       value: 1
@@ -113,7 +83,7 @@ PrefabInstance:
     - target: {fileID: 8944569005892394062, guid: 9f2b5d1ea87287a4eab069c7aad523a7, type: 3}
       propertyPath: BoundParticleSystem
       value: 
-      objectReference: {fileID: 4288888909250505144}
+      objectReference: {fileID: 0}
     - target: {fileID: 8944569005892394062, guid: 9f2b5d1ea87287a4eab069c7aad523a7, type: 3}
       propertyPath: RandomParticleSystems.Array.size
       value: 1
@@ -121,7 +91,7 @@ PrefabInstance:
     - target: {fileID: 8944569005892394062, guid: 9f2b5d1ea87287a4eab069c7aad523a7, type: 3}
       propertyPath: RandomParticleSystems.Array.data[0]
       value: 
-      objectReference: {fileID: 7307373694844458446}
+      objectReference: {fileID: 0}
     - target: {fileID: 9050970337062411851, guid: 9f2b5d1ea87287a4eab069c7aad523a7, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -166,8 +136,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8944569005892394062, guid: 9f2b5d1ea87287a4eab069c7aad523a7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9f2b5d1ea87287a4eab069c7aad523a7, type: 3}
+--- !u!1 &1050097986338488126 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3202433896889758968, guid: 9f2b5d1ea87287a4eab069c7aad523a7, type: 3}
+  m_PrefabInstance: {fileID: 2514106074190465990}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6879362463045096845 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9050970337062411851, guid: 9f2b5d1ea87287a4eab069c7aad523a7, type: 3}
@@ -178,23 +154,58 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6456456529021180492, guid: 9f2b5d1ea87287a4eab069c7aad523a7, type: 3}
   m_PrefabInstance: {fileID: 2514106074190465990}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1050097986338488126}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 841b72de2996c5c40bfb394f3d0e0a98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6828187358562162568 stripped
+--- !u!114 &7399325126570895433
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8944569005892394062, guid: 9f2b5d1ea87287a4eab069c7aad523a7, type: 3}
-  m_PrefabInstance: {fileID: 2514106074190465990}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1050097986338488126}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c27131831afa28b499cb120fc9059997, type: 3}
+  m_Script: {fileID: 11500000, guid: cdfe4b9b079619143a9748eeee75e698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Active: 1
+  Label: Particles Instantiation
+  Chance: 100
+  Timing:
+    TimescaleMode: 0
+    InitialDelay: 0
+    CooldownDuration: 0
+    ExcludeFromHoldingPauses: 0
+    InterruptsOnStop: 1
+    NumberOfRepeats: 0
+    RepeatForever: 0
+    DelayBetweenRepeats: 1
+    MMFeedbacksDirectionCondition: 0
+    PlayDirection: 0
+    ConstantIntensity: 0
+    UseIntensityInterval: 0
+    IntensityIntervalMin: 0
+    IntensityIntervalMax: 0
+    Sequence: {fileID: 0}
+    TrackID: 0
+    Quantized: 0
+    TargetBPM: 120
+  DebugActive: 0
+  Mode: 0
+  CachedRecycle: 1
+  ParticlesPrefab: {fileID: 198025859805546612, guid: 0361f8eac50c6bd4cb0fac0eb9b095b6, type: 3}
+  RandomParticlePrefabs: []
+  PositionMode: 0
+  InstantiateParticlesPosition: {fileID: 0}
+  TargetWorldPosition: {x: 0, y: 0, z: 0}
+  Offset: {x: 0, y: 0, z: 0}
+  NestParticles: 1
+  ApplyRotation: 0
+  ApplyScale: 0
 --- !u!1001 &4310972170033251476
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -258,8 +269,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: OnBuff
       objectReference: {fileID: 0}
+    - target: {fileID: 6126262532999840752, guid: 74dba3c063567bc4fb0d005642cd7cd2, type: 3}
+      propertyPath: Feedbacks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126262532999840752, guid: 74dba3c063567bc4fb0d005642cd7cd2, type: 3}
+      propertyPath: Feedbacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 393760361793037430}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74dba3c063567bc4fb0d005642cd7cd2, type: 3}
+--- !u!1 &8862083254503403613 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4697210007256675529, guid: 74dba3c063567bc4fb0d005642cd7cd2, type: 3}
+  m_PrefabInstance: {fileID: 4310972170033251476}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &966357929163623056 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3943630672148778500, guid: 74dba3c063567bc4fb0d005642cd7cd2, type: 3}
@@ -270,19 +294,55 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6126262532999840752, guid: 74dba3c063567bc4fb0d005642cd7cd2, type: 3}
   m_PrefabInstance: {fileID: 4310972170033251476}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 8862083254503403613}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 841b72de2996c5c40bfb394f3d0e0a98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!198 &4288888909250505144 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 24373854907428140, guid: 74dba3c063567bc4fb0d005642cd7cd2, type: 3}
-  m_PrefabInstance: {fileID: 4310972170033251476}
+--- !u!114 &393760361793037430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &7307373694844458446 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6825952842341257562, guid: 74dba3c063567bc4fb0d005642cd7cd2, type: 3}
-  m_PrefabInstance: {fileID: 4310972170033251476}
-  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8862083254503403613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdfe4b9b079619143a9748eeee75e698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Active: 1
+  Label: Particles Instantiation
+  Chance: 100
+  Timing:
+    TimescaleMode: 0
+    InitialDelay: 0
+    CooldownDuration: 0
+    ExcludeFromHoldingPauses: 0
+    InterruptsOnStop: 1
+    NumberOfRepeats: 0
+    RepeatForever: 0
+    DelayBetweenRepeats: 1
+    MMFeedbacksDirectionCondition: 0
+    PlayDirection: 0
+    ConstantIntensity: 0
+    UseIntensityInterval: 0
+    IntensityIntervalMin: 0
+    IntensityIntervalMax: 0
+    Sequence: {fileID: 0}
+    TrackID: 0
+    Quantized: 0
+    TargetBPM: 120
+  DebugActive: 0
+  Mode: 0
+  CachedRecycle: 1
+  ParticlesPrefab: {fileID: 198025859805546612, guid: b8055ab4e86b58b458412d54364207ab, type: 3}
+  RandomParticlePrefabs: []
+  PositionMode: 0
+  InstantiateParticlesPosition: {fileID: 0}
+  TargetWorldPosition: {x: 0, y: 0, z: 0}
+  Offset: {x: 0, y: 0, z: 0}
+  NestParticles: 1
+  ApplyRotation: 0
+  ApplyScale: 0

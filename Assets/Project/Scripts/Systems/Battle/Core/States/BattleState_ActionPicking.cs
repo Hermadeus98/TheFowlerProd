@@ -51,18 +51,8 @@ namespace TheFowler
             {
                 if (!BattleManager.lastTurnWasEnemiesTurn)
                 {
-                    //CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Enemies");
+                    yield return new WaitForSeconds(.2f);
                 }
-            }
-
-            //yield return new WaitForSeconds(UI.GetView<TurnTransitionView>(UI.Views.TurnTransition).WaitTime);
-            if (!BattleManager.lastTurnWasEnemiesTurn)
-            {
-                yield return new WaitForSeconds(.2f);
-            }
-            else
-            {
-                yield return new WaitForSeconds(.2f);
             }
 
             if (BattleManager.IsAllyTurn)
