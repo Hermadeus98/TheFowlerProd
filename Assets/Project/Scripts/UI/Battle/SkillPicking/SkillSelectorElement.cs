@@ -25,11 +25,11 @@ namespace TheFowler
 
         [SerializeField] private Image soulignage;
 
-        [SerializeField] private Color manaColorNormal, manaColorNotEnoughMana;
+        [SerializeField] private Color manaColorNormal, manaColorNotEnoughMana, textColorDisabled, textColorCDPreview;
 
         [SerializeField] private Image manaLogo;
 
-        [SerializeField] private Image fillCooldown;
+        [SerializeField] private Image fillCooldown, cooldown;
 
         [SerializeField] private Image strenght;
         [SerializeField] private RectTransform[] targets;
@@ -47,24 +47,47 @@ namespace TheFowler
 
             if (args is WrapperArgs<SpellHandler.SpellHandled> cast)
             {
+                int newCooldown = cast.Arg.cooldown;
+
+                if (BattleManager.IsReducingCD)
+                {
+                    newCooldown--;
+                    if (newCooldown < 0) newCooldown = 0;
+                }
+
                 referedSpell = cast.Arg.Spell;
                 text.SetText(referedSpell.SpellName);
                 //manaCostText.SetText(referedSpell.ManaCost.ToString());
-                var cooldownPercent = (float)cast.Arg.cooldown / (float)referedSpell.Cooldown;
+                var cooldownPercent = (float)newCooldown / (float)referedSpell.Cooldown;
                 fillCooldown.DOFillAmount(cooldownPercent, .2f);
-                manaCostText.SetText(cast.Arg.cooldown.ToString());
+                manaCostText.SetText(newCooldown.ToString());
                 spellTypeIcon.sprite = SpellTypeDatabase.GetElement(referedSpell.SpellType);
+
+                
                 
                 //if (BattleManager.CurrentBattleActor.Mana.HaveEnoughMana(referedSpell.ManaCost))
-                if(cast.Arg.cooldown == 0)
+                if(newCooldown == 0)
                 {
                     isSelectable = true;
                     canvasGroup.alpha = 1f;
-                    manaCostText.color = manaColorNormal;
+                    manaCostText.color = Color.white;
+                    cooldown.color = manaColorNormal;
 
                     crossAnim?.Kill();
                     cross.fillAmount = 0;
                     manaLogo.DOFade(1f, 0.05f);
+
+                    manaCostText.SetText(referedSpell.Cooldown.ToString());
+
+                    text.color = Color.white;
+
+                    if (Fury.IsInBreakdown)
+                    {
+                        manaCostText.color = textColorCDPreview;
+
+                    }
+
+
                     //selectableFeedback.enabled = false;
                 }
                 else
@@ -72,12 +95,20 @@ namespace TheFowler
                     isSelectable = false;
                     canvasGroup.alpha = .5f;
                     manaCostText.color = manaColorNotEnoughMana;
+                    cooldown.color = Color.grey;
                     
                     crossAnim?.Kill();
                     crossAnim = cross.DOFillAmount(1f, .25f);
                     manaLogo.DOFade(.5f, 0.05f);
 
-                    
+                    text.color = textColorDisabled;
+
+                    if (Fury.IsInBreakdown)
+                    {
+                        manaCostText.color = textColorCDPreview;
+
+                    }
+
                     //selectableFeedback.enabled = true;
                 }
             }

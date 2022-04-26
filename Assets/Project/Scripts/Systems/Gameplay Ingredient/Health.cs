@@ -87,8 +87,6 @@ namespace TheFowler
 
         public void SetCurrentHealth(float value)
         {
-
-
             currentHealth = value;
             ReferedActor.BattleActorStats.health = currentHealth;
             ReferedActor.AllyData?.Refresh();
