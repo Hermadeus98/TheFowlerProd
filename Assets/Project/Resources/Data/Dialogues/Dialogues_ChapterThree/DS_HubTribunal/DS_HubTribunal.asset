@@ -1,41 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8849634012486716191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  NodeName: 
-  chance: 1
-  state: 0
-  started: 0
-  guid: 18c751e05c6e5844fbb1826e3e74b110
-  position: {x: -45.47399, y: 292.084}
-  children: []
-  dialogue:
-    ActorEnum: 2
-    dialogueText: ':Phoebe sighs:
-
-'
-    cameraPath:
-      genericKey: 2
-      cameraName: Default
-      batchName: 
-    displayDuration: 2
-    choiceText: 
-    isHarmonisation: 0
-    voice:
-      idInternal: 0
-      valueGuidInternal: 
-      WwiseObjectReference: {fileID: 0}
-    animationTrigger: 0
 --- !u!114 &-8072479881593435170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53,7 +17,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e5034d32e0ac39843817bab077d76adb
-  position: {x: 269.59018, y: 91.68936}
+  position: {x: 369, y: 82}
   children:
   - {fileID: 5906989596199945032}
   dialogue:
@@ -61,10 +25,10 @@ MonoBehaviour:
     dialogueText: But until now, we always managed, so I'd say it's gonna be bloody
       easy!
     cameraPath:
-      genericKey: 1
-      cameraName: Default
+      genericKey: 4
+      cameraName: Cam2
       batchName: 
-    displayDuration: 8
+    displayDuration: 6
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -82,7 +46,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
+  m_Name: 
   m_EditorClassIdentifier: 
   NodeName: 
   chance: 1
@@ -91,16 +55,50 @@ MonoBehaviour:
   guid: 6fd0d5c1e5645844ca43d191305127ca
   position: {x: -195.64545, y: 184.38664}
   children:
-  - {fileID: 5955630426620286343}
+  - {fileID: 4123789821059389577}
   dialogue:
     ActorEnum: 2
-    dialogueText: "I\u2019m not saying it will be as easy as taking out witless guards.
-      The Lieutenant hasn\u2019t been at the Fowler\u2019s side for so long for nothing."
+    dialogueText: "I\u2019m not saying it will be as easy as taking out witless guards"
     cameraPath:
-      genericKey: 2
-      cameraName: Default
+      genericKey: 4
+      cameraName: Cam2
       batchName: 
-    displayDuration: 12
+    displayDuration: 4
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &-7716517192617893620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 7fc8232f166e5ad4691de490ddcd279e
+  position: {x: -248, y: 68}
+  children:
+  - {fileID: 3321341326649440793}
+  dialogue:
+    ActorEnum: 1
+    dialogueText: Do you think it's gonna be easy?
+    cameraPath:
+      genericKey: 4
+      cameraName: Cam1
+      batchName: 
+    displayDuration: 6
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -125,17 +123,17 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 528401ba2f0ee2f4c88c12457b82ad96
-  position: {x: 110.430626, y: 179.13968}
+  position: {x: 275, y: 184}
   children:
   - {fileID: -4328447770696854550}
   dialogue:
     ActorEnum: 2
     dialogueText: However.
     cameraPath:
-      genericKey: 2
-      cameraName: Default
+      genericKey: 4
+      cameraName: Cam2
       batchName: 
-    displayDuration: 2
+    displayDuration: 1.5
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -160,7 +158,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: f150ceb5341ca5c46a3cf0489752a072
-  position: {x: 273.0882, y: 184.38664}
+  position: {x: 438, y: 189}
   children:
   - {fileID: 4751739450199334189}
   dialogue:
@@ -168,10 +166,10 @@ MonoBehaviour:
     dialogueText: The three of us, we make a good company. I have a tendency to agree
       with Robyn.
     cameraPath:
-      genericKey: 2
-      cameraName: Default
+      genericKey: 4
+      cameraName: Cam2
       batchName: 
-    displayDuration: 9
+    displayDuration: 7
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -197,16 +195,15 @@ MonoBehaviour:
   started: 0
   guid: b3f4e348fd4bc6c428ab5210d116d319
   position: {x: -200.89252, y: 289.327}
-  children:
-  - {fileID: -8849634012486716191}
+  children: []
   dialogue:
-    ActorEnum: 1
-    dialogueText: ':Abby whistles: '
+    ActorEnum: 5
+    dialogueText: 
     cameraPath:
-      genericKey: 3
-      cameraName: Default
+      genericKey: 4
+      cameraName: Cam2
       batchName: 
-    displayDuration: 2
+    displayDuration: 4
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -231,17 +228,17 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e2230d14eda89f943b72be573ee21679
-  position: {x: 117.00018, y: 87.71716}
+  position: {x: 216, y: 78}
   children:
   - {fileID: -8072479881593435170}
   dialogue:
     ActorEnum: 0
     dialogueText: Not like we have a choice...
     cameraPath:
-      genericKey: 1
-      cameraName: Default
+      genericKey: 4
+      cameraName: Cam2
       batchName: 
-    displayDuration: 4
+    displayDuration: 3
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -277,7 +274,8 @@ MonoBehaviour:
   - {fileID: 5311874691090410717}
   - {fileID: 3321341326649440793}
   - {fileID: 2720882380563483261}
-  - {fileID: -8849634012486716191}
+  - {fileID: -7716517192617893620}
+  - {fileID: 4123789821059389577}
   dialogueType: 0
 --- !u!114 &2720882380563483261
 MonoBehaviour:
@@ -298,13 +296,13 @@ MonoBehaviour:
   guid: fab32e14d976f514eabb6132d6d92971
   position: {x: -354.99988, y: 80.71719}
   children:
-  - {fileID: 3321341326649440793}
+  - {fileID: -7716517192617893620}
   dialogue:
-    ActorEnum: 1
-    dialogueText: Do you think it's gonna be easy?
+    ActorEnum: 5
+    dialogueText: 
     cameraPath:
-      genericKey: 3
-      cameraName: Default
+      genericKey: 4
+      cameraName: Cam1
       batchName: 
     displayDuration: 4
     choiceText: 
@@ -331,17 +329,53 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 22223f1ef0929fe4a856b5566f6962f5
-  position: {x: -193.99977, y: 82.71717}
+  position: {x: -95, y: 73}
   children:
   - {fileID: 5311874691090410717}
   dialogue:
     ActorEnum: 0
     dialogueText: Easy?
     cameraPath:
-      genericKey: 1
-      cameraName: Default
+      genericKey: 4
+      cameraName: Cam2
       batchName: 
-    displayDuration: 2
+    displayDuration: 4
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &4123789821059389577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 22eea16fab05a8741ba25090bf2e392f
+  position: {x: -44, y: 178}
+  children:
+  - {fileID: 5955630426620286343}
+  dialogue:
+    ActorEnum: 2
+    dialogueText: "The Lieutenant hasn\u2019t been at the Fowler\u2019s side for
+      so long for nothing"
+    cameraPath:
+      genericKey: 4
+      cameraName: Cam2
+      batchName: 
+    displayDuration: 4
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -373,10 +407,10 @@ MonoBehaviour:
     ActorEnum: 0
     dialogueText: Hear that? She agrees with me!
     cameraPath:
-      genericKey: 1
-      cameraName: Default
+      genericKey: 4
+      cameraName: Cam2
       batchName: 
-    displayDuration: 5
+    displayDuration: 4
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -401,17 +435,17 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e38a353ea66f5194294ddc42cc19e8e1
-  position: {x: -28.254757, y: 81.99996}
+  position: {x: 71, y: 68.520004}
   children:
   - {fileID: -1668440901310180630}
   dialogue:
     ActorEnum: 1
-    dialogueText: To take out the Captain.
+    dialogueText: To take out the Lieutenant.
     cameraPath:
-      genericKey: 3
-      cameraName: Default
+      genericKey: 4
+      cameraName: Cam2
       batchName: 
-    displayDuration: 4
+    displayDuration: 3
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -443,10 +477,10 @@ MonoBehaviour:
     ActorEnum: 0
     dialogueText: "Especially since we\u2019ve got Captain Tin Can right by our side!"
     cameraPath:
-      genericKey: 1
-      cameraName: Default
+      genericKey: 4
+      cameraName: Cam2
       batchName: 
-    displayDuration: 6
+    displayDuration: 4
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -471,7 +505,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 6837c589c5f28ce4cb987be16ae413d0
-  position: {x: -50.47794, y: 180.88867}
+  position: {x: 115, y: 186}
   children:
   - {fileID: -5266245568177874829}
   dialogue:
@@ -479,10 +513,10 @@ MonoBehaviour:
     dialogueText: " He\u2019s more skilled than anyone you\u2019ve encountered for
       now."
     cameraPath:
-      genericKey: 2
-      cameraName: Default
+      genericKey: 4
+      cameraName: Cam2
       batchName: 
-    displayDuration: 7
+    displayDuration: 4
     choiceText: 
     isHarmonisation: 0
     voice:
