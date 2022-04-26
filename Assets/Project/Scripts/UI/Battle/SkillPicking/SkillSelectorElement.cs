@@ -87,7 +87,7 @@ namespace TheFowler
         {
             referedSpell = spell;
             text.SetText(referedSpell.SpellName);
-            manaCostText.SetText(referedSpell.ManaCost.ToString());
+            //manaCostText.SetText(referedSpell.ManaCost.ToString());
             spellTypeIcon.sprite = SpellTypeDatabase.GetElement(referedSpell.SpellType);
         }
 

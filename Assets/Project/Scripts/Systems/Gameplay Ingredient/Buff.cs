@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,15 +9,18 @@ namespace TheFowler
 {
     public class Buff : BattleActorComponent
     {
+        [SerializeField] private MMFeedbacks buff, debuff;
+        
         [Button]
         public void BuffAttack(int value)
         {
             ReferedActor.BattleActorInfo.attackBonus += value;
 
-            if (ReferedActor.BattleActorInfo.attackBonus > DamageCalculator.maxBuffAttack)
-                ReferedActor.BattleActorInfo.attackBonus = DamageCalculator.maxBuffAttack;
+            if (ReferedActor.BattleActorInfo.attackBonus > SpellData.Instance.maxBuffAttack)
+                ReferedActor.BattleActorInfo.attackBonus = SpellData.Instance.maxBuffAttack;
             
             ReferedActor.StateIcons?.Refresh_Att(ReferedActor);
+            buff?.PlayFeedbacks();
         }
 
         [Button]
@@ -24,11 +28,11 @@ namespace TheFowler
         {
             ReferedActor.BattleActorInfo.attackBonus -= value;
             
-            if (ReferedActor.BattleActorInfo.defenseBonus < DamageCalculator.minBuffAttack)
-                ReferedActor.BattleActorInfo.defenseBonus = DamageCalculator.minBuffAttack;
+            if (ReferedActor.BattleActorInfo.defenseBonus < SpellData.Instance.minBuffAttack)
+                ReferedActor.BattleActorInfo.defenseBonus = SpellData.Instance.minBuffAttack;
             
             ReferedActor.StateIcons?.Refresh_Att(ReferedActor);
-
+            debuff.PlayFeedbacks();
         }
 
         [Button]
@@ -40,73 +44,5 @@ namespace TheFowler
 
         }
         
-        /*[SerializeField] private int waitTurn;
-        [SerializeField, Range(0,100)] private float buffPercent = 25f;
-
-        public UnityEvent OnBuffStart, OnBuffEnd;
-
-        public float BuffPercent
-        {
-            get => buffPercent;
-            set
-            {
-                if (waitTurn > 0)
-                {
-                    if (value > buffPercent)
-                    {
-                        buffPercent = value;
-                    }
-                }
-                else
-                {
-                    buffPercent = value;
-                }
-            }
-        }
-        
-        public override void Initialize()
-        {
-            base.Initialize();
-            waitTurn = 0;
-        }
-
-        [Button]
-        public void BuffActor(int turnCount)
-        {
-            waitTurn = turnCount;
-            ReferedActor.BattleActorInfo.buffBonus = buffPercent;
-            OnBuffStart?.Invoke();
-            
-            ReferedActor.StateIcons?.Refresh_Att(ReferedActor);
-        }
-
-        [Button]
-        public void EndBuff()
-        {
-            waitTurn = 0;
-            ReferedActor.BattleActorInfo.buffBonus = 0;
-            OnBuffEnd?.Invoke();
-            
-            ReferedActor.StateIcons?.Refresh_Att(ReferedActor);
-        }
-        
-        public override void OnTurnStart()
-        {
-            base.OnTurnStart();
-
-            if (Fury.IsInFury)
-                return;
-
-            if (waitTurn == 0)
-            {
-                EndBuff();
-            }
-            else
-            {
-                waitTurn--;
-                if(waitTurn == 0)
-                    EndBuff();
-            }
-        }*/
     }
 }

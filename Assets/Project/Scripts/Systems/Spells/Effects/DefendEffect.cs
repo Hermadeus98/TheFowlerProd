@@ -31,10 +31,10 @@ namespace TheFowler
                 switch (bonusType)
                 {
                     case DefenseBonusType.Buff:
-                        receiver.GetBattleComponent<Defense>().BuffDefense(isAOE ? DamageCalculator.buffDefenseAOE : DamageCalculator.buffDefense);
+                        receiver.GetBattleComponent<Defense>().BuffDefense(isAOE ? SpellData.Instance.buffDefenseAOE : SpellData.Instance.buffDefense);
                         break;
                     case DefenseBonusType.Debuff:
-                        receiver.GetBattleComponent<Defense>().DebuffDefense(isAOE ? DamageCalculator.debuffDefenseAOE : DamageCalculator.debuffDefense);
+                        receiver.GetBattleComponent<Defense>().DebuffDefense(isAOE ? SpellData.Instance.debuffDefenseAOE : SpellData.Instance.debuffDefense);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();

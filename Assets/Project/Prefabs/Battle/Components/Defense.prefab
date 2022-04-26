@@ -55,40 +55,8 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   referedActor: {fileID: 0}
-  waitTurn: 0
-  OnDefendStart:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 390644304726699228}
-        m_TargetAssemblyTypeName: MoreMountains.Feedbacks.MMFeedbacks, MoreMountains.Feedbacks
-        m_MethodName: PlayFeedbacks
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnDefendEnd:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1583801932923090183}
-        m_TargetAssemblyTypeName: MoreMountains.Feedbacks.MMFeedbacks, MoreMountains.Feedbacks
-        m_MethodName: PlayFeedbacks
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  RestaureMana:
-    m_PersistentCalls:
-      m_Calls: []
+  buff: {fileID: 390644304726699228}
+  debuff: {fileID: 1583801932923090183}
 --- !u!1001 &1044222284939635244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -142,19 +110,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1983582566957621035, guid: cd0efd6dfd3fd844b90ecff24d216439, type: 3}
       propertyPath: Feedbacks.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1983582566957621035, guid: cd0efd6dfd3fd844b90ecff24d216439, type: 3}
       propertyPath: Feedbacks.Array.data[0]
       value: 
-      objectReference: {fileID: 3496751198969035416}
+      objectReference: {fileID: 6873244674756843209}
     - target: {fileID: 1983582566957621035, guid: cd0efd6dfd3fd844b90ecff24d216439, type: 3}
       propertyPath: Feedbacks.Array.data[1]
       value: 
-      objectReference: {fileID: 1514534854637743561}
+      objectReference: {fileID: 0}
     - target: {fileID: 4168599048462888252, guid: cd0efd6dfd3fd844b90ecff24d216439, type: 3}
       propertyPath: m_Name
-      value: OnEndDefend
+      value: Debuff
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd0efd6dfd3fd844b90ecff24d216439, type: 3}
@@ -179,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841b72de2996c5c40bfb394f3d0e0a98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3496751198969035416
+--- !u!114 &6873244674756843209
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -188,11 +156,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4009334091655071504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c27131831afa28b499cb120fc9059997, type: 3}
+  m_Script: {fileID: 11500000, guid: cdfe4b9b079619143a9748eeee75e698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Active: 1
-  Label: Particles Play
+  Label: Particles Instantiation
   Chance: 100
   Timing:
     TimescaleMode: 0
@@ -214,70 +182,17 @@ MonoBehaviour:
     Quantized: 0
     TargetBPM: 120
   DebugActive: 0
-  Mode: 1
-  BoundParticleSystem: {fileID: 3722892143731553627}
-  MoveToPosition: 0
-  RandomParticleSystems: []
---- !u!114 &1514534854637743561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4009334091655071504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1c6a190d064b7642bc4c5b64bbcd3c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Active: 1
-  Label: Animation
-  Chance: 100
-  Timing:
-    TimescaleMode: 0
-    InitialDelay: 0
-    CooldownDuration: 0
-    ExcludeFromHoldingPauses: 0
-    InterruptsOnStop: 1
-    NumberOfRepeats: 0
-    RepeatForever: 0
-    DelayBetweenRepeats: 1
-    MMFeedbacksDirectionCondition: 0
-    PlayDirection: 0
-    ConstantIntensity: 0
-    UseIntensityInterval: 0
-    IntensityIntervalMin: 0
-    IntensityIntervalMax: 0
-    Sequence: {fileID: 0}
-    TrackID: 0
-    Quantized: 0
-    TargetBPM: 120
-  DebugActive: 0
-  BoundAnimator: {fileID: 0}
-  UpdateTrigger: 0
-  TriggerMode: 0
-  TriggerParameterName: 
-  UpdateRandomTrigger: 0
-  RandomTriggerMode: 0
-  RandomTriggerParameterNames: []
-  UpdateBool: 0
-  BoolParameterName: 
-  BoolParameterValue: 1
-  UpdateRandomBool: 0
-  RandomBoolParameterValue: 1
-  RandomBoolParameterNames: []
-  IntValueMode: 0
-  IntParameterName: 
-  IntValue: 0
-  IntValueMin: 0
-  IntValueMax: 5
-  IntIncrement: 1
-  FloatValueMode: 1
-  FloatParameterName: DefendIdleBlend
-  FloatValue: 0
-  FloatValueMin: 0
-  FloatValueMax: 5
-  FloatIncrement: 1
+  Mode: 0
+  CachedRecycle: 1
+  ParticlesPrefab: {fileID: 198025859805546612, guid: 0361f8eac50c6bd4cb0fac0eb9b095b6, type: 3}
+  RandomParticlePrefabs: []
+  PositionMode: 0
+  InstantiateParticlesPosition: {fileID: 0}
+  TargetWorldPosition: {x: 0, y: 0, z: 0}
+  Offset: {x: 0, y: 0, z: 0}
+  NestParticles: 1
+  ApplyRotation: 0
+  ApplyScale: 0
 --- !u!1001 &2207353618237032956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -285,6 +200,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8352904456907692841}
     m_Modifications:
+    - target: {fileID: 2002343196947031328, guid: 9e1c8e3d357f78c48bd3926663654823, type: 3}
+      propertyPath: Feedbacks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2002343196947031328, guid: 9e1c8e3d357f78c48bd3926663654823, type: 3}
+      propertyPath: Feedbacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 8492026385843176453}
     - target: {fileID: 3244921346136161441, guid: 9e1c8e3d357f78c48bd3926663654823, type: 3}
       propertyPath: looping
       value: 1
@@ -343,7 +266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5299706543327239003, guid: 9e1c8e3d357f78c48bd3926663654823, type: 3}
       propertyPath: m_Name
-      value: OnStartDefend
+      value: Buff
       objectReference: {fileID: 0}
     - target: {fileID: 6434872207876770724, guid: 9e1c8e3d357f78c48bd3926663654823, type: 3}
       propertyPath: m_RootOrder
@@ -389,8 +312,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4526568908538691396, guid: 9e1c8e3d357f78c48bd3926663654823, type: 3}
+    - {fileID: 741259308987937355, guid: 9e1c8e3d357f78c48bd3926663654823, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9e1c8e3d357f78c48bd3926663654823, type: 3}
+--- !u!1 &6282045864569754279 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5299706543327239003, guid: 9e1c8e3d357f78c48bd3926663654823, type: 3}
+  m_PrefabInstance: {fileID: 2207353618237032956}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5183460954049233496 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6434872207876770724, guid: 9e1c8e3d357f78c48bd3926663654823, type: 3}
@@ -401,14 +331,55 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2002343196947031328, guid: 9e1c8e3d357f78c48bd3926663654823, type: 3}
   m_PrefabInstance: {fileID: 2207353618237032956}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 6282045864569754279}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 841b72de2996c5c40bfb394f3d0e0a98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!198 &3722892143731553627 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 3244921346136161447, guid: 9e1c8e3d357f78c48bd3926663654823, type: 3}
-  m_PrefabInstance: {fileID: 2207353618237032956}
+--- !u!114 &8492026385843176453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282045864569754279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdfe4b9b079619143a9748eeee75e698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Active: 1
+  Label: Particles Instantiation
+  Chance: 100
+  Timing:
+    TimescaleMode: 0
+    InitialDelay: 0
+    CooldownDuration: 0
+    ExcludeFromHoldingPauses: 0
+    InterruptsOnStop: 1
+    NumberOfRepeats: 0
+    RepeatForever: 0
+    DelayBetweenRepeats: 1
+    MMFeedbacksDirectionCondition: 0
+    PlayDirection: 0
+    ConstantIntensity: 0
+    UseIntensityInterval: 0
+    IntensityIntervalMin: 0
+    IntensityIntervalMax: 0
+    Sequence: {fileID: 0}
+    TrackID: 0
+    Quantized: 0
+    TargetBPM: 120
+  DebugActive: 0
+  Mode: 0
+  CachedRecycle: 1
+  ParticlesPrefab: {fileID: 198025859805546612, guid: b8055ab4e86b58b458412d54364207ab, type: 3}
+  RandomParticlePrefabs: []
+  PositionMode: 0
+  InstantiateParticlesPosition: {fileID: 0}
+  TargetWorldPosition: {x: 0, y: 0, z: 0}
+  Offset: {x: 0, y: 0, z: 0}
+  NestParticles: 1
+  ApplyRotation: 0
+  ApplyScale: 0

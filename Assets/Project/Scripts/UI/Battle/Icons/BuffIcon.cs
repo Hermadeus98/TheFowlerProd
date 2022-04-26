@@ -23,10 +23,10 @@ namespace TheFowler
             switch (buffType)
             {
                 case BuffType.ATT:
-                    Apply(value, DamageCalculator.maxBuffAttack, DamageCalculator.minBuffAttack);
+                    Apply(value, SpellData.Instance.maxBuffAttack, SpellData.Instance.minBuffAttack);
                     break;
                 case BuffType.DEF:
-                    Apply(value, DamageCalculator.maxBuffDefense, DamageCalculator.minBuffDefense);
+                    Apply(value, SpellData.Instance.maxBuffDefense, SpellData.Instance.minBuffDefense);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

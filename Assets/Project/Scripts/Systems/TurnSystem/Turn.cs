@@ -30,15 +30,16 @@ namespace TheFowler
             if (BattleManager.IsEnemyTurn && !BattleManager.lastTurnWasEnemiesTurn)
             {
                 yield return Transition();
+                _turnTransitionView = UI.GetView<TurnTransitionView>(UI.Views.TurnTransition);
+                yield return new WaitForSeconds(_turnTransitionView.WaitTime - .2f);
             }
             else if(BattleManager.IsAllyTurn)
             {
                 yield return Transition();
+                _turnTransitionView = UI.GetView<TurnTransitionView>(UI.Views.TurnTransition);
+                yield return new WaitForSeconds(_turnTransitionView.WaitTime - .2f);
             }
 
-            _turnTransitionView = UI.GetView<TurnTransitionView>(UI.Views.TurnTransition);
-            yield return new WaitForSeconds(_turnTransitionView.WaitTime - .2f);
-            
             if(BattleManager.IsAllyTurn)
                 CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle, CameraKeys.BattleKeys.ActionPicking);
 
