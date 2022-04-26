@@ -7,20 +7,6 @@ namespace TheFowler
 {
     public static class DamageCalculator
     {
-        public static int buffDefense = 35;
-        public static int buffDefenseAOE = 20;
-        public static int debuffDefense = 25;
-        public static int debuffDefenseAOE = 20;
-        public static int maxBuffDefense = 100;
-        public static int minBuffDefense = -100;
-
-        public static int buffAttack = 35;
-        public static int buffAttackAOE = 20;
-        public static int debuffAttack = 25;
-        public static int debuffAttackAOE = 20;
-        public static int maxBuffAttack = 100;
-        public static int minBuffAttack = -100;
-        
         public static float CalculateDamage(float initialDamage, BattleActor emitter, BattleActor receiver, Spell.SpellTypeEnum spellType, out ResistanceFaiblesseResult ResistanceFaiblesseResult)
         {
             var attackBonus = emitter.BattleActorInfo.attackBonus;

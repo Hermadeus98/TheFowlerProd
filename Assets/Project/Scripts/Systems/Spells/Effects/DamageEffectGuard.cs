@@ -17,10 +17,10 @@ namespace TheFowler
                 yield return new WaitForSeconds(SpellData.Instance.Guard_Timer_BasicAttack_ProjectileDuration);
 
                 var impact = GameObject.Instantiate(SpellData.Instance.Guard_PS_BasicAttack_Impact, r.transform);
+                
+                Damage(damage, emitter, new []{r});
             }
-            
-            Damage(500, emitter, receivers);
-            
+
             yield return new WaitForSeconds(SpellData.Instance.Guard_Timer_BasicAttack_ImpactDuration);
         }
 

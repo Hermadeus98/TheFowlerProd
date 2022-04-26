@@ -39,8 +39,8 @@ namespace TheFowler
         public void Refresh(Spell spell)
         {
             spellName.SetText(spell.SpellName);
-            targetText.SetText(spell.TargetDescription);
-            easyDesc.SetText(spell.EasySpellDescription);
+            //targetText.SetText(spell.TargetDescription);
+            //easyDesc.SetText(spell.EasySpellDescription);
         }
     }
 }

@@ -103,8 +103,8 @@ namespace TheFowler
             
             var skillPickingView = UI.GetView<SkillPickingView>(UI.Views.SkillPicking);
             skillPickingView.descriptionText.SetText(((SkillSelectorElement)element).referedSpell.SpellDescription);
-            skillPickingView.easyDescriptionText.SetText(((SkillSelectorElement)element).referedSpell.EasySpellDescription);
-            skillPickingView.targetDescription.SetText(((SkillSelectorElement)element).referedSpell.TargetDescription);
+            //skillPickingView.easyDescriptionText.SetText(((SkillSelectorElement)element).referedSpell.EasySpellDescription);
+            //skillPickingView.targetDescription.SetText(((SkillSelectorElement)element).referedSpell.TargetDescription);
         }
 
         protected override void OnNavigate()

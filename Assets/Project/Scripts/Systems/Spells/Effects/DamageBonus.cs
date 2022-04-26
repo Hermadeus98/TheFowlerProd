@@ -46,10 +46,10 @@ namespace TheFowler
             switch (attackBonusType)
             {
                 case AttackBonusType.BONUS:
-                    buff.BuffAttack(isAOE ? DamageCalculator.buffAttackAOE : DamageCalculator.buffAttack);
+                    buff.BuffAttack(isAOE ? SpellData.Instance.buffAttackAOE : SpellData.Instance.buffAttack);
                     break;
                 case AttackBonusType.MALUS:
-                    buff.DebuffAttack(isAOE ? DamageCalculator.debuffAttackAOE : DamageCalculator.debuffAttack);
+                    buff.DebuffAttack(isAOE ? SpellData.Instance.debuffAttackAOE : SpellData.Instance.debuffAttack);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

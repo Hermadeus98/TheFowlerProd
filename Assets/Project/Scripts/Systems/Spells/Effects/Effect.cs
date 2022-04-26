@@ -10,20 +10,15 @@ namespace TheFowler
     [Serializable]
     public abstract class Effect
     {
-        public string EffectName = "NO NAME EFFECT";
+        //public string EffectName = "NO NAME EFFECT";
 
         public TargetTypeEnum TargetType;
 
-        [SerializeField] protected BattleCameraBatch battleCameraBatch = BattleCameraBatch.NULL;
+        /*[SerializeField] protected BattleCameraBatch battleCameraBatch = BattleCameraBatch.NULL;
         [SerializeField, ShowIf("@this.battleCameraBatch == BattleCameraBatch.NULL")] protected cameraPath cameraPath;
         [SerializeField, ShowIf("@this.battleCameraBatch == BattleCameraBatch.CURRENT_ACTOR_PERSONALISE")] private string cameraSpecificPath = "Default";
-        [SerializeField, ShowIf("@this.battleCameraBatch == BattleCameraBatch.CURRENT_BATTLE")] private string cameraBattlePath = "Default";
+        [SerializeField, ShowIf("@this.battleCameraBatch == BattleCameraBatch.CURRENT_BATTLE")] private string cameraBattlePath = "Default";*/
 
-        public bool ImPreview = false;
-        
-        public AudioGenericEnum audioEvent;
-        public string eventName;
-        
         [ReadOnly] public Spell ReferedSpell;
 
         public bool rage = false;
@@ -44,7 +39,7 @@ namespace TheFowler
         
         public void SetCamera()
         {
-            switch (battleCameraBatch)
+            /*switch (battleCameraBatch)
             {
                 case BattleCameraBatch.NULL:
                     CameraManager.Instance.SetCamera(cameraPath);
@@ -60,7 +55,7 @@ namespace TheFowler
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
-            }
+            }*/
         }
 
         public virtual void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
@@ -69,22 +64,26 @@ namespace TheFowler
         }
         
         
-        protected void Damage(float damage, BattleActor emitter, BattleActor[] receivers)
+        protected float Damage(float damage, BattleActor emitter, BattleActor[] receivers)
         {
+            var dmg = 0f;
+            
             if (TargetType == TargetTypeEnum.SELF)
             {
-                ApplyDamage(damage, emitter, emitter);
+                dmg = ApplyDamage(damage, emitter, emitter);
             }
             else
             {
                 foreach (var receiver in receivers)
                 {
-                    ApplyDamage(damage, emitter, receiver);
+                    dmg = ApplyDamage(damage, emitter, receiver);
                 }
             }
+
+            return dmg;
         }
 
-        private void ApplyDamage(float damage, BattleActor emitter, BattleActor receiver)
+        private float ApplyDamage(float damage, BattleActor emitter, BattleActor receiver)
         {
             var _damage = DamageCalculator.CalculateDamage(damage, emitter, receiver, ReferedSpell.SpellType, out var resistanceFaiblesseResult);
 
@@ -104,6 +103,8 @@ namespace TheFowler
             receiver.Health.TakeDamage(
                 _damage
             );
+
+            return _damage;
         }
 
         protected void Heal(float heal, BattleActor emitter, BattleActor[] receivers)
