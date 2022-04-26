@@ -27,6 +27,9 @@ namespace TheFowler
             {
                 var attackEffect = GameObject.Instantiate(SpellData.Instance.Robyn_VisualEffect_BasicAttack_Shock, receivers[i].transform.position, Quaternion.identity);
                 attackEffect.Play();
+
+                var lightPosition = new Vector3(receivers[i].transform.position.x, receivers[i].transform.position.y + .25f, receivers[i].transform.position.z);
+                GameObject.Instantiate(SpellData.Instance.Robyn_Flash_BasicAttack_Shock, lightPosition, Quaternion.identity);
             }
             
             Damage(damage, emitter, receivers);

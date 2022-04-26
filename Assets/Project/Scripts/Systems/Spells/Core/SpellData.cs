@@ -16,7 +16,9 @@ namespace TheFowler
         [FoldoutGroup("Robyn Basic Attack")]
         public VisualEffect Robyn_VisualEffect_BasicAttack_Shock;
         [FoldoutGroup("Robyn Basic Attack")]
-        public float Robyn_Timer_BasicAttack_BirdFallingDuration = .85f; 
+        public float Robyn_Timer_BasicAttack_BirdFallingDuration = .85f;
+        [FoldoutGroup("Robyn Basic Attack")]
+        public GameObject Robyn_Flash_BasicAttack_Shock;
         
         [FoldoutGroup("Abi Basic Attack")]
         public ParticleSystem Abi_PS_BasicAttack_Trail;
