@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace TheFowler
 {
-    public class Mana : BattleActorComponent
+    public class CooldownComponent : BattleActorComponent
     {
         [SerializeField] private int maxMana;
         [SerializeField] private int currentMana;
@@ -79,6 +79,16 @@ namespace TheFowler
             currentMana = maxMana;
             onWinMana?.Invoke(currentMana);
             ReferedActor.AllyData?.Refresh();
+        }
+
+        public void BuffCD(int value)
+        {
+            ReferedActor.BattleActorInfo.cooldownBonus += value;
+
+            if (ReferedActor.BattleActorInfo.cooldownBonus > SpellData.Instance.maxBuffCD)
+                ReferedActor.BattleActorInfo.cooldownBonus = SpellData.Instance.maxBuffCD;
+
+            ReferedActor.StateIcons?.Refresh_CD(ReferedActor);
         }
     }
 }

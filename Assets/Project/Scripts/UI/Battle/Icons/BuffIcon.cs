@@ -15,7 +15,8 @@ namespace TheFowler
         public enum BuffType
         {
             ATT,
-            DEF
+            DEF,
+            CD
         }
         
         public void Refresh(float value)
@@ -27,6 +28,9 @@ namespace TheFowler
                     break;
                 case BuffType.DEF:
                     Apply(value, SpellData.Instance.maxBuffDefense, SpellData.Instance.minBuffDefense);
+                    break;
+                case BuffType.CD:
+                    Apply(value, SpellData.Instance.maxBuffCD, SpellData.Instance.minBuffCD);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

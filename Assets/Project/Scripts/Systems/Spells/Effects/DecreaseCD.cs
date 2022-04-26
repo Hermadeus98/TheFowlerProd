@@ -15,8 +15,9 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-            if (emitter.GetBattleComponent<SpellHandler>() != null)
-                emitter.GetBattleComponent<SpellHandler>().LoseCoolDown(1);
+
+            emitter.GetBattleComponent<CooldownComponent>().BuffCD(1);
+
             yield break;
         }
 

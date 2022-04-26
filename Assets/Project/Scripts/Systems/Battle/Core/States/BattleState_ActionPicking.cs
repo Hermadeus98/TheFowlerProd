@@ -91,7 +91,7 @@ namespace TheFowler
                             case ActionPickerElement.PlayerActionType.PARRY:
                                 Player.SelectedSpell = BattleManager.CurrentBattleActor.BattleActorData.DefendSpell;
                                 {
-                                    BattleManager.IsReducingCD = true;
+                                    
                                     var skillPickingView =
                                         BattleManager.CurrentBattle.ChangeBattleState<BattleState_TargetPicking>(BattleStateEnum
                                             .TARGET_PICKING);

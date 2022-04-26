@@ -47,12 +47,13 @@ namespace TheFowler
 
             if (args is WrapperArgs<SpellHandler.SpellHandled> cast)
             {
-                int newCooldown = cast.Arg.cooldown;
+                int newCooldown = cast.Arg.cooldown - BattleManager.CurrentBattleActor.BattleActorInfo.cooldownBonus;
 
                 if (BattleManager.IsReducingCD)
                 {
                     newCooldown--;
                     if (newCooldown < 0) newCooldown = 0;
+
                 }
 
                 referedSpell = cast.Arg.Spell;
@@ -81,7 +82,7 @@ namespace TheFowler
 
                     text.color = Color.white;
 
-                    if (Fury.IsInBreakdown)
+                    if (BattleManager.IsReducingCD ||newCooldown < cast.Arg.cooldown)
                     {
                         manaCostText.color = textColorCDPreview;
 
@@ -103,7 +104,7 @@ namespace TheFowler
 
                     text.color = textColorDisabled;
 
-                    if (Fury.IsInBreakdown)
+                    if (BattleManager.IsReducingCD || newCooldown < cast.Arg.cooldown)
                     {
                         manaCostText.color = textColorCDPreview;
 
