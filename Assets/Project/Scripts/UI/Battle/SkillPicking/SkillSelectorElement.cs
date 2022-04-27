@@ -47,27 +47,43 @@ namespace TheFowler
 
             if (args is WrapperArgs<SpellHandler.SpellHandled> cast)
             {
-                int newCooldown = cast.Arg.cooldown - BattleManager.CurrentBattleActor.BattleActorInfo.cooldownBonus;
+
+
+
+
+                referedSpell = cast.Arg.Spell;
+                int newCooldown = referedSpell.CurrentCooldown;
 
                 if (BattleManager.IsReducingCD)
                 {
                     newCooldown--;
-                    if (newCooldown < 0) newCooldown = 0;
 
+                    if (newCooldown <= 0) newCooldown = 0;
                 }
 
-                referedSpell = cast.Arg.Spell;
                 text.SetText(referedSpell.SpellName);
                 //manaCostText.SetText(referedSpell.ManaCost.ToString());
-                var cooldownPercent = (float)newCooldown / (float)referedSpell.Cooldown;
+
+                var cooldownPercent = 0f;
+
+                if (referedSpell.Cooldown != 0)
+                {
+                    cooldownPercent = (float)newCooldown / (float)referedSpell.Cooldown;
+
+                }
+                else
+                {
+                    cooldownPercent = 0;
+                }
+
+
+
                 fillCooldown.DOFillAmount(cooldownPercent, .2f);
                 manaCostText.SetText(newCooldown.ToString());
                 spellTypeIcon.sprite = SpellTypeDatabase.GetElement(referedSpell.SpellType);
 
-                
-                
                 //if (BattleManager.CurrentBattleActor.Mana.HaveEnoughMana(referedSpell.ManaCost))
-                if(newCooldown == 0)
+                if (newCooldown <= 0)
                 {
                     isSelectable = true;
                     canvasGroup.alpha = 1f;
@@ -78,15 +94,28 @@ namespace TheFowler
                     cross.fillAmount = 0;
                     manaLogo.DOFade(1f, 0.05f);
 
-                    manaCostText.SetText(referedSpell.Cooldown.ToString());
+                    manaCostText.SetText((referedSpell.Cooldown).ToString());
 
                     text.color = Color.white;
 
-                    if (BattleManager.IsReducingCD ||newCooldown < cast.Arg.cooldown)
+                    if (BattleManager.IsReducingCD)
                     {
-                        manaCostText.color = textColorCDPreview;
+                        if (referedSpell.isRechargingCooldown)
+                        {
+                            manaCostText.color = textColorCDPreview;
+                        }
+
 
                     }
+
+                    if(referedSpell.Cooldown < referedSpell.InitialCooldown)
+                    {
+                        if (!referedSpell.isRechargingCooldown)
+                        {
+                            manaCostText.color = textColorCDPreview;
+                        }
+                    }
+
 
 
                     //selectableFeedback.enabled = false;
@@ -104,11 +133,24 @@ namespace TheFowler
 
                     text.color = textColorDisabled;
 
-                    if (BattleManager.IsReducingCD || newCooldown < cast.Arg.cooldown)
+                    if (BattleManager.IsReducingCD)
                     {
-                        manaCostText.color = textColorCDPreview;
+                        if (referedSpell.isRechargingCooldown)
+                        {
+                            manaCostText.color = textColorCDPreview;
+                        }
+
 
                     }
+
+                    if (referedSpell.Cooldown < referedSpell.InitialCooldown)
+                    {
+                        if (!referedSpell.isRechargingCooldown)
+                        {
+                            manaCostText.color = textColorCDPreview;
+                        }
+                    }
+
 
                     //selectableFeedback.enabled = true;
                 }

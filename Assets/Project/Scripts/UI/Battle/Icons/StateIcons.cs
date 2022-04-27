@@ -17,6 +17,7 @@ namespace TheFowler
             stun.Hide();
             buff_def.Hide();
             buff_att.Hide();
+            buff_CD.Hide();
         }
 
         public void RefreshBuff_Def(BattleActor actor)
@@ -42,12 +43,12 @@ namespace TheFowler
         }
         public void Refresh_CD(BattleActor actor)
         {
-            if (actor.BattleActorInfo.attackBonus == 0)
+            if (actor.BattleActorInfo.cooldownBonus == 0)
                 buff_CD.gameObject.SetActive(false);
             else
             {
                 buff_CD.gameObject.SetActive(true);
-                buff_CD.Refresh(actor.BattleActorInfo.attackBonus);
+                buff_CD.Refresh(actor.BattleActorInfo.cooldownBonus);
             }
         }
 
