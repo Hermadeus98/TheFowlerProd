@@ -27,7 +27,7 @@ namespace TheFowler
         public float CurrentHealth => currentHealth;
         public float MaxHealth => maxHealth;
 
-
+        public void SetFillBar(FillBar fb) => fillBar = fb;
 
         public float NormalizedHealth
         {

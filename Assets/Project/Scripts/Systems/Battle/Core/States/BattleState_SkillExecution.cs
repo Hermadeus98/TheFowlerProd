@@ -84,8 +84,21 @@ namespace TheFowler
                         {
                             enemyActor.AI.StartThink();
 
-                            yield return enemyActor.AI.SelectedSpell.Cast(enemyActor,
-                                TargetSelector.SelectedTargets.ToArray());
+                            var action = enemyActor.SignalReceiver_CastSpell.GetReaction(enemyActor.SignalAsset_CastSpell);
+                            action.AddListener(delegate
+                            {
+                                enemyActor.AI.SelectedSpell.SimpleCast(enemyActor,
+                                    TargetSelector.SelectedTargets.ToArray());
+                            });
+                            
+                            var sequence = enemyActor.SequenceHandler.GetSequence(enemyActor.AI.SelectedSpell.sequenceBinding);
+                            sequence.Play();
+                            yield return new WaitForSeconds((float)sequence.duration);
+                            
+                            action.RemoveAllListeners();
+                            
+                            /*yield return enemyActor.AI.SelectedSpell.Cast(enemyActor,
+                                TargetSelector.SelectedTargets.ToArray());*/
                         }
                     }
                 }
