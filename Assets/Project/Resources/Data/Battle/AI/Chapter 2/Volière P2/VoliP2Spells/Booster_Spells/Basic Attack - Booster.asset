@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: Basic Attack
+  m_Name: Basic Attack - Booster
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000}
-    - {fileID: 19800000, guid: 52d1d26dc5a4b2a49bbe45703761cd5f, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -32,51 +31,18 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 1|TheFowler.DamageEffectGuard, Assembly-CSharp
-    - Name: EffectName
-      Entry: 1
-      Data: NO NAME EFFECT
     - Name: TargetType
       Entry: 3
       Data: 1
-    - Name: battleCameraBatch
-      Entry: 3
-      Data: 3
-    - Name: cameraPath
-      Entry: 6
-      Data: 
-    - Name: cameraSpecificPath
-      Entry: 1
-      Data: Default
-    - Name: cameraBattlePath
-      Entry: 1
-      Data: TargetAllies
-    - Name: ImPreview
-      Entry: 5
-      Data: false
-    - Name: audioEvent
-      Entry: 3
-      Data: 0
-    - Name: eventName
-      Entry: 6
-      Data: 
     - Name: ReferedSpell
       Entry: 10
       Data: 0
+    - Name: rage
+      Entry: 5
+      Data: false
     - Name: damage
       Entry: 4
-      Data: 21
-    - Name: attackParticle
-      Entry: 10
-      Data: 1
-    - Name: attackDuration
-      Entry: 4
-      Data: 2
-    - Name: impactParticle
-      Entry: 10
-      Data: 1
-    - Name: impactDuration
-      Entry: 4
-      Data: 1
+      Data: 106
     - Name: 
       Entry: 8
       Data: 
@@ -87,18 +53,16 @@ MonoBehaviour:
       Entry: 8
       Data: 
   SpellName: Basic Attack
-  ManaCost: 0
   Cooldown: 0
+  InitialCooldown: 0
   CurrentCooldown: 0
+  logoBuff: {fileID: 0}
   TargetType: 1
-  executionDurationBeforeCast: 1
-  executionDurationAfterCast: 1
+  SpellPower: 0
   SpellDescription: Basic Attack
-  TargetDescription: 
-  EasySpellDescription: 
-  ExecutionType: 0
   SpellType: 0
   sequenceBinding: 4
   sprite: {fileID: 0}
   spellState: 0
   unlockOrder: 0
+  isRechargingCooldown: 0
