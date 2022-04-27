@@ -1,0 +1,351 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5954511339605992417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: AllPJ_1
+  m_EditorClassIdentifier: 
+  NodeName: AllPJ_1
+  chance: 2
+  state: 0
+  started: 0
+  guid: 0bbfc119c163f7d4580669502942d817
+  position: {x: -62.000042, y: -9.000023}
+  children:
+  - {fileID: 3645545038157816766}
+  TargetIntention: 13
+  With: 0
+  value: 0
+--- !u!114 &-5760006492523007491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: Middle HP
+  m_EditorClassIdentifier: 
+  NodeName: Middle HP
+  chance: 1
+  state: 0
+  started: 0
+  guid: 8ee65d221856c4245b3e7d670f3e6afe
+  position: {x: 194.38745, y: -140.89752}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: 589d695a51ab8d84da30fc3d94ff6dd2, type: 2}
+    Chance: 1
+  - Spell: {fileID: 11400000, guid: 773e4ea90dd4ba943825f1b7646005bb, type: 2}
+    Chance: 1
+--- !u!114 &-5726895850888853940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: AllPJ_2
+  m_EditorClassIdentifier: 
+  NodeName: AllPJ_2
+  chance: 5
+  state: 0
+  started: 0
+  guid: d8fddce13404375439b8387a46403a86
+  position: {x: -65.99999, y: 264}
+  children:
+  - {fileID: 7355102037299715400}
+  TargetIntention: 13
+  With: 0
+  value: 0
+--- !u!114 &-5002943791546989718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a16d7749e1191724db8102279a8920c3, type: 3}
+  m_Name: Vie Fowler'sFool
+  m_EditorClassIdentifier: 
+  NodeName: Vie Fowler'sFool
+  chance: 1
+  state: 0
+  started: 0
+  guid: 716ef1726c9d0fe479a32a137b129274
+  position: {x: -480, y: -47}
+  children:
+  - {fileID: 4549449601661489894}
+  - {fileID: 7051284865605743819}
+  - {fileID: 4151569233255065424}
+  Choices:
+  - isHardChoice: 0
+    hardChoice: 0
+    comparator_A: 0
+    component: 0
+    Operator: 4
+    comparator_B: 6
+    percent: 75
+    NextNode: {fileID: 4151569233255065424}
+  - isHardChoice: 0
+    hardChoice: 0
+    comparator_A: 0
+    component: 0
+    Operator: 2
+    comparator_B: 6
+    percent: 40
+    NextNode: {fileID: 4549449601661489894}
+  - isHardChoice: 0
+    hardChoice: 0
+    comparator_A: 0
+    component: 0
+    Operator: 1
+    comparator_B: 6
+    percent: 75
+    NextNode: {fileID: 7051284865605743819}
+  DefaultNextNode: {fileID: 7051284865605743819}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cf5a2a104152e48a7bbaed625f399a, type: 3}
+  m_Name: AI_Fowler'sFool
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: -5002943791546989718}
+  actors: 
+  treeState: 0
+  nodes:
+  - {fileID: -5002943791546989718}
+  - {fileID: 4554433209448224214}
+  - {fileID: -5760006492523007491}
+  - {fileID: 8564941626517358859}
+  - {fileID: 4151569233255065424}
+  - {fileID: 5388224996074128664}
+  - {fileID: 5395469812233328941}
+  - {fileID: 7051284865605743819}
+  - {fileID: 4549449601661489894}
+  - {fileID: -5954511339605992417}
+  - {fileID: 3645545038157816766}
+  - {fileID: -5726895850888853940}
+  - {fileID: 7355102037299715400}
+  dialogueType: 0
+--- !u!114 &3645545038157816766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: Vamp_1
+  m_EditorClassIdentifier: 
+  NodeName: Vamp_1
+  chance: 1
+  state: 0
+  started: 0
+  guid: 080a37edab4986a48a655aceb08e6889
+  position: {x: 194, y: -9.000023}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: b87dc4dd7e5c1b04db8b4bf4ca14cccd, type: 2}
+    Chance: 0
+--- !u!114 &4151569233255065424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: Random 75% PJ
+  m_EditorClassIdentifier: 
+  NodeName: Random 75% PJ
+  chance: 1
+  state: 0
+  started: 0
+  guid: 2843550e539117842bf2c0503c7c77c8
+  position: {x: -302.00012, y: -293.7202}
+  children:
+  - {fileID: 4554433209448224214}
+  TargetIntention: 9
+  With: 0
+  value: 0
+--- !u!114 &4549449601661489894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1884b09a793565145a2ecfeff2b70fbc, type: 3}
+  m_Name: Random 40%
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: a50e0cdf0cd84c64c9d92ec1f8848e24
+  position: {x: -302.00012, y: 100.99995}
+  children:
+  - {fileID: 5395469812233328941}
+  - {fileID: -5726895850888853940}
+--- !u!114 &4554433209448224214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: Damages
+  m_EditorClassIdentifier: 
+  NodeName: Damages
+  chance: 1
+  state: 0
+  started: 0
+  guid: a9420b19c3f107c46a9a46696c727a80
+  position: {x: -44.000183, y: -293.7202}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: 773e4ea90dd4ba943825f1b7646005bb, type: 2}
+    Chance: 1
+  - Spell: {fileID: 11400000, guid: 589d695a51ab8d84da30fc3d94ff6dd2, type: 2}
+    Chance: 3
+--- !u!114 &5388224996074128664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: Random PJ_1
+  m_EditorClassIdentifier: 
+  NodeName: Random PJ_1
+  chance: 1
+  state: 0
+  started: 0
+  guid: b560c6d42326a314e8b46f4255b58e8d
+  position: {x: -65.99999, y: -141.00003}
+  children:
+  - {fileID: -5760006492523007491}
+  TargetIntention: 9
+  With: 0
+  value: 0
+--- !u!114 &5395469812233328941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: Random C
+  m_EditorClassIdentifier: 
+  NodeName: Random C
+  chance: 1
+  state: 0
+  started: 0
+  guid: 8f6e2d60b3b351d469935f224ce0a087
+  position: {x: -65.99999, y: 100.99995}
+  children:
+  - {fileID: 8564941626517358859}
+  TargetIntention: 9
+  With: 0
+  value: 0
+--- !u!114 &7051284865605743819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1884b09a793565145a2ecfeff2b70fbc, type: 3}
+  m_Name: Random Middle
+  m_EditorClassIdentifier: 
+  NodeName: Random Middle
+  chance: 1
+  state: 0
+  started: 0
+  guid: 46bf5824ee7308348b3d8af9c98806ac
+  position: {x: -302.00012, y: -86.00005}
+  children:
+  - {fileID: 5388224996074128664}
+  - {fileID: -5954511339605992417}
+--- !u!114 &7355102037299715400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: Vamp_2
+  m_EditorClassIdentifier: 
+  NodeName: Vamp_2
+  chance: 1
+  state: 0
+  started: 0
+  guid: 3635bfa94f67d654a9adc114dbda3e4b
+  position: {x: 194, y: 264}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: b87dc4dd7e5c1b04db8b4bf4ca14cccd, type: 2}
+    Chance: 0
+--- !u!114 &8564941626517358859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: -40%HP
+  m_EditorClassIdentifier: 
+  NodeName: -40%HP
+  chance: 1
+  state: 0
+  started: 0
+  guid: 50e8a4a7751e84944947ce3c0809012a
+  position: {x: 194, y: 100.99995}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: 773e4ea90dd4ba943825f1b7646005bb, type: 2}
+    Chance: 1
