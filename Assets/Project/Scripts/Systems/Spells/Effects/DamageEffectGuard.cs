@@ -26,6 +26,7 @@ namespace TheFowler
 
         public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
         {
+            Debug.Log(122);
             emitter.StartCoroutine(OnCast(emitter, receivers));
         }
     }
