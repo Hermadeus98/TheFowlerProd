@@ -17,8 +17,9 @@ namespace TheFowler
         [SerializeField]
         public GameObject descriptionBox;
 
-        [TabGroup("References")] [SerializeField]
-        public TextMeshProUGUI easyDescriptionText, targetDescription;
+        [TabGroup("References")]
+        [SerializeField]
+        public TextMeshProUGUI easyDescriptionText, targetDescription, previewText;
         [TabGroup("References")]
         [SerializeField]
         public Vector2 basicPosition, breakdownPosition;
@@ -32,6 +33,16 @@ namespace TheFowler
         public override void Show()
         {
             base.Show();
+            if (BattleManager.IsReducingCD)
+            {
+                previewText.gameObject.SetActive(true);
+            }
+            else
+            {
+                previewText.gameObject.SetActive(false);
+            }
+
+
             skillSelector.Refresh(BattleManager.CurrentBattleActor.GetBattleComponent<SpellHandler>());
             skillSelector.Show();
 
@@ -57,6 +68,7 @@ namespace TheFowler
                 skillSelector.Hide();
             }
 
+            skillSelector.canNavigate = true;
         }
 
         private void Update()

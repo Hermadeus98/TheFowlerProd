@@ -15,6 +15,8 @@ namespace TheFowler
         [SerializeField] private RectTransform cursor;
 
         [SerializeField] private Image up, down;
+
+        public SpellHandler currentSpellHandler;
         
         protected override void RegisterEvent()
         {
@@ -30,6 +32,8 @@ namespace TheFowler
 
         public void Refresh(SpellHandler spellHandler)
         {
+            currentSpellHandler = spellHandler;
+
             ResetElements();
             HideAllElements();
             DeselectedAll();

@@ -36,7 +36,7 @@ namespace TheFowler
         [TabGroup("Components")] [SerializeField]
         private Health health;
         [TabGroup("Components")] [SerializeField]
-        private Mana mana;
+        private CooldownComponent mana;
         [TabGroup("Components")] [SerializeField]
         public Punchline punchline;
 
@@ -55,7 +55,7 @@ namespace TheFowler
         public BattleActorData BattleActorData { get { return battleActorData; } set { battleActorData = value; } }
         public BattleActorInfo BattleActorInfo => battleActorInfo;
         public Health Health => health;
-        public Mana Mana => mana;
+        public CooldownComponent Mana => mana;
 
         public StateIcons StateIcons
         {
@@ -124,22 +124,64 @@ namespace TheFowler
                 if (currentBattle.robyn != null)
                     if (currentBattle.robyn == this)
                     {
-                        health?.SetCurrentHealth(Player.RobynSavedData.health);
-                        mana?.SetMana(Player.RobynSavedData.mana);
+                        if (battleActorInfo.isDeath)
+                        {
+                            health?.Resurect(25);
+                        }
+                        else
+                        {
+
+                            health?.SetCurrentHealth(Player.RobynSavedData.health);
+                            mana?.SetMana(Player.RobynSavedData.mana);
+                        }
+
+
+                        if (health?.CurrentHealth < (health?.MaxHealth * .25f))
+                        {
+                            health?.SetCurrentHealth((int)health.MaxHealth * .25f);
+                        }
                     }
                 
                 if(currentBattle.abi != null)
                     if (currentBattle.abi == this)
                     {
-                        health?.SetCurrentHealth(Player.AbiSavedData.health);
-                        mana?.SetMana(Player.AbiSavedData.mana);
+                        if (battleActorInfo.isDeath)
+                        {
+                            health?.Resurect(25);
+                        }
+                        else
+                        {
+
+                            health?.SetCurrentHealth(Player.AbiSavedData.health);
+                            mana?.SetMana(Player.AbiSavedData.mana);
+                        }
+
+
+                        if (health?.CurrentHealth < (health?.MaxHealth * .25f))
+                        {
+                            health?.SetCurrentHealth((int)health.MaxHealth * .25f);
+                        }
                     }
                 
                 if(currentBattle.phoebe != null)
                     if (currentBattle.phoebe == this)
                     {
-                        health?.SetCurrentHealth(Player.PhoebeSavedData.health);
-                        mana?.SetMana(Player.PhoebeSavedData.mana);
+                        if (battleActorInfo.isDeath)
+                        {
+                            health?.Resurect(25);
+                        }
+                        else
+                        {
+
+                            health?.SetCurrentHealth(Player.PhoebeSavedData.health);
+                            mana?.SetMana(Player.PhoebeSavedData.mana);
+                        }
+
+
+                        if (health?.CurrentHealth < (health?.MaxHealth * .25f))
+                        {
+                            health?.SetCurrentHealth((int)health.MaxHealth * .25f);
+                        }
                     }
             }
 
@@ -362,5 +404,6 @@ namespace TheFowler
         
         public int attackBonus;
         public int defenseBonus;
+        public int cooldownBonus;
     }
 }

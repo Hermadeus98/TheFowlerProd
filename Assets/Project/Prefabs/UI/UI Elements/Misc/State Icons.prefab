@@ -132,6 +132,7 @@ RectTransform:
   - {fileID: 2776645436194975533}
   - {fileID: 4845084754253013726}
   - {fileID: 5932760525065973693}
+  - {fileID: 2859701568557546932}
   m_Father: {fileID: 7423372607489390415}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -392,6 +393,112 @@ MonoBehaviour:
   malus_medium: {fileID: 21300000, guid: 8c0e8a990d8171f4b84d710858cee826, type: 3}
   malus_high: {fileID: 21300000, guid: d590d577d32dd284cabb14dae21b7a89, type: 3}
   buffType: 1
+--- !u!1 &7261519005973449281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2859701568557546932}
+  - component: {fileID: 695086590542768997}
+  - component: {fileID: 2242375299262990462}
+  - component: {fileID: 2280378014322191466}
+  m_Layer: 4
+  m_Name: Buff - Cooldown
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2859701568557546932
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7261519005973449281}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2980624373260501188}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 136.5, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &695086590542768997
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7261519005973449281}
+  m_CullTransparentMesh: 1
+--- !u!114 &2242375299262990462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7261519005973449281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: bd0eb48aeffaf2f43a7cae682fb30567, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2280378014322191466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7261519005973449281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccfb5d56225492342bb8946f1fb49c00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  isActive: 0
+  icon: {fileID: 2242375299262990462}
+  bonus_low: {fileID: 21300000, guid: 2724bc63236d8ef4eaf348f00734add3, type: 3}
+  bonus_medium: {fileID: 21300000, guid: 2724bc63236d8ef4eaf348f00734add3, type: 3}
+  bonus_high: {fileID: 21300000, guid: 2724bc63236d8ef4eaf348f00734add3, type: 3}
+  malus_low: {fileID: 21300000, guid: 2724bc63236d8ef4eaf348f00734add3, type: 3}
+  malus_medium: {fileID: 21300000, guid: 2724bc63236d8ef4eaf348f00734add3, type: 3}
+  malus_high: {fileID: 21300000, guid: 2724bc63236d8ef4eaf348f00734add3, type: 3}
+  buffType: 2
 --- !u!1 &7693453769834683111
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,3 +661,4 @@ MonoBehaviour:
   stun: {fileID: 4101742083136110187}
   buff_def: {fileID: 609448884540931374}
   buff_att: {fileID: 2983523882729186461}
+  buff_CD: {fileID: 2280378014322191466}

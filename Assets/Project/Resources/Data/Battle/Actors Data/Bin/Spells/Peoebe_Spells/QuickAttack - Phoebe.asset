@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: Parry - Abigail
+  m_Name: QuickAttack - Phoebe
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -27,19 +27,19 @@ MonoBehaviour:
       Data: 0|TheFowler.Effect[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.DefendEffect, Assembly-CSharp
+      Data: 1|TheFowler.DamageEffect, Assembly-CSharp
     - Name: EffectName
       Entry: 1
-      Data: Defend
+      Data: NO NAME EFFECT
     - Name: TargetType
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: battleCameraBatch
       Entry: 3
-      Data: 1
+      Data: 2
     - Name: cameraPath
       Entry: 7
       Data: 2|TheFowler.cameraPath, Assembly-CSharp
@@ -56,11 +56,11 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: cameraSpecificPath
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: SkillExecutionAttack
     - Name: cameraBattlePath
-      Entry: 6
-      Data: 
+      Entry: 1
+      Data: Default
     - Name: ImPreview
       Entry: 5
       Data: false
@@ -76,10 +76,46 @@ MonoBehaviour:
     - Name: rage
       Entry: 5
       Data: false
-    - Name: bonusType
+    - Name: damage
+      Entry: 4
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|TheFowler.DecreaseCD, Assembly-CSharp
+    - Name: EffectName
+      Entry: 1
+      Data: Reduce CD
+    - Name: TargetType
       Entry: 3
       Data: 0
-    - Name: isAOE
+    - Name: battleCameraBatch
+      Entry: 3
+      Data: 0
+    - Name: cameraPath
+      Entry: 6
+      Data: 
+    - Name: cameraSpecificPath
+      Entry: 1
+      Data: Default
+    - Name: cameraBattlePath
+      Entry: 1
+      Data: Default
+    - Name: ImPreview
+      Entry: 5
+      Data: false
+    - Name: audioEvent
+      Entry: 3
+      Data: 0
+    - Name: eventName
+      Entry: 6
+      Data: 
+    - Name: ReferedSpell
+      Entry: 10
+      Data: 0
+    - Name: rage
       Entry: 5
       Data: false
     - Name: 
@@ -91,15 +127,15 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Parry
+  SpellName: Quick Attack
   ManaCost: 0
   Cooldown: 0
   CurrentCooldown: 0
   logoBuff: {fileID: 0}
-  TargetType: 0
+  TargetType: 1
   SpellPower: 0
-  SpellDescription: Simple Attack with turbo damage
-  TargetDescription: Self
+  SpellDescription: Weak attack reducing cooldown
+  TargetDescription: 
   EasySpellDescription: 
   SpellType: 0
   sequenceBinding: 0

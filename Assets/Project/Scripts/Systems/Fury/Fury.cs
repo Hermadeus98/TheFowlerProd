@@ -7,13 +7,16 @@ using QRCode.Extensions;
 using QRCode.Utils;
 using Sirenix.Utilities;
 using UnityEngine;
+using DG.Tweening;
 
 namespace TheFowler
 {
     public static class Fury
     {
         public static bool IsInFury { get; private set; }
+        public static bool IsInBreakdown { get; set; }
         public static int FuryPoint = 0;
+        
 
         public static void AddFuryPoint(int point)
         {
@@ -56,7 +59,9 @@ namespace TheFowler
             }
             
             QRDebug.Log("FURY", FrenchPallet.TOMATO_RED, "START");
-            IsInFury = true;
+            IsInFury = true; 
+            IsInBreakdown = true;
+            BattleManager.IsReducingCD = true;
 
             if (batonPass != null)
                 Coroutiner.Instance.StopCoroutine(batonPass);
@@ -106,6 +111,8 @@ namespace TheFowler
         {
             var element = UI.GetView<AlliesDataView>(UI.Views.AlliesDataView).datas;
             element.ForEach(w => w.Fury(false));
+
+
         }
 
         /// <summary>
@@ -122,8 +129,10 @@ namespace TheFowler
                     .TARGET_PICKING);
             skillPickingView.ReturnToActionMenu = true;
 
-            
+
         }
+
+        
 
         public static void AllowFury()
         {

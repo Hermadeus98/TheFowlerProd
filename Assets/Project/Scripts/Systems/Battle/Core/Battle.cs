@@ -173,6 +173,9 @@ namespace TheFowler
 
         private IEnumerator StartBattle()
         {
+            BattleManager.IsReducingCD = false;
+            Fury.IsInBreakdown = false;
+
             IsFinish = false;
 
             //Event On Start

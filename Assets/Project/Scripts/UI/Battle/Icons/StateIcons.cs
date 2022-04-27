@@ -9,7 +9,7 @@ namespace TheFowler
     {
         public StateIcon taunt, stun; 
 
-        public BuffIcon buff_def, buff_att;
+        public BuffIcon buff_def, buff_att, buff_CD;
         
         public void HideAll()
         {
@@ -40,5 +40,16 @@ namespace TheFowler
                 buff_att.Refresh(actor.BattleActorInfo.attackBonus);
             }
         }
+        public void Refresh_CD(BattleActor actor)
+        {
+            if (actor.BattleActorInfo.attackBonus == 0)
+                buff_CD.gameObject.SetActive(false);
+            else
+            {
+                buff_CD.gameObject.SetActive(true);
+                buff_CD.Refresh(actor.BattleActorInfo.attackBonus);
+            }
+        }
+
     }
 }

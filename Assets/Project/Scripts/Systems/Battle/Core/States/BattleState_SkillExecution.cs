@@ -21,6 +21,8 @@ namespace TheFowler
             BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.SKILLEXECUTION);
 
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).Hide();
+
+
         }
 
         IEnumerator Cast()

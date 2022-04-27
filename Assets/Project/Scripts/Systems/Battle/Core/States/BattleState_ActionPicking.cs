@@ -91,10 +91,13 @@ namespace TheFowler
                             case ActionPickerElement.PlayerActionType.PARRY:
                                 Player.SelectedSpell = BattleManager.CurrentBattleActor.BattleActorData.DefendSpell;
                                 {
+                                    
                                     var skillPickingView =
                                         BattleManager.CurrentBattle.ChangeBattleState<BattleState_TargetPicking>(BattleStateEnum
                                             .TARGET_PICKING);
                                     skillPickingView.ReturnToActionMenu = true;
+
+                                   
                                 }
                                 break;
                             case ActionPickerElement.PlayerActionType.ATTACK:

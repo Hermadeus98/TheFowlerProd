@@ -51,5 +51,10 @@ namespace TheFowler
             debuffAttackAOE = 20,
             maxBuffAttack = 100,
             minBuffAttack = -100;
+
+        [FoldoutGroup("Balancing - Coodldown")]
+        public int
+            maxBuffCD = 3,
+        minBuffCD = 0;
     }
 }
