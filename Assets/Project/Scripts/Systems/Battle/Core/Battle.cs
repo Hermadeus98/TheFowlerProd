@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using QRCode;
 using QRCode.Extensions;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -134,10 +136,6 @@ namespace TheFowler
                         allies[i].BattleActorData = allies[i].BattleActorData.defaultData;
                     }
                 }
-
-
-
-
             }
             else 
             {
@@ -158,17 +156,11 @@ namespace TheFowler
 
             BattleManager.CurrentBattle = this;
 
-            
-                
-
             SortByInitiative();
             RegisterActors();
             InitializeTurnSystem();
 
-            
-
             StartCoroutine(StartBattle());
-
         }
 
         private IEnumerator StartBattle()
@@ -333,7 +325,6 @@ namespace TheFowler
                 {
                     allies.Add(alliesBatch.GetChild(i).GetComponent<BattleActor>());
                     alliesBatch.GetChild(i).gameObject.SetActive(state);
-                    
                 }
             }
 
@@ -406,9 +397,27 @@ namespace TheFowler
             StopBattle();
             UI.OpenView("LoseView");
         }
-        
+
         [Button]
         public void Restart()
+        {
+            StartCoroutine(RestartIE());
+        }
+
+        IEnumerator RestartIE()
+        {
+            StopBattle();
+
+            yield return new WaitForSeconds(1f);
+            
+            allies.ForEach(w => w.Health.ResetHealth());
+            enemies.ForEach(w => w.Health.ResetHealth());
+            UIBattleBatch.SetUIGuardsVisibility(true);
+            
+            PlayPhase();
+        }
+        
+        /*public void Restart()
         {
             var battle = this;
             battle.gameObject.SetActive(false);
@@ -419,7 +428,7 @@ namespace TheFowler
 
             newBattle.HasRestart = true;
             newBattle.PlayPhase();
-        }
+        }*/
 
         //---<EDITOR>--------------------------------------------------------------------------------------------------<
 #if UNITY_EDITOR

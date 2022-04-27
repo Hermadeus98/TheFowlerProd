@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 
 namespace TheFowler
 {
@@ -47,6 +48,9 @@ namespace TheFowler
         }
         public void CallPunchlineData(PunchlineStruct punchlineStruct)
         {
+            if (punchlineStruct.Events.IsNullOrEmpty())
+                return;
+            
             int rand = Random.Range(0, 100);
 
             if (rand > punchlineStruct.porcentage) return;
