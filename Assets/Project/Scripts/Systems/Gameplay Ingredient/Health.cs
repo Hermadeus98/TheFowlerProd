@@ -199,6 +199,17 @@ namespace TheFowler
             ReferedActor.Resurect();
 
             if (lifeTxt != null) lifeTxt.text = currentHealth.ToString();
+            
+            ReferedActor.BattleActorAnimator.Resurect();
+        }
+
+        public void ResetHealth()
+        {
+            ReferedActor.BattleActorInfo.isDeath = false;
+            currentHealth = maxHealth;
+            fillBar?.SetFill(currentHealth);
+            ReferedActor.AllyData?.Refresh();
+            ReferedActor.BattleActorStats.health = currentHealth;
         }
     }
 }

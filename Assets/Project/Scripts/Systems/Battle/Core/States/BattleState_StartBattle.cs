@@ -20,6 +20,8 @@ namespace TheFowler
                 StartCoroutine(Stop());
 
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).Hide();
+            
+            UIBattleBatch.SetUIGuardsVisibility(true);
         }
 
         IEnumerator Stop()
