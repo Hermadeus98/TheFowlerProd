@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: 2_Time of Joy
+  m_Name: Basic Attack - Aby
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 11400000}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -29,43 +30,19 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.VampirismeEffect, Assembly-CSharp
-    - Name: EffectName
-      Entry: 1
-      Data: NO NAME EFFECT
+      Data: 1|TheFowler.DamageEffectAbi, Assembly-CSharp
     - Name: TargetType
       Entry: 3
       Data: 1
-    - Name: battleCameraBatch
-      Entry: 3
-      Data: 2
-    - Name: cameraPath
-      Entry: 6
-      Data: 
-    - Name: cameraSpecificPath
-      Entry: 1
-      Data: SkillExecutionAttack
-    - Name: cameraBattlePath
-      Entry: 1
-      Data: Default
-    - Name: ImPreview
-      Entry: 5
-      Data: false
-    - Name: audioEvent
-      Entry: 3
-      Data: 8
-    - Name: eventName
-      Entry: 6
-      Data: 
     - Name: ReferedSpell
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 0
     - Name: rage
       Entry: 5
       Data: false
     - Name: damage
       Entry: 4
-      Data: 15
+      Data: 75
     - Name: 
       Entry: 8
       Data: 
@@ -75,22 +52,16 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Time of Joy
-  ManaCost: 16
-  Cooldown: 3
+  SpellName: Basic Attack
+  Cooldown: 0
   CurrentCooldown: 0
-  isRechargingCooldown: 0
   logoBuff: {fileID: 0}
   TargetType: 1
   SpellPower: 1
-  executionDurationBeforeCast: 0.3
-  executionDurationAfterCast: 0.3
-  SpellDescription: Convert damages on self-healing
-  TargetDescription: Single Enemy
-  EasySpellDescription: <color=#FF0000>Light DMG</color><size=35><sprite=0></size>
-  ExecutionType: 0
-  SpellType: 1
+  SpellDescription: 
+  SpellType: 0
   sequenceBinding: 2
-  sprite: {fileID: 21300000, guid: f5cb5b9ebeff8634fb6ef8f940012401, type: 3}
-  spellState: 2
-  unlockOrder: 2
+  sprite: {fileID: 0}
+  spellState: 0
+  unlockOrder: 0
+  isRechargingCooldown: 0
