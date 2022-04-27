@@ -105,7 +105,7 @@ namespace TheFowler
                 if (Inputs.actions["RightBumper"].WasPressedThisFrame())
                 {
                     ID++;
-                    if (ID == 3) ID = 0;
+                    if (ID == menuView.numberOfAllies) ID = 0;
 
                     for (int i = 0; i < skills.Length; i++)
                     {
@@ -126,7 +126,7 @@ namespace TheFowler
                 else if (Inputs.actions["LeftBumper"].WasPressedThisFrame())
                 {
                     ID--;
-                    if (ID == -1) ID = 2;
+                    if (ID == -1) ID = menuView.numberOfAllies - 1;
 
                     for (int i = 0; i < skills.Length; i++)
                     {

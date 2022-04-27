@@ -31,6 +31,10 @@ namespace TheFowler
         [TitleGroup("General Settings")] [ShowIf("enableProgression")]
         [SerializeField]
         public bool showSkillTree = true;
+        [TitleGroup("General Settings")]
+        [ShowIf("enableProgression")]
+        [SerializeField]
+        public int  numberOfAllies = 2;
 
         private bool hasPlayed = false;
 

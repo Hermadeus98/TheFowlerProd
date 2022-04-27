@@ -16,10 +16,13 @@ namespace TheFowler
         private GameObject eventSytemGO;
         private UnityEngine.EventSystems.EventSystem eventSytem;
         private bool onConfirmation;
+        public int numberOfAllies = 0;
         public override void Show()
         {
             base.Show();
 
+
+            numberOfAllies = battle.numberOfAllies;
             background.SetActive(true);
             if (VolumesManager.Instance != null)
                 VolumesManager.Instance.BlurryUI.enabled = true;
@@ -42,6 +45,7 @@ namespace TheFowler
             infoButtons[1] = InfoBoxButtons.CLOSE;
 
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+
         }
 
         public void Show(Battle _battle)
@@ -64,6 +68,7 @@ namespace TheFowler
 
             if (VolumesManager.Instance != null)
                 VolumesManager.Instance.BlurryUI.enabled = false;
+
         }
 
         private IEnumerator WaitOnMenu()
