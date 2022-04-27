@@ -35,6 +35,7 @@ namespace TheFowler
 
         [SerializeField] protected int index;
 
+        public bool canNavigate = true;
         protected Action<UISelectorElement> OnSelect;
 
         public CanvasGroup CanvasGroup => canvasGroup;
@@ -55,7 +56,7 @@ namespace TheFowler
 
         private void Navigate()
         {
-            if(!isActive )
+            if(!isActive && !canNavigate )
                 return;
             
             if (Inputs.actions["NavigateDown"].WasPressedThisFrame())

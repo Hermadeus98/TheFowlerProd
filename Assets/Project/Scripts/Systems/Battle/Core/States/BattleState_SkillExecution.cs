@@ -21,6 +21,8 @@ namespace TheFowler
             BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.SKILLEXECUTION);
 
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).Hide();
+
+
         }
 
         IEnumerator Cast()
@@ -90,7 +92,7 @@ namespace TheFowler
                     }
                 }
 
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(.5f);
 
                 if (BattleManager.IsEnemyTurn)
                 {
@@ -101,8 +103,6 @@ namespace TheFowler
                         Debug.Log(BattleManager.CurrentBattle.lastDeath.gameObject.name);
 
                         yield return deadActor.OnDeathSequence();
-                        
-                        
                     }
                 }
                 

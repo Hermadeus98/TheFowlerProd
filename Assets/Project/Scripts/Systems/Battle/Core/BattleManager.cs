@@ -6,7 +6,7 @@ namespace TheFowler
     public class BattleManager
     {
         public static Battle CurrentBattle;
-
+        public static bool IsReducingCD { get; set; }
         public static ITurnActor CurrentTurnActor
         {
             get

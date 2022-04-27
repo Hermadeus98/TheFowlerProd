@@ -90,7 +90,7 @@ namespace TheFowler
             if (GetSpellHandled(s) != null)
             {
                 GetSpellHandled(s).cooldown = s.Cooldown;
-                s.CurrentCooldown = s.Cooldown;
+                s.CurrentCooldown = s.Cooldown - ReferedActor.BattleActorInfo.cooldownBonus;
 
                 s.isRechargingCooldown = true;
             }

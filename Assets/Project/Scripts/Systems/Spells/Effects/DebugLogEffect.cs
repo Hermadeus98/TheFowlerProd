@@ -13,7 +13,7 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-            Debug.Log("CAST " + EffectName);
+            //Debug.Log("CAST " + EffectName);
             yield break;
         }
 

@@ -51,18 +51,8 @@ namespace TheFowler
             {
                 if (!BattleManager.lastTurnWasEnemiesTurn)
                 {
-                    //CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Enemies");
+                    yield return new WaitForSeconds(.2f);
                 }
-            }
-
-            //yield return new WaitForSeconds(UI.GetView<TurnTransitionView>(UI.Views.TurnTransition).WaitTime);
-            if (!BattleManager.lastTurnWasEnemiesTurn)
-            {
-                yield return new WaitForSeconds(.2f);
-            }
-            else
-            {
-                yield return new WaitForSeconds(.2f);
             }
 
             if (BattleManager.IsAllyTurn)
@@ -101,10 +91,13 @@ namespace TheFowler
                             case ActionPickerElement.PlayerActionType.PARRY:
                                 Player.SelectedSpell = BattleManager.CurrentBattleActor.BattleActorData.DefendSpell;
                                 {
+                                    
                                     var skillPickingView =
                                         BattleManager.CurrentBattle.ChangeBattleState<BattleState_TargetPicking>(BattleStateEnum
                                             .TARGET_PICKING);
                                     skillPickingView.ReturnToActionMenu = true;
+
+                                   
                                 }
                                 break;
                             case ActionPickerElement.PlayerActionType.ATTACK:

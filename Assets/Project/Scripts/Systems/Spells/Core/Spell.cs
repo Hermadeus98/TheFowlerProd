@@ -13,9 +13,6 @@ namespace TheFowler
     {
         [TitleGroup("Main Settings")]
         public string SpellName;
-        
-        [TitleGroup("Main Settings")]
-        public int ManaCost;
 
         [TitleGroup("Main Settings")] public int Cooldown;
         [TitleGroup("Main Settings")] public int CurrentCooldown;
@@ -26,9 +23,6 @@ namespace TheFowler
         
         [TitleGroup("Main Settings"), TextArea(3,5)] 
         public string SpellDescription;
-
-        [TitleGroup("Main Settings"), TextArea(3, 5)]
-        public string TargetDescription, EasySpellDescription;
         
         [TitleGroup("Effects")] public SpellTypeEnum SpellType;
         
@@ -37,13 +31,10 @@ namespace TheFowler
 
         public SequenceEnum sequenceBinding;
 
-        private BattleActor[] receiversReminder { get; set; }
-
-
         [TitleGroup("Progression")]
         public Sprite sprite;
         [TitleGroup("Progression")]
-        public SkillState spellState;
+        [ReadOnly] public SkillState spellState;
         [TitleGroup("Progression")]
         public int unlockOrder;
 
