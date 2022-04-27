@@ -393,6 +393,14 @@ namespace TheFowler
             BattleActorAnimator.Resurect();
             AllyData?.Refresh();
         }
+
+        private void OnDisable()
+        {
+            for (int i = 0; i < BattleActorData.Spells.Length; i++)
+            {
+                BattleActorData.Spells[i].Reset();
+            }
+        }
     }
 
     [Serializable]

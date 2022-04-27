@@ -15,6 +15,7 @@ namespace TheFowler
         public string SpellName;
 
         [TitleGroup("Main Settings")] public int Cooldown;
+        [TitleGroup("Main Settings"), HideInInspector ] public int InitialCooldown;
         [TitleGroup("Main Settings")] public int CurrentCooldown;
         [TitleGroup("Main Settings")] public Sprite logoBuff;
 
@@ -43,6 +44,7 @@ namespace TheFowler
         private void OnEnable()
         {
             Effects.ForEach(w => w.ReferedSpell = this);
+            InitialCooldown = Cooldown;
         }
 
         public IEnumerator Cast(BattleActor emitter, BattleActor[] receivers)
@@ -67,6 +69,13 @@ namespace TheFowler
             CurrentCooldown = 0;
         }
 
+        public void Reset()
+        {
+
+            CurrentCooldown = 0;
+            Cooldown = InitialCooldown;
+
+        }
         public bool ContainEffect<T>(out T component) where T : Effect
         {
             for (int i = 0; i < Effects.Length; i++)
