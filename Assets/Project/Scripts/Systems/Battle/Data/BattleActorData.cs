@@ -29,6 +29,16 @@ namespace TheFowler
         [TitleGroup("Identity")]
         [HideIf("@this.dataType == ActorType.GUARD")] public BattleActorData defaultData;
 
+        [TitleGroup("Identity")] [ShowIf("@this.dataType == ActorType.GUARD")]
+        public EnemyType enemyType = EnemyType.MOB;
+        
+        public enum EnemyType
+        {
+            MOB,
+            TRASHMOB,
+            BOSS
+        }
+            
          [TitleGroup("Identity")] 
          [HideIf("@this.dataType == ActorType.GUARD")]
          public Spell
