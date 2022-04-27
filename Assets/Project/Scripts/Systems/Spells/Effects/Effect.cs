@@ -76,7 +76,7 @@ namespace TheFowler
             {
                 foreach (var receiver in receivers)
                 {
-                    dmg = ApplyDamage(damage, emitter, receiver);
+                    dmg += ApplyDamage(damage, emitter, receiver);
                 }
             }
 
