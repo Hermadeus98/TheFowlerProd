@@ -84,7 +84,11 @@ namespace TheFowler
                     {
                         if (enemyActor.Brain != null)
                         {
+                            
+
                             enemyActor.AI.StartThink();
+
+                            BattleManager.CurrentBattle.BattleGameLogComponent.AddDatas(enemyActor.AI.SelectedSpell, enemyActor, TargetSelector.SelectedTargets);
 
                             var action = enemyActor.SignalReceiver_CastSpell.GetReaction(enemyActor.SignalAsset_CastSpell);
                             action.AddListener(delegate
@@ -92,17 +96,22 @@ namespace TheFowler
                                 enemyActor.AI.SelectedSpell.SimpleCast(enemyActor,
                                     TargetSelector.SelectedTargets.ToArray());
                             });
-                            
+
+
+
+
                             var sequence = enemyActor.SequenceHandler.GetSequence(enemyActor.AI.SelectedSpell.sequenceBinding);
                             sequence.Play();
                             yield return new WaitForSeconds((float)sequence.duration);
                             
                             action.RemoveAllListeners();
-                            
+
                             /*yield return enemyActor.AI.SelectedSpell.Cast(enemyActor,
                                 TargetSelector.SelectedTargets.ToArray());*/
+
                         }
                     }
+
                 }
 
                 yield return new WaitForSeconds(.5f);

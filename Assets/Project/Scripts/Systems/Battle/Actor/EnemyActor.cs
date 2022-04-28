@@ -88,6 +88,11 @@ namespace TheFowler
         public override void OnTurnStart()
         {
             base.OnTurnStart();
+            if(this == BattleManager.GetAllEnemies()[0])
+            {
+                BattleManager.CurrentBattle.BattleGameLogComponent.ResetComponent();
+            }
+
             actorTurn = new EnemyTurn();
             actorTurn.OnTurnStart();
         }
