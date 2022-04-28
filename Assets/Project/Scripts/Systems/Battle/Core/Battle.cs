@@ -68,6 +68,7 @@ namespace TheFowler
         public bool StartWithSavedData = false;
 
         public BattleNarrationComponent BattleNarrationComponent;
+        public BattleGameLogComponent BattleGameLogComponent;
         
         public bool HasRestart { get; set; }
         public bool IsFinish { get; set; }
@@ -481,4 +482,5 @@ namespace TheFowler
         END_BATTLE,
         
     }
+
 }

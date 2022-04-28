@@ -13,6 +13,8 @@ namespace TheFowler
         //public string EffectName = "NO NAME EFFECT";
 
         public TargetTypeEnum TargetType;
+        [HideInInspector]
+        public BattleActor[] Receivers;
 
         /*[SerializeField] protected BattleCameraBatch battleCameraBatch = BattleCameraBatch.NULL;
         [SerializeField, ShowIf("@this.battleCameraBatch == BattleCameraBatch.NULL")] protected cameraPath cameraPath;
@@ -61,6 +63,7 @@ namespace TheFowler
         public virtual void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
         {
             Debug.Log("CAST");
+            Receivers = receivers;
         }
         
         
