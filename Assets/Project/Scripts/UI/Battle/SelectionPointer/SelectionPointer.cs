@@ -16,14 +16,14 @@ namespace TheFowler
         {
             base.Show();
             animTween?.Kill();
-            animTween = selector.DOFade(1f, .5f);
+            selector.alpha = 1;
         }
 
         public override void Hide()
         {
             base.Hide();
             animTween?.Kill();
-            animTween = selector.DOFade(0f, .5f);
+            selector.alpha = 0;
         }
     }
 }
