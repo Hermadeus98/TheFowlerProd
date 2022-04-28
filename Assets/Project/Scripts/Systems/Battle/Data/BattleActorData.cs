@@ -15,8 +15,7 @@ namespace TheFowler
             ALLY,
             GUARD
         }
-        
-        
+
         [TitleGroup("Identity")] 
         public string actorName;
 
@@ -31,6 +30,17 @@ namespace TheFowler
 
         [TitleGroup("Identity")] [ShowIf("@this.dataType == ActorType.GUARD")]
         public EnemyType enemyType = EnemyType.MOB;
+        
+        [TitleGroup("Identity")] [ShowIf("@this.dataType == ActorType.GUARD")]
+        public Archetype archetype = Archetype.NORMAL;
+        
+        public enum Archetype
+        {
+            NORMAL,
+            TANK,
+            SUPPORT,
+            DPS,
+        }
         
         public enum EnemyType
         {
