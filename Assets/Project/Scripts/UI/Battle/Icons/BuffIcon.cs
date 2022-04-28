@@ -30,7 +30,19 @@ namespace TheFowler
                     Apply(value, SpellData.Instance.maxBuffDefense, SpellData.Instance.minBuffDefense);
                     break;
                 case BuffType.CD:
-                    Apply(value, SpellData.Instance.maxBuffCD, SpellData.Instance.minBuffCD);
+                    switch (value)
+                    {
+                        case 1:
+                            icon.sprite = bonus_low;
+                            break;
+                        case 2:
+                            icon.sprite = bonus_medium;
+                            break;
+                        case 3:
+                            icon.sprite = bonus_high;
+                            break;
+                    }
+
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

@@ -61,7 +61,7 @@ namespace TheFowler
             {
                 s.cooldown--;
                 
-                if (s.cooldown < 0)
+                if (s.cooldown <= 0)
                 {
                     s.cooldown = 0;
                     s.Spell.isRechargingCooldown = false;
@@ -90,7 +90,17 @@ namespace TheFowler
             if (GetSpellHandled(s) != null)
             {
                 GetSpellHandled(s).cooldown = s.Cooldown;
-                s.CurrentCooldown = s.Cooldown - ReferedActor.BattleActorInfo.cooldownBonus;
+
+                if (s.isRechargingCooldown)
+                {
+                    s.CurrentCooldown = s.Cooldown ;
+                }
+                else
+                {
+                    s.CurrentCooldown = s.Cooldown - ReferedActor.BattleActorInfo.cooldownBonus;
+                    if (s.CurrentCooldown < 0) s.CurrentCooldown = 0;
+                }
+
 
                 s.isRechargingCooldown = true;
             }

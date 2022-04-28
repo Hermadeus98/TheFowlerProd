@@ -151,7 +151,7 @@ namespace TheFowler
                     }
                     else
                     {
-                        if (String.IsNullOrEmpty(currentDialogue.dialogueText))
+                        if (currentDialogue.dialogueText.Length <= 20)
                         {
                             Next();
                         }

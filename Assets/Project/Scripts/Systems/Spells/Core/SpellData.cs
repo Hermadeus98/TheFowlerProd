@@ -55,6 +55,6 @@ namespace TheFowler
         [FoldoutGroup("Balancing - Coodldown")]
         public int
             maxBuffCD = 3,
-        minBuffCD = 0;
+        minBuffCD = 1;
     }
 }

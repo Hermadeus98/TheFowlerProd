@@ -15,8 +15,10 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-
-            emitter.GetBattleComponent<CooldownComponent>().BuffCD(1);
+            foreach (var receiver in receivers)
+            {
+                receiver.GetBattleComponent<CooldownComponent>().BuffCD(1);
+            }
 
             yield break;
         }

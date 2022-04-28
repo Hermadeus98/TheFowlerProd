@@ -119,7 +119,12 @@ namespace TheFowler
                     selectors[i].InitializeMenu();
                 }
 
+                selectors[i].gameObject.SetActive(false);
+            }
 
+            for (int i = 0; i < menuView.numberOfAllies; i++)
+            {
+                selectors[i].gameObject.SetActive(true);
             }
         }
 
@@ -132,7 +137,7 @@ namespace TheFowler
                     if (!isSelecting)
                     {
                         isSelecting = true;
-                        for (int i = 0; i < selectors.Length; i++)
+                        for (int i = 0; i < menuView.numberOfAllies; i++)
                         {
                             if (selectors[i].isHover)
                             {
@@ -149,7 +154,7 @@ namespace TheFowler
                     {
                         isSelecting = false;
 
-                        for (int i = 0; i < selectors.Length; i++)
+                        for (int i = 0; i < menuView.numberOfAllies; i++)
                         {
                             if (selectors[i].isHover)
                             {
@@ -170,7 +175,7 @@ namespace TheFowler
                     {
                         isSelecting = false;
 
-                        for (int i = 0; i < selectors.Length; i++)
+                        for (int i = 0; i < menuView.numberOfAllies; i++)
                         {
                             if (selectors[i].isHover)
                             {
@@ -215,7 +220,7 @@ namespace TheFowler
 
         private void ChangeDown()
         {
-            if (selectedTransform.GetSiblingIndex() == 2) return;
+            if (selectedTransform.GetSiblingIndex() == menuView.numberOfAllies - 1) return;
 
             selectedTransform.SetSiblingIndex(selectedTransform.GetSiblingIndex() + 1);
         }

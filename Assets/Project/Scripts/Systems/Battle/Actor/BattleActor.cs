@@ -120,68 +120,22 @@ namespace TheFowler
                 }
 
 
-
                 if (currentBattle.robyn != null)
                     if (currentBattle.robyn == this)
                     {
-                        if (battleActorInfo.isDeath)
-                        {
-                            health?.Resurect(25);
-                        }
-                        else
-                        {
-
-                            health?.SetCurrentHealth(Player.RobynSavedData.health);
-                            mana?.SetMana(Player.RobynSavedData.mana);
-                        }
-
-
-                        if (health?.CurrentHealth < (health?.MaxHealth * .25f))
-                        {
-                            health?.SetCurrentHealth((int)health.MaxHealth * .25f);
-                        }
+                        health?.SetCurrentHealth(Player.RobynSavedData.health);
                     }
                 
                 if(currentBattle.abi != null)
                     if (currentBattle.abi == this)
                     {
-                        if (battleActorInfo.isDeath)
-                        {
-                            health?.Resurect(25);
-                        }
-                        else
-                        {
-
-                            health?.SetCurrentHealth(Player.AbiSavedData.health);
-                            mana?.SetMana(Player.AbiSavedData.mana);
-                        }
-
-
-                        if (health?.CurrentHealth < (health?.MaxHealth * .25f))
-                        {
-                            health?.SetCurrentHealth((int)health.MaxHealth * .25f);
-                        }
+                        health?.SetCurrentHealth(Player.AbiSavedData.health);
                     }
                 
                 if(currentBattle.phoebe != null)
                     if (currentBattle.phoebe == this)
                     {
-                        if (battleActorInfo.isDeath)
-                        {
-                            health?.Resurect(25);
-                        }
-                        else
-                        {
-
-                            health?.SetCurrentHealth(Player.PhoebeSavedData.health);
-                            mana?.SetMana(Player.PhoebeSavedData.mana);
-                        }
-
-
-                        if (health?.CurrentHealth < (health?.MaxHealth * .25f))
-                        {
-                            health?.SetCurrentHealth((int)health.MaxHealth * .25f);
-                        }
+                        health?.SetCurrentHealth(Player.PhoebeSavedData.health);
                     }
             }
 
@@ -390,8 +344,14 @@ namespace TheFowler
         public virtual void Resurect(float healthPercent = 100f)
         {
             health.Resurect(healthPercent);
-            BattleActorAnimator.Resurect();
-            AllyData?.Refresh();
+        }
+
+        private void OnDisable()
+        {
+            for (int i = 0; i < BattleActorData.Spells.Length; i++)
+            {
+                BattleActorData.Spells[i].Reset();
+            }
         }
     }
 
