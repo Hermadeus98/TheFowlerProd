@@ -116,7 +116,6 @@ namespace TheFowler
                     {
                         battleActorComponents[i].Initialize();
                     }
-
                 }
 
 
@@ -124,18 +123,27 @@ namespace TheFowler
                     if (currentBattle.robyn == this)
                     {
                         health?.SetCurrentHealth(Player.RobynSavedData.health);
+                        battleActorInfo.attackBonus = Player.RobynSavedData.attackBonus;
+                        battleActorInfo.defenseBonus = Player.RobynSavedData.defenseBonus;
+                        AllyData?.Refresh();
                     }
                 
                 if(currentBattle.abi != null)
                     if (currentBattle.abi == this)
                     {
                         health?.SetCurrentHealth(Player.AbiSavedData.health);
+                        battleActorInfo.attackBonus = Player.AbiSavedData.attackBonus;
+                        battleActorInfo.defenseBonus = Player.AbiSavedData.defenseBonus;
+                        AllyData?.Refresh();
                     }
                 
                 if(currentBattle.phoebe != null)
                     if (currentBattle.phoebe == this)
                     {
                         health?.SetCurrentHealth(Player.PhoebeSavedData.health);
+                        battleActorInfo.attackBonus = Player.PhoebeSavedData.attackBonus;
+                        battleActorInfo.defenseBonus = Player.PhoebeSavedData.defenseBonus;
+                        AllyData?.Refresh();
                     }
             }
 
@@ -144,6 +152,7 @@ namespace TheFowler
                 battleActorComponents.ForEach(w => w.Initialize());
                 battleActorInfo.isDeath = false;
                 battleActorInfo.attackBonus = 0;
+                battleActorInfo.defenseBonus = 0;
             }
         }
 

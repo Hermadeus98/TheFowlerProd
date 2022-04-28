@@ -77,6 +77,9 @@ namespace TheFowler
         [Sirenix.OdinInspector.FilePath] public string referenceBattlePath;
 
         public BattleActor lastDeath { get; set; }
+
+        [SerializeField] private Battle BattleToRestart;
+        [SerializeField] private Battle[] BattleToReset;
         
         private void FixedUpdate()
         {
@@ -269,6 +272,8 @@ namespace TheFowler
                 Player.RobynSavedData.health = robyn.Health.CurrentHealth;
                 Player.RobynSavedData.mana = robyn.Mana.CurrentMana;
                 Player.RobynSavedData.spellHandler = robyn.GetBattleComponent<SpellHandler>();
+                Player.RobynSavedData.attackBonus = robyn.BattleActorInfo.attackBonus;
+                Player.RobynSavedData.defenseBonus = robyn.BattleActorInfo.defenseBonus;
             }
 
             if (abi != null)
@@ -276,6 +281,8 @@ namespace TheFowler
                 Player.AbiSavedData.health = abi.Health.CurrentHealth;
                 Player.AbiSavedData.mana = abi.Mana.CurrentMana;
                 Player.AbiSavedData.spellHandler = abi.GetBattleComponent<SpellHandler>();
+                Player.AbiSavedData.attackBonus = abi.BattleActorInfo.attackBonus;
+                Player.AbiSavedData.defenseBonus = abi.BattleActorInfo.defenseBonus;
             }
 
             if (phoebe != null)
@@ -283,6 +290,8 @@ namespace TheFowler
                 Player.PhoebeSavedData.health = phoebe.Health.CurrentHealth;
                 Player.PhoebeSavedData.mana = phoebe.Mana.CurrentMana;
                 Player.PhoebeSavedData.spellHandler = phoebe.GetBattleComponent<SpellHandler>();
+                Player.PhoebeSavedData.attackBonus = phoebe.BattleActorInfo.attackBonus;
+                Player.PhoebeSavedData.defenseBonus = phoebe.BattleActorInfo.defenseBonus;
             }
         }
 
@@ -413,12 +422,24 @@ namespace TheFowler
             StopBattle();
 
             yield return new WaitForSeconds(1f);
-            
+
+            BattleToReset.ForEach(w => w.ResetBattle());
+
+            BattleToRestart.PlayPhase();
+        }
+
+        public void ResetBattle()
+        {
+            //Reset Health
             allies.ForEach(w => w.Health.ResetHealth());
             enemies.ForEach(w => w.Health.ResetHealth());
             UIBattleBatch.SetUIGuardsVisibility(true);
             
-            PlayPhase();
+            //Reset CoolDown
+            //
+            
+            //Reset Status
+            //
         }
         
         /*public void Restart()
