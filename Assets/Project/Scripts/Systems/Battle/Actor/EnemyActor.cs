@@ -24,6 +24,10 @@ namespace TheFowler
         [SerializeField] private  RectTransform fill, background, preview;
         [SerializeField] private FillBar FillBar, FillBarTrashMob, FillBarBoss;
 
+        [SerializeField]
+        private Dictionary<BattleActorData.Archetype, GameObject[]> helmet =
+            new Dictionary<BattleActorData.Archetype, GameObject[]>();
+
         protected override void OnAwake()
         {
             base.OnAwake();
@@ -51,6 +55,7 @@ namespace TheFowler
                 TypeIcon.Refresh(BattleActorData.actorType);
             
             StateIcons.HideAll();
+            SetHelmet();
         }
 
         private void SetHealthBar()
@@ -104,6 +109,11 @@ namespace TheFowler
             BattleManager.CurrentBattle.EnemyDeathCount++;
             Fury.PlayBreakDown();
             //Fury.AddFuryPoint(15);
+        }
+
+        private void SetHelmet()
+        {
+            helmet[BattleActorData.archetype].ForEach(w => w.gameObject.SetActive(true));
         }
     }
 }
