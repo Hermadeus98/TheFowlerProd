@@ -23,6 +23,8 @@ namespace TheFowler
             public int mana;
             public SpellHandler spellHandler;
             public int initiative;
+
+            public int attackBonus, defenseBonus;
         }
 
         public static SavedData RobynSavedData, AbiSavedData, PhoebeSavedData;

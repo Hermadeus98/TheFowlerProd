@@ -101,14 +101,13 @@ namespace TheFowler
             if(currentHealth == 0)
                 return;
 
-            popupHealComponent.message = heal.ToString();
+            currentHealth += heal;
 
+            popupHealComponent.message = heal.ToString();
             ReferedActor.BattleActorStats.health = currentHealth;
             onHealed?.Invoke(currentHealth);
             fillBar?.SetFill(currentHealth);
-            
-            
-            currentHealth += heal;
+
             if (currentHealth > maxHealth) currentHealth = maxHealth;
             
             ReferedActor.AllyData?.Refresh();
