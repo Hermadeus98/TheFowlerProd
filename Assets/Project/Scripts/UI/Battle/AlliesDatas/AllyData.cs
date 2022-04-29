@@ -50,6 +50,7 @@ namespace TheFowler
 
         public void Refresh()
         {
+            if (referedActor == null) return;
             healthBar.DOFillAmount(referedActor.Health.NormalizedHealth, .2f);
             manaBar.DOFillAmount(referedActor.Mana.NormalizedMana, .2f);
             
