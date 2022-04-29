@@ -12,12 +12,16 @@ namespace TheFowler
 
         public void AddDatas(Spell spell, EnemyActor enemy, List<BattleActor> receivers)
         {
+            datas.emitter = null;
+            datas.spell = null;
+
             datas.spell = spell;
             datas.emitter = enemy;
 
+            datas.receivers = new BattleActor[receivers.Count];
             for (int i = 0; i < receivers.Count; i++)
             {
-                datas.reveivers.Add(receivers[i]);
+                datas.receivers[i] = receivers[i];
             }
 
             enemyActionDatas.Add(datas);
@@ -26,8 +30,7 @@ namespace TheFowler
 
         public void ShowGameLogView()
         {
-
-            //UI.GetView<GameLogView>(UI.Views.GameLog).Show();
+            UI.GetView<GameLogView>(UI.Views.GameLog).Show();
         }
 
         public void HideGameLogView()
@@ -46,7 +49,7 @@ namespace TheFowler
         {
             public Spell spell;
             public EnemyActor emitter;
-            public List<BattleActor> reveivers;
+            public BattleActor[] receivers;
         }
     }
 }

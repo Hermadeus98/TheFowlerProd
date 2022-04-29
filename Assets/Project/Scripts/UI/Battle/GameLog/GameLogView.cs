@@ -18,14 +18,13 @@ namespace TheFowler
         [TabGroup("References")]
         [SerializeField] private GameLogElement[] gameLogElements;
 
-        private Vector2 hidePos, showPos;
+        [SerializeField] private Vector2 hidePos, showPos;
 
         private Tween touchBlink;
         public override void Show()
         {
             base.Show();
-            hidePos = RectTransform.anchoredPosition;
-            showPos = Vector2.zero;
+            RectTransform.anchoredPosition = hidePos;
 
             touchBlink = indicatorTouchs.DOColor(Color.yellow, .5f).SetLoops(-1, LoopType.Yoyo);
         }

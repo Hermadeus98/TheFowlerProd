@@ -525,7 +525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2898208878129117670, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: showSkillTree
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2898208878129117670, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: gameplayPhase_id
@@ -543,6 +543,14 @@ PrefabInstance:
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 2898208878129117670, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
+    - target: {fileID: 2898208878129117670, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
+      propertyPath: OnEnd.instructions.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898208878129117670, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
+      propertyPath: onEndEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2898208878129117670, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.size
       value: 0
@@ -576,6 +584,18 @@ PrefabInstance:
       value: '"path":"battleStates.[6]","value":$eref:6'
       objectReference: {fileID: 0}
     - target: {fileID: 2898208878129117670, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
+      propertyPath: onEndEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898208878129117670, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
+      propertyPath: onEndEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898208878129117670, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
+      propertyPath: onEndEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayPhase
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898208878129117670, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -607,6 +627,14 @@ PrefabInstance:
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[6]
       value: 
       objectReference: {fileID: 5211070443987780587}
+    - target: {fileID: 2898208878129117670, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
+      propertyPath: onEndEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TheFowler.Battle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898208878129117670, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
+      propertyPath: onEndEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2898208878129117671, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -790,7 +818,7 @@ PrefabInstance:
     - target: {fileID: 3946057526143467420, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: serializationData.ReferencedUnityObjects.Array.data[3]
       value: 
-      objectReference: {fileID: 420810934265097615}
+      objectReference: {fileID: 1939333188298216911}
     - target: {fileID: 3946057526143467420, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: serializationData.ReferencedUnityObjects.Array.data[4]
       value: 
@@ -1549,7 +1577,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 5bed3eb07f2972246b2d8c2f2484648a, type: 2}
     - target: {fileID: 8872407706744381878, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: isParticipant
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8872407706744381878, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: battleActorData
@@ -1585,6 +1613,17 @@ PrefabInstance:
       objectReference: {fileID: 9178441107142746897, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
+--- !u!114 &1939333188298216911 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7746101429801165564, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
+  m_PrefabInstance: {fileID: 8184812350635095859}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &567212445844858315 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8523466644798231288, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
@@ -1610,17 +1649,6 @@ MonoBehaviour:
 --- !u!114 &2784720210602107698 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6283395801559307265, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
-  m_PrefabInstance: {fileID: 8184812350635095859}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &420810934265097615 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8377062713019144892, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
   m_PrefabInstance: {fileID: 8184812350635095859}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

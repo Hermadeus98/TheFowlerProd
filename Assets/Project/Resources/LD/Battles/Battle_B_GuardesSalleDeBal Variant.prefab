@@ -547,6 +547,10 @@ PrefabInstance:
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 2742375392343865330, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
+    - target: {fileID: 2865145676600127545, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2898208878129117664, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: m_Name
       value: Battle_B_GuardesSalleDeBal Variant
@@ -554,6 +558,10 @@ PrefabInstance:
     - target: {fileID: 2898208878129117670, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: finishDirectly
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2898208878129117670, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
+      propertyPath: numberOfAllies
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2898208878129117670, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: gameplayPhase_id
@@ -653,7 +661,7 @@ PrefabInstance:
       objectReference: {fileID: 2644655828548654667}
     - target: {fileID: 2898208878129117670, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: onEndEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TheFowler.DialogueHandler, Assembly-CSharp
+      value: TheFowler.Battle, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2898208878129117670, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: onEndEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -665,7 +673,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2898208878129117671, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.987
+      value: 30.67
       objectReference: {fileID: 0}
     - target: {fileID: 2898208878129117671, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -673,23 +681,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2898208878129117671, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.428
+      value: -10.31
       objectReference: {fileID: 0}
     - target: {fileID: 2898208878129117671, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2898208878129117671, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2898208878129117671, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2898208878129117671, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2898208878129117671, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -697,7 +705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2898208878129117671, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2898208878129117671, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1103,6 +1111,10 @@ PrefabInstance:
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 5322680668375031854, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
+    - target: {fileID: 5381271649394354611, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5392182274112632073, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: serializationData.Prefab
       value: 
@@ -1144,12 +1156,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5587175316632019492, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
     - target: {fileID: 5592544529410812350, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
+      propertyPath: brain
+      value: 
+      objectReference: {fileID: 11400000, guid: 2fbfd38df1bd77245accd9d1bf99c865, type: 2}
+    - target: {fileID: 5592544529410812350, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
+      propertyPath: battleActorData
+      value: 
+      objectReference: {fileID: 11400000, guid: f7e98cbedc9dfc24592cdffe4355cb4b, type: 2}
+    - target: {fileID: 5592544529410812350, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 5592544529410812350, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
     - target: {fileID: 5639505800364820246, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: isParticipant
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5639505800364820246, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: serializationData.Prefab
@@ -1662,27 +1682,39 @@ PrefabInstance:
     - target: {fileID: 8872407706744381878, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: brain
       value: 
-      objectReference: {fileID: 11400000, guid: 0208f5285c6bdc84ab696eb9419c2014, type: 2}
+      objectReference: {fileID: 11400000, guid: 0b34fb66050cef04287c6f35a38d96f3, type: 2}
     - target: {fileID: 8872407706744381878, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: ai.brain
       value: 
-      objectReference: {fileID: 11400000, guid: 0208f5285c6bdc84ab696eb9419c2014, type: 2}
+      objectReference: {fileID: 11400000, guid: 0b34fb66050cef04287c6f35a38d96f3, type: 2}
     - target: {fileID: 8872407706744381878, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: battleActorData
       value: 
-      objectReference: {fileID: 11400000, guid: ad3445247c5889240a81c89de1cfb277, type: 2}
+      objectReference: {fileID: 11400000, guid: fab87a5bc85fc1542ba08034cfd5ab17, type: 2}
     - target: {fileID: 8872407706744381878, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 8872407706744381878, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
     - target: {fileID: 8872407707271228033, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
+      propertyPath: brain
+      value: 
+      objectReference: {fileID: 11400000, guid: af526fd6136e7ea41856345c8753e0c5, type: 2}
+    - target: {fileID: 8872407707271228033, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: isParticipant
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8872407707271228033, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
+      propertyPath: battleActorData
+      value: 
+      objectReference: {fileID: 11400000, guid: 0550c26f3b123a04fa73a75f904db316, type: 2}
+    - target: {fileID: 8872407707271228033, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 8872407707271228033, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
+    - target: {fileID: 8872407708185004398, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
+      propertyPath: battleActorData
+      value: 
+      objectReference: {fileID: 11400000, guid: 116d148d7662d674687ca5d7b80f8491, type: 2}
     - target: {fileID: 8872407708185004398, guid: 590b5b1455bea1c4783dbf2b062fead7, type: 3}
       propertyPath: serializationData.Prefab
       value: 

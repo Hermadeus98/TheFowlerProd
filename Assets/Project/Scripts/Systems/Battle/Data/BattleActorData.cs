@@ -18,6 +18,8 @@ namespace TheFowler
 
         [TitleGroup("Identity")] 
         public string actorName;
+        [TitleGroup("Identity")]
+        public Sprite sprite;
 
         [TitleGroup("Identity")] 
         [HideIf("@this.dataType == ActorType.GUARD")] public Spell[] Spells;
