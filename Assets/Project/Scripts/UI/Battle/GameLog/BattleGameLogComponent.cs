@@ -27,7 +27,7 @@ namespace TheFowler
         public void ShowGameLogView()
         {
 
-            UI.GetView<GameLogView>(UI.Views.GameLog).Show();
+            //UI.GetView<GameLogView>(UI.Views.GameLog).Show();
         }
 
         public void HideGameLogView()
