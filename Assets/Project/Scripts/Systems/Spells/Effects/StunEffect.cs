@@ -27,16 +27,6 @@ namespace TheFowler
         {
             yield break;
         }
-
-        public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
-        {
-            base.OnSimpleCast(emitter, receivers);
-            
-            foreach (var receiver in receivers)
-            {
-                receiver.GetBattleComponent<Stun>().StunActor(stunTurnDuration);
-            }
-        }
     }
 
 }
