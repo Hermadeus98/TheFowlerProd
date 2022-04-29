@@ -10,6 +10,7 @@ namespace TheFowler
         public override void OnTurnStart()
         {
             base.OnTurnStart();
+            BattleManager.CurrentBattle.BattleGameLogComponent.HideGameLogView();
         }
     }
 }

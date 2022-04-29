@@ -47,7 +47,7 @@ namespace TheFowler
                             var action = actor.SignalReceiver_CastSpell.GetReaction(actor.SignalAsset_CastSpell);
                             action.AddListener(delegate
                             {
-                                Player.SelectedSpell.SimpleCast(actor, TargetSelector.SelectedTargets.ToArray());
+                                StartCoroutine(Player.SelectedSpell.Cast(actor, TargetSelector.SelectedTargets.ToArray()));
                             });
                             
                             var sequence = actor.SequenceHandler.GetSequence(Player.SelectedSpell.sequenceBinding);
@@ -84,25 +84,34 @@ namespace TheFowler
                     {
                         if (enemyActor.Brain != null)
                         {
+                            
+
                             enemyActor.AI.StartThink();
+
+                            BattleManager.CurrentBattle.BattleGameLogComponent.AddDatas(enemyActor.AI.SelectedSpell, enemyActor, TargetSelector.SelectedTargets);
 
                             var action = enemyActor.SignalReceiver_CastSpell.GetReaction(enemyActor.SignalAsset_CastSpell);
                             action.AddListener(delegate
                             {
-                                enemyActor.AI.SelectedSpell.SimpleCast(enemyActor,
-                                    TargetSelector.SelectedTargets.ToArray());
+                                StartCoroutine(enemyActor.AI.SelectedSpell.Cast(enemyActor,
+                                    TargetSelector.SelectedTargets.ToArray()));
                             });
-                            
+
+
+
+
                             var sequence = enemyActor.SequenceHandler.GetSequence(enemyActor.AI.SelectedSpell.sequenceBinding);
                             sequence.Play();
                             yield return new WaitForSeconds((float)sequence.duration);
                             
                             action.RemoveAllListeners();
-                            
+
                             /*yield return enemyActor.AI.SelectedSpell.Cast(enemyActor,
                                 TargetSelector.SelectedTargets.ToArray());*/
+
                         }
                     }
+
                 }
 
                 yield return new WaitForSeconds(.5f);

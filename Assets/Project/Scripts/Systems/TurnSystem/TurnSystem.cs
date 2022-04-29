@@ -10,6 +10,8 @@ namespace TheFowler
         public List<ITurnActor> TurnActors = new List<ITurnActor>();
 
         public Round CurrentRound;
+
+        public int numberOfRound;
         
         public TurnSystem(IEnumerable<ITurnActor> turnActors)
         {
@@ -25,6 +27,13 @@ namespace TheFowler
         {
             CurrentRound = new Round(TurnActors);
             CurrentRound.NextTurn();
+
+            if(numberOfRound > 0)
+                BattleManager.CurrentBattle.BattleGameLogComponent.ShowGameLogView();
+
+
+
+            numberOfRound++;
         }
 
         public void NextTurn()

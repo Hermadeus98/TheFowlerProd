@@ -58,12 +58,6 @@ namespace TheFowler
             }*/
         }
 
-        public virtual void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
-        {
-            Debug.Log("CAST");
-        }
-        
-        
         protected float Damage(float damage, BattleActor emitter, BattleActor[] receivers)
         {
             var dmg = 0f;

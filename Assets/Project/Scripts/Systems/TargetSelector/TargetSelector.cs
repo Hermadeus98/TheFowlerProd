@@ -43,7 +43,9 @@ namespace TheFowler
             blockNavigation = false;
 
             if (BattleManager.CurrentBattleActor.BattleActorInfo.isTaunt && 
-                !BattleManager.CurrentBattleActor.GetBattleComponent<Taunt>().taunter.BattleActorInfo.isDeath)
+                !BattleManager.CurrentBattleActor.GetBattleComponent<Taunt>().taunter.BattleActorInfo.isDeath && 
+                targetType != TargetTypeEnum.ALL_ENEMIES && 
+                targetType != TargetTypeEnum.ALL_ALLIES)
             {
                 var taunt = BattleManager.CurrentBattleActor.GetBattleComponent<Taunt>();
                 AvailableTargets.Add(taunt.taunter);

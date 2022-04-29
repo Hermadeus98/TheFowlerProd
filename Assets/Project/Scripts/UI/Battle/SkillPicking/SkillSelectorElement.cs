@@ -47,10 +47,6 @@ namespace TheFowler
 
             if (args is WrapperArgs<SpellHandler.SpellHandled> cast)
             {
-
-
-
-
                 referedSpell = cast.Arg.Spell;
                 int newCooldown = referedSpell.CurrentCooldown;
 

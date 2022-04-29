@@ -81,7 +81,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7558641430073315832}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -118,7 +118,19 @@ MonoBehaviour:
     instructions: 
   onStartEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onEndGameplayPhase_id: 0
   OnEnd:
     instructions: 
@@ -129,9 +141,19 @@ MonoBehaviour:
   video: {fileID: 32900000, guid: 621b810d770f6fd4dbb455e153b67d40, type: 3}
   activator: {fileID: 7195128329407905600}
   Inputs: {fileID: 9138220621994455441}
-  PlayWWISEState: 0
+  PlayWWISEState: 1
   canPass: 1
   playBlackPanel: 0
+  nextPhase: {fileID: 0}
+  onStartWWISE:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 32a36f88bc4d38947ac7fbc89c8e1cee, type: 2}
+  onEndWWISE:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  timeCodeBreakWall: 30
 --- !u!114 &9138220621994455441
 MonoBehaviour:
   m_ObjectHideFlags: 0

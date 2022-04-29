@@ -24,11 +24,5 @@ namespace TheFowler
         {
             yield break;
         }
-
-        public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
-        {
-            base.OnSimpleCast(emitter, receivers);
-            receivers.ForEach(w => w.Health.Heal(healValue));
-        }
     }
 }
