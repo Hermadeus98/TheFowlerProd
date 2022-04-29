@@ -8,12 +8,12 @@ namespace TheFowler
 {
     public class VideoHandler : GameplayPhase
     {
-        [SerializeField] private VideoClip video;
+        [SerializeField] protected VideoClip video;
         [SerializeField] private ActorActivator activator;
         [SerializeField] private PlayerInput Inputs;
 
         private float elapsedTimePassCutscene;
-        private bool videoPassed = false;
+        protected bool videoPassed = false;
 
         public bool PlayWWISEState;
         [SerializeField] private bool canPass = false;
