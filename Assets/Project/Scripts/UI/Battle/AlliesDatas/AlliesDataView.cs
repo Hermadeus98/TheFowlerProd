@@ -51,6 +51,8 @@ namespace TheFowler
             {
                 data.gameObject.SetActive(false);
             }
+            
+            data?.Refresh();
         }
 
         public override void Show()
