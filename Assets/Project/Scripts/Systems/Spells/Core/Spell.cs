@@ -59,11 +59,6 @@ namespace TheFowler
             yield return new WaitForSeconds(.3f);
         }
 
-        public void SimpleCast(BattleActor emitter, BattleActor[] receivers)
-        {
-            Effects.ForEach(w => w.OnSimpleCast(emitter, receivers));
-        }
-
         private void OnDisable()
         {
             CurrentCooldown = 0;
@@ -71,11 +66,10 @@ namespace TheFowler
 
         public void Reset()
         {
-
             CurrentCooldown = 0;
             Cooldown = InitialCooldown;
-
         }
+        
         public bool ContainEffect<T>(out T component) where T : Effect
         {
             for (int i = 0; i < Effects.Length; i++)

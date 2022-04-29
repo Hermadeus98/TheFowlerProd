@@ -23,11 +23,5 @@ namespace TheFowler
 
             yield return new WaitForSeconds(SpellData.Instance.Guard_Timer_BasicAttack_ImpactDuration);
         }
-
-        public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
-        {
-            Debug.Log(122);
-            emitter.StartCoroutine(OnCast(emitter, receivers));
-        }
     }
 }

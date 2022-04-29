@@ -33,10 +33,5 @@ namespace TheFowler
         {
             yield break;
         }
-
-        public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
-        {
-            emitter.StartCoroutine(OnCast(emitter, receivers));
-        }
     }
 }

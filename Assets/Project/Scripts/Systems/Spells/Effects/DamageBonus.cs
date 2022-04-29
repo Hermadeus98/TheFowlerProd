@@ -14,6 +14,7 @@ namespace TheFowler
             MALUS,
         }
 
+        public float delay = 0f;
         public AttackBonusType attackBonusType;
         public bool isAOE = false;
         
@@ -24,6 +25,8 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
+            yield return new WaitForSeconds(delay);
+            
             if (TargetType == TargetTypeEnum.SELF)
             {
                 var buff = emitter.GetBattleComponent<Buff>();
@@ -59,11 +62,6 @@ namespace TheFowler
         public override IEnumerator OnFinishCast(BattleActor emitter, BattleActor[] receivers)
         {
             yield break;
-        }
-
-        public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
-        {
-            emitter.StartCoroutine(OnCast(emitter, receivers));
         }
     }
 }
