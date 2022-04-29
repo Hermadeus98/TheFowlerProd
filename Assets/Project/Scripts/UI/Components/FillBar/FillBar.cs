@@ -27,6 +27,9 @@ namespace TheFowler
         private Image backgroundImage, previewImage, fillImage;
         [SerializeField] private Image cross, hearth;
 
+        [SerializeField] private bool beatHearth = false;
+        private Sequence beat;
+
         protected override void OnStart()
         {
             base.OnStart();
@@ -53,6 +56,24 @@ namespace TheFowler
             {
                 fillImage.color = fillColor.Evaluate(valueInPercent);
             });
+            
+            if (beatHearth)
+            {
+                if (currentValue < maxValue / 4f)
+                {
+                    beat = DOTween.Sequence();
+                    beat.Append(hearth.transform.DOScale(1.1f, .2f).SetEase(Ease.InSine));
+                    beat.Append(hearth.transform.DOScale(1f, .2f).SetEase(Ease.InSine));
+                    beat.SetLoops(-1);
+                    beat.Play();
+                }
+            }
+
+            if (currentValue <= 0)
+            {
+                beat?.Kill();
+                hearth.transform.localScale = Vector3.one;
+            }
         }
 
         public void ShowPreview()

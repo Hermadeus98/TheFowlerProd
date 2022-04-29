@@ -72,7 +72,7 @@ namespace TheFowler
             base.OnStart();
             
             OnChangeDifficulty(DifficultyManager.currentDifficulty);
-
+            
         }
 
         public virtual void InitializeComponents()
@@ -296,6 +296,7 @@ namespace TheFowler
             }
             
             InitializeComponents();
+            AllyData?.Refresh();
         }
         
         public void OnTarget()
