@@ -36,13 +36,11 @@ namespace TheFowler
 
         public void _Select()
         {
-            enemy.SelectionPointer.Show();
-            enemy.SelectionPointer.SetEmitterColor();
+            enemy.OnTargetEmitterLog();
 
             for (int i = 0; i < receivers.Length; i++)
             {
-                receivers[i].SelectionPointer.Show();
-                receivers[i].SelectionPointer.SetTargetColor();
+                receivers[i].OnTarget();
             }
 
             descriptionBox.SetActive(true);
@@ -53,16 +51,14 @@ namespace TheFowler
         {
             if(enemy != null)
             {
-
-                enemy.SelectionPointer.Hide();
-                enemy.SelectionPointer.SetTargetColor();
+                enemy.OnEndTargetEmitterLog();
 
             }
 
             for (int i = 0; i < receivers.Length; i++)
             {
-                if(receivers[i] != null)
-                    receivers[i].SelectionPointer.Hide();
+                if (receivers[i] != null)
+                    receivers[i].OnEndTarget();
             }
             descriptionBox.SetActive(false);
         }
