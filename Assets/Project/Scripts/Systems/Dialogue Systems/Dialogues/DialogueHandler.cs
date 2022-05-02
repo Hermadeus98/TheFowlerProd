@@ -7,6 +7,7 @@ using DG.Tweening;
 using System.Collections;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
+using Cinemachine;
 
 namespace TheFowler
 {
@@ -86,7 +87,24 @@ namespace TheFowler
         {
             if(Timeline != null)
             {
+                CinemachineBrain cineCam =  CameraManager.Camera.GetComponent<CinemachineBrain>();
+
+
+                foreach (var playableAssetOutput in Timeline.playableAsset.outputs)
+                {
+                    if (playableAssetOutput.outputTargetType == typeof(CinemachineBrain))
+                    {
+                        Timeline.SetGenericBinding(playableAssetOutput.sourceObject, cineCam);
+                        
+                    }
+
+                }
+
+
+
                 Timeline.Play();
+
+
 
             }
 
@@ -151,13 +169,16 @@ namespace TheFowler
                     }
                     else
                     {
+                        
+
                         if (currentDialogue.dialogueText.Length <= 20)
                         {
                             Next();
                         }
                         else
                         {
-                            Timeline.Pause();
+                            Next();
+                            //Timeline.Pause();
                         }
 
 
@@ -535,7 +556,7 @@ namespace TheFowler
             switch (dialogueType)
             {
                 case DialogueType.STATIC:
-                    CameraManager.Instance.SetCamera(dialogue.cameraPath);
+                    //CameraManager.Instance.SetCamera(dialogue.cameraPath);
 
                     if (dialogue.isHarmonisation)
                     {
@@ -618,7 +639,7 @@ namespace TheFowler
                             break;
                         case ActorEnum.GUARD:
                             
-                            if(guardsSockets[idGuards] != null)
+                            if(guardsSockets.Length> 0 && guardsSockets[idGuards] != null)
                             {
                                 SoundManager.PlaySound(dialogue.voice, guardsSockets[idGuards].body_Middle.gameObject);
                                 idGuards++;
@@ -646,7 +667,7 @@ namespace TheFowler
                     //    Dialogue = dialogue,
                     //    DialogueNode = currentDialogueNode,
                     //});
-                    CameraManager.Instance.SetCamera(dialogue.cameraPath);
+                    //CameraManager.Instance.SetCamera(dialogue.cameraPath);
                     UI.RefreshView(UI.Views.StaticDialogs, new DialogueArg()
                     {
                         Dialogue = dialogue,

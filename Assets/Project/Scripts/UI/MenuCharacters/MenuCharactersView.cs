@@ -57,6 +57,8 @@ namespace TheFowler
         public override void Hide()
         {
             base.Hide();
+            eventSytem.SetSelectedGameObject(null);
+
             onMenu = false;
             battle = null;
             onConfirmation = false;
@@ -68,6 +70,7 @@ namespace TheFowler
 
             if (VolumesManager.Instance != null)
                 VolumesManager.Instance.BlurryUI.enabled = false;
+
 
         }
 

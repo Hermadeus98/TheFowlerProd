@@ -29,7 +29,7 @@ namespace TheFowler
             CurrentRound.NextTurn();
 
             if(numberOfRound > 0)
-                BattleManager.CurrentBattle.BattleGameLogComponent.ShowGameLogView();
+                BattleManager.CurrentBattle.BattleGameLogComponent.UpdateGameLogView();
 
 
 
