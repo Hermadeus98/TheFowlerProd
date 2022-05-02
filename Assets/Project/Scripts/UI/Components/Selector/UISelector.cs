@@ -62,13 +62,11 @@ namespace TheFowler
             if (Inputs.actions["NavigateDown"].WasPressedThisFrame())
             {
                 SelectNext();
-                OnNavigate();
             }
 
             if (Inputs.actions["NavigateUp"].WasPressedThisFrame())
             {
                 SelectPrevious();
-                OnNavigate();
             }
 
             if (Inputs.actions["A"].WasPressedThisFrame())
@@ -112,6 +110,7 @@ namespace TheFowler
             currentSelectedElement = elements[currentIndex];
             currentSelectedElement.Select();
             OnSelect?.Invoke(currentSelectedElement);
+            OnNavigate();
         }
         
         public override void Show()

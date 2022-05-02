@@ -69,6 +69,7 @@ namespace TheFowler
             }
 
             skillSelector.canNavigate = true;
+            skillSelector.Hide();
         }
 
         private void Update()
