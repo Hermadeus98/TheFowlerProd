@@ -39,6 +39,11 @@ namespace TheFowler
             UI.GetView<GameLogView>(UI.Views.GameLog).Hide();
         }
 
+        public void UpdateGameLogView()
+        {
+            UI.GetView<GameLogView>(UI.Views.GameLog).Blink();
+        }
+
         public void ResetComponent()
         {
             enemyActionDatas.Clear();

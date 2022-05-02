@@ -37,8 +37,9 @@ namespace TheFowler
                 UI.CloseView("FuryView");
             }
 
-            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.ACTIONPICKING);           
-            
+            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.ACTIONPICKING);
+
+            BattleManager.CurrentBattle.BattleGameLogComponent.ShowGameLogView();
         }
 
         IEnumerator OnStateEnterIE()
@@ -150,6 +151,8 @@ namespace TheFowler
             }
 
             SoundManager.PlaySound( AudioGenericEnum.TF_SFX_Combat_UI_SwitchCamera_Light, gameObject);
+
+            BattleManager.CurrentBattle.BattleGameLogComponent.HideGameLogView();
         }
 
         private IEnumerator CloseView()
