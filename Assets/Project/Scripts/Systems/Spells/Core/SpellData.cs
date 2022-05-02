@@ -26,6 +26,8 @@ namespace TheFowler
         public float Abi_Timer_BasicAttack_TrailDuration = 1f;
         [FoldoutGroup("Abi Basic Attack")]
         public ParticleSystem Abi_PS_BasicAttack_Impact;
+        [FoldoutGroup("Abi Basic Attack")]
+        public GameObject Abi_Flash_BasicAttack_Shock;
         
         [FoldoutGroup("Guard Basic Attack")]
         public ParticleSystem Guard_PS_BasicAttack_Projectile;

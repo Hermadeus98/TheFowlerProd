@@ -13,6 +13,8 @@ namespace TheFowler
         private Tween opening, move;
 
         [SerializeField] private RectTransform box;
+
+        [SerializeField] private SkillSelectorElement SkillSelectorElement;
         
         public override void Show()
         {
@@ -38,9 +40,9 @@ namespace TheFowler
 
         public void Refresh(Spell spell)
         {
-            spellName.SetText(spell.SpellName);
-            //targetText.SetText(spell.TargetDescription);
-            //easyDesc.SetText(spell.EasySpellDescription);
+            SkillSelectorElement.referedSpell = spell;
+            SkillSelectorElement.DeSelect();
+            SkillSelectorElement.Select();
         }
     }
 }

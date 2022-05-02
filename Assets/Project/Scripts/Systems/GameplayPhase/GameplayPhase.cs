@@ -34,6 +34,8 @@ public class GameplayPhase : GameplayMonoBehaviour
     public bool IsActive { get => isActive; }
     public GameplayPhaseEnum GameplayPhaseID { get => gameplayPhase_id; set => gameplayPhase_id = value; }
 
+    protected bool callOnEndEvent = true;
+
     [Button]
     public virtual void PlayPhase()
     {
@@ -59,11 +61,13 @@ public class GameplayPhase : GameplayMonoBehaviour
 
         GeneralInputsHandler.Instance.enabled = true;
 
-        OnEnd.Call();
-        onEndEvent?.Invoke();
-        if(onEndGameplayPhase_id != GameplayPhaseEnum.NULL)
-            GameplayPhaseManager.PlayGameplayPhase(onEndGameplayPhase_id);
-
+        if (callOnEndEvent)
+        {
+            OnEnd.Call();
+            onEndEvent?.Invoke();
+            if (onEndGameplayPhase_id != GameplayPhaseEnum.NULL)
+                GameplayPhaseManager.PlayGameplayPhase(onEndGameplayPhase_id);
+        }
     }
 
 
