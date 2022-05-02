@@ -1,74 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8504965456956785681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NodeName: 
-  chance: 1
-  state: 0
-  started: 0
-  guid: 23f9c4047508b5d48b05d5e09fdeb8fa
-  position: {x: 278, y: 76}
-  children:
-  - {fileID: -6674729937522744654}
-  dialogue:
-    ActorEnum: 1
-    dialogueText: What was that?!
-    cameraPath:
-      genericKey: 7
-      cameraName: Default
-      batchName: 
-    displayDuration: 2
-    choiceText: 
-    isHarmonisation: 0
-    voice:
-      idInternal: 0
-      valueGuidInternal: 
-      WwiseObjectReference: {fileID: 11400000, guid: 9a4268ec64e381942b35014f1c9d8540, type: 2}
-    animationTrigger: 0
---- !u!114 &-6674729937522744654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
-  m_EditorClassIdentifier: 
-  NodeName: 
-  chance: 1
-  state: 0
-  started: 0
-  guid: a1c6f79d91def854fbe4f48681fb9203
-  position: {x: 432, y: 76}
-  children: []
-  dialogue:
-    ActorEnum: 0
-    dialogueText: We better hurry up.
-    cameraPath:
-      genericKey: 7
-      cameraName: Default
-      batchName: 
-    displayDuration: 2
-    choiceText: 
-    isHarmonisation: 0
-    voice:
-      idInternal: 0
-      valueGuidInternal: 
-      WwiseObjectReference: {fileID: 11400000, guid: 1b7ebc762208351449bfe4545a1f61fe, type: 2}
-    animationTrigger: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,9 +17,6 @@ MonoBehaviour:
   treeState: 0
   nodes:
   - {fileID: 356418599701839628}
-  - {fileID: 3477677656785360618}
-  - {fileID: -8504965456956785681}
-  - {fileID: -6674729937522744654}
   dialogueType: 1
 --- !u!114 &356418599701839628
 MonoBehaviour:
@@ -108,8 +36,7 @@ MonoBehaviour:
   started: 0
   guid: 4da18b7d7520e3449a05e86738ff53b1
   position: {x: -2, y: 76}
-  children:
-  - {fileID: 3477677656785360618}
+  children: []
   dialogue:
     ActorEnum: 3
     dialogueText: Leave your puny instrument, servant!
@@ -117,46 +44,11 @@ MonoBehaviour:
       genericKey: 7
       cameraName: Default
       batchName: 
-    displayDuration: 2.5
+    displayDuration: 4
     choiceText: 
     isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
       WwiseObjectReference: {fileID: 11400000, guid: 00f4fd553754a40459e941b28e40d1f7, type: 2}
-    animationTrigger: 0
---- !u!114 &3477677656785360618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NodeName: 
-  chance: 1
-  state: 0
-  started: 0
-  guid: edcf9d26bcc11de44be4a32d2234fff7
-  position: {x: 106, y: 76}
-  children:
-  - {fileID: -8504965456956785681}
-  dialogue:
-    ActorEnum: 3
-    dialogueText: 
-    cameraPath:
-      genericKey: 7
-      cameraName: Default
-      batchName: 
-    displayDuration: 3
-    choiceText: 
-    isHarmonisation: 0
-    voice:
-      idInternal: 0
-      valueGuidInternal: 
-      WwiseObjectReference: {fileID: 11400000, guid: dad8488bb27db4646a082f8055fff1f6, type: 2}
     animationTrigger: 0
