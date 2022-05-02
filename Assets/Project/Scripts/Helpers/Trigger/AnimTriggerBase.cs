@@ -19,7 +19,9 @@ namespace TheFowler
         protected AudioGenericEnum audio_FootStep;
         [TabGroup("Exploration")] [SerializeField]
         protected AudioGenericEnum audio_FootStep_Phoebe;
-        
+        [TabGroup("Exploration")] [SerializeField]
+        protected AudioGenericEnum[] Audio_List;
+
         //---<VFX>-----------------------------------------------------------------------------------------------------<
         public void VFX_Attack()
         {
@@ -27,6 +29,11 @@ namespace TheFowler
         }
 
         //---<AUDIO>---------------------------------------------------------------------------------------------------<
+        public void Audio_Generic(int value)
+        {
+            SoundManager.PlaySound(Audio_List[value], Sockets.body_Middle.gameObject);
+        }
+        
         public void Audio_Walk_Foot_L()
         {
             SoundManager.PlaySound(audio_FootStep, Sockets.foot_Left.gameObject);
