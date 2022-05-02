@@ -17,10 +17,15 @@ namespace TheFowler
 
         public Color color = Color.red;
 
+        public Sprite popupSprite = null;
+
         protected override void CustomPlayFeedback(Vector3 position, float feedbacksIntensity = 1)
         {
             var popup = Spawnables.Instance.PopupText;
             var instance = Instantiate(popup);
+
+            instance.popupSprite = this.popupSprite;
+            
             instance.Color = color;
             instance.transform.SetParent(transform);
             instance.transform.position = transform.position + offsetSpawningPos;

@@ -21,6 +21,8 @@ namespace TheFowler
             {
                 var impact = GameObject.Instantiate(SpellData.Instance.Abi_PS_BasicAttack_Impact, receivers[i].transform.position + receivers[i].transform.forward, Quaternion.identity);
                 impact.Play();
+                
+                GameObject.Instantiate(SpellData.Instance.Abi_Flash_BasicAttack_Shock, receivers[i].transform.position + receivers[i].transform.forward, Quaternion.identity);
             }
 
             Damage(damage, emitter, receivers);

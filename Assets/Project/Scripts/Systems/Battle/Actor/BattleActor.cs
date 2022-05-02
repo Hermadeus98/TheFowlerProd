@@ -19,6 +19,9 @@ namespace TheFowler
         public Sockets sockets;
         [TabGroup("References")]
         public SelectionPointer SelectionPointer;
+
+        [TabGroup("References")] 
+        public ParticleSystem SelectionVFX;
         [TabGroup("References")]
         [SerializeField] protected StateIcons stateIcons;
 
@@ -301,12 +304,16 @@ namespace TheFowler
         
         public void OnTarget()
         {
-            SelectionPointer.Show();
+            SelectionPointer?.Show();
+            SelectionVFX.gameObject.SetActive(true);
+            SelectionVFX?.Play();
         }
 
         public void OnEndTarget()
         {
-            SelectionPointer.Hide();
+            SelectionPointer?.Hide();
+            SelectionVFX?.Stop();
+            SelectionVFX.gameObject.SetActive(false);
         }
 
         public T GetBattleComponent<T>() where T : BattleActorComponent

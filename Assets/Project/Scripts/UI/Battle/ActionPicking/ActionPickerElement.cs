@@ -34,7 +34,7 @@ namespace TheFowler
             if (!canInput)
             {
                 playerActionType = PlayerActionType.NONE;
-                CanvasGroup.alpha = .5f;
+                CanvasGroup.alpha = 0f;
                 return false;
             }
             else

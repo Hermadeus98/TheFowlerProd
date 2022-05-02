@@ -70,12 +70,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6456456529021180492, guid: 9f2b5d1ea87287a4eab069c7aad523a7, type: 3}
       propertyPath: Feedbacks.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6456456529021180492, guid: 9f2b5d1ea87287a4eab069c7aad523a7, type: 3}
       propertyPath: Feedbacks.Array.data[0]
       value: 
       objectReference: {fileID: 7399325126570895433}
+    - target: {fileID: 6456456529021180492, guid: 9f2b5d1ea87287a4eab069c7aad523a7, type: 3}
+      propertyPath: Feedbacks.Array.data[1]
+      value: 
+      objectReference: {fileID: 113552908818543410}
     - target: {fileID: 8944569005892394062, guid: 9f2b5d1ea87287a4eab069c7aad523a7, type: 3}
       propertyPath: Mode
       value: 1
@@ -160,6 +164,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841b72de2996c5c40bfb394f3d0e0a98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &113552908818543410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050097986338488126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6f486640fa66e64ab433fca6ce646e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Active: 1
+  Label: Popup Text
+  Chance: 100
+  Timing:
+    TimescaleMode: 0
+    InitialDelay: 0
+    CooldownDuration: 0
+    ExcludeFromHoldingPauses: 0
+    InterruptsOnStop: 1
+    NumberOfRepeats: 0
+    RepeatForever: 0
+    DelayBetweenRepeats: 1
+    MMFeedbacksDirectionCondition: 0
+    PlayDirection: 0
+    ConstantIntensity: 0
+    UseIntensityInterval: 0
+    IntensityIntervalMin: 0
+    IntensityIntervalMax: 0
+    Sequence: {fileID: 0}
+    TrackID: 0
+    Quantized: 0
+    TargetBPM: 120
+  DebugActive: 0
+  message: 
+  duration: 1.2
+  offsetSpawningPos: {x: 0, y: 1.8, z: 0}
+  offsetMovement: {x: 0, y: 1, z: 0}
+  color: {r: 1, g: 0, b: 0, a: 1}
+  popupSprite: {fileID: 21300000, guid: 9f0cd99050d28094e9e4709883d5e1bc, type: 3}
 --- !u!114 &7399325126570895433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,12 +316,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6126262532999840752, guid: 74dba3c063567bc4fb0d005642cd7cd2, type: 3}
       propertyPath: Feedbacks.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6126262532999840752, guid: 74dba3c063567bc4fb0d005642cd7cd2, type: 3}
       propertyPath: Feedbacks.Array.data[0]
       value: 
       objectReference: {fileID: 393760361793037430}
+    - target: {fileID: 6126262532999840752, guid: 74dba3c063567bc4fb0d005642cd7cd2, type: 3}
+      propertyPath: Feedbacks.Array.data[1]
+      value: 
+      objectReference: {fileID: 4167265276788249331}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74dba3c063567bc4fb0d005642cd7cd2, type: 3}
 --- !u!1 &8862083254503403613 stripped
@@ -346,3 +395,44 @@ MonoBehaviour:
   NestParticles: 1
   ApplyRotation: 0
   ApplyScale: 0
+--- !u!114 &4167265276788249331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8862083254503403613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6f486640fa66e64ab433fca6ce646e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Active: 1
+  Label: Popup Text
+  Chance: 100
+  Timing:
+    TimescaleMode: 0
+    InitialDelay: 0
+    CooldownDuration: 0
+    ExcludeFromHoldingPauses: 0
+    InterruptsOnStop: 1
+    NumberOfRepeats: 0
+    RepeatForever: 0
+    DelayBetweenRepeats: 1
+    MMFeedbacksDirectionCondition: 0
+    PlayDirection: 0
+    ConstantIntensity: 0
+    UseIntensityInterval: 0
+    IntensityIntervalMin: 0
+    IntensityIntervalMax: 0
+    Sequence: {fileID: 0}
+    TrackID: 0
+    Quantized: 0
+    TargetBPM: 120
+  DebugActive: 0
+  message: 
+  duration: 1.2
+  offsetSpawningPos: {x: 0, y: 1.8, z: 0}
+  offsetMovement: {x: 0, y: 1, z: 0}
+  color: {r: 1, g: 0, b: 0, a: 1}
+  popupSprite: {fileID: 21300000, guid: e1dc38d38f709c9409f5bdb94cba3528, type: 3}

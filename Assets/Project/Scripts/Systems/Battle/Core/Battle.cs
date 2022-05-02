@@ -420,6 +420,8 @@ namespace TheFowler
 
         IEnumerator RestartIE()
         {
+            callOnEndEvent = false;
+            HasRestart = true;
             StopBattle();
 
             yield return new WaitForSeconds(1f);
@@ -441,6 +443,9 @@ namespace TheFowler
             
             //Reset Status
             //
+
+            HasRestart = false;
+            callOnEndEvent = true;
         }
         
         /*public void Restart()
