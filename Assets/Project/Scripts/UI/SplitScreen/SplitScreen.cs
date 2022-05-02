@@ -23,10 +23,20 @@ namespace TheFowler
         [SerializeField] private CanvasGroup CanvasGroup, textBox;
 
         [SerializeField] private TextMeshProUGUI text;
+
+        private Camera splitCam;
         
+        private void Start()    
+        {
+            splitCam = GameObject.FindGameObjectWithTag("CameraSplit").GetComponent<Camera>();
+            splitCam.gameObject.SetActive(false);
+        }
+
         [Button]
         public void Show(CinemachineVirtualCameraBase splitCam, CinemachineVirtualCameraBase bigCam)
         {
+            splitCam.gameObject.SetActive(true);
+            
             SetLittleCamera(splitCam);
             SetBigCamera(bigCam);
             
@@ -47,7 +57,6 @@ namespace TheFowler
             if (currentSplitCam != null) currentSplitCam.m_Priority = 0;
             currentSplitCam = splitCam;
             currentSplitCam.m_Priority = 500;
-            
         }
 
         public void SetBigCamera(CinemachineVirtualCameraBase splitCam)
@@ -71,7 +80,11 @@ namespace TheFowler
             
             if (bigSplitCam != null) bigSplitCam.m_Priority = 0;
 
-            textBox.DOFade(0f, .2f);
+            textBox.DOFade(0f, .2f).OnComplete(
+                delegate
+                {
+                    splitCam.gameObject.SetActive(false);
+                });
 
             /*move?.Kill();
             move = splitScreenRect.DOAnchorPosX(-splitScreenRect.sizeDelta.x, .2f).SetEase(Ease.OutBack);

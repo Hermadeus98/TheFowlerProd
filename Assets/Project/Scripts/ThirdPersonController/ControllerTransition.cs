@@ -23,6 +23,9 @@ namespace TheFowler
 
         private void Update()
         {
+            if(Player.Robyn == null)
+                return;
+            
             var tps = Player.Robyn.Controller.SetController<ThirdPersonController>(ControllerEnum.PLAYER_CONTROLLER);
 
             dist = Vector3.Distance(Player.Robyn.pawnTransform.position, transform.position);
@@ -50,6 +53,9 @@ namespace TheFowler
 
         private void LateUpdate()
         {
+            if(Player.Robyn == null)
+                return;
+            
             if (dist < maxRadius)
             {
                 if (camOverride != null)

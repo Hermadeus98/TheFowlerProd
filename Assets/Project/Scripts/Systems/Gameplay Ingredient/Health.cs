@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using MoreMountains.Feedbacks;
 using QRCode.Utils;
@@ -22,7 +23,7 @@ namespace TheFowler
         private MMPopupText popupDamageComponent;
         private MMPopupText popupHealComponent;
         [SerializeField] private TextMeshProUGUI lifeTxt;
-        
+
         public FillBar FillBar => fillBar;
         public float CurrentHealth => currentHealth;
         public float MaxHealth => maxHealth;
@@ -56,7 +57,7 @@ namespace TheFowler
         }
 
         [Button]
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damage, DamageCalculator.ResistanceFaiblesseResult result = DamageCalculator.ResistanceFaiblesseResult.NEUTRE)
         {
             if(damage == 0 ||currentHealth <= 0)
                 return;
@@ -71,13 +72,30 @@ namespace TheFowler
             {
                 ReferedActor.punchline.PlayPunchline(PunchlineEnum.DAMAGETAKEN);
             }
-            
-            popupDamageComponent.message = damage.ToString();
+
+            switch (result)
+            {
+                case DamageCalculator.ResistanceFaiblesseResult.RESISTANCE:
+                    popupDamageComponent.extraImage = Spawnables.Instance.resist;
+                    break;
+                case DamageCalculator.ResistanceFaiblesseResult.FAIBLESSE:
+                    popupDamageComponent.extraImage = Spawnables.Instance.weak;
+                    break;
+                case DamageCalculator.ResistanceFaiblesseResult.NEUTRE:
+                    popupDamageComponent.extraImage = null;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(result), result, null);
+            }
+
+            popupDamageComponent.message = "-" + damage.ToString();
+
+            popupDamageComponent.setSize = true;
+            popupDamageComponent.sizePercent = Mathf.Clamp01(damage / 400f);
 
             ReferedActor.BattleActorStats.health = currentHealth;
             onDamaged?.Invoke(currentHealth);
             fillBar?.SetFill(currentHealth);
-            
 
             ReferedActor.AllyData?.Refresh();
             ReferedActor.AllyData?.ShakeHearth();
@@ -103,7 +121,8 @@ namespace TheFowler
 
             currentHealth += heal;
 
-            popupHealComponent.message = heal.ToString();
+            popupHealComponent.message = "+" + heal.ToString();
+            
             ReferedActor.BattleActorStats.health = currentHealth;
             onHealed?.Invoke(currentHealth);
             fillBar?.SetFill(currentHealth);
