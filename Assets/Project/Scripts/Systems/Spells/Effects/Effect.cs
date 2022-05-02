@@ -95,7 +95,8 @@ namespace TheFowler
             SoundManager.PlaySoundDamageTaken(receiver, resistanceFaiblesseResult);
                 
             receiver.Health.TakeDamage(
-                _damage
+                _damage,
+                resistanceFaiblesseResult
             );
 
             return _damage;

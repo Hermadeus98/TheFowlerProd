@@ -75,7 +75,7 @@
             /// </summary>
             private void OnDestroy()
             {
-                DestroyImmediate(compositionObject);
+                //DestroyImmediate(compositionObject);
             }
 
             /// <summary>

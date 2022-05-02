@@ -18,11 +18,28 @@ namespace TheFowler
         public Color color = Color.red;
 
         public Sprite popupSprite = null;
+        public Sprite extraImage;
+
+        public bool setSize = false;
+        [SerializeField] public float sizePercent = 0;
 
         protected override void CustomPlayFeedback(Vector3 position, float feedbacksIntensity = 1)
         {
             var popup = Spawnables.Instance.PopupText;
             var instance = Instantiate(popup);
+
+            if(extraImage == null)
+                instance.extraImage.gameObject.SetActive(false);
+            else
+            {
+                instance.extraImage.gameObject.SetActive(true);
+                instance.extraImage.sprite = extraImage;
+            }
+
+            if (setSize)
+            {
+                instance.SetSizePercent(sizePercent);
+            }
 
             instance.popupSprite = this.popupSprite;
             

@@ -12,6 +12,7 @@ namespace TheFowler
         {
             BONUS,
             MALUS,
+            NEUTRE
         }
 
         public float delay = 0f;
