@@ -349,8 +349,7 @@ namespace TheFowler
 
             if (currentView == null) return;
 
-            if (currentView.GetType() == typeof(HarmonisationView)) {  view = UI.GetView<HarmonisationView>(UI.Views.Harmo); }
-            else if (currentView.GetType() == typeof(DialogueStaticView)) { view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs); }
+            view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
 
             if (Inputs.actions["Select"].IsPressed() && !waitInput)
             {
@@ -373,12 +372,6 @@ namespace TheFowler
 
                                 DialogueNode newNode = BehaviourTree.nodes[i] as DialogueNode;
 
-                                //if (newNode.hasMultipleChoices)
-                                //{
-
-                                //    DisplayDialogue(newNode.dialogue);
-                                //    break;
-                                //}
                                  if (!newNode.hasMultipleChoices)
                                 {
                                     Next();
@@ -515,11 +508,7 @@ namespace TheFowler
             }
 
 
-            if (Timeline != null)
-            {
-                Timeline.time = Timeline.duration;
-            }
-
+        
             base.EndPhase();
             
             switch (dialogueType)
@@ -531,15 +520,6 @@ namespace TheFowler
                 case DialogueType.MOVEMENT:
                     //UI.CloseView(UI.Views.MovementDialogs);
                     UI.CloseView(UI.Views.StaticDialogs);
-                    break;
-                case DialogueType.HARMONISATION:
-                    //UI.CloseView(UI.Views.MovementDialogs);
-                    UI.CloseView(UI.Views.Harmo);
-                    if(replacementActors.replaceActorAtTheEnd)
-                        ReplaceActor(replacementActors.timeOfReplacement);
-
-                    harmoVCam.Priority = -1;
-                    harmoVCam.gameObject.SetActive(false);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -662,12 +642,6 @@ namespace TheFowler
                     currentSound = dialogue.voice;
                     break;
                 case DialogueType.MOVEMENT:
-                    //UI.RefreshView(UI.Views.MovementDialogs, new DialogueArg()
-                    //{
-                    //    Dialogue = dialogue,
-                    //    DialogueNode = currentDialogueNode,
-                    //});
-                    //CameraManager.Instance.SetCamera(dialogue.cameraPath);
                     UI.RefreshView(UI.Views.StaticDialogs, new DialogueArg()
                     {
                         Dialogue = dialogue,
@@ -772,6 +746,11 @@ namespace TheFowler
         private IEnumerator WaitReplaceActor(float timer)
         {
             yield return new WaitForSeconds(timer);
+            if (Timeline != null)
+            {
+                Timeline.time = Timeline.duration;
+            }
+
             ReplaceActor();
             yield break;
         }
