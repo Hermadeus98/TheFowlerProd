@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -49,20 +50,37 @@ namespace TheFowler
             {
                 if (popupSprite == null)
                 {
-                    DOTween.To(
-                            () => text.color,
-                            (x) => text.color = x,
-                            new Color(text.color.r, text.color.g, text.color.b, 0f),
-                            .2f
-                        )
-                        .SetEase(Ease.InOutSine)
-                        .OnComplete(delegate { Destroy(); });
+                    var sequence = AnimateEnd(text);
+                    AnimateEnd(back);
+                    sequence.OnComplete(delegate { Destroy(gameObject); });
+                    sequence.Play();
                 }
                 else
                 {
                     image.DOFade(0f, .2f).SetEase(Ease.InOutSine);
                 }
             });
+        }
+
+        private Sequence AnimateEnd(TextMesh t)
+        {
+            var sequence = DOTween.Sequence();
+            var d = .1f;
+            sequence.Append(ChangeTextColor(t, new Color(t.color.r, t.color.g, t.color.b, 1f), d));
+            sequence.Append(ChangeTextColor(t, new Color(t.color.r, t.color.g, t.color.b, 0f), d));
+            sequence.SetLoops(3);
+            return sequence;
+        }
+        
+        private Tween ChangeTextColor(TextMesh t,  Color c, float duration)
+        {
+            return DOTween.To(
+                    () => t.color,
+                    (x) => t.color = x,
+                    c,
+                    duration
+                )
+                .SetEase(Ease.InOutSine);
         }
 
         public void SetSizePercent(float percent)

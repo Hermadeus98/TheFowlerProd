@@ -88,11 +88,11 @@ namespace TheFowler
             if (BattleManager.IsAllyTurn && (targetType == TargetTypeEnum.ALL_ENEMIES || targetType == TargetTypeEnum.SOLO_ENEMY))
             {
                 var weak = AvailableTargets.Cast<EnemyActor>().Where(w => w.IsWeakOf(Player.SelectedSpell.SpellType));
-                weak.ForEach(w => w.weak.gameObject.SetActive(true));
+                weak.ForEach(w => w.weak.Show());
 
                 var resist = AvailableTargets.Cast<EnemyActor>()
                     .Where(w => w.IsResistantOf(Player.SelectedSpell.SpellType));
-                resist.ForEach(w => w.resist.gameObject.SetActive(true));
+                resist.ForEach(w => w.resist.Show());
                 
                 if (weak.Count() > 0)
                 {
@@ -120,8 +120,8 @@ namespace TheFowler
                 {
                     if (AvailableTargets[i] is EnemyActor enemyActor)
                     {
-                        enemyActor.weak.SetActive(false);
-                        enemyActor.resist.SetActive(false);
+                        enemyActor.weak.Hide();
+                        enemyActor.resist.Hide();
                     }
                     EndPreview(AvailableTargets[i]);
                 }
