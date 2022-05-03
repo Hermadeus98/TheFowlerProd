@@ -13,6 +13,14 @@ namespace TheFowler
         //public string EffectName = "NO NAME EFFECT";
 
         public TargetTypeEnum TargetType;
+        [HideInInspector]
+        public BattleActor Emitter;
+        [HideInInspector]
+        public BattleActor[] Receivers;
+        [HideInInspector]
+        public float damage, heal;
+
+        public Sprite sprite;
 
         /*[SerializeField] protected BattleCameraBatch battleCameraBatch = BattleCameraBatch.NULL;
         [SerializeField, ShowIf("@this.battleCameraBatch == BattleCameraBatch.NULL")] protected cameraPath cameraPath;
@@ -74,6 +82,7 @@ namespace TheFowler
                 }
             }
 
+            damage = dmg;
             return dmg;
         }
 
@@ -102,9 +111,10 @@ namespace TheFowler
             return _damage;
         }
 
-        protected void Heal(float heal, BattleActor emitter, BattleActor[] receivers)
+        protected void Heal(float _heal, BattleActor emitter, BattleActor[] receivers)
         {
-            receivers.ForEach(w => w.Health.Heal(heal));
+            heal = _heal;
+            receivers.ForEach(w => w.Health.Heal(_heal));
         }
     }
 }

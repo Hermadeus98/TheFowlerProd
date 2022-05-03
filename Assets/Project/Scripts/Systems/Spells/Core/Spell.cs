@@ -53,6 +53,13 @@ namespace TheFowler
 
             for (int i = 0; i < Effects.Length; i++)
             {
+                Effects[i].Emitter = emitter;
+                Effects[i].Receivers = new BattleActor[receivers.Length];
+                for (int j = 0; j < receivers.Length; j++)
+                {
+                    Effects[i].Receivers[j] = receivers[j];
+                }
+                
                 yield return Effects[i].OnCast(emitter, receivers);
             }
             

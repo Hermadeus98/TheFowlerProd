@@ -17,6 +17,7 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000}
+    - {fileID: 21300000, guid: e1dc38d38f709c9409f5bdb94cba3528, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -31,31 +32,22 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 1|TheFowler.DamageEffect, Assembly-CSharp
-    - Name: EffectName
-      Entry: 1
-      Data: NO NAME EFFECT
     - Name: TargetType
       Entry: 3
       Data: 0
-    - Name: battleCameraBatch
-      Entry: 3
-      Data: 0
-    - Name: cameraPath
+    - Name: Emitter
       Entry: 6
       Data: 
-    - Name: cameraSpecificPath
-      Entry: 1
-      Data: Default
-    - Name: cameraBattlePath
-      Entry: 1
-      Data: Default
-    - Name: ImPreview
-      Entry: 5
-      Data: false
-    - Name: audioEvent
-      Entry: 3
+    - Name: Receivers
+      Entry: 6
+      Data: 
+    - Name: damage
+      Entry: 4
+      Data: 25
+    - Name: heal
+      Entry: 4
       Data: 0
-    - Name: eventName
+    - Name: sprite
       Entry: 6
       Data: 
     - Name: ReferedSpell
@@ -64,54 +56,48 @@ MonoBehaviour:
     - Name: rage
       Entry: 5
       Data: false
-    - Name: damage
+    - Name: DamageEffect+damage
       Entry: 4
-      Data: 25
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
       Data: 2|TheFowler.DamageBonus, Assembly-CSharp
-    - Name: EffectName
-      Entry: 1
-      Data: NO NAME EFFECT
     - Name: TargetType
       Entry: 3
       Data: 2
-    - Name: battleCameraBatch
-      Entry: 3
-      Data: 3
-    - Name: cameraPath
+    - Name: Emitter
       Entry: 6
       Data: 
-    - Name: cameraSpecificPath
-      Entry: 1
-      Data: Default
-    - Name: cameraBattlePath
-      Entry: 1
-      Data: Enemies
-    - Name: ImPreview
-      Entry: 5
-      Data: false
-    - Name: audioEvent
-      Entry: 3
+    - Name: Receivers
+      Entry: 6
+      Data: 
+    - Name: damage
+      Entry: 4
       Data: 0
-    - Name: eventName
-      Entry: 6
-      Data: 
+    - Name: heal
+      Entry: 4
+      Data: 0
+    - Name: sprite
+      Entry: 10
+      Data: 1
     - Name: ReferedSpell
       Entry: 10
       Data: 0
     - Name: rage
       Entry: 5
       Data: false
-    - Name: buffBonus
+    - Name: delay
       Entry: 4
-      Data: 20
-    - Name: turnDuration
+      Data: 0
+    - Name: attackBonusType
       Entry: 3
-      Data: 2
+      Data: 0
+    - Name: isAOE
+      Entry: 5
+      Data: false
     - Name: 
       Entry: 8
       Data: 
@@ -122,21 +108,16 @@ MonoBehaviour:
       Entry: 8
       Data: 
   SpellName: Fowler's General Motivation
-  ManaCost: 0
   Cooldown: 0
+  InitialCooldown: 0
   CurrentCooldown: 0
-  isRechargingCooldown: 0
   logoBuff: {fileID: 0}
   TargetType: 4
   SpellPower: 0
-  executionDurationBeforeCast: 1
-  executionDurationAfterCast: 1
   SpellDescription: Buff Dmg
-  TargetDescription: 
-  EasySpellDescription: 
-  ExecutionType: 0
   SpellType: 0
   sequenceBinding: 0
   sprite: {fileID: 0}
   spellState: 0
   unlockOrder: 0
+  isRechargingCooldown: 0
