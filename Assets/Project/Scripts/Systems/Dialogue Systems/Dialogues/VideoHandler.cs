@@ -141,9 +141,9 @@ namespace TheFowler
             {
                 view.rappelInput.gameObject.SetActive(false);
             }
-
-
         }
+        
+        
     }
 }
 
