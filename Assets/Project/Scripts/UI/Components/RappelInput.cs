@@ -17,6 +17,8 @@ namespace TheFowler
         private Image rappelInputFill;
         private Sequence feedbackFade;
 
+        [SerializeField] private Image back;
+
         protected override void OnStart()
         {
             base.OnStart();
@@ -45,8 +47,32 @@ namespace TheFowler
 
         public void RappelInputFeedback(float elapsedTime)
         {
-            
             rappelInputFill.fillAmount = elapsedTime;
+
+            if (elapsedTime > .95f)
+            {
+                OnComplete();
+            }
+        }
+
+        private bool isComplete = false;
+
+        public void ResetRappelInput()
+        {
+            isComplete = false;
+            back.rectTransform.localScale = Vector3.one;
+            back.DOFade(1f, 0.01f);
+        }
+
+        public void OnComplete()
+        {
+            if (isComplete)
+                return;
+            
+            isComplete = true;
+            
+            back.rectTransform.DOScale(1.7f, .2f).SetEase(Ease.OutSine);
+            back.DOFade(0f, .2f).SetEase(Ease.OutSine).OnComplete(ResetRappelInput);
         }
     }
 }
