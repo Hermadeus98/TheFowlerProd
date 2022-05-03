@@ -71,7 +71,7 @@ namespace TheFowler
             if (VolumesManager.Instance != null)
                 VolumesManager.Instance.BlurryUI.enabled = false;
 
-
+            eventSytem.SetSelectedGameObject(null);
         }
 
         private IEnumerator WaitOnMenu()

@@ -20,8 +20,8 @@ namespace TheFowler
         [TabGroup("References")]
         public SelectionPointer SelectionPointer;
 
-        [TabGroup("References")] 
-        public ParticleSystem SelectionVFX;
+        [TabGroup("References")]
+        public ParticleSystem SelectionVFX, SelectionVFXEmitter;
         [TabGroup("References")]
         [SerializeField] protected StateIcons stateIcons;
 
@@ -315,6 +315,23 @@ namespace TheFowler
             SelectionVFX?.Stop();
             SelectionVFX.gameObject.SetActive(false);
         }
+
+        public void OnTargetEmitterLog()
+        {
+
+            SelectionVFXEmitter.gameObject.SetActive(true);
+            SelectionVFXEmitter?.Play();
+        }
+
+        public void OnEndTargetEmitterLog()
+        {
+            SelectionVFXEmitter?.Stop();
+            SelectionVFXEmitter.gameObject.SetActive(false);
+            
+        }
+
+
+
 
         public T GetBattleComponent<T>() where T : BattleActorComponent
         {
