@@ -13,7 +13,7 @@ namespace TheFowler
     public class PopupText : SerializedMonoBehaviour
     {
         [SerializeField] private TextMesh text, back;
-        [SerializeField] private Image image;
+        [SerializeField] private SpriteRenderer image;
 
         public float duration = 1.2f;
         public Vector3 offset;
@@ -22,7 +22,7 @@ namespace TheFowler
         public float randomOffsetX = 0, randomOffsetY = 0, randomOffsetZ = 0;
 
         public Sprite popupSprite = null;
-        public Image extraImage;
+        public SpriteRenderer extraImage;
 
         public float minFontSize, maxFontSize;
         
@@ -37,6 +37,7 @@ namespace TheFowler
             if (popupSprite != null)
             {
                 text.color = Color.clear;
+                image.gameObject.SetActive(true);
                 image.sprite = popupSprite;
             }
             else
@@ -57,7 +58,12 @@ namespace TheFowler
                 }
                 else
                 {
-                    image.DOFade(0f, .2f).SetEase(Ease.InOutSine);
+                    var sequence = DOTween.Sequence();
+                    sequence.Append(image.DOFade(1f, .1f).SetEase(Ease.InOutSine));
+                    sequence.Append(image.DOFade(0f, .1f).SetEase(Ease.InOutSine));
+                    sequence.SetLoops(3);
+                    sequence.OnComplete(delegate { Destroy(gameObject); });
+                    sequence.Play();
                 }
             });
         }
