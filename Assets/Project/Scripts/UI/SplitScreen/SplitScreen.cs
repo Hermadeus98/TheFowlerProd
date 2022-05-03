@@ -26,9 +26,9 @@ namespace TheFowler
 
         private Camera splitCam;
         
-        private void Start()    
+        private void Start()
         {
-            splitCam = GameObject.FindGameObjectWithTag("CameraSplit").GetComponent<Camera>();
+            splitCam = CameraManager.Instance.splitCam;
             splitCam.gameObject.SetActive(false);
         }
 

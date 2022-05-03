@@ -26,6 +26,8 @@ namespace TheFowler
         public int cameraClosePriority = 0;
         public int currentCameraPriority = 50;
 
+        public Camera splitCam;
+
         public void SetCamera(CinemachineVirtualCameraBase newCamera)
         {
             if(newCamera == current)
