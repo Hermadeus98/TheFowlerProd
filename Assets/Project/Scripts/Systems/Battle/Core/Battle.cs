@@ -352,6 +352,8 @@ namespace TheFowler
                     enemies.Add(enemiesBatch.GetChild(i).GetComponent<BattleActor>());
                 }
             }
+
+            enemies = new List<BattleActor>(enemies.OrderBy(w => w.orderInBattle));
         }
 
         private void SortByInitiative()

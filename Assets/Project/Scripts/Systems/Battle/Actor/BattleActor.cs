@@ -60,6 +60,8 @@ namespace TheFowler
         public Health Health => health;
         public CooldownComponent Mana => mana;
 
+        public int orderInBattle;
+
         public StateIcons StateIcons
         {
             get => stateIcons;
