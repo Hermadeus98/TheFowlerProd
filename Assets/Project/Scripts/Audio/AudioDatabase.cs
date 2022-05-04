@@ -104,5 +104,6 @@ namespace TheFowler
 
         TF_SFX_Explo_Phoebe_Footstep,
         TF_SFX_Cutscene_Robyn_InstrumentOut,
+        TF_SFX_Cutscene_Robyn_Tantrum,
     }
 }
