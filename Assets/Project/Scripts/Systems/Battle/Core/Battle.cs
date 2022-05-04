@@ -262,6 +262,7 @@ namespace TheFowler
         private IEnumerator StopBattleCoroutine()
         {
             IsFinish = true;
+
             ChangeBattleState(BattleStateEnum.END_BATTLE);
             
             SaveData();

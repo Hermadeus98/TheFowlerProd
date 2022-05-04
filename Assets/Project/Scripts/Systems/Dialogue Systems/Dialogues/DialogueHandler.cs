@@ -507,7 +507,7 @@ namespace TheFowler
                 SoundManager.StopSound(currentSound, gameObject);
             }
 
-
+            Timeline.Pause();
         
             base.EndPhase();
             
@@ -748,7 +748,7 @@ namespace TheFowler
             yield return new WaitForSeconds(timer);
             if (Timeline != null)
             {
-                Timeline.time = Timeline.duration;
+                Timeline.Stop();
             }
 
             ReplaceActor();
