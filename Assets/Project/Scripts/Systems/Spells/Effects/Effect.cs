@@ -18,7 +18,7 @@ namespace TheFowler
         [HideInInspector]
         public BattleActor[] Receivers;
         [HideInInspector]
-        public float damage, heal;
+        public float _damage, _heal;
 
         public Sprite sprite;
 
@@ -82,7 +82,7 @@ namespace TheFowler
                 }
             }
 
-            damage = dmg;
+            _damage = dmg;
             return dmg;
         }
 
@@ -111,9 +111,9 @@ namespace TheFowler
             return _damage;
         }
 
-        protected void Heal(float _heal, BattleActor emitter, BattleActor[] receivers)
+        protected void Heal(float heal, BattleActor emitter, BattleActor[] receivers)
         {
-            heal = _heal;
+            _heal = heal;
             receivers.ForEach(w => w.Health.Heal(_heal));
         }
     }
