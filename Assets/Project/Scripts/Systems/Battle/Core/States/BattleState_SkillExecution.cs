@@ -11,7 +11,7 @@ namespace TheFowler
     public class BattleState_SkillExecution : BattleState
     {
         [ShowInInspector] public bool fury { get; set; }
-
+        
         public override void OnStateEnter(EventArgs arg)
         {
             base.OnStateEnter(arg);
@@ -56,6 +56,15 @@ namespace TheFowler
                             
                             action.RemoveAllListeners();
                             
+                            Debug.Log("EVENT : ON_LIFE (Ally Death)");
+                            Debug.Log(BattleManager.lastTouchedActors.Count);
+                
+                            if (BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnLife() != null)
+                            {
+                                yield return BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnLife()
+                                    .NarrativeEvent();
+                            }
+                            
                             BattleManager.CurrentBattle.TurnSystem.NextTurn();
                             yield break;
                         }
@@ -97,9 +106,6 @@ namespace TheFowler
                                     TargetSelector.SelectedTargets.ToArray()));
                             });
 
-
-
-
                             var sequence = enemyActor.SequenceHandler.GetSequence(enemyActor.AI.SelectedSpell.sequenceBinding);
 
                             if (sequence == null)
@@ -135,7 +141,7 @@ namespace TheFowler
                         yield return deadActor.OnDeathSequence();
                     }
                 }
-                
+
                 BattleManager.CurrentBattle.TurnSystem.NextTurn();
             }
         }

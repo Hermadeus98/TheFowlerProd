@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using QRCode.Utils;
 using Sirenix.OdinInspector;
@@ -49,6 +50,10 @@ namespace TheFowler
 
         public IEnumerator Cast(BattleActor emitter, BattleActor[] receivers)
         {
+            if (BattleManager.lastTouchedActors == null)
+                BattleManager.lastTouchedActors = new List<BattleActor>();
+            BattleManager.lastTouchedActors.AddRange(receivers);
+            
             yield return new WaitForSeconds(.3f);
 
             for (int i = 0; i < Effects.Length; i++)

@@ -6,6 +6,7 @@ using MoreMountains.Feedbacks;
 using QRCode.Utils;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
+using TheFowler;
 using UnityEngine;
 
 namespace TheFowler
@@ -27,7 +28,7 @@ namespace TheFowler
 
             return null;
         }
-        
+
         public BattleNarrationEvent TryGetEvent_OnEndBattle()
         {
             if (!events.IsNullOrEmpty())
@@ -41,7 +42,7 @@ namespace TheFowler
 
             return null;
         }
-        
+
         public BattleNarrationEvent TryGetEvent_OnWin()
         {
             if (!events.IsNullOrEmpty())
@@ -55,7 +56,7 @@ namespace TheFowler
 
             return null;
         }
-        
+
         public BattleNarrationEvent TryGetEvent_OnLose()
         {
             if (!events.IsNullOrEmpty())
@@ -88,7 +89,7 @@ namespace TheFowler
 
             return null;
         }
-        
+
         public BattleNarrationEvent TryGetEvent_OnDeathCount()
         {
             if (!events.IsNullOrEmpty())
@@ -100,6 +101,47 @@ namespace TheFowler
                         if (BattleManager.CurrentBattle.EnemyDeathCount == events[i].deathCount)
                         {
                             return events[i];
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public BattleNarrationEvent TryGetEvent_OnLife()
+        {
+            if (!events.IsNullOrEmpty() && !BattleManager.lastTouchedActors.IsNullOrEmpty())
+            {
+                for (int i = 0; i < events.Length; i++)
+                {
+                    if (events[i].callMoment == NarrativeEventCallMoment.ON_LIFE)
+                    {
+                        if (events[i].middle)
+                        {
+                            for (int j = 0; j < BattleManager.lastTouchedActors.Count; j++)
+                            {
+                                if (BattleManager.lastTouchedActors[j] == events[i].referedActor)
+                                {
+                                    if (BattleManager.lastTouchedActors[j].Health.IsMidLife())
+                                    {
+                                        return events[i];
+                                    }
+                                }
+                            }
+                        }
+                        else if (events[i].quart)
+                        {
+                            for (int j = 0; j < BattleManager.lastTouchedActors.Count; j++)
+                            {
+                                if (BattleManager.lastTouchedActors[j] == events[i].referedActor)
+                                {
+                                    if (BattleManager.lastTouchedActors[j].Health.IsQuartLife())
+                                    {
+                                        return events[i];
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -119,12 +161,23 @@ namespace TheFowler
 
         [ShowIf("@this.callMoment == NarrativeEventCallMoment.ON_DEATH_COUNT")] public int deathCount;
 
+        [ShowIf("@this.callMoment == NarrativeEventCallMoment.ON_LIFE")]
+        public BattleActor referedActor;
+
+        [ShowIf("@this.callMoment == NarrativeEventCallMoment.ON_LIFE")]
+        public bool middle, quart;
+        
         public BattleDialog[] Dialogues;
 
-
+        private bool isPlayed = false;
         
         public IEnumerator NarrativeEvent()
         {
+            if (isPlayed)
+                yield break;
+
+            isPlayed = true;
+            
             Debug.Log("NARRATION EVENT : " + debug);
 
             UIBattleBatch.Instance.Hide();
@@ -139,8 +192,6 @@ namespace TheFowler
                 battleDialogue.Refresh(Dialogues[i]);
                 Dialogues[i].optionalFeedback?.PlayFeedbacks();
 
-                
-
                 yield return new WaitForSeconds(Dialogues[i].displayDuration);
                 
                 if(Dialogues[i].CameraPath != null)
@@ -149,10 +200,6 @@ namespace TheFowler
                 Dialogues[i].Event.Invoke();
             }
 
-            
-
-
-            
             battleDialogue.Hide();
             
             UIBattleBatch.Instance.Show();
@@ -181,6 +228,7 @@ namespace TheFowler
         ON_DEATH_OF,
         ON_DEATH_COUNT,
         ON_WIN,
-        ON_LOSE
+        ON_LOSE,
+        ON_LIFE
     }
 }

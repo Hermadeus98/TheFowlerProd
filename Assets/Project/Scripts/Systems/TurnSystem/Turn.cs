@@ -11,6 +11,8 @@ namespace TheFowler
         
         public virtual void OnTurnStart()
         {
+            BattleManager.lastTouchedActors.Clear();
+            
             Coroutiner.Play(ActorTransition());
         }
 
