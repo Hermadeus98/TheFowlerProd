@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using QRCode;
+
 
 namespace TheFowler
 {
@@ -43,6 +45,7 @@ namespace TheFowler
             SkillSelectorElement.referedSpell = spell;
             SkillSelectorElement.DeSelect();
             SkillSelectorElement.Select();
+            //SkillSelectorElement.Refresh(new WrapperArgs<SpellHandler.SpellHandled>(BattleManager.CurrentBattleActor.GetBattleComponent<SpellHandler>().GetSpellHandled(spell)));
             spellName.SetText(spell.SpellName);
         }
     }

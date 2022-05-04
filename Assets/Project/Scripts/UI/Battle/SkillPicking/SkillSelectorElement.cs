@@ -111,6 +111,13 @@ namespace TheFowler
                             manaCostText.color = textColorCDPreview;
                         }
                     }
+                    else
+                    {
+                        if (!referedSpell.isRechargingCooldown)
+                        {
+                            manaCostText.color = Color.white;
+                        }
+                    }
 
 
 
