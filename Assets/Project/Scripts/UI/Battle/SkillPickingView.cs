@@ -70,6 +70,8 @@ namespace TheFowler
 
             skillSelector.canNavigate = true;
             skillSelector.Hide();
+
+            GetComponent<RectTransform>().anchoredPosition = basicPosition;
         }
 
         private void Update()
