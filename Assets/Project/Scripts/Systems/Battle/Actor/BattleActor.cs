@@ -43,7 +43,6 @@ namespace TheFowler
         [TabGroup("Components")] [SerializeField]
         public Punchline punchline;
 
-        
         [TabGroup("Datas")]
         [SerializeField] protected BattleActorInfo battleActorInfo;
         public BattleActorStats BattleActorStats;
@@ -77,12 +76,10 @@ namespace TheFowler
             base.OnStart();
             
             OnChangeDifficulty(DifficultyManager.currentDifficulty);
-            
         }
 
         public virtual void InitializeComponents()
         {
-            
             health?.Initialize(BattleActorStats.health);
             mana?.Initialize(BattleActorStats.mana);
 
@@ -131,6 +128,7 @@ namespace TheFowler
                         battleActorInfo.attackBonus = Player.RobynSavedData.attackBonus;
                         battleActorInfo.defenseBonus = Player.RobynSavedData.defenseBonus;
                         AllyData?.Refresh();
+                        RefreshStateIcons();
                     }
                 
                 if(currentBattle.abi != null)
@@ -140,6 +138,7 @@ namespace TheFowler
                         battleActorInfo.attackBonus = Player.AbiSavedData.attackBonus;
                         battleActorInfo.defenseBonus = Player.AbiSavedData.defenseBonus;
                         AllyData?.Refresh();
+                        RefreshStateIcons();
                     }
                 
                 if(currentBattle.phoebe != null)
@@ -149,6 +148,7 @@ namespace TheFowler
                         battleActorInfo.attackBonus = Player.PhoebeSavedData.attackBonus;
                         battleActorInfo.defenseBonus = Player.PhoebeSavedData.defenseBonus;
                         AllyData?.Refresh();
+                        RefreshStateIcons();
                     }
             }
 
@@ -302,6 +302,14 @@ namespace TheFowler
             
             InitializeComponents();
             AllyData?.Refresh();
+            RefreshStateIcons();
+        }
+        
+        private void RefreshStateIcons()
+        {
+            stateIcons?.Refresh_Att(this);
+            stateIcons?.Refresh_CD(this);
+            stateIcons?.RefreshBuff_Def(this);
         }
         
         public void OnTarget()
@@ -320,7 +328,6 @@ namespace TheFowler
 
         public void OnTargetEmitterLog()
         {
-
             SelectionVFXEmitter.gameObject.SetActive(true);
             SelectionVFXEmitter?.Play();
         }
@@ -329,11 +336,7 @@ namespace TheFowler
         {
             SelectionVFXEmitter?.Stop();
             SelectionVFXEmitter.gameObject.SetActive(false);
-            
         }
-
-
-
 
         public T GetBattleComponent<T>() where T : BattleActorComponent
         {
