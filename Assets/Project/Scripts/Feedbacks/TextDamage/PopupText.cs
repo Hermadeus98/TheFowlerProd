@@ -55,6 +55,12 @@ namespace TheFowler
                     AnimateEnd(back);
                     sequence.OnComplete(delegate { Destroy(gameObject); });
                     sequence.Play();
+                    
+                    var sequenceExtraImage = DOTween.Sequence();
+                    sequenceExtraImage.Append(extraImage.DOFade(1f, .1f).SetEase(Ease.InOutSine));
+                    sequenceExtraImage.Append(extraImage.DOFade(0f, .1f).SetEase(Ease.InOutSine));
+                    sequenceExtraImage.SetLoops(3);
+                    sequenceExtraImage.Play();
                 }
                 else
                 {
