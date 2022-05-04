@@ -49,7 +49,7 @@ namespace TheFowler
         {
             if (currentNode is ChoiceNode choiceNode)
             {
-                QRDebug.Log("AI", FrenchPallet.GREEN_SEA, $"ITERATE IN {choiceNode.NodeName}");
+                QRDebug.Log("AI", FrenchPallet.GREEN_SEA, $"ITERATE IN {choiceNode.NodeName}", choiceNode);
                 choiceNode.FindBestChoice(out nextNode);
                 Iterate();
                 return;
@@ -57,14 +57,14 @@ namespace TheFowler
 
             if (currentNode is DebugLogNode log)
             {
-                QRDebug.Log("AI", FrenchPallet.GREEN_SEA, $"ITERATE IN {log.NodeName}");
+                QRDebug.Log("AI", FrenchPallet.GREEN_SEA, $"ITERATE IN {log.NodeName}", log);
                 log.DebugLog();
                 return;
             }
 
             if (currentNode is TargetNode targetNode)
             {
-                QRDebug.Log("AI", FrenchPallet.GREEN_SEA, $"ITERATE IN {targetNode.NodeName}");
+                QRDebug.Log("AI", FrenchPallet.GREEN_SEA, $"ITERATE IN {targetNode.NodeName}", targetNode);
                 targetNode.SelectTarget();
                 TargetSelector.DebugSelectedTargets();
                 if (targetNode.children.IsNullOrEmpty())
@@ -79,7 +79,7 @@ namespace TheFowler
 
             if (currentNode is AleatoryChoiceNode aleatoryChoiceNode)
             {
-                QRDebug.Log("AI", FrenchPallet.GREEN_SEA, $"ITERATE ALEATORY IN {aleatoryChoiceNode.NodeName}");
+                QRDebug.Log("AI", FrenchPallet.GREEN_SEA, $"ITERATE ALEATORY IN {aleatoryChoiceNode.NodeName}", aleatoryChoiceNode);
                 nextNode = aleatoryChoiceNode.GetRandomNode();
                 Iterate();
                 return;
@@ -87,7 +87,7 @@ namespace TheFowler
             
             if (currentNode is CastNode castNode)
             {
-                QRDebug.Log("AI", FrenchPallet.GREEN_SEA, $"RESULT FOUNDED -> {castNode.NodeName}");
+                QRDebug.Log("AI", FrenchPallet.GREEN_SEA, $"RESULT FOUNDED -> {castNode.NodeName}", castNode);
                 SelectedSpell = castNode.GetRandomSpell();
                 return;
             }
