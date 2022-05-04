@@ -22,11 +22,11 @@ namespace TheFowler
                 case ResistanceFaiblesseResult.NEUTRE:
                     break;
                 case ResistanceFaiblesseResult.FAIBLESSE:
-                    result *= 1.3f;
+                    result *= 1.5f;
 
                     break;
                 case ResistanceFaiblesseResult.RESISTANCE:
-                    result *= 0.7f;
+                    result *= 0.5f;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
