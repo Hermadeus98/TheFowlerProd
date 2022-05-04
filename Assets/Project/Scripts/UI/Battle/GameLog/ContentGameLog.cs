@@ -36,15 +36,15 @@ namespace TheFowler
             {
                 Effect.enabled = false;
                 effectText.enabled = true;
-                if (effect.damage != 0)
+                if (effect._damage != 0)
                 {
                     effectText.color = Color.red;
-                    effectText.text = "-" + effect.damage.ToString();
+                    effectText.text = "-" + effect._damage.ToString();
                 }
-                else if (effect.heal != 0)
+                else if (effect._heal != 0)
                 {
                     effectText.color = Color.green;
-                    effectText.text = "+" + effect.heal.ToString();
+                    effectText.text = "+" + effect._heal.ToString();
                 }
             }
 
