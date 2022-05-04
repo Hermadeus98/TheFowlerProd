@@ -31,33 +31,24 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 1|TheFowler.DamageEffect, Assembly-CSharp
-    - Name: EffectName
-      Entry: 1
-      Data: Damage
     - Name: TargetType
       Entry: 3
       Data: 2
-    - Name: battleCameraBatch
-      Entry: 3
-      Data: 2
-    - Name: cameraPath
+    - Name: Emitter
       Entry: 6
       Data: 
-    - Name: cameraSpecificPath
-      Entry: 1
-      Data: SkillExecutionAttack
-    - Name: cameraBattlePath
+    - Name: Receivers
       Entry: 6
       Data: 
-    - Name: ImPreview
-      Entry: 5
-      Data: false
-    - Name: audioEvent
-      Entry: 3
-      Data: 8
-    - Name: eventName
-      Entry: 1
-      Data: ShockWaveEffect
+    - Name: _damage
+      Entry: 4
+      Data: 0
+    - Name: _heal
+      Entry: 4
+      Data: 0
+    - Name: sprite
+      Entry: 6
+      Data: 
     - Name: ReferedSpell
       Entry: 10
       Data: 0
@@ -66,38 +57,29 @@ MonoBehaviour:
       Data: false
     - Name: damage
       Entry: 4
-      Data: 23
+      Data: 200
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
       Data: 2|TheFowler.DamageEffect, Assembly-CSharp
-    - Name: EffectName
-      Entry: 1
-      Data: NO NAME EFFECT
     - Name: TargetType
       Entry: 3
       Data: 0
-    - Name: battleCameraBatch
-      Entry: 3
-      Data: 0
-    - Name: cameraPath
+    - Name: Emitter
       Entry: 6
       Data: 
-    - Name: cameraSpecificPath
-      Entry: 1
-      Data: Default
-    - Name: cameraBattlePath
-      Entry: 1
-      Data: Default
-    - Name: ImPreview
-      Entry: 5
-      Data: false
-    - Name: audioEvent
-      Entry: 3
-      Data: 3
-    - Name: eventName
+    - Name: Receivers
+      Entry: 6
+      Data: 
+    - Name: _damage
+      Entry: 4
+      Data: 0
+    - Name: _heal
+      Entry: 4
+      Data: 0
+    - Name: sprite
       Entry: 6
       Data: 
     - Name: ReferedSpell
@@ -108,7 +90,7 @@ MonoBehaviour:
       Data: false
     - Name: damage
       Entry: 4
-      Data: 36
+      Data: 300
     - Name: 
       Entry: 8
       Data: 
@@ -119,21 +101,16 @@ MonoBehaviour:
       Entry: 8
       Data: 
   SpellName: Bloodspiller
-  ManaCost: 0
   Cooldown: 2
+  InitialCooldown: 2
   CurrentCooldown: 0
-  isRechargingCooldown: 0
   logoBuff: {fileID: 0}
   TargetType: 2
   SpellPower: 2
-  executionDurationBeforeCast: 0.3
-  executionDurationAfterCast: 0.3
   SpellDescription: Inflict damages to all enemies, Phoebe is hurt by the effect
-  TargetDescription: All Enemies
-  EasySpellDescription: <color=#FF0000>Medium DMG</color><size=35><sprite=0></size>
-  ExecutionType: 0
   SpellType: 1
   sequenceBinding: 3
   sprite: {fileID: 21300000, guid: bd246e79a098bf945be1dfe1538e0f48, type: 3}
   spellState: 2
   unlockOrder: 3
+  isRechargingCooldown: 0
