@@ -101,6 +101,14 @@ namespace TheFowler
 
 
                             var sequence = enemyActor.SequenceHandler.GetSequence(enemyActor.AI.SelectedSpell.sequenceBinding);
+
+                            if (sequence == null)
+                            {
+                                Debug.LogError($"SEQUENCE \"{enemyActor.AI.SelectedSpell.sequenceBinding }\" IS MISSING FOR {enemyActor.name}", enemyActor.AI.SelectedSpell);
+                                BattleManager.CurrentBattle.TurnSystem.NextTurn();
+                                yield break;
+                            };
+
                             sequence.Play();
                             yield return new WaitForSeconds((float)sequence.duration);
                             
