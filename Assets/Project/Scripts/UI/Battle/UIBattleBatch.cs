@@ -22,8 +22,17 @@ namespace TheFowler
         {
             if(state)
             {
-                BattleManager.CurrentBattle.Enemies.Cast<EnemyActor>().ForEach(w => w.UI.gameObject.SetActive(true));
-                BattleManager.CurrentBattle.Enemies.Cast<EnemyActor>().ForEach(w => w.UI.DOFade(1f, .1f));
+                foreach (var battleActor in BattleManager.CurrentBattle.Enemies)
+                {
+                    if (battleActor is EnemyActor enemyActor)
+                    {
+                        if (!enemyActor.BattleActorInfo.isDeath)
+                        {
+                            enemyActor.UI.gameObject.SetActive(true);
+                            enemyActor.UI.DOFade(1f, .1f);
+                        }
+                    }
+                }
             }
             else
             {
