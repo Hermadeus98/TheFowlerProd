@@ -11,7 +11,7 @@ namespace TheFowler
     {
         [SerializeField] private CanvasGroup selector;
         [SerializeField] private Image selectorImage;
-        public Color targetColor, emitterColor;
+        public Color targetEnemyColor, emitterColor, targetAllyColor;
 
         private Tween animTween;
 
@@ -27,10 +27,11 @@ namespace TheFowler
             base.Hide();
             animTween?.Kill();
             selector.alpha = 0;
-            SetTargetColor();
+            SetTargetEnemyColor();
         }
 
-        public void SetTargetColor()=> selectorImage.color = targetColor;
+        public void SetTargetEnemyColor()=> selectorImage.color = targetEnemyColor;
+        public void SetTargetAllyColor()=> selectorImage.color = targetAllyColor;
         public void SetEmitterColor()=> selectorImage.color = emitterColor;
     }
 }

@@ -506,8 +506,9 @@ namespace TheFowler
                 ReplaceActor(replacementActors.timeOfReplacement);
                 SoundManager.StopSound(currentSound, gameObject);
             }
-
-            Timeline.Pause();
+            
+            if(Timeline != null)
+                Timeline.Pause();
         
             base.EndPhase();
             
@@ -531,7 +532,8 @@ namespace TheFowler
 
         private void DisplayDialogue(Dialogue dialogue)
         {
-            Timeline.Play();
+            if(Timeline != null)
+                Timeline.Play();
 
             switch (dialogueType)
             {
