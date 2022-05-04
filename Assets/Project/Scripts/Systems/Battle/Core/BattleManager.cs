@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace TheFowler
@@ -37,5 +38,8 @@ namespace TheFowler
         public static bool lastTurnWasAlly { get; set; } = false;
         
         public static bool lastTurnWasEnemiesTurn { get; set; } = false;
+        
+        public static List<BattleActor> lastTouchedActors = new List<BattleActor>();
+
     }
 }

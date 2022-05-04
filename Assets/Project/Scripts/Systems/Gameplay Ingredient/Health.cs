@@ -229,5 +229,21 @@ namespace TheFowler
             ReferedActor.AllyData?.Refresh();
             ReferedActor.BattleActorStats.health = currentHealth;
         }
+
+        public bool IsMidLife()
+        {
+            if (currentHealth == 0)
+                return false;
+            
+            return currentHealth < maxHealth / 2f;
+        }
+        
+        public bool IsQuartLife()
+        {
+            if (currentHealth == 0)
+                return false;
+            
+            return currentHealth < maxHealth / 4f;
+        }
     }
 }
