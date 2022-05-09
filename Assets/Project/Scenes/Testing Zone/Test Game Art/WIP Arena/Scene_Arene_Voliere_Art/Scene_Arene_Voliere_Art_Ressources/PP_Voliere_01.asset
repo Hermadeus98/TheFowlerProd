@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7119485970109827669
+--- !u!114 &-3269818689823949109
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,19 +9,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b51a78e223a2e504bb88a059b55229ea, type: 3}
-  m_Name: WhiteBalance
+  m_Script: {fileID: 11500000, guid: 4b8bcdf71d7fafa419fca1ed162f5fc9, type: 3}
+  m_Name: ColorAdjustments
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
-  temperature:
+  postExposure:
     m_OverrideState: 1
-    m_Value: -27.9
+    m_Value: 1.5
+  contrast:
+    m_OverrideState: 1
+    m_Value: 20
     min: -100
     max: 100
-  tint:
+  colorFilter:
+    m_OverrideState: 1
+    m_Value: {r: 0.8742435, g: 0.88038963, b: 0.8867924, a: 1}
+    hdr: 1
+    showAlpha: 0
+    showEyeDropper: 1
+  hueShift:
     m_OverrideState: 1
     m_Value: 0
+    min: -180
+    max: 180
+  saturation:
+    m_OverrideState: 1
+    m_Value: -5
     min: -100
     max: 100
 --- !u!114 &-1556037730616200862
@@ -36,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1be1b6c95cd2e41b27903b9270817f, type: 3}
   m_Name: Vignette
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
@@ -96,9 +110,8 @@ MonoBehaviour:
   - {fileID: 4037170827883997313}
   - {fileID: 8083434624142442856}
   - {fileID: 3810159660930056045}
+  - {fileID: -3269818689823949109}
   - {fileID: 837872497425202658}
-  - {fileID: -7119485970109827669}
-  - {fileID: 5804244391409083069}
 --- !u!114 &837872497425202658
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -116,7 +129,7 @@ MonoBehaviour:
   master:
     m_OverrideState: 1
     m_Value:
-      <length>k__BackingField: 2
+      <length>k__BackingField: 4
       m_Loop: 0
       m_ZeroValue: 0
       m_Range: 1
@@ -124,8 +137,8 @@ MonoBehaviour:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0.012722646
-          value: 0.016129017
+          time: 0
+          value: 0.00934577
           inSlope: 0
           outSlope: 1
           tangentMode: 0
@@ -133,8 +146,26 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 1
-          value: 1
+          time: 0.20338982
+          value: 0.23364484
+          inSlope: 1.162544
+          outSlope: 1.162544
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.48305085
+          value: 0.5233645
+          inSlope: 1.2084402
+          outSlope: 1.2084402
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.8177966
+          value: 0.83177567
           inSlope: 1
           outSlope: 0
           tangentMode: 0
@@ -398,7 +429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a6b00fcf518bb94a90b408492e07b44, type: 3}
   m_Name: FilmGrain
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   type:
     m_OverrideState: 1
@@ -487,29 +518,6 @@ MonoBehaviour:
   cascadeShadowBorder3:
     m_OverrideState: 1
     m_Value: 0.000000005122274
---- !u!114 &5804244391409083069
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da5ab44aadfb1804db5fd470983ac1b8, type: 3}
-  m_Name: LiftGammaGain
-  m_EditorClassIdentifier: 
-  active: 0
-  m_AdvancedMode: 0
-  lift:
-    m_OverrideState: 1
-    m_Value: {x: 0.9795784, y: 1, z: 0.9937255, w: 0}
-  gamma:
-    m_OverrideState: 1
-    m_Value: {x: 0.97076064, y: 1, z: 0.99691, w: 0}
-  gain:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
 --- !u!114 &6050023050175129096
 MonoBehaviour:
   m_ObjectHideFlags: 3
