@@ -37,7 +37,7 @@ namespace TheFowler
             if (popupSprite != null)
             {
                 text.color = Color.clear;
-                image.gameObject.SetActive(true);
+                //image.gameObject.SetActive(true);
                 image.sprite = popupSprite;
             }
             else

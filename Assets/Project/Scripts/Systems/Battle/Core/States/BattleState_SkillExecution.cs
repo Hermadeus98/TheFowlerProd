@@ -21,8 +21,6 @@ namespace TheFowler
             BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.SKILLEXECUTION);
 
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).Hide();
-
-
         }
 
         IEnumerator Cast()
@@ -93,11 +91,12 @@ namespace TheFowler
                     {
                         if (enemyActor.Brain != null)
                         {
-                            
-
                             enemyActor.AI.StartThink();
 
                             BattleManager.CurrentBattle.BattleGameLogComponent.AddDatas(enemyActor.AI.SelectedSpell, enemyActor, TargetSelector.SelectedTargets);
+                            var spellBox = UI.GetView<EnemySpellBox>("EnemySpellBox");
+                            spellBox.Show();
+                            spellBox.Refresh(enemyActor.AI.SelectedSpell);
 
                             var action = enemyActor.SignalReceiver_CastSpell.GetReaction(enemyActor.SignalAsset_CastSpell);
                             action.AddListener(delegate
