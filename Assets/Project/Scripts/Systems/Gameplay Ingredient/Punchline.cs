@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using AK.Wwise;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
@@ -8,6 +9,8 @@ namespace TheFowler
 {
     public class Punchline : MonoBehaviour
     {
+        private bool canPlay = true;
+        
         [SerializeField] private PunchlinesData punchlinesData;
 
         public void PlayPunchline(PunchlineEnum punchlineEnum)
@@ -58,7 +61,36 @@ namespace TheFowler
             if (punchlineStruct.Events.Count == 0) return;
 
             int rand2 = Random.Range(0, punchlineStruct.Events.Count);
-            SoundManager.PlaySound(punchlineStruct.Events[rand2], gameObject);
+
+            if (canPlay)
+            {
+                StartCoroutine(Mute(punchlineStruct.Events[rand2]));
+            }
+        }
+
+        IEnumerator Mute(AK.Wwise.Event evnt)
+        {
+            //evnt.Post(gameObject, new CallbackFlags(){value = 0}, CallBackFunction);       
+            
+            SoundManager.PlaySound(evnt, gameObject);
+            
+            canPlay = false;
+            while (evnt.ObjectReference.IsComplete())
+            {
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(.5f);
+
+            canPlay = true;
+        }
+        
+        void CallBackFunction(object in_cookie, AkCallbackType callType, object in_info)
+        {
+            if (callType == AkCallbackType.AK_EndOfEvent)
+            {
+                canPlay = true;
+            }
         }
     }
 
