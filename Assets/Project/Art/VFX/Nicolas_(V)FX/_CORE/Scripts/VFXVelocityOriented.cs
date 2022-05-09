@@ -20,6 +20,9 @@ public class VFXVelocityOriented : MonoBehaviour
     {
         prevPos = currPos;
         currPos = transform.position;
-        transform.forward = velocity.normalized;
+        Vector3 final = velocity.normalized;
+        
+        if (final != Vector3.zero)
+            transform.forward = final;
     }
 }

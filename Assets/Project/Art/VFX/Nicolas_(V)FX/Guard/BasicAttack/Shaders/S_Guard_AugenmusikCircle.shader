@@ -6,15 +6,21 @@ Shader "S_Guard_Augenmusik"
 	{
 		[HideInInspector] _AlphaCutoff("Alpha Cutoff ", Range(0, 1)) = 0.5
 		[HideInInspector] _EmissionColor("Emission Color", Color) = (1,1,1,1)
-		[ASEBegin]_MainTex("MainTex", 2D) = "white" {}
-		[HDR][Header(Bicolor)][HideIf(_NOBICOLOR_ON)]_ColorA("ColorA", Color) = (0,0,0,1)
-		[HDR][HideIf(_NOBICOLOR_ON)]_ColorB("ColorB", Color) = (1,1,1,1)
-		[HideIf(_NOBICOLOR_ON)]_BicolorThreshold("BicolorThreshold", Float) = 0
-		[HideIf(_NOBICOLOR_ON)]_BicolorSmoothness("BicolorSmoothness", Float) = 1
-		[ASEEnd][Toggle]_Bicolor_OneMinus("Bicolor_OneMinus", Float) = 0
-		[HideInInspector] _texcoord( "", 2D ) = "white" {}
+		[ASEBegin][Header(PolarUV)][Toggle]_Polar_InvertUV("Polar_InvertUV", Float) = 0
+		_Polar_Distort_U("Polar_Distort_U", Float) = 0
+		_Vector0("Polar_Center", Vector) = (0.5,0.5,0,0)
+		[Header(Alpha Sharp)]_AlphaThreshold("AlphaThreshold", Float) = 0
+		_AlphaSmoothness("AlphaSmoothness", Float) = 1
+		[Toggle]_AlphaSharp_OneMinus("AlphaSharp_OneMinus", Float) = 0
+		_Edge("Edge", Float) = 0
+		_Emissive("Emissive", Float) = 1
+		[HDR]_EdgeColor("EdgeColor", Color) = (1,0.6273585,0.6273585,0)
+		[Header(Distort Texture)]_DistortTex("DistortTex", 2D) = "white" {}
+		_DistortStrength("DistortStrength", Float) = 0.2
+		_Thick("Thick", Float) = 0.2
+		[ASEEnd]_Threshold("Threshold", Float) = 0.2
 
-		[HideInInspector]_RenderQueueType("Render Queue Type", Float) = 1
+		[HideInInspector]_RenderQueueType("Render Queue Type", Float) = 5
 		[HideInInspector][ToggleUI]_AddPrecomputedVelocity("Add Precomputed Velocity", Float) = 1
 		//[HideInInspector]_ShadowMatteFilter("Shadow Matte Filter", Float) = 2
 		[HideInInspector]_StencilRef("Stencil Ref", Int) = 0
@@ -30,7 +36,7 @@ Shader "S_Guard_Augenmusik"
 		[HideInInspector]_ZTestGBuffer("_ZTestGBuffer", Int) = 4
 		[HideInInspector][ToggleUI]_RequireSplitLighting("_RequireSplitLighting", Float) = 0
 		[HideInInspector][ToggleUI]_ReceivesSSR("_ReceivesSSR", Float) = 0
-		[HideInInspector]_SurfaceType("_SurfaceType", Float) = 0
+		[HideInInspector]_SurfaceType("_SurfaceType", Float) = 1
 		[HideInInspector]_BlendMode("_BlendMode", Float) = 0
 		[HideInInspector]_SrcBlend("_SrcBlend", Float) = 1
 		[HideInInspector]_DstBlend("_DstBlend", Float) = 0
@@ -67,7 +73,7 @@ Shader "S_Guard_Augenmusik"
 
 		
 
-		Tags { "RenderPipeline"="HDRenderPipeline" "RenderType"="Opaque" "Queue"="Geometry" }
+		Tags { "RenderPipeline"="HDRenderPipeline" "RenderType"="Opaque" "Queue"="Transparent" }
 
 		HLSLINCLUDE
 		#pragma target 4.5
@@ -241,6 +247,7 @@ Shader "S_Guard_Augenmusik"
 			{
 				float3 positionOS : POSITION;
 				float3 normalOS : NORMAL;
+				float4 ase_color : COLOR;
 				float4 ase_texcoord : TEXCOORD0;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
@@ -249,18 +256,26 @@ Shader "S_Guard_Augenmusik"
 			{
 				float4 positionCS : SV_Position;
 				float3 positionRWS : TEXCOORD0;
+				float4 ase_color : COLOR;
 				float4 ase_texcoord1 : TEXCOORD1;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
 
 			CBUFFER_START( UnityPerMaterial )
-			float4 _ColorA;
-			float4 _ColorB;
-			float4 _MainTex_ST;
-			float _BicolorThreshold;
-			float _BicolorSmoothness;
-			float _Bicolor_OneMinus;
+			float4 _Vector0;
+			float4 _EdgeColor;
+			float4 _DistortTex_ST;
+			float _Emissive;
+			float _AlphaThreshold;
+			float _Edge;
+			float _AlphaSmoothness;
+			float _Polar_Distort_U;
+			float _Polar_InvertUV;
+			float _AlphaSharp_OneMinus;
+			float _DistortStrength;
+			float _Threshold;
+			float _Thick;
 			float4 _EmissionColor;
 			float _RenderQueueType;
 			#ifdef _ADD_PRECOMPUTED_VELOCITY
@@ -313,7 +328,8 @@ Shader "S_Guard_Augenmusik"
 				float _TessMaxDisp;
 			#endif
 			CBUFFER_END
-			sampler2D _MainTex;
+			sampler2D _DistortTex;
+			SAMPLER(sampler_DistortTex);
 
 
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Material.hlsl"
@@ -380,10 +396,8 @@ Shader "S_Guard_Augenmusik"
 				UNITY_TRANSFER_INSTANCE_ID(inputMesh, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO( o );
 
-				o.ase_texcoord1.xy = inputMesh.ase_texcoord.xy;
-				
-				//setting value to unused interpolator channels and avoid initialization warnings
-				o.ase_texcoord1.zw = 0;
+				o.ase_color = inputMesh.ase_color;
+				o.ase_texcoord1 = inputMesh.ase_texcoord;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 				float3 defaultVertexValue = inputMesh.positionOS.xyz;
 				#else
@@ -409,6 +423,7 @@ Shader "S_Guard_Augenmusik"
 			{
 				float3 positionOS : INTERNALTESSPOS;
 				float3 normalOS : NORMAL;
+				float4 ase_color : COLOR;
 				float4 ase_texcoord : TEXCOORD0;
 
 				UNITY_VERTEX_INPUT_INSTANCE_ID
@@ -427,6 +442,7 @@ Shader "S_Guard_Augenmusik"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				o.positionOS = v.positionOS;
 				o.normalOS = v.normalOS;
+				o.ase_color = v.ase_color;
 				o.ase_texcoord = v.ase_texcoord;
 				return o;
 			}
@@ -471,6 +487,7 @@ Shader "S_Guard_Augenmusik"
 				VertexInput o = (VertexInput) 0;
 				o.positionOS = patch[0].positionOS * bary.x + patch[1].positionOS * bary.y + patch[2].positionOS * bary.z;
 				o.normalOS = patch[0].normalOS * bary.x + patch[1].normalOS * bary.y + patch[2].normalOS * bary.z;
+				o.ase_color = patch[0].ase_color * bary.x + patch[1].ase_color * bary.y + patch[2].ase_color * bary.z;
 				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
@@ -506,14 +523,40 @@ Shader "S_Guard_Augenmusik"
 				float3 V = GetWorldSpaceNormalizeViewDir( input.positionRWS );
 
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
-				float2 uv_MainTex = packedInput.ase_texcoord1.xy * _MainTex_ST.xy + _MainTex_ST.zw;
-				float smoothstepResult5_g1 = smoothstep( _BicolorThreshold , ( _BicolorThreshold + _BicolorSmoothness ) , tex2D( _MainTex, uv_MainTex ).r);
-				float lerpResult12_g1 = lerp( smoothstepResult5_g1 , ( 1.0 - smoothstepResult5_g1 ) , _Bicolor_OneMinus);
-				float4 lerpResult4_g1 = lerp( _ColorA , _ColorB , lerpResult12_g1);
+				float4 texCoord40 = packedInput.ase_texcoord1;
+				texCoord40.xy = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
+				float temp_output_7_0_g44 = ( _AlphaThreshold + ( texCoord40.z + _Edge ) );
+				float2 texCoord2_g40 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
+				float4 temp_output_1_0_g40 = float4( texCoord2_g40, 0.0 , 0.0 );
+				float4 temp_output_18_0_g40 = _Vector0;
+				float temp_output_3_0_g40 = distance( temp_output_1_0_g40 , temp_output_18_0_g40 );
+				float4 break6_g40 = ( temp_output_1_0_g40 + ( temp_output_18_0_g40 * float4( -1,-1,0,0 ) ) );
+				float temp_output_28_0_g40 = ( ( ( ( atan2( break6_g40.x , break6_g40.y ) / PI ) + 1.0 ) / 2.0 ) + ( temp_output_3_0_g40 * _Polar_Distort_U ) );
+				float4 appendResult4_g40 = (float4(temp_output_3_0_g40 , temp_output_28_0_g40 , 0.0 , 0.0));
+				float4 appendResult24_g40 = (float4(temp_output_28_0_g40 , temp_output_3_0_g40 , 0.0 , 0.0));
+				float4 lerpResult25_g40 = lerp( appendResult4_g40 , appendResult24_g40 , _Polar_InvertUV);
+				float temp_output_39_0 = ( 1.0 - lerpResult25_g40.y );
+				float temp_output_1_0_g44 = temp_output_39_0;
+				float lerpResult9_g44 = lerp( temp_output_1_0_g44 , ( 1.0 - temp_output_1_0_g44 ) , _AlphaSharp_OneMinus);
+				float smoothstepResult2_g44 = smoothstep( temp_output_7_0_g44 , ( temp_output_7_0_g44 + _AlphaSmoothness ) , lerpResult9_g44);
 				
-				surfaceDescription.Color = lerpResult4_g1.rgb;
+				float2 texCoord11 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 texCoord13_g5 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 panner1_g39 = ( _TimeParameters.x * _DistortTex_ST.zw + ( texCoord13_g5 * _DistortTex_ST.xy ));
+				float4 temp_cast_2 = (1.0).xxxx;
+				float2 temp_cast_3 = (0.5).xx;
+				float temp_output_9_0 = distance( ( texCoord11 + (( ( ( tex2D( _DistortTex, ( float2( 0,0 ) + panner1_g39 ) ) * 2.0 ) - temp_cast_2 ) * ( _DistortStrength + 0.0 ) * 1.0 )).rg ) , temp_cast_3 );
+				float temp_output_35_0 = ( _Thick / 10.0 );
+				float temp_output_3_0_g3 = ( temp_output_9_0 - ( _Threshold + temp_output_35_0 ) );
+				float temp_output_3_0_g4 = ( ( _Threshold - temp_output_35_0 ) - temp_output_9_0 );
+				float temp_output_7_0_g43 = ( _AlphaThreshold + texCoord40.z );
+				float temp_output_1_0_g43 = temp_output_39_0;
+				float lerpResult9_g43 = lerp( temp_output_1_0_g43 , ( 1.0 - temp_output_1_0_g43 ) , _AlphaSharp_OneMinus);
+				float smoothstepResult2_g43 = smoothstep( temp_output_7_0_g43 , ( temp_output_7_0_g43 + _AlphaSmoothness ) , lerpResult9_g43);
+				
+				surfaceDescription.Color = ( ( packedInput.ase_color * _Emissive ) + ( ( 1.0 - smoothstepResult2_g44 ) * _EdgeColor ) ).rgb;
 				surfaceDescription.Emission = 0;
-				surfaceDescription.Alpha = 1;
+				surfaceDescription.Alpha = ( ( ( 1.0 - saturate( ( temp_output_3_0_g3 / fwidth( temp_output_3_0_g3 ) ) ) ) * ( 1.0 - saturate( ( temp_output_3_0_g4 / fwidth( temp_output_3_0_g4 ) ) ) ) ) * smoothstepResult2_g43 );
 				surfaceDescription.AlphaClipThreshold = _AlphaCutoff;
 				surfaceDescription.ShadowTint = float4( 0, 0 ,0 ,1 );
 				float2 Distortion = float2 ( 0, 0 );
@@ -601,25 +644,32 @@ Shader "S_Guard_Augenmusik"
 			{
 				float3 positionOS : POSITION;
 				float3 normalOS : NORMAL;
-				
+				float4 ase_texcoord : TEXCOORD0;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct VertexOutput
 			{
 				float4 positionCS : SV_Position;
-				
+				float4 ase_texcoord : TEXCOORD0;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
 
 			CBUFFER_START( UnityPerMaterial )
-			float4 _ColorA;
-			float4 _ColorB;
-			float4 _MainTex_ST;
-			float _BicolorThreshold;
-			float _BicolorSmoothness;
-			float _Bicolor_OneMinus;
+			float4 _Vector0;
+			float4 _EdgeColor;
+			float4 _DistortTex_ST;
+			float _Emissive;
+			float _AlphaThreshold;
+			float _Edge;
+			float _AlphaSmoothness;
+			float _Polar_Distort_U;
+			float _Polar_InvertUV;
+			float _AlphaSharp_OneMinus;
+			float _DistortStrength;
+			float _Threshold;
+			float _Thick;
 			float4 _EmissionColor;
 			float _RenderQueueType;
 			#ifdef _ADD_PRECOMPUTED_VELOCITY
@@ -672,7 +722,9 @@ Shader "S_Guard_Augenmusik"
 				float _TessMaxDisp;
 			#endif
 			CBUFFER_END
-			
+			sampler2D _DistortTex;
+			SAMPLER(sampler_DistortTex);
+
 
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Material.hlsl"
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Unlit/Unlit.hlsl"
@@ -710,7 +762,7 @@ Shader "S_Guard_Augenmusik"
 				UNITY_TRANSFER_INSTANCE_ID(inputMesh, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO( o );
 
-				
+				o.ase_texcoord = inputMesh.ase_texcoord;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 				float3 defaultVertexValue = inputMesh.positionOS.xyz;
 				#else
@@ -735,7 +787,8 @@ Shader "S_Guard_Augenmusik"
 			{
 				float3 positionOS : INTERNALTESSPOS;
 				float3 normalOS : NORMAL;
-				
+				float4 ase_texcoord : TEXCOORD0;
+
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -752,7 +805,7 @@ Shader "S_Guard_Augenmusik"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				o.positionOS = v.positionOS;
 				o.normalOS = v.normalOS;
-				
+				o.ase_texcoord = v.ase_texcoord;
 				return o;
 			}
 
@@ -796,7 +849,7 @@ Shader "S_Guard_Augenmusik"
 				VertexInput o = (VertexInput) 0;
 				o.positionOS = patch[0].positionOS * bary.x + patch[1].positionOS * bary.y + patch[2].positionOS * bary.z;
 				o.normalOS = patch[0].normalOS * bary.x + patch[1].normalOS * bary.y + patch[2].normalOS * bary.z;
-				
+				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -846,8 +899,33 @@ Shader "S_Guard_Augenmusik"
 				float3 V = float3( 1.0, 1.0, 1.0 );
 
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
+				float2 texCoord11 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 texCoord13_g5 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 panner1_g39 = ( _TimeParameters.x * _DistortTex_ST.zw + ( texCoord13_g5 * _DistortTex_ST.xy ));
+				float4 temp_cast_0 = (1.0).xxxx;
+				float2 temp_cast_1 = (0.5).xx;
+				float temp_output_9_0 = distance( ( texCoord11 + (( ( ( tex2D( _DistortTex, ( float2( 0,0 ) + panner1_g39 ) ) * 2.0 ) - temp_cast_0 ) * ( _DistortStrength + 0.0 ) * 1.0 )).rg ) , temp_cast_1 );
+				float temp_output_35_0 = ( _Thick / 10.0 );
+				float temp_output_3_0_g3 = ( temp_output_9_0 - ( _Threshold + temp_output_35_0 ) );
+				float temp_output_3_0_g4 = ( ( _Threshold - temp_output_35_0 ) - temp_output_9_0 );
+				float4 texCoord40 = packedInput.ase_texcoord;
+				texCoord40.xy = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float temp_output_7_0_g43 = ( _AlphaThreshold + texCoord40.z );
+				float2 texCoord2_g40 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float4 temp_output_1_0_g40 = float4( texCoord2_g40, 0.0 , 0.0 );
+				float4 temp_output_18_0_g40 = _Vector0;
+				float temp_output_3_0_g40 = distance( temp_output_1_0_g40 , temp_output_18_0_g40 );
+				float4 break6_g40 = ( temp_output_1_0_g40 + ( temp_output_18_0_g40 * float4( -1,-1,0,0 ) ) );
+				float temp_output_28_0_g40 = ( ( ( ( atan2( break6_g40.x , break6_g40.y ) / PI ) + 1.0 ) / 2.0 ) + ( temp_output_3_0_g40 * _Polar_Distort_U ) );
+				float4 appendResult4_g40 = (float4(temp_output_3_0_g40 , temp_output_28_0_g40 , 0.0 , 0.0));
+				float4 appendResult24_g40 = (float4(temp_output_28_0_g40 , temp_output_3_0_g40 , 0.0 , 0.0));
+				float4 lerpResult25_g40 = lerp( appendResult4_g40 , appendResult24_g40 , _Polar_InvertUV);
+				float temp_output_39_0 = ( 1.0 - lerpResult25_g40.y );
+				float temp_output_1_0_g43 = temp_output_39_0;
+				float lerpResult9_g43 = lerp( temp_output_1_0_g43 , ( 1.0 - temp_output_1_0_g43 ) , _AlphaSharp_OneMinus);
+				float smoothstepResult2_g43 = smoothstep( temp_output_7_0_g43 , ( temp_output_7_0_g43 + _AlphaSmoothness ) , lerpResult9_g43);
 				
-				surfaceDescription.Alpha = 1;
+				surfaceDescription.Alpha = ( ( ( 1.0 - saturate( ( temp_output_3_0_g3 / fwidth( temp_output_3_0_g3 ) ) ) ) * ( 1.0 - saturate( ( temp_output_3_0_g4 / fwidth( temp_output_3_0_g4 ) ) ) ) ) * smoothstepResult2_g43 );
 				surfaceDescription.AlphaClipThreshold = _AlphaCutoff;
 
 				SurfaceData surfaceData;
@@ -903,12 +981,19 @@ Shader "S_Guard_Augenmusik"
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/ShaderLibrary/ShaderGraphHeader.hlsl"
 
 			CBUFFER_START( UnityPerMaterial )
-			float4 _ColorA;
-			float4 _ColorB;
-			float4 _MainTex_ST;
-			float _BicolorThreshold;
-			float _BicolorSmoothness;
-			float _Bicolor_OneMinus;
+			float4 _Vector0;
+			float4 _EdgeColor;
+			float4 _DistortTex_ST;
+			float _Emissive;
+			float _AlphaThreshold;
+			float _Edge;
+			float _AlphaSmoothness;
+			float _Polar_Distort_U;
+			float _Polar_InvertUV;
+			float _AlphaSharp_OneMinus;
+			float _DistortStrength;
+			float _Threshold;
+			float _Thick;
 			float4 _EmissionColor;
 			float _RenderQueueType;
 			#ifdef _ADD_PRECOMPUTED_VELOCITY
@@ -969,7 +1054,8 @@ Shader "S_Guard_Augenmusik"
 
 			float unity_OneOverOutputBoost;
 			float unity_MaxOutputValue;
-			sampler2D _MainTex;
+			sampler2D _DistortTex;
+			SAMPLER(sampler_DistortTex);
 
 
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Material.hlsl"
@@ -986,6 +1072,7 @@ Shader "S_Guard_Augenmusik"
 				float3 normalOS : NORMAL;
 				float4 uv1 : TEXCOORD1;
 				float4 uv2 : TEXCOORD2;
+				float4 ase_color : COLOR;
 				float4 ase_texcoord : TEXCOORD0;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
@@ -993,6 +1080,7 @@ Shader "S_Guard_Augenmusik"
 			struct VertexOutput
 			{
 				float4 positionCS : SV_Position;
+				float4 ase_color : COLOR;
 				float4 ase_texcoord : TEXCOORD0;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
@@ -1031,10 +1119,8 @@ Shader "S_Guard_Augenmusik"
 				UNITY_SETUP_INSTANCE_ID( inputMesh );
 				UNITY_TRANSFER_INSTANCE_ID( inputMesh, o );
 
-				o.ase_texcoord.xy = inputMesh.ase_texcoord.xy;
-				
-				//setting value to unused interpolator channels and avoid initialization warnings
-				o.ase_texcoord.zw = 0;
+				o.ase_color = inputMesh.ase_color;
+				o.ase_texcoord = inputMesh.ase_texcoord;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 				float3 defaultVertexValue = inputMesh.positionOS.xyz;
 				#else
@@ -1070,6 +1156,7 @@ Shader "S_Guard_Augenmusik"
 				float3 normalOS : NORMAL;
 				float4 uv1 : TEXCOORD1;
 				float4 uv2 : TEXCOORD2;
+				float4 ase_color : COLOR;
 				float4 ase_texcoord : TEXCOORD0;
 
 				UNITY_VERTEX_INPUT_INSTANCE_ID
@@ -1090,6 +1177,7 @@ Shader "S_Guard_Augenmusik"
 				o.normalOS = v.normalOS;
 				o.uv1 = v.uv1;
 				o.uv2 = v.uv2;
+				o.ase_color = v.ase_color;
 				o.ase_texcoord = v.ase_texcoord;
 				return o;
 			}
@@ -1136,6 +1224,7 @@ Shader "S_Guard_Augenmusik"
 				o.normalOS = patch[0].normalOS * bary.x + patch[1].normalOS * bary.y + patch[2].normalOS * bary.z;
 				o.uv1 = patch[0].uv1 * bary.x + patch[1].uv1 * bary.y + patch[2].uv1 * bary.z;
 				o.uv2 = patch[0].uv2 * bary.x + patch[1].uv2 * bary.y + patch[2].uv2 * bary.z;
+				o.ase_color = patch[0].ase_color * bary.x + patch[1].ase_color * bary.y + patch[2].ase_color * bary.z;
 				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
@@ -1167,14 +1256,40 @@ Shader "S_Guard_Augenmusik"
 				float3 V = float3( 1.0, 1.0, 1.0 );
 
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
-				float2 uv_MainTex = packedInput.ase_texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;
-				float smoothstepResult5_g1 = smoothstep( _BicolorThreshold , ( _BicolorThreshold + _BicolorSmoothness ) , tex2D( _MainTex, uv_MainTex ).r);
-				float lerpResult12_g1 = lerp( smoothstepResult5_g1 , ( 1.0 - smoothstepResult5_g1 ) , _Bicolor_OneMinus);
-				float4 lerpResult4_g1 = lerp( _ColorA , _ColorB , lerpResult12_g1);
+				float4 texCoord40 = packedInput.ase_texcoord;
+				texCoord40.xy = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float temp_output_7_0_g44 = ( _AlphaThreshold + ( texCoord40.z + _Edge ) );
+				float2 texCoord2_g40 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float4 temp_output_1_0_g40 = float4( texCoord2_g40, 0.0 , 0.0 );
+				float4 temp_output_18_0_g40 = _Vector0;
+				float temp_output_3_0_g40 = distance( temp_output_1_0_g40 , temp_output_18_0_g40 );
+				float4 break6_g40 = ( temp_output_1_0_g40 + ( temp_output_18_0_g40 * float4( -1,-1,0,0 ) ) );
+				float temp_output_28_0_g40 = ( ( ( ( atan2( break6_g40.x , break6_g40.y ) / PI ) + 1.0 ) / 2.0 ) + ( temp_output_3_0_g40 * _Polar_Distort_U ) );
+				float4 appendResult4_g40 = (float4(temp_output_3_0_g40 , temp_output_28_0_g40 , 0.0 , 0.0));
+				float4 appendResult24_g40 = (float4(temp_output_28_0_g40 , temp_output_3_0_g40 , 0.0 , 0.0));
+				float4 lerpResult25_g40 = lerp( appendResult4_g40 , appendResult24_g40 , _Polar_InvertUV);
+				float temp_output_39_0 = ( 1.0 - lerpResult25_g40.y );
+				float temp_output_1_0_g44 = temp_output_39_0;
+				float lerpResult9_g44 = lerp( temp_output_1_0_g44 , ( 1.0 - temp_output_1_0_g44 ) , _AlphaSharp_OneMinus);
+				float smoothstepResult2_g44 = smoothstep( temp_output_7_0_g44 , ( temp_output_7_0_g44 + _AlphaSmoothness ) , lerpResult9_g44);
 				
-				surfaceDescription.Color = lerpResult4_g1.rgb;
+				float2 texCoord11 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 texCoord13_g5 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 panner1_g39 = ( _TimeParameters.x * _DistortTex_ST.zw + ( texCoord13_g5 * _DistortTex_ST.xy ));
+				float4 temp_cast_2 = (1.0).xxxx;
+				float2 temp_cast_3 = (0.5).xx;
+				float temp_output_9_0 = distance( ( texCoord11 + (( ( ( tex2D( _DistortTex, ( float2( 0,0 ) + panner1_g39 ) ) * 2.0 ) - temp_cast_2 ) * ( _DistortStrength + 0.0 ) * 1.0 )).rg ) , temp_cast_3 );
+				float temp_output_35_0 = ( _Thick / 10.0 );
+				float temp_output_3_0_g3 = ( temp_output_9_0 - ( _Threshold + temp_output_35_0 ) );
+				float temp_output_3_0_g4 = ( ( _Threshold - temp_output_35_0 ) - temp_output_9_0 );
+				float temp_output_7_0_g43 = ( _AlphaThreshold + texCoord40.z );
+				float temp_output_1_0_g43 = temp_output_39_0;
+				float lerpResult9_g43 = lerp( temp_output_1_0_g43 , ( 1.0 - temp_output_1_0_g43 ) , _AlphaSharp_OneMinus);
+				float smoothstepResult2_g43 = smoothstep( temp_output_7_0_g43 , ( temp_output_7_0_g43 + _AlphaSmoothness ) , lerpResult9_g43);
+				
+				surfaceDescription.Color = ( ( packedInput.ase_color * _Emissive ) + ( ( 1.0 - smoothstepResult2_g44 ) * _EdgeColor ) ).rgb;
 				surfaceDescription.Emission = 0;
-				surfaceDescription.Alpha = 1;
+				surfaceDescription.Alpha = ( ( ( 1.0 - saturate( ( temp_output_3_0_g3 / fwidth( temp_output_3_0_g3 ) ) ) ) * ( 1.0 - saturate( ( temp_output_3_0_g4 / fwidth( temp_output_3_0_g4 ) ) ) ) ) * smoothstepResult2_g43 );
 				surfaceDescription.AlphaClipThreshold =  _AlphaCutoff;
 
 				SurfaceData surfaceData;
@@ -1239,12 +1354,19 @@ Shader "S_Guard_Augenmusik"
 			int _PassValue;
 
 			CBUFFER_START( UnityPerMaterial )
-			float4 _ColorA;
-			float4 _ColorB;
-			float4 _MainTex_ST;
-			float _BicolorThreshold;
-			float _BicolorSmoothness;
-			float _Bicolor_OneMinus;
+			float4 _Vector0;
+			float4 _EdgeColor;
+			float4 _DistortTex_ST;
+			float _Emissive;
+			float _AlphaThreshold;
+			float _Edge;
+			float _AlphaSmoothness;
+			float _Polar_Distort_U;
+			float _Polar_InvertUV;
+			float _AlphaSharp_OneMinus;
+			float _DistortStrength;
+			float _Threshold;
+			float _Thick;
 			float4 _EmissionColor;
 			float _RenderQueueType;
 			#ifdef _ADD_PRECOMPUTED_VELOCITY
@@ -1297,7 +1419,9 @@ Shader "S_Guard_Augenmusik"
 				float _TessMaxDisp;
 			#endif
 			CBUFFER_END
-			
+			sampler2D _DistortTex;
+			SAMPLER(sampler_DistortTex);
+
 
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Material.hlsl"
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Unlit/Unlit.hlsl"
@@ -1311,14 +1435,14 @@ Shader "S_Guard_Augenmusik"
 			{
 				float3 positionOS : POSITION;
 				float3 normalOS : NORMAL;
-				
+				float4 ase_texcoord : TEXCOORD0;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct VertexOutput
 			{
 				float4 positionCS : SV_Position;
-				
+				float4 ase_texcoord : TEXCOORD0;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -1354,7 +1478,7 @@ Shader "S_Guard_Augenmusik"
 				UNITY_TRANSFER_INSTANCE_ID(inputMesh, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO( o );
 
-				
+				o.ase_texcoord = inputMesh.ase_texcoord;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 				float3 defaultVertexValue = inputMesh.positionOS.xyz;
 				#else
@@ -1379,7 +1503,8 @@ Shader "S_Guard_Augenmusik"
 			{
 				float3 positionOS : INTERNALTESSPOS;
 				float3 normalOS : NORMAL;
-				
+				float4 ase_texcoord : TEXCOORD0;
+
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -1396,7 +1521,7 @@ Shader "S_Guard_Augenmusik"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				o.positionOS = v.positionOS;
 				o.normalOS = v.normalOS;
-				
+				o.ase_texcoord = v.ase_texcoord;
 				return o;
 			}
 
@@ -1440,7 +1565,7 @@ Shader "S_Guard_Augenmusik"
 				VertexInput o = (VertexInput) 0;
 				o.positionOS = patch[0].positionOS * bary.x + patch[1].positionOS * bary.y + patch[2].positionOS * bary.z;
 				o.normalOS = patch[0].normalOS * bary.x + patch[1].normalOS * bary.y + patch[2].normalOS * bary.z;
-				
+				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -1480,8 +1605,33 @@ Shader "S_Guard_Augenmusik"
 				SurfaceData surfaceData;
 				BuiltinData builtinData;
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
+				float2 texCoord11 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 texCoord13_g5 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 panner1_g39 = ( _TimeParameters.x * _DistortTex_ST.zw + ( texCoord13_g5 * _DistortTex_ST.xy ));
+				float4 temp_cast_0 = (1.0).xxxx;
+				float2 temp_cast_1 = (0.5).xx;
+				float temp_output_9_0 = distance( ( texCoord11 + (( ( ( tex2D( _DistortTex, ( float2( 0,0 ) + panner1_g39 ) ) * 2.0 ) - temp_cast_0 ) * ( _DistortStrength + 0.0 ) * 1.0 )).rg ) , temp_cast_1 );
+				float temp_output_35_0 = ( _Thick / 10.0 );
+				float temp_output_3_0_g3 = ( temp_output_9_0 - ( _Threshold + temp_output_35_0 ) );
+				float temp_output_3_0_g4 = ( ( _Threshold - temp_output_35_0 ) - temp_output_9_0 );
+				float4 texCoord40 = packedInput.ase_texcoord;
+				texCoord40.xy = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float temp_output_7_0_g43 = ( _AlphaThreshold + texCoord40.z );
+				float2 texCoord2_g40 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float4 temp_output_1_0_g40 = float4( texCoord2_g40, 0.0 , 0.0 );
+				float4 temp_output_18_0_g40 = _Vector0;
+				float temp_output_3_0_g40 = distance( temp_output_1_0_g40 , temp_output_18_0_g40 );
+				float4 break6_g40 = ( temp_output_1_0_g40 + ( temp_output_18_0_g40 * float4( -1,-1,0,0 ) ) );
+				float temp_output_28_0_g40 = ( ( ( ( atan2( break6_g40.x , break6_g40.y ) / PI ) + 1.0 ) / 2.0 ) + ( temp_output_3_0_g40 * _Polar_Distort_U ) );
+				float4 appendResult4_g40 = (float4(temp_output_3_0_g40 , temp_output_28_0_g40 , 0.0 , 0.0));
+				float4 appendResult24_g40 = (float4(temp_output_28_0_g40 , temp_output_3_0_g40 , 0.0 , 0.0));
+				float4 lerpResult25_g40 = lerp( appendResult4_g40 , appendResult24_g40 , _Polar_InvertUV);
+				float temp_output_39_0 = ( 1.0 - lerpResult25_g40.y );
+				float temp_output_1_0_g43 = temp_output_39_0;
+				float lerpResult9_g43 = lerp( temp_output_1_0_g43 , ( 1.0 - temp_output_1_0_g43 ) , _AlphaSharp_OneMinus);
+				float smoothstepResult2_g43 = smoothstep( temp_output_7_0_g43 , ( temp_output_7_0_g43 + _AlphaSmoothness ) , lerpResult9_g43);
 				
-				surfaceDescription.Alpha = 1;
+				surfaceDescription.Alpha = ( ( ( 1.0 - saturate( ( temp_output_3_0_g3 / fwidth( temp_output_3_0_g3 ) ) ) ) * ( 1.0 - saturate( ( temp_output_3_0_g4 / fwidth( temp_output_3_0_g4 ) ) ) ) ) * smoothstepResult2_g43 );
 				surfaceDescription.AlphaClipThreshold =  _AlphaCutoff;
 
 				GetSurfaceAndBuiltinData(surfaceDescription, input, V, posInput, surfaceData, builtinData);
@@ -1540,12 +1690,19 @@ Shader "S_Guard_Augenmusik"
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/ShaderLibrary/ShaderGraphHeader.hlsl"
 
 			CBUFFER_START( UnityPerMaterial )
-			float4 _ColorA;
-			float4 _ColorB;
-			float4 _MainTex_ST;
-			float _BicolorThreshold;
-			float _BicolorSmoothness;
-			float _Bicolor_OneMinus;
+			float4 _Vector0;
+			float4 _EdgeColor;
+			float4 _DistortTex_ST;
+			float _Emissive;
+			float _AlphaThreshold;
+			float _Edge;
+			float _AlphaSmoothness;
+			float _Polar_Distort_U;
+			float _Polar_InvertUV;
+			float _AlphaSharp_OneMinus;
+			float _DistortStrength;
+			float _Threshold;
+			float _Thick;
 			float4 _EmissionColor;
 			float _RenderQueueType;
 			#ifdef _ADD_PRECOMPUTED_VELOCITY
@@ -1598,7 +1755,9 @@ Shader "S_Guard_Augenmusik"
 				float _TessMaxDisp;
 			#endif
 			CBUFFER_END
-			
+			sampler2D _DistortTex;
+			SAMPLER(sampler_DistortTex);
+
 
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Material.hlsl"
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Unlit/Unlit.hlsl"
@@ -1612,14 +1771,14 @@ Shader "S_Guard_Augenmusik"
 			{
 				float3 positionOS : POSITION;
 				float3 normalOS : NORMAL;
-				
+				float4 ase_texcoord : TEXCOORD0;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct VertexOutput
 			{
 				float4 positionCS : SV_Position;
-				
+				float4 ase_texcoord : TEXCOORD0;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -1654,7 +1813,7 @@ Shader "S_Guard_Augenmusik"
 				UNITY_TRANSFER_INSTANCE_ID(inputMesh, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO( o );
 
-				
+				o.ase_texcoord = inputMesh.ase_texcoord;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 				float3 defaultVertexValue = inputMesh.positionOS.xyz;
 				#else
@@ -1679,7 +1838,8 @@ Shader "S_Guard_Augenmusik"
 			{
 				float3 positionOS : INTERNALTESSPOS;
 				float3 normalOS : NORMAL;
-				
+				float4 ase_texcoord : TEXCOORD0;
+
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -1696,7 +1856,7 @@ Shader "S_Guard_Augenmusik"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				o.positionOS = v.positionOS;
 				o.normalOS = v.normalOS;
-				
+				o.ase_texcoord = v.ase_texcoord;
 				return o;
 			}
 
@@ -1740,7 +1900,7 @@ Shader "S_Guard_Augenmusik"
 				VertexInput o = (VertexInput) 0;
 				o.positionOS = patch[0].positionOS * bary.x + patch[1].positionOS * bary.y + patch[2].positionOS * bary.z;
 				o.normalOS = patch[0].normalOS * bary.x + patch[1].normalOS * bary.y + patch[2].normalOS * bary.z;
-				
+				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -1789,8 +1949,33 @@ Shader "S_Guard_Augenmusik"
 				float3 V = float3( 1.0, 1.0, 1.0 );
 
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
+				float2 texCoord11 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 texCoord13_g5 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 panner1_g39 = ( _TimeParameters.x * _DistortTex_ST.zw + ( texCoord13_g5 * _DistortTex_ST.xy ));
+				float4 temp_cast_0 = (1.0).xxxx;
+				float2 temp_cast_1 = (0.5).xx;
+				float temp_output_9_0 = distance( ( texCoord11 + (( ( ( tex2D( _DistortTex, ( float2( 0,0 ) + panner1_g39 ) ) * 2.0 ) - temp_cast_0 ) * ( _DistortStrength + 0.0 ) * 1.0 )).rg ) , temp_cast_1 );
+				float temp_output_35_0 = ( _Thick / 10.0 );
+				float temp_output_3_0_g3 = ( temp_output_9_0 - ( _Threshold + temp_output_35_0 ) );
+				float temp_output_3_0_g4 = ( ( _Threshold - temp_output_35_0 ) - temp_output_9_0 );
+				float4 texCoord40 = packedInput.ase_texcoord;
+				texCoord40.xy = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float temp_output_7_0_g43 = ( _AlphaThreshold + texCoord40.z );
+				float2 texCoord2_g40 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float4 temp_output_1_0_g40 = float4( texCoord2_g40, 0.0 , 0.0 );
+				float4 temp_output_18_0_g40 = _Vector0;
+				float temp_output_3_0_g40 = distance( temp_output_1_0_g40 , temp_output_18_0_g40 );
+				float4 break6_g40 = ( temp_output_1_0_g40 + ( temp_output_18_0_g40 * float4( -1,-1,0,0 ) ) );
+				float temp_output_28_0_g40 = ( ( ( ( atan2( break6_g40.x , break6_g40.y ) / PI ) + 1.0 ) / 2.0 ) + ( temp_output_3_0_g40 * _Polar_Distort_U ) );
+				float4 appendResult4_g40 = (float4(temp_output_3_0_g40 , temp_output_28_0_g40 , 0.0 , 0.0));
+				float4 appendResult24_g40 = (float4(temp_output_28_0_g40 , temp_output_3_0_g40 , 0.0 , 0.0));
+				float4 lerpResult25_g40 = lerp( appendResult4_g40 , appendResult24_g40 , _Polar_InvertUV);
+				float temp_output_39_0 = ( 1.0 - lerpResult25_g40.y );
+				float temp_output_1_0_g43 = temp_output_39_0;
+				float lerpResult9_g43 = lerp( temp_output_1_0_g43 , ( 1.0 - temp_output_1_0_g43 ) , _AlphaSharp_OneMinus);
+				float smoothstepResult2_g43 = smoothstep( temp_output_7_0_g43 , ( temp_output_7_0_g43 + _AlphaSmoothness ) , lerpResult9_g43);
 				
-				surfaceDescription.Alpha = 1;
+				surfaceDescription.Alpha = ( ( ( 1.0 - saturate( ( temp_output_3_0_g3 / fwidth( temp_output_3_0_g3 ) ) ) ) * ( 1.0 - saturate( ( temp_output_3_0_g4 / fwidth( temp_output_3_0_g4 ) ) ) ) ) * smoothstepResult2_g43 );
 				surfaceDescription.AlphaClipThreshold =  _AlphaCutoff;
 
 				SurfaceData surfaceData;
@@ -1861,12 +2046,19 @@ Shader "S_Guard_Augenmusik"
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/ShaderLibrary/ShaderGraphHeader.hlsl"
 
 			CBUFFER_START( UnityPerMaterial )
-			float4 _ColorA;
-			float4 _ColorB;
-			float4 _MainTex_ST;
-			float _BicolorThreshold;
-			float _BicolorSmoothness;
-			float _Bicolor_OneMinus;
+			float4 _Vector0;
+			float4 _EdgeColor;
+			float4 _DistortTex_ST;
+			float _Emissive;
+			float _AlphaThreshold;
+			float _Edge;
+			float _AlphaSmoothness;
+			float _Polar_Distort_U;
+			float _Polar_InvertUV;
+			float _AlphaSharp_OneMinus;
+			float _DistortStrength;
+			float _Threshold;
+			float _Thick;
 			float4 _EmissionColor;
 			float _RenderQueueType;
 			#ifdef _ADD_PRECOMPUTED_VELOCITY
@@ -1919,7 +2111,9 @@ Shader "S_Guard_Augenmusik"
 				float _TessMaxDisp;
 			#endif
 			CBUFFER_END
-			
+			sampler2D _DistortTex;
+			SAMPLER(sampler_DistortTex);
+
 
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Material.hlsl"
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Unlit/Unlit.hlsl"
@@ -1937,7 +2131,7 @@ Shader "S_Guard_Augenmusik"
 				#if defined (_ADD_PRECOMPUTED_VELOCITY)
 					float3 precomputedVelocity : TEXCOORD5;
 				#endif
-				
+				float4 ase_texcoord : TEXCOORD0;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -1947,7 +2141,7 @@ Shader "S_Guard_Augenmusik"
 				float3 vmeshInterp00 : TEXCOORD0;
 				float3 vpassInterpolators0 : TEXCOORD1; //interpolators0
 				float3 vpassInterpolators1 : TEXCOORD2; //interpolators1
-				
+				float4 ase_texcoord3 : TEXCOORD3;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -1978,7 +2172,7 @@ Shader "S_Guard_Augenmusik"
 			VertexInput ApplyMeshModification(VertexInput inputMesh, float3 timeParameters, inout VertexOutput o )
 			{
 				_TimeParameters.xyz = timeParameters;
-				
+				o.ase_texcoord3 = inputMesh.ase_texcoord;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 				float3 defaultVertexValue = inputMesh.positionOS.xyz;
@@ -2077,7 +2271,8 @@ Shader "S_Guard_Augenmusik"
 				#if defined (_ADD_PRECOMPUTED_VELOCITY)
 					float3 precomputedVelocity : TEXCOORD5;
 				#endif
-				
+				float4 ase_texcoord : TEXCOORD0;
+
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -2098,7 +2293,7 @@ Shader "S_Guard_Augenmusik"
 				#if defined (_ADD_PRECOMPUTED_VELOCITY)
 					o.precomputedVelocity = v.precomputedVelocity;
 				#endif
-				
+				o.ase_texcoord = v.ase_texcoord;
 				return o;
 			}
 
@@ -2146,7 +2341,7 @@ Shader "S_Guard_Augenmusik"
 				#if defined (_ADD_PRECOMPUTED_VELOCITY)
 					o.precomputedVelocity = patch[0].precomputedVelocity * bary.x + patch[1].precomputedVelocity * bary.y + patch[2].precomputedVelocity * bary.z;
 				#endif
-				
+				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -2195,8 +2390,33 @@ Shader "S_Guard_Augenmusik"
 				float3 V = GetWorldSpaceNormalizeViewDir(input.positionRWS);
 
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
+				float2 texCoord11 = packedInput.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 texCoord13_g5 = packedInput.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 panner1_g39 = ( _TimeParameters.x * _DistortTex_ST.zw + ( texCoord13_g5 * _DistortTex_ST.xy ));
+				float4 temp_cast_0 = (1.0).xxxx;
+				float2 temp_cast_1 = (0.5).xx;
+				float temp_output_9_0 = distance( ( texCoord11 + (( ( ( tex2D( _DistortTex, ( float2( 0,0 ) + panner1_g39 ) ) * 2.0 ) - temp_cast_0 ) * ( _DistortStrength + 0.0 ) * 1.0 )).rg ) , temp_cast_1 );
+				float temp_output_35_0 = ( _Thick / 10.0 );
+				float temp_output_3_0_g3 = ( temp_output_9_0 - ( _Threshold + temp_output_35_0 ) );
+				float temp_output_3_0_g4 = ( ( _Threshold - temp_output_35_0 ) - temp_output_9_0 );
+				float4 texCoord40 = packedInput.ase_texcoord3;
+				texCoord40.xy = packedInput.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
+				float temp_output_7_0_g43 = ( _AlphaThreshold + texCoord40.z );
+				float2 texCoord2_g40 = packedInput.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
+				float4 temp_output_1_0_g40 = float4( texCoord2_g40, 0.0 , 0.0 );
+				float4 temp_output_18_0_g40 = _Vector0;
+				float temp_output_3_0_g40 = distance( temp_output_1_0_g40 , temp_output_18_0_g40 );
+				float4 break6_g40 = ( temp_output_1_0_g40 + ( temp_output_18_0_g40 * float4( -1,-1,0,0 ) ) );
+				float temp_output_28_0_g40 = ( ( ( ( atan2( break6_g40.x , break6_g40.y ) / PI ) + 1.0 ) / 2.0 ) + ( temp_output_3_0_g40 * _Polar_Distort_U ) );
+				float4 appendResult4_g40 = (float4(temp_output_3_0_g40 , temp_output_28_0_g40 , 0.0 , 0.0));
+				float4 appendResult24_g40 = (float4(temp_output_28_0_g40 , temp_output_3_0_g40 , 0.0 , 0.0));
+				float4 lerpResult25_g40 = lerp( appendResult4_g40 , appendResult24_g40 , _Polar_InvertUV);
+				float temp_output_39_0 = ( 1.0 - lerpResult25_g40.y );
+				float temp_output_1_0_g43 = temp_output_39_0;
+				float lerpResult9_g43 = lerp( temp_output_1_0_g43 , ( 1.0 - temp_output_1_0_g43 ) , _AlphaSharp_OneMinus);
+				float smoothstepResult2_g43 = smoothstep( temp_output_7_0_g43 , ( temp_output_7_0_g43 + _AlphaSmoothness ) , lerpResult9_g43);
 				
-				surfaceDescription.Alpha = 1;
+				surfaceDescription.Alpha = ( ( ( 1.0 - saturate( ( temp_output_3_0_g3 / fwidth( temp_output_3_0_g3 ) ) ) ) * ( 1.0 - saturate( ( temp_output_3_0_g4 / fwidth( temp_output_3_0_g4 ) ) ) ) ) * smoothstepResult2_g43 );
 				surfaceDescription.AlphaClipThreshold = _AlphaCutoff;
 
 				SurfaceData surfaceData;
@@ -2245,17 +2465,80 @@ Shader "S_Guard_Augenmusik"
 }
 /*ASEBEGIN
 Version=18900
-1920;231;1920;1019;1520.116;434.584;1;True;False
-Node;AmplifyShaderEditor.SamplerNode;7;-581.7015,-14.28308;Inherit;True;Property;_MainTex;MainTex;0;0;Create;True;0;0;0;False;0;False;-1;cd2ca602b6dfd934abe5dfc629717cdb;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.FunctionNode;8;-260.1162,-95.58398;Inherit;False;SF_Bicolor;1;;1;8f1c0adb31a562646a4d2a8fec362420;0;3;9;COLOR;0,0,0,0;False;10;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;1;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;ShadowCaster;0;1;ShadowCaster;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;True;False;False;False;False;0;False;-1;False;False;False;False;False;False;False;False;False;True;1;False;-1;False;False;True;1;LightMode=ShadowCaster;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;2;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;META;0;2;META;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;-1;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=Meta;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
+1920;231;1920;1019;960.8955;971.2675;1.3;True;False
+Node;AmplifyShaderEditor.FunctionNode;33;-1405.847,-663.7792;Inherit;False;SF_DistortTexture;11;;5;96c99f2862d31594fbaa887784570dd8;0;3;16;FLOAT;0;False;17;FLOAT;1;False;11;FLOAT2;0,0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.TextureCoordinatesNode;11;-1064.849,-625.5096;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.RangedFloatNode;30;-881.8491,-813.5096;Inherit;False;Property;_Thick;Thick;14;0;Create;True;0;0;0;False;0;False;0.2;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleAddOpNode;34;-861.8469,-660.7792;Inherit;False;2;2;0;FLOAT2;0,0;False;1;FLOAT2;0,0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.RangedFloatNode;13;-721.8491,-401.5096;Inherit;False;Property;_Threshold;Threshold;15;0;Create;True;0;0;0;False;0;False;0.2;0.2;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleDivideOpNode;35;-701.8469,-785.7792;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;10;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;10;-963.8491,-428.5096;Inherit;False;Constant;_Float0;Float 0;2;0;Create;True;0;0;0;False;0;False;0.5;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.DistanceOpNode;9;-747.8491,-518.5096;Inherit;False;2;0;FLOAT2;0,0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleAddOpNode;29;-480.8491,-642.5096;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleSubtractOpNode;31;-470.8491,-402.5096;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.FunctionNode;36;-352.499,-237.8282;Inherit;False;SF_PolarUV;0;;40;bc5d9a6ecd79c3041a2b8852c4a2b9cf;0;2;1;FLOAT4;0,0,0,0;False;18;FLOAT4;0,0,0,0;False;3;FLOAT4;0;FLOAT4;15;FLOAT4;16
+Node;AmplifyShaderEditor.BreakToComponentsNode;37;-85.49175,-247.694;Inherit;False;FLOAT4;1;0;FLOAT4;0,0,0,0;False;16;FLOAT;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT;5;FLOAT;6;FLOAT;7;FLOAT;8;FLOAT;9;FLOAT;10;FLOAT;11;FLOAT;12;FLOAT;13;FLOAT;14;FLOAT;15
+Node;AmplifyShaderEditor.FunctionNode;26;-330.8491,-554.5096;Inherit;False;Step Antialiasing;-1;;3;2a825e80dfb3290468194f83380797bd;0;2;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.FunctionNode;27;-253.8491,-389.5096;Inherit;False;Step Antialiasing;-1;;4;2a825e80dfb3290468194f83380797bd;0;2;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.OneMinusNode;32;-107.8491,-503.5096;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.TextureCoordinatesNode;40;-57.39175,-27.19401;Inherit;False;0;-1;4;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.OneMinusNode;39;103.3083,-228.094;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.OneMinusNode;22;-24.84912,-393.5096;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;23;233.1509,-449.5096;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.FunctionNode;38;310.6082,-222.794;Inherit;False;SF_AlphaSharp;4;;43;1a46ba76a207bfe4e97ac05d03cb8401;0;2;1;FLOAT;0;False;6;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.FunctionNode;43;370.3044,-91.16775;Inherit;False;SF_AlphaSharp;4;;44;1a46ba76a207bfe4e97ac05d03cb8401;0;2;1;FLOAT;0;False;6;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.ColorNode;47;527.6044,59.6322;Inherit;False;Property;_EdgeColor;EdgeColor;10;1;[HDR];Create;True;0;0;0;False;0;False;1,0.6273585,0.6273585,0;1,0.6273585,0.6273585,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;49;614.7045,-323.8676;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;45;158.4044,162.3322;Inherit;False;Property;_Edge;Edge;8;0;Create;True;0;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.OneMinusNode;50;586.1044,-156.1676;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;46;720.0043,-110.6678;Inherit;False;2;2;0;FLOAT;0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.VertexColorNode;42;123.7083,-698.794;Inherit;False;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SimpleAddOpNode;44;231.2044,20.6322;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;51;396.3045,-721.6675;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
+Node;AmplifyShaderEditor.SimpleAddOpNode;48;681.0043,-631.9678;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.RangedFloatNode;52;294.9044,-585.1675;Inherit;False;Property;_Emissive;Emissive;9;0;Create;True;0;0;0;False;0;False;1;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;0;1036.6,-445.5999;Float;False;True;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;13;S_Guard_Augenmusik;7f5cb9c3ea6481f469fdd856555439ef;True;Forward Unlit;0;0;Forward Unlit;9;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Transparent=Queue=0;True;5;0;False;True;1;0;True;-20;0;True;-21;1;0;True;-22;0;True;-23;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;False;False;False;False;False;False;False;False;True;True;0;True;-5;255;False;-1;255;True;-6;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;0;True;-24;True;0;True;-32;False;True;1;LightMode=ForwardOnly;False;0;Hidden/InternalErrorShader;0;0;Standard;29;Surface Type;1;  Rendering Pass ;0;  Rendering Pass;1;  Blending Mode;0;  Receive Fog;1;  Distortion;0;    Distortion Mode;0;    Distortion Only;1;  Depth Write;1;  Cull Mode;0;  Depth Test;4;Double-Sided;0;Alpha Clipping;0;Motion Vectors;1;  Add Precomputed Velocity;0;Shadow Matte;0;Cast Shadows;1;DOTS Instancing;0;GPU Instancing;1;Tessellation;0;  Phong;0;  Strength;0.5,False,-1;  Type;0;  Tess;16,False,-1;  Min;10,False,-1;  Max;25,False,-1;  Edge Length;16,False,-1;  Max Displacement;25,False,-1;Vertex Position,InvertActionOnDeselection;1;0;7;True;True;True;True;True;True;False;False;;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;3;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;SceneSelectionPass;0;3;SceneSelectionPass;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;True;False;False;False;False;0;False;-1;False;False;False;False;False;False;False;False;False;True;1;False;-1;False;False;True;1;LightMode=SceneSelectionPass;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;4;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;DepthForwardOnly;0;4;DepthForwardOnly;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;True;False;False;False;False;0;False;-1;False;False;False;False;False;False;False;True;True;0;True;-7;255;False;-1;255;True;-8;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;1;False;-1;False;False;True;1;LightMode=DepthForwardOnly;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;2;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;META;0;2;META;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;-1;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=Meta;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;5;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;Motion Vectors;0;5;Motion Vectors;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;False;False;False;False;False;False;False;False;True;True;0;True;-9;255;False;-1;255;True;-10;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;1;False;-1;False;False;True;1;LightMode=MotionVectors;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;6;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;DistortionVectors;0;6;DistortionVectors;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;True;4;1;False;-1;1;False;-1;4;1;False;-1;1;False;-1;True;1;False;-1;1;False;-1;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;False;False;False;False;False;False;False;False;True;True;0;True;-11;255;False;-1;255;True;-12;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;2;False;-1;True;3;False;-1;False;True;1;LightMode=DistortionVectors;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;0;95,-53;Float;False;True;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;13;S_Guard_Augenmusik;7f5cb9c3ea6481f469fdd856555439ef;True;Forward Unlit;0;0;Forward Unlit;9;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;True;1;0;True;-20;0;True;-21;1;0;True;-22;0;True;-23;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;False;False;False;False;False;False;False;False;True;True;0;True;-5;255;False;-1;255;True;-6;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;0;True;-24;True;0;True;-32;False;True;1;LightMode=ForwardOnly;False;0;Hidden/InternalErrorShader;0;0;Standard;29;Surface Type;0;  Rendering Pass ;0;  Rendering Pass;1;  Blending Mode;0;  Receive Fog;1;  Distortion;0;    Distortion Mode;0;    Distortion Only;1;  Depth Write;1;  Cull Mode;0;  Depth Test;4;Double-Sided;0;Alpha Clipping;0;Motion Vectors;1;  Add Precomputed Velocity;0;Shadow Matte;0;Cast Shadows;1;DOTS Instancing;0;GPU Instancing;1;Tessellation;0;  Phong;0;  Strength;0.5,False,-1;  Type;0;  Tess;16,False,-1;  Min;10,False,-1;  Max;25,False,-1;  Edge Length;16,False,-1;  Max Displacement;25,False,-1;Vertex Position,InvertActionOnDeselection;1;0;7;True;True;True;True;True;True;False;False;;False;0
-WireConnection;8;1;7;1
-WireConnection;0;0;8;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;4;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;DepthForwardOnly;0;4;DepthForwardOnly;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;True;False;False;False;False;0;False;-1;False;False;False;False;False;False;False;True;True;0;True;-7;255;False;-1;255;True;-8;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;1;False;-1;False;False;True;1;LightMode=DepthForwardOnly;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;1;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;ShadowCaster;0;1;ShadowCaster;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;True;False;False;False;False;0;False;-1;False;False;False;False;False;False;False;False;False;True;1;False;-1;False;False;True;1;LightMode=ShadowCaster;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
+WireConnection;34;0;11;0
+WireConnection;34;1;33;0
+WireConnection;35;0;30;0
+WireConnection;9;0;34;0
+WireConnection;9;1;10;0
+WireConnection;29;0;13;0
+WireConnection;29;1;35;0
+WireConnection;31;0;13;0
+WireConnection;31;1;35;0
+WireConnection;37;0;36;0
+WireConnection;26;1;29;0
+WireConnection;26;2;9;0
+WireConnection;27;1;9;0
+WireConnection;27;2;31;0
+WireConnection;32;0;26;0
+WireConnection;39;0;37;1
+WireConnection;22;0;27;0
+WireConnection;23;0;32;0
+WireConnection;23;1;22;0
+WireConnection;38;1;39;0
+WireConnection;38;6;40;3
+WireConnection;43;1;39;0
+WireConnection;43;6;44;0
+WireConnection;49;0;23;0
+WireConnection;49;1;38;0
+WireConnection;50;0;43;0
+WireConnection;46;0;50;0
+WireConnection;46;1;47;0
+WireConnection;44;0;40;3
+WireConnection;44;1;45;0
+WireConnection;51;0;42;0
+WireConnection;51;1;52;0
+WireConnection;48;0;51;0
+WireConnection;48;1;46;0
+WireConnection;0;0;48;0
+WireConnection;0;2;49;0
 ASEEND*/
-//CHKSM=9FB648B5439CEDD0178D57839357FE1A4FFB3FEC
+//CHKSM=963960E38CC51D64993D566B4EEE95AD4F08F7C6
