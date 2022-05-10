@@ -169,17 +169,17 @@ namespace TheFowler
                     }
                     else
                     {
-                        
 
-                        if (currentDialogue.dialogueText.Length <= 20)
-                        {
-                            Next();
-                        }
-                        else
-                        {
-                            Next();
-                            //Timeline.Pause();
-                        }
+                        Next();
+                        //if (currentDialogue.dialogueText.Length <= 20)
+                        //{
+                        //    Next();
+                        //}
+                        //else
+                        //{
+                            
+                        //    //Timeline.Pause();
+                        //}
 
 
                     }

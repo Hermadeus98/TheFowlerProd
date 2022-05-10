@@ -24,6 +24,8 @@ namespace TheFowler
         [SerializeField]
         public Vector2 basicPosition, breakdownPosition;
 
+        [TabGroup("References")]
+        [SerializeField] GameObject triangle;
 
         private bool isBreakdown;
 
@@ -89,5 +91,7 @@ namespace TheFowler
                 }
             }
         }
+
+        public void ShowTriangle(bool state) => triangle.SetActive(state);
     }
 }

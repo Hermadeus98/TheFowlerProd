@@ -27,18 +27,18 @@ namespace TheFowler
         private Tween touchBlink;
         public override void Show()
         {
-            base.Show();
-            RectTransform.anchoredPosition = hidePos;
+            //base.Show();
+            //RectTransform.anchoredPosition = hidePos;
 
             
 
-            if (eventSytemGO == null)
-            {
+            //if (eventSytemGO == null)
+            //{
 
-                eventSytemGO = GameObject.Find("EventSystem");
-                eventSytem = eventSytemGO.GetComponent<EventSystem>();
+            //    eventSytemGO = GameObject.Find("EventSystem");
+            //    eventSytem = eventSytemGO.GetComponent<EventSystem>();
 
-            }
+            //}
 
 
         }
@@ -51,9 +51,9 @@ namespace TheFowler
 
         public override void Hide()
         {
-            base.Hide();
+            //base.Hide();
 
-            Close();
+            //Close();
 
 
         }

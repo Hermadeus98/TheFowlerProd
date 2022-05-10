@@ -34,6 +34,9 @@ namespace TheFowler
 
             var actionPicking = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
             actionPicking.ShowDescription(true);
+
+            var skillPicking = UI.GetView<SkillPickingView>(UI.Views.SkillPicking);
+            skillPicking.ShowTriangle(true);
         }
 
         public override void Hide()
@@ -85,6 +88,9 @@ namespace TheFowler
 
                 var actionPicking = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
                 actionPicking.ShowDescription(false);
+
+                var skillPicking = UI.GetView<SkillPickingView>(UI.Views.SkillPicking);
+                skillPicking.ShowTriangle(false);
             }
 
 
@@ -163,6 +169,9 @@ namespace TheFowler
                     var actionPicking = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
                     actionPicking.ShowDescription(true);
 
+                    var skillPicking = UI.GetView<SkillPickingView>(UI.Views.SkillPicking);
+                    skillPicking.ShowTriangle(false);
+
                 }
 
             }
@@ -172,6 +181,9 @@ namespace TheFowler
                 
                 var actionPicking = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
                 actionPicking.ShowDescription(false);
+
+                var skillPicking = UI.GetView<SkillPickingView>(UI.Views.SkillPicking);
+                skillPicking.ShowTriangle(true);
                 isOpen = false;
             }
         }
