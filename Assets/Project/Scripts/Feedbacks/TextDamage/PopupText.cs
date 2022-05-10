@@ -24,8 +24,6 @@ namespace TheFowler
         public Sprite popupSprite = null;
         public SpriteRenderer extraImage;
 
-        public float minFontSize, maxFontSize;
-        
         [Button]
         public void Play(string message)
         {
@@ -46,8 +44,10 @@ namespace TheFowler
             }
 
             var _offset = new Vector3(offset.x + Random.Range(-randomOffsetX, randomOffsetX), offset.y + Random.Range(-randomOffsetY, randomOffsetY), offset.z + Random.Range(-randomOffsetZ, randomOffsetZ));
+
+            transform.DOShakePosition(duration, .5f, 5);
             
-            transform.DOMove(transform.position + _offset, duration).SetEase(Ease.OutCubic).OnComplete(delegate
+            transform.DOMove(transform.position + _offset, duration).SetEase(Ease.OutBounce).OnComplete(delegate
             {
                 if (popupSprite == null)
                 {
@@ -80,7 +80,7 @@ namespace TheFowler
             var d = .1f;
             sequence.Append(ChangeTextColor(t, new Color(t.color.r, t.color.g, t.color.b, 1f), d));
             sequence.Append(ChangeTextColor(t, new Color(t.color.r, t.color.g, t.color.b, 0f), d));
-            sequence.SetLoops(3);
+            //sequence.SetLoops(3);
             return sequence;
         }
         
@@ -93,13 +93,6 @@ namespace TheFowler
                     duration
                 )
                 .SetEase(Ease.InOutSine);
-        }
-
-        public void SetSizePercent(float percent)
-        {
-            var size = Mathf.Lerp(minFontSize, maxFontSize, percent);
-            text.characterSize = size;
-            back.characterSize = size;
         }
 
         public void Destroy()

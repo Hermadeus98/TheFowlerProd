@@ -34,6 +34,9 @@ namespace TheFowler
         [FoldoutGroup("Guard Basic Attack")]
         public float Guard_Timer_BasicAttack_ImpactDuration = 1f;
 
+        [FoldoutGroup("State Effect")] public float StateEffect_WaitTime = .25f;
+        
+        
         [FoldoutGroup("Balancing - Buff Defense")] public int
             buffDefense = 35,
             buffDefenseAOE = 20,

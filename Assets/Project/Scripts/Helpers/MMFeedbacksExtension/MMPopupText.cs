@@ -36,11 +36,6 @@ namespace TheFowler
                 instance.extraImage.sprite = extraImage;
             }
 
-            if (setSize)
-            {
-                instance.SetSizePercent(sizePercent);
-            }
-
             instance.popupSprite = this.popupSprite;
             
             instance.Color = color;

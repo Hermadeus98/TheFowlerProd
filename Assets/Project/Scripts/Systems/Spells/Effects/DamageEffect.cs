@@ -12,8 +12,6 @@ namespace TheFowler
         public override void PreviewEffect(BattleActor emitter)
         {
             base.PreviewEffect(emitter);
-            
-            
         }
 
         public override IEnumerator OnBeginCast(BattleActor emitter, BattleActor[] receivers)

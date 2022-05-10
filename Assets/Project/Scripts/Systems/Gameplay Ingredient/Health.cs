@@ -57,7 +57,7 @@ namespace TheFowler
         }
 
         [Button]
-        public void TakeDamage(float damage, DamageCalculator.ResistanceFaiblesseResult result = DamageCalculator.ResistanceFaiblesseResult.NEUTRE)
+        public void TakeDamage(float damage, DamageCalculator.ResistanceFaiblesseResult result = DamageCalculator.ResistanceFaiblesseResult.NEUTRE, bool leaveOneHP = false)
         {
             if(damage == 0 ||currentHealth <= 0)
                 return;
@@ -66,7 +66,11 @@ namespace TheFowler
             if (currentHealth <= 0)
             {
                 currentHealth = 0;
-                Death();
+
+                if (leaveOneHP)
+                    currentHealth = 1;
+                else
+                    Death();
             }
             else
             {

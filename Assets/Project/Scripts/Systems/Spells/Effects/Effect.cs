@@ -30,6 +30,7 @@ namespace TheFowler
         [ReadOnly] public Spell ReferedSpell;
 
         public bool rage = false;
+        public bool berserk = false;
 
         public virtual void PreviewEffect(BattleActor emitter)
         {
@@ -72,7 +73,7 @@ namespace TheFowler
             
             if (TargetType == TargetTypeEnum.SELF)
             {
-                dmg = ApplyDamage(damage, emitter, emitter);
+                dmg = ApplyDamage(damage, emitter, emitter, berserk);
             }
             else
             {
@@ -86,7 +87,7 @@ namespace TheFowler
             return dmg;
         }
 
-        private float ApplyDamage(float damage, BattleActor emitter, BattleActor receiver)
+        private float ApplyDamage(float damage, BattleActor emitter, BattleActor receiver, bool leaveOneHP = false)
         {
             var _damage = DamageCalculator.CalculateDamage(damage, emitter, receiver, ReferedSpell.SpellType, out var resistanceFaiblesseResult);
 
@@ -105,7 +106,8 @@ namespace TheFowler
                 
             receiver.Health.TakeDamage(
                 _damage,
-                resistanceFaiblesseResult
+                resistanceFaiblesseResult,
+                leaveOneHP
             );
 
             return _damage;
