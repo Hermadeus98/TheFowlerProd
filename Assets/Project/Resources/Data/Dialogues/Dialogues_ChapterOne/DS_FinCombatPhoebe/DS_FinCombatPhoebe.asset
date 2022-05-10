@@ -17,18 +17,18 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 4cd644f5a26606c49af16c04b24cbbb0
-  position: {x: -227, y: 73}
+  position: {x: -383, y: 72}
   children:
-  - {fileID: -923025069718162834}
+  - {fileID: 5888729934874972892}
   dialogue:
     ActorEnum: 0
     dialogueText: "She\u2019s pissing me off! Giving away her strength to a despot
-      like that! Why can\u2019t she just open her eyes and realize what\u2019s happening?!?"
+      like that! "
     cameraPath:
-      genericKey: 1
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam1
       batchName: 
-    displayDuration: 10
+    displayDuration: 7
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -55,17 +55,15 @@ MonoBehaviour:
   guid: 921789d5b2764654d917a7c4f2432ed0
   position: {x: -93, y: 73}
   children:
-  - {fileID: 1381106977690102191}
+  - {fileID: 6121197983877953579}
   dialogue:
     ActorEnum: 1
-    dialogueText: "Slow down there tiger! Look, I understand your frustration, but
-      you\u2019ve gotta understand someone like her won\u2019t just change her allegiance
-      just like that!"
+    dialogueText: Slow down there tiger!
     cameraPath:
-      genericKey: 1
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam3
       batchName: 
-    displayDuration: 10
+    displayDuration: 2
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -92,6 +90,9 @@ MonoBehaviour:
   - {fileID: -1841118499402636189}
   - {fileID: 1381106977690102191}
   - {fileID: -923025069718162834}
+  - {fileID: 5888729934874972892}
+  - {fileID: 8738671564997693004}
+  - {fileID: 6121197983877953579}
   dialogueType: 0
 --- !u!114 &1381106977690102191
 MonoBehaviour:
@@ -110,7 +111,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 0f004ab269b701347bfe4e4e43c7258c
-  position: {x: 94, y: 73}
+  position: {x: 407, y: 68}
   children: []
   dialogue:
     ActorEnum: 0
@@ -118,7 +119,7 @@ MonoBehaviour:
       huh?"
     cameraPath:
       genericKey: 1
-      cameraName: Middle
+      cameraName: Cam2
       batchName: 
     displayDuration: 4
     choiceText: 
@@ -127,4 +128,111 @@ MonoBehaviour:
       idInternal: 0
       valueGuidInternal: 
       WwiseObjectReference: {fileID: 11400000, guid: 9b14cbd3f2e0da0459592e74cf956e21, type: 2}
+    animationTrigger: 0
+--- !u!114 &5888729934874972892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 270356e6a63609f44ba716463c29b7dd
+  position: {x: -267, y: 76}
+  children:
+  - {fileID: -923025069718162834}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: "Why can\u2019t she just open her eyes and realize what\u2019s
+      happening?!?"
+    cameraPath:
+      genericKey: 4
+      cameraName: Cam2
+      batchName: 
+    displayDuration: 5
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &6121197983877953579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: e01b515873803f647849b7cf6f6127d4
+  position: {x: 51, y: 64}
+  children:
+  - {fileID: 8738671564997693004}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: 'Look, I understand your frustration... '
+    cameraPath:
+      genericKey: 4
+      cameraName: Cam3
+      batchName: 
+    displayDuration: 3
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &8738671564997693004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 9b4629ffa779170439dd2076d3b5e5d7
+  position: {x: 215, y: 67}
+  children:
+  - {fileID: 1381106977690102191}
+  dialogue:
+    ActorEnum: 1
+    dialogueText: "But you\u2019ve gotta understand someone like her won\u2019t just
+      change her allegiance just like that!"
+    cameraPath:
+      genericKey: 4
+      cameraName: Cam3
+      batchName: 
+    displayDuration: 5
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
     animationTrigger: 0
