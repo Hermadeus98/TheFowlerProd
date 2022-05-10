@@ -170,7 +170,7 @@ namespace TheFowler
                     actionPicking.ShowDescription(true);
 
                     var skillPicking = UI.GetView<SkillPickingView>(UI.Views.SkillPicking);
-                    skillPicking.ShowTriangle(false);
+                    skillPicking.ShowTriangle(true);
 
                 }
 
@@ -183,7 +183,7 @@ namespace TheFowler
                 actionPicking.ShowDescription(false);
 
                 var skillPicking = UI.GetView<SkillPickingView>(UI.Views.SkillPicking);
-                skillPicking.ShowTriangle(true);
+                skillPicking.ShowTriangle(false);
                 isOpen = false;
             }
         }

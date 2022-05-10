@@ -57,6 +57,7 @@ namespace TheFowler
 
         public Animator currentAnim;
         private AK.Wwise.Event currentSound;
+        private GameObject currentSoundEmitter;
 
         private UIView currentView;
 
@@ -504,7 +505,7 @@ namespace TheFowler
             {
                 
                 ReplaceActor(replacementActors.timeOfReplacement);
-                SoundManager.StopSound(currentSound, gameObject);
+                SoundManager.StopSound(currentSound, currentSoundEmitter);
             }
             
             if(Timeline != null)
@@ -585,10 +586,12 @@ namespace TheFowler
                             if(robynAnim != null)
                             {
                                 SoundManager.PlaySound(dialogue.voice, robynAnim.GetComponent<AnimTriggerBase>().Sockets.body_Middle.gameObject);
+                                currentSoundEmitter = robynAnim.GetComponent<AnimTriggerBase>().Sockets.body_Middle.gameObject;
                             }
                             else
                             {
                                 SoundManager.PlaySound(dialogue.voice, Player.Robyn.pawnTransform.gameObject);
+                                currentSoundEmitter = Player.Robyn.pawnTransform.gameObject;
                             }
 
                             currentAnim = robynAnim;
@@ -597,10 +600,12 @@ namespace TheFowler
                             if (phoebeAnim != null)
                             {
                                 SoundManager.PlaySound(dialogue.voice, phoebeAnim.GetComponent<AnimTriggerBase>().Sockets.body_Middle.gameObject);
+                                currentSoundEmitter = phoebeAnim.GetComponent<AnimTriggerBase>().Sockets.body_Middle.gameObject;
                             }
                             else
                             {
                                 SoundManager.PlaySound(dialogue.voice, Player.Pheobe.pawnTransform.gameObject);
+                                currentSoundEmitter = Player.Pheobe.pawnTransform.gameObject;
 
                             }
                             
@@ -610,10 +615,12 @@ namespace TheFowler
                             if (abiAnim != null)
                             {
                                 SoundManager.PlaySound(dialogue.voice, abiAnim.GetComponent<AnimTriggerBase>().Sockets.body_Middle.gameObject);
+                                currentSoundEmitter = abiAnim.GetComponent<AnimTriggerBase>().Sockets.body_Middle.gameObject;
                             }
                             else
                             {
                                 SoundManager.PlaySound(dialogue.voice, Player.Abigael.pawnTransform.gameObject);
+                                currentSoundEmitter = Player.Abigael.pawnTransform.gameObject;
 
                             }
 
@@ -624,15 +631,18 @@ namespace TheFowler
                             if(guardsSockets.Length> 0 && guardsSockets[idGuards] != null)
                             {
                                 SoundManager.PlaySound(dialogue.voice, guardsSockets[idGuards].body_Middle.gameObject);
+                                currentSoundEmitter = guardsSockets[idGuards].body_Middle.gameObject;
                                 idGuards++;
                             }
 
                             break;
                         case ActorEnum.LIEUTENANT:
                             SoundManager.PlaySound(dialogue.voice, gameObject);
+                            currentSoundEmitter = gameObject;
                             break;
                         default:
                             SoundManager.PlaySound(dialogue.voice, gameObject);
+                            currentSoundEmitter = gameObject;
                             break;
                     }
 
