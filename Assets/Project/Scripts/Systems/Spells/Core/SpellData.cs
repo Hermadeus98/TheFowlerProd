@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using QRCode;
 using Sirenix.OdinInspector;
 using UnityEditor;
@@ -28,13 +29,8 @@ namespace TheFowler
         public ParticleSystem Abi_PS_BasicAttack_Impact;
         [FoldoutGroup("Abi Basic Attack")]
         public GameObject Abi_Flash_BasicAttack_Shock;
-        
-        [FoldoutGroup("Guard Basic Attack")]
-        public ParticleSystem Guard_PS_BasicAttack_Projectile;
-        [FoldoutGroup("Guard Basic Attack")]
-        public float Guard_Timer_BasicAttack_ProjectileDuration = 2f;
-        [FoldoutGroup("Guard Basic Attack")]
-        public ParticleSystem Guard_PS_BasicAttack_Impact;
+
+        [FoldoutGroup("Guard Basic Attack")] public GuardBasicAttackBinding Guard_BasicAttackBinding;
         [FoldoutGroup("Guard Basic Attack")]
         public float Guard_Timer_BasicAttack_ImpactDuration = 1f;
 

@@ -16,7 +16,27 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-            receivers.ForEach(w => w.Health.Heal(healValue));
+            //Anim
+            yield return new WaitForSeconds(.2f);
+            
+            foreach (var receiver in receivers)
+            {
+                if (receiver is AllyActor)
+                {
+                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies");
+                }
+                else if(receiver is EnemyActor)
+                {
+                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Enemies");
+                }
+                
+                yield return new WaitForSeconds(.25f);
+                
+                receiver.Health.Heal(healValue);
+                
+                yield return new WaitForSeconds(1f);
+            }
+            
             yield break;
         }
 
