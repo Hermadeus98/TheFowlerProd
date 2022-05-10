@@ -61,6 +61,7 @@ namespace TheFowler
             sound.Stop(handler);
         }
 
+
         public static void PlaySoundDamageTaken(BattleActor target, DamageCalculator.ResistanceFaiblesseResult result)
         {
             if (target is AllyActor)
