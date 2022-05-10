@@ -1,5 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using MoreMountains.Feedbacks;
+using Sirenix.Utilities;
 using UnityEngine;
 
 namespace TheFowler
@@ -10,16 +13,28 @@ namespace TheFowler
         {
             foreach (var r in receivers)
             {
-                var attack = GameObject.Instantiate(SpellData.Instance.Guard_PS_BasicAttack_Projectile);
+                CameraManager.Instance.SetCamera(r.CameraBatchBattle, "OnBasicAttack");
 
-                yield return new WaitForSeconds(SpellData.Instance.Guard_Timer_BasicAttack_ProjectileDuration);
+                var guardBasicAttack = GameObject.Instantiate(SpellData.Instance.Guard_BasicAttackBinding,
+                    emitter.transform);
+                guardBasicAttack.emitter = emitter;
+                guardBasicAttack.receiver = r;
+                guardBasicAttack.BindData(delegate
+                {
+                    Damage(damage, emitter, new []{r});
+                });
 
-                var impact = GameObject.Instantiate(SpellData.Instance.Guard_PS_BasicAttack_Impact, r.transform);
+                yield return new WaitForSeconds(.1f);
                 
-                Damage(damage, emitter, new []{r});
+                guardBasicAttack.Play();
             }
 
             yield return new WaitForSeconds(SpellData.Instance.Guard_Timer_BasicAttack_ImpactDuration);
+        }
+
+        private void InstantiateProjectile(BattleActor emitter, BattleActor receiver)
+        {
+            //var projectile = GameObject.Instantiate(SpellData.Instance.Guard_PS_BasicAttack_Projectile, )
         }
     }
 }

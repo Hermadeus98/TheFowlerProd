@@ -28,6 +28,8 @@ namespace TheFowler
         private Dictionary<BattleActorData.Archetype, GameObject[]> helmet =
             new Dictionary<BattleActorData.Archetype, GameObject[]>();
 
+        public Transform spawnBasicAttack;
+
         protected override void OnAwake()
         {
             base.OnAwake();

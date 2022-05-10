@@ -35,7 +35,7 @@ namespace TheFowler
         [Button]
         public void Show(CinemachineVirtualCameraBase splitCam, CinemachineVirtualCameraBase bigCam)
         {
-            splitCam.gameObject.SetActive(true);
+            CameraManager.Instance.splitCam.gameObject.SetActive(true);
             
             SetLittleCamera(splitCam);
             SetBigCamera(bigCam);

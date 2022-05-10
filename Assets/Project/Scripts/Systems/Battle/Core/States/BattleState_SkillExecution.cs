@@ -83,7 +83,7 @@ namespace TheFowler
                     else
                     {
                         CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "EnemiesSpellStart");
-                        yield return new WaitForSeconds(2f);
+                        yield return new WaitForSeconds(.2f);
                         CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "EnemiesSpell");
                     }
                     
