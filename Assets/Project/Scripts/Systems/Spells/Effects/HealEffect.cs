@@ -17,7 +17,7 @@ namespace TheFowler
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
             //Anim
-            yield return new WaitForSeconds(.2f);
+            yield return new WaitForSeconds(SpellData.Instance.StateEffect_WaitTime);
             
             foreach (var receiver in receivers)
             {
@@ -30,7 +30,7 @@ namespace TheFowler
                     CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Enemies");
                 }
                 
-                yield return new WaitForSeconds(.25f);
+                yield return new WaitForSeconds(SpellData.Instance.StateEffect_WaitTime);
                 
                 receiver.Health.Heal(healValue);
                 

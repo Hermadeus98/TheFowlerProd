@@ -36,7 +36,7 @@ namespace TheFowler
         }
 
         [Button]
-        public void ResetDefense()
+        public void ResetAttack()
         {
             ReferedActor.BattleActorInfo.attackBonus = 0;
             
