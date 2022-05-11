@@ -37,8 +37,6 @@ namespace TheFowler
             {
                 //SetCamera(CameraKeys.BattleKeys.TargetPickingGuard);
             }
-            
-            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.SKILLPICKING);
         }
 
         private IEnumerator OpenView()
@@ -61,6 +59,8 @@ namespace TheFowler
                         SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SkillSelection, gameObject);
                         Player.SelectedSpell = skillSelectorElement.referedSpell;
                         BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.TARGET_PICKING);
+                        
+                        BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.SKILL_PICKING);
                     }
 
                     if (!Tutoriel.LockSkill)

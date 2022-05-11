@@ -39,11 +39,11 @@ namespace TheFowler
 
             if (Fury.IsInFury)
             {
-                BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.FURY);
+                BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.RECEIVING_BREAKDOWN);
             }
             else
             {
-                BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.ACTIONPICKING);
+                BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.START_TURN);
             }
             
 
