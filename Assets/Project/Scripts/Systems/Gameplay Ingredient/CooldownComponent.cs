@@ -90,7 +90,6 @@ namespace TheFowler
 
             for (int i = 0; i < ReferedActor.BattleActorData.Spells.Length; i++)
             {
-                
                 ReferedActor.BattleActorData.Spells[i].Cooldown -= value;
 
                 if (ReferedActor.BattleActorData.Spells[i].Cooldown < 0)

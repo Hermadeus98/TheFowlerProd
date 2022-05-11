@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using Sirenix.Utilities;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TheFowler
 {
@@ -15,6 +17,8 @@ namespace TheFowler
         public AllyData[] datas;
 
         private float y;
+
+        public HorizontalLayoutGroup HorizontalLayoutGroup;
 
         protected override void OnStart()
         {
@@ -98,6 +102,16 @@ namespace TheFowler
         public void StopFury()
         {
             datas.ForEach(w => w.Fury(false));
+        }
+
+        public void Sort(IEnumerable<BattleActor> orderedEnumerable)
+        {
+            HorizontalLayoutGroup.enabled = true;
+            for (int i = 0; i < orderedEnumerable.Count(); i++)
+            {
+                orderedEnumerable.ElementAt(i).transform.SetSiblingIndex(i);
+            }
+            HorizontalLayoutGroup.enabled = false;
         }
     }
 }

@@ -66,10 +66,11 @@ namespace TheFowler
             bigSplitCam.m_Priority = 400;
         }
 
-        public void SetPunchLine(string punchline)
+        public void SetPunchLine((AK.Wwise.Event, string) data)
         {
+            if(data.Item1 != null) SoundManager.PlaySound(data.Item1, null);
             textBox.DOFade(1f, .2f);
-            text.SetText(punchline);
+            text.SetText(data.Item2);
         }
 
         [Button]

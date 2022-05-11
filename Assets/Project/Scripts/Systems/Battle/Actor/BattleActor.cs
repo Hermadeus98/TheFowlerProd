@@ -3,6 +3,7 @@ using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using Unity.RemoteConfig;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Timeline;
 
 namespace TheFowler
@@ -390,6 +391,17 @@ namespace TheFowler
             for (int i = 0; i < BattleActorData.Spells.Length; i++)
             {
                 BattleActorData.Spells[i].Reset();
+            }
+        }
+
+        private void Update()
+        {
+            if(this is EnemyActor)
+                return;
+            
+            if (Keyboard.current.cKey.wasPressedThisFrame)
+            {
+                GetBattleComponent<CooldownComponent>().ResetCD();
             }
         }
     }
