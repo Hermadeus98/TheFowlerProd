@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using QRCode;
 using QRCode.Extensions;
@@ -49,11 +50,14 @@ namespace TheFowler
             if(!handler.gameObject.activeInHierarchy)
                 return null;
             
+            
             sound.Stop(handler);
             sound.Post(handler);
 
             return sound;
         }
+
+
 
         public static void StopSound(AK.Wwise.Event sound, GameObject handler)
         {

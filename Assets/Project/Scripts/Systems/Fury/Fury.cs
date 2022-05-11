@@ -67,7 +67,7 @@ namespace TheFowler
                 Coroutiner.Instance.StopCoroutine(batonPass);
             Coroutiner.Instance.StartCoroutine(LaunchBatonPass());
 
-            //UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Show(true);
+            UI.GetView<SkillPickingView>(UI.Views.SkillPicking).isBreakdown = true;
         }
 
         /// <summary>
