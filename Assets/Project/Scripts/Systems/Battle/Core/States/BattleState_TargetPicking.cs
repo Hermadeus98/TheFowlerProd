@@ -58,9 +58,9 @@ namespace TheFowler
             
             PlaySpellPreview();
 
-            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.TARGETPICKING);
-
+            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.TARGETPICKING);
         }
+        
         private IEnumerator WaitSkillShow()
         {
             SkillPickingView skillView = UI.GetView<SkillPickingView>(UI.Views.SkillPicking);

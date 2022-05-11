@@ -1,51 +1,58 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using AK.Wwise;
+using Sirenix.Utilities;
+using Random = UnityEngine.Random;
 
 namespace TheFowler
 {
     [CreateAssetMenu(menuName = "TheFowler/Datas/Punchlines Data")]
-    public class PunchlinesData : ScriptableObject
+    public class PunchlinesData : SerializedScriptableObject
     {
-        [Title("Action Picking")]
-        public PunchlineStruct ActionPickingPunchlines;
+        public Dictionary<PunchlineCallback, PunchlineData[]> database =
+            new Dictionary<PunchlineCallback, PunchlineData[]>();
 
-        [Title("Fury")]
-        public PunchlineStruct FuryPunchlines;
+        public PunchlineData[] Get(PunchlineCallback callback) => database[callback];
 
-        [Title("SkillExecution")]
-        public PunchlineStruct SkillExecutionPunchlines;
+        public PunchlineData GetRandom(PunchlineCallback callback)
+        {
+            if (!database.ContainsKey(callback))
+            {
+                Debug.LogError($"Key {callback} is missing in the database", this);
+                return null;
+            }
+            
+            var pool = Get(callback);
 
-        [Title("StartBattle")]
-        public PunchlineStruct StartBattlePunchlines;
+            if (pool.IsNullOrEmpty())
+            {
+                Debug.LogError($"Key {callback} don't have punchline register", this);
+                return null;
+            }
+            
+            if (pool.All(w => w.isPlayed))
+            {
+                pool.ForEach(w => w.isPlayed = false);
+            }
 
-        [Title("TargetPicking")]
-        public PunchlineStruct TargetPickingPunchlines;
-
-        [Title("SkillPicking")]
-        public PunchlineStruct SkillPickingPunchlines;
-
-        [Title("Death")]
-        public PunchlineStruct DeathPunchlines;
-
-        [Title("Ally Death")]
-        public PunchlineStruct AllyDeathPunchlines;
-
-        [Title("Kill")]
-        public PunchlineStruct KillPunchlines;
-
-        [Title("Damage Taken")]
-        public PunchlineStruct DamageTakenPunchline;
-
+            var selected = pool.Where(w => !w.isPlayed).ToArray();
+            
+            return selected[Random.Range(0, pool.Length - 1)];
+        }
     }
+    
     [System.Serializable]
-    public struct PunchlineStruct
+    public class PunchlineData
     {
-        public List<AK.Wwise.Event> Events;
-        [Range(0,100)]
-        public int porcentage;
+        public AK.Wwise.Event audio;
+        [TextArea(3, 5)] public string text;
+
+        public float soundDuration = 2f;
+        [ReadOnly] public bool isPlayed = false;
     }
 }
 

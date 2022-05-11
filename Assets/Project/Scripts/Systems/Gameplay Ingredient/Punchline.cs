@@ -1,115 +1,64 @@
 using System.Collections;
 using System.Collections.Generic;
-using AK.Wwise;
-using UnityEngine;
-using Sirenix.OdinInspector;
 using Sirenix.Utilities;
+using UnityEngine;
 
 namespace TheFowler
 {
     public class Punchline : MonoBehaviour
     {
-        private bool canPlay = true;
-        
-        [SerializeField] private PunchlinesData punchlinesData;
+        [SerializeField] private PunchlinesData referedPunchlinesData;
+        public PunchlinesData ReferedPunchlinesData => referedPunchlinesData;
 
-        public void PlayPunchline(PunchlineEnum punchlineEnum)
+        public static bool punchlineIsPlaying;
+
+        private static List<IEnumerator> registerPunchlines = new List<IEnumerator>();
+        
+        public void PlayPunchline(PunchlineCallback callback)
         {
-            switch (punchlineEnum)
-            {
-                case PunchlineEnum.ACTIONPICKING:
-                    CallPunchlineData(punchlinesData.ActionPickingPunchlines);
-                    break;
-                case PunchlineEnum.FURY:
-                    CallPunchlineData(punchlinesData.FuryPunchlines);
-                    break;
-                case PunchlineEnum.SKILLEXECUTION:
-                    CallPunchlineData(punchlinesData.SkillExecutionPunchlines);
-                    break;
-                case PunchlineEnum.STARTBATTLE:
-                    CallPunchlineData(punchlinesData.StartBattlePunchlines);
-                    break;
-                case PunchlineEnum.TARGETPICKING:
-                    CallPunchlineData(punchlinesData.TargetPickingPunchlines);
-                    break;
-                case PunchlineEnum.SKILLPICKING:
-                    CallPunchlineData(punchlinesData.SkillPickingPunchlines);
-                    break;
-                case PunchlineEnum.DEATH:
-                    CallPunchlineData(punchlinesData.DeathPunchlines);
-                    break;
-                case PunchlineEnum.ALLYDEATH:
-                    CallPunchlineData(punchlinesData.AllyDeathPunchlines);
-                    break;
-                case PunchlineEnum.KILL:
-                    CallPunchlineData(punchlinesData.KillPunchlines);
-                    break;
-                case PunchlineEnum.DAMAGETAKEN:
-                    CallPunchlineData(punchlinesData.DamageTakenPunchline);
-                    break;
-            }
-        }
-        public void CallPunchlineData(PunchlineStruct punchlineStruct)
-        {
-            if (punchlineStruct.Events.IsNullOrEmpty())
+            if(punchlineIsPlaying)
                 return;
-            
-            int rand = Random.Range(0, 100);
 
-            if (rand > punchlineStruct.porcentage) return;
-
-            if (punchlineStruct.Events.Count == 0) return;
-
-            int rand2 = Random.Range(0, punchlineStruct.Events.Count);
-
-            if (canPlay)
-            {
-                StartCoroutine(Mute(punchlineStruct.Events[rand2]));
-            }
+            StartCoroutine(PlayPunchlineIE(referedPunchlinesData.GetRandom(callback)));
         }
 
-        public (AK.Wwise.Event, string) GetPunchlineData()
+        public void RegisterPunchline(PunchlineCallback callback)
         {
-            return (null, "BOUHHH tu es mort !");
+            registerPunchlines.Add(PlayPunchlineIE(referedPunchlinesData.GetRandom(callback)));
         }
 
-        IEnumerator Mute(AK.Wwise.Event evnt)
+        IEnumerator PlayPunchlineIE(PunchlineData data)
         {
-            //evnt.Post(gameObject, new CallbackFlags(){value = 0}, CallBackFunction);       
-            
-            SoundManager.PlaySound(evnt, gameObject);
-            
-            canPlay = false;
-            while (evnt.ObjectReference.IsComplete())
-            {
-                yield return null;
-            }
+            punchlineIsPlaying = true;
 
-            yield return new WaitForSeconds(.5f);
+            SoundManager.PlaySound(data.audio, gameObject);
+            // Ajouter le txt
+            
+            yield return new WaitForSeconds(data.soundDuration);
+            punchlineIsPlaying = false;
 
-            canPlay = true;
-        }
-        
-        void CallBackFunction(object in_cookie, AkCallbackType callType, object in_info)
-        {
-            if (callType == AkCallbackType.AK_EndOfEvent)
+            if (!registerPunchlines.IsNullOrEmpty())
             {
-                canPlay = true;
+                for (int i = 0; i < registerPunchlines.Count; i++)
+                {
+                    yield return new WaitForSeconds(.5f);
+                    yield return registerPunchlines[i];
+                }
+                
+                registerPunchlines.Clear();
             }
         }
     }
 
 
-    public enum PunchlineEnum
+    public enum PunchlineCallback
     {
         ACTIONPICKING,
         FURY,
         SKILLEXECUTION,
-        STARTBATTLE,
         TARGETPICKING,
         SKILLPICKING,
         DEATH,
-        ALLYDEATH,
         KILL,
         DAMAGETAKEN
     }

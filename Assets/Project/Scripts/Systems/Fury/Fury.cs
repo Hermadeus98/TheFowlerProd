@@ -92,6 +92,7 @@ namespace TheFowler
                 yield return BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnDeathCount()
                     .NarrativeEvent();
             }
+            
 
             BatonPass();
             

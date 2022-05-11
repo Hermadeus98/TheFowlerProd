@@ -18,7 +18,7 @@ namespace TheFowler
             
             StartCoroutine(Cast());
 
-            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.SKILLEXECUTION);
+            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.SKILLEXECUTION);
 
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).Hide();
         }

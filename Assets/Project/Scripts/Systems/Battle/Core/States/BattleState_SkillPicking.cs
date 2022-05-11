@@ -37,6 +37,8 @@ namespace TheFowler
             {
                 //SetCamera(CameraKeys.BattleKeys.TargetPickingGuard);
             }
+            
+            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.SKILLPICKING);
         }
 
         private IEnumerator OpenView()
@@ -77,8 +79,6 @@ namespace TheFowler
             {
                 BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.TARGET_PICKING);
             }
-
-            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.SKILLPICKING);
         }
 
         public override void OnStateExit(EventArgs arg)

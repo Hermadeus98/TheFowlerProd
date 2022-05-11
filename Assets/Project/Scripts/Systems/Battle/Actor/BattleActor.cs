@@ -379,6 +379,8 @@ namespace TheFowler
         public virtual void OnDeath()
         {
             BattleManager.CurrentBattle.lastDeath = this;
+            Debug.Log("ON DEEAATH");
+            punchline.PlayPunchline(PunchlineCallback.DEATH);
         }
 
         public virtual void Resurect(float healthPercent = 100f)
