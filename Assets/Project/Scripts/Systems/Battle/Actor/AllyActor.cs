@@ -17,6 +17,10 @@ namespace TheFowler
             base.OnTurnStart();
             actorTurn = new PlayerTurn();
             actorTurn.OnTurnStart();
+
+            UI.GetView<ActionPickingView>(UI.Views.ActionPicking).actions[1].inputName.text = battleActorData.nameSpecialSpell;
+            UI.GetView<ActionPickingView>(UI.Views.ActionPicking).actions[1].description.text = battleActorData.descriptionSpecialSpell;
+
         }
 
         public override void OnDeath()

@@ -72,7 +72,10 @@ namespace TheFowler
                         SelectAll(SelectedTargets);
                         break;
                     case TargetTypeEnum.SOLO_ALLY:
-                        AvailableTargets.AddRange(GetAllAlliesOf(BattleManager.CurrentBattleActor));
+                        if (Player.SelectedSpell.Effects[0] is BatonPassEffect)
+                            AvailableTargets.AddRange(GetAllAlliesAndDeadAllies());
+                        else
+                            AvailableTargets.AddRange(GetAllAlliesOf(BattleManager.CurrentBattleActor));
                         Select(AvailableTargets[0]);
                         break;
                     case TargetTypeEnum.ALL_ALLIES:
@@ -281,6 +284,18 @@ namespace TheFowler
             }
 
             return null;
+        }
+
+        public static BattleActor[] GetAllAlliesAndDeadAllies()
+        {
+            var list = new List<BattleActor>();
+            if (BattleManager.CurrentBattle.abi != null)
+                list.Add(BattleManager.CurrentBattle.abi);
+            if (BattleManager.CurrentBattle.phoebe != null)
+                list.Add(BattleManager.CurrentBattle.phoebe);
+            if (BattleManager.CurrentBattle.robyn != null)
+                list.Add(BattleManager.CurrentBattle.robyn);
+            return list.ToArray();
         }
         
         public static BattleActor[] GetAllEnemies()

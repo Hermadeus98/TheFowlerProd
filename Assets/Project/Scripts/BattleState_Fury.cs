@@ -20,6 +20,11 @@ namespace TheFowler
                 actor.AllyData?.Fury(true);   
             }
             
+            if(selectedActorForFury is AllyActor ally)
+            {
+                ally.Resurect(25);
+            }
+
             BattleManager.CurrentRound.OverrideTurn(selectedActorForFury);
 
             //BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.FURY);

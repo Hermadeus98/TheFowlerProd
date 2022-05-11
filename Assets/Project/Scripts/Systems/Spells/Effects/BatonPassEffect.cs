@@ -15,7 +15,7 @@ namespace TheFowler
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
 
-
+            
             yield break;
         }
 
@@ -23,5 +23,6 @@ namespace TheFowler
         {
             yield break;
         }
+
     }
 }

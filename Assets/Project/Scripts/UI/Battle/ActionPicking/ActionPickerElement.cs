@@ -17,6 +17,9 @@ namespace TheFowler
         [SerializeField] private CanvasGroup CanvasGroup;
 
         [SerializeField] private PlayerActionType playerActionType;
+
+        public TMPro.TextMeshProUGUI description;
+        public TMPro.TextMeshProUGUI inputName;
         public enum PlayerActionType
         {
             NONE,

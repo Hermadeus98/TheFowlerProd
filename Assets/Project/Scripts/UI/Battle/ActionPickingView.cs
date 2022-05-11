@@ -17,7 +17,7 @@ namespace TheFowler
         public ActionPicker ActionPicker;
 
         [SerializeField] private PlayerInput Inputs;
-        [SerializeField] private ActionPickerElement[] actions;
+        [SerializeField] public ActionPickerElement[] actions;
 
         public ActionPickerElement furyButton, basicAttack, parry, skill;
         
