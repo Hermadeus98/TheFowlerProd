@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: 3_Encouraging Roll
+  m_Name: 2_Tonic Percussion
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 11400000}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -27,13 +26,13 @@ MonoBehaviour:
       Data: 0|TheFowler.Effect[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.HealEffect, Assembly-CSharp
+      Data: 1|TheFowler.DamageEffectAbi, Assembly-CSharp
     - Name: TargetType
       Entry: 3
-      Data: 4
+      Data: 2
     - Name: Emitter
       Entry: 6
       Data: 
@@ -50,14 +49,56 @@ MonoBehaviour:
       Entry: 6
       Data: 
     - Name: ReferedSpell
-      Entry: 10
-      Data: 0
+      Entry: 6
+      Data: 
     - Name: rage
       Entry: 5
       Data: false
-    - Name: healValue
+    - Name: berserk
+      Entry: 5
+      Data: false
+    - Name: damage
       Entry: 4
-      Data: 250
+      Data: 50
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|TheFowler.DefendEffect, Assembly-CSharp
+    - Name: TargetType
+      Entry: 3
+      Data: 0
+    - Name: Emitter
+      Entry: 6
+      Data: 
+    - Name: Receivers
+      Entry: 6
+      Data: 
+    - Name: _damage
+      Entry: 4
+      Data: 0
+    - Name: _heal
+      Entry: 4
+      Data: 0
+    - Name: sprite
+      Entry: 6
+      Data: 
+    - Name: ReferedSpell
+      Entry: 6
+      Data: 
+    - Name: rage
+      Entry: 5
+      Data: false
+    - Name: berserk
+      Entry: 5
+      Data: false
+    - Name: bonusType
+      Entry: 3
+      Data: 0
+    - Name: isAOE
+      Entry: 5
+      Data: false
     - Name: 
       Entry: 8
       Data: 
@@ -67,17 +108,17 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Encouraging Roll
-  Cooldown: 5
+  SpellName: Tonic Percussion
+  Cooldown: 3
   InitialCooldown: 5
   CurrentCooldown: 0
-  logoBuff: {fileID: 0}
-  TargetType: 4
-  SpellPower: 2
-  SpellDescription: Medium Heal to all allies
+  logoBuff: {fileID: 21300000, guid: 18ed78826b6412648a570760367df479, type: 3}
+  TargetType: 2
+  SpellPower: 1
+  SpellDescription: Light damages to all enemies and encrese Abigail's defensive
   SpellType: 0
   sequenceBinding: 2
   sprite: {fileID: 21300000, guid: f5cb5b9ebeff8634fb6ef8f940012401, type: 3}
   spellState: 2
-  unlockOrder: 3
+  unlockOrder: 2
   isRechargingCooldown: 0
