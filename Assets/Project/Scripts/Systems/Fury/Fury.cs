@@ -86,19 +86,11 @@ namespace TheFowler
                 yield return BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnDeathOf()
                     .NarrativeEvent();
             }
-            else
-            {
-                BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.KILL);
-            }
             
             if (BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnDeathCount() != null)
             {
                 yield return BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnDeathCount()
                     .NarrativeEvent();
-            }
-            else
-            {
-                BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.KILL);
             }
             
 

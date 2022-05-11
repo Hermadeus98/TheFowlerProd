@@ -379,6 +379,7 @@ namespace TheFowler
         public virtual void OnDeath()
         {
             BattleManager.CurrentBattle.lastDeath = this;
+            Debug.Log("ON DEEAATH");
             punchline.PlayPunchline(PunchlineCallback.DEATH);
         }
 
