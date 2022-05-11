@@ -21,6 +21,12 @@ namespace TheFowler
         public bool textIsComplete => animatedText.isComplete;
         public AnimatedText AnimatedText => animatedText;
         public DialogueChoiceSelector ChoiceSelector => choiceSelector;
+
+        public void Refresh(string text, string speaker)
+        {
+            animatedText.SetText(text);
+            speakerName.text = speaker;
+        }
         
         public override void Refresh(EventArgs args)
         {

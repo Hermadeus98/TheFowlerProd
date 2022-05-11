@@ -32,8 +32,6 @@ namespace TheFowler
         [Button]
         public void DebuffDefense(int value)
         {
-            
-            
             ReferedActor.BattleActorInfo.defenseBonus -= value;
             
             if (ReferedActor.BattleActorInfo.defenseBonus < SpellData.Instance.minBuffDefense)

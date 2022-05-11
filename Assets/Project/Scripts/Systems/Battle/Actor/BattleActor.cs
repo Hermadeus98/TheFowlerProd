@@ -380,7 +380,6 @@ namespace TheFowler
         {
             BattleManager.CurrentBattle.lastDeath = this;
             Debug.Log("ON DEEAATH");
-            punchline.PlayPunchline(PunchlineCallback.DEATH);
         }
 
         public virtual void Resurect(float healthPercent = 100f)
@@ -396,7 +395,7 @@ namespace TheFowler
             }
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             if(this is EnemyActor)
                 return;

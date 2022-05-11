@@ -8,6 +8,8 @@ namespace TheFowler
     public class Punchline : MonoBehaviour
     {
         [SerializeField] private PunchlinesData referedPunchlinesData;
+        [SerializeField] private string speaker;
+        
         public PunchlinesData ReferedPunchlinesData => referedPunchlinesData;
 
         public static bool punchlineIsPlaying;
@@ -29,10 +31,15 @@ namespace TheFowler
 
         IEnumerator PlayPunchlineIE(PunchlineData data)
         {
+            if(data == null)
+                yield break;
+            
             punchlineIsPlaying = true;
 
-            SoundManager.PlaySound(data.audio, gameObject);
-            // Ajouter le txt
+            if(data.audio != null)
+                SoundManager.PlaySound(data.audio, gameObject);
+            var dialogueView = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
+            dialogueView.Refresh(data.text, speaker);
             
             yield return new WaitForSeconds(data.soundDuration);
             punchlineIsPlaying = false;
@@ -53,14 +60,20 @@ namespace TheFowler
 
     public enum PunchlineCallback
     {
-        ACTIONPICKING,
-        FURY,
-        SKILLEXECUTION,
-        TARGETPICKING,
-        SKILLPICKING,
-        DEATH,
+        DAMAGE_TAKEN_LOW,
+        DAMAGE_TAKEN_HIGH,
+        GIVING_BREAKDOWN,
+        RECEIVING_BREAKDOWN,
+        HEALING,
+        TAUNT,
+        PROTECT,
         KILL,
-        DAMAGETAKEN
+        LOW_HP,
+        OVERTIME,
+        SKILL_EXECUTION,
+        SKILL_PICKING,
+        START_TURN,
+        DEATH
     }
 }
 

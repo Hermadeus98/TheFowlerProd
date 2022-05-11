@@ -17,6 +17,12 @@ namespace TheFowler
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
             //emitter.BattleActorAnimator.AttackCast();
+
+            if (emitter == BattleManager.CurrentBattle.phoebe)
+            {
+                emitter.punchline.PlayPunchline(PunchlineCallback.TAUNT);
+            }
+            
             receivers.ForEach(w => w.GetBattleComponent<Taunt>().TauntActor(turnDuration, emitter));
             yield break;
         }

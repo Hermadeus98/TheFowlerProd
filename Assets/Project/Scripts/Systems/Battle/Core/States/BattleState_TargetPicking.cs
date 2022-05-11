@@ -57,8 +57,6 @@ namespace TheFowler
             }
             
             PlaySpellPreview();
-
-            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.TARGETPICKING);
         }
         
         private IEnumerator WaitSkillShow()

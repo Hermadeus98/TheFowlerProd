@@ -23,6 +23,11 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
+            if (emitter == BattleManager.CurrentBattle.phoebe)
+            {
+                emitter.punchline.PlayPunchline(PunchlineCallback.PROTECT);
+            }
+            
             foreach (var receiver in receivers)
             {
                 if(emitter.GetBattleComponent<SpellHandler>() != null)
