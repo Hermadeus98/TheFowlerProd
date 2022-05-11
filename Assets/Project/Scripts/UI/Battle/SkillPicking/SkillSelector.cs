@@ -17,10 +17,14 @@ namespace TheFowler
         [SerializeField] private Image up, down;
 
         public SpellHandler currentSpellHandler;
+
+        private SkillPickingView view;
         
         protected override void RegisterEvent()
         {
             base.RegisterEvent();
+
+            
             OnSelect += RepositionningCursor;
         }
 
@@ -32,6 +36,12 @@ namespace TheFowler
 
         public void Refresh(SpellHandler spellHandler)
         {
+            if(view == null)
+                view = UI.GetView<SkillPickingView>(UI.Views.SkillPicking);
+
+
+            canNavigate = !view.isBreakdown;
+
             currentSpellHandler = spellHandler;
 
             ResetElements();
@@ -51,7 +61,12 @@ namespace TheFowler
 
             currentIndex = 0;
 
-            SelectElement();
+            if (!view.isBreakdown)
+            {
+                SelectElement();
+
+            }
+
         }
 
 
@@ -81,17 +96,23 @@ namespace TheFowler
         
         public bool WaitChoice(out SkillSelectorElement skillSelectorElement)
         {
+
+
             var skillElement = elements[currentIndex] as SkillSelectorElement;
-            
-            if (Inputs.actions["Select"].WasPressedThisFrame() && skillElement != null)
+
+            if (!view.isBreakdown)
             {
-                if (skillElement.isSelectable)
+                if (Inputs.actions["Select"].WasPressedThisFrame() && skillElement != null)
                 {
-                    Hide();
-                    skillSelectorElement = skillElement;
-                    return true;
+                    if (skillElement.isSelectable)
+                    {
+                        Hide();
+                        skillSelectorElement = skillElement;
+                        return true;
+                    }
                 }
             }
+
 
             skillSelectorElement = null;
             return false;
@@ -99,6 +120,8 @@ namespace TheFowler
 
         private void RepositionningCursor(UISelectorElement element)
         {
+            if (view.isBreakdown) return;
+
             cursor.DOMoveY(element.RectTransform.position.y, .1f);
             
             var skillPickingView = UI.GetView<SkillPickingView>(UI.Views.SkillPicking);
@@ -110,6 +133,8 @@ namespace TheFowler
 
         protected override void OnNavigate()
         {
+            if (view.isBreakdown) return;
+
             base.OnNavigate();
             SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Hover, gameObject);
 

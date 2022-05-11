@@ -42,7 +42,7 @@ namespace TheFowler
 
         protected virtual void Update()
         {
-            if(!isActive)
+            if(!isActive ||!canNavigate)
                 return;
 
             switch (selectorType)
@@ -56,7 +56,7 @@ namespace TheFowler
 
         private void Navigate()
         {
-            if(!isActive && !canNavigate )
+            if(!isActive || !canNavigate )
                 return;
             
             if (Inputs.actions["NavigateDown"].WasPressedThisFrame())

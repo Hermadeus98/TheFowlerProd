@@ -27,7 +27,7 @@ namespace TheFowler
         [TabGroup("References")]
         [SerializeField] GameObject triangle;
 
-        private bool isBreakdown;
+        public bool isBreakdown;
 
         private BattleActor battleActor;
 
@@ -48,16 +48,12 @@ namespace TheFowler
             skillSelector.Refresh(BattleManager.CurrentBattleActor.GetBattleComponent<SpellHandler>());
             skillSelector.Show();
 
-            //GetComponent<RectTransform>().anchoredPosition = basicPosition;
-        }
+            if (isBreakdown)
+            {
+                UI.GetView<TargetPickingView>(UI.Views.TargetPicking).Hide();
+                triangle.GetComponent<CanvasGroup>().alpha = 0;
+            }
 
-        public void Show(bool _isBreakdown)
-        {
-            base.Show();
-            skillSelector.Show();
-            isBreakdown = _isBreakdown;
-
-            GetComponent<RectTransform>().anchoredPosition = breakdownPosition;
         }
 
         public override void Hide()
@@ -67,29 +63,32 @@ namespace TheFowler
             if (isBreakdown)
             {
                 isBreakdown = false;
-                skillSelector.Hide();
             }
 
             skillSelector.canNavigate = true;
             skillSelector.Hide();
 
-            GetComponent<RectTransform>().anchoredPosition = basicPosition;
+            triangle.GetComponent<CanvasGroup>().alpha = 1;
+
+            //GetComponent<RectTransform>().anchoredPosition = basicPosition;
         }
 
         private void Update()
         {
-            if (isActive)
-            {
-                if(isBreakdown && TargetSelector.SelectedTargets[0].GetBattleComponent<SpellHandler>() != null)
-                {
-                    if(battleActor != TargetSelector.SelectedTargets[0])
-                    {
-                        skillSelector.Refresh(TargetSelector.SelectedTargets[0].GetBattleComponent<SpellHandler>());
-                        battleActor = TargetSelector.SelectedTargets[0];
-                    }
 
-                }
-            }
+
+            //if (isActive)
+            //{
+            //    if(isBreakdown && TargetSelector.SelectedTargets[0].GetBattleComponent<SpellHandler>() != null)
+            //    {
+            //        if(battleActor != TargetSelector.SelectedTargets[0])
+            //        {
+            //            skillSelector.Refresh(TargetSelector.SelectedTargets[0].GetBattleComponent<SpellHandler>());
+            //            battleActor = TargetSelector.SelectedTargets[0];
+            //        }
+
+            //    }
+            //}
         }
 
         public void ShowTriangle(bool state) => triangle.SetActive(state);
