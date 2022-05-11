@@ -37,7 +37,15 @@ namespace TheFowler
                 UI.CloseView("FuryView");
             }
 
-            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.ACTIONPICKING);
+            if (Fury.IsInFury)
+            {
+                BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.FURY);
+            }
+            else
+            {
+                BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.ACTIONPICKING);
+            }
+            
 
             BattleManager.CurrentBattle.BattleGameLogComponent.ShowGameLogView();
         }
