@@ -28,6 +28,7 @@ namespace TheFowler
             {
                 buff_def.gameObject.SetActive(true);
                 buff_def.Refresh(actor.BattleActorInfo.defenseBonus);
+                buff_def.Show();
             }
         }
 
@@ -39,6 +40,7 @@ namespace TheFowler
             {
                 buff_att.gameObject.SetActive(true);
                 buff_att.Refresh(actor.BattleActorInfo.attackBonus);
+                buff_att.Show();
             }
         }
         public void Refresh_CD(BattleActor actor)
@@ -49,6 +51,7 @@ namespace TheFowler
             {
                 buff_CD.gameObject.SetActive(true);
                 buff_CD.Refresh(actor.BattleActorInfo.cooldownBonus);
+                buff_CD.Show();
             }
         }
 

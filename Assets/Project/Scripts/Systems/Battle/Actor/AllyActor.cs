@@ -36,7 +36,8 @@ namespace TheFowler
             
             SplitScreen.Instance.Show(deathCam, BattleManager.CurrentBattleActor.CameraBatchBattle.CameraReferences["OnDeathJoking"].virtualCamera);
             SplitScreen.Instance.SetBigCamera(BattleManager.CurrentBattleActor.CameraBatchBattle.CameraReferences["OnDeathJoking"].virtualCamera);
-            SplitScreen.Instance.SetPunchLine("HAHAHA TU ES MORT SALE NOOB");
+            
+            SplitScreen.Instance.SetPunchLine(BattleManager.CurrentBattleActor.punchline.GetPunchlineData());
             
             yield return new WaitForSeconds(.4f);
             

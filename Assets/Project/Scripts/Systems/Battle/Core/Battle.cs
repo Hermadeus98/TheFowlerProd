@@ -378,6 +378,8 @@ namespace TheFowler
                 {
                     orderedEnumerable.ElementAt(i).transform.SetSiblingIndex(i);
                 }
+                
+                UI.GetView<AlliesDataView>(UI.Views.AlliesDataView).Sort(orderedEnumerable);
             }
         }
 

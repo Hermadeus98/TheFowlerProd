@@ -34,12 +34,15 @@ namespace TheFowler
                     {
                         case 1:
                             icon.sprite = bonus_low;
+                            Feedback();
                             break;
                         case 2:
                             icon.sprite = bonus_medium;
+                            Feedback();
                             break;
                         case 3:
                             icon.sprite = bonus_high;
+                            Feedback();
                             break;
                     }
 
@@ -69,6 +72,8 @@ namespace TheFowler
                 else if (value >= min * .75f)
                     icon.sprite = malus_high;
             }
+            
+            Feedback();
         }
     }
 }

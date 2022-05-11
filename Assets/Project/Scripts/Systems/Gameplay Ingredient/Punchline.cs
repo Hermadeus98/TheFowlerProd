@@ -68,6 +68,11 @@ namespace TheFowler
             }
         }
 
+        public (AK.Wwise.Event, string) GetPunchlineData()
+        {
+            return (null, "BOUHHH tu es mort !");
+        }
+
         IEnumerator Mute(AK.Wwise.Event evnt)
         {
             //evnt.Post(gameObject, new CallbackFlags(){value = 0}, CallBackFunction);       
