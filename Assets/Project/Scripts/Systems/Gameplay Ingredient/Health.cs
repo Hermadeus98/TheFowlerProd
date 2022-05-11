@@ -74,7 +74,7 @@ namespace TheFowler
             }
             else
             {
-                ReferedActor.punchline.PlayPunchline(PunchlineEnum.DAMAGETAKEN);
+                ReferedActor.punchline.PlayPunchline(PunchlineCallback.DAMAGETAKEN);
             }
 
             switch (result)
@@ -158,9 +158,9 @@ namespace TheFowler
             ReferedActor.OnDeath();
             ReferedActor.BattleActorStats.health = currentHealth;
 
-            ReferedActor.punchline.PlayPunchline(PunchlineEnum.DEATH);
+            //ReferedActor.punchline.PlayPunchline(PunchlineEnum.DEATH);
             PunchlineAllyDeath();
-            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.KILL);
+            //BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.KILL);
 
         }
 
@@ -176,7 +176,7 @@ namespace TheFowler
                     {
                         if (act.BattleActorInfo.isDeath == false)
                         {
-                            act.punchline.PlayPunchline(PunchlineEnum.ALLYDEATH);
+                            //act.punchline.PlayPunchline(PunchlineEnum.ALLYDEATH);
                         }
 
                     }
@@ -192,9 +192,8 @@ namespace TheFowler
                     {
                         if (act.BattleActorInfo.isDeath == false)
                         {
-                            act.punchline.PlayPunchline(PunchlineEnum.ALLYDEATH);
+                            //act.punchline.PlayPunchline(PunchlineEnum.ALLYDEATH);
                         }
-
                     }
                 }
 
