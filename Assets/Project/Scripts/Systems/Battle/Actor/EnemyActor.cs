@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Tools;
 using QRCode;
 using QRCode.Extensions;
 using Sirenix.OdinInspector;
@@ -19,6 +20,7 @@ namespace TheFowler
         public AIEnemy AI => ai;
 
         public CanvasGroup UI;
+        public RectTransform canvasWorld;
 
         [SerializeField] private  GameObject bossIcon;
         [SerializeField] private  RectTransform fill, background, preview;
@@ -34,6 +36,21 @@ namespace TheFowler
         {
             base.OnAwake();
             SetHealthBar();
+        }
+
+        public override void InitializeComponents()
+        {
+            base.InitializeComponents();
+            StartCoroutine(SetCanvasWorld());
+        }
+
+        IEnumerator SetCanvasWorld()
+        {
+            canvasWorld.SetParent(BattleManager.CurrentBattle.UIPivot, true);
+            yield return new WaitForEndOfFrame();
+            canvasWorld.localPosition = new Vector3(canvasWorld.localPosition.x, -.33f, 0f);
+            yield return new WaitForSeconds(.1f);
+            BattleManager.CurrentBattle.UIPivot.GetComponent<BillBoard>().enabled = true;
         }
 
         protected override void OnStart()
