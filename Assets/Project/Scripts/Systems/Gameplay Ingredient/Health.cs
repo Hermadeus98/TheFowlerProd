@@ -61,6 +61,8 @@ namespace TheFowler
         {
             if(damage == 0 ||currentHealth <= 0)
                 return;
+
+            damage = Mathf.RoundToInt(damage);
             
             currentHealth -= damage;
             if (currentHealth <= 0)
@@ -80,7 +82,7 @@ namespace TheFowler
                 }
                 else
                 {
-                    if (damage > 100)
+                    if (damage < 100)
                     {
                         ReferedActor.punchline.PlayPunchline(PunchlineCallback.DAMAGE_TAKEN_LOW);
                     }

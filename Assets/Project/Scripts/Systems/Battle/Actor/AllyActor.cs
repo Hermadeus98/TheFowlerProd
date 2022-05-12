@@ -30,9 +30,7 @@ namespace TheFowler
 
         protected override void Update()
         {
-            base.Update();
-
-            if (hasPunchline)
+            if (!hasPunchline)
             {
                 turnTime += Time.deltaTime;
 
@@ -42,6 +40,8 @@ namespace TheFowler
                     hasPunchline = true;
                 }
             }
+            
+            base.Update();
         }
 
         public override void OnTurnEnd()
