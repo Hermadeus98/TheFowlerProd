@@ -126,7 +126,7 @@ namespace TheFowler
         }
 
         [Button]
-        private void SetGraphicToNormal()
+        public void SetGraphicToNormal()
         {
             if (head.sprite == selectedSprite)
             {

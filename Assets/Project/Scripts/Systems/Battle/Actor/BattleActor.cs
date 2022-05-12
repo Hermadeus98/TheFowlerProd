@@ -382,9 +382,9 @@ namespace TheFowler
             Debug.Log("ON DEEAATH");
         }
 
-        public virtual void Resurect(float healthPercent = 100f)
+        public virtual void OnResurect()
         {
-            health.Resurect(healthPercent);
+            
         }
 
         private void OnDisable()
