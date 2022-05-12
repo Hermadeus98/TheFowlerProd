@@ -26,6 +26,9 @@ namespace TheFowler
         [Button]
         protected void Feedback()
         {
+            if(onImage == null || icon.sprite == null)
+                return;
+            
             onImage.sprite = icon.sprite;
             onImage.transform.localScale = Vector3.zero;
             onImage.DOFade(1f, 0.01f);
