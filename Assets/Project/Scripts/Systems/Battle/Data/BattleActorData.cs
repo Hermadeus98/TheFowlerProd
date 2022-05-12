@@ -93,8 +93,6 @@ namespace TheFowler
         [TitleGroup("Data Binding"), ShowIf("@this.bindingType == BindingType.DEFAULT")]
         public int mana = 3;
 
-        [TitleGroup("Data Binding")]
-        public string descriptionSpecialSpell, nameSpecialSpell;
         public void AddComplicity(int addValue)
         {
             complicityLevel += addValue;

@@ -21,6 +21,9 @@ namespace TheFowler
             actorTurn = new PlayerTurn();
             actorTurn.OnTurnStart();
 
+            UI.GetView<ActionPickingView>(UI.Views.ActionPicking).actions[1].inputName.text = battleActorData.DefendSpell.SpellName;
+            UI.GetView<ActionPickingView>(UI.Views.ActionPicking).actions[1].description.text = battleActorData.DefendSpell.SpellDescription;
+
             turnTime = 0;
             hasPunchline = false;
         }
