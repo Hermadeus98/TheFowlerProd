@@ -81,6 +81,8 @@ namespace TheFowler
 
         [SerializeField] private Battle BattleToRestart;
         [SerializeField] private Battle[] BattleToReset;
+
+        public Transform UIPivot;
         
         private void FixedUpdate()
         {
