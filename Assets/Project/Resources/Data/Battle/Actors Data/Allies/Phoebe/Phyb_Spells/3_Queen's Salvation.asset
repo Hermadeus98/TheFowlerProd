@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: 3_Hymn of Victory
+  m_Name: 3_Queen's Salvation
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -27,13 +27,13 @@ MonoBehaviour:
       Data: 0|TheFowler.Effect[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.HealEffect, Assembly-CSharp
+      Data: 1|TheFowler.DamageEffect, Assembly-CSharp
     - Name: TargetType
       Entry: 3
-      Data: 3
+      Data: 2
     - Name: Emitter
       Entry: 6
       Data: 
@@ -54,52 +54,16 @@ MonoBehaviour:
       Data: 0
     - Name: rage
       Entry: 5
-      Data: true
+      Data: false
     - Name: berserk
       Entry: 5
-      Data: false
-    - Name: healValue
+      Data: true
+    - Name: berserkDamage
+      Entry: 4
+      Data: 200
+    - Name: damage
       Entry: 4
       Data: 400
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 2|TheFowler.DefendEffect, Assembly-CSharp
-    - Name: TargetType
-      Entry: 3
-      Data: 3
-    - Name: Emitter
-      Entry: 6
-      Data: 
-    - Name: Receivers
-      Entry: 6
-      Data: 
-    - Name: _damage
-      Entry: 4
-      Data: 0
-    - Name: _heal
-      Entry: 4
-      Data: 0
-    - Name: sprite
-      Entry: 6
-      Data: 
-    - Name: ReferedSpell
-      Entry: 6
-      Data: 
-    - Name: rage
-      Entry: 5
-      Data: false
-    - Name: berserk
-      Entry: 5
-      Data: false
-    - Name: bonusType
-      Entry: 3
-      Data: 0
-    - Name: isAOE
-      Entry: 5
-      Data: false
     - Name: 
       Entry: 8
       Data: 
@@ -109,17 +73,17 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Aby's Rythm
+  SpellName: Queen's Salvation
   Cooldown: 5
   InitialCooldown: 5
   CurrentCooldown: 0
-  logoBuff: {fileID: 21300000, guid: 18ed78826b6412648a570760367df479, type: 3}
-  TargetType: 3
+  logoBuff: {fileID: 0}
+  TargetType: 2
   SpellPower: 3
-  SpellDescription: Heavy heal an ally and increase her defensive
-  SpellType: 0
-  sequenceBinding: 2
-  sprite: {fileID: 21300000, guid: f5cb5b9ebeff8634fb6ef8f940012401, type: 3}
-  spellState: 3
+  SpellDescription: Inflict epic damages to all enemies, Phoebe is hurt by the effect
+  SpellType: 2
+  sequenceBinding: 3
+  sprite: {fileID: 21300000, guid: bd246e79a098bf945be1dfe1538e0f48, type: 3}
+  spellState: 2
   unlockOrder: 3
   isRechargingCooldown: 0
