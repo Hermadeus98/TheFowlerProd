@@ -18,8 +18,6 @@ namespace TheFowler
             
             StartCoroutine(Cast());
 
-            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.SKILL_EXECUTION);
-
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).Hide();
         }
 
@@ -31,6 +29,8 @@ namespace TheFowler
             }
             else
             {
+                BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.SKILL_EXECUTION);
+                
                 if (BattleManager.IsAllyTurn)
                 {
                     if (Player.SelectedSpell.IsNotNull())
@@ -55,7 +55,6 @@ namespace TheFowler
                             action.RemoveAllListeners();
                             
                             Debug.Log("EVENT : ON_LIFE (Ally Death)");
-                            Debug.Log(BattleManager.lastTouchedActors.Count);
                 
                             if (BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnLife() != null)
                             {

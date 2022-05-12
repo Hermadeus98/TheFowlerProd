@@ -15,9 +15,11 @@ namespace TheFowler
         public override void OnStateEnter(EventArgs arg)
         {
             BattleManager.CurrentBattleActor.AllyData?.Fury(false);
+            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.GIVING_BREAKDOWN);
+
             if (selectedActorForFury is AllyActor actor)
             {
-                actor.AllyData?.Fury(true);   
+                actor.AllyData?.Fury(true);
             }
             
             if(selectedActorForFury is AllyActor ally)
@@ -26,8 +28,6 @@ namespace TheFowler
             }
 
             BattleManager.CurrentRound.OverrideTurn(selectedActorForFury);
-
-            //BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.FURY);
 
              InfoBoxButtons[] infoButtons = new InfoBoxButtons[2];
             infoButtons[0] = InfoBoxButtons.CONFIRM;

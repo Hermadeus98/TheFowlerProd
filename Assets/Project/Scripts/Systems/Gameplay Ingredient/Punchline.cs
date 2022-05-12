@@ -18,8 +18,8 @@ namespace TheFowler
         
         public void PlayPunchline(PunchlineCallback callback)
         {
-            if(punchlineIsPlaying)
-                return;
+            /*if(punchlineIsPlaying)
+                return;*/
 
             StartCoroutine(PlayPunchlineIE(referedPunchlinesData.GetRandom(callback)));
         }
