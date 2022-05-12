@@ -13,7 +13,7 @@ namespace TheFowler
         public bool isParticipant = true;
         
         [TabGroup("References")] 
-        [SerializeField] private BattleActorData battleActorData;
+        [SerializeField] protected BattleActorData battleActorData;
         [TabGroup("References")]
         [SerializeField] private CameraBatch cameraBatchBattle;
         [TabGroup("References")]
