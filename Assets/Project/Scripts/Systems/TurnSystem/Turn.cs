@@ -8,12 +8,16 @@ namespace TheFowler
     public abstract class Turn
     {
         private TurnTransitionView _turnTransitionView;
+
+        private bool haveSaidPunchline = false;
         
         public virtual void OnTurnStart()
         {
             BattleManager.lastTouchedActors.Clear();
             
             Coroutiner.Play(ActorTransition());
+
+            haveSaidPunchline = false;
         }
 
         public virtual void OnTurnEnd()
@@ -23,10 +27,6 @@ namespace TheFowler
 
         IEnumerator ActorTransition()
         {
-            var curActor = BattleManager.CurrentBattleActor;
-            
-            Debug.Log("EVENT : ON_TURN_OF");
-            
             BattleManager.CurrentBattle.ChangeBattleState<BattleState_ActionPicking>(BattleStateEnum.ACTION_PICKING);
 
             if (BattleManager.IsEnemyTurn && !BattleManager.lastTurnWasEnemiesTurn)
@@ -40,12 +40,24 @@ namespace TheFowler
                 yield return Transition();
                 _turnTransitionView = UI.GetView<TurnTransitionView>(UI.Views.TurnTransition);
                 yield return new WaitForSeconds(_turnTransitionView.WaitTime - .2f);
+                
+                CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle,
+                    CameraKeys.BattleKeys.ActionPicking);
+
+                if (!haveSaidPunchline)
+                {
+                    if (BattleManager.CurrentRound.overrideTurnActor == BattleManager.CurrentBattleActor)
+                    {
+                        BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.RECEIVING_BREAKDOWN);
+                    }
+                    else
+                    {
+                        BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.START_TURN);
+                    }
+
+                    haveSaidPunchline = true;
+                }
             }
-
-            if(BattleManager.IsAllyTurn)
-                CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle, CameraKeys.BattleKeys.ActionPicking);
-
-            yield break;
         }
 
         private IEnumerator Transition()

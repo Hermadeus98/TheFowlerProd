@@ -36,15 +36,6 @@ namespace TheFowler
             {
                 UI.CloseView("FuryView");
             }
-
-            if (Fury.IsInFury)
-            {
-                BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.RECEIVING_BREAKDOWN);
-            }
-            else
-            {
-                BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.START_TURN);
-            }
             
 
             BattleManager.CurrentBattle.BattleGameLogComponent.ShowGameLogView();
