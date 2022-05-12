@@ -31,6 +31,7 @@ namespace TheFowler
 
         public bool rage = false;
         public bool berserk = false;
+        [ShowIf("@this.berserk == true")]  public float berserkDamage = 100f;
 
         public virtual void PreviewEffect(BattleActor emitter)
         {
@@ -83,6 +84,11 @@ namespace TheFowler
                 }
             }
 
+            if (berserk)
+            {
+                ApplyDamage(berserkDamage, emitter, emitter, berserk);
+            }
+
             _damage = dmg;
             return dmg;
         }
@@ -117,6 +123,11 @@ namespace TheFowler
         {
             _heal = heal;
             receivers.ForEach(w => w.Health.Heal(_heal));
+
+            if (berserk)
+            {
+                ApplyDamage(berserkDamage, emitter, emitter, berserk);
+            }
         }
     }
 }

@@ -223,6 +223,8 @@ namespace TheFowler
             float x = maxHealth * healthPercent;
             x = Mathf.CeilToInt(x);
                 
+            ReferedActor.BattleActorInfo.isDeath = false;
+            
             currentHealth = x;
             onHealed?.Invoke(currentHealth);
             fillBar?.SetFill(currentHealth);
@@ -231,12 +233,10 @@ namespace TheFowler
             ReferedActor.BattleActorStats.health = currentHealth;
 
             onResurect?.Invoke();
-            ReferedActor.BattleActorInfo.isDeath = false;
+            
             ReferedActor.OnResurect();
 
             if (lifeTxt != null) lifeTxt.text = currentHealth.ToString();
-            
-            ReferedActor.BattleActorAnimator.Resurect();
         }
 
         public void ResetHealth()
