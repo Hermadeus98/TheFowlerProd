@@ -17,6 +17,12 @@ namespace TheFowler
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
             //Anim
+
+            if (emitter == BattleManager.CurrentBattle.abi)
+            {
+                emitter.punchline.PlayPunchline(PunchlineCallback.HEALING);
+            }
+            
             yield return new WaitForSeconds(SpellData.Instance.StateEffect_WaitTime);
             
             foreach (var receiver in receivers)

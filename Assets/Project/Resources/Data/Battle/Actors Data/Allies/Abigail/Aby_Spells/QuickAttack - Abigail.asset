@@ -30,10 +30,10 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.DamageEffect, Assembly-CSharp
+      Data: 1|TheFowler.HealEffect, Assembly-CSharp
     - Name: TargetType
       Entry: 3
-      Data: 1
+      Data: 0
     - Name: Emitter
       Entry: 6
       Data: 
@@ -50,14 +50,17 @@ MonoBehaviour:
       Entry: 6
       Data: 
     - Name: ReferedSpell
-      Entry: 10
-      Data: 0
+      Entry: 6
+      Data: 
     - Name: rage
       Entry: 5
       Data: false
-    - Name: damage
+    - Name: berserk
+      Entry: 5
+      Data: false
+    - Name: healValue
       Entry: 4
-      Data: 50
+      Data: 125
     - Name: 
       Entry: 8
       Data: 
@@ -88,6 +91,9 @@ MonoBehaviour:
     - Name: rage
       Entry: 5
       Data: false
+    - Name: berserk
+      Entry: 5
+      Data: false
     - Name: 
       Entry: 8
       Data: 
@@ -102,9 +108,9 @@ MonoBehaviour:
   InitialCooldown: 0
   CurrentCooldown: 0
   logoBuff: {fileID: 0}
-  TargetType: 1
+  TargetType: 0
   SpellPower: 1
-  SpellDescription: Weak attack reducing cooldown
+  SpellDescription: Self healing
   SpellType: 0
   sequenceBinding: 2
   sprite: {fileID: 0}

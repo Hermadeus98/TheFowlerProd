@@ -11,6 +11,9 @@ namespace TheFowler
         [SerializeField] private CinemachineVirtualCamera deathCam, deathCamDown;
 
         [HideInInspector] public bool hasShowDeathSequence = false;
+
+        private float turnTime = 0;
+        private bool hasPunchline = false;
         
         public override void OnTurnStart()
         {
@@ -18,9 +21,31 @@ namespace TheFowler
             actorTurn = new PlayerTurn();
             actorTurn.OnTurnStart();
 
-            UI.GetView<ActionPickingView>(UI.Views.ActionPicking).actions[1].inputName.text = battleActorData.nameSpecialSpell;
-            UI.GetView<ActionPickingView>(UI.Views.ActionPicking).actions[1].description.text = battleActorData.descriptionSpecialSpell;
+            turnTime = 0;
+            hasPunchline = false;
+        }
 
+        protected override void Update()
+        {
+            base.Update();
+
+            if (hasPunchline)
+            {
+                turnTime += Time.deltaTime;
+
+                if (turnTime > 30f)
+                {
+                    punchline.PlayPunchline(PunchlineCallback.OVERTIME);
+                    hasPunchline = true;
+                }
+            }
+        }
+
+        public override void OnTurnEnd()
+        {
+            base.OnTurnEnd();
+
+            turnTime = 0;
         }
 
         public override void OnDeath()
@@ -46,6 +71,8 @@ namespace TheFowler
             yield return new WaitForSeconds(.4f);
             
             BattleActorAnimator.Death();
+            punchline.PlayPunchline(PunchlineCallback.DEATH);
+            
             SplitScreen.Instance.SetLittleCamera(deathCamDown);
             
             if (BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnDeathOf() != null)

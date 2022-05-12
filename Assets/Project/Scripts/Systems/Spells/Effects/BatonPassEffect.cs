@@ -14,8 +14,8 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
+            emitter.punchline.PlayPunchline(PunchlineCallback.GIVING_BREAKDOWN);
 
-            
             yield break;
         }
 
@@ -23,6 +23,5 @@ namespace TheFowler
         {
             yield break;
         }
-
     }
 }

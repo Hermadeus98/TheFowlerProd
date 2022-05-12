@@ -74,7 +74,21 @@ namespace TheFowler
             }
             else
             {
-                ReferedActor.punchline.PlayPunchline(PunchlineCallback.DAMAGETAKEN);
+                if (currentHealth < maxHealth / 4f)
+                {
+                    ReferedActor.punchline.PlayPunchline(PunchlineCallback.LOW_HP);
+                }
+                else
+                {
+                    if (damage > 100)
+                    {
+                        ReferedActor.punchline.PlayPunchline(PunchlineCallback.DAMAGE_TAKEN_LOW);
+                    }
+                    else
+                    {
+                        ReferedActor.punchline.PlayPunchline(PunchlineCallback.DAMAGE_TAKEN_HIGH);
+                    }
+                }
             }
 
             switch (result)
