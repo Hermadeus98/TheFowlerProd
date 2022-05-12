@@ -384,7 +384,7 @@ namespace TheFowler
 
         public virtual void OnResurect()
         {
-            
+            BattleActorAnimator.Resurect();
         }
 
         private void OnDisable()
