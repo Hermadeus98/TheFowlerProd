@@ -226,12 +226,13 @@ namespace TheFowler
             currentHealth = x;
             onHealed?.Invoke(currentHealth);
             fillBar?.SetFill(currentHealth);
+            ReferedActor.AllyData?.SetGraphicToNormal();
             ReferedActor.AllyData?.Refresh();
             ReferedActor.BattleActorStats.health = currentHealth;
 
             onResurect?.Invoke();
             ReferedActor.BattleActorInfo.isDeath = false;
-            ReferedActor.Resurect();
+            ReferedActor.OnResurect();
 
             if (lifeTxt != null) lifeTxt.text = currentHealth.ToString();
             

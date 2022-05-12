@@ -13,9 +13,7 @@ namespace TheFowler
         public bool isParticipant = true;
         
         [TabGroup("References")] 
-        [SerializeField] protected BattleActorData battleActorData;
-
-
+        [SerializeField] private BattleActorData battleActorData;
         [TabGroup("References")]
         [SerializeField] private CameraBatch cameraBatchBattle;
         [TabGroup("References")]
@@ -384,10 +382,9 @@ namespace TheFowler
             Debug.Log("ON DEEAATH");
         }
 
-        public virtual void Resurect(float healthPercent = 100f)
+        public virtual void OnResurect()
         {
-            health.Resurect(healthPercent);
-            Debug.Log("Resurect");
+            
         }
 
         private void OnDisable()
