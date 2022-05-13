@@ -68,6 +68,9 @@ namespace TheFowler
 
         public void SetPunchLine(PunchlineData data)
         {
+            if (data == null)
+                return;
+            
             if(data.audio != null) SoundManager.PlaySound(data.audio, null);
             textBox.DOFade(1f, .2f);
             text.SetText(data.text);

@@ -22,7 +22,7 @@ namespace TheFowler
         {
             if (!database.ContainsKey(callback))
             {
-                Debug.LogError($"Key {callback} is missing in the database", this);
+                Debug.LogError($"Key {callback} is missing in the database in {name}", this);
                 return null;
             }
             
@@ -30,7 +30,7 @@ namespace TheFowler
 
             if (pool.IsNullOrEmpty())
             {
-                Debug.LogError($"Key {callback} don't have punchline register", this);
+                Debug.LogError($"Key {callback} don't have punchline register in {name}", this);
                 return null;
             }
             
