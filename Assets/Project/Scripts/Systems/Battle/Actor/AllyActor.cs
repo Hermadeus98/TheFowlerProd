@@ -106,8 +106,9 @@ namespace TheFowler
 
         public IEnumerator ResurectionCoroutine()
         {
-            if(!mustResurect)
+            if(!mustResurect && !BattleActorInfo.isDeath)
                 yield break;
+            
             mustResurect = false;
             
             UIBattleBatch.Instance.Hide();

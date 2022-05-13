@@ -45,8 +45,13 @@ namespace TheFowler
         {
             if (BattleManager.CurrentBattleActor.mustResurect)
             {
-                if(BattleManager.CurrentBattleActor is AllyActor allyActor)
-                    yield return allyActor.ResurectionCoroutine();
+                if (BattleManager.CurrentBattleActor is AllyActor allyActor)
+                {
+                    if (allyActor.mustResurect)
+                    {
+                        yield return allyActor.ResurectionCoroutine();
+                    }
+                }
             }
             
             if (BattleManager.IsAllyTurn)

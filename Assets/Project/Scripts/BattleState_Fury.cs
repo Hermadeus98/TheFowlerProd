@@ -20,12 +20,12 @@ namespace TheFowler
             if (selectedActorForFury is AllyActor actor)
             {
                 actor.AllyData?.Fury(true);
-            }
-            
-            if(selectedActorForFury is AllyActor ally)
-            {
-                ally.resurector = BattleManager.CurrentBattleActor;
-                ally.mustResurect = true;
+
+                if (actor.BattleActorInfo.isDeath)
+                {
+                    actor.resurector = BattleManager.CurrentBattleActor;
+                    actor.mustResurect = true;
+                }
             }
 
             BattleManager.CurrentRound.OverrideTurn(selectedActorForFury);
@@ -38,8 +38,6 @@ namespace TheFowler
             
             var skillExecutionState = BattleManager.CurrentBattle.BattleState.GetState("SkillExecution") as BattleState_SkillExecution;
             skillExecutionState.fury = false;
-
-            
         }
     }
 }
