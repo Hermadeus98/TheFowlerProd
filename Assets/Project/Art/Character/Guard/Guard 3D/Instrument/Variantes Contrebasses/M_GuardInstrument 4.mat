@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_GuardInstrument 4
-  m_Shader: {fileID: 4800000, guid: 1bd5ccc3d89aa0b4c8a5aac0a0f1e8c5, type: 3}
+  m_Shader: {fileID: 4800000, guid: 76d03eceb481f774587b788e75eec149, type: 3}
   m_ShaderKeywords: _ALPHATEST_ON _DISABLE_SSR_TRANSPARENT _DOUBLESIDED_ON _E_NOFRESNEL_ON
     _FRESNEL1_ON _NORMALMAP_TANGENT_SPACE
   m_LightmapFlags: 4
@@ -40,6 +40,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _ARM_:
+        m_Texture: {fileID: 2800000, guid: 0705be03825f87f48a5161241f9f6ef8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _ARM_1:
         m_Texture: {fileID: 2800000, guid: a435ff0d082c9fa40982b9b25149b2a8, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -72,12 +76,20 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Diffuse_:
+        m_Texture: {fileID: 2800000, guid: a8b6ba33d0dc1434f8460a502f6276a4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Diffuse_1:
         m_Texture: {fileID: 2800000, guid: d33cc58493b8b0a4a9accc4eeeeeb3ce, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Diffuse_2:
         m_Texture: {fileID: 2800000, guid: a8b6ba33d0dc1434f8460a502f6276a4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _E_:
+        m_Texture: {fileID: 2800000, guid: 8bb7c9a3b9172bc4d9befc7864227282, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _E_1:
@@ -93,7 +105,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Fresnel_:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 8a4f42747f716484eb7161ed02907a96, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _HeightMap:
@@ -122,6 +134,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _NormalMapOS:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal_:
+        m_Texture: {fileID: 2800000, guid: 089eaf2098e971c408ab8076f6f9b428, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal_1:
@@ -178,7 +194,7 @@ Material:
     - _ATDistance: 1
     - _AddPrecomputedVelocity: 0
     - _AlbedoAffectEmissive: 0
-    - _AlphaCutoff: 0.5
+    - _AlphaCutoff: 0.425
     - _AlphaCutoffEnable: 1
     - _AlphaCutoffPostpass: 0.5
     - _AlphaCutoffPrepass: 0.5
@@ -194,7 +210,7 @@ Material:
     - _CoatMask: 0
     - _CullMode: 0
     - _CullModeForward: 0
-    - _Cutoff: 0.5
+    - _Cutoff: 0.425
     - _DIntensity1: 0.4
     - _DIntensity2: 1
     - _DepthOffsetEnable: 0
@@ -212,6 +228,7 @@ Material:
     - _DoubleSidedNormalMode: 1
     - _DstBlend: 0
     - _E_Fresnel_Intensity: 0.8
+    - _E_Intensity: 6.46
     - _E_Intensity1: 0.5
     - _E_Intensity2: 1
     - _E_Nofresnel: 1
@@ -224,6 +241,7 @@ Material:
     - _EnableGeometricSpecularAA: 0
     - _EnergyConservingSpecularColor: 1
     - _Fresnel1: 1
+    - _FresnelPower: 5
     - _FresnelPower1: 110.52
     - _FresnelPower2: 5
     - _FresnelPower3: 5
@@ -255,6 +273,7 @@ Material:
     - _MetallicRemapMin: 0
     - _Nofresnel: 0
     - _Nofresnel1: 1
+    - _NormalIntensity: 0
     - _NormalIntensity1: 1
     - _NormalIntensity2: 1
     - _NormalMapSpace: 0
@@ -323,6 +342,7 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorEMISSIVE: {r: 0.3607843, g: 0, b: 1, a: 0}
     - _ColorOverlay1: {r: 0, g: 0, b: 0, a: 0}
     - _ColorOverlay2: {r: 1, g: 0, b: 0, a: 0}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
@@ -330,6 +350,7 @@ Material:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
+    - _FresnelColor: {r: 0.5849056, g: 0.45891935, b: 0.19037014, a: 1}
     - _FresnelColor1: {r: 1, g: 0.67999995, b: 0, a: 1}
     - _FresnelColor2: {r: 0.99215686, g: 0.69411767, b: 0.0627451, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
