@@ -28,9 +28,6 @@ public class GameplayPhase : GameplayMonoBehaviour
     [TabGroup("Debug")]
     [SerializeField, ReadOnly] protected bool isActive = false;
 
-
-    protected bool callOnEnd = true;
-
     public bool IsActive { get => isActive; }
     public GameplayPhaseEnum GameplayPhaseID { get => gameplayPhase_id; set => gameplayPhase_id = value; }
 

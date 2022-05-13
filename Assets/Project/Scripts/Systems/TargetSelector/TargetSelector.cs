@@ -42,49 +42,61 @@ namespace TheFowler
             currentIndex = 0;
             blockNavigation = false;
 
-            if (BattleManager.CurrentBattleActor.BattleActorInfo.isTaunt && 
-                !BattleManager.CurrentBattleActor.GetBattleComponent<Taunt>().taunter.BattleActorInfo.isDeath && 
-                targetType != TargetTypeEnum.ALL_ENEMIES && 
-                targetType != TargetTypeEnum.ALL_ALLIES)
+            if (Player.SelectedSpell.Effects[0] is BatonPassEffect)
             {
-                var taunt = BattleManager.CurrentBattleActor.GetBattleComponent<Taunt>();
-                AvailableTargets.Add(taunt.taunter);
-                SelectedTargets.Add(taunt.taunter);
+                Debug.Log("CORRECTION ICI");
+                if (Player.SelectedSpell.Effects[0] is BatonPassEffect)
+                    AvailableTargets.AddRange(GetAllAlliesAndDeadAllies());
+                else
+                    AvailableTargets.AddRange(GetAllAlliesOf(BattleManager.CurrentBattleActor));
                 Select(AvailableTargets[0]);
-                blockNavigation = true;
             }
             else
             {
-                switch (targetType)
+                if (BattleManager.CurrentBattleActor.BattleActorInfo.isTaunt &&
+                    !BattleManager.CurrentBattleActor.GetBattleComponent<Taunt>().taunter.BattleActorInfo.isDeath &&
+                    targetType != TargetTypeEnum.ALL_ENEMIES &&
+                    targetType != TargetTypeEnum.ALL_ALLIES)
                 {
-                    case TargetTypeEnum.SELF:
-                        AvailableTargets.Add(GetSelf());
-                        SelectedTargets.Add(GetSelf());
-                        Select(AvailableTargets[0]);
-                        break;
-                    case TargetTypeEnum.SOLO_ENEMY:
-                        AvailableTargets.AddRange(GetAllEnemiesOf(BattleManager.CurrentBattleActor));
-                        Select(AvailableTargets[0]);
-                        break;
-                    case TargetTypeEnum.ALL_ENEMIES:
-                        AvailableTargets.AddRange(GetAllEnemiesOf(BattleManager.CurrentBattleActor));
-                        SelectedTargets.AddRange(GetAllEnemiesOf(BattleManager.CurrentBattleActor));
-                        SelectAll(SelectedTargets);
-                        break;
-                    case TargetTypeEnum.SOLO_ALLY:
-                        if (Player.SelectedSpell.Effects[0] is BatonPassEffect)
-                            AvailableTargets.AddRange(GetAllAlliesAndDeadAllies());
-                        else
+                    var taunt = BattleManager.CurrentBattleActor.GetBattleComponent<Taunt>();
+                    AvailableTargets.Add(taunt.taunter);
+                    SelectedTargets.Add(taunt.taunter);
+                    Select(AvailableTargets[0]);
+                    blockNavigation = true;
+                }
+                else
+                {
+                    switch (targetType)
+                    {
+                        case TargetTypeEnum.SELF:
+                            AvailableTargets.Add(GetSelf());
+                            SelectedTargets.Add(GetSelf());
+                            Select(AvailableTargets[0]);
+                            break;
+                        case TargetTypeEnum.SOLO_ENEMY:
+                            AvailableTargets.AddRange(GetAllEnemiesOf(BattleManager.CurrentBattleActor));
+                            Select(AvailableTargets[0]);
+                            break;
+                        case TargetTypeEnum.ALL_ENEMIES:
+                            AvailableTargets.AddRange(GetAllEnemiesOf(BattleManager.CurrentBattleActor));
+                            SelectedTargets.AddRange(GetAllEnemiesOf(BattleManager.CurrentBattleActor));
+                            SelectAll(SelectedTargets);
+                            break;
+                        case TargetTypeEnum.SOLO_ALLY:
+                            if (Player.SelectedSpell.Effects[0] is BatonPassEffect)
+                                AvailableTargets.AddRange(GetAllAlliesAndDeadAllies());
+                            else
+                                AvailableTargets.AddRange(GetAllAlliesOf(BattleManager.CurrentBattleActor));
+                            Select(AvailableTargets[0]);
+                            break;
+                        case TargetTypeEnum.ALL_ALLIES:
                             AvailableTargets.AddRange(GetAllAlliesOf(BattleManager.CurrentBattleActor));
-                        Select(AvailableTargets[0]);
-                        break;
-                    case TargetTypeEnum.ALL_ALLIES:
-                        AvailableTargets.AddRange(GetAllAlliesOf(BattleManager.CurrentBattleActor));
-                        SelectedTargets.AddRange(GetAllAlliesOf(BattleManager.CurrentBattleActor));
-                        SelectAll(SelectedTargets);
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(targetType), targetType, null);
+                            SelectedTargets.AddRange(GetAllAlliesOf(BattleManager.CurrentBattleActor));
+                            SelectAll(SelectedTargets);
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException(nameof(targetType), targetType, null);
+                    }
                 }
             }
 

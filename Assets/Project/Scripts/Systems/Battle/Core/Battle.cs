@@ -408,7 +408,7 @@ namespace TheFowler
 
         private IEnumerator LoseIE()
         {
-            callOnEnd = false;
+            callOnEndEvent = false;
 
             Debug.Log("EVENT : ON_LOSE");
             if (BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnLose() != null)
