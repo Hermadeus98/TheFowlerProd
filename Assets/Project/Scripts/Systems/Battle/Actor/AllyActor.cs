@@ -13,7 +13,7 @@ namespace TheFowler
         [HideInInspector] public bool hasShowDeathSequence = false;
 
         private float turnTime = 0;
-        private bool hasPunchline = false;
+        [HideInInspector] public bool hasPunchline = false;
         
         public override void OnTurnStart()
         {
@@ -30,17 +30,20 @@ namespace TheFowler
 
         protected override void Update()
         {
-            if (!hasPunchline)
+            if (BattleManager.CurrentBattle != null)
             {
-                turnTime += Time.deltaTime;
-
-                if (turnTime > 30f)
+                if (!hasPunchline && BattleManager.CurrentBattleActor == this)
                 {
-                    punchline.PlayPunchline(PunchlineCallback.OVERTIME);
-                    hasPunchline = true;
+                    turnTime += Time.deltaTime;
+
+                    if (turnTime > 30f)
+                    {
+                        punchline.PlayPunchline(PunchlineCallback.OVERTIME);
+                        hasPunchline = true;
+                    }
                 }
             }
-            
+
             base.Update();
         }
 

@@ -51,6 +51,8 @@ namespace TheFowler
         /// </summary>
         public static void PlayBreakDown()
         {
+            UI.GetView<SkillPickingView>(UI.Views.SkillPicking).isBreakdown = true;
+
             //Pas de breakdown si le dernier ennemie meurt.
             if (BattleManager.CurrentBattle.Enemies.All(w => w.BattleActorInfo.isDeath))
             {
@@ -67,7 +69,7 @@ namespace TheFowler
                 Coroutiner.Instance.StopCoroutine(batonPass);
             Coroutiner.Instance.StartCoroutine(LaunchBatonPass());
 
-            UI.GetView<SkillPickingView>(UI.Views.SkillPicking).isBreakdown = true;
+            
         }
 
         /// <summary>

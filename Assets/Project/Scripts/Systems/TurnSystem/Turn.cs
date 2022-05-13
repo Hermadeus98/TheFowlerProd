@@ -9,7 +9,7 @@ namespace TheFowler
     {
         private TurnTransitionView _turnTransitionView;
 
-        private bool haveSaidPunchline = false;
+        public bool haveSaidPunchline = false;
         
         public virtual void OnTurnStart()
         {

@@ -15,7 +15,7 @@ namespace TheFowler
         public override void OnStateEnter(EventArgs arg)
         {
             base.OnStateEnter(arg);
-            
+
             StartCoroutine(Cast());
 
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).Hide();
@@ -33,6 +33,8 @@ namespace TheFowler
                 
                 if (BattleManager.IsAllyTurn)
                 {
+                    ((AllyActor) BattleManager.CurrentBattleActor).hasPunchline = true;
+                    
                     if (Player.SelectedSpell.IsNotNull())
                     {
                         var actor = BattleManager.CurrentBattleActor;

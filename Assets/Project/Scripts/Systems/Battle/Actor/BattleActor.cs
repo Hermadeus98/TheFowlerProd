@@ -51,7 +51,7 @@ namespace TheFowler
         public int TurnCount { get; set; } = 0;
         [ShowInInspector, ReadOnly] public int Initiative { get; set; }
         
-        protected Turn actorTurn;
+        public Turn actorTurn;
 
         //--<Properties>-----------------------------------------------------------------------------------------------<
         public CameraBatch CameraBatchBattle => cameraBatchBattle;

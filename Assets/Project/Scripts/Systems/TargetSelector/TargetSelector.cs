@@ -290,11 +290,23 @@ namespace TheFowler
         {
             var list = new List<BattleActor>();
             if (BattleManager.CurrentBattle.abi != null)
-                list.Add(BattleManager.CurrentBattle.abi);
+            {
+                if(BattleManager.CurrentBattle.abi.isParticipant)
+                    list.Add(BattleManager.CurrentBattle.abi);
+            }
+
             if (BattleManager.CurrentBattle.phoebe != null)
-                list.Add(BattleManager.CurrentBattle.phoebe);
+            {
+                if(BattleManager.CurrentBattle.phoebe.isParticipant)
+                    list.Add(BattleManager.CurrentBattle.phoebe);
+            }
+
             if (BattleManager.CurrentBattle.robyn != null)
-                list.Add(BattleManager.CurrentBattle.robyn);
+            {
+                if(BattleManager.CurrentBattle.robyn.isParticipant)
+                    list.Add(BattleManager.CurrentBattle.robyn);
+            }
+
             return list.ToArray();
         }
         
