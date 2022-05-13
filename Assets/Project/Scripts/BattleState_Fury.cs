@@ -24,7 +24,8 @@ namespace TheFowler
             
             if(selectedActorForFury is AllyActor ally)
             {
-                ally.Health.Resurect(25f);
+                ally.resurector = BattleManager.CurrentBattleActor;
+                ally.mustResurect = true;
             }
 
             BattleManager.CurrentRound.OverrideTurn(selectedActorForFury);

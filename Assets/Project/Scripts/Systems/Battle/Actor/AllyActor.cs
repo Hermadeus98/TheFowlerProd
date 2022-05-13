@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using JetBrains.Annotations;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace TheFowler
@@ -14,6 +15,8 @@ namespace TheFowler
 
         private float turnTime = 0;
         [HideInInspector] public bool hasPunchline = false;
+
+        public BattleActor resurector;
         
         public override void OnTurnStart()
         {
@@ -92,6 +95,40 @@ namespace TheFowler
             SplitScreen.Instance.Hide();
             UIBattleBatch.Instance.Show();
             UIBattleBatch.SetUIGuardsVisibility(true);
+        }
+
+        [Button]
+        private void TestResurection()
+        {
+            mustResurect = true;
+            StartCoroutine(ResurectionCoroutine());
+        }
+
+        public IEnumerator ResurectionCoroutine()
+        {
+            if(!mustResurect)
+                yield break;
+            mustResurect = false;
+            
+            UIBattleBatch.Instance.Hide();
+            UIBattleBatch.SetUIGuardsVisibility(false);
+            
+            SplitScreen.Instance.Show(deathCamDown, resurector.CameraBatchBattle.CameraReferences["OnDeathJoking"].virtualCamera);
+            SplitScreen.Instance.SetBigCamera(resurector.CameraBatchBattle.CameraReferences["OnDeathJoking"].virtualCamera);
+
+            yield return new WaitForSeconds(.4f);
+
+            Health.Resurect(25f);
+            
+            SplitScreen.Instance.SetLittleCamera(deathCam);
+
+            yield return new WaitForSeconds(2.5f);
+            
+            SplitScreen.Instance.Hide();
+            UIBattleBatch.Instance.Show();
+            UIBattleBatch.SetUIGuardsVisibility(true);
+            
+            yield break;
         }
     }
 }
