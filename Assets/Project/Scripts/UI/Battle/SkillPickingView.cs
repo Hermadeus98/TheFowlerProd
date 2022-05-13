@@ -70,7 +70,7 @@ namespace TheFowler
 
             triangle.GetComponent<CanvasGroup>().alpha = 1;
 
-            //GetComponent<RectTransform>().anchoredPosition = basicPosition;
+            GetComponent<RectTransform>().anchoredPosition = basicPosition;
         }
 
         private void Update()
