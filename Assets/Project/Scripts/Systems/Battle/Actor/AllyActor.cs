@@ -116,6 +116,9 @@ namespace TheFowler
             SplitScreen.Instance.Show(deathCamDown, resurector.CameraBatchBattle.CameraReferences["OnDeathJoking"].virtualCamera);
             SplitScreen.Instance.SetBigCamera(resurector.CameraBatchBattle.CameraReferences["OnDeathJoking"].virtualCamera);
 
+            var data = punchline.ReferedPunchlinesData.GetRandom(PunchlineCallback.RECEIVING_REVIVE);
+            SplitScreen.Instance.SetPunchLine(data);
+            
             yield return new WaitForSeconds(.4f);
 
             Health.Resurect(25f);

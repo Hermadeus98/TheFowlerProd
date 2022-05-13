@@ -29,6 +29,17 @@ namespace TheFowler
             registerPunchlines.Add(PlayPunchlineIE(referedPunchlinesData.GetRandom(callback)));
         }
 
+        public void PlayWithoutCoroutine(PunchlineCallback callback, out PunchlineData data)
+        {
+            data = referedPunchlinesData.GetRandom(callback);
+            
+            if (punchlineIsPlaying || data == null)
+                return;
+            
+            if(data.audio != null)
+                SoundManager.PlaySound(data.audio, gameObject);
+        }
+
         IEnumerator PlayPunchlineIE(PunchlineData data)
         {
             if(data == null)
@@ -73,7 +84,8 @@ namespace TheFowler
         SKILL_EXECUTION,
         SKILL_PICKING,
         START_TURN,
-        DEATH
+        DEATH,
+        RECEIVING_REVIVE,
     }
 }
 
