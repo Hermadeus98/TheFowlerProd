@@ -43,6 +43,12 @@ namespace TheFowler
 
         IEnumerator OnStateEnterIE()
         {
+            if (BattleManager.CurrentBattleActor.mustResurect)
+            {
+                if(BattleManager.CurrentBattleActor is AllyActor allyActor)
+                    yield return allyActor.ResurectionCoroutine();
+            }
+            
             if (BattleManager.IsAllyTurn)
             {
                 SetCamera(CameraKeys.BattleKeys.ActionPicking);

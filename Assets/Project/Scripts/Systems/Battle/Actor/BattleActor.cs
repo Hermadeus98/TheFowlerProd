@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using Unity.RemoteConfig;
@@ -69,6 +70,8 @@ namespace TheFowler
         }
 
         public AllyData AllyData { get; set; }
+        
+        public bool mustResurect { get; set; }
 
         protected override void OnStart()
         {
@@ -386,6 +389,7 @@ namespace TheFowler
         {
             BattleActorAnimator.Resurect();
         }
+
 
         private void OnDisable()
         {
