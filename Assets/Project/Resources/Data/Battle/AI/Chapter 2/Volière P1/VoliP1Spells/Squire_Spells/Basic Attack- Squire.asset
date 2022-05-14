@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: 9th Chord
+  m_Name: Basic Attack- Squire
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -33,16 +33,37 @@ MonoBehaviour:
       Data: 1|TheFowler.DamageEffect, Assembly-CSharp
     - Name: TargetType
       Entry: 3
-      Data: 2
+      Data: 3
+    - Name: Emitter
+      Entry: 6
+      Data: 
+    - Name: Receivers
+      Entry: 6
+      Data: 
+    - Name: _damage
+      Entry: 4
+      Data: 0
+    - Name: _heal
+      Entry: 4
+      Data: 0
+    - Name: sprite
+      Entry: 6
+      Data: 
     - Name: ReferedSpell
       Entry: 10
       Data: 0
     - Name: rage
       Entry: 5
       Data: false
+    - Name: berserk
+      Entry: 5
+      Data: false
+    - Name: berserkDamage
+      Entry: 4
+      Data: 0
     - Name: damage
       Entry: 4
-      Data: 90
+      Data: 50
     - Name: 
       Entry: 8
       Data: 
@@ -52,14 +73,14 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: 9th Chord
+  SpellName: Basic Attack
   Cooldown: 0
   InitialCooldown: 0
   CurrentCooldown: 0
   logoBuff: {fileID: 0}
-  TargetType: 2
+  TargetType: 3
   SpellPower: 0
-  SpellDescription: Inflicts Medium DMG
+  SpellDescription: Inflict damages
   SpellType: 0
   sequenceBinding: 4
   sprite: {fileID: 0}
