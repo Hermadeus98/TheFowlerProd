@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: Weakening
+  m_Name: Spell3 - Masoshiste
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000}
-    - {fileID: 21300000, guid: 8823864dd44e8b74ab12d90e000b4346, type: 3}
+    - {fileID: 21300000, guid: e1dc38d38f709c9409f5bdb94cba3528, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -56,6 +56,12 @@ MonoBehaviour:
     - Name: rage
       Entry: 5
       Data: false
+    - Name: berserk
+      Entry: 5
+      Data: false
+    - Name: berserkDamage
+      Entry: 4
+      Data: 0
     - Name: damage
       Entry: 4
       Data: 150
@@ -64,10 +70,10 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 2|TheFowler.DefendEffect, Assembly-CSharp
+      Data: 2|TheFowler.DamageBonus, Assembly-CSharp
     - Name: TargetType
       Entry: 3
-      Data: 3
+      Data: 0
     - Name: Emitter
       Entry: 6
       Data: 
@@ -84,14 +90,23 @@ MonoBehaviour:
       Entry: 10
       Data: 1
     - Name: ReferedSpell
-      Entry: 10
-      Data: 0
+      Entry: 6
+      Data: 
     - Name: rage
       Entry: 5
       Data: false
-    - Name: bonusType
+    - Name: berserk
+      Entry: 5
+      Data: false
+    - Name: berserkDamage
+      Entry: 4
+      Data: 100
+    - Name: delay
+      Entry: 4
+      Data: 0
+    - Name: attackBonusType
       Entry: 3
-      Data: 1
+      Data: 0
     - Name: isAOE
       Entry: 5
       Data: false
@@ -104,14 +119,14 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Weakening
+  SpellName: Dual Vibration
   Cooldown: 0
   InitialCooldown: 0
   CurrentCooldown: 0
-  logoBuff: {fileID: 0}
-  TargetType: 1
+  logoBuff: {fileID: 21300000, guid: e1dc38d38f709c9409f5bdb94cba3528, type: 3}
+  TargetType: 3
   SpellPower: 0
-  SpellDescription: DMG + debuff Def
+  SpellDescription: Inflict damages and increase attack of the enemy
   SpellType: 0
   sequenceBinding: 4
   sprite: {fileID: 0}

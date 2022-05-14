@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: Fowler's General Motivation
+  m_Name: Spell2 - Lieutenant
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000}
-    - {fileID: 21300000, guid: e1dc38d38f709c9409f5bdb94cba3528, type: 3}
+    - {fileID: 21300000, guid: 18ed78826b6412648a570760367df479, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -31,10 +31,10 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.DamageEffect, Assembly-CSharp
+      Data: 1|TheFowler.HealEffect, Assembly-CSharp
     - Name: TargetType
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: Emitter
       Entry: 6
       Data: 
@@ -56,18 +56,24 @@ MonoBehaviour:
     - Name: rage
       Entry: 5
       Data: false
-    - Name: damage
+    - Name: berserk
+      Entry: 5
+      Data: false
+    - Name: berserkDamage
       Entry: 4
-      Data: 100
+      Data: 0
+    - Name: healValue
+      Entry: 4
+      Data: 200
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 2|TheFowler.DamageBonus, Assembly-CSharp
+      Data: 2|TheFowler.DefendEffect, Assembly-CSharp
     - Name: TargetType
       Entry: 3
-      Data: 2
+      Data: 1
     - Name: Emitter
       Entry: 6
       Data: 
@@ -84,15 +90,18 @@ MonoBehaviour:
       Entry: 10
       Data: 1
     - Name: ReferedSpell
-      Entry: 10
-      Data: 0
+      Entry: 6
+      Data: 
     - Name: rage
       Entry: 5
       Data: false
-    - Name: delay
+    - Name: berserk
+      Entry: 5
+      Data: false
+    - Name: berserkDamage
       Entry: 4
-      Data: 0
-    - Name: attackBonusType
+      Data: 100
+    - Name: bonusType
       Entry: 3
       Data: 0
     - Name: isAOE
@@ -107,14 +116,14 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Fowler's General Motivation
+  SpellName: Fowler's Benediction
   Cooldown: 0
   InitialCooldown: 0
   CurrentCooldown: 0
-  logoBuff: {fileID: 0}
-  TargetType: 4
+  logoBuff: {fileID: 21300000, guid: 18ed78826b6412648a570760367df479, type: 3}
+  TargetType: 1
   SpellPower: 0
-  SpellDescription: Buff Dmg
+  SpellDescription: Heal and increase enemy's defense
   SpellType: 0
   sequenceBinding: 4
   sprite: {fileID: 0}
