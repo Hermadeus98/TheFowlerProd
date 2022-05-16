@@ -14,7 +14,7 @@ namespace TheFowler
     public class SkillSelectorElement : UISelectorElement
     {
         [SerializeField, ReadOnly] public Spell referedSpell;
-        [SerializeField] private TextMeshProUGUI manaCostText;
+        public TextMeshProUGUI manaCostText;
         [SerializeField] private Image spellTypeIcon;
         [SerializeField] private SpellTypeDatabase SpellTypeDatabase;
 
