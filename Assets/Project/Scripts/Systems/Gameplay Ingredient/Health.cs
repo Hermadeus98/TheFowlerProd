@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Linq;
 using MoreMountains.Feedbacks;
 using QRCode.Utils;
@@ -6,6 +7,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using Random = UnityEngine.Random;
 
 namespace TheFowler
 {
@@ -93,6 +95,8 @@ namespace TheFowler
                 }
             }
 
+            StartCoroutine(AllyReaction());
+
             switch (result)
             {
                 case DamageCalculator.ResistanceFaiblesseResult.RESISTANCE:
@@ -121,6 +125,13 @@ namespace TheFowler
             ReferedActor.AllyData?.ShakeHearth();
 
             if (lifeTxt != null) lifeTxt.text = currentHealth.ToString();
+        }
+
+        IEnumerator AllyReaction()
+        {
+            
+            
+            yield break;
         }
 
         public void SetCurrentHealth(float value)
