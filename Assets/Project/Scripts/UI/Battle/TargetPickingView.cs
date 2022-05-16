@@ -38,6 +38,8 @@ namespace TheFowler
             
             move?.Kill();
             move = box.DOMoveX(-box.sizeDelta.x, .5f);
+
+            SkillSelectorElement.manaCostText.gameObject.SetActive(true);
         }
 
         public void Refresh(Spell spell)
@@ -47,6 +49,14 @@ namespace TheFowler
             SkillSelectorElement.Select();
             //SkillSelectorElement.Refresh(new WrapperArgs<SpellHandler.SpellHandled>(BattleManager.CurrentBattleActor.GetBattleComponent<SpellHandler>().GetSpellHandled(spell)));
             spellName.SetText(spell.SpellName);
+
+            if(spell.Cooldown <= 0)
+            {
+
+                SkillSelectorElement.manaCostText.gameObject.SetActive(false);
+            }
+
+
         }
     }
 }
