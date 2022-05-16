@@ -98,6 +98,12 @@ namespace TheFowler
                                 break;
                             case ActionPickerElement.PlayerActionType.SPELL:
                                 BattleManager.CurrentBattle.ChangeBattleState<BattleState_SkillPicking>(BattleStateEnum.SKILL_PICKING);
+
+                                if (!Tutoriel.hasSpell)
+                                {
+                                    Tutoriel.hasSpell = true;
+                                    UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.SPELL);
+                                }
                                 break;
                             case ActionPickerElement.PlayerActionType.PARRY:
                                 Player.SelectedSpell = BattleManager.CurrentBattleActor.BattleActorData.DefendSpell;
@@ -108,10 +114,17 @@ namespace TheFowler
                                             .TARGET_PICKING);
                                     skillPickingView.ReturnToActionMenu = true;
 
-                                   
+                                }
+
+                                if (!Tutoriel.hasQuickAttack)
+                                {
+                                    Tutoriel.hasQuickAttack = true;
+                                    UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.QUICKATTACK);
                                 }
                                 break;
                             case ActionPickerElement.PlayerActionType.ATTACK:
+
+
                                 Player.SelectedSpell = BattleManager.CurrentBattleActor.BattleActorData.BasicAttackSpell;
                                 {
                                     var skillPickingView =
@@ -119,6 +132,14 @@ namespace TheFowler
                                             .TARGET_PICKING);
                                     skillPickingView.ReturnToActionMenu = true;
                                 }
+
+
+                                if (!Tutoriel.hasBasicAttack)
+                                {
+                                    Tutoriel.hasBasicAttack = true;
+                                    UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.BASICATTACK);
+                                }
+
                                 break;
                             case ActionPickerElement.PlayerActionType.FURY:
                                 //Fury.BatonPass();

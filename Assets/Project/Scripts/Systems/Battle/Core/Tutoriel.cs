@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 namespace TheFowler
 {
     public static class Tutoriel
@@ -14,6 +14,11 @@ namespace TheFowler
         public static bool LockTarget = false;
         public static bool LockSkill = false;
 
+
+        public static bool hasBasicAttack = false;
+        public static bool hasSpell = false;
+        public static bool hasQuickAttack = false;
+        public static bool hasBreakdown = false;
         public static void Kill()
         {
             isTutoriel = false;
@@ -24,6 +29,8 @@ namespace TheFowler
             LockTarget = false;
             LockSkill = false;
         }
+
+        
     }
 }
 

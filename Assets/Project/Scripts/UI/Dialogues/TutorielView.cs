@@ -15,10 +15,14 @@ namespace TheFowler
     {
 
         [TabGroup("References"), SerializeField] private MMFeedbacks feedbackIn, feedbackOut;
+        [TabGroup("References"), SerializeField] private PlayerInput playerInput;
+        [TabGroup("References"), SerializeField] private CanvasGroup battleUI;
         [TabGroup("Panels"), SerializeField] private CanvasGroup basicAttack, basicAttack2, spell, types, fury, target, buff, parry, heal, done;
+        [TabGroup("Tutoriel"), SerializeField] private TutorielElement _basicAttack, _spell, _quickAttack, _breakdown;
         [TabGroup("References"), SerializeField] private AK.Wwise.Event tutoOn, tutoOff;
 
         private CanvasGroup currentPanel;
+        private TutorielElement currentElement;
 
 
         private bool isShowed = false;
@@ -27,6 +31,7 @@ namespace TheFowler
             base.Refresh(args);
         }
 
+        [Button]
         public override void Show()
         {
             base.Show();
@@ -36,8 +41,45 @@ namespace TheFowler
                 feedbackIn.PlayFeedbacks();
                 isShowed = true;
                 tutoOn.Post(gameObject);
+
+                if (VolumesManager.Instance != null)
+                    VolumesManager.Instance.BlurryUI.enabled = true;
+
+                battleUI.alpha = 0;
             }
 
+            if(BattleManager.CurrentBattle!= null)
+            {
+                BattleManager.CurrentBattle.Inputs.enabled = false;
+            }
+
+
+            playerInput.enabled = true;
+        }
+
+        private void Update()
+        {
+            if (isActive)
+            {
+                if (playerInput.actions["Confirm"].WasPressedThisFrame())
+                {
+                    
+                    if (currentElement!=null && currentElement.nextElement != null)
+                    {
+                        currentElement.canvasGroup.alpha = 0;
+                        currentElement.End();
+                        currentElement.nextElement.canvasGroup.DOFade(1, .2f).OnComplete(() => playerInput.enabled = true);
+                        currentElement.nextElement.Initialize();
+
+                        currentElement = currentElement.nextElement;
+                    }
+                    else
+                    {
+                        FadeAllCanvasGroup();
+                    }
+                    
+                }
+            }
         }
 
         public  void Show(PanelTutoriel panel)
@@ -93,8 +135,37 @@ namespace TheFowler
 
         }
 
+        public void Show(TutorielEnum panel)
+        {
+            FadeAllCanvasGroup();
+
+            
+
+            switch (panel)
+            {
+                case TutorielEnum.BASICATTACK:
+                    currentElement = _basicAttack;
+                    break;
+                case TutorielEnum.SPELL:
+                    currentElement = _spell;
+                    break;
+                case TutorielEnum.QUICKATTACK:
+                    currentElement = _quickAttack;
+                    break;
+                case TutorielEnum.BREAKDOWN:
+                    currentElement = _breakdown;
+                    break;
+            }
+
+            currentElement.canvasGroup.DOFade(1, .2f).OnComplete(() => playerInput.enabled = true);
+            currentElement.Initialize();
+
+            Show();
+        }
+
         private void FadeAllCanvasGroup()
         {
+
             basicAttack.alpha = 0;
             basicAttack2.alpha = 0;
             spell.alpha = 0;
@@ -105,6 +176,19 @@ namespace TheFowler
             parry.alpha = 0;
             heal.alpha = 0;
             done.alpha = 0;
+
+            if(currentElement != null)
+            {
+                currentElement.canvasGroup.alpha = 0;
+                currentElement.End();
+
+            }
+
+
+
+
+            Hide();
+            
         }
 
         public override void Hide()
@@ -114,10 +198,31 @@ namespace TheFowler
             {
                 feedbackOut.PlayFeedbacks();
                 isShowed = false;
-                currentPanel.alpha = 0;
+                //currentPanel.alpha = 0;
                 tutoOff.Post(gameObject);
+
+                if (VolumesManager.Instance != null)
+                    VolumesManager.Instance.BlurryUI.enabled = false;
+
+                battleUI.alpha = 1;
+                currentElement = null;
+
+                if (BattleManager.CurrentBattle != null)
+                {
+                    BattleManager.CurrentBattle.Inputs.enabled = true;
+                }
+
+                playerInput.enabled = false;
             }
         }
+    }
+
+    public enum TutorielEnum
+    {
+        BASICATTACK,
+        SPELL,
+        QUICKATTACK,
+        BREAKDOWN
     }
 }
 

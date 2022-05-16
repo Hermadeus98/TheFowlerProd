@@ -47,7 +47,8 @@ namespace TheFowler
         private Istate[] battleStates;
 
         [TabGroup("References")] public CameraBatch BattleCameraBatch;
-        
+        [TabGroup("References")] public PlayerInput Inputs;
+
         [TabGroup("Debug")] [SerializeField] private bool finishDirectly = false;
         [TabGroup("Debug")]
         [SerializeField, ReadOnly] private List<BattleActor> allies = new List<BattleActor>();
