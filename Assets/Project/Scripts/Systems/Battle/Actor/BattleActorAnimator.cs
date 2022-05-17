@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -27,10 +28,17 @@ namespace TheFowler
         
         private const string DeathName = "Death";
         private static readonly int DeathTrigger = Animator.StringToHash(DeathName);
+        
+        [CanBeNull] private const string SpellExecution1Name= "SpellExecution1";
+        private static readonly int SpellExecution1Trigger = Animator.StringToHash(SpellExecution1Name);
 
         private void ResetTriggers()
         {
             Animator.ResetTrigger(DefendTrigger);
+            Animator.ResetTrigger(ResurectTrigger);
+            Animator.ResetTrigger(HitTrigger);
+            Animator.ResetTrigger(DeathTrigger);
+            Animator.ResetTrigger(SpellExecution1Trigger);
         }
 
         [Button]
@@ -95,6 +103,18 @@ namespace TheFowler
         {
             ResetTriggers();
             Animator.SetTrigger(HitTrigger);
+        }
+
+        public void SpellExecution1()
+        {
+            ResetTriggers();
+            Animator.SetTrigger(SpellExecution1Trigger);
+        }
+
+        public float GetCurrentClipDuration()
+        {
+            var currentClip = Animator.GetCurrentAnimatorClipInfo(0)[0];
+            return currentClip.clip.length;
         }
     }
 }

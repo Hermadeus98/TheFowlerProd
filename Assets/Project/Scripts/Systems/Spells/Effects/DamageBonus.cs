@@ -26,45 +26,22 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-            yield return new WaitForSeconds(SpellData.Instance.StateEffect_WaitTime);
-            
             if (TargetType == TargetTypeEnum.SELF)
             {
-                if (emitter is AllyActor)
+                yield return StateEvent(emitter, receivers, (actor, battleActor) =>
                 {
-                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies");
-                }
-                else if(emitter is EnemyActor)
-                {
-                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Enemies");
-                }
-                
-                yield return new WaitForSeconds(SpellData.Instance.StateEffect_WaitTime);
-                
-                var buff = emitter.GetBattleComponent<Buff>();
-                Apply(buff);
+                    var buff = emitter.GetBattleComponent<Buff>();
+                    Apply(buff);
+                });
             }
             else
             {
-                foreach (var receiver in receivers)
+                yield return StateEvent(emitter, receivers, (actor, battleActor) =>
                 {
-                    if (receiver is AllyActor)
-                    {
-                        CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies");
-                    }
-                    else if(receiver is EnemyActor)
-                    {
-                        CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Enemies");
-                    }
-                
-                    yield return new WaitForSeconds(SpellData.Instance.StateEffect_WaitTime);
-                    
-                    var buff = receiver.GetBattleComponent<Buff>();
+                    var buff = battleActor.GetBattleComponent<Buff>();
                     Apply(buff);
-                }
+                });
             }
-            
-            yield return new WaitForSeconds(1f);
 
             yield break;
         }

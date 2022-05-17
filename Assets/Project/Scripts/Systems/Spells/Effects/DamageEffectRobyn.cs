@@ -14,6 +14,16 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
+            yield return base.OnCast(emitter, receivers);
+        }
+
+        public override IEnumerator OnFinishCast(BattleActor emitter, BattleActor[] receivers)
+        {
+            yield break;
+        }
+
+        protected override IEnumerator DamageExecution(BattleActor emitter, BattleActor[] receivers)
+        {
             for (int i = 0; i < receivers.Length; i++)
             {
                 var attackEffect = GameObject.Instantiate(SpellData.Instance.Robyn_VisualEffect_BasicAttack_BirdFalling, receivers[i].transform.position, Quaternion.identity);
@@ -33,11 +43,6 @@ namespace TheFowler
             }
             
             Damage(damage, emitter, receivers);
-            yield break;
-        }
-
-        public override IEnumerator OnFinishCast(BattleActor emitter, BattleActor[] receivers)
-        {
             yield break;
         }
     }
