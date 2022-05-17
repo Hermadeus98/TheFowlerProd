@@ -19,6 +19,7 @@ namespace TheFowler
         public static bool hasSpell = false;
         public static bool hasQuickAttack = false;
         public static bool hasBreakdown = false;
+        public static bool hasProgression = false;
         public static void Kill()
         {
             isTutoriel = false;
@@ -28,6 +29,15 @@ namespace TheFowler
             Parry = false;
             LockTarget = false;
             LockSkill = false;
+        }
+
+        public static void SkipTuto()
+        {
+            hasBasicAttack = true;
+            hasSpell = true;
+            hasQuickAttack = true;
+            hasBreakdown = true;
+            hasProgression = true;
         }
 
         
