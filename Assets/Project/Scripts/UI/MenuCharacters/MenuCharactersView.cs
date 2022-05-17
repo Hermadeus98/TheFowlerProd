@@ -9,7 +9,7 @@ namespace TheFowler
         [SerializeField] InitiativeView initiativeView; 
         [SerializeField] SkillTreeView skillTreeView;
         [SerializeField] GameObject firstSelectedObject, background, confirmation;
-        [SerializeField] UnityEngine.InputSystem.PlayerInput Inputs;
+        [SerializeField] public UnityEngine.InputSystem.PlayerInput Inputs;
         private Battle battle;
         public bool onMenu;
 
@@ -45,6 +45,13 @@ namespace TheFowler
             infoButtons[1] = InfoBoxButtons.CLOSE;
 
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+
+            if (!Tutoriel.hasProgression)
+            {
+                Tutoriel.hasProgression = true;
+                UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.PROGRESSION);
+
+            }
 
         }
 
