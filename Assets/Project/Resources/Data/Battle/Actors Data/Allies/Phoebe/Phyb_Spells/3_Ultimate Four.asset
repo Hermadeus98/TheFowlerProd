@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: Basic Attack - Reducer
+  m_Name: 3_Ultimate Four
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 11400000}
+    - {fileID: 21300000, guid: 14f5732eda60b9c4f997c89c8d8ae9b2, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -26,13 +28,13 @@ MonoBehaviour:
       Data: 0|TheFowler.Effect[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.DamageEffectGuard, Assembly-CSharp
+      Data: 1|TheFowler.DamageEffect, Assembly-CSharp
     - Name: TargetType
       Entry: 3
-      Data: 3
+      Data: 2
     - Name: Emitter
       Entry: 6
       Data: 
@@ -49,6 +51,48 @@ MonoBehaviour:
       Entry: 6
       Data: 
     - Name: ReferedSpell
+      Entry: 10
+      Data: 0
+    - Name: rage
+      Entry: 5
+      Data: false
+    - Name: berserk
+      Entry: 5
+      Data: false
+    - Name: vampirisme
+      Entry: 5
+      Data: false
+    - Name: berserkDamage
+      Entry: 4
+      Data: 0
+    - Name: damage
+      Entry: 4
+      Data: 200
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|TheFowler.DefendEffect, Assembly-CSharp
+    - Name: TargetType
+      Entry: 3
+      Data: 2
+    - Name: Emitter
+      Entry: 6
+      Data: 
+    - Name: Receivers
+      Entry: 6
+      Data: 
+    - Name: _damage
+      Entry: 4
+      Data: 0
+    - Name: _heal
+      Entry: 4
+      Data: 0
+    - Name: sprite
+      Entry: 10
+      Data: 1
+    - Name: ReferedSpell
       Entry: 6
       Data: 
     - Name: rage
@@ -63,9 +107,12 @@ MonoBehaviour:
     - Name: berserkDamage
       Entry: 4
       Data: 100
-    - Name: damage
-      Entry: 4
-      Data: 150
+    - Name: bonusType
+      Entry: 3
+      Data: 1
+    - Name: isAOE
+      Entry: 5
+      Data: true
     - Name: 
       Entry: 8
       Data: 
@@ -75,17 +122,17 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Basic Attack - Reducer
-  Cooldown: 0
-  InitialCooldown: 0
+  SpellName: Ultimate Four
+  Cooldown: 5
+  InitialCooldown: 5
   CurrentCooldown: 0
-  logoBuff: {fileID: 0}
-  TargetType: 3
-  SpellPower: 0
-  SpellDescription: Inflict damages
-  SpellType: 0
+  logoBuff: {fileID: 21300000, guid: 14f5732eda60b9c4f997c89c8d8ae9b2, type: 3}
+  TargetType: 2
+  SpellPower: 3
+  SpellDescription: Inflict heavy damages, and reduce enemy's defensive
+  SpellType: 1
   sequenceBinding: 1
-  sprite: {fileID: 0}
-  spellState: 0
-  unlockOrder: 0
+  sprite: {fileID: 21300000, guid: bd246e79a098bf945be1dfe1538e0f48, type: 3}
+  spellState: 2
+  unlockOrder: 3
   isRechargingCooldown: 0

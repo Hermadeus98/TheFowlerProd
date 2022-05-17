@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: X_Sacrifice
+  m_Name: 2_Amped up Slap
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000}
+    - {fileID: 21300000, guid: 7377439f696090a40b20811d6da6b911, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -27,13 +28,13 @@ MonoBehaviour:
       Data: 0|TheFowler.Effect[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 2
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.HealEffect, Assembly-CSharp
+      Data: 1|TheFowler.DamageEffect, Assembly-CSharp
     - Name: TargetType
       Entry: 3
-      Data: 3
+      Data: 1
     - Name: Emitter
       Entry: 6
       Data: 
@@ -58,87 +59,54 @@ MonoBehaviour:
     - Name: berserk
       Entry: 5
       Data: false
-    - Name: healValue
-      Entry: 4
-      Data: 250
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 2|TheFowler.DamageBonus, Assembly-CSharp
-    - Name: TargetType
-      Entry: 3
-      Data: 3
-    - Name: Emitter
-      Entry: 6
-      Data: 
-    - Name: Receivers
-      Entry: 6
-      Data: 
-    - Name: _damage
-      Entry: 4
-      Data: 0
-    - Name: _heal
-      Entry: 4
-      Data: 0
-    - Name: sprite
-      Entry: 6
-      Data: 
-    - Name: ReferedSpell
-      Entry: 10
-      Data: 0
-    - Name: rage
+    - Name: vampirisme
       Entry: 5
       Data: false
-    - Name: berserk
-      Entry: 5
-      Data: false
-    - Name: delay
+    - Name: berserkDamage
       Entry: 4
       Data: 0
-    - Name: attackBonusType
-      Entry: 3
-      Data: 0
-    - Name: isAOE
-      Entry: 5
-      Data: false
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 3|TheFowler.DamageEffect, Assembly-CSharp
-    - Name: TargetType
-      Entry: 3
-      Data: 0
-    - Name: Emitter
-      Entry: 6
-      Data: 
-    - Name: Receivers
-      Entry: 6
-      Data: 
-    - Name: _damage
-      Entry: 4
-      Data: 0
-    - Name: _heal
-      Entry: 4
-      Data: 0
-    - Name: sprite
-      Entry: 6
-      Data: 
-    - Name: ReferedSpell
-      Entry: 10
-      Data: 0
-    - Name: rage
-      Entry: 5
-      Data: false
-    - Name: berserk
-      Entry: 5
-      Data: false
     - Name: damage
       Entry: 4
-      Data: 200
+      Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|TheFowler.DecreaseCD, Assembly-CSharp
+    - Name: TargetType
+      Entry: 3
+      Data: 0
+    - Name: Emitter
+      Entry: 6
+      Data: 
+    - Name: Receivers
+      Entry: 6
+      Data: 
+    - Name: _damage
+      Entry: 4
+      Data: 0
+    - Name: _heal
+      Entry: 4
+      Data: 0
+    - Name: sprite
+      Entry: 10
+      Data: 1
+    - Name: ReferedSpell
+      Entry: 6
+      Data: 
+    - Name: rage
+      Entry: 5
+      Data: false
+    - Name: berserk
+      Entry: 5
+      Data: false
+    - Name: vampirisme
+      Entry: 5
+      Data: false
+    - Name: berserkDamage
+      Entry: 4
+      Data: 100
     - Name: 
       Entry: 8
       Data: 
@@ -148,18 +116,17 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Sacrifice
-  Cooldown: 2
-  InitialCooldown: 2
+  SpellName: Amped up Slap
+  Cooldown: 3
+  InitialCooldown: 4
   CurrentCooldown: 0
-  logoBuff: {fileID: 21300000, guid: e1dc38d38f709c9409f5bdb94cba3528, type: 3}
-  TargetType: 3
+  logoBuff: {fileID: 21300000, guid: 7377439f696090a40b20811d6da6b911, type: 3}
+  TargetType: 1
   SpellPower: 2
-  SpellDescription: Medium Heal and increase Dmg of an Ally, Phoebe is hurt by the
-    effect
-  SpellType: 2
-  sequenceBinding: 3
+  SpellDescription: Inflict medium damages to an enemy, and reducing Phoebe's cooldowns
+  SpellType: 3
+  sequenceBinding: 1
   sprite: {fileID: 21300000, guid: bd246e79a098bf945be1dfe1538e0f48, type: 3}
   spellState: 2
-  unlockOrder: 5
+  unlockOrder: 2
   isRechargingCooldown: 0
