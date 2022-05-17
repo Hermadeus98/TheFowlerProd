@@ -16,32 +16,10 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-            //Anim
-
-            if (emitter == BattleManager.CurrentBattle.abi)
+            yield return StateEvent(emitter, receivers, delegate(BattleActor emitter, BattleActor receiver)
             {
-                emitter.punchline.PlayPunchline(PunchlineCallback.HEALING);
-            }
-            
-            yield return new WaitForSeconds(SpellData.Instance.StateEffect_WaitTime);
-            
-            foreach (var receiver in receivers)
-            {
-                if (receiver is AllyActor)
-                {
-                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies");
-                }
-                else if(receiver is EnemyActor)
-                {
-                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Enemies");
-                }
-                
-                yield return new WaitForSeconds(SpellData.Instance.StateEffect_WaitTime);
-                
                 receiver.Health.Heal(healValue);
-                
-                yield return new WaitForSeconds(1f);
-            }
+            });
             
             yield break;
         }

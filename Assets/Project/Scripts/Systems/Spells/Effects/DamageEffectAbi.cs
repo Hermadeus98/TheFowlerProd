@@ -8,6 +8,11 @@ namespace TheFowler
     {
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
+            yield return base.OnCast(emitter, receivers);
+        }
+
+        protected override IEnumerator DamageExecution(BattleActor emitter, BattleActor[] receivers)
+        {
             for (int i = 0; i < receivers.Length; i++)
             {
                 var trail = GameObject.Instantiate(SpellData.Instance.Abi_PS_BasicAttack_Trail, emitter.transform.position, Quaternion.identity);

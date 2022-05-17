@@ -11,6 +11,16 @@ namespace TheFowler
     {
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
+            yield return base.OnCast(emitter, receivers);
+        }
+
+        private void InstantiateProjectile(BattleActor emitter, BattleActor receiver)
+        {
+            //var projectile = GameObject.Instantiate(SpellData.Instance.Guard_PS_BasicAttack_Projectile, )
+        }
+
+        protected override IEnumerator DamageExecution(BattleActor emitter, BattleActor[] receivers)
+        {
             foreach (var r in receivers)
             {
                 CameraManager.Instance.SetCamera(r.CameraBatchBattle, "OnBasicAttack");
@@ -30,11 +40,6 @@ namespace TheFowler
             }
 
             yield return new WaitForSeconds(SpellData.Instance.Guard_Timer_BasicAttack_ImpactDuration);
-        }
-
-        private void InstantiateProjectile(BattleActor emitter, BattleActor receiver)
-        {
-            //var projectile = GameObject.Instantiate(SpellData.Instance.Guard_PS_BasicAttack_Projectile, )
         }
     }
 }

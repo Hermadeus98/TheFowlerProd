@@ -52,11 +52,7 @@ namespace TheFowler
     public enum SequenceEnum
     {
         NULL,
-        ROBYN_BASIC_ATTACK,
-        ABY_BASIC_ATTACK,
-        PHOEBE_BASIC_ATTACK,
-        ENEMY_BASIC_ATTACK,
-        
-        ROBYN_ATTACK_FINISHER,
+        DAMAGE,
+        HEAL
     }
 }

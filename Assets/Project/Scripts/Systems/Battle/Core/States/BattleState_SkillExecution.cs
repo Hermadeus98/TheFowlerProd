@@ -40,7 +40,7 @@ namespace TheFowler
                         var actor = BattleManager.CurrentBattleActor;
                         
                         //actor.Mana.RemoveMana(Player.SelectedSpell.ManaCost);
-                        actor.GetBattleComponent<SpellHandler>().ApplyCooldown(Player.SelectedSpell);
+                        /*actor.GetBattleComponent<SpellHandler>().ApplyCooldown(Player.SelectedSpell);
 
                         if (Player.SelectedSpell.sequenceBinding != SequenceEnum.NULL)
                         {
@@ -65,14 +65,18 @@ namespace TheFowler
                             }
                             
                             BattleManager.CurrentBattle.TurnSystem.NextTurn();
-                            yield break;
-                        }
-                        else
-                        {
+                            yield break;*/
+                        
                             yield return Player.SelectedSpell.Cast(actor, TargetSelector.SelectedTargets.ToArray());
-                        }
-                    }    
-                }
+                            BattleManager.CurrentBattle.TurnSystem.NextTurn();
+                            yield break;
+                    }
+                    else
+                    {
+                        yield return Player.SelectedSpell.Cast(BattleManager.CurrentBattleActor, TargetSelector.SelectedTargets.ToArray());
+                    }
+                }    
+                
                 else if (BattleManager.IsEnemyTurn)
                 {
                     if (!BattleManager.lastTurnWasEnemiesTurn)
@@ -99,33 +103,31 @@ namespace TheFowler
                             spellBox.Show();
                             spellBox.Refresh(enemyActor.AI.SelectedSpell);
 
-                            var action = enemyActor.SignalReceiver_CastSpell.GetReaction(enemyActor.SignalAsset_CastSpell);
+                            /*var action = enemyActor.SignalReceiver_CastSpell.GetReaction(enemyActor.SignalAsset_CastSpell);
                             action.AddListener(delegate
                             {
                                 StartCoroutine(enemyActor.AI.SelectedSpell.Cast(enemyActor,
                                     TargetSelector.SelectedTargets.ToArray()));
-                            });
+                            });*/
 
-                            var sequence = enemyActor.SequenceHandler.GetSequence(enemyActor.AI.SelectedSpell.sequenceBinding);
+                            //var sequence = enemyActor.SequenceHandler.GetSequence(enemyActor.AI.SelectedSpell.sequenceBinding);
 
-                            if (sequence == null)
+                            /*if (sequence == null)
                             {
                                 Debug.LogError($"SEQUENCE \"{enemyActor.AI.SelectedSpell.sequenceBinding }\" IS MISSING FOR {enemyActor.name}", enemyActor.AI.SelectedSpell);
                                 BattleManager.CurrentBattle.TurnSystem.NextTurn();
                                 yield break;
-                            };
+                            };*/
 
-                            sequence.Play();
-                            yield return new WaitForSeconds((float)sequence.duration);
+                            //sequence.Play();
+                            //yield return new WaitForSeconds((float)sequence.duration);
                             
-                            action.RemoveAllListeners();
+                            //action.RemoveAllListeners();
 
-                            /*yield return enemyActor.AI.SelectedSpell.Cast(enemyActor,
-                                TargetSelector.SelectedTargets.ToArray());*/
-
+                            yield return enemyActor.AI.SelectedSpell.Cast(enemyActor,
+                                TargetSelector.SelectedTargets.ToArray());
                         }
                     }
-
                 }
 
                 yield return new WaitForSeconds(.5f);

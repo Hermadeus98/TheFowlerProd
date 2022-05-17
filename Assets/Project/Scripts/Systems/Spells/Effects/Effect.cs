@@ -129,5 +129,50 @@ namespace TheFowler
                 ApplyDamage(berserkDamage, emitter, emitter, berserk);
             }
         }
+
+        protected IEnumerator StateEvent(BattleActor emitter, BattleActor[] receivers, Action<BattleActor, BattleActor> stateEvent)
+        {
+            if (TargetType == TargetTypeEnum.SELF)
+                receivers = new[] {emitter};
+            
+            if (emitter is AllyActor)
+            {
+                CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies");
+            }
+            else if(emitter is EnemyActor)
+            {
+                CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Enemies");
+            }
+            
+            emitter.BattleActorAnimator.SpellExecution1();
+            
+            if (emitter == BattleManager.CurrentBattle.abi)
+            {
+                emitter.punchline.PlayPunchline(PunchlineCallback.HEALING);
+            }
+
+            yield return new WaitForSeconds(SpellData.Instance.StateEffect_WaitTime);
+
+            foreach (var receiver in receivers)
+            {
+                if (receiver is AllyActor)
+                {
+                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies");
+                }
+                else if(receiver is EnemyActor)
+                {
+                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Enemies");
+                }
+                
+                yield return new WaitForSeconds(SpellData.Instance.StateEffect_WaitTime);
+                
+                stateEvent.Invoke(emitter, receiver);
+                
+                yield return new WaitForSeconds(1f);
+            }
+            
+            //yield return new WaitForSeconds(emitter.BattleActorAnimator.GetCurrentClipDuration() / 2f);
+            yield return new WaitForSeconds(2f);
+        }
     }
 }
