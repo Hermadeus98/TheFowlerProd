@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: X_Aby's Rythm
+  m_Name: 2_Amped up Rims
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000}
+    - {fileID: 21300000, guid: 7377439f696090a40b20811d6da6b911, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -27,13 +28,13 @@ MonoBehaviour:
       Data: 0|TheFowler.Effect[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 1|TheFowler.HealEffect, Assembly-CSharp
     - Name: TargetType
       Entry: 3
-      Data: 3
+      Data: 4
     - Name: Emitter
       Entry: 6
       Data: 
@@ -54,13 +55,58 @@ MonoBehaviour:
       Data: 0
     - Name: rage
       Entry: 5
-      Data: true
+      Data: false
     - Name: berserk
       Entry: 5
       Data: false
+    - Name: vampirisme
+      Entry: 5
+      Data: false
+    - Name: berserkDamage
+      Entry: 4
+      Data: 0
     - Name: healValue
       Entry: 4
-      Data: 250
+      Data: 125
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|TheFowler.DecreaseCD, Assembly-CSharp
+    - Name: TargetType
+      Entry: 3
+      Data: 3
+    - Name: Emitter
+      Entry: 6
+      Data: 
+    - Name: Receivers
+      Entry: 6
+      Data: 
+    - Name: _damage
+      Entry: 4
+      Data: 0
+    - Name: _heal
+      Entry: 4
+      Data: 0
+    - Name: sprite
+      Entry: 10
+      Data: 1
+    - Name: ReferedSpell
+      Entry: 6
+      Data: 
+    - Name: rage
+      Entry: 5
+      Data: false
+    - Name: berserk
+      Entry: 5
+      Data: false
+    - Name: vampirisme
+      Entry: 5
+      Data: false
+    - Name: berserkDamage
+      Entry: 4
+      Data: 100
     - Name: 
       Entry: 8
       Data: 
@@ -70,17 +116,17 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Aby's Rythm
-  Cooldown: 5
-  InitialCooldown: 5
+  SpellName: Amped up Rims
+  Cooldown: 4
+  InitialCooldown: 4
   CurrentCooldown: 0
   logoBuff: {fileID: 21300000, guid: 7377439f696090a40b20811d6da6b911, type: 3}
-  TargetType: 3
+  TargetType: 4
   SpellPower: 1
-  SpellDescription: Heal an ally and reduce her cooldowns cost
+  SpellDescription: Light Heal to all allies and encrease them attack
   SpellType: 0
   sequenceBinding: 2
   sprite: {fileID: 21300000, guid: f5cb5b9ebeff8634fb6ef8f940012401, type: 3}
-  spellState: 3
-  unlockOrder: 5
+  spellState: 2
+  unlockOrder: 2
   isRechargingCooldown: 0
