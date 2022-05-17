@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: 0_Deafening Bass
+  m_Name: 2_Rythmic Knockout
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 21300000, guid: e57a45eb57142034c837d8f80d05dbf5, type: 3}
     - {fileID: 11400000}
+    - {fileID: 21300000, guid: 14f5732eda60b9c4f997c89c8d8ae9b2, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -31,10 +31,10 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.DamageEffect, Assembly-CSharp
+      Data: 1|TheFowler.DamageEffectRobyn, Assembly-CSharp
     - Name: TargetType
       Entry: 3
-      Data: 1
+      Data: 2
     - Name: Emitter
       Entry: 6
       Data: 
@@ -48,11 +48,11 @@ MonoBehaviour:
       Entry: 4
       Data: 0
     - Name: sprite
-      Entry: 10
-      Data: 0
+      Entry: 6
+      Data: 
     - Name: ReferedSpell
       Entry: 10
-      Data: 1
+      Data: 0
     - Name: rage
       Entry: 5
       Data: false
@@ -73,10 +73,10 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 2|TheFowler.TauntEffect, Assembly-CSharp
+      Data: 2|TheFowler.DefendEffect, Assembly-CSharp
     - Name: TargetType
       Entry: 3
-      Data: 1
+      Data: 2
     - Name: Emitter
       Entry: 6
       Data: 
@@ -90,11 +90,11 @@ MonoBehaviour:
       Entry: 4
       Data: 0
     - Name: sprite
-      Entry: 6
-      Data: 
-    - Name: ReferedSpell
       Entry: 10
       Data: 1
+    - Name: ReferedSpell
+      Entry: 10
+      Data: 0
     - Name: rage
       Entry: 5
       Data: false
@@ -106,10 +106,13 @@ MonoBehaviour:
       Data: false
     - Name: berserkDamage
       Entry: 4
-      Data: 0
-    - Name: turnDuration
+      Data: 100
+    - Name: bonusType
       Entry: 3
-      Data: 2
+      Data: 1
+    - Name: isAOE
+      Entry: 5
+      Data: true
     - Name: 
       Entry: 8
       Data: 
@@ -119,17 +122,17 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Deafening Bass
-  Cooldown: 2
-  InitialCooldown: 2
+  SpellName: Rythmic Knockout
+  Cooldown: 4
+  InitialCooldown: 4
   CurrentCooldown: 0
-  logoBuff: {fileID: 21300000, guid: e57a45eb57142034c837d8f80d05dbf5, type: 3}
-  TargetType: 1
+  logoBuff: {fileID: 21300000, guid: 14f5732eda60b9c4f997c89c8d8ae9b2, type: 3}
+  TargetType: 2
   SpellPower: 2
-  SpellDescription: Inflict medium damages and forces the target to attack Phoebe
-  SpellType: 0
+  SpellDescription: Inflict medium damages to all enemies and reduce them defense
+  SpellType: 3
   sequenceBinding: 1
-  sprite: {fileID: 21300000, guid: bd246e79a098bf945be1dfe1538e0f48, type: 3}
-  spellState: 3
-  unlockOrder: 0
+  sprite: {fileID: 21300000, guid: 435c8350319bead4abe311c6efd4e27f, type: 3}
+  spellState: 0
+  unlockOrder: 2
   isRechargingCooldown: 0
