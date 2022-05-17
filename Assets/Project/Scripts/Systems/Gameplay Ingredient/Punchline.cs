@@ -86,6 +86,15 @@ namespace TheFowler
         START_TURN,
         DEATH,
         RECEIVING_REVIVE,
+        REACT_TO_PHOEBE_PHOEBE,
+        REACT_TO_PHOEBE_ABI,
+        REACT_TO_PHOEBE_ROBYN,
+        REACT_TO_ABI_PHOEBE,
+        REACT_TO_ABI_ABI,
+        REACT_TO_ABI_ROBYN,
+        REACT_TO_ROBYN_PHOEBE,
+        REACT_TO_ROBYN_ABI,
+        REACT_TO_ROBYN_ROBYN,
     }
 }
 
