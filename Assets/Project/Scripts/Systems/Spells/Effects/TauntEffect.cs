@@ -18,12 +18,15 @@ namespace TheFowler
         {
             //emitter.BattleActorAnimator.AttackCast();
 
-            if (emitter == BattleManager.CurrentBattle.phoebe)
+            yield return StateEvent(emitter, receivers, delegate(BattleActor actor, BattleActor battleActor)
             {
-                emitter.punchline.PlayPunchline(PunchlineCallback.TAUNT);
-            }
-            
-            receivers.ForEach(w => w.GetBattleComponent<Taunt>().TauntActor(turnDuration, emitter));
+                if (emitter == BattleManager.CurrentBattle.phoebe)
+                {
+                    emitter.punchline.PlayPunchline(PunchlineCallback.TAUNT);
+                }
+
+                battleActor.GetBattleComponent<Taunt>().TauntActor(turnDuration, emitter);
+            }, true, false);
             yield break;
         }
 
