@@ -9,6 +9,7 @@ namespace TheFowler
     public class VolumesManager : MonoBehaviourSingleton<VolumesManager>
     {
         public Volume BlurryUI;
+        public Volume TutoVolume;
 
     }
 

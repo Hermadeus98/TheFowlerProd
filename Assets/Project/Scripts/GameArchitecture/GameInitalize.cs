@@ -28,7 +28,9 @@ namespace TheFowler
         private bool loadMainMenu;
         [TitleGroup("Settings")] [SerializeField]
         private bool loadBattles;
-
+        [TitleGroup("Settings")]
+        [SerializeField]
+        public bool SkipTuto;
         
         [TitleGroup("Difficulty Settings")] [SerializeField]
         private DifficultyEnum startDifficulty = DifficultyEnum.TEST;
@@ -82,6 +84,11 @@ namespace TheFowler
             {
                 GameState.gameArguments.noloadingChapter = true;
                 Player.Initialize();
+            }
+
+            if (SkipTuto)
+            {
+                Tutoriel.SkipTuto();
             }
         }
     }

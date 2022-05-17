@@ -16,9 +16,9 @@ namespace TheFowler
 
         [TabGroup("References"), SerializeField] private MMFeedbacks feedbackIn, feedbackOut;
         [TabGroup("References"), SerializeField] private PlayerInput playerInput;
-        [TabGroup("References"), SerializeField] private CanvasGroup battleUI;
+        [TabGroup("References"), SerializeField] private CanvasGroup battleUI, menuCharacters;
         [TabGroup("Panels"), SerializeField] private CanvasGroup basicAttack, basicAttack2, spell, types, fury, target, buff, parry, heal, done;
-        [TabGroup("Tutoriel"), SerializeField] private TutorielElement _basicAttack, _spell, _quickAttack, _breakdown;
+        [TabGroup("Tutoriel"), SerializeField] private TutorielElement _basicAttack, _spell, _quickAttack, _breakdown, _progression;
         [TabGroup("References"), SerializeField] private AK.Wwise.Event tutoOn, tutoOff;
 
         private CanvasGroup currentPanel;
@@ -43,9 +43,11 @@ namespace TheFowler
                 tutoOn.Post(gameObject);
 
                 if (VolumesManager.Instance != null)
-                    VolumesManager.Instance.BlurryUI.enabled = true;
+                    VolumesManager.Instance.TutoVolume.enabled = true;
 
                 battleUI.alpha = 0;
+                menuCharacters.gameObject.SetActive(false);
+                UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Inputs.enabled = false;
             }
 
             if(BattleManager.CurrentBattle!= null)
@@ -155,6 +157,9 @@ namespace TheFowler
                 case TutorielEnum.BREAKDOWN:
                     currentElement = _breakdown;
                     break;
+                case TutorielEnum.PROGRESSION:
+                    currentElement = _progression;
+                    break;
             }
 
             currentElement.canvasGroup.DOFade(1, .2f).OnComplete(() => playerInput.enabled = true);
@@ -202,15 +207,19 @@ namespace TheFowler
                 tutoOff.Post(gameObject);
 
                 if (VolumesManager.Instance != null)
-                    VolumesManager.Instance.BlurryUI.enabled = false;
+                    VolumesManager.Instance.TutoVolume.enabled = false;
 
                 battleUI.alpha = 1;
+                menuCharacters.gameObject.SetActive(true);
                 currentElement = null;
 
                 if (BattleManager.CurrentBattle != null)
                 {
                     BattleManager.CurrentBattle.Inputs.enabled = true;
                 }
+
+                UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Inputs.enabled = true;
+
 
                 playerInput.enabled = false;
             }
@@ -222,7 +231,8 @@ namespace TheFowler
         BASICATTACK,
         SPELL,
         QUICKATTACK,
-        BREAKDOWN
+        BREAKDOWN,
+        PROGRESSION
     }
 }
 
