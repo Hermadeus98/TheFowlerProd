@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using QRCode;
 using UnityEngine;
 
 namespace TheFowler
@@ -56,6 +57,22 @@ namespace TheFowler
                 yield return new WaitForSeconds((float) sequence.duration);
 
                 action.RemoveAllListeners();
+
+                if (vampirisme)
+                {
+                    yield return StateEvent(emitter, receivers, delegate(BattleActor battleActor, BattleActor actor1)
+                    {
+                        Heal(_damage, emitter, new []{emitter});
+                    }, false, true);
+                }
+
+                if (berserk)
+                {
+                    yield return StateEvent(emitter, receivers, delegate(BattleActor battleActor, BattleActor actor1)
+                    {
+                        ApplyDamage(berserkDamage, emitter, emitter, berserk);
+                    }, false, true);
+                }
 
                 if (emitter is AllyActor)
                 {

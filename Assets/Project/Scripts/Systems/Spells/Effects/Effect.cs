@@ -22,23 +22,17 @@ namespace TheFowler
 
         public Sprite sprite;
 
-        /*[SerializeField] protected BattleCameraBatch battleCameraBatch = BattleCameraBatch.NULL;
-        [SerializeField, ShowIf("@this.battleCameraBatch == BattleCameraBatch.NULL")] protected cameraPath cameraPath;
-        [SerializeField, ShowIf("@this.battleCameraBatch == BattleCameraBatch.CURRENT_ACTOR_PERSONALISE")] private string cameraSpecificPath = "Default";
-        [SerializeField, ShowIf("@this.battleCameraBatch == BattleCameraBatch.CURRENT_BATTLE")] private string cameraBattlePath = "Default";*/
-
         [ReadOnly] public Spell ReferedSpell;
 
-        public bool rage = false;
-        public bool berserk = false;
+        public bool rage = false; //Extra damage in function of health percentage of emitter.
+        public bool berserk = false; //Emitter is damaged whel he inflicts damages.
+        public bool vampirisme = false; //Emitter is healed when he inflicts damages.
+        
         [ShowIf("@this.berserk == true")]  public float berserkDamage = 100f;
 
         public virtual void PreviewEffect(BattleActor emitter)
         {
-            if (this.GetType() != typeof(DefendEffect))
-            {
-                //emitter.BattleActorAnimator.AttackPreview();
-            }
+            
         }
         
         public abstract IEnumerator OnBeginCast(BattleActor emitter, BattleActor[] receivers);
@@ -49,23 +43,7 @@ namespace TheFowler
         
         public void SetCamera()
         {
-            /*switch (battleCameraBatch)
-            {
-                case BattleCameraBatch.NULL:
-                    CameraManager.Instance.SetCamera(cameraPath);
-                    break;
-                case BattleCameraBatch.CURRENT_ACTOR:
-                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle, CameraKeys.BattleKeys.SkillExecutionDefault);
-                    break;
-                case BattleCameraBatch.CURRENT_ACTOR_PERSONALISE:
-                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle, cameraSpecificPath);
-                    break;
-                case BattleCameraBatch.CURRENT_BATTLE:
-                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, cameraBattlePath);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }*/
+            
         }
 
         protected float Damage(float damage, BattleActor emitter, BattleActor[] receivers)
@@ -84,16 +62,11 @@ namespace TheFowler
                 }
             }
 
-            if (berserk)
-            {
-                ApplyDamage(berserkDamage, emitter, emitter, berserk);
-            }
-
             _damage = dmg;
             return dmg;
         }
 
-        private float ApplyDamage(float damage, BattleActor emitter, BattleActor receiver, bool leaveOneHP = false)
+        protected float ApplyDamage(float damage, BattleActor emitter, BattleActor receiver, bool leaveOneHP = false)
         {
             var _damage = DamageCalculator.CalculateDamage(damage, emitter, receiver, ReferedSpell.SpellType, out var resistanceFaiblesseResult);
 
@@ -101,11 +74,6 @@ namespace TheFowler
             {
                 var healthLosePercent = 1 - emitter.Health.NormalizedHealth;
                 _damage += damage * (1 + healthLosePercent);
-            }
-
-            if(resistanceFaiblesseResult == DamageCalculator.ResistanceFaiblesseResult.FAIBLESSE)
-            {
-                //Fury.AddFuryPoint(10);
             }
 
             SoundManager.PlaySoundDamageTaken(receiver, resistanceFaiblesseResult);
@@ -121,18 +89,18 @@ namespace TheFowler
 
         protected void Heal(float heal, BattleActor emitter, BattleActor[] receivers)
         {
+            if (emitter == BattleManager.CurrentBattle.abi)
+            {
+                emitter.punchline.PlayPunchline(PunchlineCallback.HEALING);
+            }
+            
             _heal = heal;
             receivers.ForEach(w => w.Health.Heal(_heal));
-
-            if (berserk)
-            {
-                ApplyDamage(berserkDamage, emitter, emitter, berserk);
-            }
         }
 
-        protected IEnumerator StateEvent(BattleActor emitter, BattleActor[] receivers, Action<BattleActor, BattleActor> stateEvent)
+        protected IEnumerator StateEvent(BattleActor emitter, BattleActor[] receivers, Action<BattleActor, BattleActor> stateEvent, bool playAnimation = true, bool forceSelf = false)
         {
-            if (TargetType == TargetTypeEnum.SELF)
+            if (TargetType == TargetTypeEnum.SELF || forceSelf)
                 receivers = new[] {emitter};
             
             if (emitter is AllyActor)
@@ -144,12 +112,8 @@ namespace TheFowler
                 CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Enemies");
             }
             
-            emitter.BattleActorAnimator.SpellExecution1();
-            
-            if (emitter == BattleManager.CurrentBattle.abi)
-            {
-                emitter.punchline.PlayPunchline(PunchlineCallback.HEALING);
-            }
+            if(playAnimation)
+                emitter.BattleActorAnimator.SpellExecution1();
 
             yield return new WaitForSeconds(SpellData.Instance.StateEffect_WaitTime);
 
