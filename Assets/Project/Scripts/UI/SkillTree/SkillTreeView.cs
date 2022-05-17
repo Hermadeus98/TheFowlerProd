@@ -76,7 +76,7 @@ namespace TheFowler
             }
             eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
 
-            menuView.onMenu = false;
+            //menuView.onMenu = false;
 
         }
 
@@ -91,10 +91,10 @@ namespace TheFowler
                 VolumesManager.Instance.BlurryUI.enabled = false;
 
      
-            if(menuView != null)
-            {
-                menuView.Show();
-            }
+            //if(menuView != null)
+            //{
+            //    menuView.Show();
+            //}
 
         }
 

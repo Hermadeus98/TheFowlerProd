@@ -17,7 +17,7 @@ namespace TheFowler
         [SerializeField] private BattleActorData associatedData;
 
         [SerializeField] private SkillState skillState;
-        
+
         [SerializeField] private GameObject equipped, unequipped, locked;
         [SerializeField] private GameObject hover, unHover;
 
@@ -36,6 +36,8 @@ namespace TheFowler
 
         private bool canInteract = false;
         private bool isHover;
+
+        public SkillLinks[] links;
         public override void OnSelect(BaseEventData eventData)
         {
             base.OnSelect(eventData);
@@ -58,6 +60,8 @@ namespace TheFowler
             SetState();
             view.SetDescription(this, associatedSpell);
             CheckSpells();
+
+            RefreshLines();
             //SetLines(true);
         }
 
@@ -71,7 +75,7 @@ namespace TheFowler
 
         private void Update()
         {
-            if(canInteract && isHover && Inputs.actions["Select"].WasPressedThisFrame())
+            if (canInteract && isHover && Inputs.actions["Select"].WasPressedThisFrame())
             {
                 Equip();
             }
@@ -226,14 +230,14 @@ namespace TheFowler
             for (int i = 0; i < view.SpellTreeSelectors.Length; i++)
             {
                 view.SpellTreeSelectors[i].SetUnHover();
-                
+
             }
             for (int i = 0; i < view.SpellTreeSelectors.Length; i++)
             {
                 if (view.SpellTreeSelectors[i].associatedSpell == associatedSpell)
                 {
                     view.SpellTreeSelectors[i].SetHover();
-                    
+
                 }
 
             }
@@ -264,9 +268,40 @@ namespace TheFowler
             associatedData.Spells[associatedSpell.unlockOrder] = associatedSpell;
         }
 
+
+
+        public void RefreshLines()
+        {
+            for (int i = 0; i < links.Length; i++)
+            {
+                switch (links[i].linkedSelector.skillState)
+                {
+                    case SkillState.EQUIPPED:
+                        links[i].lineBehavior.ToSelected();
+                        break;
+                    case SkillState.UNEQUIPPED:
+                        links[i].lineBehavior.ToUnSelected();
+                        break;
+                    case SkillState.LOCKED:
+                        links[i].lineBehavior.ToDisable();
+                        break;
+                }
+            
+
+            }
+        }
+
+
     }
 
 
+
+    [System.Serializable]
+    public struct SkillLinks
+    {
+        public LineBehavior lineBehavior;
+        public SkillTreeSelector linkedSelector;
+    }
 
 }
 
