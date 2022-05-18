@@ -46,8 +46,8 @@ namespace TheFowler
                     VolumesManager.Instance.TutoVolume.enabled = true;
 
                 battleUI.alpha = 0;
-                menuCharacters.gameObject.SetActive(false);
                 UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Inputs.enabled = false;
+                menuCharacters.gameObject.SetActive(false);
             }
 
             if(BattleManager.CurrentBattle!= null)

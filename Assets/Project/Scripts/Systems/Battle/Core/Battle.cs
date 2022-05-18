@@ -208,7 +208,7 @@ namespace TheFowler
         
         private void InitializeUI()
         {
-            UIBattleBatch.Instance.Show();
+            UIBattleBatch.Instance.CanvasGroup.alpha = 1;
             
             var alliesDataView = UI.GetView<AlliesDataView>("AlliesDataView");
             alliesDataView.Initialize(robyn, abi, phoebe);
