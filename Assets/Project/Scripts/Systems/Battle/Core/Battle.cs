@@ -83,6 +83,7 @@ namespace TheFowler
         [SerializeField] private Battle BattleToRestart;
         [SerializeField] private Battle[] BattleToReset;
 
+        public bool useUIOnPivot = false;
         public Transform UIPivot;
         
         private void FixedUpdate()

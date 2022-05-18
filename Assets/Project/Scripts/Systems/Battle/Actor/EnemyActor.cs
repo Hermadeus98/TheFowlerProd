@@ -46,11 +46,14 @@ namespace TheFowler
 
         IEnumerator SetCanvasWorld()
         {
-            canvasWorld.SetParent(BattleManager.CurrentBattle.UIPivot, true);
-            yield return new WaitForEndOfFrame();
-            canvasWorld.localPosition = new Vector3(canvasWorld.localPosition.x, -.33f, 0f);
-            yield return new WaitForSeconds(.1f);
-            BattleManager.CurrentBattle.UIPivot.GetComponent<BillBoard>().enabled = true;
+            if (BattleManager.CurrentBattle.useUIOnPivot)
+            {
+                canvasWorld.SetParent(BattleManager.CurrentBattle.UIPivot, true);
+                yield return new WaitForEndOfFrame();
+                canvasWorld.localPosition = new Vector3(canvasWorld.localPosition.x, -.33f, 0f);
+                yield return new WaitForSeconds(.1f);
+                BattleManager.CurrentBattle.UIPivot.GetComponent<BillBoard>().enabled = true;
+            }
         }
 
         protected override void OnStart()

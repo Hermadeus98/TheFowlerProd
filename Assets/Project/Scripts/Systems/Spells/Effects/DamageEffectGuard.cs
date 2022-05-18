@@ -14,11 +14,6 @@ namespace TheFowler
             yield return base.OnCast(emitter, receivers);
         }
 
-        private void InstantiateProjectile(BattleActor emitter, BattleActor receiver)
-        {
-            //var projectile = GameObject.Instantiate(SpellData.Instance.Guard_PS_BasicAttack_Projectile, )
-        }
-
         protected override IEnumerator DamageExecution(BattleActor emitter, BattleActor[] receivers)
         {
             foreach (var r in receivers)

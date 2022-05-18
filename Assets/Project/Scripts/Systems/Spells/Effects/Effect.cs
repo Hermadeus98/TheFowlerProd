@@ -132,11 +132,11 @@ namespace TheFowler
                 
                 stateEvent.Invoke(emitter, receiver);
                 
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(.5f);
             }
             
             //yield return new WaitForSeconds(emitter.BattleActorAnimator.GetCurrentClipDuration() / 2f);
-            yield return new WaitForSeconds(2f);
+            //yield return new WaitForSeconds(2f);
         }
     }
 }
