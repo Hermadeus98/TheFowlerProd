@@ -141,13 +141,28 @@ namespace TheFowler
                     eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
                 }
 
-                else if (Inputs.actions["Return"].WasPressedThisFrame())
-                {
-                    Hide();
-                }
+                //else if (Inputs.actions["C"].WasPressedThisFrame())
+                //{
+
+                //}
+
+                //else if (Inputs.actions["Return"].WasPressedThisFrame())
+                //{
+                //    Hide();
+                //}
 
             }
 
+        }
+
+        private void _Reset()
+        {
+            Hide();
+
+            //for (int i = 0; i < datas; i++)
+            //{
+
+            //}
         }
 
         private void CharacterPicker(int newID)
@@ -182,6 +197,18 @@ namespace TheFowler
                 skills[i].Data = currentData;
                 skills[i].SetDatas(i);
                 skills[i].SetState();
+
+
+            }
+
+            RefreshAllLines();
+        }
+
+        public void RefreshAllLines()
+        {
+            for (int i = 0; i < skills.Length; i++)
+            {
+                skills[i].RefreshLines();
 
             }
         }

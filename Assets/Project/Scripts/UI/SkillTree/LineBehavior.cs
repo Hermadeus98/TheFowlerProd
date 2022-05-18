@@ -9,6 +9,9 @@ namespace TheFowler
 
         [SerializeField] private Color colorDisable, colorSelected, colorUnSelected;
         [SerializeField] private Image line;
+        [SerializeField] private Outline outline;
+
+        
         public void ToDisable()
         {
             line.color = colorDisable;
@@ -22,6 +25,11 @@ namespace TheFowler
         public void ToUnSelected()
         {
             line.color = colorUnSelected;
+        }
+
+        public void EnableOutline(bool value)
+        {
+            outline.enabled = value;
         }
     }
 }

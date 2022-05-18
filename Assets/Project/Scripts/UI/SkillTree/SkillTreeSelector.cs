@@ -42,6 +42,7 @@ namespace TheFowler
         {
             base.OnSelect(eventData);
             _Select();
+
         }
 
         public override void OnDeselect(BaseEventData eventData)
@@ -60,7 +61,7 @@ namespace TheFowler
             SetState();
             //view.SetDescription(this, associatedSpell);
             CheckSpells();
-
+            ChangeOutline(true);
             RefreshLines();
             //SetLines(true);
         }
@@ -70,6 +71,7 @@ namespace TheFowler
             hover.SetActive(false);
             unHover.SetActive(true);
             isHover = false;
+            ChangeOutline(false);
             //SetLines(false);
         }
 
@@ -100,6 +102,8 @@ namespace TheFowler
 
             view.SetSpells();
             CheckSpells();
+
+            view.RefreshAllLines();
 
         }
 
@@ -146,6 +150,14 @@ namespace TheFowler
             }
 
 
+        }
+
+        private void ChangeOutline(bool value)
+        {
+            for (int i = 0; i < links.Length; i++)
+            {
+                links[i].lineBehavior.EnableOutline(value);
+            }
         }
 
         public BattleActorData Data
