@@ -20,6 +20,8 @@ namespace TheFowler
             {
                 CameraManager.Instance.SetCamera(r.CameraBatchBattle, "OnBasicAttack");
 
+                yield return new WaitForSeconds(1f);
+
                 var guardBasicAttack = Object.Instantiate(SpellData.Instance.Guard_BasicAttackBinding,
                     emitter.transform);
                 guardBasicAttack.emitter = emitter;

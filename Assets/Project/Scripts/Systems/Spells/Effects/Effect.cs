@@ -73,7 +73,7 @@ namespace TheFowler
             if (rage)
             {
                 var healthLosePercent = 1 - emitter.Health.NormalizedHealth;
-                _damage += damage * (1 + healthLosePercent);
+                _damage *= (1 + healthLosePercent);
             }
 
             SoundManager.PlaySoundDamageTaken(receiver, resistanceFaiblesseResult);
@@ -92,6 +92,12 @@ namespace TheFowler
             if (emitter == BattleManager.CurrentBattle.abi)
             {
                 emitter.punchline.PlayPunchline(PunchlineCallback.HEALING);
+            }
+            
+            if (rage)
+            {
+                var healthLosePercent = 1 - emitter.Health.NormalizedHealth;
+                _heal *= (1 + healthLosePercent);
             }
             
             _heal = heal;
@@ -119,15 +125,29 @@ namespace TheFowler
 
             foreach (var receiver in receivers)
             {
-                if (receiver is AllyActor)
+                if (emitter is AllyActor)
                 {
-                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies");
+                    if (receiver is AllyActor)
+                    {
+                        CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies");
+                    }
+                    else if (receiver is EnemyActor)
+                    {
+                        CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Enemies");
+                    }
                 }
-                else if(receiver is EnemyActor)
+                else if (emitter is EnemyActor)
                 {
-                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Enemies");
+                    if (receiver is AllyActor)
+                    {
+                        CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Enemies");
+                    }
+                    else if (receiver is EnemyActor)
+                    {
+                        CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Enemies");
+                    }
                 }
-                
+
                 yield return new WaitForSeconds(SpellData.Instance.StateEffect_WaitTime);
                 
                 stateEvent.Invoke(emitter, receiver);
