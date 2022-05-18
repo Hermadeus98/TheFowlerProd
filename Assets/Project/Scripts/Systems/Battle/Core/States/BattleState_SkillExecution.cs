@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using QRCode;
 using QRCode.Extensions;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -38,51 +36,21 @@ namespace TheFowler
                     if (Player.SelectedSpell.IsNotNull())
                     {
                         var actor = BattleManager.CurrentBattleActor;
-                        
-                        //actor.Mana.RemoveMana(Player.SelectedSpell.ManaCost);
-                        /*actor.GetBattleComponent<SpellHandler>().ApplyCooldown(Player.SelectedSpell);
-
-                        if (Player.SelectedSpell.sequenceBinding != SequenceEnum.NULL)
-                        {
-                            var action = actor.SignalReceiver_CastSpell.GetReaction(actor.SignalAsset_CastSpell);
-                            action.AddListener(delegate
-                            {
-                                StartCoroutine(Player.SelectedSpell.Cast(actor, TargetSelector.SelectedTargets.ToArray()));
-                            });
-                            
-                            var sequence = actor.SequenceHandler.GetSequence(Player.SelectedSpell.sequenceBinding);
-                            sequence.Play();
-                            yield return new WaitForSeconds((float)sequence.duration);
-                            
-                            action.RemoveAllListeners();
-                            
-                            Debug.Log("EVENT : ON_LIFE (Ally Death)");
-                
-                            if (BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnLife() != null)
-                            {
-                                yield return BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnLife()
-                                    .NarrativeEvent();
-                            }
-                            
-                            BattleManager.CurrentBattle.TurnSystem.NextTurn();
-                            yield break;*/
-                        
-                            yield return Player.SelectedSpell.Cast(actor, TargetSelector.SelectedTargets.ToArray());
-                            BattleManager.CurrentBattle.TurnSystem.NextTurn();
-                            yield break;
-                    }
-                    else
-                    {
-                        yield return Player.SelectedSpell.Cast(BattleManager.CurrentBattleActor, TargetSelector.SelectedTargets.ToArray());
+                        yield return Player.SelectedSpell.Cast(actor, TargetSelector.SelectedTargets.ToArray());
+                        BattleManager.CurrentBattle.TurnSystem.NextTurn();
+                        yield break;
                     }
                 }    
                 
                 else if (BattleManager.IsEnemyTurn)
                 {
-                    if (!BattleManager.lastTurnWasEnemiesTurn)
+                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "EnemiesSpellStart");
+                    yield return new WaitForSeconds(.2f);
+                    
+                    /*if (!BattleManager.lastTurnWasEnemiesTurn)
                     {
                         CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "EnemiesSpellStart");
-                        yield return new WaitForSeconds(2f);
+                        yield return new WaitForSeconds(1f);
                         CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "EnemiesSpell");
                     }
                     else
@@ -90,7 +58,7 @@ namespace TheFowler
                         CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "EnemiesSpellStart");
                         yield return new WaitForSeconds(.2f);
                         CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "EnemiesSpell");
-                    }
+                    }*/
                     
                     if (BattleManager.CurrentBattleActor is EnemyActor enemyActor)
                     {
@@ -102,35 +70,14 @@ namespace TheFowler
                             var spellBox = UI.GetView<EnemySpellBox>("EnemySpellBox");
                             spellBox.Show();
                             spellBox.Refresh(enemyActor.AI.SelectedSpell);
-
-                            /*var action = enemyActor.SignalReceiver_CastSpell.GetReaction(enemyActor.SignalAsset_CastSpell);
-                            action.AddListener(delegate
-                            {
-                                StartCoroutine(enemyActor.AI.SelectedSpell.Cast(enemyActor,
-                                    TargetSelector.SelectedTargets.ToArray()));
-                            });*/
-
-                            //var sequence = enemyActor.SequenceHandler.GetSequence(enemyActor.AI.SelectedSpell.sequenceBinding);
-
-                            /*if (sequence == null)
-                            {
-                                Debug.LogError($"SEQUENCE \"{enemyActor.AI.SelectedSpell.sequenceBinding }\" IS MISSING FOR {enemyActor.name}", enemyActor.AI.SelectedSpell);
-                                BattleManager.CurrentBattle.TurnSystem.NextTurn();
-                                yield break;
-                            };*/
-
-                            //sequence.Play();
-                            //yield return new WaitForSeconds((float)sequence.duration);
                             
-                            //action.RemoveAllListeners();
-
                             yield return enemyActor.AI.SelectedSpell.Cast(enemyActor,
                                 TargetSelector.SelectedTargets.ToArray());
                         }
                     }
                 }
 
-                yield return new WaitForSeconds(.5f);
+                yield return new WaitForSeconds(.2f);
 
                 if (BattleManager.IsEnemyTurn)
                 {

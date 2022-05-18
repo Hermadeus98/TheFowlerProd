@@ -16,8 +16,8 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11400000}
     - {fileID: 21300000, guid: 8823864dd44e8b74ab12d90e000b4346, type: 3}
+    - {fileID: 11400000}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -31,7 +31,7 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.DamageEffect, Assembly-CSharp
+      Data: 1|TheFowler.DamageEffectGuard, Assembly-CSharp
     - Name: TargetType
       Entry: 3
       Data: 3
@@ -51,17 +51,20 @@ MonoBehaviour:
       Entry: 6
       Data: 
     - Name: ReferedSpell
-      Entry: 10
-      Data: 0
+      Entry: 6
+      Data: 
     - Name: rage
       Entry: 5
       Data: false
     - Name: berserk
       Entry: 5
       Data: false
+    - Name: vampirisme
+      Entry: 5
+      Data: false
     - Name: berserkDamage
       Entry: 4
-      Data: 0
+      Data: 100
     - Name: damage
       Entry: 4
       Data: 50
@@ -88,14 +91,17 @@ MonoBehaviour:
       Data: 0
     - Name: sprite
       Entry: 10
-      Data: 1
+      Data: 0
     - Name: ReferedSpell
       Entry: 10
-      Data: 0
+      Data: 1
     - Name: rage
       Entry: 5
       Data: false
     - Name: berserk
+      Entry: 5
+      Data: false
+    - Name: vampirisme
       Entry: 5
       Data: false
     - Name: berserkDamage
@@ -125,7 +131,7 @@ MonoBehaviour:
   SpellPower: 0
   SpellDescription: Inflict damages and reduce defense
   SpellType: 0
-  sequenceBinding: 4
+  sequenceBinding: 1
   sprite: {fileID: 0}
   spellState: 0
   unlockOrder: 0
