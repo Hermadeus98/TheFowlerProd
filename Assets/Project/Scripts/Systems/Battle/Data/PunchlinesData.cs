@@ -20,6 +20,9 @@ namespace TheFowler
 
         public PunchlineData GetRandom(PunchlineCallback callback)
         {
+            if (database == null)
+                return null;
+            
             if (!database.ContainsKey(callback))
             {
                 Debug.LogError($"Key {callback} is missing in the database in {name}", this);
