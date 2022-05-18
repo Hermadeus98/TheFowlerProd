@@ -26,7 +26,7 @@ namespace TheFowler
                 }
 
                 battleActor.GetBattleComponent<Taunt>().TauntActor(turnDuration, emitter);
-            }, true, false);
+            }, false, false);
             yield break;
         }
 

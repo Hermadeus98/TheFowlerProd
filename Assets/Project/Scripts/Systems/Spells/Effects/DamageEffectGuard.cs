@@ -20,7 +20,7 @@ namespace TheFowler
             {
                 CameraManager.Instance.SetCamera(r.CameraBatchBattle, "OnBasicAttack");
 
-                var guardBasicAttack = GameObject.Instantiate(SpellData.Instance.Guard_BasicAttackBinding,
+                var guardBasicAttack = Object.Instantiate(SpellData.Instance.Guard_BasicAttackBinding,
                     emitter.transform);
                 guardBasicAttack.emitter = emitter;
                 guardBasicAttack.receiver = r;

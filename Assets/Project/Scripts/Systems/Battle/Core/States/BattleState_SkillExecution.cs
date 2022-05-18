@@ -73,6 +73,13 @@ namespace TheFowler
                             
                             yield return enemyActor.AI.SelectedSpell.Cast(enemyActor,
                                 TargetSelector.SelectedTargets.ToArray());
+
+                            while (enemyActor.AI.SelectedSpell.isPlaying)
+                            {
+                                yield return null;
+                            }
+                            
+                            Debug.Log("--> 2");
                         }
                     }
                 }

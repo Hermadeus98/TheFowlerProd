@@ -42,6 +42,8 @@ namespace TheFowler
 
         [ReadOnly] public bool isRechargingCooldown;
 
+        [ReadOnly] public bool isPlaying;
+        
         private void OnEnable()
         {
             Effects.ForEach(w => w.ReferedSpell = this);
@@ -50,6 +52,8 @@ namespace TheFowler
 
         public IEnumerator Cast(BattleActor emitter, BattleActor[] receivers)
         {
+            isPlaying = true;
+            
             if (BattleManager.lastTouchedActors == null)
                 BattleManager.lastTouchedActors = new List<BattleActor>();
             BattleManager.lastTouchedActors.AddRange(receivers);
@@ -69,6 +73,8 @@ namespace TheFowler
             }
             
             yield return new WaitForSeconds(.3f);
+
+            isPlaying = false;
         }
 
         private void OnDisable()

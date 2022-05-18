@@ -15,7 +15,6 @@ namespace TheFowler
             NEUTRE
         }
 
-        public float delay = 0f;
         public AttackBonusType attackBonusType;
         public bool isAOE = false;
         
@@ -42,6 +41,8 @@ namespace TheFowler
                     Apply(buff);
                 });
             }
+
+            Debug.Log("--> 1");
 
             yield break;
         }
