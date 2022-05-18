@@ -12,7 +12,7 @@ namespace TheFowler
     {
         [SerializeField] private Spell associatedSpell;
 
-        [SerializeField] private SkillTreeSelector associatedSkill;
+        [SerializeField] private SkillTreeSelector[] linkedSkills;
 
         [SerializeField] private BattleActorData associatedData;
 
@@ -58,7 +58,7 @@ namespace TheFowler
             unHover.SetActive(false);
             isHover = true;
             SetState();
-            view.SetDescription(this, associatedSpell);
+            //view.SetDescription(this, associatedSpell);
             CheckSpells();
 
             RefreshLines();
@@ -83,9 +83,15 @@ namespace TheFowler
 
         public void Equip()
         {
-            if (associatedSkill == null) return;
 
-            associatedSkill.UnEquip();
+            for (int i = 0; i < linkedSkills.Length; i++)
+            {
+                if(linkedSkills[i].skillState == SkillState.EQUIPPED)
+                {
+                    return;
+                }
+            }
+
 
             FeedbackEquipped();
 
@@ -121,6 +127,8 @@ namespace TheFowler
 
         public void SetState()
         {
+            
+
             switch (associatedSpell.spellState)
             {
                 case SkillState.BASIC:

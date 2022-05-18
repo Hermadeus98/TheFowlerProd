@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4187437791007937878}
   - component: {fileID: 6853758251201336825}
-  - component: {fileID: 5701852664734947806}
   - component: {fileID: 5119295985115552854}
+  - component: {fileID: 4041659356391489061}
   m_Layer: 5
   m_Name: LineSkillTree
   m_TagString: Untagged
@@ -46,7 +46,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6311122052786867638}
   m_CullTransparentMesh: 1
---- !u!114 &5701852664734947806
+--- !u!114 &5119295985115552854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6311122052786867638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c9fbb404c2cc746b081acc16edc664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorDisable: {r: 0, g: 0, b: 0, a: 1}
+  colorSelected: {r: 1, g: 0.75811553, b: 0, a: 1}
+  colorUnSelected: {r: 1, g: 1, b: 1, a: 1}
+  line: {fileID: 4041659356391489061}
+--- !u!114 &4041659356391489061
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -76,19 +92,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5119295985115552854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6311122052786867638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24c9fbb404c2cc746b081acc16edc664, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colorDisable: {r: 0, g: 0, b: 0, a: 1}
-  colorSelected: {r: 1, g: 0.75811553, b: 0, a: 1}
-  colorUnSelected: {r: 1, g: 1, b: 1, a: 1}
-  line: {fileID: 5701852664734947806}
