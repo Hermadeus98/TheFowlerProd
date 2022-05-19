@@ -28,25 +28,39 @@ namespace TheFowler
                 emitter.punchline.PlayPunchline(PunchlineCallback.PROTECT);
             }
             
-            foreach (var receiver in receivers)
+            if (TargetType == TargetTypeEnum.SELF)
             {
-                if(emitter.GetBattleComponent<SpellHandler>() != null)
-                    emitter.GetBattleComponent<SpellHandler>().LoseCoolDown(1);
-
-                switch (bonusType)
+                yield return StateEvent(emitter, receivers, (actor, BattleActor) =>
                 {
-                    case DefenseBonusType.Buff:
-                        receiver.GetBattleComponent<Defense>().BuffDefense(isAOE ? SpellData.Instance.buffDefenseAOE : SpellData.Instance.buffDefense);
-                        break;
-                    case DefenseBonusType.Debuff:
-                        receiver.GetBattleComponent<Defense>().DebuffDefense(isAOE ? SpellData.Instance.debuffDefenseAOE : SpellData.Instance.debuffDefense);
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+                    var def = emitter.GetBattleComponent<Defense>();
+                    Apply(def);
+                });
+            }
+            else
+            {
+                yield return StateEvent(emitter, receivers, (actor, BattleActor) =>
+                {
+                    var def = BattleActor.GetBattleComponent<Defense>();
+                    Apply(def);
+                });
             }
 
             yield break;
+        }
+
+        private void Apply(Defense def)
+        {
+            switch (bonusType)
+            {
+                case DefenseBonusType.Buff:
+                    def.BuffDefense(isAOE ? SpellData.Instance.buffDefenseAOE : SpellData.Instance.buffDefense);
+                    break;
+                case DefenseBonusType.Debuff:
+                    def.DebuffDefense(isAOE ? SpellData.Instance.debuffDefenseAOE : SpellData.Instance.debuffDefense);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         public override IEnumerator OnFinishCast(BattleActor emitter, BattleActor[] receivers)

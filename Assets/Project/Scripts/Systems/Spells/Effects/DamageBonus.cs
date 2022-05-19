@@ -42,8 +42,6 @@ namespace TheFowler
                 });
             }
 
-            Debug.Log("--> 1");
-
             yield break;
         }
 
