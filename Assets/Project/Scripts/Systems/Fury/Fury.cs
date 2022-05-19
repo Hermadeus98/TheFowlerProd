@@ -63,7 +63,7 @@ namespace TheFowler
             if (!Tutoriel.hasBreakdown)
             {
                 Tutoriel.hasBreakdown = true;
-                UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.BREAKDOWN);
+                UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.BREAKDOWN, 3f);
             }
             
             QRDebug.Log("FURY", FrenchPallet.TOMATO_RED, "START");

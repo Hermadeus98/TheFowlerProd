@@ -102,7 +102,7 @@ namespace TheFowler
                                 if (!Tutoriel.hasSpell)
                                 {
                                     Tutoriel.hasSpell = true;
-                                    UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.SPELL);
+                                    UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.SPELL, 1.25f);
                                 }
                                 break;
                             case ActionPickerElement.PlayerActionType.PARRY:
@@ -119,7 +119,7 @@ namespace TheFowler
                                 if (!Tutoriel.hasQuickAttack)
                                 {
                                     Tutoriel.hasQuickAttack = true;
-                                    UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.QUICKATTACK);
+                                    UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.QUICKATTACK, 1f);
                                 }
                                 break;
                             case ActionPickerElement.PlayerActionType.ATTACK:
@@ -137,7 +137,7 @@ namespace TheFowler
                                 if (!Tutoriel.hasBasicAttack)
                                 {
                                     Tutoriel.hasBasicAttack = true;
-                                    UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.BASICATTACK);
+                                    UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.BASICATTACK, 1f);
                                 }
 
                                 break;

@@ -18,7 +18,7 @@ namespace TheFowler
         [TabGroup("References"), SerializeField] private PlayerInput playerInput;
         [TabGroup("References"), SerializeField] private CanvasGroup battleUI, menuCharacters;
         [TabGroup("Panels"), SerializeField] private CanvasGroup basicAttack, basicAttack2, spell, types, fury, target, buff, parry, heal, done;
-        [TabGroup("Tutoriel"), SerializeField] private TutorielElement _basicAttack, _spell, _quickAttack, _breakdown, _progression;
+        [TabGroup("Tutoriel"), SerializeField] private TutorielElement _basicAttack, _spell, _quickAttack, _breakdown, _progression,_dead;
         [TabGroup("References"), SerializeField] private AK.Wwise.Event tutoOn, tutoOff;
 
         private CanvasGroup currentPanel;
@@ -26,6 +26,7 @@ namespace TheFowler
 
 
         private bool isShowed = false;
+        private bool isDisplayed = false;
         public override void Refresh(EventArgs args)
         {
             base.Refresh(args);
@@ -45,15 +46,11 @@ namespace TheFowler
                 if (VolumesManager.Instance != null)
                     VolumesManager.Instance.TutoVolume.enabled = true;
 
-                battleUI.alpha = 0;
-                UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Inputs.enabled = false;
-                UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Inputs.enabled = false;
+                
+                
                 menuCharacters.gameObject.SetActive(false);
-            }
 
-            if(BattleManager.CurrentBattle!= null)
-            {
-                BattleManager.CurrentBattle.Inputs.enabled = false;
+                battleUI.alpha = 0;
             }
 
 
@@ -64,7 +61,7 @@ namespace TheFowler
         {
             if (isActive)
             {
-                if (playerInput.actions["Confirm"].WasPressedThisFrame())
+                if (playerInput.actions["Confirm"].WasPressedThisFrame() && isDisplayed)
                 {
                     
                     if (currentElement!=null && currentElement.nextElement != null)
@@ -75,11 +72,15 @@ namespace TheFowler
                         currentElement.nextElement.Initialize();
 
                         currentElement = currentElement.nextElement;
+
+                        isDisplayed = true;
                     }
                     else
                     {
                         FadeAllCanvasGroup();
+                        isDisplayed = false;
                     }
+
                     
                 }
             }
@@ -138,7 +139,7 @@ namespace TheFowler
 
         }
 
-        public void Show(TutorielEnum panel)
+        public void Show(TutorielEnum panel, float timeToWait)
         {
             FadeAllCanvasGroup();
 
@@ -161,12 +162,38 @@ namespace TheFowler
                 case TutorielEnum.PROGRESSION:
                     currentElement = _progression;
                     break;
+                case TutorielEnum.DEAD:
+                    currentElement = _dead;
+                    break;
             }
+            StartCoroutine(WaitTuto(timeToWait));
+           
+        }
+
+        private IEnumerator WaitTuto(float timeToWait)
+        {
+            UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Inputs.enabled = false;
+            UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Inputs.enabled = false;
+
+
+
+            if (BattleManager.CurrentBattle != null)
+            {
+                BattleManager.CurrentBattle.Inputs.enabled = false;
+            }
+
+            yield return new WaitForSeconds(timeToWait);
+
+
 
             currentElement.canvasGroup.DOFade(1, .2f).OnComplete(() => playerInput.enabled = true);
             currentElement.Initialize();
 
             Show();
+
+            isDisplayed = true;
+
+            yield break;
         }
 
         private void FadeAllCanvasGroup()
@@ -221,7 +248,6 @@ namespace TheFowler
 
                 UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Inputs.enabled = true;
                 UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Inputs.enabled = true;
-
                 playerInput.enabled = false;
             }
         }
@@ -233,7 +259,8 @@ namespace TheFowler
         SPELL,
         QUICKATTACK,
         BREAKDOWN,
-        PROGRESSION
+        PROGRESSION,
+        DEAD
     }
 }
 
