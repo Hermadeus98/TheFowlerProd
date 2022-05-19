@@ -187,6 +187,9 @@ namespace TheFowler
             {
                 if(Dialogues[i].CameraPath != null)
                     Dialogues[i].CameraPath.m_Priority = 1000;
+                
+                if(Dialogues[i].CameraPath != null)
+                    Dialogues[i].CameraPath.m_Priority = 1001;
 
                 
 
@@ -201,6 +204,9 @@ namespace TheFowler
 
                 
                 if(Dialogues[i].CameraPath != null)
+                    Dialogues[i].CameraPath.m_Priority = 0;
+                
+                if(Dialogues[i].CameraPath_out != null)
                     Dialogues[i].CameraPath.m_Priority = 0;
 
                 Dialogues[i].Event.Invoke();
@@ -218,6 +224,7 @@ namespace TheFowler
         public string speaker;
         [TextArea(3,5)] public string dialogue;
         public CinemachineVirtualCameraBase CameraPath;
+        public CinemachineVirtualCameraBase CameraPath_out;
         public float displayDuration = 2f;
         public AK.Wwise.Event voices;
 
