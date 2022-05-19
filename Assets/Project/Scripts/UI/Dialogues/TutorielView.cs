@@ -47,6 +47,7 @@ namespace TheFowler
 
                 battleUI.alpha = 0;
                 UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Inputs.enabled = false;
+                UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Inputs.enabled = false;
                 menuCharacters.gameObject.SetActive(false);
             }
 
@@ -219,7 +220,7 @@ namespace TheFowler
                 }
 
                 UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Inputs.enabled = true;
-
+                UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Inputs.enabled = true;
 
                 playerInput.enabled = false;
             }
