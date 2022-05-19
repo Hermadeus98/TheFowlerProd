@@ -26,6 +26,9 @@ namespace TheFowler
             if(Player.Robyn == null)
                 return;
             
+            if(Player.Robyn.Controller.GetController(ControllerEnum.PLAYER_CONTROLLER) == null)
+                return;
+            
             var tps = Player.Robyn.Controller.SetController<ThirdPersonController>(ControllerEnum.PLAYER_CONTROLLER);
 
             dist = Vector3.Distance(Player.Robyn.pawnTransform.position, transform.position);

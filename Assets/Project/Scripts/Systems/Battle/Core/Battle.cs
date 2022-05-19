@@ -85,6 +85,7 @@ namespace TheFowler
 
         public bool useUIOnPivot = false;
         public Transform UIPivot;
+        public GameObject battleStateObj;
         
         private void FixedUpdate()
         {
@@ -104,6 +105,9 @@ namespace TheFowler
         protected override void OnAwake()
         {
             base.OnAwake();
+
+            battleStates = battleStateObj.GetComponentsInChildren<Istate>();
+            
             SetActorState(false);
         }
 

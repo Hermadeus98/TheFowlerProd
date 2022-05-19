@@ -16,7 +16,7 @@ namespace TheFowler
         private float turnTime = 0;
         [HideInInspector] public bool hasPunchline = false;
 
-        public BattleActor resurector;
+        [ReadOnly] public BattleActor resurector;
         
         public override void OnTurnStart()
         {

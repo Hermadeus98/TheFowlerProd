@@ -21,7 +21,12 @@ namespace TheFowler
             /*if(punchlineIsPlaying)
                 return;*/
 
-            StartCoroutine(PlayPunchlineIE(referedPunchlinesData.GetRandom(callback)));
+            var data = referedPunchlinesData.GetRandom(callback);
+            
+            if(data == null)
+                return;
+            
+            StartCoroutine(PlayPunchlineIE(data));
         }
 
         public void RegisterPunchline(PunchlineCallback callback)

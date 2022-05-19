@@ -40,7 +40,7 @@ namespace TheFowler
         {
             if (!cameraBatches.ContainsKey(batchName))
             {
-                Debug.LogError($"cameraBatches don't contain {batchName}");
+                //Debug.LogError($"cameraBatches don't contain {batchName}");
                 return;
             }
             
