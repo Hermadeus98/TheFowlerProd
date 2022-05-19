@@ -52,7 +52,7 @@ namespace TheFowler
         public int TurnCount { get; set; } = 0;
         [ShowInInspector, ReadOnly] public int Initiative { get; set; }
         
-        public Turn actorTurn;
+        public Turn actorTurn { get; set; }
 
         //--<Properties>-----------------------------------------------------------------------------------------------<
         public CameraBatch CameraBatchBattle => cameraBatchBattle;

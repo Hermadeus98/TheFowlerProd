@@ -13,17 +13,34 @@ namespace TheFowler
     [CreateAssetMenu(menuName = "TheFowler/Datas/Punchlines Data")]
     public class PunchlinesData : SerializedScriptableObject
     {
-        public Dictionary<PunchlineCallback, PunchlineData[]> database =
+        [SerializeField] private Dictionary<PunchlineCallback, PunchlineData[]> database =
             new Dictionary<PunchlineCallback, PunchlineData[]>();
 
-        public PunchlineData[] Get(PunchlineCallback callback) => database[callback];
+        public List<PunchlineData> Get(PunchlineCallback callback) => Structures.First(w => w.Callback == callback).PunchlineDatas;
 
+        public List<PunchlineDataStructure> Structures;
+
+        [Button]
+        public void Generate()
+        {
+            Structures = new List<PunchlineDataStructure>();
+            
+            for (int i = 0; i < database.Count; i++)
+            {
+                Structures.Add(new PunchlineDataStructure()
+                {
+                    Callback = database.ElementAt(i).Key,
+                    PunchlineDatas = new List<PunchlineData>(database.ElementAt(i).Value)
+                });
+            }
+        }
+        
         public PunchlineData GetRandom(PunchlineCallback callback)
         {
-            if (database == null)
+            if (Structures == null)
                 return null;
             
-            if (!database.ContainsKey(callback))
+            if (!Structures.Exists(w => w.Callback == callback))
             {
                 Debug.LogError($"Key {callback} is missing in the database in {name}", this);
                 return null;
@@ -44,8 +61,15 @@ namespace TheFowler
 
             var selected = pool.Where(w => !w.isPlayed).ToArray();
             
-            return selected[Random.Range(0, pool.Length - 1)];
+            return selected[Random.Range(0, pool.Count - 1)];
         }
+    }
+
+    [System.Serializable]
+    public class PunchlineDataStructure
+    {
+        public PunchlineCallback Callback;
+        public List<PunchlineData> PunchlineDatas;
     }
     
     [System.Serializable]

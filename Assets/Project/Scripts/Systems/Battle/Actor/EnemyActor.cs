@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using MoreMountains.Tools;
 using QRCode;
 using QRCode.Extensions;
@@ -26,9 +27,7 @@ namespace TheFowler
         [SerializeField] private  RectTransform fill, background, preview;
         [SerializeField] private FillBar FillBar, FillBarTrashMob, FillBarBoss;
 
-        [SerializeField]
-        private Dictionary<BattleActorData.Archetype, GameObject[]> helmet =
-            new Dictionary<BattleActorData.Archetype, GameObject[]>();
+        [SerializeField] private HelmetBinding[] HelmetBinding;
 
         public Transform spawnBasicAttack;
 
@@ -141,7 +140,15 @@ namespace TheFowler
 
         private void SetHelmet()
         {
-            helmet[BattleActorData.archetype].ForEach(w => w.gameObject.SetActive(true));
+            HelmetBinding.First(w => w.Archetype == BattleActorData.archetype).Helmets
+                .ForEach(w => w.gameObject.SetActive(true));
         }
+    }
+
+    [Serializable]
+    public class HelmetBinding
+    {
+        public BattleActorData.Archetype Archetype;
+        public GameObject[] Helmets;
     }
 }

@@ -4,10 +4,11 @@ using QRCode;
 using QRCode.Extensions;
 
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace TheFowler
 {
-    public class GameplayMonoBehaviour : SerializedMonoBehaviour, ISavable
+    public class GameplayMonoBehaviour : MonoBehaviour, ISavable
     {
         protected virtual void OnEnable()
         {

@@ -34,6 +34,8 @@ namespace TheFowler
 
         private void Initialize()
         {
+            controllers = GetComponentsInChildren<Istate>();
+            
             Controllers = new StateMachine(controllers, UpdateMode.Update, ControllerArg);
             controllers.Cast<CharacterControllerBase>().ForEach(w => w.referedController = this);
             SetController(controllerOnStart);
@@ -82,6 +84,20 @@ namespace TheFowler
             var newCurrentController = Controllers.CurrentState as CharacterControllerBase;
             newCurrentController.OnChangeController();
             return newCurrentController;
+        }
+        
+        public CharacterControllerBase GetController(ControllerEnum controllerEnum)
+        {
+            return controllerEnum switch
+            {
+                ControllerEnum.PLAYER_CONTROLLER => Controllers.GetState("PlayerController") as CharacterControllerBase,
+                ControllerEnum.NAV_MESH_CONTROLLER =>
+                    Controllers.GetState("NavMeshController") as CharacterControllerBase,
+                ControllerEnum.NAV_MESH_FOLLOWER => Controllers.GetState("NavMeshFollower") as CharacterControllerBase,
+                ControllerEnum.STATIC_CONTROLLER => Controllers.GetState("StaticController") as CharacterControllerBase,
+                ControllerEnum.PATH_CONTROLLER => Controllers.GetState("PathController") as CharacterControllerBase,
+                _ => throw new ArgumentOutOfRangeException(nameof(controllerEnum), controllerEnum, null)
+            };
         }
 
         public T SetController<T>(ControllerEnum controllerEnum) where T : CharacterControllerBase
