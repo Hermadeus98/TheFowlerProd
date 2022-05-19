@@ -78,11 +78,13 @@ namespace TheFowler
 
         public void ShowPreview()
         {
+            return;
             preview.gameObject.SetActive(true);
         }
 
         public void HidePreview()
         {
+            return;
             preview.gameObject.SetActive(false);
             cross.gameObject.SetActive(false);
             hearth.color = Color.white;
@@ -92,6 +94,8 @@ namespace TheFowler
         [Button]
         public void SetPreview(float newValue)
         {
+            return;
+            
             ShowPreview();
 
             newValue = Mathf.Clamp(newValue, 0f, maxValue);
