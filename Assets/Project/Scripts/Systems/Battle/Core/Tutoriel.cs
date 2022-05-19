@@ -15,11 +15,13 @@ namespace TheFowler
         public static bool LockSkill = false;
 
 
+
         public static bool hasBasicAttack = false;
         public static bool hasSpell = false;
         public static bool hasQuickAttack = false;
         public static bool hasBreakdown = false;
         public static bool hasProgression = false;
+        public static bool hasDied = false;
         public static void Kill()
         {
             isTutoriel = false;
@@ -42,5 +44,6 @@ namespace TheFowler
 
         
     }
+
 }
 

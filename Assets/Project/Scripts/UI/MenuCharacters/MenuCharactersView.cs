@@ -49,7 +49,7 @@ namespace TheFowler
             if (!Tutoriel.hasProgression)
             {
                 Tutoriel.hasProgression = true;
-                UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.PROGRESSION);
+                UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.PROGRESSION, 1f);
 
             }
 

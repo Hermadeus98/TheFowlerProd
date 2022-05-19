@@ -35,6 +35,8 @@ namespace TheFowler
         private Coroutine opening;
 
         public GameObject[] decriptions;
+
+
         
         public override void Show()
         {

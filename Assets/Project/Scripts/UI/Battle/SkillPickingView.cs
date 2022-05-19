@@ -2,7 +2,7 @@ using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.InputSystem;
 namespace TheFowler
 {
     public class SkillPickingView : UIView
@@ -30,6 +30,8 @@ namespace TheFowler
         public bool isBreakdown;
 
         private BattleActor battleActor;
+
+        public PlayerInput Inputs;
 
 
         public override void Show()

@@ -188,6 +188,16 @@ namespace TheFowler
             //ReferedActor.punchline.PlayPunchline(PunchlineEnum.DEATH);
             PunchlineAllyDeath();
             //BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.KILL);
+            if (Tutoriel.hasDied)
+            {
+                if (BattleManager.GetAllAllies().Contains(ReferedActor))
+                {
+                    Tutoriel.hasDied = true;
+                    UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.DEAD, 3f);
+                }
+            }
+
+
 
         }
 
