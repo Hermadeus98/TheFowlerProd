@@ -382,6 +382,7 @@ namespace TheFowler
         public virtual void OnDeath()
         {
             BattleManager.CurrentBattle.lastDeath = this;
+            GetBattleComponent<Buff>().StopVFX();
             Debug.Log("ON DEEAATH");
         }
 

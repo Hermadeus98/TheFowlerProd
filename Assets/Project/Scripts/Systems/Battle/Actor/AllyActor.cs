@@ -9,7 +9,7 @@ namespace TheFowler
 {
     public class AllyActor : BattleActor
     {
-        [SerializeField] private CinemachineVirtualCamera deathCam, deathCamDown;
+        [SerializeField] private CinemachineVirtualCamera deathCam, deathCamDown, resurectCam;
 
         [HideInInspector] public bool hasShowDeathSequence = false;
 
@@ -114,8 +114,8 @@ namespace TheFowler
             UIBattleBatch.Instance.Hide();
             UIBattleBatch.SetUIGuardsVisibility(false);
             
-            SplitScreen.Instance.Show(deathCamDown, resurector.CameraBatchBattle.CameraReferences["OnDeathJoking"].virtualCamera);
-            SplitScreen.Instance.SetBigCamera(resurector.CameraBatchBattle.CameraReferences["OnDeathJoking"].virtualCamera);
+            SplitScreen.Instance.Show(deathCamDown, resurector.CameraBatchBattle.CameraReferences["OnResurectStart"].virtualCamera);
+            SplitScreen.Instance.SetBigCamera(resurector.CameraBatchBattle.CameraReferences["OnResurectStart"].virtualCamera);
 
             var data = punchline.ReferedPunchlinesData.GetRandom(PunchlineCallback.RECEIVING_REVIVE);
             SplitScreen.Instance.SetPunchLine(data);
@@ -124,7 +124,7 @@ namespace TheFowler
 
             Health.Resurect(25f);
             
-            SplitScreen.Instance.SetLittleCamera(deathCam);
+            SplitScreen.Instance.SetLittleCamera(resurectCam);
 
             yield return new WaitForSeconds(2.5f);
             

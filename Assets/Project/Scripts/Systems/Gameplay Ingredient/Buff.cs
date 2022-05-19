@@ -68,5 +68,10 @@ namespace TheFowler
                 ps.ForEach(w => w.Stop());
             }
         }
+
+        public void StopVFX()
+        {
+            ps.ForEach(w => w.Stop());
+        }
     }
 }
