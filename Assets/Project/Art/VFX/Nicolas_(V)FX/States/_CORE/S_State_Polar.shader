@@ -545,41 +545,41 @@ Shader "S_State_Polar"
 				float smoothstepResult10_g40 = smoothstep( temp_output_3_0_g40 , ( temp_output_3_0_g40 + _CircleMask_Smoothness ) , distance( float4( texCoord2_g40, 0.0 , 0.0 ) , _CircleMask_Center ));
 				float lerpResult15_g40 = lerp( ( 1.0 - smoothstepResult10_g40 ) , smoothstepResult10_g40 , _CircleMask_Invert);
 				float temp_output_10_0 = ( lerpResult15_g40 - ( 0.0 * _CircleMask_Noise ) );
-				float4 appendResult43_g10 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
-				float4 appendResult42_g10 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
-				float4 lerpResult41_g10 = lerp( appendResult43_g10 , appendResult42_g10 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g36 = _PanningTex_ST.zw;
-				float2 break3_g36 = temp_output_1_0_g36;
-				float4 appendResult5_g36 = (float4(break3_g36.y , break3_g36.x , 0.0 , 0.0));
-				float4 lerpResult2_g36 = lerp( float4( temp_output_1_0_g36, 0.0 , 0.0 ) , appendResult5_g36 , _PanningTex_InvertUV);
-				float2 texCoord2_g1 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
-				float4 temp_output_1_0_g1 = float4( texCoord2_g1, 0.0 , 0.0 );
-				float4 temp_output_18_0_g1 = _Vector0;
-				float temp_output_3_0_g1 = distance( temp_output_1_0_g1 , temp_output_18_0_g1 );
-				float4 break6_g1 = ( temp_output_1_0_g1 + ( temp_output_18_0_g1 * float4( -1,-1,0,0 ) ) );
-				float temp_output_28_0_g1 = ( ( ( ( atan2( break6_g1.x , break6_g1.y ) / PI ) + 1.0 ) / 2.0 ) + ( temp_output_3_0_g1 * _Polar_Distort_U ) );
-				float4 appendResult4_g1 = (float4(temp_output_3_0_g1 , temp_output_28_0_g1 , 0.0 , 0.0));
-				float4 appendResult24_g1 = (float4(temp_output_28_0_g1 , temp_output_3_0_g1 , 0.0 , 0.0));
-				float4 lerpResult25_g1 = lerp( appendResult4_g1 , appendResult24_g1 , _Polar_InvertUV);
-				float4 temp_output_7_0 = lerpResult25_g1;
-				float2 panner1_g44 = ( _TimeParameters.x * _DistortTex_ST.zw + ( temp_output_7_0.xy * _DistortTex_ST.xy ));
+				float4 appendResult43_g46 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
+				float4 appendResult42_g46 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
+				float4 lerpResult41_g46 = lerp( appendResult43_g46 , appendResult42_g46 , _PanningTex_InvertUV);
+				float2 temp_output_1_0_g48 = _PanningTex_ST.zw;
+				float2 break3_g48 = temp_output_1_0_g48;
+				float4 appendResult5_g48 = (float4(break3_g48.y , break3_g48.x , 0.0 , 0.0));
+				float4 lerpResult2_g48 = lerp( float4( temp_output_1_0_g48, 0.0 , 0.0 ) , appendResult5_g48 , _PanningTex_InvertUV);
+				float2 texCoord2_g41 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
+				float4 temp_output_1_0_g41 = float4( texCoord2_g41, 0.0 , 0.0 );
+				float4 temp_output_18_0_g41 = _Vector0;
+				float temp_output_3_0_g41 = distance( temp_output_1_0_g41 , temp_output_18_0_g41 );
+				float4 break6_g41 = ( temp_output_1_0_g41 + ( temp_output_18_0_g41 * float4( -1,-1,0,0 ) ) );
+				float temp_output_28_0_g41 = ( ( ( ( atan2( break6_g41.x , break6_g41.y ) / PI ) + 1.0 ) / 2.0 ) + ( temp_output_3_0_g41 * _Polar_Distort_U ) );
+				float4 appendResult4_g41 = (float4(temp_output_3_0_g41 , temp_output_28_0_g41 , 0.0 , 0.0));
+				float4 appendResult24_g41 = (float4(temp_output_28_0_g41 , temp_output_3_0_g41 , 0.0 , 0.0));
+				float4 lerpResult25_g41 = lerp( appendResult4_g41 , appendResult24_g41 , _Polar_InvertUV);
+				float4 temp_output_7_0 = lerpResult25_g41;
+				float2 panner1_g45 = ( _TimeParameters.x * _DistortTex_ST.zw + ( temp_output_7_0.xy * _DistortTex_ST.xy ));
 				float4 temp_cast_6 = (1.0).xxxx;
-				float2 temp_output_1_0_g37 = ( float4( (( ( ( tex2D( _DistortTex, ( float2( 0,0 ) + panner1_g44 ) ) * 2.0 ) - temp_cast_6 ) * ( _DistortStrength + 0.0 ) * 1.0 )).rg, 0.0 , 0.0 ) + temp_output_7_0 ).xy;
-				float2 break3_g37 = temp_output_1_0_g37;
-				float4 appendResult5_g37 = (float4(break3_g37.y , break3_g37.x , 0.0 , 0.0));
-				float4 lerpResult2_g37 = lerp( float4( temp_output_1_0_g37, 0.0 , 0.0 ) , appendResult5_g37 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g38 = ( _PanningTex_ST.xy * float2( 1,1 ) );
-				float2 break3_g38 = temp_output_1_0_g38;
-				float4 appendResult5_g38 = (float4(break3_g38.y , break3_g38.x , 0.0 , 0.0));
-				float4 lerpResult2_g38 = lerp( float4( temp_output_1_0_g38, 0.0 , 0.0 ) , appendResult5_g38 , _PanningTex_InvertUV);
-				float2 panner1_g35 = ( _TimeParameters.x * (lerpResult2_g36).xy + ( (lerpResult2_g37).xy * (lerpResult2_g38).xy ));
-				float2 texCoord9_g10 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
-				float lerpResult1_g41 = lerp( temp_output_10_0 , tex2D( _PanningTex, ( ( float4( float2( 0,0 ), 0.0 , 0.0 ) + lerpResult41_g10 ).xy + panner1_g35 ), ddx( texCoord9_g10 ), ddy( texCoord9_g10 ) ).r , _AlphaLerp_TexInfluence);
-				float smoothstepResult5_g39 = smoothstep( _BicolorThreshold , ( _BicolorThreshold + _BicolorSmoothness ) , lerpResult1_g41);
-				float lerpResult12_g39 = lerp( smoothstepResult5_g39 , ( 1.0 - smoothstepResult5_g39 ) , _Bicolor_OneMinus);
-				float4 lerpResult4_g39 = lerp( _ColorA , _ColorB , lerpResult12_g39);
+				float2 temp_output_1_0_g49 = ( float4( (( ( ( tex2D( _DistortTex, ( float2( 0,0 ) + panner1_g45 ) ) * 2.0 ) - temp_cast_6 ) * ( _DistortStrength + 0.0 ) * 1.0 )).rg, 0.0 , 0.0 ) + temp_output_7_0 ).xy;
+				float2 break3_g49 = temp_output_1_0_g49;
+				float4 appendResult5_g49 = (float4(break3_g49.y , break3_g49.x , 0.0 , 0.0));
+				float4 lerpResult2_g49 = lerp( float4( temp_output_1_0_g49, 0.0 , 0.0 ) , appendResult5_g49 , _PanningTex_InvertUV);
+				float2 temp_output_1_0_g50 = ( _PanningTex_ST.xy * float2( 1,1 ) );
+				float2 break3_g50 = temp_output_1_0_g50;
+				float4 appendResult5_g50 = (float4(break3_g50.y , break3_g50.x , 0.0 , 0.0));
+				float4 lerpResult2_g50 = lerp( float4( temp_output_1_0_g50, 0.0 , 0.0 ) , appendResult5_g50 , _PanningTex_InvertUV);
+				float2 panner1_g47 = ( _TimeParameters.x * (lerpResult2_g48).xy + ( (lerpResult2_g49).xy * (lerpResult2_g50).xy ));
+				float2 texCoord9_g46 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
+				float lerpResult1_g52 = lerp( temp_output_10_0 , tex2D( _PanningTex, ( ( float4( float2( 0,0 ), 0.0 , 0.0 ) + lerpResult41_g46 ).xy + panner1_g47 ), ddx( texCoord9_g46 ), ddy( texCoord9_g46 ) ).r , _AlphaLerp_TexInfluence);
+				float smoothstepResult5_g51 = smoothstep( _BicolorThreshold , ( _BicolorThreshold + _BicolorSmoothness ) , lerpResult1_g52);
+				float lerpResult12_g51 = lerp( smoothstepResult5_g51 , ( 1.0 - smoothstepResult5_g51 ) , _Bicolor_OneMinus);
+				float4 lerpResult4_g51 = lerp( _ColorA , _ColorB , lerpResult12_g51);
 				
-				surfaceDescription.Color = lerpResult4_g39.rgb;
+				surfaceDescription.Color = lerpResult4_g51.rgb;
 				surfaceDescription.Emission = 0;
 				surfaceDescription.Alpha = ( temp_output_10_0 * packedInput.ase_color.a );
 				surfaceDescription.AlphaClipThreshold = _AlphaCutoff;
@@ -1290,41 +1290,41 @@ Shader "S_State_Polar"
 				float smoothstepResult10_g40 = smoothstep( temp_output_3_0_g40 , ( temp_output_3_0_g40 + _CircleMask_Smoothness ) , distance( float4( texCoord2_g40, 0.0 , 0.0 ) , _CircleMask_Center ));
 				float lerpResult15_g40 = lerp( ( 1.0 - smoothstepResult10_g40 ) , smoothstepResult10_g40 , _CircleMask_Invert);
 				float temp_output_10_0 = ( lerpResult15_g40 - ( 0.0 * _CircleMask_Noise ) );
-				float4 appendResult43_g10 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
-				float4 appendResult42_g10 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
-				float4 lerpResult41_g10 = lerp( appendResult43_g10 , appendResult42_g10 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g36 = _PanningTex_ST.zw;
-				float2 break3_g36 = temp_output_1_0_g36;
-				float4 appendResult5_g36 = (float4(break3_g36.y , break3_g36.x , 0.0 , 0.0));
-				float4 lerpResult2_g36 = lerp( float4( temp_output_1_0_g36, 0.0 , 0.0 ) , appendResult5_g36 , _PanningTex_InvertUV);
-				float2 texCoord2_g1 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float4 temp_output_1_0_g1 = float4( texCoord2_g1, 0.0 , 0.0 );
-				float4 temp_output_18_0_g1 = _Vector0;
-				float temp_output_3_0_g1 = distance( temp_output_1_0_g1 , temp_output_18_0_g1 );
-				float4 break6_g1 = ( temp_output_1_0_g1 + ( temp_output_18_0_g1 * float4( -1,-1,0,0 ) ) );
-				float temp_output_28_0_g1 = ( ( ( ( atan2( break6_g1.x , break6_g1.y ) / PI ) + 1.0 ) / 2.0 ) + ( temp_output_3_0_g1 * _Polar_Distort_U ) );
-				float4 appendResult4_g1 = (float4(temp_output_3_0_g1 , temp_output_28_0_g1 , 0.0 , 0.0));
-				float4 appendResult24_g1 = (float4(temp_output_28_0_g1 , temp_output_3_0_g1 , 0.0 , 0.0));
-				float4 lerpResult25_g1 = lerp( appendResult4_g1 , appendResult24_g1 , _Polar_InvertUV);
-				float4 temp_output_7_0 = lerpResult25_g1;
-				float2 panner1_g44 = ( _TimeParameters.x * _DistortTex_ST.zw + ( temp_output_7_0.xy * _DistortTex_ST.xy ));
+				float4 appendResult43_g46 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
+				float4 appendResult42_g46 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
+				float4 lerpResult41_g46 = lerp( appendResult43_g46 , appendResult42_g46 , _PanningTex_InvertUV);
+				float2 temp_output_1_0_g48 = _PanningTex_ST.zw;
+				float2 break3_g48 = temp_output_1_0_g48;
+				float4 appendResult5_g48 = (float4(break3_g48.y , break3_g48.x , 0.0 , 0.0));
+				float4 lerpResult2_g48 = lerp( float4( temp_output_1_0_g48, 0.0 , 0.0 ) , appendResult5_g48 , _PanningTex_InvertUV);
+				float2 texCoord2_g41 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float4 temp_output_1_0_g41 = float4( texCoord2_g41, 0.0 , 0.0 );
+				float4 temp_output_18_0_g41 = _Vector0;
+				float temp_output_3_0_g41 = distance( temp_output_1_0_g41 , temp_output_18_0_g41 );
+				float4 break6_g41 = ( temp_output_1_0_g41 + ( temp_output_18_0_g41 * float4( -1,-1,0,0 ) ) );
+				float temp_output_28_0_g41 = ( ( ( ( atan2( break6_g41.x , break6_g41.y ) / PI ) + 1.0 ) / 2.0 ) + ( temp_output_3_0_g41 * _Polar_Distort_U ) );
+				float4 appendResult4_g41 = (float4(temp_output_3_0_g41 , temp_output_28_0_g41 , 0.0 , 0.0));
+				float4 appendResult24_g41 = (float4(temp_output_28_0_g41 , temp_output_3_0_g41 , 0.0 , 0.0));
+				float4 lerpResult25_g41 = lerp( appendResult4_g41 , appendResult24_g41 , _Polar_InvertUV);
+				float4 temp_output_7_0 = lerpResult25_g41;
+				float2 panner1_g45 = ( _TimeParameters.x * _DistortTex_ST.zw + ( temp_output_7_0.xy * _DistortTex_ST.xy ));
 				float4 temp_cast_6 = (1.0).xxxx;
-				float2 temp_output_1_0_g37 = ( float4( (( ( ( tex2D( _DistortTex, ( float2( 0,0 ) + panner1_g44 ) ) * 2.0 ) - temp_cast_6 ) * ( _DistortStrength + 0.0 ) * 1.0 )).rg, 0.0 , 0.0 ) + temp_output_7_0 ).xy;
-				float2 break3_g37 = temp_output_1_0_g37;
-				float4 appendResult5_g37 = (float4(break3_g37.y , break3_g37.x , 0.0 , 0.0));
-				float4 lerpResult2_g37 = lerp( float4( temp_output_1_0_g37, 0.0 , 0.0 ) , appendResult5_g37 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g38 = ( _PanningTex_ST.xy * float2( 1,1 ) );
-				float2 break3_g38 = temp_output_1_0_g38;
-				float4 appendResult5_g38 = (float4(break3_g38.y , break3_g38.x , 0.0 , 0.0));
-				float4 lerpResult2_g38 = lerp( float4( temp_output_1_0_g38, 0.0 , 0.0 ) , appendResult5_g38 , _PanningTex_InvertUV);
-				float2 panner1_g35 = ( _TimeParameters.x * (lerpResult2_g36).xy + ( (lerpResult2_g37).xy * (lerpResult2_g38).xy ));
-				float2 texCoord9_g10 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float lerpResult1_g41 = lerp( temp_output_10_0 , tex2D( _PanningTex, ( ( float4( float2( 0,0 ), 0.0 , 0.0 ) + lerpResult41_g10 ).xy + panner1_g35 ), ddx( texCoord9_g10 ), ddy( texCoord9_g10 ) ).r , _AlphaLerp_TexInfluence);
-				float smoothstepResult5_g39 = smoothstep( _BicolorThreshold , ( _BicolorThreshold + _BicolorSmoothness ) , lerpResult1_g41);
-				float lerpResult12_g39 = lerp( smoothstepResult5_g39 , ( 1.0 - smoothstepResult5_g39 ) , _Bicolor_OneMinus);
-				float4 lerpResult4_g39 = lerp( _ColorA , _ColorB , lerpResult12_g39);
+				float2 temp_output_1_0_g49 = ( float4( (( ( ( tex2D( _DistortTex, ( float2( 0,0 ) + panner1_g45 ) ) * 2.0 ) - temp_cast_6 ) * ( _DistortStrength + 0.0 ) * 1.0 )).rg, 0.0 , 0.0 ) + temp_output_7_0 ).xy;
+				float2 break3_g49 = temp_output_1_0_g49;
+				float4 appendResult5_g49 = (float4(break3_g49.y , break3_g49.x , 0.0 , 0.0));
+				float4 lerpResult2_g49 = lerp( float4( temp_output_1_0_g49, 0.0 , 0.0 ) , appendResult5_g49 , _PanningTex_InvertUV);
+				float2 temp_output_1_0_g50 = ( _PanningTex_ST.xy * float2( 1,1 ) );
+				float2 break3_g50 = temp_output_1_0_g50;
+				float4 appendResult5_g50 = (float4(break3_g50.y , break3_g50.x , 0.0 , 0.0));
+				float4 lerpResult2_g50 = lerp( float4( temp_output_1_0_g50, 0.0 , 0.0 ) , appendResult5_g50 , _PanningTex_InvertUV);
+				float2 panner1_g47 = ( _TimeParameters.x * (lerpResult2_g48).xy + ( (lerpResult2_g49).xy * (lerpResult2_g50).xy ));
+				float2 texCoord9_g46 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float lerpResult1_g52 = lerp( temp_output_10_0 , tex2D( _PanningTex, ( ( float4( float2( 0,0 ), 0.0 , 0.0 ) + lerpResult41_g46 ).xy + panner1_g47 ), ddx( texCoord9_g46 ), ddy( texCoord9_g46 ) ).r , _AlphaLerp_TexInfluence);
+				float smoothstepResult5_g51 = smoothstep( _BicolorThreshold , ( _BicolorThreshold + _BicolorSmoothness ) , lerpResult1_g52);
+				float lerpResult12_g51 = lerp( smoothstepResult5_g51 , ( 1.0 - smoothstepResult5_g51 ) , _Bicolor_OneMinus);
+				float4 lerpResult4_g51 = lerp( _ColorA , _ColorB , lerpResult12_g51);
 				
-				surfaceDescription.Color = lerpResult4_g39.rgb;
+				surfaceDescription.Color = lerpResult4_g51.rgb;
 				surfaceDescription.Emission = 0;
 				surfaceDescription.Alpha = ( temp_output_10_0 * packedInput.ase_color.a );
 				surfaceDescription.AlphaClipThreshold =  _AlphaCutoff;
@@ -2484,12 +2484,12 @@ Version=18900
 1920;231;1920;1019;802;488.5;1;True;False
 Node;AmplifyShaderEditor.FunctionNode;10;-68,181.5;Inherit;False;SF_CircleMask;23;;40;fe677789fb780d34b8887718ca845428;0;5;17;FLOAT;0;False;1;FLOAT4;0,0,0,0;False;3;FLOAT;0;False;6;FLOAT4;0,0,0,0;False;13;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.VertexColorNode;16;348,195.5;Inherit;False;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.FunctionNode;7;-762,-89.5;Inherit;False;SF_PolarUV;0;;1;bc5d9a6ecd79c3041a2b8852c4a2b9cf;0;2;1;FLOAT4;0,0,0,0;False;18;FLOAT4;0,0,0,0;False;3;FLOAT4;0;FLOAT4;15;FLOAT4;16
-Node;AmplifyShaderEditor.FunctionNode;13;-674,-249.5;Inherit;False;SF_DistortTexture;4;;43;96c99f2862d31594fbaa887784570dd8;0;3;16;FLOAT;0;False;17;FLOAT;1;False;11;FLOAT2;0,0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.FunctionNode;7;-762,-89.5;Inherit;False;SF_PolarUV;0;;41;bc5d9a6ecd79c3041a2b8852c4a2b9cf;0;2;1;FLOAT4;0,0,0,0;False;18;FLOAT4;0,0,0,0;False;3;FLOAT4;0;FLOAT4;15;FLOAT4;16
+Node;AmplifyShaderEditor.FunctionNode;13;-674,-249.5;Inherit;False;SF_DistortTexture;4;;44;96c99f2862d31594fbaa887784570dd8;0;3;16;FLOAT;0;False;17;FLOAT;1;False;11;FLOAT2;0,0;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.SimpleAddOpNode;14;-435,-110.5;Inherit;False;2;2;0;FLOAT2;0,0;False;1;FLOAT4;0,0,0,0;False;1;FLOAT4;0
-Node;AmplifyShaderEditor.FunctionNode;8;-315,-53.5;Inherit;False;SF_PanningTexture;7;;10;b045855c7f4c7344eb8723194efc0969;0;7;3;SAMPLER2D;;False;46;FLOAT;0;False;5;FLOAT2;0,0;False;8;FLOAT2;0,0;False;6;FLOAT2;0,0;False;14;FLOAT2;1,1;False;7;FLOAT2;0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.FunctionNode;9;294,-133.5;Inherit;False;SF_Bicolor;17;;39;8f1c0adb31a562646a4d2a8fec362420;0;3;9;COLOR;0,0,0,0;False;10;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
-Node;AmplifyShaderEditor.FunctionNode;11;32,-2.5;Inherit;False;SF_AlphaLerp;29;;41;853a1742ead4a334f9e5c5176cca2294;0;2;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.FunctionNode;8;-315,-53.5;Inherit;False;SF_PanningTexture;7;;46;b045855c7f4c7344eb8723194efc0969;0;7;3;SAMPLER2D;;False;46;FLOAT;0;False;5;FLOAT2;0,0;False;8;FLOAT2;0,0;False;6;FLOAT2;0,0;False;14;FLOAT2;1,1;False;7;FLOAT2;0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.FunctionNode;9;294,-133.5;Inherit;False;SF_Bicolor;17;;51;8f1c0adb31a562646a4d2a8fec362420;0;3;9;COLOR;0,0,0,0;False;10;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
+Node;AmplifyShaderEditor.FunctionNode;11;32,-2.5;Inherit;False;SF_AlphaLerp;29;;52;853a1742ead4a334f9e5c5176cca2294;0;2;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;15;540,80.5;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;1;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;13;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;ShadowCaster;0;1;ShadowCaster;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;True;False;False;False;False;0;False;-1;False;False;False;False;False;False;False;False;False;True;1;False;-1;False;False;True;1;LightMode=ShadowCaster;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;2;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;13;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;META;0;2;META;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;-1;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=Meta;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
@@ -2510,4 +2510,4 @@ WireConnection;15;1;16;4
 WireConnection;0;0;9;0
 WireConnection;0;2;15;0
 ASEEND*/
-//CHKSM=E67218A2588F8A32F98F605A4DAC55909BDFFDC6
+//CHKSM=983CCAEEFB059FF5F3A242D9974B82FAE3AEE765
