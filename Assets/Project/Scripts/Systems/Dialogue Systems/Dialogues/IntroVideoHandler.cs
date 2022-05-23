@@ -15,7 +15,7 @@ namespace TheFowler
         {
             base.PlayPhase();
             onStartWWISE.Post(gameObject);
-
+            StartCoroutine(WaitEventWall());
         }
 
         public override void EndPhase()
@@ -42,7 +42,7 @@ namespace TheFowler
             yield return new WaitForSeconds(timeCodeBreakWall);
 
             //Wall Break State
-            AkSoundEngine.SetState("", "");
+            AkSoundEngine.SetState("GameplayPhase", "Intro");
 
         }
     }
