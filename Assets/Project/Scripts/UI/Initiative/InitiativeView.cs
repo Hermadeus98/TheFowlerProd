@@ -36,8 +36,8 @@ namespace TheFowler
 
                 menuView.onMenu = false;
 
-                if (VolumesManager.Instance != null)
-                    VolumesManager.Instance.BlurryUI.enabled = true;
+                //if (VolumesManager.Instance != null)
+                //    VolumesManager.Instance.BlurryUI.enabled = true;
 
                 if (eventSytemGO == null)
                 {
@@ -78,8 +78,8 @@ namespace TheFowler
             base.Hide();
 
             CanvasGroup.alpha = 0;
-            if (VolumesManager.Instance != null)
-                VolumesManager.Instance.BlurryUI.enabled = false;
+            //if (VolumesManager.Instance != null)
+            //    VolumesManager.Instance.BlurryUI.enabled = false;
 
             for (int i = 0; i < selectors.Length; i++)
             {

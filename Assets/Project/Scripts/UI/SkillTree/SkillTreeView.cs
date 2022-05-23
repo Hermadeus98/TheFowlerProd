@@ -11,7 +11,7 @@ namespace TheFowler
 {
     public class SkillTreeView : UIView
     {
-        [TabGroup("References")] [SerializeField] private SkillTreeSelector firstSelectedObject;
+        [TabGroup("References")] public SkillTreeSelector firstSelectedObject;
         [TabGroup("References")] [SerializeField] private UnityEngine.InputSystem.PlayerInput Inputs;
         [TabGroup("Tree")] [SerializeField] private SkillTreeSelector[] skills;
         [TabGroup("Tree")] [SerializeField] private BattleActorData[] datas;
@@ -26,6 +26,7 @@ namespace TheFowler
 
 
         [TabGroup("Character")] [SerializeField] private Image character;
+        [TabGroup("Character")] [SerializeField] private RectTransform characterBox;
         [TabGroup("Character")] [SerializeField] private TMPro.TextMeshProUGUI characterName;
         [TabGroup("Character")] [SerializeField] private Sprite[] characterSprites;
 
@@ -64,8 +65,8 @@ namespace TheFowler
 
             SetSpells();
 
-            if (VolumesManager.Instance != null)
-                VolumesManager.Instance.BlurryUI.enabled = true;
+            //if (VolumesManager.Instance != null)
+            //    VolumesManager.Instance.BlurryUI.enabled = true;
 
             if (eventSytemGO == null)
             {
@@ -74,9 +75,19 @@ namespace TheFowler
                 eventSytem = eventSytemGO.GetComponent<EventSystem>();
 
             }
-            eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
 
-            menuView.onMenu = false;
+            if (!menuView.onMenu)
+            {
+                //characterBox.DOAnchorPos(new Vector2(530, 406), .3f).SetEase(Ease.OutBounce);
+                //descriptionBox.DOAnchorPos(new Vector2(500, 204), .3f).SetEase(Ease.OutBounce);
+                descriptionBox.gameObject.SetActive(true);
+            }
+
+            //eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
+
+            //menuView.onMenu = false;
+
+
 
         }
 
@@ -87,15 +98,19 @@ namespace TheFowler
 
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).Hide();
 
-            if (VolumesManager.Instance != null)
-                VolumesManager.Instance.BlurryUI.enabled = false;
+            //if (VolumesManager.Instance != null)
+            //    VolumesManager.Instance.BlurryUI.enabled = false;
 
-     
-            if(menuView != null)
+
+            if (menuView != null)
             {
                 menuView.Show();
             }
 
+
+            //characterBox.DOAnchorPos(new Vector2(830, 406), .15f).SetEase(Ease.OutBounce);
+            //descriptionBox.DOAnchorPos(new Vector2(235, 204), .15f).SetEase(Ease.OutBounce);
+            descriptionBox.gameObject.SetActive(false);
         }
 
         private void Update()
@@ -117,7 +132,8 @@ namespace TheFowler
                     SetSpells();
 
                     firstSelectedObject._Select();
-                    eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
+                    if(!menuView.onMenu)
+                        eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
 
 
 
@@ -138,8 +154,15 @@ namespace TheFowler
                     SetSpells();
 
                     firstSelectedObject._Select();
-                    eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
+
+                    if(!menuView.onMenu)
+                        eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
                 }
+
+                //else if (Inputs.actions["C"].WasPressedThisFrame())
+                //{
+
+                //}
 
                 else if (Inputs.actions["Return"].WasPressedThisFrame())
                 {
@@ -148,6 +171,16 @@ namespace TheFowler
 
             }
 
+        }
+
+        private void _Reset()
+        {
+            Hide();
+
+            //for (int i = 0; i < datas; i++)
+            //{
+
+            //}
         }
 
         private void CharacterPicker(int newID)
@@ -182,6 +215,18 @@ namespace TheFowler
                 skills[i].Data = currentData;
                 skills[i].SetDatas(i);
                 skills[i].SetState();
+
+
+            }
+
+            RefreshAllLines();
+        }
+
+        public void RefreshAllLines()
+        {
+            for (int i = 0; i < skills.Length; i++)
+            {
+                skills[i].RefreshLines();
 
             }
         }
@@ -229,7 +274,7 @@ namespace TheFowler
                     break;
             }
 
-            descriptionBox.anchoredPosition = selector.Rect.anchoredPosition;
+            //descriptionBox.anchoredPosition = selector.Rect.anchoredPosition;
 
         }
 
