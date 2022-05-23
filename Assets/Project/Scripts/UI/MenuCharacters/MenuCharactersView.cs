@@ -21,11 +21,40 @@ namespace TheFowler
         {
             base.Show();
 
-
             numberOfAllies = battle.numberOfAllies;
+
+            if (!onMenu)
+            {
+                MenuCharactersSKHandler.Instance.Initialize();
+
+
+                if (numberOfAllies == 2)
+                {
+                    MenuCharactersSKHandler.Instance.abi.gameObject.SetActive(true);
+                    MenuCharactersSKHandler.Instance.robyn.gameObject.SetActive(true);
+                    MenuCharactersSKHandler.Instance.phoebe.gameObject.SetActive(false);
+                }
+                else
+                {
+                    MenuCharactersSKHandler.Instance.abi.gameObject.SetActive(true);
+                    MenuCharactersSKHandler.Instance.robyn.gameObject.SetActive(true);
+                    MenuCharactersSKHandler.Instance.phoebe.gameObject.SetActive(true);
+                }
+
+                MenuCharactersSKHandler.Instance.abi.SetTrigger("SpellExecution1");
+                MenuCharactersSKHandler.Instance.robyn.SetTrigger("SpellExecution1");
+                MenuCharactersSKHandler.Instance.phoebe.SetTrigger("SpellExecution1");
+
+
+
+
+            }
+
+            onMenu = true;
+
             background.SetActive(true);
-            if (VolumesManager.Instance != null)
-                VolumesManager.Instance.BlurryUI.enabled = true;
+            //if (VolumesManager.Instance != null)
+            //    VolumesManager.Instance.BlurryUI.enabled = true;
 
             if (eventSytemGO == null)
             {
@@ -53,6 +82,11 @@ namespace TheFowler
 
             }
 
+
+            
+
+            //skillTreeView.Show();
+
         }
 
         public void Show(Battle _battle)
@@ -75,10 +109,12 @@ namespace TheFowler
             initiativeView.gameObject.SetActive(true);
 
 
-            if (VolumesManager.Instance != null)
-                VolumesManager.Instance.BlurryUI.enabled = false;
+            //if (VolumesManager.Instance != null)
+            //    VolumesManager.Instance.BlurryUI.enabled = false;
 
             eventSytem.SetSelectedGameObject(null);
+
+            MenuCharactersSKHandler.Instance.Close();
         }
 
         private IEnumerator WaitOnMenu()
@@ -87,8 +123,19 @@ namespace TheFowler
             onMenu = true;
         }
 
+        public void RefreshSkillTree()
+        {
+            onMenu = false;
+            skillTreeView.Show();
+            eventSytem.SetSelectedGameObject(skillTreeView.firstSelectedObject.gameObject);
+            initiativeView.Hide();
+        }
+
         private void Update()
         {
+            return;
+
+
             if(isActive && onMenu)
             {
                 if (Inputs.actions["Return"].WasPressedThisFrame())
@@ -141,6 +188,16 @@ namespace TheFowler
                     }
                 }
             }
+        }
+
+        public void LaunchBattle()
+        {
+            if (battle != null)
+            {
+                battle.PlayPhase();
+            }
+
+            Hide();
         }
     }
 }

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DG.Tweening;
 
 namespace TheFowler
 {
     public class InitiativeSelector : CustomElement
     {
-        [SerializeField] private Outline outline;
+        [SerializeField] private Image glow;
         [SerializeField] private InitiativeView view;
         public BattleActorData associatedData;
         [SerializeField] private Transform parent;
@@ -26,8 +27,10 @@ namespace TheFowler
             base.OnSelect(eventData);
 
 
-            outline.enabled = true;
+            glow.color = new Color(glow.color.r, glow.color.g, glow.color.b, 1);
             isHover = true;
+            arrow.SetActive(true);
+
 
         }
 
@@ -35,26 +38,30 @@ namespace TheFowler
         {
             if (view.isSelecting) return;
             base.OnDeselect(eventData);
-            outline.enabled = false;
+            glow.color = new Color(glow.color.r, glow.color.g, glow.color.b, 0);
             isHover = false;
+            arrow.SetActive(false);
         }
 
         public void _Deselect()
         {
-            outline.enabled = false;
+            glow.color = new Color(glow.color.r, glow.color.g, glow.color.b, 0);
             isHover = false;
+           
         }
 
         public void Pick()
         {
             portrait.color = Color.white;
             arrow.SetActive(true);
+            portrait.rectTransform.DOAnchorPos(new Vector2(portrait.rectTransform.anchoredPosition.x - 200, 0), .2f);
         }
 
         public void UnPick()
         {
             portrait.color = Color.grey;
-            arrow.SetActive(false);
+            //arrow.SetActive(false);
+            portrait.rectTransform.DOAnchorPos(new Vector2(0, 0), .2f);
         }
 
         private void SetLife()
@@ -117,9 +124,9 @@ namespace TheFowler
             navigation = customNav;
 
             portrait.color = Color.white;
-            arrow.SetActive(false);
-
-            SetLife();
+            //arrow.SetActive(false);
+            portrait.rectTransform.DOAnchorPos(new Vector2(0, 0), .2f);
+            // SetLife();
         }
 
         public void InitializeMenu()

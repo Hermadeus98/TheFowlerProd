@@ -12,12 +12,12 @@ namespace TheFowler
     {
         [SerializeField] private Spell associatedSpell;
 
-        [SerializeField] private SkillTreeSelector associatedSkill;
+        [SerializeField] private SkillTreeSelector[] linkedSkills;
 
         [SerializeField] private BattleActorData associatedData;
 
         [SerializeField] private SkillState skillState;
-        
+
         [SerializeField] private GameObject equipped, unequipped, locked;
         [SerializeField] private GameObject hover, unHover;
 
@@ -36,10 +36,13 @@ namespace TheFowler
 
         private bool canInteract = false;
         private bool isHover;
+
+        public SkillLinks[] links;
         public override void OnSelect(BaseEventData eventData)
         {
             base.OnSelect(eventData);
             _Select();
+
         }
 
         public override void OnDeselect(BaseEventData eventData)
@@ -58,6 +61,8 @@ namespace TheFowler
             SetState();
             view.SetDescription(this, associatedSpell);
             CheckSpells();
+            ChangeOutline(true);
+            RefreshLines();
             //SetLines(true);
         }
 
@@ -66,12 +71,13 @@ namespace TheFowler
             hover.SetActive(false);
             unHover.SetActive(true);
             isHover = false;
+            ChangeOutline(false);
             //SetLines(false);
         }
 
         private void Update()
         {
-            if(canInteract && isHover && Inputs.actions["Select"].WasPressedThisFrame())
+            if (canInteract && isHover && Inputs.actions["Select"].WasPressedThisFrame())
             {
                 Equip();
             }
@@ -79,9 +85,15 @@ namespace TheFowler
 
         public void Equip()
         {
-            if (associatedSkill == null) return;
 
-            associatedSkill.UnEquip();
+            for (int i = 0; i < linkedSkills.Length; i++)
+            {
+                if(linkedSkills[i].skillState == SkillState.EQUIPPED)
+                {
+                    return;
+                }
+            }
+
 
             FeedbackEquipped();
 
@@ -90,6 +102,8 @@ namespace TheFowler
 
             view.SetSpells();
             CheckSpells();
+
+            view.RefreshAllLines();
 
         }
 
@@ -117,6 +131,8 @@ namespace TheFowler
 
         public void SetState()
         {
+            
+
             switch (associatedSpell.spellState)
             {
                 case SkillState.BASIC:
@@ -134,6 +150,14 @@ namespace TheFowler
             }
 
 
+        }
+
+        private void ChangeOutline(bool value)
+        {
+            for (int i = 0; i < links.Length; i++)
+            {
+                links[i].lineBehavior.EnableOutline(value);
+            }
         }
 
         public BattleActorData Data
@@ -226,14 +250,14 @@ namespace TheFowler
             for (int i = 0; i < view.SpellTreeSelectors.Length; i++)
             {
                 view.SpellTreeSelectors[i].SetUnHover();
-                
+
             }
             for (int i = 0; i < view.SpellTreeSelectors.Length; i++)
             {
                 if (view.SpellTreeSelectors[i].associatedSpell == associatedSpell)
                 {
                     view.SpellTreeSelectors[i].SetHover();
-                    
+
                 }
 
             }
@@ -264,9 +288,40 @@ namespace TheFowler
             associatedData.Spells[associatedSpell.unlockOrder] = associatedSpell;
         }
 
+
+
+        public void RefreshLines()
+        {
+            for (int i = 0; i < links.Length; i++)
+            {
+                switch (links[i].linkedSelector.skillState)
+                {
+                    case SkillState.EQUIPPED:
+                        links[i].lineBehavior.ToSelected();
+                        break;
+                    case SkillState.UNEQUIPPED:
+                        links[i].lineBehavior.ToUnSelected();
+                        break;
+                    case SkillState.LOCKED:
+                        links[i].lineBehavior.ToDisable();
+                        break;
+                }
+            
+
+            }
+        }
+
+
     }
 
 
+
+    [System.Serializable]
+    public struct SkillLinks
+    {
+        public LineBehavior lineBehavior;
+        public SkillTreeSelector linkedSelector;
+    }
 
 }
 

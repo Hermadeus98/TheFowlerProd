@@ -138,7 +138,7 @@ namespace TheFowler
 
             for (int i = 0; i < AllSpells.Length; i++)
             {
-                if (AllSpells[i].unlockOrder <= complicityLevel)
+                if (AllSpells[i].unlockOrder < complicityLevel)
                 {
                     AllSpells[i].spellState = SkillState.BASIC;
                 }
