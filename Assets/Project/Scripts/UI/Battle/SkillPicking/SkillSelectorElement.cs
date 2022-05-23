@@ -223,6 +223,8 @@ namespace TheFowler
             fade = descCanvasGroup.DOFade(1f, .2f);
         
             targets.ForEach(w => w.transform.localScale = Vector3.zero);
+
+            spellTypeIcon.sprite = SpellTypeDatabase.GetElement(referedSpell.SpellType);
             
             if(desc != null)
                 StopCoroutine(desc);
