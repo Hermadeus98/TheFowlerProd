@@ -65,12 +65,12 @@ namespace TheFowler
 
             view.Hide();
 
-            if (PlayWWISEState)
+            /*if (PlayWWISEState)
             {
                 AkSoundEngine.SetState("Scene", "Scene1_TheGarden");
                 AkSoundEngine.SetState("GameplayPhase", "Explo");
 
-            }
+            }*/
 
             StopAllCoroutines();
 

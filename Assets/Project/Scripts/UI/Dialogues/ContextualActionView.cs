@@ -21,16 +21,25 @@ namespace TheFowler
         [TabGroup("INTRO")]
         [SerializeField] private Image introInput;
         Tween tween;
+        [TabGroup("INTRO")]
+        [SerializeField] private AK.Wwise.Event exploEvent; 
+        [TabGroup("INTRO")]
+        [SerializeField] private AK.Wwise.Event titleCardAmbiant;
+        [TabGroup("INTRO")]
+        [SerializeField] private AK.Wwise.Event titleCardAmbiantStop;
 
         public override void Show()
         {
             base.Show();
+            titleCardAmbiant.Post(gameObject);
         }
 
         public override void Hide()
         {
             base.Hide();
             numberOfRepetition = 0;
+            exploEvent.Post(gameObject);
+            titleCardAmbiantStop.Post(gameObject);
         }
 
         public void Show(ContextualActionLocation type, float _value, System.Action _action)

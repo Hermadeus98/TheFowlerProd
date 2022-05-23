@@ -8,7 +8,7 @@ namespace TheFowler
     {
 
         [SerializeField] private GameplayPhase nextPhase;
-        [SerializeField] private AK.Wwise.Event onStartWWISE, onEndWWISE;
+        [SerializeField] private AK.Wwise.Event onStartWWISE, onEndWWISE, onBreakWallWwise;
         [SerializeField] private float timeCodeBreakWall;
 
         public override void PlayPhase()
@@ -22,8 +22,8 @@ namespace TheFowler
         {
             base.EndPhase();
             LaunchContextualAction();
-            //StartCoroutine(WaitEventWall());
             onEndWWISE.Post(gameObject);
+            onBreakWallWwise.Post(gameObject);
 
         }
         public void LaunchContextualAction()
@@ -42,7 +42,8 @@ namespace TheFowler
             yield return new WaitForSeconds(timeCodeBreakWall);
 
             //Wall Break State
-            AkSoundEngine.SetState("GameplayPhase", "Intro");
+            Debug.Log("Set State Wwise");
+            onBreakWallWwise.Post(gameObject);
 
         }
     }
