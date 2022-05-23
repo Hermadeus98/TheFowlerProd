@@ -17,6 +17,7 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000}
+    - {fileID: 21300000, guid: 9f0cd99050d28094e9e4709883d5e1bc, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -27,7 +28,7 @@ MonoBehaviour:
       Data: 0|TheFowler.Effect[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 1|TheFowler.DamageEffectRobyn, Assembly-CSharp
@@ -87,7 +88,52 @@ MonoBehaviour:
       Data: 0
     - Name: damage
       Entry: 4
-      Data: 300
+      Data: 200
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|TheFowler.DamageBonus, Assembly-CSharp
+    - Name: TargetType
+      Entry: 3
+      Data: 2
+    - Name: Emitter
+      Entry: 6
+      Data: 
+    - Name: Receivers
+      Entry: 6
+      Data: 
+    - Name: _damage
+      Entry: 4
+      Data: 0
+    - Name: _heal
+      Entry: 4
+      Data: 0
+    - Name: sprite
+      Entry: 10
+      Data: 1
+    - Name: ReferedSpell
+      Entry: 6
+      Data: 
+    - Name: rage
+      Entry: 5
+      Data: false
+    - Name: berserk
+      Entry: 5
+      Data: false
+    - Name: vampirisme
+      Entry: 5
+      Data: false
+    - Name: berserkDamage
+      Entry: 4
+      Data: 100
+    - Name: attackBonusType
+      Entry: 3
+      Data: 1
+    - Name: isAOE
+      Entry: 5
+      Data: true
     - Name: 
       Entry: 8
       Data: 
@@ -101,10 +147,10 @@ MonoBehaviour:
   Cooldown: 5
   InitialCooldown: 5
   CurrentCooldown: 0
-  logoBuff: {fileID: 0}
+  logoBuff: {fileID: 21300000, guid: 9f0cd99050d28094e9e4709883d5e1bc, type: 3}
   TargetType: 2
   SpellPower: 3
-  SpellDescription: Inflicts epic damage to all enemies
+  SpellDescription: Inflicts heavy damage to all enemies
   SpellType: 3
   sequenceBinding: 1
   sprite: {fileID: 21300000, guid: b9e0769d3c0447f48a88154890ad0071, type: 3}
