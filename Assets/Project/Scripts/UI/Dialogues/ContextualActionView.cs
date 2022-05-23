@@ -27,6 +27,8 @@ namespace TheFowler
         [SerializeField] private AK.Wwise.Event titleCardAmbiant;
         [TabGroup("INTRO")]
         [SerializeField] private AK.Wwise.Event titleCardAmbiantStop;
+        [TabGroup("INTRO")]
+        [SerializeField] private AK.Wwise.Event xPressed;
 
         public override void Show()
         {
@@ -75,6 +77,8 @@ namespace TheFowler
                             introInput.rectTransform.localScale += new Vector3(.5f, .5f, .5f);
                             tween = introInput.rectTransform.DOShakeScale(5, .1f, 10, 0, false).OnComplete(() => tween.Restart());
                             numberOfRepetition++;
+
+                            xPressed.Post(gameObject);
 
                             if (value == numberOfRepetition)
                             {
