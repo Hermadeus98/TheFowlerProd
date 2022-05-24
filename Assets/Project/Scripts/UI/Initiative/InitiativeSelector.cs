@@ -54,7 +54,7 @@ namespace TheFowler
         {
             portrait.color = Color.white;
             arrow.SetActive(true);
-            portrait.rectTransform.DOAnchorPos(new Vector2(portrait.rectTransform.anchoredPosition.x - 200, 0), .2f);
+            portrait.rectTransform.DOAnchorPos(new Vector2(portrait.rectTransform.anchoredPosition.x - 50, 0), .2f);
         }
 
         public void UnPick()
@@ -127,6 +127,7 @@ namespace TheFowler
             //arrow.SetActive(false);
             portrait.rectTransform.DOAnchorPos(new Vector2(0, 0), .2f);
             // SetLife();
+            view.SetSKActorInSpace();
         }
 
         public void InitializeMenu()

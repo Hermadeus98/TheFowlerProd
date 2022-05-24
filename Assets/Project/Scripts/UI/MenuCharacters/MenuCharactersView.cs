@@ -8,7 +8,7 @@ namespace TheFowler
     {
         [SerializeField] InitiativeView initiativeView; 
         [SerializeField] SkillTreeView skillTreeView;
-        [SerializeField] GameObject firstSelectedObject, background, confirmation;
+        [SerializeField] public GameObject firstSelectedObject, background, confirmation;
         [SerializeField] public UnityEngine.InputSystem.PlayerInput Inputs;
         private Battle battle;
         public bool onMenu;
@@ -82,8 +82,7 @@ namespace TheFowler
 
             }
 
-
-            
+            MenuCharactersSKHandler.Instance.InMenu();
 
             //skillTreeView.Show();
 
@@ -125,10 +124,15 @@ namespace TheFowler
 
         public void RefreshSkillTree()
         {
+            initiativeView.Hide(false);
             onMenu = false;
+            
             skillTreeView.Show();
             eventSytem.SetSelectedGameObject(skillTreeView.firstSelectedObject.gameObject);
-            initiativeView.Hide();
+            
+            background.SetActive(false);
+
+            MenuCharactersSKHandler.Instance.InSkillTree();
         }
 
         private void Update()
@@ -192,10 +196,7 @@ namespace TheFowler
 
         public void LaunchBattle()
         {
-            if (battle != null)
-            {
-                battle.PlayPhase();
-            }
+            battle.PlayPhase();
 
             Hide();
         }

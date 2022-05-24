@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 namespace TheFowler
 {
     public class InitiativeView : UIView
@@ -14,7 +15,10 @@ namespace TheFowler
         [SerializeField] private UnityEngine.InputSystem.PlayerInput Inputs;
         [TabGroup("References")]
         [SerializeField] private Transform parentSelectors;
+        [TabGroup("References")]
         [SerializeField] private MenuCharactersView menuView;
+        [TabGroup("References")]
+        [SerializeField] private RectTransform rectInitiative;
 
         private Transform selectedTransform;
         public bool isSelecting;
@@ -55,6 +59,14 @@ namespace TheFowler
                 infoButtons[1] = InfoBoxButtons.BACK;
 
                 UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+
+                rectInitiative.DOAnchorPos(new Vector2(-400, -254), .3f).SetEase(Ease.OutBounce);
+
+                MenuCharactersSKHandler.Instance.InInitative();
+            }
+            else
+            {
+                SetSKActorInSpace();
             }
 
         }
@@ -71,6 +83,59 @@ namespace TheFowler
             isInitiative = value;
 
             Show();
+        }
+
+        public void SetSKActorInSpace()
+        {
+            for (int i = 0; i < selectors.Length; i++)
+            {
+                switch (selectors[i].associatedData.actorName)
+                {
+                    case "Robyn":
+                        switch (selectors[i].associatedData.initiativeOrder)
+                        {
+                            case 1:
+                                MenuCharactersSKHandler.Instance.robyn.transform.DOMove(MenuCharactersSKHandler.Instance.position1.position, .2f);
+                                break;
+                            case 2:
+                                MenuCharactersSKHandler.Instance.robyn.transform.DOMove(MenuCharactersSKHandler.Instance.position2.position, .2f);
+                                break;
+                            case 3:
+                                MenuCharactersSKHandler.Instance.robyn.transform.DOMove(MenuCharactersSKHandler.Instance.position3.position, .2f);
+                                break;
+                        }
+                        break;
+                    case "Abigail":
+                        switch (selectors[i].associatedData.initiativeOrder)
+                        {
+                            case 1:
+                                MenuCharactersSKHandler.Instance.abi.transform.DOMove(MenuCharactersSKHandler.Instance.position1.position, .2f);
+                                break;
+                            case 2:
+                                MenuCharactersSKHandler.Instance.abi.transform.DOMove(MenuCharactersSKHandler.Instance.position2.position, .2f);
+                                break;
+                            case 3:
+                                MenuCharactersSKHandler.Instance.abi.transform.DOMove(MenuCharactersSKHandler.Instance.position3.position, .2f);
+                                break;
+                        }
+                        break;
+                    case "Phoebe":
+                        switch (selectors[i].associatedData.initiativeOrder)
+                        {
+                            case 1:
+                                MenuCharactersSKHandler.Instance.phoebe.transform.DOMove(MenuCharactersSKHandler.Instance.position1.position, .2f);
+                                break;
+                            case 2:
+                                MenuCharactersSKHandler.Instance.phoebe.transform.DOMove(MenuCharactersSKHandler.Instance.position2.position, .2f);
+                                break;
+                            case 3:
+                                MenuCharactersSKHandler.Instance.phoebe.transform.DOMove(MenuCharactersSKHandler.Instance.position3.position, .2f);
+                                break;
+                        }
+                        break;
+                }
+                
+            }
         }
 
         public override void Hide()
@@ -94,7 +159,7 @@ namespace TheFowler
             }
 
             canInput = false;
-
+            rectInitiative.DOAnchorPos(new Vector2(-281, -254), .3f).SetEase(Ease.OutBounce);
         }
 
         public void Hide(bool value)
@@ -190,6 +255,7 @@ namespace TheFowler
                     else
                     {
                         Hide(true);
+                        menuView.background.SetActive(true);
                     }
 
 
