@@ -143,6 +143,8 @@ namespace TheFowler
 
         public override void PlayPhase()
         {
+            FindObjectOfType<GameTimer>().incrementeCombatTimer = true;
+            
             if (!enableProgression)
             {
                 if (!showSkillTree)
@@ -271,6 +273,7 @@ namespace TheFowler
         private IEnumerator StopBattleCoroutine()
         {
             IsFinish = true;
+            FindObjectOfType<GameTimer>().incrementeCombatTimer = false;
 
             ChangeBattleState(BattleStateEnum.END_BATTLE);
             

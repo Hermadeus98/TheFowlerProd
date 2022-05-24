@@ -86,6 +86,9 @@ namespace TheFowler
 
         public override void PlayPhase()
         {
+            FindObjectOfType<GameTimer>().incrementeDialogueTimer = true;
+
+        
             if(Timeline != null)
             {
                 CinemachineBrain cineCam =  CameraManager.Camera.GetComponent<CinemachineBrain>();
@@ -498,6 +501,8 @@ namespace TheFowler
 
         public override void EndPhase()
         {
+            FindObjectOfType<GameTimer>().incrementeDialogueTimer = false;
+            
             hasPassChoices = false;
 
 

@@ -1039,10 +1039,18 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Tuer un ennemi octroie un tour bonus : C'est le <b>Breakdown</b>\nLors
-    d'un breakdown choisissez une de vos alli\xE9es, celle-ci joura tout de suite.
-    Ensuite, le tour reprend normalement.\n\nSi vous s\xE9lectionnez une de vos alli\xE9e
-    morte, elle reviendra \xE0 la vie."
+  m_text: 'Killing an enemy grants a bonus turn: This is the Breakdown
+
+    
+
+    During
+    a Breakdown, choose one of your allies, she''ll be able play immediately. Then,
+    the turn resumes normally.
+
+    
+
+    If you select one of your dead allies,
+    she will come back to life.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
   m_sharedMaterial: {fileID: -7791964341149814486, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
@@ -1279,7 +1287,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -70, y: -294}
+  m_AnchoredPosition: {x: -70, y: -317}
   m_SizeDelta: {x: 1070, y: 232.468}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &5486957668042034857
@@ -1310,9 +1318,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Les Sorts sont des comp\xE9tences qui ont une <#33E7D3><b>Recharge</b></color>.\n\nLa
-    recharge correspond au nombre de tour que vous devrez attendre avant de pouvoir
-    r\xE9utiliser la comp\xE9tence."
+  m_text: "Spells are skills that have a <#33E7D3>Cooldown</color>. The <#33E7D3>Cooldown</color>
+    is the number of turns you have to wait before you can use the skill again.\r"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
   m_sharedMaterial: {fileID: -7791964341149814486, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
@@ -2982,8 +2989,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -55, y: -320}
-  m_SizeDelta: {x: 1104.977, y: 232.468}
+  m_AnchoredPosition: {x: -70, y: -295}
+  m_SizeDelta: {x: 1070, y: 232.468}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &5683055590520463210
 CanvasRenderer:
@@ -3013,12 +3020,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Each <#FFCF00>character</color> can use a <i>basic attack</i> to inflict
-    <#FF0000>light damages</color> to an enemy.
+  m_text: 'Attack is a skill that allows you to inflict <b><#ff6075>damage</color></b>
+    on an enemy.
 
 
-    Using <i>basic attack</i> doesn''t
-    cost <#33E7D3>cooldown</color>.'
+    Like the Special Attack, this skill has no <#33E7D3>Cooldown</color>,
+    so it can be used every turn.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
   m_sharedMaterial: {fileID: -7791964341149814486, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
@@ -3227,12 +3234,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Le sort est disponible, il se recharge en 3 tours.
+  m_text: 'The spell is <b>available</b>, its cooldown is 3 turns.
 
 
 
-    Le sort n''est
-    pas disponible, il le sera le prochain tour.'
+    The spell
+    is <b>not available</b>, it will be available the next turn.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
   m_sharedMaterial: {fileID: -7791964341149814486, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
@@ -4540,8 +4547,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -55, y: -320}
-  m_SizeDelta: {x: 1104.977, y: 232.468}
+  m_AnchoredPosition: {x: -70, y: -295}
+  m_SizeDelta: {x: 1070, y: 232.468}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &386663850427530868
 CanvasRenderer:
@@ -4571,12 +4578,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Each <#FFCF00>character</color> can use a <i>special spell</i> with no
-    <#33E7D3>cooldown</color> cost.
+  m_text: 'The Special Attack has an effect that varies between allies. However,
+    the Special Attack will always give a <#33E7D3>Cooldown</color> bonus for the
+    duration of the fight.
 
+    
 
-    The <i>special attack</i> reduces definitely
-    the <#33E7D3>cooldown</color> of <#FFCF00>character</color> spells.'
+    Like the Attack, this skill does not have
+    a <#33E7D3>Cooldown</color>, so it can be used every turn.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
   m_sharedMaterial: {fileID: -7791964341149814486, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
@@ -8459,7 +8468,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -70, y: -288}
+  m_AnchoredPosition: {x: -70, y: -300}
   m_SizeDelta: {x: 1070, y: 230}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &465746808787733875
@@ -8490,9 +8499,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Les sorts ont des types ainsi que les ennemis.\n\nUtiliser un type auquel
-    l'ennemi r\xE9siste va r\xE9duire les d\xE9g\xE2ts de l'attaque alors que la
-    faiblesse va les ampliphier."
+  m_text: Spells have types, as do enemies. Using a type that the enemy resists will
+    reduce the damages of the attack, while a weakness will amplify them.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
   m_sharedMaterial: {fileID: -7791964341149814486, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
@@ -11294,8 +11302,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.000019073486, y: -228}
-  m_SizeDelta: {x: 402.0122, y: 50}
+  m_AnchoredPosition: {x: -70, y: -230}
+  m_SizeDelta: {x: 1070, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &5885567260807641969
 CanvasRenderer:
@@ -12966,8 +12974,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Lorsqu'une de vos alli\xE9es meurt, elle peut \xEAtre r\xE9ssuscit\xE9e.
-    Pour ce faire tuez un ennemi et s\xE9lectionnez la lors du Breakdown"
+  m_text: When one of your allies dies, she can be resurrected. To do this, kill
+    an enemy and select your ally during the Breakdown
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
   m_sharedMaterial: {fileID: -7791964341149814486, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
@@ -13595,7 +13603,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -227, y: -116}
+  m_AnchoredPosition: {x: -227, y: -148}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &736463788077809255
@@ -14104,7 +14112,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 19, y: -87}
+  m_AnchoredPosition: {x: 63, y: -57}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7002771107304949321
@@ -17221,8 +17229,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.000019073486, y: -228}
-  m_SizeDelta: {x: 402.0122, y: 50}
+  m_AnchoredPosition: {x: -70, y: -230}
+  m_SizeDelta: {x: 1070, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &4655960411244137815
 CanvasRenderer:
@@ -17252,7 +17260,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Basic Attack
+  m_text: Attack
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 981385c21fd298147987f4dd02f381fd, type: 2}
   m_sharedMaterial: {fileID: 2128313290932703438, guid: 981385c21fd298147987f4dd02f381fd, type: 2}
