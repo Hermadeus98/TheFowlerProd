@@ -104,5 +104,31 @@ namespace TheFowler
             QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, "UNMUTE");
             PlaySound(AudioGenericEnum.TF_Main_SetMuteOff, null);
         }
+
+        public static float masterVolume, musicVolume, VoicesVolume, EffectsVolume = 50;
+        
+        public static void SetMasterVolume(float v)
+        {
+            masterVolume = v;
+            QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, $"SetMasterVolume -> {v}");
+        }
+
+        public static void SetMusicVolume(float v)
+        {
+            musicVolume = v;
+            QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, $"SetMusicVolume -> {v}");
+        }
+
+        public static void SetVoicesVolume(float v)
+        {
+            VoicesVolume = v;
+            QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, $"SetVoicesVolume -> {v}");
+        }
+
+        public static void SetEffectsVolume(float v)
+        {
+            EffectsVolume = v;
+            QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, $"SetEffectsVolume -> {v}");
+        }
     }
 }

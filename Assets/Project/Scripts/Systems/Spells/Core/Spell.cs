@@ -34,7 +34,7 @@ namespace TheFowler
         public SequenceEnum sequenceBinding;
 
         [TitleGroup("Progression")]
-        public Sprite sprite;
+        public Sprite sprite, spriteBlocked;
         [TitleGroup("Progression")]
         [ReadOnly] public SkillState spellState;
         [TitleGroup("Progression")]
