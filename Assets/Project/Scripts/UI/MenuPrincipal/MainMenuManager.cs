@@ -42,6 +42,8 @@ namespace TheFowler
         
         private void Awake()
         {
+            Player.canOpenPauseMenu = false;
+            
             currentPanel = MenuPanel.MAIN;
             
             main.StartNavigate();
@@ -122,6 +124,7 @@ namespace TheFowler
             settings.ShowAnim();
         }
 
+        [Button]
         public void ReturnToMain()
         {
             havePlayIntro = true;
@@ -156,6 +159,10 @@ namespace TheFowler
                 ChapterManager.GoChapterTwo();
             if(chapter == 3)
                 ChapterManager.GoChapterThree();
+            if(chapter == 3)
+                ChapterManager.GoChapterFour();
+            
+            Player.canOpenPauseMenu = true;
         }
 
         public void Quit()
@@ -163,9 +170,44 @@ namespace TheFowler
             Application.Quit();
         }
 
-        public void Play()
+        public void SetDifficultyEasy()
+        {
+            Player.showPreview = true;
+        }
+
+        public void SetDifficultyHard()
+        {
+            Player.showPreview = false;
+        }
+
+        public void SetLanguageFrench()
         {
             
+        }
+
+        public void SetLanguageEnglish()
+        {
+            
+        }
+
+        public void SetMasterVolume(float v)
+        {
+            SoundManager.SetMasterVolume(v);
+        }
+
+        public void SetMusicVolume(float v)
+        {
+            SoundManager.SetMusicVolume(v);
+        }
+
+        public void SetVoicesVolume(float v)
+        {
+            SoundManager.SetVoicesVolume(v);
+        }
+
+        public void SetEffectsVolume(float v)
+        {
+            SoundManager.SetMusicVolume(v);
         }
     }
 }

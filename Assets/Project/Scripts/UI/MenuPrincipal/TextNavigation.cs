@@ -5,6 +5,7 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace TheFowler
 {
@@ -18,8 +19,8 @@ namespace TheFowler
 
         public void ShowAnim()
         {
-            canvasGroup.DOFade(1f, .2f);
-            isActive = true;
+            canvasGroup.DOFade(1f, .2f).OnComplete(delegate { isActive = true; });
+            currentSelectedElement?.Select();
         }
         
         public void HideAnim()
