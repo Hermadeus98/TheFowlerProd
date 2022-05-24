@@ -15,7 +15,7 @@ namespace TheFowler
         [TabGroup("References")]
         [SerializeField] private GameObject profile1, profile2, profile3, profileUp;
         [TabGroup("References")]
-        [SerializeField] private GameObject confirm, back, characters, selectSkill, selectTarget, hide, select, close;
+        [SerializeField] private GameObject confirm, back, characters, selectSkill, selectTarget, hide, select, close, reset;
         private delegate void ProfileReminder(InfoBoxButtons[] buttons);
         private event ProfileReminder OnProfileReminder;
         [SerializeField] private List<InfoBoxButtons> infoBoxReminder;
@@ -115,6 +115,7 @@ namespace TheFowler
             hide.SetActive(false);
             select.SetActive(false);
             close.SetActive(false);
+            reset.SetActive(false);
         }
 
         private void SwitchButtons(InfoBoxButtons button)
@@ -144,6 +145,9 @@ namespace TheFowler
                     break;
                 case InfoBoxButtons.CLOSE:
                     close.SetActive(true);
+                    break;
+                case InfoBoxButtons.RESET:
+                    reset.SetActive(true);
                     break;
             }
         }
@@ -224,7 +228,8 @@ namespace TheFowler
         SELECTTARGET,
         HIDE,
         SELECT,
-        CLOSE
+        CLOSE,
+        RESET
     }
 
 }
