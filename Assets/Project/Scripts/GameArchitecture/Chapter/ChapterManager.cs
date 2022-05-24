@@ -68,7 +68,8 @@ namespace TheFowler
 
         public static void GoChapterOne() => ChangeChapter(ChapterEnum.CHAPTER_ONE);
         public static void GoChapterTwo() => ChangeChapter(ChapterEnum.CHAPTER_TWO_PART1);
-        public static void GoChapterThree() => ChangeChapter(ChapterEnum.CHAPTER_THREE);
+        public static void GoChapterThree() => ChangeChapter(ChapterEnum.CHAPTER_TWO_PART2);
+        public static void GoChapterFour() => ChangeChapter(ChapterEnum.CHAPTER_THREE);
 
         public static T GetChapter<T>(ChapterEnum chapterEnum) where T : Chapter
         {
