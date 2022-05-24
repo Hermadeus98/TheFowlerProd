@@ -21,12 +21,17 @@ namespace TheFowler
         {
             canvasGroup.DOFade(1f, .2f).OnComplete(delegate { isActive = true; });
             currentSelectedElement?.Select();
+
+            all_elements.ForEach(w => w.isActive = true);
         }
         
         public void HideAnim()
         {
             canvasGroup.DOFade(0f, .2f);
             isActive = false;
+            
+            all_elements.ForEach(w => w.isActive = false);
+
         }
     }
 }

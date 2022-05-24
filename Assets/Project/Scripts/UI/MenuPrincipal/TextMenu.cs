@@ -116,6 +116,9 @@ namespace TheFowler
 
         private void Update()
         {
+            if (!isActive)
+                return;
+            
             if (isSelected)
             {
                 if (Gamepad.current.dpad.right.wasPressedThisFrame)
