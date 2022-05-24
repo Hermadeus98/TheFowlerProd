@@ -116,7 +116,7 @@ namespace TheFowler
 
         private void Update()
         {
-            if (!isActive)
+            if (!isActive && !Player.isInPauseMenu)
                 return;
             
             if (isSelected)

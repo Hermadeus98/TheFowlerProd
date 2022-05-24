@@ -43,6 +43,7 @@ namespace TheFowler
         private void Awake()
         {
             Player.canOpenPauseMenu = false;
+            Player.isInPauseMenu = true;
             
             currentPanel = MenuPanel.MAIN;
             
@@ -163,6 +164,7 @@ namespace TheFowler
                 ChapterManager.GoChapterFour();
             
             Player.canOpenPauseMenu = true;
+            Player.isInPauseMenu = false;
         }
 
         public void Quit()
