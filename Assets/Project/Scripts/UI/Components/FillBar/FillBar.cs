@@ -78,50 +78,54 @@ namespace TheFowler
 
         public void ShowPreview()
         {
-            return;
-            preview.gameObject.SetActive(true);
+            if (Player.showPreview)
+            {
+                preview.gameObject.SetActive(true);
+            }
         }
 
         public void HidePreview()
         {
-            return;
-            preview.gameObject.SetActive(false);
-            cross.gameObject.SetActive(false);
-            hearth.color = Color.white;
-
+            if (Player.showPreview)
+            {
+                preview.gameObject.SetActive(false);
+                cross.gameObject.SetActive(false);
+                hearth.color = Color.white;
+            }
         }
         
         [Button]
         public void SetPreview(float newValue)
         {
-            return;
-            
-            ShowPreview();
+            if (Player.showPreview)
+            {
+                ShowPreview();
 
-            newValue = Mathf.Clamp(newValue, 0f, maxValue);
-            
-            if (newValue < currentValue)
-            {
-                preview.SetRight(fill.GetRight());
-                preview.SetLeft((newValue / maxValue) * RectTransform.rect.width);
-                previewImage.color = previewMinus;
-            }
-            else if (newValue > currentValue)
-            {
-                preview.SetLeft(RectTransform.rect.width - fill.GetRight());
-                preview.SetRight( ( 1 - (newValue / maxValue)) * RectTransform.rect.width);
-                previewImage.color = previewAdd;
-            }
+                newValue = Mathf.Clamp(newValue, 0f, maxValue);
 
-            if(newValue == 0)
-            {
-                cross.gameObject.SetActive(true);
-                hearth.color = Color.black;
-            }
-            else
-            {
-                cross.gameObject.SetActive(false);
-                hearth.color = Color.white;
+                if (newValue < currentValue)
+                {
+                    preview.SetRight(fill.GetRight());
+                    preview.SetLeft((newValue / maxValue) * RectTransform.rect.width);
+                    previewImage.color = previewMinus;
+                }
+                else if (newValue > currentValue)
+                {
+                    preview.SetLeft(RectTransform.rect.width - fill.GetRight());
+                    preview.SetRight((1 - (newValue / maxValue)) * RectTransform.rect.width);
+                    previewImage.color = previewAdd;
+                }
+
+                if (newValue == 0)
+                {
+                    cross.gameObject.SetActive(true);
+                    hearth.color = Color.black;
+                }
+                else
+                {
+                    cross.gameObject.SetActive(false);
+                    hearth.color = Color.white;
+                }
             }
         }
 
