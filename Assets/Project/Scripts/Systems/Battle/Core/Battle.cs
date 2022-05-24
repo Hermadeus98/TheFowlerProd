@@ -177,6 +177,7 @@ namespace TheFowler
             InitializeTurnSystem();
 
             StartCoroutine(StartBattle());
+
         }
 
         private IEnumerator StartBattle()
