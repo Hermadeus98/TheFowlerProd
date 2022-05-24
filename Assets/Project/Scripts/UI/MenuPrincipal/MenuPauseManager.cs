@@ -121,6 +121,7 @@ public class MenuPauseManager : MonoBehaviour
             switch (currentPanel)
             {
                 case MenuPausePanel.MAIN:
+                    Hide();
                     break;
                 case MenuPausePanel.SETTINGS:
                     ReturnToMain();
