@@ -177,7 +177,23 @@ namespace TheFowler
 
             associatedSpell = associatedData.AllSpells[ID];
             skillState = associatedSpell.spellState;
-            image.sprite = associatedSpell.sprite;
+            switch (skillState)
+            {
+                case SkillState.BASIC:
+                    image.sprite = associatedSpell.sprite;
+                    break;
+                case SkillState.EQUIPPED:
+                    image.sprite = associatedSpell.sprite;
+                    break;
+                case SkillState.LOCKED:
+                    image.sprite = associatedSpell.spriteBlocked;
+                    break;
+                case SkillState.UNEQUIPPED:
+                    image.sprite = associatedSpell.spriteBlocked;
+                    break;
+                    
+
+            }
         }
 
         private void FeedbackEquipped()
@@ -190,6 +206,7 @@ namespace TheFowler
             unequipped.SetActive(false);
             locked.SetActive(false);
 
+            image.sprite = associatedSpell.sprite;
             image.color = equippedColor;
 
             canInteract = false;
@@ -214,7 +231,8 @@ namespace TheFowler
             unequipped.SetActive(true);
             locked.SetActive(false);
 
-            image.color = lockedColor;
+            image.sprite = associatedSpell.spriteBlocked;
+            image.color = equippedColor;
 
             canInteract = true;
 
@@ -234,6 +252,7 @@ namespace TheFowler
             unequipped.SetActive(false);
             locked.SetActive(true);
 
+            image.sprite = associatedSpell.spriteBlocked;
             image.color = lockedColor;
             canInteract = false;
 
