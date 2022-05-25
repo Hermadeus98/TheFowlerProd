@@ -32,7 +32,7 @@ namespace TheFowler
 
         public Transform spawnBasicAttack;
 
-        public Color beakColor, featherColor, clawColor;
+        public Color beakColor, featherColor, clawColor, neutralColor;
 
         protected override void OnAwake()
         {
@@ -164,6 +164,9 @@ namespace TheFowler
                             break;
                         case Spell.SpellTypeEnum.FEATHER:
                             Contrebasses[i].material.SetColor("_ColorEMISSIVE", featherColor);
+                            break;
+                        case Spell.SpellTypeEnum.NULL:
+                            Contrebasses[i].material.SetColor("_ColorEMISSIVE", neutralColor);
                             break;
                     }
                     
