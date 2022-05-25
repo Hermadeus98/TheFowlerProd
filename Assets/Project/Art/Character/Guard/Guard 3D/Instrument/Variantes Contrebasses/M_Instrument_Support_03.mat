@@ -20,10 +20,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_GuardInstrument 4
+  m_Name: M_Instrument_Support_03
   m_Shader: {fileID: 4800000, guid: 76d03eceb481f774587b788e75eec149, type: 3}
   m_ShaderKeywords: _ALPHATEST_ON _DISABLE_SSR_TRANSPARENT _DOUBLESIDED_ON _E_NOFRESNEL_ON
-    _FRESNEL1_ON _NORMALMAP_TANGENT_SPACE
+    _FRESNEL1_ON _NOFRESNEL_ON _NORMALMAP_TANGENT_SPACE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
@@ -41,7 +41,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _ARM_:
-        m_Texture: {fileID: 2800000, guid: 0705be03825f87f48a5161241f9f6ef8, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6b9753e8b7fddbd40a0e034a22015111, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ARM_1:
@@ -49,7 +49,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ARM_2:
-        m_Texture: {fileID: 2800000, guid: 0705be03825f87f48a5161241f9f6ef8, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6b9753e8b7fddbd40a0e034a22015111, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AnisotropyMap:
@@ -77,7 +77,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Diffuse_:
-        m_Texture: {fileID: 2800000, guid: a8b6ba33d0dc1434f8460a502f6276a4, type: 3}
+        m_Texture: {fileID: 2800000, guid: b0c148b3008dd9b4ca80395cafe45c3f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Diffuse_1:
@@ -85,11 +85,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Diffuse_2:
-        m_Texture: {fileID: 2800000, guid: a8b6ba33d0dc1434f8460a502f6276a4, type: 3}
+        m_Texture: {fileID: 2800000, guid: b0c148b3008dd9b4ca80395cafe45c3f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _E_:
-        m_Texture: {fileID: 2800000, guid: 8bb7c9a3b9172bc4d9befc7864227282, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8ea2a309af956de429753cd13428fab2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _E_1:
@@ -97,7 +97,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _E_2:
-        m_Texture: {fileID: 2800000, guid: 8bb7c9a3b9172bc4d9befc7864227282, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8ea2a309af956de429753cd13428fab2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissiveColorMap:
@@ -137,7 +137,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal_:
-        m_Texture: {fileID: 2800000, guid: 089eaf2098e971c408ab8076f6f9b428, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8b4bce588117c0742ac67a3aaf077efd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal_1:
@@ -145,7 +145,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal_2:
-        m_Texture: {fileID: 2800000, guid: 8b4bce588117c0742ac67a3aaf077efd, type: 3}
+        m_Texture: {fileID: 2800000, guid: a7dadb1dbb335464b82768f603b1cac6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecularColorMap:
@@ -194,7 +194,7 @@ Material:
     - _ATDistance: 1
     - _AddPrecomputedVelocity: 0
     - _AlbedoAffectEmissive: 0
-    - _AlphaCutoff: 0.425
+    - _AlphaCutoff: 0.442
     - _AlphaCutoffEnable: 1
     - _AlphaCutoffPostpass: 0.5
     - _AlphaCutoffPrepass: 0.5
@@ -204,16 +204,19 @@ Material:
     - _AlphaToMask: 0
     - _AlphaToMaskInspectorValue: 0
     - _Anisotropy: 0
+    - _BaseColorAlpha: 1
     - _BaseColorAlpha1: 1
     - _BaseColorAlpha2: 1
     - _BlendMode: 0
     - _CoatMask: 0
     - _CullMode: 0
     - _CullModeForward: 0
-    - _Cutoff: 0.425
+    - _Cutoff: 0.442
+    - _DIntensity: 1
     - _DIntensity1: 0.4
     - _DIntensity2: 1
     - _DepthOffsetEnable: 0
+    - _DesaturationAmount: 0
     - _DesaturationAmount1: 0
     - _DesaturationAmount2: 0
     - _DetailAlbedoScale: 1
@@ -227,8 +230,8 @@ Material:
     - _DoubleSidedEnable: 1
     - _DoubleSidedNormalMode: 1
     - _DstBlend: 0
-    - _E_Fresnel_Intensity: 0.8
-    - _E_Intensity: 6.46
+    - _E_Fresnel_Intensity: 0.362
+    - _E_Intensity: 10
     - _E_Intensity1: 0.5
     - _E_Intensity2: 1
     - _E_Nofresnel: 1
@@ -256,6 +259,7 @@ Material:
     - _HeightPoMAmplitude: 2
     - _HeightTessAmplitude: 2
     - _HeightTessCenter: 0.5
+    - _HueShift: 0
     - _HueShift1: 0
     - _HueShift2: 0
     - _InvTilingScale: 1
@@ -264,16 +268,18 @@ Material:
     - _IridescenceThickness: 1
     - _LinkDetailsWithBase: 1
     - _MaterialID: 1
+    - _MetalMax: 1
     - _MetalMax1: 1
     - _MetalMax2: 1
+    - _MetalMin: 0
     - _MetalMin1: 0
     - _MetalMin2: 0
     - _Metallic: 0
     - _MetallicRemapMax: 1
     - _MetallicRemapMin: 0
-    - _Nofresnel: 0
+    - _Nofresnel: 1
     - _Nofresnel1: 1
-    - _NormalIntensity: 0
+    - _NormalIntensity: 1
     - _NormalIntensity1: 1
     - _NormalIntensity2: 1
     - _NormalMapSpace: 0
@@ -290,8 +296,10 @@ Material:
     - _RefractionModel: 0
     - _RenderQueueType: 1
     - _RequireSplitLighting: 0
+    - _RoughnessMax: 1
     - _RoughnessMax1: 1
     - _RoughnessMax2: 1
+    - _RoughnessMin: 0
     - _RoughnessMin1: 0
     - _RoughnessMin2: 0
     - _Smoothness: 0.5
@@ -342,7 +350,8 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorEMISSIVE: {r: 0.3607843, g: 0, b: 1, a: 0}
+    - _ColorEMISSIVE: {r: 0.14675792, g: 0.5568628, b: 0.11764706, a: 1}
+    - _ColorOverlay: {r: 1, g: 0, b: 0, a: 0}
     - _ColorOverlay1: {r: 0, g: 0, b: 0, a: 0}
     - _ColorOverlay2: {r: 1, g: 0, b: 0, a: 0}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
@@ -350,7 +359,7 @@ Material:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
-    - _FresnelColor: {r: 0.5849056, g: 0.45891935, b: 0.19037014, a: 1}
+    - _FresnelColor: {r: 0.9921568, g: 0.69411767, b: 0.06274508, a: 1}
     - _FresnelColor1: {r: 1, g: 0.67999995, b: 0, a: 1}
     - _FresnelColor2: {r: 0.99215686, g: 0.69411767, b: 0.0627451, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
