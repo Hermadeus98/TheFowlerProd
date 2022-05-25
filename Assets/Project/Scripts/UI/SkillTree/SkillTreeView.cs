@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using QRCode;
 using DG.Tweening;
+using System;
+
 namespace TheFowler
 {
     public class SkillTreeView : UIView
@@ -23,6 +25,7 @@ namespace TheFowler
         [TabGroup("Tree")] [SerializeField] private Sprite heartEmpty, heartFilled;
         [TabGroup("Tree")] [SerializeField] private SpellTypeDatabase spellTypeDatabase;
         [TabGroup("Tree")] [SerializeField] private TargetTypeDatabase targetTypeDatabase;
+        [TabGroup("Tree")] [SerializeField] public List<SkillTreeSelector> skillsWay;
 
 
         [TabGroup("Character")] [SerializeField] private Image character;
@@ -163,10 +166,10 @@ namespace TheFowler
                         eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
                 }
 
-                //else if (Inputs.actions["C"].WasPressedThisFrame())
-                //{
-
-                //}
+                else if (Inputs.actions["C"].WasPressedThisFrame())
+                {
+                    ResetTree();
+                }
 
                 else if (Inputs.actions["Return"].WasPressedThisFrame())
                 {
@@ -177,15 +180,26 @@ namespace TheFowler
 
         }
 
-        private void _Reset()
+        public void ResetTree()
         {
-            Hide();
 
-            //for (int i = 0; i < datas; i++)
-            //{
+            Array.Resize(ref datas[ID].Spells, 1);
 
-            //}
+            for (int i = 0; i < datas[ID].AllSpells.Length; i++)
+            {
+                if(datas[ID].AllSpells[i].spellState == SkillState.EQUIPPED)
+                {
+                    datas[ID].AllSpells[i].spellState = SkillState.UNEQUIPPED;
+                }
+            }
+
+            SetCharacter();
+
+            SetSpells();
+
+            eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
         }
+
 
         private void CharacterPicker(int newID)
         {
@@ -229,6 +243,26 @@ namespace TheFowler
             }
 
             RefreshAllLines();
+
+            RefreshSkillsWay();
+            
+        }
+
+        public void RefreshSkillsWay()
+        {
+            skillsWay.Clear();
+
+            for (int i = 0; i < datas[ID].Spells.Length; i++)
+            {
+                for (int j = 0; j < skills.Length; j++)
+                {
+                    if (skills[j].associatedSpell == datas[ID].Spells[i])
+                    {
+                        skillsWay.Add(skills[j]);
+                    }
+                }
+
+            }
         }
 
         public void RefreshAllLines()

@@ -10,7 +10,7 @@ namespace TheFowler
 {
     public class SkillTreeSelector : CustomElement
     {
-        [SerializeField] private Spell associatedSpell;
+        [SerializeField] public Spell associatedSpell;
 
         [SerializeField] private SkillTreeSelector[] linkedSkills;
 
@@ -38,6 +38,16 @@ namespace TheFowler
         private bool isHover;
 
         public SkillLinks[] links;
+
+        public List<SkillTreeSelector> previousSelector;
+
+        protected override void Awake()
+        {
+            for (int i = 0; i < links.Length; i++)
+            {
+                links[i].linkedSelector.previousSelector.Add(this);
+            }
+        }
         public override void OnSelect(BaseEventData eventData)
         {
             base.OnSelect(eventData);
@@ -79,12 +89,23 @@ namespace TheFowler
         {
             if (canInteract && isHover && Inputs.actions["Select"].WasPressedThisFrame())
             {
-                Equip();
+                for (int i = 0; i < previousSelector.Count; i++)
+                {
+                    if (previousSelector[i] == view.skillsWay[view.skillsWay.Count - 1])
+                    {
+                        Equip();
+                        break;
+                    }
+                }
+                
+
             }
         }
 
         public void Equip()
         {
+
+            
 
             for (int i = 0; i < linkedSkills.Length; i++)
             {
@@ -105,6 +126,7 @@ namespace TheFowler
 
             view.RefreshAllLines();
 
+            view.RefreshSkillsWay();
         }
 
 
