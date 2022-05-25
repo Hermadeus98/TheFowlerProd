@@ -121,33 +121,37 @@ namespace TheFowler
             
             if (isSelected)
             {
-                if (Gamepad.current.dpad.right.wasPressedThisFrame)
+                if (Gamepad.current != null)
                 {
-                    Slider?.Add();
-                    TextChoice?.Next();
-                }
-                
-                if (Gamepad.current.dpad.left.wasPressedThisFrame)
-                {
-                    Slider?.Remove();
-                    TextChoice?.Previous();
-                }
 
-                if (Gamepad.current.dpad.right.isPressed)
-                {
-                    if (SliderSimple != null)
+                    if (Gamepad.current.dpad.right.wasPressedThisFrame)
                     {
-                        SliderSimple.value++;
-                        SliderSimple.value = Mathf.Clamp(SliderSimple.value, 0, SliderSimple.maxValue);
+                        Slider?.Add();
+                        TextChoice?.Next();
                     }
-                }
 
-                if (Gamepad.current.dpad.left.isPressed)
-                {
-                    if (SliderSimple != null)
+                    if (Gamepad.current.dpad.left.wasPressedThisFrame)
                     {
-                        SliderSimple.value--;
-                        SliderSimple.value = Mathf.Clamp(SliderSimple.value, 0, SliderSimple.maxValue);
+                        Slider?.Remove();
+                        TextChoice?.Previous();
+                    }
+
+                    if (Gamepad.current.dpad.right.isPressed)
+                    {
+                        if (SliderSimple != null)
+                        {
+                            SliderSimple.value++;
+                            SliderSimple.value = Mathf.Clamp(SliderSimple.value, 0, SliderSimple.maxValue);
+                        }
+                    }
+
+                    if (Gamepad.current.dpad.left.isPressed)
+                    {
+                        if (SliderSimple != null)
+                        {
+                            SliderSimple.value--;
+                            SliderSimple.value = Mathf.Clamp(SliderSimple.value, 0, SliderSimple.maxValue);
+                        }
                     }
                 }
             }

@@ -18,6 +18,8 @@ namespace TheFowler
         {
             base.Initialize();
             waitTurn = 0;
+            taunter = null;
+            ReferedActor.BattleActorInfo.isTaunt = false;
         }
         
         [Button]
