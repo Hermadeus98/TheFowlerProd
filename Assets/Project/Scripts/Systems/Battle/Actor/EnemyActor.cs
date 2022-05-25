@@ -28,8 +28,11 @@ namespace TheFowler
         [SerializeField] private FillBar FillBar, FillBarTrashMob, FillBarBoss;
 
         [SerializeField] private HelmetBinding[] HelmetBinding;
+        [SerializeField] private SkinnedMeshRenderer[] Contrebasses;
 
         public Transform spawnBasicAttack;
+
+        public Color beakColor, featherColor, clawColor;
 
         protected override void OnAwake()
         {
@@ -142,31 +145,34 @@ namespace TheFowler
         {
             HelmetBinding.First(w => w.Archetype == BattleActorData.archetype).Helmets
                 .ForEach(w => w.gameObject.SetActive(true));
-        }
 
-        private void SetMaterials()
-        {
-
-            switch (BattleActorData.archetype)
+            for (int i = 0; i < Contrebasses.Length; i++)
             {
-                case BattleActorData.Archetype.DPS:
+                if(Contrebasses[i].gameObject.activeSelf == true)
+                {
+                    if (i == 0) return;
 
-
+                    Material newMat = Contrebasses[i].material;
+                    Contrebasses[i].material = newMat;
 
                     switch (BattleActorData.actorType)
                     {
                         case Spell.SpellTypeEnum.BEAK:
+                            Contrebasses[i].material.SetColor("_ColorEMISSIVE", beakColor);
                             break;
                         case Spell.SpellTypeEnum.CLAW:
+                            Contrebasses[i].material.SetColor("_ColorEMISSIVE", clawColor);
                             break;
                         case Spell.SpellTypeEnum.FEATHER:
+                            Contrebasses[i].material.SetColor("_ColorEMISSIVE", featherColor);
                             break;
                     }
-                    break;
+                    
+                }
             }
-
-           
         }
+
+        
     }
 
     [Serializable]
@@ -174,6 +180,5 @@ namespace TheFowler
     {
         public BattleActorData.Archetype Archetype;
         public GameObject[] Helmets;
-        public Material[] Materials;
     }
 }
