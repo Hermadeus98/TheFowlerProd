@@ -196,6 +196,12 @@ namespace TheFowler
 
         public void LaunchBattle()
         {
+            StartCoroutine(WaitLaunchBattle());
+        }
+
+        private IEnumerator WaitLaunchBattle()
+        {
+            yield return new WaitForEndOfFrame();
             battle.PlayPhase();
 
             Hide();
