@@ -286,7 +286,6 @@ namespace TheFowler
             if (robyn != null)
             {
                 Player.RobynSavedData.health = robyn.Health.CurrentHealth;
-                Player.RobynSavedData.mana = robyn.Mana.CurrentMana;
                 Player.RobynSavedData.spellHandler = robyn.GetBattleComponent<SpellHandler>();
                 Player.RobynSavedData.attackBonus = robyn.BattleActorInfo.attackBonus;
                 Player.RobynSavedData.defenseBonus = robyn.BattleActorInfo.defenseBonus;
@@ -295,7 +294,6 @@ namespace TheFowler
             if (abi != null)
             {
                 Player.AbiSavedData.health = abi.Health.CurrentHealth;
-                Player.AbiSavedData.mana = abi.Mana.CurrentMana;
                 Player.AbiSavedData.spellHandler = abi.GetBattleComponent<SpellHandler>();
                 Player.AbiSavedData.attackBonus = abi.BattleActorInfo.attackBonus;
                 Player.AbiSavedData.defenseBonus = abi.BattleActorInfo.defenseBonus;
@@ -304,7 +302,6 @@ namespace TheFowler
             if (phoebe != null)
             {
                 Player.PhoebeSavedData.health = phoebe.Health.CurrentHealth;
-                Player.PhoebeSavedData.mana = phoebe.Mana.CurrentMana;
                 Player.PhoebeSavedData.spellHandler = phoebe.GetBattleComponent<SpellHandler>();
                 Player.PhoebeSavedData.attackBonus = phoebe.BattleActorInfo.attackBonus;
                 Player.PhoebeSavedData.defenseBonus = phoebe.BattleActorInfo.defenseBonus;

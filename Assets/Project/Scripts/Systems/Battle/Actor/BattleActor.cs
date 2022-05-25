@@ -85,7 +85,6 @@ namespace TheFowler
         public virtual void InitializeComponents()
         {
             health?.Initialize(BattleActorStats.health);
-            mana?.Initialize(BattleActorStats.mana);
 
             battleActorInfo.isStun = false;
             BattleActorInfo.isTaunt = false;

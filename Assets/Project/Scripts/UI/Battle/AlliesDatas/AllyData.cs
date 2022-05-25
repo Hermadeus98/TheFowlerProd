@@ -52,10 +52,8 @@ namespace TheFowler
         {
             if (referedActor == null) return;
             healthBar.DOFillAmount(referedActor.Health.NormalizedHealth, .2f);
-            manaBar.DOFillAmount(referedActor.Mana.NormalizedMana, .2f);
             
             healthText.SetText(referedActor.Health.CurrentHealth.ToString() + "/" + referedActor.Health.MaxHealth);
-            manaText.SetText(referedActor.Mana.CurrentMana.ToString() + "/" + referedActor.Mana.MaxMana);
 
             if (referedActor.BattleActorInfo.isDeath)
             {
