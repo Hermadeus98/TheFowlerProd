@@ -29,8 +29,9 @@ namespace TheFowler
             if(Player.Robyn.Controller.GetController(ControllerEnum.PLAYER_CONTROLLER) == null)
                 return;
             
-            var tps = Player.Robyn.Controller.SetController<ThirdPersonController>(ControllerEnum.PLAYER_CONTROLLER);
-
+            CameraManager.Instance.SetCamera("Robyn_TPS", "CM TPS Explo");
+            
+            var tps = Player.Robyn.Controller.GetController(ControllerEnum.PLAYER_CONTROLLER) as ThirdPersonController;
             dist = Vector3.Distance(Player.Robyn.pawnTransform.position, transform.position);
 
             if (dist < maxRadius)
