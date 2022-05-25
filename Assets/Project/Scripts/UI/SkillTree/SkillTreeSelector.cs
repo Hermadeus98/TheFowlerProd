@@ -338,7 +338,15 @@ namespace TheFowler
                 switch (links[i].linkedSelector.skillState)
                 {
                     case SkillState.EQUIPPED:
-                        links[i].lineBehavior.ToSelected();
+                        if(skillState == SkillState.EQUIPPED || skillState == SkillState.BASIC)
+                        {
+                            links[i].lineBehavior.ToSelected();
+                        }
+                        else
+                        {
+                            links[i].lineBehavior.ToUnSelected();
+                        }
+
                         break;
                     case SkillState.UNEQUIPPED:
                         links[i].lineBehavior.ToUnSelected();

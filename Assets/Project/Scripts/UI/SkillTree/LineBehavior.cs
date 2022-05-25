@@ -15,21 +15,24 @@ namespace TheFowler
         public void ToDisable()
         {
             line.color = colorDisable;
+            outline.enabled = false;
         }
 
         public void ToSelected()
         {
             line.color = colorSelected;
+            outline.enabled = true;
         }
 
         public void ToUnSelected()
         {
             line.color = colorUnSelected;
+            outline.enabled = false;
         }
 
         public void EnableOutline(bool value)
         {
-            outline.enabled = value;
+            //outline.enabled = value;
         }
     }
 }
