@@ -150,7 +150,6 @@ namespace TheFowler
             {
                 if(Contrebasses[i].gameObject.activeSelf == true)
                 {
-                    if (i == 0) return;
 
                     Material newMat = Contrebasses[i].material;
                     Contrebasses[i].material = newMat;

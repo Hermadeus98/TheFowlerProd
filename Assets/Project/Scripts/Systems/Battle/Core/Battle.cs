@@ -178,8 +178,27 @@ namespace TheFowler
             RegisterActors();
             InitializeTurnSystem();
 
+
+            
+
             StartCoroutine(StartBattle());
 
+
+        }
+
+        public override void EndPhase()
+        {
+            base.EndPhase();
+
+           // MoreMountains.Feedbacks.MMTimeManager.Instance.ApplyTimeScale(1f);
+        }
+
+        private void Update()
+        {
+            if (isActive)
+            {
+                //MoreMountains.Feedbacks.MMTimeManager.Instance.ApplyTimeScale(1.2f);
+            }
         }
 
         private IEnumerator StartBattle()

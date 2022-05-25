@@ -9,6 +9,7 @@ public class BreakdownElement : MonoBehaviourSingleton<BreakdownElement>
 {
     private void Start()
     {
+        
         GetComponent<Image>().enabled = false;
     }
 
