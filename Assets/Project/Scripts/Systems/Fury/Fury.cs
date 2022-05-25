@@ -101,6 +101,9 @@ namespace TheFowler
                     .NarrativeEvent();
             }
             
+            BreakdownElement.Instance.Play();
+
+            yield return new WaitForSeconds(.7f);
 
             BatonPass();
             
@@ -137,8 +140,6 @@ namespace TheFowler
                 BattleManager.CurrentBattle.ChangeBattleState<BattleState_TargetPicking>(BattleStateEnum
                     .TARGET_PICKING);
             skillPickingView.ReturnToActionMenu = true;
-
-
         }
 
         
