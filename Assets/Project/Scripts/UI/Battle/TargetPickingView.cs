@@ -17,7 +17,7 @@ namespace TheFowler
         [SerializeField] private RectTransform box;
 
         [SerializeField] private SkillSelectorElement SkillSelectorElement;
-        
+
         public override void Show()
         {
             base.Show();
@@ -55,8 +55,6 @@ namespace TheFowler
 
                 SkillSelectorElement.manaCostText.gameObject.SetActive(false);
             }
-
-
         }
     }
 }

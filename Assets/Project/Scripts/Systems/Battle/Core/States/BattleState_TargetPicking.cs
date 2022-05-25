@@ -53,7 +53,6 @@ namespace TheFowler
                 {
                     StartCoroutine(WaitSkillShow());
                 }
-
             }
             
             PlaySpellPreview();
