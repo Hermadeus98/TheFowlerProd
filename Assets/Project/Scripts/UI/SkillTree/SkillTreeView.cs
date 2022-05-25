@@ -57,6 +57,8 @@ namespace TheFowler
         {
             base.Show();
 
+            ID = 0;
+
             MenuCharactersSKHandler.Instance.DisableEveryone();
 
             for (int i = 0; i < skills.Length; i++)
@@ -70,8 +72,6 @@ namespace TheFowler
 
             SetSpells();
 
-            //if (VolumesManager.Instance != null)
-            //    VolumesManager.Instance.BlurryUI.enabled = true;
 
             if (eventSytemGO == null)
             {
@@ -83,16 +83,8 @@ namespace TheFowler
 
             if (!menuView.onMenu)
             {
-                //characterBox.DOAnchorPos(new Vector2(530, 406), .3f).SetEase(Ease.OutBounce);
-                //descriptionBox.DOAnchorPos(new Vector2(500, 204), .3f).SetEase(Ease.OutBounce);
                 descriptionBox.gameObject.SetActive(true);
             }
-
-            //eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
-
-            //menuView.onMenu = false;
-
-
 
         }
 
@@ -103,18 +95,11 @@ namespace TheFowler
 
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).Hide();
 
-            //if (VolumesManager.Instance != null)
-            //    VolumesManager.Instance.BlurryUI.enabled = false;
-
-
             if (menuView != null)
             {
                 menuView.Show();
             }
 
-
-            //characterBox.DOAnchorPos(new Vector2(830, 406), .15f).SetEase(Ease.OutBounce);
-            //descriptionBox.DOAnchorPos(new Vector2(235, 204), .15f).SetEase(Ease.OutBounce);
             descriptionBox.gameObject.SetActive(false);
             menuView.background.SetActive(true);
             menuView.Show();
@@ -185,7 +170,7 @@ namespace TheFowler
 
             Array.Resize(ref datas[ID].Spells, 1);
 
-            for (int i = 0; i < datas[ID].AllSpells.Length; i++)
+            for (int i = 1; i < datas[ID].AllSpells.Length; i++)
             {
                 if(datas[ID].AllSpells[i].spellState == SkillState.EQUIPPED)
                 {
@@ -316,8 +301,6 @@ namespace TheFowler
                     hearts[2].sprite = heartFilled;
                     break;
             }
-
-            //descriptionBox.anchoredPosition = selector.Rect.anchoredPosition;
 
         }
 

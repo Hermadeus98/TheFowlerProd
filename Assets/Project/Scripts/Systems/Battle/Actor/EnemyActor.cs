@@ -143,6 +143,30 @@ namespace TheFowler
             HelmetBinding.First(w => w.Archetype == BattleActorData.archetype).Helmets
                 .ForEach(w => w.gameObject.SetActive(true));
         }
+
+        private void SetMaterials()
+        {
+
+            switch (BattleActorData.archetype)
+            {
+                case BattleActorData.Archetype.DPS:
+
+
+
+                    switch (BattleActorData.actorType)
+                    {
+                        case Spell.SpellTypeEnum.BEAK:
+                            break;
+                        case Spell.SpellTypeEnum.CLAW:
+                            break;
+                        case Spell.SpellTypeEnum.FEATHER:
+                            break;
+                    }
+                    break;
+            }
+
+           
+        }
     }
 
     [Serializable]
@@ -150,5 +174,6 @@ namespace TheFowler
     {
         public BattleActorData.Archetype Archetype;
         public GameObject[] Helmets;
+        public Material[] Materials;
     }
 }
