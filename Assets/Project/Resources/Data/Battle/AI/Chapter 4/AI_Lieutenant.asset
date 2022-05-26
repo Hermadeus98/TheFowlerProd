@@ -1,5 +1,27 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8984342680150110683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: Spell3_1
+  m_EditorClassIdentifier: 
+  NodeName: Spell3_1
+  chance: 1
+  state: 0
+  started: 0
+  guid: 8a42411e07a577041a17cc8a19f93fd2
+  position: {x: 21, y: 125}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: d442644fd4b7b53479ab9b1f3e6b380c, type: 2}
+    Chance: 0
 --- !u!114 &-7517385446224719497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17,7 +39,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: b7fd8e2c2fbeb3646b0a0e053858f2f0
-  position: {x: 406.36, y: 98}
+  position: {x: 154, y: 585}
   children: []
   spellList:
   - Spell: {fileID: 11400000, guid: c5dbb892be094234abf715a13de6c180, type: 2}
@@ -62,7 +84,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 9b67102c1cdbc954db72af119214b88d
-  position: {x: 238, y: 98}
+  position: {x: 21, y: 585}
   children:
   - {fileID: -7517385446224719497}
   TargetIntention: 4
@@ -100,27 +122,50 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a16d7749e1191724db8102279a8920c3, type: 3}
-  m_Name: Au moins un ennemis 25%
+  m_Name: PNJ>1
   m_EditorClassIdentifier: 
-  NodeName: Au moins un ennemis 25%
+  NodeName: PNJ>1
   chance: 1
   state: 0
   started: 0
   guid: c9e37a36e02354b43b1a29b87a5dee47
-  position: {x: -117.52002, y: 98}
+  position: {x: -371, y: 187}
   children:
-  - {fileID: -6686092193023682952}
-  - {fileID: 6189216935421902975}
+  - {fileID: 1345946793637848093}
+  - {fileID: -4774438034785970880}
   Choices:
   - isHardChoice: 0
     hardChoice: 0
     comparator_A: 5
-    component: 0
-    Operator: 5
+    component: 1
+    Operator: 3
     comparator_B: 6
-    percent: 25
-    NextNode: {fileID: 6189216935421902975}
+    percent: 1
+    NextNode: {fileID: 1345946793637848093}
   DefaultNextNode: {fileID: -6686092193023682952}
+--- !u!114 &-4774438034785970880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: WeakerPJ
+  m_EditorClassIdentifier: 
+  NodeName: WeakerPJ
+  chance: 1
+  state: 0
+  started: 0
+  guid: deb41021def8f9744a85f7b1f8e71abc
+  position: {x: -140, y: 125}
+  children:
+  - {fileID: -8984342680150110683}
+  TargetIntention: 2
+  With: 0
+  value: 0
 --- !u!114 &-3802333508360245875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +241,11 @@ MonoBehaviour:
   - {fileID: 6977718253787576658}
   - {fileID: -579483139517182759}
   - {fileID: 4254713018752558149}
+  - {fileID: 1345946793637848093}
+  - {fileID: -4774438034785970880}
+  - {fileID: -8984342680150110683}
+  - {fileID: 5618286483939560906}
+  - {fileID: 6896339182314642105}
   dialogueType: 0
 --- !u!114 &1292580448383206562
 MonoBehaviour:
@@ -220,6 +270,46 @@ MonoBehaviour:
   TargetIntention: 9
   With: 0
   value: 0
+--- !u!114 &1345946793637848093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a16d7749e1191724db8102279a8920c3, type: 3}
+  m_Name: Au moins un ennemis 25%
+  m_EditorClassIdentifier: 
+  NodeName: Au moins un ennemis 25%
+  chance: 1
+  state: 0
+  started: 0
+  guid: c1d5ac8c910f46a4faca67c5853fb270
+  position: {x: -245, y: 320}
+  children:
+  - {fileID: 6189216935421902975}
+  - {fileID: -6686092193023682952}
+  - {fileID: 5618286483939560906}
+  Choices:
+  - isHardChoice: 0
+    hardChoice: 0
+    comparator_A: 0
+    component: 0
+    Operator: 2
+    comparator_B: 6
+    percent: 35
+    NextNode: {fileID: 5618286483939560906}
+  - isHardChoice: 0
+    hardChoice: 0
+    comparator_A: 5
+    component: 0
+    Operator: 5
+    comparator_B: 6
+    percent: 25
+    NextNode: {fileID: 6189216935421902975}
+  DefaultNextNode: {fileID: -6686092193023682952}
 --- !u!114 &1467263115192644493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,6 +356,29 @@ MonoBehaviour:
   spellList:
   - Spell: {fileID: 11400000, guid: 3f4f46a3a5933b945b4442ea6490c515, type: 2}
     Chance: 0
+--- !u!114 &5618286483939560906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: ALL
+  m_EditorClassIdentifier: 
+  NodeName: ALL
+  chance: 1
+  state: 0
+  started: 0
+  guid: ad70507c000063344bdbf6c80413ae82
+  position: {x: -2, y: 243}
+  children:
+  - {fileID: 6896339182314642105}
+  TargetIntention: 1
+  With: 0
+  value: 0
 --- !u!114 &6051665061293622168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,6 +441,28 @@ MonoBehaviour:
     percent: 3
     NextNode: {fileID: 1292580448383206562}
   DefaultNextNode: {fileID: 6051665061293622168}
+--- !u!114 &6896339182314642105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: SPECIAL
+  m_EditorClassIdentifier: 
+  NodeName: SPECIAL
+  chance: 1
+  state: 0
+  started: 0
+  guid: b3d202ec25fc6ff45b47e44b97be0e9b
+  position: {x: 186.5, y: 204.5}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: 8242b91355e27c14fa9a345bdf367359, type: 2}
+    Chance: 0
 --- !u!114 &6977718253787576658
 MonoBehaviour:
   m_ObjectHideFlags: 0
