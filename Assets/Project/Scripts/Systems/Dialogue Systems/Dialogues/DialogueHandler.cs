@@ -203,37 +203,79 @@ namespace TheFowler
                     {
                         if (currentView.GetType() == typeof(HarmonisationView))
                         {
-                            if (!hasPassedDialogue && 
-                                !String.IsNullOrEmpty(currentDialogue.dialogueText)&&
-                                UI.GetView<HarmonisationView>(UI.Views.Harmo).AnimatedText.TextComponent.text != currentDialogue.dialogueText)
+                            if (LocalisationManager.language == Language.ENGLISH)
                             {
+                                if (!hasPassedDialogue &&
+                               !String.IsNullOrEmpty(currentDialogue.dialogueText) &&
+                               UI.GetView<HarmonisationView>(UI.Views.Harmo).AnimatedText.TextComponent.text != currentDialogue.dialogueText)
+                                {
 
-                                UI.GetView<HarmonisationView>(UI.Views.Harmo).EndDialog(currentDialogue.dialogueText);
-                                hasPassedDialogue = true;
+                                    UI.GetView<HarmonisationView>(UI.Views.Harmo).EndDialog(currentDialogue.dialogueText);
+                                    hasPassedDialogue = true;
+                                }
+                                else
+                                {
+                                    Next();
+                                }
                             }
                             else
                             {
-                                Next();
+
+
+                                if (!hasPassedDialogue &&
+                               !String.IsNullOrEmpty(currentDialogue.dialogueTextFrench) &&
+                               UI.GetView<HarmonisationView>(UI.Views.Harmo).AnimatedText.TextComponent.text != currentDialogue.dialogueTextFrench)
+                                {
+
+                                    UI.GetView<HarmonisationView>(UI.Views.Harmo).EndDialog(currentDialogue.dialogueTextFrench);
+                                    hasPassedDialogue = true;
+                                }
+                                else
+                                {
+                                    Next();
+                                }
                             }
+
+                           
 
                             
                         }
                         else if (currentView.GetType() == typeof(DialogueStaticView))
                         {
-                            if (!hasPassedDialogue &&
-                                !String.IsNullOrEmpty(currentDialogue.dialogueText) &&
-                                UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs).AnimatedText.TextComponent.text != currentDialogue.dialogueText)
+                            if (LocalisationManager.language == Language.ENGLISH)
                             {
+                                if (!hasPassedDialogue &&
+                               !String.IsNullOrEmpty(currentDialogue.dialogueText) &&
+                               UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs).AnimatedText.TextComponent.text != currentDialogue.dialogueText)
+                                {
 
-                                UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs).EndDialog(currentDialogue.dialogueText);
-                                hasPassedDialogue = true;
+                                    UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs).EndDialog(currentDialogue.dialogueText);
+                                    hasPassedDialogue = true;
+                                }
+                                else
+                                {
+                                    Next();
+                                }
+
                             }
                             else
                             {
-                                Next();
+                                if (!hasPassedDialogue &&
+                               !String.IsNullOrEmpty(currentDialogue.dialogueTextFrench) &&
+                               UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs).AnimatedText.TextComponent.text != currentDialogue.dialogueTextFrench)
+                                {
+
+                                    UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs).EndDialog(currentDialogue.dialogueTextFrench);
+                                    hasPassedDialogue = true;
+                                }
+                                else
+                                {
+                                    Next();
+                                }
+
                             }
 
-                            
+
                         }
 
                        

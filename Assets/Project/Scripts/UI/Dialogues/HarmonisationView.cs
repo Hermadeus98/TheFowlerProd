@@ -44,17 +44,42 @@ namespace TheFowler
 
 
                 portraitLeft.sprite = db.portraitBuste;
-                if (cast.DialogueNode.dialogue.dialogueText.Length >= 20)
+
+                if (LocalisationManager.language == Language.ENGLISH)
                 {
-                    animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Left;
+                    if (cast.DialogueNode.dialogue.dialogueText.Length >= 20)
+                    {
+                        animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Left;
+                    }
+                    else
+                    {
+                        animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
+                    }
                 }
                 else
                 {
-                    animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
+                    if (cast.DialogueNode.dialogue.dialogueTextFrench.Length >= 20)
+                    {
+                        animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Left;
+                    }
+                    else
+                    {
+                        animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
+                    }
                 }
+               
 
                 speakerName.SetText(db.actorName);
-                animatedText.SetText(cast.Dialogue.dialogueText);
+
+                if (LocalisationManager.language == Language.ENGLISH)
+                {
+                    animatedText.SetText(cast.Dialogue.dialogueText);
+                }
+                else
+                {
+                    animatedText.SetText(cast.Dialogue.dialogueTextFrench);
+                }
+                
             }
         }
 
@@ -81,16 +106,42 @@ namespace TheFowler
         public void DisplaySentence(DialogueNode node)
         {
 
-            if (node.dialogue.dialogueText.Length >= 10)
+            if (LocalisationManager.language == Language.ENGLISH)
             {
-                animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Left;
+                if (node.dialogue.dialogueText.Length >= 10)
+                {
+                    animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Left;
+                }
+                else
+                {
+                    animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
+                }
             }
             else
             {
-                animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
+                if (node.dialogue.dialogueTextFrench.Length >= 10)
+                {
+                    animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Left;
+                }
+                else
+                {
+                    animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
+                }
             }
+
+           
             speakerName.SetText(node.dialogue.ActorEnum.ToString());
-            animatedText.SetText(node.dialogue.dialogueText);
+
+            if (LocalisationManager.language == Language.ENGLISH)
+            {
+                animatedText.SetText(node.dialogue.dialogueText);
+            }
+            else
+            {
+                animatedText.SetText(node.dialogue.dialogueTextFrench);
+            }
+
+            
 
         }
 

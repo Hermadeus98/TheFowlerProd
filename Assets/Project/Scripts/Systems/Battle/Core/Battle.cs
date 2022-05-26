@@ -389,9 +389,9 @@ namespace TheFowler
         {
             Player.useInitiative = true;
 
-            robyn.Initiative = Player.RobynSavedData.initiative;
-            abi.Initiative = Player.AbiSavedData.initiative;
-            phoebe.Initiative = Player.PhoebeSavedData.initiative;
+            robyn.Initiative = robyn.BattleActorData.initiativeOrder;
+            abi.Initiative = abi.BattleActorData.initiativeOrder;
+            phoebe.Initiative = phoebe.BattleActorData.initiativeOrder;
 
             var initiativeList = new List<BattleActor>();
             initiativeList.Add(robyn);

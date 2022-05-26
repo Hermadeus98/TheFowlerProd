@@ -31,7 +31,16 @@ namespace TheFowler
             associatedSpell = spell;
             spellSprite.enabled = true;
             spellSprite.sprite = spell.sprite;
-            spellNameTxt.text = spell.SpellName;
+
+            if (LocalisationManager.language == Language.ENGLISH)
+            {
+                spellNameTxt.text = spell.SpellName;
+            }
+            else
+            {
+                spellNameTxt.text = spell.SpellNameFrench;
+            }
+
             cooldownTxt.text = spell.Cooldown.ToString();
         }
 
