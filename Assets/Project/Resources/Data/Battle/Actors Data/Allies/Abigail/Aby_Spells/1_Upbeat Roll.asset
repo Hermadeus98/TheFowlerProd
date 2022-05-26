@@ -16,7 +16,12 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 21300000, guid: 7377439f696090a40b20811d6da6b911, type: 3}
     - {fileID: 11400000}
+    - {fileID: 21300000, guid: 0d8be4941d9b2a54e9ab737549bbccf3, type: 3}
+    - {fileID: 21300000, guid: e69679d989b532943844600eb4ac35ce, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -27,18 +32,30 @@ MonoBehaviour:
       Data: 0|TheFowler.Effect[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 3
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.Regen, Assembly-CSharp
+      Data: 1|TheFowler.DecreaseCD, Assembly-CSharp
     - Name: TargetType
       Entry: 3
-      Data: 4
+      Data: 3
     - Name: Emitter
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 0
     - Name: Receivers
-      Entry: 6
+      Entry: 7
+      Data: 2|TheFowler.BattleActor[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
       Data: 
     - Name: _damage
       Entry: 4
@@ -47,11 +64,11 @@ MonoBehaviour:
       Entry: 4
       Data: 0
     - Name: sprite
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 2
     - Name: ReferedSpell
       Entry: 10
-      Data: 0
+      Data: 3
     - Name: rage
       Entry: 5
       Data: false
@@ -63,10 +80,109 @@ MonoBehaviour:
       Data: false
     - Name: berserkDamage
       Entry: 4
-      Data: 0
-    - Name: reduceCooldown
+      Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|TheFowler.DecreaseCD, Assembly-CSharp
+    - Name: TargetType
       Entry: 3
-      Data: 2
+      Data: 3
+    - Name: Emitter
+      Entry: 10
+      Data: 0
+    - Name: Receivers
+      Entry: 7
+      Data: 4|TheFowler.BattleActor[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _damage
+      Entry: 4
+      Data: 0
+    - Name: _heal
+      Entry: 4
+      Data: 0
+    - Name: sprite
+      Entry: 10
+      Data: 4
+    - Name: ReferedSpell
+      Entry: 10
+      Data: 3
+    - Name: rage
+      Entry: 5
+      Data: false
+    - Name: berserk
+      Entry: 5
+      Data: false
+    - Name: vampirisme
+      Entry: 5
+      Data: false
+    - Name: berserkDamage
+      Entry: 4
+      Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 5|TheFowler.DecreaseCD, Assembly-CSharp
+    - Name: TargetType
+      Entry: 3
+      Data: 3
+    - Name: Emitter
+      Entry: 10
+      Data: 0
+    - Name: Receivers
+      Entry: 7
+      Data: 6|TheFowler.BattleActor[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _damage
+      Entry: 4
+      Data: 0
+    - Name: _heal
+      Entry: 4
+      Data: 0
+    - Name: sprite
+      Entry: 10
+      Data: 5
+    - Name: ReferedSpell
+      Entry: 10
+      Data: 3
+    - Name: rage
+      Entry: 5
+      Data: false
+    - Name: berserk
+      Entry: 5
+      Data: false
+    - Name: vampirisme
+      Entry: 5
+      Data: false
+    - Name: berserkDamage
+      Entry: 4
+      Data: 100
     - Name: 
       Entry: 8
       Data: 
@@ -80,10 +196,10 @@ MonoBehaviour:
   Cooldown: 2
   InitialCooldown: 2
   CurrentCooldown: 0
-  logoBuff: {fileID: 0}
-  TargetType: 4
+  logoBuff: {fileID: 21300000, guid: e69679d989b532943844600eb4ac35ce, type: 3}
+  TargetType: 3
   SpellPower: 0
-  SpellDescription: Reduces the cooldown of all allies
+  SpellDescription: Max reduces the cooldowns of an ally
   SpellType: 0
   sequenceBinding: 2
   sprite: {fileID: 21300000, guid: a1eea1bed7156cc49a7ba40a618cf81a, type: 3}
