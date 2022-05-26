@@ -16,6 +16,7 @@ namespace TheFowler
 
         public AllyData[] datas;
 
+
         private float y;
 
         public HorizontalLayoutGroup HorizontalLayoutGroup;
@@ -34,6 +35,14 @@ namespace TheFowler
             InitializeData(robyn, robynData);
             InitializeData(abi, abiData);
             InitializeData(phoebe, phoebeData);
+
+            HorizontalLayoutGroup.enabled = true;
+            for (int i = 0; i < BattleManager.CurrentBattle.numberOfAllies; i++)
+            {
+                datas[i].transform.SetSiblingIndex(datas[i].referedActor.BattleActorData.initiativeOrder - 1);
+            }
+
+            
         }
 
         private void InitializeData(AllyActor actor, AllyData data)
@@ -57,6 +66,7 @@ namespace TheFowler
             }
             
             data?.Refresh();
+
         }
 
         public override void Show()
@@ -103,6 +113,8 @@ namespace TheFowler
         {
             datas.ForEach(w => w.Fury(false));
         }
+
+
 
         public void Sort(IEnumerable<BattleActor> orderedEnumerable)
         {

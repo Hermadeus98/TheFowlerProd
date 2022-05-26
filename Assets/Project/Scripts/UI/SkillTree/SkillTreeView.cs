@@ -278,7 +278,20 @@ namespace TheFowler
         public void SetDescription(SkillTreeSelector selector, Spell spell)
         {
             descriptionName.text = spell.SpellName;
-            descriptionText.text = spell.SpellDescription;
+
+
+
+            if (LocalisationManager.language == Language.ENGLISH)
+            {
+                descriptionName.text = spell.SpellName;
+                descriptionText.text = spell.SpellDescription;
+            }
+            else
+            {
+                descriptionName.text = spell.SpellNameFrench;
+                descriptionText.text = spell.SpellDescriptionFrench;
+            }
+
 
             targetImage.sprite = targetTypeDatabase.GetElement(spell.TargetType);
             typeImage.sprite = spellTypeDatabase.GetElement(spell.SpellType);

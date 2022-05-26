@@ -14,6 +14,8 @@ namespace TheFowler
     {
         [TitleGroup("Main Settings")]
         public string SpellName;
+        [TitleGroup("Main Settings")]
+        public string SpellNameFrench;
 
         [TitleGroup("Main Settings")] public int Cooldown;
         [TitleGroup("Main Settings"), HideInInspector ] public int InitialCooldown;
@@ -25,7 +27,9 @@ namespace TheFowler
         
         [TitleGroup("Main Settings"), TextArea(3,5)] 
         public string SpellDescription;
-        
+        [TitleGroup("Main Settings"), TextArea(3, 5)]
+        public string SpellDescriptionFrench;
+
         [TitleGroup("Effects")] public SpellTypeEnum SpellType;
         
         [TitleGroup("Effects")] 

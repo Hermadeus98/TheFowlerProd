@@ -125,7 +125,16 @@ namespace TheFowler
             cursor.DOMoveY(element.RectTransform.position.y, .1f);
             
             var skillPickingView = UI.GetView<SkillPickingView>(UI.Views.SkillPicking);
-            skillPickingView.descriptionText.SetText(((SkillSelectorElement)element).referedSpell.SpellDescription);
+
+            if (LocalisationManager.language == Language.ENGLISH)
+            {
+                skillPickingView.descriptionText.SetText(((SkillSelectorElement)element).referedSpell.SpellDescription);
+            }
+            else
+            {
+                skillPickingView.descriptionText.SetText(((SkillSelectorElement)element).referedSpell.SpellDescriptionFrench);
+            }
+
             
             //skillPickingView.easyDescriptionText.SetText(((SkillSelectorElement)element).referedSpell.EasySpellDescription);
             //skillPickingView.targetDescription.SetText(((SkillSelectorElement)element).referedSpell.TargetDescription);
