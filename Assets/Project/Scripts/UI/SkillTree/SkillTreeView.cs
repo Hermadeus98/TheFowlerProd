@@ -28,6 +28,7 @@ namespace TheFowler
         [TabGroup("Tree")] [SerializeField] private TargetTypeDatabase targetTypeDatabase;
         [TabGroup("Tree")] [SerializeField] public List<SkillTreeSelector> skillsWay;
         [TabGroup("Tree")] [SerializeField] public RectTransform littleCircle,mediumCircle,bigCircle;
+        [TabGroup("Tree")] [SerializeField] public Color yellow;
 
 
         [TabGroup("Character")] [SerializeField] private Image character;
@@ -39,6 +40,8 @@ namespace TheFowler
 
         [SerializeField] private MenuCharactersView menuView;
 
+        private int usedSkillPoints;
+        private int availableSkillPoints;
         public SpellTreeSelector[] SpellTreeSelectors
         {
             get
@@ -89,7 +92,8 @@ namespace TheFowler
             }
 
             SpawnCircles();
-
+            RefreshSkillPoint();
+            RefreshCircles();
         }
 
 
@@ -131,8 +135,8 @@ namespace TheFowler
                     if(!menuView.onMenu)
                         eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
 
-
-
+                    RefreshSkillPoint();
+                    RefreshCircles();
 
                 }
                 else if (Inputs.actions["LeftBumper"].WasPressedThisFrame())
@@ -153,6 +157,10 @@ namespace TheFowler
 
                     if(!menuView.onMenu)
                         eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
+
+                    RefreshSkillPoint();
+                    RefreshCircles();
+
                 }
 
                 else if (Inputs.actions["C"].WasPressedThisFrame())
@@ -176,7 +184,7 @@ namespace TheFowler
 
             for (int i = 1; i < datas[ID].AllSpells.Length; i++)
             {
-                if(datas[ID].AllSpells[i].spellState == SkillState.EQUIPPED)
+                if(datas[ID].AllSpells[i].spellState == SkillState.EQUIPPED || datas[ID].AllSpells[i].spellState == SkillState.UNSELECTIONNED)
                 {
                     datas[ID].AllSpells[i].spellState = SkillState.UNEQUIPPED;
                 }
@@ -187,6 +195,11 @@ namespace TheFowler
             SetSpells();
 
             eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
+
+            RefreshSkillPoint();
+            RefreshCircles();
+
+
         }
 
 
@@ -352,8 +365,7 @@ namespace TheFowler
         {
             for (int i = 0; i < skills.Length; i++)
             {
-                Debug.Log("SKIIIILS");
-                skills[i].GetComponent<RectTransform>().DOScale(new Vector3(.5f,.5f,1f), .1f);
+                skills[i].GetComponent<RectTransform>().DOScale(new Vector3(.5f, .5f, 1f), .1f);
             };
 
             RescaleLines();
@@ -365,6 +377,53 @@ namespace TheFowler
             {
                 lines[i].GetComponent<RectTransform>().DOScale(Vector2.one, .1f);
             };
+        }
+
+        public void RefreshCircles()
+        {
+            switch (datas[ID].complicityLevel)
+            {
+                case 1:
+                    littleCircle.GetComponent<Image>().color = Color.white;
+                    mediumCircle.GetComponent<Image>().color = Color.grey;
+                    bigCircle.GetComponent<Image>().color = Color.grey;
+                    break;
+                case 2:
+                    littleCircle.GetComponent<Image>().color = Color.white;
+                    mediumCircle.GetComponent<Image>().color = Color.white;
+                    bigCircle.GetComponent<Image>().color = Color.grey;
+                    break;
+                case 3:
+                    littleCircle.GetComponent<Image>().color = Color.white;
+                    mediumCircle.GetComponent<Image>().color = Color.white;
+                    bigCircle.GetComponent<Image>().color = Color.white;
+                    break;
+            }
+
+            switch (usedSkillPoints)
+            {
+                case 1:
+                    littleCircle.GetComponent<Image>().color = yellow;
+                    break;
+                case 2:
+                    littleCircle.GetComponent<Image>().color = yellow;
+                    mediumCircle.GetComponent<Image>().color = yellow;
+                    break;
+                case 3:
+                    littleCircle.GetComponent<Image>().color = yellow;
+                    mediumCircle.GetComponent<Image>().color = yellow;
+                    bigCircle.GetComponent<Image>().color = yellow;
+                    break;
+            }
+            
+        }
+
+        public void RefreshSkillPoint()
+        {
+            availableSkillPoints = datas[ID].complicityLevel - usedSkillPoints ;
+            usedSkillPoints = datas[ID].Spells.Length - 1;
+
+
         }
 
 

@@ -21,7 +21,7 @@ namespace TheFowler
         [SerializeField] private GameObject equipped, unequipped, locked;
         [SerializeField] private GameObject hover, unHover;
 
-        [SerializeField] private Color equippedColor, lockedColor;
+        [SerializeField] private Color equippedColor, lockedColor, unselectionnedColor;
 
         [SerializeField] private UnityEngine.InputSystem.PlayerInput Inputs;
 
@@ -40,6 +40,8 @@ namespace TheFowler
         public SkillLinks[] links;
 
         public List<SkillTreeSelector> previousSelector;
+    
+    
 
         protected override void Awake()
         {
@@ -105,14 +107,17 @@ namespace TheFowler
         public void Equip()
         {
 
-            
-
             for (int i = 0; i < linkedSkills.Length; i++)
             {
                 if(linkedSkills[i].skillState == SkillState.EQUIPPED)
                 {
                     return;
                 }
+                else
+                {
+                    linkedSkills[i].FeedbackUnselectionned();
+                }
+                
             }
 
 
@@ -127,6 +132,12 @@ namespace TheFowler
             view.RefreshAllLines();
 
             view.RefreshSkillsWay();
+
+            view.RefreshSkillPoint();
+            view.RefreshCircles();
+
+
+
         }
 
 
@@ -168,6 +179,9 @@ namespace TheFowler
                     break;
                 case SkillState.LOCKED:
                     FeedbackLocked();
+                    break;
+                case SkillState.UNSELECTIONNED:
+                    FeedbackUnselectionned();
                     break;
             }
 
@@ -218,6 +232,27 @@ namespace TheFowler
             }
         }
 
+        private void FeedbackUnselectionned()
+        {
+
+
+            skillState = SkillState.UNSELECTIONNED;
+
+            image.sprite = associatedSpell.spriteBlocked;
+            image.color = unselectionnedColor;
+
+            canInteract = false;
+
+            associatedSpell.spellState = SkillState.UNSELECTIONNED;
+
+            InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
+            infoButtons[0] = InfoBoxButtons.BACK;
+            UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+
+
+
+        }
+
         private void FeedbackEquipped()
         {
 
@@ -264,6 +299,7 @@ namespace TheFowler
             infoButtons[0] = InfoBoxButtons.CONFIRM;
             infoButtons[1] = InfoBoxButtons.BACK;
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+
         }
 
         private void FeedbackLocked()
@@ -345,6 +381,7 @@ namespace TheFowler
                         else
                         {
                             links[i].lineBehavior.ToUnSelected();
+                            
                         }
 
                         break;
@@ -354,10 +391,16 @@ namespace TheFowler
                     case SkillState.LOCKED:
                         links[i].lineBehavior.ToDisable();
                         break;
+                    case SkillState.UNSELECTIONNED:
+                        links[i].lineBehavior.ToDisable();
+                        break;
                 }
             
 
             }
+
+
+
         }
 
 

@@ -6,7 +6,8 @@ namespace TheFowler
         EQUIPPED,
         UNEQUIPPED,
         LOCKED,
-        BASIC
+        BASIC,
+        UNSELECTIONNED
     }
 
 }
