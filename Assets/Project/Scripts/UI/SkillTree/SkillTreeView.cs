@@ -16,6 +16,7 @@ namespace TheFowler
         [TabGroup("References")] public SkillTreeSelector firstSelectedObject;
         [TabGroup("References")] [SerializeField] private UnityEngine.InputSystem.PlayerInput Inputs;
         [TabGroup("Tree")] [SerializeField] private SkillTreeSelector[] skills;
+        [TabGroup("Tree")] [SerializeField] private LineBehavior[] lines;
         [TabGroup("Tree")] [SerializeField] private BattleActorData[] datas;
         [TabGroup("Tree")] private BattleActorData currentData;
         [TabGroup("Tree")] [SerializeField] private RectTransform descriptionBox;
@@ -26,6 +27,7 @@ namespace TheFowler
         [TabGroup("Tree")] [SerializeField] private SpellTypeDatabase spellTypeDatabase;
         [TabGroup("Tree")] [SerializeField] private TargetTypeDatabase targetTypeDatabase;
         [TabGroup("Tree")] [SerializeField] public List<SkillTreeSelector> skillsWay;
+        [TabGroup("Tree")] [SerializeField] public RectTransform littleCircle,mediumCircle,bigCircle;
 
 
         [TabGroup("Character")] [SerializeField] private Image character;
@@ -85,6 +87,8 @@ namespace TheFowler
             {
                 descriptionBox.gameObject.SetActive(true);
             }
+
+            SpawnCircles();
 
         }
 
@@ -317,7 +321,53 @@ namespace TheFowler
 
         }
 
+        private Tween spawnTween;
+        public void SpawnCircles()
+        {
+            if (spawnTween != null)
+                spawnTween.Kill();
+
+            littleCircle.localScale = Vector2.zero;
+            mediumCircle.localScale = Vector2.zero;
+            bigCircle.localScale = Vector2.zero;
+
+            for (int i = 0; i < skills.Length; i++)
+            {
+                skills[i].GetComponent<RectTransform>().localScale = Vector2.zero;
+            }
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                lines[i].GetComponent<RectTransform>().localScale = Vector2.zero;
+            };
+
+            spawnTween = littleCircle.DOScale(Vector2.one, .2f).
+                OnComplete(() => mediumCircle.DOScale(Vector2.one, .2f).
+                OnComplete(() => bigCircle.DOScale(Vector2.one, .2f).
+                OnComplete(() => RescaleSkills())));
 
         }
+
+        private void RescaleSkills()
+        {
+            for (int i = 0; i < skills.Length; i++)
+            {
+                Debug.Log("SKIIIILS");
+                skills[i].GetComponent<RectTransform>().DOScale(new Vector3(.5f,.5f,1f), .1f);
+            };
+
+            RescaleLines();
+        }
+
+        private void RescaleLines()
+        {
+            for (int i = 0; i < lines.Length; i++)
+            {
+                lines[i].GetComponent<RectTransform>().DOScale(Vector2.one, .1f);
+            };
+        }
+
+
+    }
 
     }
