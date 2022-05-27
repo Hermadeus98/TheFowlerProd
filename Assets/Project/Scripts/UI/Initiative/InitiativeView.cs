@@ -21,7 +21,7 @@ namespace TheFowler
         [SerializeField] private RectTransform rectInitiative;
 
         [TabGroup("Wwise References")]
-        [SerializeField] private AK.Wwise.Event onSelect, onDeselect, onValidate;
+        [SerializeField] private AK.Wwise.Event onSelect, onDeselect, onValidate, onSwitch;
 
         private Transform selectedTransform;
         public bool isSelecting;
@@ -289,6 +289,8 @@ namespace TheFowler
             if (selectedTransform.GetSiblingIndex() == 0) return;
 
             selectedTransform.SetSiblingIndex(selectedTransform.GetSiblingIndex() - 1);
+
+            onSwitch.Post(gameObject);
         }
 
         private void ChangeDown()
@@ -296,6 +298,8 @@ namespace TheFowler
             if (selectedTransform.GetSiblingIndex() == menuView.numberOfAllies - 1) return;
 
             selectedTransform.SetSiblingIndex(selectedTransform.GetSiblingIndex() + 1);
+
+            onSwitch.Post(gameObject);
         }
 
     }
