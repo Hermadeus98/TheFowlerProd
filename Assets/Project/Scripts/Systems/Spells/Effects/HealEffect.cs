@@ -18,7 +18,7 @@ namespace TheFowler
         {
             yield return StateEvent(emitter, receivers, delegate(BattleActor emitter, BattleActor receiver)
             {
-                receiver.Health.Heal(healValue);
+                Heal(healValue, emitter, new []{receiver});
             });
             
             yield break;

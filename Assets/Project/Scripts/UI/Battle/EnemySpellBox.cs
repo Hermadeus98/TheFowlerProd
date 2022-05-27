@@ -52,7 +52,17 @@ namespace TheFowler
             {
                 logo.gameObject.SetActive(false);
             }
-            text.SetText(spell.SpellDescription);
+
+            if (LocalisationManager.language == Language.ENGLISH)
+            {
+                text.SetText(spell.SpellDescription);
+            }
+            else
+            {
+                text.SetText(spell.SpellDescriptionFrench);
+            }
+
+           
         }
     }
 }

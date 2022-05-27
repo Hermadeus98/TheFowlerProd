@@ -40,7 +40,16 @@ namespace TheFowler
                 }
                 
                 animatedText.TextComponent.SetText(string.Empty);
-                StartCoroutine(Display(cast.Dialogue.dialogueText));
+
+                if (LocalisationManager.language == Language.ENGLISH)
+                {
+                    StartCoroutine(Display(cast.Dialogue.dialogueText));
+                }
+                else
+                {
+                    StartCoroutine(Display(cast.Dialogue.dialogueTextFrench));
+                }
+               
                 var db = actorDatabase.GetElement(cast.Dialogue.ActorEnum);
                 speakerName.SetText(db.actorName);
                 portrait.sprite = db.portrait;
