@@ -1,4 +1,5 @@
 using System;
+using MoreMountains.Feedbacks;
 using QRCode.Extensions;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -41,12 +42,12 @@ namespace TheFowler
             {
                 if (!itPause)
                 {
-                    Time.timeScale = 0;
+                    FindObjectOfType<MMTimeManager>().SetTimescaleTo(0);
                     itPause = true;
                 }
                 else if (itPause)
                 {
-                    Time.timeScale = 1;
+                    FindObjectOfType<MMTimeManager>().SetTimescaleTo(1);
                     itPause = false;
                 }
             }
