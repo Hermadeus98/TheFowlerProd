@@ -21,19 +21,20 @@ namespace TheFowler
         public override void EndPhase()
         {
             base.EndPhase();
-            LaunchContextualAction();
+            End();
+            //LaunchContextualAction();
             onEndWWISE.Post(gameObject);
             onBreakWallWwise.Post(gameObject);
 
         }
         public void LaunchContextualAction()
         {
-            UI.GetView<ContextualActionView>(UI.Views.ContextualAction).Show(ContextualActionLocation.INTRO, 8, End);
+           // UI.GetView<ContextualActionView>(UI.Views.ContextualAction).Show(ContextualActionLocation.INTRO, 8, End);
         }
 
         public void End()
         {
-            UI.GetView<ContextualActionView>(UI.Views.ContextualAction).Hide();
+            //UI.GetView<ContextualActionView>(UI.Views.ContextualAction).Hide();
             nextPhase.PlayPhase();
         }
 
