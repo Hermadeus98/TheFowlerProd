@@ -18,7 +18,7 @@ namespace TheFowler
         [SerializeField] private TextMeshProUGUI healthText;
         [SerializeField] private TextMeshProUGUI manaText;
 
-        [SerializeField, ReadOnly] private BattleActor referedActor;
+        [SerializeField, ReadOnly] public BattleActor referedActor;
 
         [SerializeField] [CanBeNull] private Image head, glowSprite;
         [SerializeField] private Sprite normalSprite;

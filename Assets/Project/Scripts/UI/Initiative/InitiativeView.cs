@@ -20,6 +20,9 @@ namespace TheFowler
         [TabGroup("References")]
         [SerializeField] private RectTransform rectInitiative;
 
+        [TabGroup("Wwise References")]
+        [SerializeField] private AK.Wwise.Event onSelect, onDeselect, onValidate;
+
         private Transform selectedTransform;
         public bool isSelecting;
 
@@ -202,6 +205,8 @@ namespace TheFowler
                     if (!isSelecting)
                     {
                         isSelecting = true;
+                        onSelect.Post(gameObject);
+
                         for (int i = 0; i < menuView.numberOfAllies; i++)
                         {
                             if (selectors[i].isHover)
@@ -218,6 +223,7 @@ namespace TheFowler
                     else
                     {
                         isSelecting = false;
+                        onValidate.Post(gameObject);
 
                         for (int i = 0; i < menuView.numberOfAllies; i++)
                         {
@@ -239,6 +245,7 @@ namespace TheFowler
                     if (isSelecting)
                     {
                         isSelecting = false;
+                        onDeselect.Post(gameObject);
 
                         for (int i = 0; i < menuView.numberOfAllies; i++)
                         {

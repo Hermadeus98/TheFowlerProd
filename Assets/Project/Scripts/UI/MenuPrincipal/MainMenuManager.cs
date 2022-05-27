@@ -184,12 +184,12 @@ namespace TheFowler
 
         public void SetLanguageFrench()
         {
-            
+            LocalisationManager.ChangeLanguage(1);
         }
 
         public void SetLanguageEnglish()
         {
-            
+            LocalisationManager.ChangeLanguage(0);
         }
 
         public void SetMasterVolume(float v)

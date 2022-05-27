@@ -48,7 +48,15 @@ namespace TheFowler
             SkillSelectorElement.DeSelect();
             SkillSelectorElement.Select();
             //SkillSelectorElement.Refresh(new WrapperArgs<SpellHandler.SpellHandled>(BattleManager.CurrentBattleActor.GetBattleComponent<SpellHandler>().GetSpellHandled(spell)));
-            spellName.SetText(spell.SpellName);
+            if (LocalisationManager.language == Language.ENGLISH)
+            {
+                spellName.SetText(spell.SpellName);
+            }
+            else
+            {
+                spellName.SetText(spell.SpellNameFrench);
+            }
+
 
             if(spell.Cooldown <= 0)
             {

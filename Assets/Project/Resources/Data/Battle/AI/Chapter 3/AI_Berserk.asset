@@ -1,0 +1,214 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5002943791546989718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a16d7749e1191724db8102279a8920c3, type: 3}
+  m_Name: Choice
+  m_EditorClassIdentifier: 
+  NodeName: Choice
+  chance: 1
+  state: 0
+  started: 0
+  guid: 716ef1726c9d0fe479a32a137b129274
+  position: {x: -481, y: -48}
+  children:
+  - {fileID: 4151569233255065424}
+  - {fileID: -2289034317713178180}
+  Choices:
+  - isHardChoice: 0
+    hardChoice: 0
+    comparator_A: 0
+    component: 0
+    Operator: 4
+    comparator_B: 6
+    percent: 40
+    NextNode: {fileID: 4151569233255065424}
+  DefaultNextNode: {fileID: -2289034317713178180}
+--- !u!114 &-3555473390748949752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: WeakerAlly
+  m_EditorClassIdentifier: 
+  NodeName: WeakerAlly
+  chance: 1
+  state: 0
+  started: 0
+  guid: d008b83322a4ba64bbfea0f6d0a86828
+  position: {x: -105, y: 223.5}
+  children:
+  - {fileID: 536190001274137939}
+  TargetIntention: 2
+  With: 0
+  value: 1
+--- !u!114 &-2289034317713178180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1884b09a793565145a2ecfeff2b70fbc, type: 3}
+  m_Name: Aleatory
+  m_EditorClassIdentifier: 
+  NodeName: Aleatory
+  chance: 1
+  state: 0
+  started: 0
+  guid: 82461bb6301b1bb439d235a3d760e222
+  position: {x: -368, y: 185}
+  children:
+  - {fileID: 6350447554996029331}
+  - {fileID: -3555473390748949752}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cf5a2a104152e48a7bbaed625f399a, type: 3}
+  m_Name: AI_Berserk
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: -5002943791546989718}
+  actors: 
+  treeState: 0
+  nodes:
+  - {fileID: -5002943791546989718}
+  - {fileID: 4554433209448224214}
+  - {fileID: 4151569233255065424}
+  - {fileID: 6350447554996029331}
+  - {fileID: 1534644324565478696}
+  - {fileID: -2289034317713178180}
+  - {fileID: 536190001274137939}
+  - {fileID: -3555473390748949752}
+  dialogueType: 0
+--- !u!114 &536190001274137939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: BasicAttaque_2
+  m_EditorClassIdentifier: 
+  NodeName: BasicAttaque_2
+  chance: 1
+  state: 0
+  started: 0
+  guid: 516e1f3ae9407b84ca735945b5bafae5
+  position: {x: 146, y: 224}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: 39faac667a8f95842b8b96e8d835cfc4, type: 2}
+    Chance: 0
+--- !u!114 &1534644324565478696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: BasicAttaque_1
+  m_EditorClassIdentifier: 
+  NodeName: BasicAttaque_1
+  chance: 1
+  state: 0
+  started: 0
+  guid: 536b0f4b5c777f1498f5b24aa7c5eabf
+  position: {x: 146, y: 29}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: 39faac667a8f95842b8b96e8d835cfc4, type: 2}
+    Chance: 0
+--- !u!114 &4151569233255065424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: Random All_1
+  m_EditorClassIdentifier: 
+  NodeName: Random All_1
+  chance: 1
+  state: 0
+  started: 0
+  guid: 2843550e539117842bf2c0503c7c77c8
+  position: {x: -316, y: -125}
+  children:
+  - {fileID: 4554433209448224214}
+  TargetIntention: 9
+  With: 0
+  value: 0
+--- !u!114 &4554433209448224214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: DMG+Buff
+  m_EditorClassIdentifier: 
+  NodeName: DMG+Buff
+  chance: 1
+  state: 0
+  started: 0
+  guid: a9420b19c3f107c46a9a46696c727a80
+  position: {x: -58, y: -125}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: 7595dabfb1b81f14e97aef93b85c0f75, type: 2}
+    Chance: 0
+--- !u!114 &6350447554996029331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: Random All_2
+  m_EditorClassIdentifier: 
+  NodeName: Random All_2
+  chance: 1
+  state: 0
+  started: 0
+  guid: 3b5fafc6a474dea4ab126c05408790dd
+  position: {x: -105, y: 29}
+  children:
+  - {fileID: 1534644324565478696}
+  TargetIntention: 9
+  With: 0
+  value: 1

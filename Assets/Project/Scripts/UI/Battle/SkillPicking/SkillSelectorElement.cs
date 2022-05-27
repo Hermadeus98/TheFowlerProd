@@ -57,7 +57,16 @@ namespace TheFowler
                     if (newCooldown <= 0) newCooldown = 0;
                 }
 
-                text.SetText(referedSpell.SpellName);
+                if (LocalisationManager.language == Language.ENGLISH)
+                {
+                    text.SetText(referedSpell.SpellName);
+                }
+                else
+                {
+                    text.SetText(referedSpell.SpellNameFrench);
+                }
+
+                
                 //manaCostText.SetText(referedSpell.ManaCost.ToString());
 
                 var cooldownPercent = 0f;
@@ -163,7 +172,16 @@ namespace TheFowler
         public void Refresh(Spell spell)
         {
             referedSpell = spell;
-            text.SetText(referedSpell.SpellName);
+
+            if (LocalisationManager.language == Language.ENGLISH)
+            {
+                text.SetText(referedSpell.SpellName);
+            }
+            else
+            {
+                text.SetText(referedSpell.SpellNameFrench);
+            }
+
             //manaCostText.SetText(referedSpell.ManaCost.ToString());
             spellTypeIcon.sprite = SpellTypeDatabase.GetElement(referedSpell.SpellType);
         }
@@ -216,8 +234,17 @@ namespace TheFowler
             {
                 logoBuff.enabled = false;
             }
-            
-            desctext.SetText(referedSpell.SpellDescription);
+
+
+            if (LocalisationManager.language == Language.ENGLISH)
+            {
+                desctext.SetText(referedSpell.SpellDescription);
+            }
+            else
+            {
+                desctext.SetText(referedSpell.SpellDescriptionFrench);
+            }
+
             
             fade?.Kill();
             fade = descCanvasGroup.DOFade(1f, .2f);
