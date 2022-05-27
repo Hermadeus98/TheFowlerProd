@@ -25,6 +25,8 @@ namespace TheFowler
 
             if(_OnSelect != null)
             _OnSelect.PlayFeedbacks();
+
+            SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Hover, gameObject);
         }
 
         public override void OnDeselect(BaseEventData eventData)
