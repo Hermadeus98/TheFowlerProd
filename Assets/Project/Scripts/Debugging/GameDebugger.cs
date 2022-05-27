@@ -36,7 +36,7 @@ namespace TheFowler
         private bool itPause;
 
 
-        private void Update()
+        /*private void Update()
         {
             if (GetComponent<PlayerInput>().actions["Pause"].WasPressedThisFrame())
             {
@@ -51,6 +51,6 @@ namespace TheFowler
                     itPause = false;
                 }
             }
-        }
+        }*/
     }
 }

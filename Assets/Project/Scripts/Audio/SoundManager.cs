@@ -105,7 +105,7 @@ namespace TheFowler
             PlaySound(AudioGenericEnum.TF_Main_SetMuteOff, null);
         }
 
-        public static float masterVolume, musicVolume, VoicesVolume, EffectsVolume = 50;
+        public static float masterVolume = 75f, musicVolume = 75f, VoicesVolume = 75f, EffectsVolume = 75f;
         
         public static void SetMasterVolume(float v)
         {

@@ -43,22 +43,23 @@ namespace TheFowler
             if(SliderSimple != null)
             {
                 SliderSimple.gameObject.SetActive(true);
-                SliderSimple.maxValue = 100;
                 textSlider.gameObject.SetActive(true);
+                
                 SliderSimple.onValueChanged.AddListener(delegate(float value)
                 {
-                    textSlider.SetText(SliderSimple.value + "/" + SliderSimple.maxValue);
+                    textSlider.SetText(value + "/" + SliderSimple.maxValue);
                 });
+                /*
                 if (TryGetComponent<VolumeUpdater>(out var s))
                 {
+                    Debug.Log(s.GetValue());
                     SliderSimple.value = s.GetValue();
+                    Debug.Log("set");
                 }
                 else
                 {
                     SliderSimple.value = 100;
-                }
-                SliderSimple.wholeNumbers = true;
-                SliderSimple.interactable = false;
+                }*/
             }
 
             if (TextChoice != null)
@@ -87,11 +88,12 @@ namespace TheFowler
 
             pulse?.Kill();
             pulse = DOTween.Sequence();
+            pulse.SetUpdate(true);
             pulse.Append(
-                text.rectTransform.DOScale(1.1f, .6f)
+                text.rectTransform.DOScale(1.1f, .6f).SetUpdate(true)
                 );
             pulse.Append(
-                text.rectTransform.DOScale(1f, .6f)
+                text.rectTransform.DOScale(1f, .6f).SetUpdate(true)
                 );
             pulse.SetLoops(-1);
             pulse.Play();
@@ -105,7 +107,7 @@ namespace TheFowler
             
             text.color = normalColor;
             pulse?.Kill();
-            text.rectTransform.DOScale(1f, .2f);
+            text.rectTransform.DOScale(1f, .2f).SetUpdate(true);
         }
 
         public override void OnClick()

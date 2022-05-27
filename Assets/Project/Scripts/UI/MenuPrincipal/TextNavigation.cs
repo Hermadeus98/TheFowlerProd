@@ -19,7 +19,7 @@ namespace TheFowler
 
         public void ShowAnim()
         {
-            canvasGroup.DOFade(1f, .2f).OnComplete(delegate { isActive = true; });
+            canvasGroup.DOFade(1f, .2f).SetUpdate(true).OnComplete(delegate { isActive = true; });
             currentSelectedElement?.Select();
 
             all_elements.ForEach(w => w.isActive = true);
@@ -27,7 +27,7 @@ namespace TheFowler
         
         public void HideAnim()
         {
-            canvasGroup.DOFade(0f, .2f);
+            canvasGroup.DOFade(0f, .2f).SetUpdate(true);
             isActive = false;
             
             all_elements.ForEach(w => w.isActive = false);

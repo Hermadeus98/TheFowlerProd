@@ -10,7 +10,7 @@ namespace TheFowler
     public class SelectionPointer : UIElement
     {
         [SerializeField] private CanvasGroup selector;
-        [SerializeField] private Image selectorImage;
+        //[SerializeField] private Image selectorImage;
         public Color targetEnemyColor, emitterColor, targetAllyColor;
 
         private Tween animTween;
@@ -27,11 +27,11 @@ namespace TheFowler
             base.Hide();
             animTween?.Kill();
             selector.alpha = 0;
-            SetTargetEnemyColor();
+            //SetTargetEnemyColor();
         }
 
-        public void SetTargetEnemyColor()=> selectorImage.color = targetEnemyColor;
-        public void SetTargetAllyColor()=> selectorImage.color = targetAllyColor;
-        public void SetEmitterColor()=> selectorImage.color = emitterColor;
+        //public void SetTargetEnemyColor()=> selectorImage.color = targetEnemyColor;
+        //public void SetTargetAllyColor()=> selectorImage.color = targetAllyColor;
+        //public void SetEmitterColor()=> selectorImage.color = emitterColor;
     }
 }

@@ -9,6 +9,16 @@ public class VolumeUpdater : MonoBehaviour
 {
     public VolumeSettings setting;
 
+    private IEnumerator Start()
+    {
+        yield return new WaitForSeconds(.1f);
+        if (TryGetComponent<TextMenu>(out var t))
+        {
+            t.SliderSimple.value = GetValue();
+            t.textSlider.text = t.SliderSimple.value + "/" + t.SliderSimple.maxValue;
+        }
+    }
+
     public float GetValue()
     {
         return setting switch
