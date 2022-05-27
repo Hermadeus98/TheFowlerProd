@@ -123,6 +123,7 @@ namespace TheFowler
 
             ReferedActor.AllyData?.Refresh();
             ReferedActor.AllyData?.ShakeHearth();
+            ReferedActor.BattleActorAnimator.Hit();
 
             if (lifeTxt != null) lifeTxt.text = currentHealth.ToString();
         }
