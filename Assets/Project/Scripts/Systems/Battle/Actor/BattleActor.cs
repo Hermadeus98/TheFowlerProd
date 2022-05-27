@@ -88,7 +88,8 @@ namespace TheFowler
 
             battleActorInfo.isStun = false;
             BattleActorInfo.isTaunt = false;
-
+            GetBattleComponent<Taunt>().taunter = null;
+            
             var currentBattle = BattleManager.CurrentBattle;
             
             if (currentBattle.HasRestart || currentBattle.StartWithSavedData)
@@ -154,13 +155,14 @@ namespace TheFowler
                         RefreshStateIcons();
                     }
             }
-
             else
             {
                 battleActorComponents.ForEach(w => w.Initialize());
                 battleActorInfo.isDeath = false;
                 battleActorInfo.attackBonus = 0;
                 battleActorInfo.defenseBonus = 0;
+                RefreshStateIcons();
+                GetBattleComponent<CooldownComponent>().ResetCD();
             }
         }
 
@@ -380,6 +382,7 @@ namespace TheFowler
 
         public virtual void OnDeath()
         {
+            GetBattleComponent<Taunt>().taunter.GetBattleComponent<Taunt>().EndTaunt();
             BattleManager.CurrentBattle.lastDeath = this;
             GetBattleComponent<Buff>().StopVFX();
             Debug.Log("ON DEEAATH");
