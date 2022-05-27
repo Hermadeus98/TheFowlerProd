@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
-  m_Name: Basic_1
+  m_Name: FINISH
   m_EditorClassIdentifier: 
-  NodeName: Basic_1
+  NodeName: FINISH
   chance: 1
   state: 0
   started: 0
@@ -109,16 +109,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
-  m_Name: CastNode
+  m_Name: Spell2_1
   m_EditorClassIdentifier: 
-  NodeName: 
+  NodeName: Spell2_1
   chance: 1
   state: 0
   started: 0
   guid: c32917b1dad96f948a71d0c8ca2e33e9
-  position: {x: 0, y: 0}
+  position: {x: 1064, y: 242.99995}
   children: []
-  spellList: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: eed939ac7d2596a4a98724da21e404d3, type: 2}
+    Chance: 0
 --- !u!114 &-4677017494967907431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,16 +346,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
-  m_Name: CastNode
+  m_Name: Spell2_2
   m_EditorClassIdentifier: 
-  NodeName: 
+  NodeName: Spell2_2
   chance: 1
   state: 0
   started: 0
   guid: acded9dee9b56cc4ba8009cdeae0a909
   position: {x: 1072, y: 487}
   children: []
-  spellList: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: eed939ac7d2596a4a98724da21e404d3, type: 2}
+    Chance: 0
 --- !u!114 &1467263115192644493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,7 +496,8 @@ MonoBehaviour:
   started: 0
   guid: 6edf91125017f5742aa64e472fad4a38
   position: {x: 851, y: 242}
-  children: []
+  children:
+  - {fileID: -4992640324889719069}
   TargetIntention: 13
   With: 0
   value: 0
