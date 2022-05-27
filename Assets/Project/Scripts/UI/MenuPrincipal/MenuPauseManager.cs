@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using MoreMountains.Feedbacks;
 using Sirenix.OdinInspector;
 using TheFowler;
 using UnityEngine;
@@ -24,6 +25,7 @@ public class MenuPauseManager : MonoBehaviour
     private bool isOpen = false;
     
     public RectTransform backGround;
+    public GameObject menu;
 
     private void Awake()
     {
@@ -38,6 +40,8 @@ public class MenuPauseManager : MonoBehaviour
         if(!Player.canOpenPauseMenu)
             return;
         
+        menu.gameObject.SetActive(true);
+        
         Player.isInPauseMenu = true;
 
         isActive = true;
@@ -48,6 +52,8 @@ public class MenuPauseManager : MonoBehaviour
 
     public void Hide()
     {
+        menu.gameObject.SetActive(false);
+        
         Player.isInPauseMenu = false;
         
         isActive = false;
@@ -101,14 +107,19 @@ public class MenuPauseManager : MonoBehaviour
     
     private void Update()
     {
-        if (Gamepad.current.selectButton.wasPressedThisFrame)
+        if(!Player.canOpenPauseMenu)
+            return;
+        
+        if (input.actions["Pause"].WasPressedThisFrame())
         {
             if (!isOpen)
             {
+                FindObjectOfType<MMTimeManager>().SetTimescaleTo(0);
                 Open();
             }
             else
             {
+                FindObjectOfType<MMTimeManager>().SetTimescaleTo(1);
                 Hide();
             }
         }
@@ -139,44 +150,44 @@ public class MenuPauseManager : MonoBehaviour
     }
     
     public void SetDifficultyEasy()
-            {
-                Player.showPreview = true;
-            }
-    
-            public void SetDifficultyHard()
-            {
-                Player.showPreview = false;
-            }
-    
-            public void SetLanguageFrench()
-            {
-                LocalisationManager.ChangeLanguage(1);
-            }
-    
-            public void SetLanguageEnglish()
-            {
-                LocalisationManager.ChangeLanguage(0);
-            }
-    
-            public void SetMasterVolume(float v)
-            {
-                SoundManager.SetMasterVolume(v);
-            }
-    
-            public void SetMusicVolume(float v)
-            {
-                SoundManager.SetMusicVolume(v);
-            }
-    
-            public void SetVoicesVolume(float v)
-            {
-                SoundManager.SetVoicesVolume(v);
-            }
-    
-            public void SetEffectsVolume(float v)
-            {
-                SoundManager.SetMusicVolume(v);
-            }
+    {
+        Player.showPreview = true;
+    }
+
+    public void SetDifficultyHard()
+    {
+        Player.showPreview = false;
+    }
+
+    public void SetLanguageFrench()
+    {
+        LocalisationManager.ChangeLanguage(1);
+    }
+
+    public void SetLanguageEnglish()
+    {
+        LocalisationManager.ChangeLanguage(0);
+    }
+
+    public void SetMasterVolume(float v)
+    {
+        SoundManager.SetMasterVolume(v);
+    }
+
+    public void SetMusicVolume(float v)
+    {
+        SoundManager.SetMusicVolume(v);
+    }
+
+    public void SetVoicesVolume(float v)
+    {
+        SoundManager.SetVoicesVolume(v);
+    }
+
+    public void SetEffectsVolume(float v)
+    {
+        SoundManager.SetMusicVolume(v);
+    }
 }
 
 public enum MenuPausePanel
