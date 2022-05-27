@@ -17,12 +17,13 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 4e2903fdd1a23d3459a0be5e17ea9e98
-  position: {x: 210, y: -2}
+  position: {x: 211.52092, y: -1.9999988}
   children:
   - {fileID: 2363980503230762533}
   dialogue:
     ActorEnum: 3
     dialogueText: SEIZE THEM!
+    dialogueTextFrench: SAISISSEZ-LES !
     cameraPath:
       genericKey: 4
       cameraName: Cam2
@@ -52,12 +53,13 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 3b92d53a590965147af9cbfab9ce5257
-  position: {x: 98, y: -11.919998}
+  position: {x: -107.31811, y: -13.520878}
   children:
-  - {fileID: -7214292604845814895}
+  - {fileID: 8439003332517611252}
   dialogue:
     ActorEnum: 5
     dialogueText: 
+    dialogueTextFrench: 
     cameraPath:
       genericKey: 4
       cameraName: Cam1
@@ -90,6 +92,7 @@ MonoBehaviour:
   - {fileID: 3097418602955434166}
   - {fileID: 2363980503230762533}
   - {fileID: -7214292604845814895}
+  - {fileID: 8439003332517611252}
   dialogueType: 0
 --- !u!114 &2363980503230762533
 MonoBehaviour:
@@ -114,6 +117,7 @@ MonoBehaviour:
   dialogue:
     ActorEnum: 0
     dialogueText: Ready girl?
+    dialogueTextFrench: "T\u2019es pr\xEAte ?"
     cameraPath:
       genericKey: 4
       cameraName: Default
@@ -148,6 +152,7 @@ MonoBehaviour:
   dialogue:
     ActorEnum: 0
     dialogueText: LET'S GO!
+    dialogueTextFrench: "ON Y VA !\r"
     cameraPath:
       genericKey: 1
       cameraName: Default
@@ -159,4 +164,40 @@ MonoBehaviour:
       idInternal: 0
       valueGuidInternal: 
       WwiseObjectReference: {fileID: 11400000, guid: 79f2c5cf2e2cae745bc9147178ccb24f, type: 2}
+    animationTrigger: 0
+--- !u!114 &8439003332517611252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 06dacf4cdc95b8a45873c6712c711b6a
+  position: {x: 0, y: 0}
+  children:
+  - {fileID: -7214292604845814895}
+  dialogue:
+    ActorEnum: 3
+    dialogueText: "WHO DARES TO INVADE THE LIEUTENANT'S HOLY DOMAIN?!\r"
+    dialogueTextFrench: "QUI OSE ENVAHIR LE DOMAINE SACR\xC9 DU LIEUTENANT ?!"
+    cameraPath:
+      genericKey: 4
+      cameraName: Default
+      batchName: 
+    displayDuration: 4
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
     animationTrigger: 0
