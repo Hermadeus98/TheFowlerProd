@@ -160,7 +160,7 @@ namespace TheFowler
                 ChapterManager.GoChapterTwo();
             if(chapter == 3)
                 ChapterManager.GoChapterThree();
-            if(chapter == 3)
+            if(chapter == 4)
                 ChapterManager.GoChapterFour();
             
             Player.canOpenPauseMenu = true;
