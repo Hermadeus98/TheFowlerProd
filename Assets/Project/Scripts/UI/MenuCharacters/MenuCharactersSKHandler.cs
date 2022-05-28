@@ -1,16 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 namespace TheFowler
 {
     public class MenuCharactersSKHandler : MonoBehaviour
     {
         public static MenuCharactersSKHandler Instance;
+
+        [TabGroup("References")]
         public Animator phoebe, robyn, abi;
+        [TabGroup("References")]
         [SerializeField] private GameObject handler;
-        public Transform position1, position2,position3, position4;
+        [TabGroup("References")]
         public Cinemachine.CinemachineVirtualCamera camMenu, camSkillTree, camInitative;
+        [TabGroup("Menu")]
+        public Transform position1, position2, position3;
+        [TabGroup("Tree")]
+        public Transform positionTreeRobyn, positionTreeAby, positionTreePhoebe;
+
 
         // Start is called before the first frame update
         void Awake()
@@ -57,6 +66,26 @@ namespace TheFowler
             camMenu.enabled = false;
             camSkillTree.enabled = true;
             camInitative.enabled = false;
+        }
+
+        public void SetActorTree(int ID)
+        {
+            switch (ID)
+            {
+                case 0:
+                    Instance.robyn.gameObject.SetActive(true);
+                   Instance.robyn.transform.position = Instance.positionTreeRobyn.position;
+                    break;
+                case 1:
+                    Instance.abi.gameObject.SetActive(true);
+                    Instance.abi.transform.position = Instance.positionTreeAby.position;
+                    break;
+                case 2:
+                    Instance.phoebe.gameObject.SetActive(true);
+                    Instance.phoebe.transform.position = Instance.positionTreePhoebe.position;
+                    break;
+            }
+
         }
 
     }

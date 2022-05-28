@@ -16,7 +16,7 @@ namespace TheFowler
         [SerializeField] private TextMeshProUGUI speakerName;
 
         [SerializeField] private DialogueChoiceSelector choiceSelector;
-        [SerializeField] private Image rappelInputFill, background;
+        [SerializeField] private Image rappelInputFill, background, backgroundBox;
 
         public bool textIsComplete => animatedText.isComplete;
         public AnimatedText AnimatedText => animatedText;
@@ -24,7 +24,8 @@ namespace TheFowler
 
         public void Refresh(string text, string speaker)
         {
-            animatedText.SetText(text);
+            //animatedText.SetText(text);
+            animatedText.SetAndFinishText(text);
             speakerName.text = speaker;
         }
         
@@ -43,23 +44,28 @@ namespace TheFowler
                     if (!String.IsNullOrEmpty(cast.Dialogue.dialogueText))
                     {
                         background.enabled = true;
+                        backgroundBox.enabled = true;
                         speakerName.enabled = true;
                         animatedText.GetComponent<TextMeshProUGUI>().enabled = true;
                         if (cast.DialogueNode.dialogue.dialogueText.Length >= 20)
                         {
-                            animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Left;
+                            animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
                         }
                         else
                         {
                             animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
                         }
-                        animatedText.SetText(cast.Dialogue.dialogueText);
+
+                        animatedText.SetAndFinishText(cast.Dialogue.dialogueText);
+                        //animatedText.SetText(cast.Dialogue.dialogueText);
                         speakerName.SetText(db.actorName);
-                        animatedText.SetText(cast.Dialogue.dialogueText);
+                        //animatedText.SetText(cast.Dialogue.dialogueText);
+                        animatedText.SetAndFinishText(cast.Dialogue.dialogueText);
                     }
                     else
                     {
                         background.enabled = false;
+                        backgroundBox.enabled = false;
                         speakerName.enabled = false;
                         animatedText.GetComponent<TextMeshProUGUI>().enabled = false;
 
@@ -70,23 +76,25 @@ namespace TheFowler
                     if (!String.IsNullOrEmpty(cast.Dialogue.dialogueTextFrench))
                     {
                         background.enabled = true;
+                        backgroundBox.enabled = true;
                         speakerName.enabled = true;
                         animatedText.GetComponent<TextMeshProUGUI>().enabled = true;
                         if (cast.DialogueNode.dialogue.dialogueTextFrench.Length >= 20)
                         {
-                            animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Left;
+                            animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
                         }
                         else
                         {
                             animatedText.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
                         }
-                        animatedText.SetText(cast.Dialogue.dialogueTextFrench);
+                        animatedText.SetAndFinishText(cast.Dialogue.dialogueTextFrench);
                         speakerName.SetText(db.actorName);
-                        animatedText.SetText(cast.Dialogue.dialogueTextFrench);
+                        animatedText.SetAndFinishText(cast.Dialogue.dialogueTextFrench);
                     }
                     else
                     {
                         background.enabled = false;
+                        backgroundBox.enabled = false;
                         speakerName.enabled = false;
                         animatedText.GetComponent<TextMeshProUGUI>().enabled = false;
 
@@ -120,11 +128,11 @@ namespace TheFowler
 
             if(LocalisationManager.language == Language.ENGLISH)
             {
-                animatedText.SetText(node.dialogue.dialogueText);
+                animatedText.SetAndFinishText(node.dialogue.dialogueText);
             }
             else
             {
-                animatedText.SetText(node.dialogue.dialogueTextFrench);
+                animatedText.SetAndFinishText(node.dialogue.dialogueTextFrench);
             }
 
 

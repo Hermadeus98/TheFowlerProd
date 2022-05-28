@@ -72,6 +72,12 @@ namespace TheFowler
             isComplete = true;
             textComponent.SetText(textToDisplay);
         }
+
+        public void SetAndFinishText(string text)
+        {
+            textToDisplay = text;
+            Complete();
+        }
     }
 
     [Serializable]

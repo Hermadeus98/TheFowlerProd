@@ -212,21 +212,17 @@ namespace TheFowler
             switch (newID)
             {
                 case 0:
-                    MenuCharactersSKHandler.Instance.robyn.gameObject.SetActive(true);
-                    MenuCharactersSKHandler.Instance.robyn.transform.position = MenuCharactersSKHandler.Instance.position4.position;
                     characterName.text = "ROBYN";
                     break;
                 case 1:
-                    MenuCharactersSKHandler.Instance.abi.gameObject.SetActive(true);
-                    MenuCharactersSKHandler.Instance.abi.transform.position = MenuCharactersSKHandler.Instance.position4.position;
                     characterName.text = "ABIGAIL";
                     break;
                 case 2:
-                    MenuCharactersSKHandler.Instance.phoebe.gameObject.SetActive(true);
-                    MenuCharactersSKHandler.Instance.phoebe.transform.position = MenuCharactersSKHandler.Instance.position4.position;
                     characterName.text = "PHOEBE";
                     break;
             }
+
+            MenuCharactersSKHandler.Instance.SetActorTree(newID);
 
 
 

@@ -6,6 +6,8 @@ public class LocalisationElement : MonoBehaviour
 {
 
     private TMPro.TextMeshProUGUI displayedText;
+
+    [TextArea()]
     [SerializeField] private string englishText, frenchText;
 
     private void Awake()

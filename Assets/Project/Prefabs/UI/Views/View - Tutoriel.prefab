@@ -1184,8 +1184,8 @@ MonoBehaviour:
     If you select one of your dead allies, she will
     come back to life.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
-  m_sharedMaterial: {fileID: -7791964341149814486, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
+  m_sharedMaterial: {fileID: -7791964341149814486, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1454,8 +1454,8 @@ MonoBehaviour:
     is the number of turns you have to wait before you can use the skill again. You
     only have one spell for now.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
-  m_sharedMaterial: {fileID: -7791964341149814486, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
+  m_sharedMaterial: {fileID: -7791964341149814486, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3364,6 +3364,7 @@ GameObject:
   - component: {fileID: 2192912152842965365}
   - component: {fileID: 5683055590520463210}
   - component: {fileID: 7425334381417951210}
+  - component: {fileID: 1096236527}
   m_Layer: 5
   m_Name: Description
   m_TagString: Untagged
@@ -3418,15 +3419,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Attack is a skill that allows you to inflict <b><#ff6075>damage</color></b>
+  m_text: 'Attack is a <i>skill</i> that allows you to inflict <b><#ff6075>damage</color></b>
     on an enemy.
 
 
     Like the Special Attack, this skill has no <#33E7D3>Cooldown</color>,
     so it can be used every turn.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
-  m_sharedMaterial: {fileID: -7791964341149814486, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
+  m_sharedMaterial: {fileID: -7791964341149814486, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3492,6 +3493,28 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1096236527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277701965989300442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: 'Attack is a <i>skill</i> that allows you to inflict <b><#ff6075>damage</color></b>
+    on an enemy.
+
+
+    Like the Special Attack, this skill has no <#33E7D3>Cooldown</color>,
+    so it can be used every turn.'
+  frenchText: "L'attaque est une <i>comp\xE9tence</i> qui vous permet d'infliger
+    des <b><#ff6075>d\xE9g\xE2ts</color></b> \xE0 un ennemi.\r\n\r\nComme l'Attaque
+    Sp\xE9ciale, cette comp\xE9tence n'a pas de <#33E7D3>Recharge</color>, elle peut
+    donc \xEAtre utilis\xE9e \xE0 chaque tour."
 --- !u!1 &1428007292777458800
 GameObject:
   m_ObjectHideFlags: 0
@@ -5034,6 +5057,7 @@ GameObject:
   - component: {fileID: 4139184074773077589}
   - component: {fileID: 386663850427530868}
   - component: {fileID: 2295376462345001507}
+  - component: {fileID: 1096236525}
   m_Layer: 5
   m_Name: Description
   m_TagString: Untagged
@@ -5088,16 +5112,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The Special Attack has an effect that varies between allies. However,
-    the Special Attack will always give a <#33E7D3>Cooldown</color> bonus for the
-    duration of the fight.
+  m_text: 'The Special Attack has an effect that varies between <#FFCF00>allies</color>
+    and gives a <#33E7D3>Cooldown</color> bonus for the duration of the fight.
 
 
-    Like the Attack, this skill does not have a <#33E7D3>Cooldown</color>,
-    so it can be used every turn.'
+    Like
+    the Attack, this skill does not have a <#33E7D3>Cooldown</color>, so it can be
+    used every turn.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
-  m_sharedMaterial: {fileID: -7791964341149814486, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
+  m_sharedMaterial: {fileID: -7791964341149814486, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5163,6 +5187,29 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1096236525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2254545383756538303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: 'The Special Attack has an effect that varies between allies and gives
+    a <#33E7D3>Cooldown</color> bonus for the duration of the fight.
+
+
+    Like the
+    Attack, this skill does not have a <#33E7D3>Cooldown</color>, so it can be used
+    every turn.'
+  frenchText: "L'attaque sp\xE9ciale a un effet qui varie selon les <#33E7D3>alli\xE9es</color>
+    et donne un bonus de <#33E7D3>Recharge</color> pour la dur\xE9e du combat.\r\n\r\nComme
+    l'Attaque, cette comp\xE9tence n'a pas de <#33E7D3>Recharge</color>, elle peut
+    donc \xEAtre utilis\xE9e \xE0 chaque tour."
 --- !u!1 &2367682506970365277
 GameObject:
   m_ObjectHideFlags: 0
@@ -7187,8 +7234,8 @@ MonoBehaviour:
     An interaction help is available at the bottom left of the
     screen during all phases of the game.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
-  m_sharedMaterial: {fileID: -7791964341149814486, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
+  m_sharedMaterial: {fileID: -7791964341149814486, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9388,8 +9435,8 @@ MonoBehaviour:
   m_text: Spells have types, as do enemies. Using a type that the enemy resists will
     reduce the damages of the attack, while a weakness will amplify them.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
-  m_sharedMaterial: {fileID: -7791964341149814486, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
+  m_sharedMaterial: {fileID: -7791964341149814486, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -12272,6 +12319,7 @@ GameObject:
   - component: {fileID: 6378662119184938239}
   - component: {fileID: 5885567260807641969}
   - component: {fileID: 7967406411921087754}
+  - component: {fileID: 1096236526}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -12395,6 +12443,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1096236526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5812925817113094297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Special Attack
+  frenchText: "Attaque Sp\xE9ciale"
 --- !u!1 &5824498363207979245
 GameObject:
   m_ObjectHideFlags: 0
@@ -13120,8 +13182,8 @@ MonoBehaviour:
     around the life bars of allies and enemies. These effects are applied until the
     end of the fight.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
-  m_sharedMaterial: {fileID: -7791964341149814486, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
+  m_sharedMaterial: {fileID: -7791964341149814486, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -14731,8 +14793,8 @@ MonoBehaviour:
   m_text: When one of your allies dies, she can be resurrected. To do this, kill
     an enemy and select your ally during the Breakdown
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
-  m_sharedMaterial: {fileID: -7791964341149814486, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
+  m_sharedMaterial: {fileID: -7791964341149814486, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -16332,8 +16394,8 @@ MonoBehaviour:
     can pick and change your spells in the tree before each fights  to try different
     <i>playstyles</i>.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
-  m_sharedMaterial: {fileID: -7791964341149814486, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
+  m_sharedMaterial: {fileID: -7791964341149814486, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -19182,6 +19244,7 @@ GameObject:
   - component: {fileID: 4823139603783110329}
   - component: {fileID: 4655960411244137815}
   - component: {fileID: 6626583791263297176}
+  - component: {fileID: 1096236528}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -19305,6 +19368,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1096236528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8713103465677608457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Attack
+  frenchText: Attaque
 --- !u!1 &8839590849094866947
 GameObject:
   m_ObjectHideFlags: 0
@@ -19373,8 +19450,8 @@ MonoBehaviour:
   m_text: You can also change the order of your <#FFCF00>characters</color> before
     a fight to try different <i>strategies</i>.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
-  m_sharedMaterial: {fileID: -7791964341149814486, guid: e1134fe86dfcf53499ae74e0db855595, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
+  m_sharedMaterial: {fileID: -7791964341149814486, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -20210,6 +20287,10 @@ PrefabInstance:
     - target: {fileID: 1916935586077316038, guid: f84546f26542ea545863c6dd261e93bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538218551290761987, guid: f84546f26542ea545863c6dd261e93bd, type: 3}
+      propertyPath: frenchText
+      value: Suivant
       objectReference: {fileID: 0}
     - target: {fileID: 5395079036459579694, guid: f84546f26542ea545863c6dd261e93bd, type: 3}
       propertyPath: m_Enabled

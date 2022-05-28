@@ -38,6 +38,9 @@ namespace TheFowler
         [SerializeField]
         public int  numberOfAllies = 2;
 
+        [TitleGroup("General Settings")]
+        public float battleSpeed = 1;
+
         private bool hasPlayed = false;
 
         [SerializeField] private UnityEngine.Events.UnityEvent OnStartProgression;
@@ -179,11 +182,17 @@ namespace TheFowler
             StartCoroutine(StartBattle());
         }
 
+        public override void EndPhase()
+        {
+            base.EndPhase();
+            MoreMountains.Feedbacks.MMTimeManager.Instance.ApplyTimeScale(1);
+        }
+
         private void Update()
         {
             if (isActive)
             {
-                //MoreMountains.Feedbacks.MMTimeManager.Instance.ApplyTimeScale(1.2f);
+                MoreMountains.Feedbacks.MMTimeManager.Instance.ApplyTimeScale(battleSpeed);
             }
         }
 

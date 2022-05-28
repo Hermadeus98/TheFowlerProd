@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3848729598620354590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 54851aeba5d928448abb1f6c0c05a181
+  position: {x: -279, y: 201}
+  children:
+  - {fileID: -3588519498236283873}
+  dialogue:
+    ActorEnum: 1
+    dialogueText: Must have been a spell, or perhaps one of-
+    dialogueTextFrench: 
+    cameraPath:
+      genericKey: 4
+      cameraName: Cam2
+      batchName: 
+    displayDuration: 4
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 11400000, guid: b5dddbf12789a4945a0a50fc810d802b, type: 2}
+    animationTrigger: 0
+--- !u!114 &-3588519498236283873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: ac755282519ba25489dfb7af2e218c4f
+  position: {x: -135.04259, y: 199.065}
+  children: []
+  dialogue:
+    ActorEnum: 0
+    dialogueText: Phoebe must have broken it! RAH! Pain in my arse.
+    dialogueTextFrench: 
+    cameraPath:
+      genericKey: 4
+      cameraName: Cam3
+      batchName: 
+    displayDuration: 4
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 11400000, guid: a00891a1b066b554597bce9dad56a15b, type: 2}
+    animationTrigger: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cf5a2a104152e48a7bbaed625f399a, type: 3}
+  m_Name: DM_PontBrise
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: 3116295608871104186}
+  actors: 0100000000000000
+  treeState: 0
+  nodes:
+  - {fileID: 3116295608871104186}
+  - {fileID: -3848729598620354590}
+  - {fileID: -3588519498236283873}
+  dialogueType: 2
+--- !u!114 &3116295608871104186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: Main
+  m_EditorClassIdentifier: 
+  NodeName: Main
+  chance: 1
+  state: 0
+  started: 0
+  guid: 4bdcb8632024f2f44b80845e9dd3dba5
+  position: {x: -527.678, y: 206.63}
+  children:
+  - {fileID: -3848729598620354590}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: What happened to the bridge?!
+    dialogueTextFrench: 
+    cameraPath:
+      genericKey: 4
+      cameraName: Cam1
+      batchName: 
+    displayDuration: 2
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 11400000, guid: 9cbbea9fb571cff4099beb137706ca05, type: 2}
+    animationTrigger: 0
