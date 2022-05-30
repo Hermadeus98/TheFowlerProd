@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: Nursery Rhyme of protection
+  m_Name: Basic Attack - Vicious
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 21300000, guid: 8823864dd44e8b74ab12d90e000b4346, type: 3}
     - {fileID: 11400000}
     SerializedBytesString: 
     Prefab: {fileID: 0}
@@ -31,10 +30,10 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.DefendEffect, Assembly-CSharp
+      Data: 1|TheFowler.DamageEffectGuard, Assembly-CSharp
     - Name: TargetType
       Entry: 3
-      Data: 1
+      Data: 3
     - Name: Emitter
       Entry: 6
       Data: 
@@ -48,11 +47,11 @@ MonoBehaviour:
       Entry: 4
       Data: 0
     - Name: sprite
-      Entry: 10
-      Data: 0
+      Entry: 6
+      Data: 
     - Name: ReferedSpell
       Entry: 10
-      Data: 1
+      Data: 0
     - Name: rage
       Entry: 5
       Data: false
@@ -64,13 +63,10 @@ MonoBehaviour:
       Data: false
     - Name: berserkDamage
       Entry: 4
-      Data: 0
-    - Name: bonusType
-      Entry: 3
-      Data: 0
-    - Name: isAOE
-      Entry: 5
-      Data: false
+      Data: 100
+    - Name: damage
+      Entry: 4
+      Data: 150
     - Name: 
       Entry: 8
       Data: 
@@ -80,17 +76,21 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Nursery Rhyme of Protection
+  SpellName: Basic Attack - Vicious
+  SpellNameFrench: 
   Cooldown: 0
   InitialCooldown: 0
   CurrentCooldown: 0
   logoBuff: {fileID: 0}
-  TargetType: 1
+  TargetType: 3
   SpellPower: 0
-  SpellDescription: Bonus Def
+  SpellDescription: Inflict damages
+  SpellDescriptionFrench: 
   SpellType: 0
   sequenceBinding: 1
   sprite: {fileID: 0}
+  spriteBlocked: {fileID: 0}
   spellState: 0
   unlockOrder: 0
   isRechargingCooldown: 0
+  isPlaying: 0
