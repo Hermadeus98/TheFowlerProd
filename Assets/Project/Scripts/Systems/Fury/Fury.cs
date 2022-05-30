@@ -101,7 +101,7 @@ namespace TheFowler
                     .NarrativeEvent();
             }
             
-            //BreakdownElement.Instance.Play();
+            BreakdownElement.Instance.Play();
 
             yield return new WaitForSeconds(.7f);
 
