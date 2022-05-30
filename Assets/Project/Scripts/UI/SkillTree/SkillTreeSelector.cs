@@ -10,6 +10,8 @@ namespace TheFowler
 {
     public class SkillTreeSelector : CustomElement
     {
+        [SerializeField] public Palier palier;
+
         [SerializeField] public Spell associatedSpell;
 
         [SerializeField] private SkillTreeSelector[] linkedSkills;
@@ -45,6 +47,7 @@ namespace TheFowler
 
         protected override void Awake()
         {
+            previousSelector.Clear();
             for (int i = 0; i < links.Length; i++)
             {
                 links[i].linkedSelector.previousSelector.Add(this);
@@ -120,6 +123,48 @@ namespace TheFowler
                 
             }
 
+            if(palier == Palier.LITTLE)
+            {
+
+                for (int i = 0; i < view.mediumSkills.Length; i++)
+                {
+                    for (int j = 0; j < links.Length; j++)
+                    {
+                        if (view.mediumSkills[i] != links[j].linkedSelector)
+                        {
+                            view.mediumSkills[i].FeedbackUnselectionned();
+                        }
+                        else
+                        {
+                            view.mediumSkills[i].FeedbackUnEquipped();
+                            break;
+                        }
+                    }
+
+                }
+            }
+            else if (palier == Palier.MEDIUM)
+            {
+                for (int i = 0; i < view.bigSkills.Length; i++)
+                {
+                    for (int j = 0; j < links.Length; j++)
+                    {
+                        if (view.bigSkills[i] != links[j].linkedSelector)
+                        {
+                            view.bigSkills[i].FeedbackUnselectionned();
+                        }
+
+                        else
+                        {
+                            view.bigSkills[i].FeedbackUnEquipped();
+                            break;
+                        }
+                    }
+
+                }
+
+            }
+
 
             FeedbackEquipped();
 
@@ -137,6 +182,8 @@ namespace TheFowler
             view.RefreshCircles();
 
 
+
+          
 
         }
 
@@ -413,6 +460,13 @@ namespace TheFowler
     {
         public LineBehavior lineBehavior;
         public SkillTreeSelector linkedSelector;
+    }
+    [System.Serializable]
+    public enum Palier
+    {
+        LITTLE,
+        MEDIUM,
+        BIG
     }
 
 }
