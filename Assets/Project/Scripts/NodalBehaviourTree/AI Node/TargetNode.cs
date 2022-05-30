@@ -32,6 +32,7 @@ namespace TheFowler
                 case TargetIntention.NONE:
                     break;
                 case TargetIntention.ALL:
+                    TargetSelector.GetAllActors(BattleManager.CurrentBattleActor).SelectAsTargets();
                     break;
                 case TargetIntention.WEAKER_ALLY:
                     TargetSelector.GetWeakerAlly().SelectAsTarget();

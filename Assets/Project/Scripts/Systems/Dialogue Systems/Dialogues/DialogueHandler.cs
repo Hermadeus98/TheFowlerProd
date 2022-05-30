@@ -67,6 +67,7 @@ namespace TheFowler
         private bool waitInput;
 
         private bool hasPassedDialogue = false;
+        private bool canPass = false;
         protected override void RegisterEvent()
         {
             base.RegisterEvent();
@@ -88,8 +89,9 @@ namespace TheFowler
         {
             FindObjectOfType<GameTimer>().incrementeDialogueTimer = true;
 
-        
-            if(Timeline != null)
+
+
+            if (Timeline != null)
             {
                 CinemachineBrain cineCam =  CameraManager.Camera.GetComponent<CinemachineBrain>();
 
@@ -197,7 +199,7 @@ namespace TheFowler
         {
             if (isActive)
             {
-                if (Inputs.actions["Next"].WasReleasedThisFrame() && !waitInput)
+                if (Inputs.actions["Next"].WasReleasedThisFrame() && !waitInput && canPass)
                 {
                     if(elapsedTimePassCutscene < 0.3f)
                     {
@@ -397,7 +399,7 @@ namespace TheFowler
 
             view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
 
-            if (Inputs.actions["Select"].IsPressed() && !waitInput)
+            if (Inputs.actions["Select"].IsPressed() && !waitInput && canPass)
             {
                 elapsedTimePassCutscene += Time.deltaTime;
                 
@@ -431,8 +433,6 @@ namespace TheFowler
                         }
                         else
                         {
-
-
                             EndPhase();
                         }
 
@@ -458,6 +458,13 @@ namespace TheFowler
                 if (view.rappelInput != null)
                     view.rappelInput?.RappelInputFeedback(elapsedTimePassCutscene);
             }
+
+            else if (Inputs.actions["Select"].WasPressedThisFrame())
+            {
+                canPass = true;
+            }
+
+
 
         }
         private void Next()

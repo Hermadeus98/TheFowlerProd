@@ -37,7 +37,7 @@ namespace TheFowler
                 ReferedActor.BattleActorInfo.defenseBonus = SpellData.Instance.minBuffAttack;
             
             ReferedActor.StateIcons?.Refresh_Att(ReferedActor);
-            debuff?.PlayFeedbacks();
+            //debuff?.PlayFeedbacks();
             
             Apply(ReferedActor.BattleActorInfo.attackBonus, SpellData.Instance.maxBuffAttack, SpellData.Instance.minBuffAttack);
         }

@@ -100,7 +100,6 @@ namespace TheFowler
                 _heal *= (1 + healthLosePercent);
             }
             
-            _heal = heal;
             receivers.ForEach(w => w.Health.Heal(_heal));
         }
 

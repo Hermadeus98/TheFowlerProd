@@ -21,7 +21,11 @@ namespace TheFowler
             base.OnSelect(eventData);
 
             if(_OnSelect != null)
-            _OnSelect.PlayFeedbacks();
+            {
+                _OnDeselect.StopFeedbacks();
+                _OnSelect.PlayFeedbacks();
+            }
+
 
             SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Hover, gameObject);
         }
@@ -31,7 +35,11 @@ namespace TheFowler
             base.OnDeselect(eventData);
 
             if(_OnDeselect != null)
-            _OnDeselect.PlayFeedbacks();
+            {
+                _OnSelect.StopFeedbacks();
+                _OnDeselect.PlayFeedbacks();
+            }
+            
         }
 
 
