@@ -103,11 +103,6 @@ namespace TheFowler
 
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).Hide();
 
-            if (menuView != null)
-            {
-                menuView.Show();
-            }
-
             descriptionBox.gameObject.SetActive(false);
             menuView.background.SetActive(true);
             menuView.Show();

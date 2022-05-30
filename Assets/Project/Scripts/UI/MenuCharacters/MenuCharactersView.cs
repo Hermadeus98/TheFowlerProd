@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using MoreMountains.Feedbacks;
 namespace TheFowler
 {
     public class MenuCharactersView : UIView
@@ -9,6 +10,7 @@ namespace TheFowler
         [SerializeField] InitiativeView initiativeView; 
         [SerializeField] SkillTreeView skillTreeView;
         [SerializeField] public GameObject firstSelectedObject, background, confirmation;
+        [SerializeField] public MMFeedbacks[] MMUnselects;
         [SerializeField] public UnityEngine.InputSystem.PlayerInput Inputs;
         private Battle battle;
         public bool onMenu;
@@ -63,6 +65,13 @@ namespace TheFowler
                 eventSytem = eventSytemGO.GetComponent<EventSystem>();
 
             }
+
+            for (int i = 0; i < MMUnselects.Length; i++)
+            {
+                MMUnselects[i].PlayFeedbacks();
+            }
+
+
             eventSytem.SetSelectedGameObject(firstSelectedObject);
 
             initiativeView.Show(false);
