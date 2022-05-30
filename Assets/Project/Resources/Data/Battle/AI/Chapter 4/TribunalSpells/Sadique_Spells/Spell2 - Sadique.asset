@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: QuickAttack - Abigail
+  m_Name: Spell2 - Sadique
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000}
-    - {fileID: 21300000, guid: 7377439f696090a40b20811d6da6b911, type: 3}
+    - {fileID: 21300000, guid: 14f5732eda60b9c4f997c89c8d8ae9b2, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -31,34 +31,22 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.HealEffect, Assembly-CSharp
+      Data: 1|TheFowler.DamageEffectGuard, Assembly-CSharp
     - Name: TargetType
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: Emitter
       Entry: 6
       Data: 
     - Name: Receivers
-      Entry: 7
-      Data: 2|TheFowler.BattleActor[], Assembly-CSharp
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
       Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
       Data: 
     - Name: _damage
       Entry: 4
       Data: 0
     - Name: _heal
       Entry: 4
-      Data: 125
+      Data: 0
     - Name: sprite
       Entry: 6
       Data: 
@@ -67,7 +55,7 @@ MonoBehaviour:
       Data: 0
     - Name: rage
       Entry: 5
-      Data: true
+      Data: false
     - Name: berserk
       Entry: 5
       Data: false
@@ -76,16 +64,16 @@ MonoBehaviour:
       Data: false
     - Name: berserkDamage
       Entry: 4
-      Data: 0
-    - Name: healValue
+      Data: 100
+    - Name: damage
       Entry: 4
-      Data: 125
+      Data: 150
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 3|TheFowler.DecreaseCD, Assembly-CSharp
+      Data: 2|TheFowler.DefendEffect, Assembly-CSharp
     - Name: TargetType
       Entry: 3
       Data: 0
@@ -93,19 +81,7 @@ MonoBehaviour:
       Entry: 6
       Data: 
     - Name: Receivers
-      Entry: 7
-      Data: 4|TheFowler.BattleActor[], Assembly-CSharp
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
       Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
       Data: 
     - Name: _damage
       Entry: 4
@@ -130,7 +106,13 @@ MonoBehaviour:
       Data: false
     - Name: berserkDamage
       Entry: 4
-      Data: 0
+      Data: 100
+    - Name: bonusType
+      Entry: 3
+      Data: 1
+    - Name: isAOE
+      Entry: 5
+      Data: false
     - Name: 
       Entry: 8
       Data: 
@@ -140,18 +122,18 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Break
+  SpellName: Energy Absorbtion
   SpellNameFrench: 
   Cooldown: 0
   InitialCooldown: 0
   CurrentCooldown: 0
-  logoBuff: {fileID: 21300000, guid: 7377439f696090a40b20811d6da6b911, type: 3}
-  TargetType: 0
-  SpellPower: 1
-  SpellDescription: Light self heals. Reduces cooldowns.
-  SpellDescriptionFrench: "Soins l\xE9gers. R\xE9duit la recharge."
+  logoBuff: {fileID: 21300000, guid: 14f5732eda60b9c4f997c89c8d8ae9b2, type: 3}
+  TargetType: 3
+  SpellPower: 0
+  SpellDescription: Inflict damages and reduce defense
+  SpellDescriptionFrench: 
   SpellType: 0
-  sequenceBinding: 2
+  sequenceBinding: 1
   sprite: {fileID: 0}
   spriteBlocked: {fileID: 0}
   spellState: 0
