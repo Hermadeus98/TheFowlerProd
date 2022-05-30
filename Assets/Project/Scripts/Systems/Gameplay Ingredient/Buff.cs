@@ -13,6 +13,8 @@ namespace TheFowler
         [SerializeField] private MMFeedbacks buff, debuff;
 
         public ParticleSystem[] ps;
+
+        public ParticleSystem[] ps_Debuff;
         
         [Button]
         public void BuffAttack(int value)
@@ -46,8 +48,8 @@ namespace TheFowler
         public void ResetAttack()
         {
             ReferedActor.BattleActorInfo.attackBonus = 0;
-            
             ReferedActor.StateIcons?.Refresh_Att(ReferedActor);
+            StopVFX();
         }
         
         private void Apply(float value, float max, float min)
@@ -55,6 +57,7 @@ namespace TheFowler
             if (value > 0)
             {
                 ps.ForEach(w => w.Stop());
+                ps_Debuff.ForEach(w => w.Stop()); 
                 
                 if (value <= max * .25f)
                     ps[0].Play();
@@ -66,12 +69,21 @@ namespace TheFowler
             else if (value < 0)
             {
                 ps.ForEach(w => w.Stop());
+                ps_Debuff.ForEach(w => w.Stop()); 
+                
+                if (value >= min * .25f)
+                    ps_Debuff[0].Play();
+                else if (value >= min * .5f)
+                    ps_Debuff[1].Play();
+                else if (value >= min * .75f)
+                    ps_Debuff[2].Play();
             }
         }
 
         public void StopVFX()
         {
             ps.ForEach(w => w.Stop());
+            ps_Debuff.ForEach(w => w.Stop());
         }
     }
 }
