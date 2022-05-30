@@ -21,6 +21,10 @@ namespace TheFowler
 
         private bool haveReplace = false;
 
+        private bool isMoving = false;
+        public Transform targetTransform;
+        public ControllerMovement movement = ControllerMovement.WALK;
+        
         private void Update()
         {
             if(Player.Robyn == null)
@@ -39,6 +43,14 @@ namespace TheFowler
                 normalizedValue = normalizedCurve.Evaluate((dist - minRadius) / (maxRadius - minRadius));
                 normalizedValue = Mathf.Clamp(normalizedValue, speedModifier.x, speedModifier.y);
 
+                if (!isMoving)
+                {
+                    isMoving = true;
+                    var c = Player.Robyn.Controller.SetController<NavMeshController>(ControllerEnum.NAV_MESH_CONTROLLER);
+                    c.GoTo(targetTransform);
+                    Player.Robyn.Controller.SetControllerMovement(movement);
+                }
+
                 if (camOverride != null & !haveReplace)
                 {
                     haveReplace = true;
@@ -52,7 +64,7 @@ namespace TheFowler
                 haveReplace = false;
             }
 
-            tps.SpeedModifier = normalizedValue;
+            //tps.SpeedModifier = normalizedValue;
         }
 
         private void LateUpdate()

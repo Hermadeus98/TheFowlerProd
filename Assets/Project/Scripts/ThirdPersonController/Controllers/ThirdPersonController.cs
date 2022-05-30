@@ -118,6 +118,7 @@ namespace TheFowler
         
         public void SetCameraToTPSCamera()
         {
+            referedController.SetControllerMovement(ControllerMovement.RUN);
             CameraManager.Instance.SetCamera(CameraGenericKey.GetCameraGenericKey(CameraGenericKeyEnum.TPS_CAMERA));
             CameraManager.Instance.SetCamera("Robyn_TPS", "CM TPS Explo");
             SpeedModifier = 1f;
