@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using Unity.RemoteConfig;
@@ -45,6 +46,8 @@ namespace TheFowler
         [TabGroup("Components")] [SerializeField]
         public Punchline punchline;
 
+        public GameObject reviveFeedback;
+        
         [TabGroup("Datas")]
         [SerializeField] protected BattleActorInfo battleActorInfo;
         public BattleActorStats BattleActorStats;
@@ -316,12 +319,25 @@ namespace TheFowler
             stateIcons?.Refresh_CD(this);
             stateIcons?.RefreshBuff_Def(this);
         }
+
+        private Sequence pulse;
         
         public void OnTarget()
         {
             SelectionPointer?.Show();
             SelectionVFX.gameObject.SetActive(true);
             SelectionVFX?.Play();
+
+            if (battleActorInfo.isDeath)
+            {
+                reviveFeedback.gameObject.SetActive(true);
+                pulse?.Kill();
+                pulse = DOTween.Sequence();
+                pulse.Append(reviveFeedback.transform.DOScale(Vector3.one * 1.1f, .2f).SetEase(Ease.InOutSine));
+                pulse.Append(reviveFeedback.transform.DOScale(Vector3.one, .2f).SetEase(Ease.InOutSine));
+                pulse.SetLoops(-1);
+                pulse.Play();
+            }
         }
 
         public void OnEndTarget()
@@ -329,6 +345,13 @@ namespace TheFowler
             SelectionPointer?.Hide();
             SelectionVFX?.Stop();
             SelectionVFX.gameObject.SetActive(false);
+            
+            if (battleActorInfo.isDeath)
+            {
+                reviveFeedback.gameObject.SetActive(false);
+                pulse?.Kill();
+                reviveFeedback.transform.localScale = Vector3.one;
+            }
         }
 
         public void OnTargetEmitterLog()

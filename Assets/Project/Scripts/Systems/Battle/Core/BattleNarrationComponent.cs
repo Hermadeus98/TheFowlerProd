@@ -191,8 +191,6 @@ namespace TheFowler
                 if(Dialogues[i].CameraPath != null)
                     Dialogues[i].CameraPath.m_Priority = 1001;
 
-                
-
                 Dialogues[i].optionalFeedback?.PlayFeedbacks();
 
                 if (!String.IsNullOrEmpty(Dialogues[i].dialogue))
