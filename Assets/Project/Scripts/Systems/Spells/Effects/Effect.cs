@@ -89,6 +89,8 @@ namespace TheFowler
 
         protected void Heal(float heal, BattleActor emitter, BattleActor[] receivers)
         {
+            _heal = heal;
+            
             if (emitter == BattleManager.CurrentBattle.abi)
             {
                 emitter.punchline.PlayPunchline(PunchlineCallback.HEALING);
