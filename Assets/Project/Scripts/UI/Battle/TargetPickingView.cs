@@ -40,6 +40,8 @@ namespace TheFowler
             move = box.DOMoveX(-box.sizeDelta.x, .5f);
 
             SkillSelectorElement.manaCostText.gameObject.SetActive(true);
+            
+            UI.GetView<FuryView>("FuryView").Hide();
         }
 
         public void Refresh(Spell spell)
