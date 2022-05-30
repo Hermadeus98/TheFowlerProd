@@ -199,7 +199,7 @@ namespace TheFowler
 
         public void SetAmbiantVolume(float v)
         {
-            //SoundManager
+            SoundManager.SetAmbiantVolume(v);
         }
 
         public void SetMusicVolume(float v)
