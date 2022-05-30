@@ -106,6 +106,7 @@ namespace TheFowler
             yield return new WaitForSeconds(.7f);
 
             BatonPass();
+            UI.GetView<FuryView>("FuryView").Show();
             
             yield break;
         }
@@ -141,7 +142,7 @@ namespace TheFowler
                     .TARGET_PICKING);
             skillPickingView.ReturnToActionMenu = true;
         }
-
+        
         
 
         public static void AllowFury()
