@@ -197,6 +197,11 @@ namespace TheFowler
             SoundManager.SetMasterVolume(v);
         }
 
+        public void SetAmbiantVolume(float v)
+        {
+            //SoundManager
+        }
+
         public void SetMusicVolume(float v)
         {
             SoundManager.SetMusicVolume(v);
