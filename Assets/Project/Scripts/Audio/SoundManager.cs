@@ -138,5 +138,13 @@ namespace TheFowler
 
             QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, $"SetEffectsVolume -> {v}");
         }
+
+        public static void SetAmbiantVolume(float v)
+        {
+            EffectsVolume = v;
+            AkSoundEngine.SetRTPCValue("Game_Volume_Ambiant", v);
+
+            QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, $"SetAmbiantVolume -> {v}");
+        }
     }
 }
