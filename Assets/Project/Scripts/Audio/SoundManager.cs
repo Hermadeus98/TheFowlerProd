@@ -110,25 +110,41 @@ namespace TheFowler
         public static void SetMasterVolume(float v)
         {
             masterVolume = v;
+            AkSoundEngine.SetRTPCValue("Game_Volume_Master", v);
+
             QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, $"SetMasterVolume -> {v}");
         }
 
         public static void SetMusicVolume(float v)
         {
             musicVolume = v;
+            AkSoundEngine.SetRTPCValue("Game_Volume_Music", v);
+
             QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, $"SetMusicVolume -> {v}");
         }
 
         public static void SetVoicesVolume(float v)
         {
             VoicesVolume = v;
+            AkSoundEngine.SetRTPCValue("Game_Volume_Voices", v);
+
             QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, $"SetVoicesVolume -> {v}");
         }
 
         public static void SetEffectsVolume(float v)
         {
             EffectsVolume = v;
+            AkSoundEngine.SetRTPCValue("Game_Volume_SFX", v);
+
             QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, $"SetEffectsVolume -> {v}");
+        }
+
+        public static void SetAmbiantVolume(float v)
+        {
+            EffectsVolume = v;
+            AkSoundEngine.SetRTPCValue("Game_Volume_Ambiant", v);
+
+            QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, $"SetAmbiantVolume -> {v}");
         }
     }
 }
