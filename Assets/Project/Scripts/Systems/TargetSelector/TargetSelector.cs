@@ -331,6 +331,22 @@ namespace TheFowler
             return BattleManager.GetAllAllies();
         }
 
+        public static BattleActor[] GetAllActors(BattleActor contraint = null)
+        {
+            var allies = GetAllAllies();
+            var enemies = GetAllAllies();
+            var list = new List<BattleActor>(allies);
+            list.AddRange(enemies);
+
+            if (contraint != null)
+            {
+                if(list.Contains(contraint))
+                    list.Remove(contraint);
+            }
+            
+            return list.ToArray();
+        }
+
         //---<AI>------------------------------------------------------------------------------------------------------<
 
         public static void SelectAsTarget(this BattleActor actor)
