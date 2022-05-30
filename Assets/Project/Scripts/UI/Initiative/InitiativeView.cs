@@ -19,6 +19,8 @@ namespace TheFowler
         [SerializeField] private MenuCharactersView menuView;
         [TabGroup("References")]
         [SerializeField] private RectTransform rectInitiative;
+        [TabGroup("References")]
+        [SerializeField] private GameObject initiativeButton;
 
         [TabGroup("Wwise References")]
         [SerializeField] private AK.Wwise.Event onSelect, onDeselect, onValidate, onSwitch;
@@ -66,10 +68,13 @@ namespace TheFowler
                 rectInitiative.DOAnchorPos(new Vector2(-400, -254), .3f).SetEase(Ease.OutBounce);
 
                 MenuCharactersSKHandler.Instance.InInitative();
+
+                initiativeButton.SetActive(true);
             }
             else
             {
                 SetSKActorInSpace();
+
             }
 
         }
@@ -163,6 +168,8 @@ namespace TheFowler
 
             canInput = false;
             rectInitiative.DOAnchorPos(new Vector2(-281, -254), .3f).SetEase(Ease.OutBounce);
+
+            initiativeButton.SetActive(false);
         }
 
         public void Hide(bool value)
