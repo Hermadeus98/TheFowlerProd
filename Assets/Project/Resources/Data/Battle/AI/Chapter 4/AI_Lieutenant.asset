@@ -22,6 +22,27 @@ MonoBehaviour:
   spellList:
   - Spell: {fileID: 11400000, guid: d442644fd4b7b53479ab9b1f3e6b380c, type: 2}
     Chance: 0
+--- !u!114 &-7639644606160712294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1884b09a793565145a2ecfeff2b70fbc, type: 3}
+  m_Name: Aleatory_1
+  m_EditorClassIdentifier: 
+  NodeName: Aleatory_1
+  chance: 1
+  state: 0
+  started: 0
+  guid: e6747344e2b784f4d9b8b6d446484739
+  position: {x: 420, y: 205}
+  children:
+  - {fileID: 814716387415538944}
+  - {fileID: 1292580448383206562}
 --- !u!114 &-7517385446224719497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43,7 +64,30 @@ MonoBehaviour:
   children: []
   spellList:
   - Spell: {fileID: 11400000, guid: c5dbb892be094234abf715a13de6c180, type: 2}
-    Chance: 0
+    Chance: 1
+--- !u!114 &-7475048569393286625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: Phoebe
+  m_EditorClassIdentifier: 
+  NodeName: Phoebe
+  chance: 1
+  state: 0
+  started: 0
+  guid: b84d694de3dc139489eed864cd7693e0
+  position: {x: 441, y: 449}
+  children:
+  - {fileID: -2409141587663475450}
+  TargetIntention: 8
+  With: 0
+  value: 0
 --- !u!114 &-6687556664085984303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,7 +133,7 @@ MonoBehaviour:
   - {fileID: -7517385446224719497}
   TargetIntention: 4
   With: 0
-  value: 20
+  value: 0
 --- !u!114 &-5922080883698160397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,9 +220,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
-  m_Name: Basic Atk_3
+  m_Name: Basic Atk_2
   m_EditorClassIdentifier: 
-  NodeName: Basic Atk_3
+  NodeName: Basic Atk_2
   chance: 1
   state: 0
   started: 0
@@ -187,6 +231,28 @@ MonoBehaviour:
   children: []
   spellList:
   - Spell: {fileID: 11400000, guid: 3f4f46a3a5933b945b4442ea6490c515, type: 2}
+    Chance: 0
+--- !u!114 &-2409141587663475450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: Taunt
+  m_EditorClassIdentifier: 
+  NodeName: Taunt
+  chance: 1
+  state: 0
+  started: 0
+  guid: 89ab66867777b5249bf4f85a219c5b51
+  position: {x: 639, y: 449}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: 90b9fb278bdc6b64e8ff92a92ae2a6c9, type: 2}
     Chance: 0
 --- !u!114 &-579483139517182759
 MonoBehaviour:
@@ -246,7 +312,35 @@ MonoBehaviour:
   - {fileID: -8984342680150110683}
   - {fileID: 5618286483939560906}
   - {fileID: 6896339182314642105}
+  - {fileID: -7475048569393286625}
+  - {fileID: -2409141587663475450}
+  - {fileID: -7639644606160712294}
+  - {fileID: 814716387415538944}
+  - {fileID: 5487707225295719430}
   dialogueType: 0
+--- !u!114 &814716387415538944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: AllPJ_1
+  m_EditorClassIdentifier: 
+  NodeName: AllPJ_1
+  chance: 1
+  state: 0
+  started: 0
+  guid: 9d99a6bd3a93ba54bbab10fcd02b2899
+  position: {x: 631, y: 148.5}
+  children:
+  - {fileID: 5487707225295719430}
+  TargetIntention: 0
+  With: 0
+  value: 0
 --- !u!114 &1292580448383206562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,7 +358,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 2978e0f338bb123419f91f4206b5da88
-  position: {x: 458, y: 320}
+  position: {x: 631, y: 264}
   children:
   - {fileID: 1467263115192644493}
   TargetIntention: 9
@@ -280,14 +374,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a16d7749e1191724db8102279a8920c3, type: 3}
-  m_Name: Au moins un ennemis 25%
+  m_Name: PNJ > 3
   m_EditorClassIdentifier: 
-  NodeName: Au moins un ennemis 25%
+  NodeName: PNJ > 3
   chance: 1
   state: 0
   started: 0
   guid: c1d5ac8c910f46a4faca67c5853fb270
-  position: {x: -245, y: 320}
+  position: {x: -236, y: 320}
   children:
   - {fileID: 6189216935421902975}
   - {fileID: -6686092193023682952}
@@ -305,7 +399,7 @@ MonoBehaviour:
     hardChoice: 0
     comparator_A: 5
     component: 0
-    Operator: 5
+    Operator: 4
     comparator_B: 6
     percent: 25
     NextNode: {fileID: 6189216935421902975}
@@ -320,19 +414,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
-  m_Name: Shrill Vibration_1
+  m_Name: Spell3_2
   m_EditorClassIdentifier: 
-  NodeName: Shrill Vibration_1
+  NodeName: Spell3_2
   chance: 1
   state: 0
   started: 0
   guid: 1aec7479cee6b684c9f72f726400af9a
-  position: {x: 630.5, y: 320}
+  position: {x: 837, y: 264}
   children: []
   spellList:
   - Spell: {fileID: 11400000, guid: d442644fd4b7b53479ab9b1f3e6b380c, type: 2}
-    Chance: 1
-  - Spell: {fileID: 11400000, guid: 3f4f46a3a5933b945b4442ea6490c515, type: 2}
     Chance: 1
 --- !u!114 &4254713018752558149
 MonoBehaviour:
@@ -344,9 +436,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
-  m_Name: Basic Atk_2
+  m_Name: Spell3_3
   m_EditorClassIdentifier: 
-  NodeName: Basic Atk_2
+  NodeName: Spell3_3
   chance: 1
   state: 0
   started: 0
@@ -354,8 +446,28 @@ MonoBehaviour:
   position: {x: 960, y: 687}
   children: []
   spellList:
-  - Spell: {fileID: 11400000, guid: 3f4f46a3a5933b945b4442ea6490c515, type: 2}
+  - Spell: {fileID: 11400000, guid: d442644fd4b7b53479ab9b1f3e6b380c, type: 2}
     Chance: 0
+--- !u!114 &5487707225295719430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: Basic Atk_1
+  m_EditorClassIdentifier: 
+  NodeName: Basic Atk_1
+  chance: 1
+  state: 0
+  started: 0
+  guid: 16dace6d4c7f514439bd51d15b4e914b
+  position: {x: 836.99994, y: 148.5}
+  children: []
+  spellList: []
 --- !u!114 &5618286483939560906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,7 +508,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e01e950264ef3974ea7e66aa0cdaed9e
-  position: {x: 353, y: 585}
+  position: {x: 347.5, y: 585}
   children:
   - {fileID: -6687556664085984303}
   - {fileID: 6977718253787576658}
@@ -430,16 +542,25 @@ MonoBehaviour:
   position: {x: 238, y: 320}
   children:
   - {fileID: 6051665061293622168}
-  - {fileID: 1292580448383206562}
+  - {fileID: -7475048569393286625}
+  - {fileID: -7639644606160712294}
   Choices:
+  - isHardChoice: 1
+    hardChoice: 2
+    comparator_A: 0
+    component: 0
+    Operator: 0
+    comparator_B: 0
+    percent: 0
+    NextNode: {fileID: -7475048569393286625}
   - isHardChoice: 0
     hardChoice: 0
     comparator_A: 5
     component: 1
-    Operator: 3
+    Operator: 4
     comparator_B: 6
     percent: 3
-    NextNode: {fileID: 1292580448383206562}
+    NextNode: {fileID: -7639644606160712294}
   DefaultNextNode: {fileID: 6051665061293622168}
 --- !u!114 &6896339182314642105
 MonoBehaviour:
@@ -473,14 +594,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1884b09a793565145a2ecfeff2b70fbc, type: 3}
-  m_Name: Aleatory_1
+  m_Name: Aleatory_2
   m_EditorClassIdentifier: 
-  NodeName: Aleatory_1
+  NodeName: Aleatory_2
   chance: 1
   state: 0
   started: 0
   guid: fd07c342f55b34541af01bfe9d6b72b8
-  position: {x: 595, y: 585}
+  position: {x: 596, y: 585}
   children:
   - {fileID: 9072063718284060364}
   - {fileID: -579483139517182759}
