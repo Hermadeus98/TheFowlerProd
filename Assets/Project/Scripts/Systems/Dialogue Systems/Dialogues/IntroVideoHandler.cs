@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 namespace TheFowler
 {
     public class IntroVideoHandler : VideoHandler
@@ -10,12 +10,15 @@ namespace TheFowler
         [SerializeField] private GameplayPhase nextPhase;
         [SerializeField] private AK.Wwise.Event onStartWWISE, onEndWWISE, onBreakWallWwise;
         [SerializeField] private float timeCodeBreakWall;
+        [SerializeField] private Animator animSubtitles;
 
         public override void PlayPhase()
         {
             base.PlayPhase();
+            animSubtitles.SetTrigger("Play");
             onStartWWISE.Post(gameObject);
             StartCoroutine(WaitEventWall());
+
         }
 
         public override void EndPhase()
@@ -27,6 +30,7 @@ namespace TheFowler
             onBreakWallWwise.Post(gameObject);
 
         }
+
         public void LaunchContextualAction()
         {
            // UI.GetView<ContextualActionView>(UI.Views.ContextualAction).Show(ContextualActionLocation.INTRO, 8, End);
