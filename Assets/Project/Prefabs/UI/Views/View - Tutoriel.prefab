@@ -639,6 +639,7 @@ GameObject:
   - component: {fileID: 7409359504412031539}
   - component: {fileID: 2220563164225325002}
   - component: {fileID: 3526672035257778312}
+  - component: {fileID: 686357225072656114}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -762,6 +763,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &686357225072656114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8129552237098568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Initiative
+  frenchText: Initiative
 --- !u!1 &21776088275985822
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,6 +788,7 @@ GameObject:
   - component: {fileID: 69001294904270178}
   - component: {fileID: 973226235785095521}
   - component: {fileID: 5760454338318077602}
+  - component: {fileID: 1118866509}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -896,6 +912,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1118866509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21776088275985822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Buff / Debuff
+  frenchText: Bonus / Malus
 --- !u!1 &58392152317851043
 GameObject:
   m_ObjectHideFlags: 0
@@ -1119,6 +1149,7 @@ GameObject:
   - component: {fileID: 5696001450534950012}
   - component: {fileID: 7561236260534354805}
   - component: {fileID: 8524265658666250738}
+  - component: {fileID: 542238083}
   m_Layer: 5
   m_Name: Description
   m_TagString: Untagged
@@ -1173,16 +1204,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Killing an enemy grants a bonus turn: This is the Breakdown
+  m_text: 'Killing an enemy grants an extra turn: This is the <#FFA021>Breakdown</color>.
 
 
     During
-    a Breakdown, choose one of your allies, she''ll be able play immediately. Then,
-    the turn resumes normally.
+    a <#FFA021>Breakdown</color>, choose one of your <#FFCF00>allies</color>, she''ll
+    be able play immediately. Then, the turn resumes normally.
 
 
-    If you select one of your dead allies, she will
-    come back to life.'
+    If you select
+    one of your dead <#FFCF00>allies</color>, she will come back to life.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
   m_sharedMaterial: {fileID: -7791964341149814486, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
@@ -1251,6 +1282,33 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &542238083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198774292666023926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: 'Killing an enemy grants an extra turn: This is the <#FFA021>Breakdown</color>.
+
+
+    During
+    a <#FFA021>Breakdown</color>, choose one of your <#FFCF00>allies</color>, she''ll
+    be able play immediately. Then, the turn resumes normally.
+
+
+    If you select
+    one of your dead <#FFCF00>allies</color>, she will come back to life.'
+  frenchText: "Tuer un ennemi octroi un tour bonus : C'est le <#FFA021>Breakdown\r</color>.\n\r\nLors
+    d'un <#FFA021>Breakdown</color>, choisissez une de vos <#FFCF00>alli\xE9es</color>,
+    celle-ci jouera tout de suite. Ensuite, le tour reprend normalement.\r\n\r\nSi
+    vous s\xE9lectionnez une de vos <#FFCF00>alli\xE9es</color> mortes, elle reviendra
+    \xE0 la vie."
 --- !u!1 &232717236557087898
 GameObject:
   m_ObjectHideFlags: 0
@@ -1262,6 +1320,7 @@ GameObject:
   - component: {fileID: 1196558670574344464}
   - component: {fileID: 2713465468691830284}
   - component: {fileID: 6000993260262832946}
+  - component: {fileID: 1963751931}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -1316,7 +1375,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Types
+  m_text: Spells - Cooldown
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7593819a18c3d3449b98f6e815a41029, type: 2}
   m_sharedMaterial: {fileID: 8791182398851758541, guid: 7593819a18c3d3449b98f6e815a41029, type: 2}
@@ -1385,6 +1444,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1963751931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232717236557087898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Spells - Cooldown
+  frenchText: Sorts - Recharge
 --- !u!1 &234751969616317733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1396,6 +1469,7 @@ GameObject:
   - component: {fileID: 6320247572576973791}
   - component: {fileID: 5486957668042034857}
   - component: {fileID: 7686698814141993497}
+  - component: {fileID: 534700740}
   m_Layer: 5
   m_Name: Description
   m_TagString: Untagged
@@ -1521,6 +1595,24 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &534700740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234751969616317733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Spells are skills that have a <#33E7D3>Cooldown</color>. The <#33E7D3>Cooldown</color>
+    is the number of turns you have to wait before you can use the skill again. You
+    only have one spell for now.
+  frenchText: "Les Sorts sont des comp\xE9tences qui ont une  <#33E7D3>Recharge</color>.
+    La <#33E7D3>Recharge</color> correspond au nombre de tour que vous devrez attendre
+    avant de pouvoir r\xE9utiliser la comp\xE9tence. Tu n'as qu'un sort pour le moment."
 --- !u!1 &237368058669847029
 GameObject:
   m_ObjectHideFlags: 0
@@ -3601,6 +3693,7 @@ GameObject:
   - component: {fileID: 6204330817654043595}
   - component: {fileID: 4146467115939395863}
   - component: {fileID: 8775935559431217021}
+  - component: {fileID: 103987133}
   m_Layer: 5
   m_Name: DescriptionShema
   m_TagString: Untagged
@@ -3729,6 +3822,30 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &103987133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428663827857913865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: 'The spell is <b>available</b>, its cooldown is 3 turns.
+
+
+
+    The
+    spell is <b>not available</b>, it will be available the next turn.'
+  frenchText: 'Le sort est <b>disponible</b>, sa recharge est de 3 tours.
+
+
+
+    Le
+    sort n''est <b>pas disponible</b>, il le sera le prochain tour.'
 --- !u!1 &1473307003497031910
 GameObject:
   m_ObjectHideFlags: 0
@@ -5112,8 +5229,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The Special Attack has an effect that varies between <#FFCF00>allies</color>
-    and gives a <#33E7D3>Cooldown</color> bonus for the duration of the fight.
+  m_text: 'The Break has an effect that varies between <#FFCF00>allies</color> and
+    gives a <#33E7D3>Cooldown</color> bonus for the duration of the fight.
 
 
     Like
@@ -5199,14 +5316,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  englishText: 'The Special Attack has an effect that varies between allies and gives
-    a <#33E7D3>Cooldown</color> bonus for the duration of the fight.
+  englishText: 'The Break has an effect that varies between <#FFCF00>allies</color>
+    and gives a <#33E7D3>Cooldown</color> bonus for the duration of the fight.
 
 
-    Like the
-    Attack, this skill does not have a <#33E7D3>Cooldown</color>, so it can be used
-    every turn.'
-  frenchText: "L'attaque sp\xE9ciale a un effet qui varie selon les <#33E7D3>alli\xE9es</color>
+    Like
+    the Attack, this skill does not have a <#33E7D3>Cooldown</color>, so it can be
+    used every turn.'
+  frenchText: "Le Break a un effet qui varie selon les <#33E7D3>alli\xE9es</color>
     et donne un bonus de <#33E7D3>Recharge</color> pour la dur\xE9e du combat.\r\n\r\nComme
     l'Attaque, cette comp\xE9tence n'a pas de <#33E7D3>Recharge</color>, elle peut
     donc \xEAtre utilis\xE9e \xE0 chaque tour."
@@ -5562,6 +5679,7 @@ GameObject:
   - component: {fileID: 4352757982082252086}
   - component: {fileID: 1320604895200944589}
   - component: {fileID: 4602126271861176374}
+  - component: {fileID: 1496772708}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -5685,6 +5803,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1496772708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518192014844957346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Breakdown
+  frenchText: Breakdown
 --- !u!1 &2531060645809559925
 GameObject:
   m_ObjectHideFlags: 0
@@ -7171,6 +7303,7 @@ GameObject:
   - component: {fileID: 5469418828390422063}
   - component: {fileID: 1865719565236890995}
   - component: {fileID: 3593290690551315682}
+  - component: {fileID: 4923397318869116568}
   m_Layer: 5
   m_Name: Description
   m_TagString: Untagged
@@ -7225,14 +7358,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Welcome to The Fowler. This game is a turn-based RPG in which you have
-    2 allied characters. As long as each of them has not used a skill, the enemies
-    will not act.
+  m_text: '<i>The Fowler</i> is a turn-based RPG in which you control a band of <#FFCF00>punks</color>.
+
+
+    As
+    long as your <#FFCF00>allies</color> did not use a skill, the enemies will not
+    act.
 
 
 
-    An interaction help is available at the bottom left of the
-    screen during all phases of the game.'
+    <i>An interaction help is available at the bottom left of the screen
+    during all phases of the game.</i>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
   m_sharedMaterial: {fileID: -7791964341149814486, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
@@ -7301,6 +7437,34 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4923397318869116568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3265623899662226749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: '<i>The Fowler</i> is a turn-based RPG in which you control a band
+    of <#FFCF00>punks</color>.
+
+
+    As long as your <#FFCF00>allies</color> did
+    not use a skill, the enemies will not act.
+
+
+
+    <i>An interaction help is available
+    at the bottom left of the screen during all phases of the game.</i>'
+  frenchText: "<i>The Fowler</i> est un RPG tour par tour dans lequel vous contr\xF4lez
+    une bande de <#FFCF00>punks</color>.\r\n\r\nTant que vos <#FFCF00>alli\xE9es</color>
+    n'ont pas utilis\xE9 de comp\xE9tence, les ennemis n'agriont pas.\r\n\r\n<i>Une
+    aide des interactions est disponible en bas \xE0 gauche de l'\xE9cran durant
+    toutes les phases de jeu.</i>"
 --- !u!1 &3292621997525855187
 GameObject:
   m_ObjectHideFlags: 0
@@ -8305,6 +8469,7 @@ GameObject:
   - component: {fileID: 2796311695219861883}
   - component: {fileID: 5944535607477583783}
   - component: {fileID: 7184003236019788701}
+  - component: {fileID: 689772164}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -8428,6 +8593,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &689772164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3753617405776976130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Ressuciter
+  frenchText: Resurect
 --- !u!1 &3826854784707677389
 GameObject:
   m_ObjectHideFlags: 0
@@ -9378,6 +9557,7 @@ GameObject:
   - component: {fileID: 1828602444256320265}
   - component: {fileID: 465746808787733875}
   - component: {fileID: 6407642114004769738}
+  - component: {fileID: 1459745081}
   m_Layer: 5
   m_Name: Description
   m_TagString: Untagged
@@ -9432,8 +9612,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Spells have types, as do enemies. Using a type that the enemy resists will
-    reduce the damages of the attack, while a weakness will amplify them.
+  m_text: Spells have <i>types</i>, as do enemies. Using a <i>type</i> that the enemy
+    resists will reduce the damages of the attack, while a weakness will amplify
+    them.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
   m_sharedMaterial: {fileID: -7791964341149814486, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
@@ -9502,6 +9683,24 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1459745081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4424181870094639726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Spells have <i>types</i>, as do enemies. Using a <i>type</i> that
+    the enemy resists will reduce the damages of the attack, while a weakness will
+    amplify them.
+  frenchText: "Les sorts ont des <i>types</i>, de m\xEAme que les ennemis. Utiliser
+    un <i>type</i> auquel l'ennemi r\xE9siste va r\xE9duire les d\xE9g\xE2ts de l'attaque,
+    alors qu'une faiblesse va les amplifier."
 --- !u!1 &4527658487287631993
 GameObject:
   m_ObjectHideFlags: 0
@@ -9847,6 +10046,7 @@ GameObject:
   - component: {fileID: 6109464632258596779}
   - component: {fileID: 6035694603005300638}
   - component: {fileID: 5613381444430207470}
+  - component: {fileID: 1781766864}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -9901,7 +10101,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cooldown
+  m_text: Spells - Cooldown
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7593819a18c3d3449b98f6e815a41029, type: 2}
   m_sharedMaterial: {fileID: 8791182398851758541, guid: 7593819a18c3d3449b98f6e815a41029, type: 2}
@@ -9970,6 +10170,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1781766864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4694143791866493479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Spells - Cooldown
+  frenchText: Sorts - Recharge
 --- !u!1 &4723662448334125759
 GameObject:
   m_ObjectHideFlags: 0
@@ -10571,6 +10785,7 @@ GameObject:
   - component: {fileID: 9086795116863818657}
   - component: {fileID: 5214393890590473472}
   - component: {fileID: 7452945151689756783}
+  - component: {fileID: 398011348534972697}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -10625,7 +10840,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Progression
+  m_text: Playstyle
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7593819a18c3d3449b98f6e815a41029, type: 2}
   m_sharedMaterial: {fileID: 8791182398851758541, guid: 7593819a18c3d3449b98f6e815a41029, type: 2}
@@ -10694,6 +10909,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &398011348534972697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5001330718356800971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Playstyle
+  frenchText: Style de jeu
 --- !u!1 &5023593578190744748
 GameObject:
   m_ObjectHideFlags: 0
@@ -12374,7 +12603,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Special Attack
+  m_text: Break
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7593819a18c3d3449b98f6e815a41029, type: 2}
   m_sharedMaterial: {fileID: 8791182398851758541, guid: 7593819a18c3d3449b98f6e815a41029, type: 2}
@@ -12455,8 +12684,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  englishText: Special Attack
-  frenchText: "Attaque Sp\xE9ciale"
+  englishText: Break
+  frenchText: Break
 --- !u!1 &5824498363207979245
 GameObject:
   m_ObjectHideFlags: 0
@@ -13124,6 +13353,7 @@ GameObject:
   - component: {fileID: 618077094148599289}
   - component: {fileID: 706036912573917783}
   - component: {fileID: 6486044828517750388}
+  - component: {fileID: 985383147}
   m_Layer: 5
   m_Name: Description
   m_TagString: Untagged
@@ -13249,6 +13479,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &985383147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6128991697198211608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: 
+  frenchText: 
 --- !u!1 &6203716066150481171
 GameObject:
   m_ObjectHideFlags: 0
@@ -14736,6 +14980,7 @@ GameObject:
   - component: {fileID: 8804345512830043891}
   - component: {fileID: 2141891417890626055}
   - component: {fileID: 8536334313139899255}
+  - component: {fileID: 120900906}
   m_Layer: 5
   m_Name: Description
   m_TagString: Untagged
@@ -14790,8 +15035,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: When one of your allies dies, she can be resurrected. To do this, kill
-    an enemy and select your ally during the Breakdown
+  m_text: When one of your <#FFCF00>allies</color> dies, she can be resurrected.
+    To do this, kill an enemy and select your ally during the <#FFA021>Breakdown</color>.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
   m_sharedMaterial: {fileID: -7791964341149814486, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
@@ -14860,6 +15105,23 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &120900906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6863156646706473308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: When one of your <#FFCF00>allies</color> dies, she can be resurrected.
+    To do this, kill an enemy and select your ally during the <#FFA021>Breakdown</color>.
+  frenchText: "Lorsqu'une de vos <#FFCF00>alli\xE9es</color> meurt, elle peut \xEAtre
+    ressuscit\xE9e. Pour ce faire, tuez un ennemi et s\xE9lectionnez votre alli\xE9e
+    lors du <#FFA021>Breakdown</color>."
 --- !u!1 &6999244822172833956
 GameObject:
   m_ObjectHideFlags: 0
@@ -16333,6 +16595,7 @@ GameObject:
   - component: {fileID: 6136016793981715296}
   - component: {fileID: 8646839125900146915}
   - component: {fileID: 2946088208382560866}
+  - component: {fileID: 3865222359109362514}
   m_Layer: 5
   m_Name: Description
   m_TagString: Untagged
@@ -16387,7 +16650,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'After some fights you can earn new spells for your <#FFCF00>characters</color>.
+  m_text: 'After some fights you can earn new spells for your <#FFCF00>allies</color>.
 
 
     You
@@ -16461,6 +16724,28 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3865222359109362514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7597712466028440488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: 'After some fights you can earn new spells for your <#FFCF00>allies</color>.
+
+
+    You
+    can pick and change your spells in the tree before each fights  to try different
+    <i>playstyles</i>.'
+  frenchText: "Apr\xE8s quelques combats, vous pouvez gagner de nouveaux sorts pour
+    vos <#FFCF00>alli\xE9es</color>.\r\n\r\nVous pouvez choisir et changer vos sorts
+    dans l'arbre de comp\xE9tences avant chaque combat pour essayer diff\xE9rents
+    <i>styles</i> de jeu."
 --- !u!1 &7649439746115250088
 GameObject:
   m_ObjectHideFlags: 0
@@ -16775,6 +17060,7 @@ GameObject:
   - component: {fileID: 3438990266316243073}
   - component: {fileID: 1097418434084449923}
   - component: {fileID: 4553474075912086948}
+  - component: {fileID: 965481663453030085}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -16829,7 +17115,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Welcome
+  m_text: The Fowler
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7593819a18c3d3449b98f6e815a41029, type: 2}
   m_sharedMaterial: {fileID: 8791182398851758541, guid: 7593819a18c3d3449b98f6e815a41029, type: 2}
@@ -16898,6 +17184,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &965481663453030085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7758502786568324658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: The Fowler
+  frenchText: The Fowler
 --- !u!1 &7884647717844285889
 GameObject:
   m_ObjectHideFlags: 0
@@ -19393,6 +19693,7 @@ GameObject:
   - component: {fileID: 3661529847355721581}
   - component: {fileID: 61627024212223659}
   - component: {fileID: 447098974964801058}
+  - component: {fileID: 7526042827603085500}
   m_Layer: 5
   m_Name: Description
   m_TagString: Untagged
@@ -19447,8 +19748,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You can also change the order of your <#FFCF00>characters</color> before
-    a fight to try different <i>strategies</i>.
+  m_text: You can also change the order of your <#FFCF00>allies</color> before a
+    fight to try different <i>strategies</i>.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
   m_sharedMaterial: {fileID: -7791964341149814486, guid: f78d706ec5038ec48adab6de14c010d6, type: 2}
@@ -19517,6 +19818,22 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7526042827603085500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8839590849094866947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: You can also change the order of your <#FFCF00>allies</color> before
+    a fight to try different <i>strategies</i>.
+  frenchText: "Vous pouvez \xE9galement changer l'ordre de vos <#FFCF00>alli\xE9es</color>
+    avant un combat pour essayer diff\xE9rentes <i>strat\xE9gies</i>."
 --- !u!1 &8866799786224226693
 GameObject:
   m_ObjectHideFlags: 0
@@ -20270,7 +20587,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1916935586077316038, guid: f84546f26542ea545863c6dd261e93bd, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -463
+      value: -409
       objectReference: {fileID: 0}
     - target: {fileID: 1916935586077316038, guid: f84546f26542ea545863c6dd261e93bd, type: 3}
       propertyPath: m_AnchoredPosition.y
