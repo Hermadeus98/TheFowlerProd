@@ -105,7 +105,7 @@ namespace TheFowler
             PlaySound(AudioGenericEnum.TF_Main_SetMuteOff, null);
         }
 
-        public static float masterVolume = 75f, musicVolume = 75f, VoicesVolume = 75f, EffectsVolume = 75f;
+        public static float masterVolume = 75f, musicVolume = 75f, VoicesVolume = 75f, EffectsVolume = 75f, AmbiantVolume = 75f;
         
         public static void SetMasterVolume(float v)
         {
@@ -141,7 +141,7 @@ namespace TheFowler
 
         public static void SetAmbiantVolume(float v)
         {
-            EffectsVolume = v;
+            AmbiantVolume = v;
             AkSoundEngine.SetRTPCValue("Game_Volume_Ambiant", v);
 
             QRDebug.Log("AUDIO", FrenchPallet.SUN_FLOWER, $"SetAmbiantVolume -> {v}");

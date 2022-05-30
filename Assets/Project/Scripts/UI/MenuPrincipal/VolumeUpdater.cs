@@ -27,6 +27,7 @@ public class VolumeUpdater : MonoBehaviour
             VolumeSettings.EFFECTS => SoundManager.EffectsVolume,
             VolumeSettings.VOICES => SoundManager.VoicesVolume,
             VolumeSettings.MUSIC => SoundManager.musicVolume,
+            VolumeSettings.AMBIANT => SoundManager.AmbiantVolume,
             _ => throw new ArgumentOutOfRangeException()
         };
     }
@@ -37,5 +38,6 @@ public enum VolumeSettings
     MASTER,
     EFFECTS,
     VOICES,
-    MUSIC
+    MUSIC,
+    AMBIANT,
 }

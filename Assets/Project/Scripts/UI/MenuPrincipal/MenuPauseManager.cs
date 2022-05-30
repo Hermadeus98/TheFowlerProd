@@ -188,6 +188,11 @@ public class MenuPauseManager : MonoBehaviour
     {
         SoundManager.SetMusicVolume(v);
     }
+    
+    public void SetAmbiantVolume(float v)
+    {
+        SoundManager.SetAmbiantVolume(v);
+    }
 }
 
 public enum MenuPausePanel
