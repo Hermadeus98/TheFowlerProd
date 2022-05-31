@@ -46,7 +46,7 @@ namespace TheFowler
             
         }
 
-        protected float Damage(float damage, BattleActor emitter, BattleActor[] receivers)
+        protected float Damage(float damage, BattleActor emitter, BattleActor[] receivers, bool preserveEnemies = false)
         {
             var dmg = 0f;
             
@@ -58,7 +58,14 @@ namespace TheFowler
             {
                 foreach (var receiver in receivers)
                 {
-                    dmg += ApplyDamage(damage, emitter, receiver);
+                    if (preserveEnemies && receiver is EnemyActor)
+                    {
+                        dmg += ApplyDamage(damage, emitter, receiver, true);
+                    }
+                    else
+                    {
+                        dmg += ApplyDamage(damage, emitter, receiver);
+                    }
                 }
             }
 

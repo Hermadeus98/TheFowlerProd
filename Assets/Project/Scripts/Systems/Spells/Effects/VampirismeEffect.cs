@@ -7,7 +7,7 @@ namespace TheFowler
     public class VampirismeEffect : Effect
     {
         public float damage;
-        
+
         public override IEnumerator OnBeginCast(BattleActor emitter, BattleActor[] receivers)
         {
             yield break;
