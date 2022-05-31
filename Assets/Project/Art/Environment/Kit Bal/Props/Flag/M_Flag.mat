@@ -22,13 +22,15 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Flag
   m_Shader: {fileID: 4800000, guid: 8c8484a08ec54cf41b2d54b8e6e8afe6, type: 3}
-  m_ShaderKeywords: _DISABLE_DECALS _DISABLE_SSR_TRANSPARENT _DOUBLESIDED_ON _NORMALMAP_TANGENT_SPACE
+  m_ShaderKeywords: _ALPHATEST_ON _DISABLE_DECALS _DISABLE_SSR_TRANSPARENT _DOUBLESIDED_ON
+    _NORMALMAP_TANGENT_SPACE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: 2450
   stringTagMap:
     MotionVector: User
+    RenderType: TransparentCutout
   disabledShaderPasses:
   - TransparentDepthPrepass
   - TransparentDepthPostpass
@@ -184,8 +186,8 @@ Material:
     - _ATDistance: 1
     - _AddPrecomputedVelocity: 0
     - _AlbedoAffectEmissive: 0
-    - _AlphaCutoff: 0.5
-    - _AlphaCutoffEnable: 0
+    - _AlphaCutoff: 0.851
+    - _AlphaCutoffEnable: 1
     - _AlphaCutoffPostpass: 0.5
     - _AlphaCutoffPrepass: 0.5
     - _AlphaCutoffShadow: 0.5
@@ -201,7 +203,7 @@ Material:
     - _CoatMask: 0
     - _CullMode: 0
     - _CullModeForward: 0
-    - _Cutoff: 0.5
+    - _Cutoff: 0.851
     - _DIntensity: 1
     - _DIntensity1: 1
     - _DIntensity2: 1
@@ -325,7 +327,7 @@ Material:
     - _UseShadowThreshold: 0
     - _WindIntensity: 0.5
     - _ZTestDepthEqualForOpaque: 3
-    - _ZTestGBuffer: 4
+    - _ZTestGBuffer: 3
     - _ZTestTransparent: 4
     - _ZWrite: 1
     - __dirty: 0
