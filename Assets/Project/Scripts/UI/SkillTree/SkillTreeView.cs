@@ -40,7 +40,7 @@ namespace TheFowler
 
         [SerializeField] private MenuCharactersView menuView;
 
-        private int usedSkillPoints;
+        public int usedSkillPoints;
         private int availableSkillPoints;
         public SpellTreeSelector[] SpellTreeSelectors
         {

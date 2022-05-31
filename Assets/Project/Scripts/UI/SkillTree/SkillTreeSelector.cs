@@ -123,8 +123,9 @@ namespace TheFowler
                 
             }
 
-            if(palier == Palier.LITTLE)
+            if(palier == Palier.LITTLE && view.usedSkillPoints >=1)
             {
+                
 
                 for (int i = 0; i < view.mediumSkills.Length; i++)
                 {
@@ -143,7 +144,7 @@ namespace TheFowler
 
                 }
             }
-            else if (palier == Palier.MEDIUM)
+            else if (palier == Palier.MEDIUM && view.usedSkillPoints >= 2)
             {
                 for (int i = 0; i < view.bigSkills.Length; i++)
                 {
