@@ -209,10 +209,10 @@ namespace TheFowler
         {
             if (isActive)
             {
-                if (Inputs.actions["InfoBox"].WasPressedThisFrame())
-                {
-                    CheckInfoBox();
-                }
+                //if (Inputs.actions["InfoBox"].WasPressedThisFrame())
+                //{
+                //    CheckInfoBox();
+                //}
             }
 
         }

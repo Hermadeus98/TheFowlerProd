@@ -146,7 +146,6 @@ namespace TheFowler
 
         private void Update()
         {
-            return;
 
 
             if(isActive && onMenu)
@@ -155,18 +154,7 @@ namespace TheFowler
                 {
                     if (!onConfirmation)
                     {
-                        onConfirmation = true;
-
-                        confirmation.SetActive(true);
-                        background.SetActive(false);
-
-                        initiativeView.gameObject.SetActive(false);
-
-                        InfoBoxButtons[] infoButtons = new InfoBoxButtons[2];
-                        infoButtons[0] = InfoBoxButtons.SELECT;
-                        infoButtons[1] = InfoBoxButtons.BACK;
-
-                        UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+                        OpenConfirmationPanel();
                     }
                     else
                     {
@@ -201,6 +189,34 @@ namespace TheFowler
                     }
                 }
             }
+        }
+
+        public void OpenConfirmationPanel()
+        {
+
+
+
+            confirmation.SetActive(true);
+            background.SetActive(false);
+
+            initiativeView.gameObject.SetActive(false);
+
+            InfoBoxButtons[] infoButtons = new InfoBoxButtons[2];
+            infoButtons[0] = InfoBoxButtons.SELECT;
+            infoButtons[1] = InfoBoxButtons.BACK;
+
+            UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+
+            StartCoroutine(WaitConfirmation());
+        }
+
+        private IEnumerator WaitConfirmation()
+        {
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+
+            onConfirmation = true;
         }
 
         public void LaunchBattle()
