@@ -15,7 +15,7 @@ namespace TheFowler
     {
         [TabGroup("References")] public SkillTreeSelector firstSelectedObject;
         [TabGroup("References")] [SerializeField] private UnityEngine.InputSystem.PlayerInput Inputs;
-        [TabGroup("Tree")] [SerializeField] private SkillTreeSelector[] skills;
+        [TabGroup("Tree")] [SerializeField] public SkillTreeSelector[] skills, littleSkills, mediumSkills, bigSkills;
         [TabGroup("Tree")] [SerializeField] private LineBehavior[] lines;
         [TabGroup("Tree")] [SerializeField] private BattleActorData[] datas;
         [TabGroup("Tree")] private BattleActorData currentData;
