@@ -36,6 +36,17 @@ namespace TheFowler
         private bool itPause;
 
 
+        [Button]
+        private void DesactiveAllActorsInBattles()
+        {
+            var battles = FindObjectsOfType<Battle>();
+
+            foreach (var battle in battles)
+            {
+                battle.DesactivateAllActors();
+            }
+        }
+
         /*private void Update()
         {
             if (GetComponent<PlayerInput>().actions["Pause"].WasPressedThisFrame())

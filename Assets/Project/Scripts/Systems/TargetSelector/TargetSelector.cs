@@ -334,9 +334,12 @@ namespace TheFowler
         public static BattleActor[] GetAllActors(BattleActor contraint = null)
         {
             var allies = GetAllAllies();
-            var enemies = GetAllAllies();
+            var enemies = GetAllEnemies();
             var list = new List<BattleActor>(allies);
-            list.AddRange(enemies);
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                list.Add(enemies[i]);
+            }
 
             if (contraint != null)
             {
