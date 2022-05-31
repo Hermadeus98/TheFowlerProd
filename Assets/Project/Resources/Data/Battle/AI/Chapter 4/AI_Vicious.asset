@@ -136,28 +136,6 @@ MonoBehaviour:
   children:
   - {fileID: 5388224996074128664}
   - {fileID: 3797168157530362154}
---- !u!114 &-2145340562239314814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
-  m_Name: CastNode
-  m_EditorClassIdentifier: 
-  NodeName: 
-  chance: 1
-  state: 0
-  started: 0
-  guid: 57369d1bef5871446b32df2c1f5d53d9
-  position: {x: -257.49988, y: -280.6}
-  children: []
-  spellList:
-  - Spell: {fileID: 11400000, guid: 4bbdfc914069d7c4c99dc86ac8d5abce, type: 2}
-    Chance: 0
 --- !u!114 &-1111784008869228738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,32 +187,7 @@ MonoBehaviour:
   - {fileID: 8767894240000404663}
   - {fileID: -6436995927226512699}
   - {fileID: -3112781943752421753}
-  - {fileID: 42429066009130018}
-  - {fileID: -2145340562239314814}
-  - {fileID: 3874750638717252667}
   dialogueType: 0
---- !u!114 &42429066009130018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a16d7749e1191724db8102279a8920c3, type: 3}
-  m_Name: ChoiceNode
-  m_EditorClassIdentifier: 
-  NodeName: 
-  chance: 1
-  state: 0
-  started: 0
-  guid: 31edaa2b4acd0d04a9b0d191d90ef5e6
-  position: {x: -712, y: -268}
-  children:
-  - {fileID: 3874750638717252667}
-  Choices: []
-  DefaultNextNode: {fileID: 0}
 --- !u!114 &3797168157530362154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,29 +209,6 @@ MonoBehaviour:
   children:
   - {fileID: -1111784008869228738}
   TargetIntention: 13
-  With: 0
-  value: 0
---- !u!114 &3874750638717252667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
-  m_Name: TargetNode
-  m_EditorClassIdentifier: 
-  NodeName: 
-  chance: 1
-  state: 0
-  started: 0
-  guid: a8ed26ab0840e694b970ce7db8b397b7
-  position: {x: -491.05, y: -281}
-  children:
-  - {fileID: -2145340562239314814}
-  TargetIntention: 9
   With: 0
   value: 0
 --- !u!114 &4151569233255065424
