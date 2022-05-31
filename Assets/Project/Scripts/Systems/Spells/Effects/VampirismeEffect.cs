@@ -7,6 +7,7 @@ namespace TheFowler
     public class VampirismeEffect : Effect
     {
         public float damage;
+        public bool preserveEnemies = false;
 
         public override IEnumerator OnBeginCast(BattleActor emitter, BattleActor[] receivers)
         {
@@ -15,7 +16,7 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-            var dmg = Damage(damage, emitter, receivers);
+            var dmg = Damage(damage, emitter, receivers, preserveEnemies);
             
             yield return new WaitForSeconds(SpellData.Instance.StateEffect_WaitTime);
             
