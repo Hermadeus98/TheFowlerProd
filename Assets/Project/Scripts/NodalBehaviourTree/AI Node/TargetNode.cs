@@ -20,7 +20,7 @@ namespace TheFowler
         public void SelectTarget()
         {
             var taunt = BattleManager.CurrentBattleActor.GetBattleComponent<Taunt>();
-            if (BattleManager.CurrentBattleActor.BattleActorInfo.isTaunt && TargetIntention != TargetIntention.ALL)
+            if (BattleManager.CurrentBattleActor.BattleActorInfo.isTaunt && !taunt.taunter.BattleActorInfo.isDeath && TargetIntention != TargetIntention.ALL)
             {
                 taunt.taunter.SelectAsTarget();
                 return;
