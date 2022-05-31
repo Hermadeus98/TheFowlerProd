@@ -3,6 +3,7 @@ using Sirenix.Utilities;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 
 namespace QRCode.Editor
@@ -52,6 +53,8 @@ namespace QRCode.Editor
                     
                     if (GUILayout.Button("Close All Scene"))
                     {
+                        EditorSceneManager.SaveOpenScenes();
+                        
                         for (int j = 0; j < SceneDatabase.ScenesBatches[i].sceneReferences.Length; j++)
                         {
                             CloseScene(SceneDatabase.ScenesBatches[i].sceneReferences[j]);
