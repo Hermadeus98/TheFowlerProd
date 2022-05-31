@@ -16,8 +16,13 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     - {fileID: 11400000}
-    - {fileID: 21300000, guid: 14f5732eda60b9c4f997c89c8d8ae9b2, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -28,7 +33,7 @@ MonoBehaviour:
       Data: 0|TheFowler.Effect[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 7
       Data: 1|TheFowler.DamageEffect, Assembly-CSharp
@@ -36,14 +41,38 @@ MonoBehaviour:
       Entry: 3
       Data: 2
     - Name: Emitter
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 0
     - Name: Receivers
-      Entry: 6
+      Entry: 7
+      Data: 2|TheFowler.BattleActor[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
       Data: 
     - Name: _damage
       Entry: 4
-      Data: 0
+      Data: 519
     - Name: _heal
       Entry: 4
       Data: 0
@@ -52,7 +81,7 @@ MonoBehaviour:
       Data: 
     - Name: ReferedSpell
       Entry: 10
-      Data: 0
+      Data: 6
     - Name: rage
       Entry: 5
       Data: true
@@ -72,51 +101,6 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
-      Entry: 7
-      Data: 2|TheFowler.DefendEffect, Assembly-CSharp
-    - Name: TargetType
-      Entry: 3
-      Data: 2
-    - Name: Emitter
-      Entry: 6
-      Data: 
-    - Name: Receivers
-      Entry: 6
-      Data: 
-    - Name: _damage
-      Entry: 4
-      Data: 0
-    - Name: _heal
-      Entry: 4
-      Data: 0
-    - Name: sprite
-      Entry: 10
-      Data: 1
-    - Name: ReferedSpell
-      Entry: 10
-      Data: 0
-    - Name: rage
-      Entry: 5
-      Data: false
-    - Name: berserk
-      Entry: 5
-      Data: false
-    - Name: vampirisme
-      Entry: 5
-      Data: false
-    - Name: berserkDamage
-      Entry: 4
-      Data: 100
-    - Name: bonusType
-      Entry: 3
-      Data: 1
-    - Name: isAOE
-      Entry: 5
-      Data: true
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
       Entry: 13
       Data: 
     - Name: 
@@ -127,17 +111,18 @@ MonoBehaviour:
   Cooldown: 4
   InitialCooldown: 4
   CurrentCooldown: 0
-  logoBuff: {fileID: 21300000, guid: 14f5732eda60b9c4f997c89c8d8ae9b2, type: 3}
+  logoBuff: {fileID: 0}
   TargetType: 2
   SpellPower: 2
-  SpellDescription: Inflicts medium damages and reduces every enemy's defense.
-  SpellDescriptionFrench: "Inflige des d\xE9g\xE2ts moyens et r\xE9duit la d\xE9fense
-    de chaque ennemi."
+  SpellDescription: Inflicts medium damages to all enemies. The weaker Phoebe is,
+    the stronger the effect.
+  SpellDescriptionFrench: "Inflige des d\xE9g\xE2ts moyens \xE0 chaque ennemi. Plus
+    Phoebe est faible, plus l'effet est fort."
   SpellType: 1
   sequenceBinding: 1
   sprite: {fileID: 21300000, guid: 72572d4e9a893784084a7dfcec7bc03f, type: 3}
   spriteBlocked: {fileID: 21300000, guid: ad1d2847426a7cd44b4f9c2b60f14ac9, type: 3}
   spellState: 2
   unlockOrder: 3
-  isRechargingCooldown: 0
+  isRechargingCooldown: 1
   isPlaying: 0

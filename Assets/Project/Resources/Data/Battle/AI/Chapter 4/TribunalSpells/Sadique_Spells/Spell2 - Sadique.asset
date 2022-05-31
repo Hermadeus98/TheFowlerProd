@@ -10,16 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: 3_Vengeful Strike
+  m_Name: Spell2 - Sadique
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 0}
-    - {fileID: 0}
     - {fileID: 11400000}
-    - {fileID: 21300000, guid: e1dc38d38f709c9409f5bdb94cba3528, type: 3}
+    - {fileID: 21300000, guid: 14f5732eda60b9c4f997c89c8d8ae9b2, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -33,94 +31,28 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 7
-      Data: 1|TheFowler.DamageEffectRobyn, Assembly-CSharp
+      Data: 1|TheFowler.DamageEffectGuard, Assembly-CSharp
     - Name: TargetType
       Entry: 3
-      Data: 1
+      Data: 3
     - Name: Emitter
-      Entry: 10
-      Data: 0
-    - Name: Receivers
-      Entry: 7
-      Data: 2|TheFowler.BattleActor[], Assembly-CSharp
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 10
-      Data: 1
-    - Name: 
-      Entry: 13
+      Entry: 6
       Data: 
-    - Name: 
-      Entry: 8
+    - Name: Receivers
+      Entry: 6
       Data: 
     - Name: _damage
       Entry: 4
-      Data: 210
+      Data: 0
     - Name: _heal
       Entry: 4
-      Data: 210
+      Data: 0
     - Name: sprite
       Entry: 6
       Data: 
     - Name: ReferedSpell
       Entry: 10
-      Data: 2
-    - Name: rage
-      Entry: 5
-      Data: false
-    - Name: berserk
-      Entry: 5
-      Data: false
-    - Name: vampirisme
-      Entry: 5
-      Data: true
-    - Name: berserkDamage
-      Entry: 4
       Data: 0
-    - Name: damage
-      Entry: 4
-      Data: 200
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 3|TheFowler.DamageBonus, Assembly-CSharp
-    - Name: TargetType
-      Entry: 3
-      Data: 0
-    - Name: Emitter
-      Entry: 10
-      Data: 0
-    - Name: Receivers
-      Entry: 7
-      Data: 4|TheFowler.BattleActor[], Assembly-CSharp
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 10
-      Data: 1
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: _damage
-      Entry: 4
-      Data: 0
-    - Name: _heal
-      Entry: 4
-      Data: 0
-    - Name: sprite
-      Entry: 10
-      Data: 3
-    - Name: ReferedSpell
-      Entry: 10
-      Data: 2
     - Name: rage
       Entry: 5
       Data: false
@@ -133,9 +65,51 @@ MonoBehaviour:
     - Name: berserkDamage
       Entry: 4
       Data: 100
-    - Name: attackBonusType
+    - Name: damage
+      Entry: 4
+      Data: 150
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|TheFowler.DefendEffect, Assembly-CSharp
+    - Name: TargetType
       Entry: 3
       Data: 0
+    - Name: Emitter
+      Entry: 6
+      Data: 
+    - Name: Receivers
+      Entry: 6
+      Data: 
+    - Name: _damage
+      Entry: 4
+      Data: 0
+    - Name: _heal
+      Entry: 4
+      Data: 0
+    - Name: sprite
+      Entry: 10
+      Data: 1
+    - Name: ReferedSpell
+      Entry: 10
+      Data: 0
+    - Name: rage
+      Entry: 5
+      Data: false
+    - Name: berserk
+      Entry: 5
+      Data: false
+    - Name: vampirisme
+      Entry: 5
+      Data: false
+    - Name: berserkDamage
+      Entry: 4
+      Data: 100
+    - Name: bonusType
+      Entry: 3
+      Data: 1
     - Name: isAOE
       Entry: 5
       Data: false
@@ -148,22 +122,21 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Vengeful Strike
-  SpellNameFrench: Frappe vengeresse
-  Cooldown: 4
-  InitialCooldown: 4
+  SpellName: Energy Absorbtion
+  SpellNameFrench: 
+  Cooldown: 0
+  InitialCooldown: 0
   CurrentCooldown: 0
-  logoBuff: {fileID: 21300000, guid: e1dc38d38f709c9409f5bdb94cba3528, type: 3}
-  TargetType: 1
-  SpellPower: 3
-  SpellDescription: Inflicts heavy damage. Self-heals and increases Robyn's attacks.
-  SpellDescriptionFrench: "Inflige des d\xE9g\xE2ts moyens \xE0 tous les ennemis
-    et r\xE9duit leurs attaques."
-  SpellType: 2
+  logoBuff: {fileID: 21300000, guid: 14f5732eda60b9c4f997c89c8d8ae9b2, type: 3}
+  TargetType: 3
+  SpellPower: 0
+  SpellDescription: Inflict damages and reduce defense
+  SpellDescriptionFrench: 
+  SpellType: 0
   sequenceBinding: 1
-  sprite: {fileID: 21300000, guid: 2a70417c02f52fb4297993973866a162, type: 3}
-  spriteBlocked: {fileID: 21300000, guid: 170b1ec47a28033418af36c402433d57, type: 3}
-  spellState: 2
-  unlockOrder: 3
+  sprite: {fileID: 0}
+  spriteBlocked: {fileID: 0}
+  spellState: 0
+  unlockOrder: 0
   isRechargingCooldown: 0
   isPlaying: 0
