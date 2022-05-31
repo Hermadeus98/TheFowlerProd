@@ -25,7 +25,7 @@ namespace TheFowler
         private int iteration;
         [SerializeField] private MMFeedbacks feedback;
 
-        public Cinemachine.CinemachineVirtualCameraBase littleCamRobyn, littleCamPhoebe, littleCamAbi, destructionCam;
+        private Cinemachine.CinemachineVirtualCameraBase destructionCam;
         private Animator anim;
 
         [Button]
@@ -66,6 +66,8 @@ namespace TheFowler
             UIBattleBatch.Instance.Hide();
             UIBattleBatch.SetUIGuardsVisibility(false);
 
+            destructionCam = BattleManager.CurrentBattle.BattleCameraBatch.CameraReferences["Destruction"].virtualCamera;
+
             for (int i = 0; i < BattleManager.GetAllAllies().Length; i++)
             {
                 if (!BattleManager.GetAllAllies()[i].BattleActorInfo.isDeath)
@@ -73,20 +75,22 @@ namespace TheFowler
                 {
                     if(BattleManager.GetAllAllies()[i].BattleActorData.actorName == "Robyn")
                     {
-                        SplitScreen.Instance.Show(littleCamRobyn, destructionCam);
+                        
+
+                        SplitScreen.Instance.Show(BattleManager.CurrentBattle.BattleCameraBatch.CameraReferences["Destruction_Robyn"].virtualCamera, destructionCam);
                         anim = BattleManager.GetAllAllies()[i].BattleActorAnimator.Animator;
                         break;
                     }
                     else if (BattleManager.GetAllAllies()[i].BattleActorData.actorName == "Abigail")
                     {
-                        SplitScreen.Instance.Show(littleCamAbi, destructionCam);
+                        SplitScreen.Instance.Show(BattleManager.CurrentBattle.BattleCameraBatch.CameraReferences["Destruction_Abi"].virtualCamera, destructionCam);
                         anim = BattleManager.GetAllAllies()[i].BattleActorAnimator.Animator;
                         break;
                     }
 
                     else if (BattleManager.GetAllAllies()[i].BattleActorData.actorName == "Phoebe")
                     {
-                        SplitScreen.Instance.Show(littleCamPhoebe, destructionCam);
+                        SplitScreen.Instance.Show(BattleManager.CurrentBattle.BattleCameraBatch.CameraReferences["Destruction_Phoebe"].virtualCamera, destructionCam);
                         anim = BattleManager.GetAllAllies()[i].BattleActorAnimator.Animator;
                         break;
                     }
@@ -97,6 +101,7 @@ namespace TheFowler
 
             SplitScreen.Instance.SetBigCamera(destructionCam);
 
+            UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Inputs.enabled = false;
             BattleManager.CurrentBattle.Inputs.enabled = false;
 
             yield return new WaitForSeconds(1f);
@@ -111,6 +116,7 @@ namespace TheFowler
 
             yield return new WaitForSeconds(4.5f);
 
+            UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Inputs.enabled = true;
             BattleManager.CurrentBattle.Inputs.enabled = true;
 
             SplitScreen.Instance.Hide();
