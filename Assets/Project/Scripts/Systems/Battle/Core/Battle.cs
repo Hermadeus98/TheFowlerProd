@@ -477,6 +477,25 @@ namespace TheFowler
             HasRestart = false;
             callOnEndEvent = true;
         }
+
+        public void DesactivateAllActors()
+        {
+            for (var i = 0; i < alliesBatch.childCount; i++)
+            {
+                alliesBatch.GetChild(i).gameObject.SetActive(false);
+#if UNITY_EDITOR
+                EditorUtility.SetDirty(alliesBatch.GetChild(i).gameObject);
+#endif
+            }
+
+            for (var i = 0; i < enemiesBatch.childCount; i++)
+            {
+                enemiesBatch.GetChild(i).gameObject.SetActive(false);
+#if UNITY_EDITOR
+                EditorUtility.SetDirty(enemiesBatch.GetChild(i).gameObject);
+#endif
+            }
+        }
         
         /*public void Restart()
         {
