@@ -27,6 +27,7 @@ namespace TheFowler
         public bool rage = false; //Extra damage in function of health percentage of emitter.
         public bool berserk = false; //Emitter is damaged whel he inflicts damages.
         public bool vampirisme = false; //Emitter is healed when he inflicts damages.
+        public bool preserveEnemies = false;
         
         [ShowIf("@this.berserk == true")]  public float berserkDamage = 100f;
 
@@ -46,7 +47,7 @@ namespace TheFowler
             
         }
 
-        protected float Damage(float damage, BattleActor emitter, BattleActor[] receivers, bool preserveEnemies = false)
+        protected float Damage(float damage, BattleActor emitter, BattleActor[] receivers)
         {
             var dmg = 0f;
             

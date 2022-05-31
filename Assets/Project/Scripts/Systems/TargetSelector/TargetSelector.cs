@@ -55,7 +55,7 @@ namespace TheFowler
             {
                 if (BattleManager.CurrentBattleActor.BattleActorInfo.isTaunt &&
                     !BattleManager.CurrentBattleActor.GetBattleComponent<Taunt>().taunter.BattleActorInfo.isDeath &&
-                    targetType == TargetTypeEnum.SOLO_ENEMY)
+                    (targetType == TargetTypeEnum.SOLO_ENEMY || targetType == TargetTypeEnum.ALL))
                 {
                     var taunt = BattleManager.CurrentBattleActor.GetBattleComponent<Taunt>();
                     AvailableTargets.Add(taunt.taunter);
@@ -407,5 +407,6 @@ namespace TheFowler
         ALL_ENEMIES = 2,
         SOLO_ALLY = 3,
         ALL_ALLIES = 4,
+        ALL
     }
 }

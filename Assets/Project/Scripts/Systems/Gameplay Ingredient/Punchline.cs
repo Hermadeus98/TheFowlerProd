@@ -60,7 +60,7 @@ namespace TheFowler
             yield return new WaitForSeconds(data.soundDuration);
             punchlineIsPlaying = false;
 
-            if (!registerPunchlines.IsNullOrEmpty())
+            /*if (!registerPunchlines.IsNullOrEmpty())
             {
                 for (int i = 0; i < registerPunchlines.Count; i++)
                 {
@@ -69,7 +69,7 @@ namespace TheFowler
                 }
                 
                 registerPunchlines.Clear();
-            }
+            }*/
         }
     }
 

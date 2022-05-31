@@ -16,7 +16,7 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-            var dmg = Damage(damage, emitter, receivers, preserveEnemies);
+            var dmg = Damage(damage, emitter, receivers);
             
             yield return new WaitForSeconds(SpellData.Instance.StateEffect_WaitTime);
             

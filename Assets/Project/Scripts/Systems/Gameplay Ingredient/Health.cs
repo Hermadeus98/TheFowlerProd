@@ -151,6 +151,8 @@ namespace TheFowler
             if(currentHealth == 0)
                 return;
 
+            heal = Mathf.RoundToInt(heal);
+            
             currentHealth += heal;
 
             popupHealComponent.message = "+" + heal.ToString();
