@@ -170,9 +170,18 @@ namespace TheFowler
         public BattleDialog[] Dialogues;
 
         private bool isPlayed = false;
+
+        public bool usedForDestructionOnly = false;
+        public bool destroyAtEnd = false;
         
         public IEnumerator NarrativeEvent()
         {
+            if (usedForDestructionOnly)
+            {
+                yield return DestructionSystem.Instance.SetCam();
+                yield break;
+            }
+
             if (isPlayed)
                 yield break;
 
@@ -211,7 +220,13 @@ namespace TheFowler
             }
 
             battleDialogue.Hide();
-            
+
+            if (destroyAtEnd)
+            {
+                yield return new WaitForSeconds(.25f);
+                yield return DestructionSystem.Instance.SetCam();
+            }
+
             UIBattleBatch.Instance.Show();
         }
     }

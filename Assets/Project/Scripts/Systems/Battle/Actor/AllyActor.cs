@@ -21,6 +21,8 @@ namespace TheFowler
         public override void OnTurnStart()
         {
             base.OnTurnStart();
+
+
             actorTurn = new PlayerTurn();
             actorTurn.OnTurnStart();
 
@@ -41,6 +43,8 @@ namespace TheFowler
 
             turnTime = 0;
             hasPunchline = false;
+
+
         }
 
         protected override void Update()
