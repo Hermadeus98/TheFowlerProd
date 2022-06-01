@@ -87,6 +87,7 @@ namespace TheFowler
         [Button]
         public void Death()
         {
+            Debug.Log("DEATH ANIMATION");
             ResetTriggers();
             Animator.SetTrigger(DeathTrigger);
         }

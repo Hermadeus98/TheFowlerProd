@@ -36,7 +36,7 @@ namespace TheFowler
         {
             ReferedActor.BattleActorInfo.cooldownBonus = 0;
 
-            ReferedActor.StateIcons.Refresh_CD(ReferedActor);
+            ReferedActor.StateIcons?.Refresh_CD(ReferedActor);
         }
     }
 }

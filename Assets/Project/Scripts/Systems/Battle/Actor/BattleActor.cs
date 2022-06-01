@@ -420,7 +420,6 @@ namespace TheFowler
             BattleManager.CurrentBattle.lastDeath = this;
             GetBattleComponent<Buff>().StopVFX();
             GetBattleComponent<Defense>().StopVFX();
-            Debug.Log("ON DEEAATH");
         }
 
         public virtual void OnResurect()
