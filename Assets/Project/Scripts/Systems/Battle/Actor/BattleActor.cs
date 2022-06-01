@@ -172,9 +172,11 @@ namespace TheFowler
         [Button]
         public virtual void OnTurnStart()
         {
-            if (GetBattleComponent<Taunt>().taunter.battleActorInfo.isDeath)
+            var taunt = GetBattleComponent<Taunt>();
+            if (taunt.taunter != null)
             {
-                GetBattleComponent<Taunt>().EndTaunt();
+                if(taunt.taunter.battleActorInfo.isDeath)
+                    taunt.EndTaunt();
             }
             
             TurnCount++;
