@@ -66,6 +66,8 @@ namespace TheFowler
 
             damage = Mathf.RoundToInt(damage);
             
+            ReferedActor.BattleActorAnimator.Hit();
+
             currentHealth -= damage;
             if (currentHealth <= 0)
             {
@@ -123,7 +125,6 @@ namespace TheFowler
 
             ReferedActor.AllyData?.Refresh();
             ReferedActor.AllyData?.ShakeHearth();
-            ReferedActor.BattleActorAnimator.Hit();
 
             if (lifeTxt != null) lifeTxt.text = currentHealth.ToString();
         }
