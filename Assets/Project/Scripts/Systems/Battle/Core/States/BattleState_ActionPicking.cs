@@ -98,13 +98,19 @@ namespace TheFowler
                             case ActionPickerElement.PlayerActionType.SPELL:
                                 BattleManager.CurrentBattle.ChangeBattleState<BattleState_SkillPicking>(BattleStateEnum.SKILL_PICKING);
 
-                                if (BattleManager.numberOfBattle == 1 && !Tutoriel.hasSpell)
+                                if (!Tutoriel.hasSpell)
                                 {
                                     Tutoriel.hasSpell = true;
                                     UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.SPELL, 1.25f);
+
+                                    if(BattleManager.numberOfBattle >= 2 && !Tutoriel.hasBuff)
+                                    {
+                                        Tutoriel.hasBuff = true;
+                                        UI.GetView<TutorielView>(UI.Views.Tuto)._progression.nextElement.nextElement = UI.GetView<TutorielView>(UI.Views.Tuto)._buff;
+                                    }
                                 }
 
-                                if (BattleManager.numberOfBattle == 2 && !Tutoriel.hasBuff)
+                                if (BattleManager.numberOfBattle >= 2 && !Tutoriel.hasBuff)
                                 {
                                     Tutoriel.hasBuff = true;
                                     UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.BUFF, .8f);

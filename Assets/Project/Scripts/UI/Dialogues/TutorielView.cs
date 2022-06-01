@@ -18,7 +18,7 @@ namespace TheFowler
         [TabGroup("References"), SerializeField] private PlayerInput playerInput;
         [TabGroup("References"), SerializeField] private CanvasGroup battleUI, menuCharacters;
         [TabGroup("Panels"), SerializeField] private CanvasGroup basicAttack, basicAttack2, spell, types, fury, target, buff, parry, heal, done;
-        [TabGroup("Tutoriel"), SerializeField] private TutorielElement _basicAttack, _spell, _quickAttack, _breakdown, _progression, _dead, _welcome, _buff;
+        [TabGroup("Tutoriel"), SerializeField] public TutorielElement _basicAttack, _spell, _quickAttack, _breakdown, _progression, _dead, _welcome, _buff;
         [TabGroup("References"), SerializeField] private AK.Wwise.Event tutoOn, tutoOff;
 
         private CanvasGroup currentPanel;
@@ -279,7 +279,8 @@ namespace TheFowler
         PROGRESSION,
         DEAD,
         WELCOME,
-        BUFF
+        BUFF,
+        INITIATIVE
     }
 }
 
