@@ -8,6 +8,8 @@ namespace TheFowler
     {
         public static Battle CurrentBattle;
         public static bool IsReducingCD { get; set; }
+
+        public static int numberOfBattle = 0;
         public static ITurnActor CurrentTurnActor
         {
             get

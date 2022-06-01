@@ -18,7 +18,7 @@ namespace TheFowler
         [TabGroup("References"), SerializeField] private PlayerInput playerInput;
         [TabGroup("References"), SerializeField] private CanvasGroup battleUI, menuCharacters;
         [TabGroup("Panels"), SerializeField] private CanvasGroup basicAttack, basicAttack2, spell, types, fury, target, buff, parry, heal, done;
-        [TabGroup("Tutoriel"), SerializeField] private TutorielElement _basicAttack, _spell, _quickAttack, _breakdown, _progression,_dead;
+        [TabGroup("Tutoriel"), SerializeField] private TutorielElement _basicAttack, _spell, _quickAttack, _breakdown, _progression, _dead, _welcome, _buff;
         [TabGroup("References"), SerializeField] private AK.Wwise.Event tutoOn, tutoOff;
 
         private CanvasGroup currentPanel;
@@ -63,27 +63,36 @@ namespace TheFowler
             {
                 if (playerInput.actions["Confirm"].WasPressedThisFrame() && isDisplayed)
                 {
-                    
-                    if (currentElement!=null && currentElement.nextElement != null)
-                    {
-                        currentElement.canvasGroup.alpha = 0;
-                        currentElement.End();
-                        currentElement.nextElement.canvasGroup.DOFade(1, .2f).OnComplete(() => playerInput.enabled = true);
-                        currentElement.nextElement.Initialize();
 
-                        currentElement = currentElement.nextElement;
 
-                        isDisplayed = true;
-                    }
-                    else
-                    {
-                        FadeAllCanvasGroup();
-                        isDisplayed = false;
-                    }
-
+                    StartCoroutine(WaitEndTutoElement());
                     
                 }
             }
+        }
+
+        private IEnumerator WaitEndTutoElement()
+        {
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+            if (currentElement != null && currentElement.nextElement != null)
+            {
+                currentElement.canvasGroup.alpha = 0;
+                currentElement.End();
+                currentElement.nextElement.canvasGroup.DOFade(1, .2f).OnComplete(() => playerInput.enabled = true);
+                currentElement.nextElement.Initialize();
+
+                currentElement = currentElement.nextElement;
+
+                isDisplayed = true;
+            }
+            else
+            {
+                FadeAllCanvasGroup();
+                isDisplayed = false;
+            }
+
+            yield break;
         }
 
         public  void Show(PanelTutoriel panel)
@@ -164,6 +173,12 @@ namespace TheFowler
                     break;
                 case TutorielEnum.DEAD:
                     currentElement = _dead;
+                    break;
+                case TutorielEnum.WELCOME:
+                    currentElement = _welcome;
+                    break;
+                case TutorielEnum.BUFF:
+                    currentElement = _buff;
                     break;
             }
             StartCoroutine(WaitTuto(timeToWait));
@@ -260,7 +275,9 @@ namespace TheFowler
         QUICKATTACK,
         BREAKDOWN,
         PROGRESSION,
-        DEAD
+        DEAD,
+        WELCOME,
+        BUFF
     }
 }
 

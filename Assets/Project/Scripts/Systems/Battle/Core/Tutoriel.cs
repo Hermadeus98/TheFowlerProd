@@ -22,6 +22,8 @@ namespace TheFowler
         public static bool hasBreakdown = false;
         public static bool hasProgression = false;
         public static bool hasDied = false;
+        public static bool hasFirstBattle = false;
+        public static bool hasBuff = false;
         public static void Kill()
         {
             isTutoriel = false;
@@ -40,6 +42,9 @@ namespace TheFowler
             hasQuickAttack = true;
             hasBreakdown = true;
             hasProgression = true;
+            hasBuff = true;
+            hasFirstBattle = true;
+            hasDied = true;
         }
 
         
