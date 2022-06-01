@@ -25,11 +25,10 @@ namespace TheFowler
                 BattleManager.lastTurnWasEnemiesTurn = false;
 
                 //CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle, CameraKeys.BattleKeys.ActionPicking);
-                
-                InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
-                            infoButtons[0] = InfoBoxButtons.HIDE;
-                
-                            UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+
+                InfoBoxButtons[] infoButtons = new InfoBoxButtons[0];
+
+                UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
             }
 
             if (BattleManager.IsEnemyTurn)
