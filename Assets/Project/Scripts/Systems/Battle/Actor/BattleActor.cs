@@ -77,9 +77,7 @@ namespace TheFowler
         public bool mustResurect { get; set; }
 
         protected override void OnStart()
-        {
-            FeedbackHandler.Generate();
-            
+        {            
             base.OnStart();
             
             OnChangeDifficulty(DifficultyManager.currentDifficulty);
