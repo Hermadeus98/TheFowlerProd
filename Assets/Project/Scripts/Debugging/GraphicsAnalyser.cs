@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cinemachine;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -28,5 +29,14 @@ public class GraphicsAnalyser : SerializedMonoBehaviour
         {
             selectedMeshFilters.Add(ordered.ElementAt(i).Key, ordered.ElementAt(i).Value);
         }
+    }
+
+    [ReadOnly] public int camerasCount;
+
+    [Button]
+    public void CountCameras()
+    {
+        var cameras = FindObjectsOfType<CinemachineVirtualCameraBase>();
+        camerasCount = cameras.Length;
     }
 }
