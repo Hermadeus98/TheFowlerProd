@@ -64,7 +64,6 @@ namespace TheFowler
                 if (playerInput.actions["Confirm"].WasPressedThisFrame() && isDisplayed)
                 {
 
-
                     StartCoroutine(WaitEndTutoElement());
                     
                 }
@@ -75,6 +74,9 @@ namespace TheFowler
         {
             yield return new WaitForEndOfFrame();
             yield return new WaitForEndOfFrame();
+
+            if (!Tutoriel.endIntro) Tutoriel.endIntro = true;
+
             if (currentElement != null && currentElement.nextElement != null)
             {
                 currentElement.canvasGroup.alpha = 0;

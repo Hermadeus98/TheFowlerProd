@@ -85,7 +85,7 @@ namespace TheFowler
             if(!isActive)
                 return;
 
-            if (!Tutoriel.isTutoriel)
+            if (Tutoriel.endIntro)
             {
                 if (BattleManager.IsAllyTurn)
                 {
@@ -98,10 +98,16 @@ namespace TheFowler
                             case ActionPickerElement.PlayerActionType.SPELL:
                                 BattleManager.CurrentBattle.ChangeBattleState<BattleState_SkillPicking>(BattleStateEnum.SKILL_PICKING);
 
-                                if (!Tutoriel.hasSpell)
+                                if (BattleManager.numberOfBattle == 1 && !Tutoriel.hasSpell)
                                 {
                                     Tutoriel.hasSpell = true;
                                     UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.SPELL, 1.25f);
+                                }
+
+                                if (BattleManager.numberOfBattle == 2 && !Tutoriel.hasBuff)
+                                {
+                                    Tutoriel.hasBuff = true;
+                                    UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.BUFF, .8f);
                                 }
                                 break;
                             case ActionPickerElement.PlayerActionType.PARRY:
@@ -115,17 +121,13 @@ namespace TheFowler
 
                                 }
 
-                                if (BattleManager.numberOfBattle == 1 &&  !Tutoriel.hasQuickAttack)
+                                if (!Tutoriel.hasQuickAttack)
                                 {
                                     Tutoriel.hasQuickAttack = true;
                                     UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.QUICKATTACK, .8f);
                                 }
 
-                                if(BattleManager.numberOfBattle == 2 && !Tutoriel.hasBuff)
-                                {
-                                    Tutoriel.hasBuff = true;
-                                    UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.BUFF, .8f);
-                                }
+                             
                                 break;
                             case ActionPickerElement.PlayerActionType.ATTACK:
 

@@ -220,6 +220,15 @@ namespace TheFowler
             ChangeBattleState(BattleStateEnum.START_BATTLE);
             CreateTurnSystem();
 
+
+            if (!Tutoriel.hasFirstBattle)
+            {
+
+                Tutoriel.hasFirstBattle = true;
+                UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.WELCOME, 1.5f);
+            }
+
+
             yield break;
         }
 
