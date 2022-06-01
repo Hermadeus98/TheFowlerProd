@@ -87,6 +87,8 @@ namespace TheFowler
         public bool useUIOnPivot = false;
         public Transform UIPivot;
         public GameObject battleStateObj;
+
+
         
         private void FixedUpdate()
         {
@@ -198,6 +200,8 @@ namespace TheFowler
 
         private IEnumerator StartBattle()
         {
+            BattleManager.numberOfBattle++;
+
             BattleManager.IsReducingCD = false;
             Fury.IsInBreakdown = false;
 
@@ -430,6 +434,7 @@ namespace TheFowler
         private IEnumerator LoseIE()
         {
             callOnEndEvent = false;
+            BattleManager.numberOfBattle--;
 
             Debug.Log("EVENT : ON_LOSE");
             if (BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnLose() != null)

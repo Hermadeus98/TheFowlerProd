@@ -105,7 +105,8 @@ namespace TheFowler
 
             descriptionBox.gameObject.SetActive(false);
             menuView.background.SetActive(true);
-            menuView.Show();
+
+            StartCoroutine(WaitShowMenu());
         }
 
         private void Update()
@@ -169,6 +170,15 @@ namespace TheFowler
                 }
 
             }
+
+        }
+
+        private IEnumerator WaitShowMenu()
+        {
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+            menuView.Show();
+            yield break;
 
         }
 

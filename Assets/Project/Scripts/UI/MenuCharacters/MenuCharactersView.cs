@@ -181,10 +181,8 @@ namespace TheFowler
                     {
                         if (battle != null)
                         {
-                            battle.PlayPhase();
+                            StartCoroutine(WaitLaunchBattle());
                         }
-
-                        Hide();
 
                     }
                 }
@@ -226,6 +224,7 @@ namespace TheFowler
 
         private IEnumerator WaitLaunchBattle()
         {
+            yield return new WaitForEndOfFrame();
             yield return new WaitForEndOfFrame();
             battle.PlayPhase();
 

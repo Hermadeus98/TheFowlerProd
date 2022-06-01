@@ -115,10 +115,16 @@ namespace TheFowler
 
                                 }
 
-                                if (!Tutoriel.hasQuickAttack)
+                                if (BattleManager.numberOfBattle == 1 &&  !Tutoriel.hasQuickAttack)
                                 {
                                     Tutoriel.hasQuickAttack = true;
-                                    UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.QUICKATTACK, 1f);
+                                    UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.QUICKATTACK, .8f);
+                                }
+
+                                if(BattleManager.numberOfBattle == 2 && !Tutoriel.hasBuff)
+                                {
+                                    Tutoriel.hasBuff = true;
+                                    UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.BUFF, .8f);
                                 }
                                 break;
                             case ActionPickerElement.PlayerActionType.ATTACK:

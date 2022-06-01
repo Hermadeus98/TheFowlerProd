@@ -44,6 +44,12 @@ namespace TheFowler
             turnTime = 0;
             hasPunchline = false;
 
+            if (!Tutoriel.hasFirstBattle)
+            {
+
+                Tutoriel.hasFirstBattle = true;
+                UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.WELCOME, 1.5f);
+            }
 
         }
 
