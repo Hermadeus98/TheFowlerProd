@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using DG.Tweening;
+using QRCode;
+using QRCode.Extensions;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using Unity.RemoteConfig;
@@ -93,8 +95,21 @@ namespace TheFowler
             
             var currentBattle = BattleManager.CurrentBattle;
             
-            if (currentBattle.HasRestart || currentBattle.StartWithSavedData)
+            if (currentBattle.HasRestart || !currentBattle.StartWithSavedData)
             {
+                QRDebug.Log("DATA INJECTION", FrenchPallet.PUMPKIN, "INITIALIZE DATA");
+                
+                battleActorComponents.ForEach(w => w.Initialize());
+                battleActorInfo.isDeath = false;
+                battleActorInfo.attackBonus = 0;
+                battleActorInfo.defenseBonus = 0;
+                RefreshStateIcons();
+                GetBattleComponent<CooldownComponent>().ResetCD();
+            }
+            else
+            {
+                QRDebug.Log("DATA INJECTION", FrenchPallet.PUMPKIN, "INITIALIZE DATA WITH SAVED DATA");
+                
                 for (int i = 0; i < battleActorComponents.Length; i++)
                 {
                     if (battleActorComponents[i].GetType() == typeof(SpellHandler))
@@ -125,7 +140,6 @@ namespace TheFowler
                     }
                 }
 
-
                 if (currentBattle.robyn != null)
                     if (currentBattle.robyn == this)
                     {
@@ -155,15 +169,6 @@ namespace TheFowler
                         AllyData?.Refresh();
                         RefreshStateIcons();
                     }
-            }
-            else
-            {
-                battleActorComponents.ForEach(w => w.Initialize());
-                battleActorInfo.isDeath = false;
-                battleActorInfo.attackBonus = 0;
-                battleActorInfo.defenseBonus = 0;
-                RefreshStateIcons();
-                GetBattleComponent<CooldownComponent>().ResetCD();
             }
         }
 

@@ -74,7 +74,7 @@ namespace TheFowler
         public BattleNarrationComponent BattleNarrationComponent;
         public BattleGameLogComponent BattleGameLogComponent;
         
-        public bool HasRestart { get; set; }
+        [ShowInInspector] public bool HasRestart { get; set; }
         public bool IsFinish { get; set; }
 
         public int EnemyDeathCount { get; set; } = 0;
@@ -292,38 +292,9 @@ namespace TheFowler
         {
             IsFinish = true;
             FindObjectOfType<GameTimer>().incrementeCombatTimer = false;
-
             ChangeBattleState(BattleStateEnum.END_BATTLE);
-            
             SaveData();
             yield break;
-        }
-
-        private void SaveData()
-        {
-            if (robyn != null)
-            {
-                Player.RobynSavedData.health = robyn.Health.CurrentHealth;
-                Player.RobynSavedData.spellHandler = robyn.GetBattleComponent<SpellHandler>();
-                Player.RobynSavedData.attackBonus = robyn.BattleActorInfo.attackBonus;
-                Player.RobynSavedData.defenseBonus = robyn.BattleActorInfo.defenseBonus;
-            }
-
-            if (abi != null)
-            {
-                Player.AbiSavedData.health = abi.Health.CurrentHealth;
-                Player.AbiSavedData.spellHandler = abi.GetBattleComponent<SpellHandler>();
-                Player.AbiSavedData.attackBonus = abi.BattleActorInfo.attackBonus;
-                Player.AbiSavedData.defenseBonus = abi.BattleActorInfo.defenseBonus;
-            }
-
-            if (phoebe != null)
-            {
-                Player.PhoebeSavedData.health = phoebe.Health.CurrentHealth;
-                Player.PhoebeSavedData.spellHandler = phoebe.GetBattleComponent<SpellHandler>();
-                Player.PhoebeSavedData.attackBonus = phoebe.BattleActorInfo.attackBonus;
-                Player.PhoebeSavedData.defenseBonus = phoebe.BattleActorInfo.defenseBonus;
-            }
         }
 
         [Button]
@@ -472,6 +443,8 @@ namespace TheFowler
             allies.ForEach(w => w.Health.ResetHealth());
             enemies.ForEach(w => w.Health.ResetHealth());
             UIBattleBatch.SetUIGuardsVisibility(true);
+
+            allies.ForEach(w => w.InitializeComponents());
             
             //Reset CoolDown
             //
@@ -481,6 +454,32 @@ namespace TheFowler
 
             HasRestart = false;
             callOnEndEvent = true;
+        }
+        
+        private void SaveData()
+        {
+            QRDebug.Log("DATA INJECTION", FrenchPallet.PUMPKIN, "SAVE DATA");
+            
+            if (robyn != null)
+            {
+                Player.RobynSavedData.health = robyn.Health.CurrentHealth;
+                Player.RobynSavedData.attackBonus = robyn.BattleActorInfo.attackBonus;
+                Player.RobynSavedData.defenseBonus = robyn.BattleActorInfo.defenseBonus;
+            }
+
+            if (abi != null)
+            {
+                Player.AbiSavedData.health = abi.Health.CurrentHealth;
+                Player.AbiSavedData.attackBonus = abi.BattleActorInfo.attackBonus;
+                Player.AbiSavedData.defenseBonus = abi.BattleActorInfo.defenseBonus;
+            }
+
+            if (phoebe != null)
+            {
+                Player.PhoebeSavedData.health = phoebe.Health.CurrentHealth;
+                Player.PhoebeSavedData.attackBonus = phoebe.BattleActorInfo.attackBonus;
+                Player.PhoebeSavedData.defenseBonus = phoebe.BattleActorInfo.defenseBonus;
+            }
         }
 
         public void DesactivateAllActors()
