@@ -263,6 +263,7 @@ namespace TheFowler
                     case BattleStateEnum.FURY:
                         break;
                     case BattleStateEnum.END_BATTLE:
+
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(currentBattleState), currentBattleState, null);
@@ -431,13 +432,17 @@ namespace TheFowler
         }
 
 
-        private void OnDisable()
+        protected override void OnDisable()
         {
+            base.OnDisable();
+
+
             for (int i = 0; i < BattleActorData.Spells.Length; i++)
             {
                 BattleActorData.Spells[i].Reset();
             }
         }
+
 
         protected virtual void Update()
         {

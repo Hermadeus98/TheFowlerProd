@@ -47,7 +47,7 @@ namespace TheFowler
 
         protected override void Awake()
         {
-            previousSelector.Clear();
+            //previousSelector.Clear();
             for (int i = 0; i < links.Length; i++)
             {
                 links[i].linkedSelector.previousSelector.Add(this);
@@ -78,6 +78,12 @@ namespace TheFowler
             CheckSpells();
             ChangeOutline(true);
             RefreshLines();
+
+
+            Debug.LogError("SELECT : " +  (skillState.ToString()));
+            Debug.LogError("SELECT : " +  (canInteract.ToString()));
+            Debug.LogError("SELECT : " +  (isHover.ToString()));
+
             //SetLines(true);
         }
 
@@ -94,10 +100,14 @@ namespace TheFowler
         {
             if (canInteract && isHover && Inputs.actions["Select"].WasPressedThisFrame())
             {
+                Debug.LogError("PRESS A");
+
                 for (int i = 0; i < previousSelector.Count; i++)
                 {
+                    Debug.LogError("PREVIOUS LOOP");
                     if (previousSelector[i] == view.skillsWay[view.skillsWay.Count - 1])
                     {
+                        Debug.LogError("PREVIOUS");
                         Equip();
                         break;
                     }
@@ -114,10 +124,12 @@ namespace TheFowler
             {
                 if(linkedSkills[i].skillState == SkillState.EQUIPPED)
                 {
+                    Debug.LogError("EQUIP 0  : " + (skillState.ToString()));
                     return;
                 }
                 else
                 {
+                    Debug.LogError("EQUIP bis  : " + (skillState.ToString()));
                     linkedSkills[i].FeedbackUnselectionned();
                 }
                 
@@ -166,6 +178,8 @@ namespace TheFowler
 
             }
 
+            Debug.LogError("EQUIP 1  : " + (skillState.ToString()));
+
 
             FeedbackEquipped();
 
@@ -183,8 +197,8 @@ namespace TheFowler
             view.RefreshCircles();
 
 
+            Debug.LogError("EQUIP 2  : " + (skillState.ToString()));
 
-          
 
         }
 
@@ -321,8 +335,6 @@ namespace TheFowler
             InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
             infoButtons[0] = InfoBoxButtons.BACK;
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
-
-
 
         }
 
