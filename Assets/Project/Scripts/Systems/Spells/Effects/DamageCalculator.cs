@@ -9,8 +9,8 @@ namespace TheFowler
     {
         public static float CalculateDamage(float initialDamage, BattleActor emitter, BattleActor receiver, Spell.SpellTypeEnum spellType, out ResistanceFaiblesseResult ResistanceFaiblesseResult)
         {
-            var attackBonus = emitter.BattleActorInfo.attackBonus;
-            var defenseBonus = receiver.BattleActorInfo.defenseBonus;
+            var attackBonus = emitter.BattleActorInfo.AttackBonus;
+            var defenseBonus = receiver.BattleActorInfo.DefenseBonus;
 
             var bonus = ((float)attackBonus - (float)defenseBonus) / 100;
 

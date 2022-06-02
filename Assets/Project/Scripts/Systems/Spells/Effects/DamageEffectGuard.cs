@@ -34,9 +34,9 @@ namespace TheFowler
                 yield return new WaitForSeconds(.1f);
                 
                 guardBasicAttack.Play();
+                
+                yield return new WaitForSeconds(SpellData.Instance.Guard_Timer_BasicAttack_ImpactDuration);
             }
-
-            yield return new WaitForSeconds(SpellData.Instance.Guard_Timer_BasicAttack_ImpactDuration);
         }
     }
 }

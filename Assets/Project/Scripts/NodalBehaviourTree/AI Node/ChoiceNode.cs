@@ -73,7 +73,7 @@ namespace TheFowler
                 {
                     case HardChoice.AT_LEAST_AN_ENEMY_HAVE_BUFF:
                     {
-                        var enemies = TargetSelector.GetAllEnemies().Where(w => w.BattleActorInfo.attackBonus > 0).ToArray();
+                        var enemies = TargetSelector.GetAllEnemies().Where(w => w.BattleActorInfo.AttackBonus > 0).ToArray();
                         if (!enemies.IsNullOrEmpty())
                             return true;
                         
@@ -81,7 +81,7 @@ namespace TheFowler
                     }
                     case HardChoice.AT_LEAST_AN_ENEMY_HAVE_DEFEND_BUFF:
                     {
-                        var enemies = TargetSelector.GetAllEnemies().Where(w => w.BattleActorInfo.defenseBonus > 0).ToArray();
+                        var enemies = TargetSelector.GetAllEnemies().Where(w => w.BattleActorInfo.DefenseBonus > 0).ToArray();
                         if (!enemies.IsNullOrEmpty())
                             return true;
                         
