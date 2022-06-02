@@ -75,6 +75,9 @@ namespace TheFowler
         [HideIf("@this.dataType == ActorType.GUARD")]
         [TitleGroup("Progression")] public int initiativeOrder = 0;
 
+        [HideIf("@this.dataType == ActorType.GUARD")]
+        [TitleGroup("Progression")] public bool hasNewSkills;
+
         [TitleGroup("Data Binding")]
         public enum BindingType{DEFAULT,REMOTE_SETTINGS}
         public BindingType bindingType = BindingType.DEFAULT;
@@ -101,7 +104,14 @@ namespace TheFowler
 
         public void ChangeComplicityLevel(int newValue)
         {
+            if (newValue != complicityLevel)
+            {
+                hasNewSkills = true;
+            }
+
             complicityLevel = newValue;
+
+
 
             ChangeState();
         }
@@ -148,6 +158,8 @@ namespace TheFowler
 
                 }
             }
+
+            hasNewSkills = false;
 
         }
 

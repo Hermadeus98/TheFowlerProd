@@ -101,21 +101,23 @@ namespace TheFowler
                                 if (!Tutoriel.hasSpell)
                                 {
                                     Tutoriel.hasSpell = true;
+
+                                    if (BattleManager.numberOfBattle >= 2 && !Tutoriel.hasTypes)
+                                    {
+                                        Tutoriel.hasTypes = true;
+                                        UI.GetView<TutorielView>(UI.Views.Tuto)._spell.nextElement = UI.GetView<TutorielView>(UI.Views.Tuto)._types;
+                                    }
+
                                     UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.SPELL, 1.25f);
 
-                                    if(BattleManager.numberOfBattle >= 2 && !Tutoriel.hasBuff)
-                                    {
-                                        Tutoriel.hasBuff = true;
-                                        UI.GetView<TutorielView>(UI.Views.Tuto)._spell.nextElement.nextElement = UI.GetView<TutorielView>(UI.Views.Tuto)._buff;
-                                    }
                                 }
                                 else
                                 {
-                                    if (BattleManager.numberOfBattle >= 2 && !Tutoriel.hasBuff)
-                                {
-                                    Tutoriel.hasBuff = true;
-                                    UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.BUFF, .8f);
-                                }
+                                    if (BattleManager.numberOfBattle >= 2 && !Tutoriel.hasTypes)
+                                    {
+                                        Tutoriel.hasTypes = true;
+                                        UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.TYPES, .8f);
+                                    }
                                 }
 
                                 
