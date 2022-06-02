@@ -23,8 +23,6 @@ namespace TheFowler
         public struct SavedData
         {
             public float health;
-            public int mana;
-            public SpellHandler spellHandler;
             public int initiative;
 
             public int attackBonus, defenseBonus;

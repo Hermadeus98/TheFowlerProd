@@ -138,7 +138,7 @@ namespace TheFowler
             BattleManager.CurrentBattle.EnemyDeathCount++;
             Fury.PlayBreakDown();
             
-            punchline.RegisterPunchline(PunchlineCallback.DEATH);
+            punchline.PlayPunchline(PunchlineCallback.DEATH);
         }
 
         private void SetHelmet()

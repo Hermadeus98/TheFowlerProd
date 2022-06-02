@@ -22,11 +22,8 @@ namespace TheFowler
         {
             base.OnTurnStart();
 
-
             actorTurn = new PlayerTurn();
-            actorTurn.OnTurnStart();
-
-            
+            actorTurn.OnTurnStart();           
 
             if(LocalisationManager.language == Language.ENGLISH)
             {
