@@ -106,15 +106,19 @@ namespace TheFowler
                                     if(BattleManager.numberOfBattle >= 2 && !Tutoriel.hasBuff)
                                     {
                                         Tutoriel.hasBuff = true;
-                                        UI.GetView<TutorielView>(UI.Views.Tuto)._progression.nextElement.nextElement = UI.GetView<TutorielView>(UI.Views.Tuto)._buff;
+                                        UI.GetView<TutorielView>(UI.Views.Tuto)._spell.nextElement.nextElement = UI.GetView<TutorielView>(UI.Views.Tuto)._buff;
                                     }
                                 }
-
-                                if (BattleManager.numberOfBattle >= 2 && !Tutoriel.hasBuff)
+                                else
+                                {
+                                    if (BattleManager.numberOfBattle >= 2 && !Tutoriel.hasBuff)
                                 {
                                     Tutoriel.hasBuff = true;
                                     UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.BUFF, .8f);
                                 }
+                                }
+
+                                
                                 break;
                             case ActionPickerElement.PlayerActionType.PARRY:
                                 Player.SelectedSpell = BattleManager.CurrentBattleActor.BattleActorData.DefendSpell;
