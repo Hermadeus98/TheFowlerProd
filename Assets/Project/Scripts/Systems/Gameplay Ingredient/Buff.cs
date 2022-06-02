@@ -19,35 +19,35 @@ namespace TheFowler
         [Button]
         public void BuffAttack(int value)
         {
-            ReferedActor.BattleActorInfo.attackBonus += value;
+            ReferedActor.BattleActorInfo.AttackBonus += value;
 
-            if (ReferedActor.BattleActorInfo.attackBonus > SpellData.Instance.maxBuffAttack)
-                ReferedActor.BattleActorInfo.attackBonus = SpellData.Instance.maxBuffAttack;
+            if (ReferedActor.BattleActorInfo.AttackBonus > SpellData.Instance.maxBuffAttack)
+                ReferedActor.BattleActorInfo.AttackBonus = SpellData.Instance.maxBuffAttack;
             
             ReferedActor.StateIcons?.Refresh_Att(ReferedActor);
             buff?.PlayFeedbacks();
             
-            Apply(ReferedActor.BattleActorInfo.attackBonus, SpellData.Instance.maxBuffAttack, SpellData.Instance.minBuffAttack);
+            Apply(ReferedActor.BattleActorInfo.AttackBonus, SpellData.Instance.maxBuffAttack, SpellData.Instance.minBuffAttack);
         }
 
         [Button]
         public void DebuffAttack(int value)
         {
-            ReferedActor.BattleActorInfo.attackBonus -= value;
+            ReferedActor.BattleActorInfo.AttackBonus -= value;
             
-            if (ReferedActor.BattleActorInfo.defenseBonus < SpellData.Instance.minBuffAttack)
-                ReferedActor.BattleActorInfo.defenseBonus = SpellData.Instance.minBuffAttack;
+            if (ReferedActor.BattleActorInfo.DefenseBonus < SpellData.Instance.minBuffAttack)
+                ReferedActor.BattleActorInfo.DefenseBonus = SpellData.Instance.minBuffAttack;
             
             ReferedActor.StateIcons?.Refresh_Att(ReferedActor);
             //debuff?.PlayFeedbacks();
             
-            Apply(ReferedActor.BattleActorInfo.attackBonus, SpellData.Instance.maxBuffAttack, SpellData.Instance.minBuffAttack);
+            Apply(ReferedActor.BattleActorInfo.AttackBonus, SpellData.Instance.maxBuffAttack, SpellData.Instance.minBuffAttack);
         }
 
         [Button]
         public void ResetAttack()
         {
-            ReferedActor.BattleActorInfo.attackBonus = 0;
+            ReferedActor.BattleActorInfo.AttackBonus = 0;
             ReferedActor.StateIcons?.Refresh_Att(ReferedActor);
             StopVFX();
         }

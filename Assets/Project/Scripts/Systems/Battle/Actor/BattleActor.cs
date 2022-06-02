@@ -80,6 +80,8 @@ namespace TheFowler
 
         protected override void OnStart()
         {
+            battleActorInfo.BattleActor = this;
+            
             base.OnStart();
             
             OnChangeDifficulty(DifficultyManager.currentDifficulty);
@@ -101,9 +103,10 @@ namespace TheFowler
                 
                 battleActorComponents.ForEach(w => w.Initialize());
                 battleActorInfo.isDeath = false;
-                battleActorInfo.attackBonus = 0;
-                battleActorInfo.defenseBonus = 0;
+                battleActorInfo.AttackBonus = 0;
+                battleActorInfo.DefenseBonus = 0;
                 RefreshStateIcons();
+                stateIcons?.Reset();
                 GetBattleComponent<CooldownComponent>().ResetCD();
             }
             else
@@ -144,8 +147,8 @@ namespace TheFowler
                     if (currentBattle.robyn == this)
                     {
                         health?.SetCurrentHealth(Player.RobynSavedData.health);
-                        battleActorInfo.attackBonus = Player.RobynSavedData.attackBonus;
-                        battleActorInfo.defenseBonus = Player.RobynSavedData.defenseBonus;
+                        battleActorInfo.AttackBonus = Player.RobynSavedData.attackBonus;
+                        battleActorInfo.DefenseBonus = Player.RobynSavedData.defenseBonus;
                         AllyData?.Refresh();
                         RefreshStateIcons();
                     }
@@ -154,8 +157,8 @@ namespace TheFowler
                     if (currentBattle.abi == this)
                     {
                         health?.SetCurrentHealth(Player.AbiSavedData.health);
-                        battleActorInfo.attackBonus = Player.AbiSavedData.attackBonus;
-                        battleActorInfo.defenseBonus = Player.AbiSavedData.defenseBonus;
+                        battleActorInfo.AttackBonus = Player.AbiSavedData.attackBonus;
+                        battleActorInfo.DefenseBonus = Player.AbiSavedData.defenseBonus;
                         AllyData?.Refresh();
                         RefreshStateIcons();
                     }
@@ -164,8 +167,8 @@ namespace TheFowler
                     if (currentBattle.phoebe == this)
                     {
                         health?.SetCurrentHealth(Player.PhoebeSavedData.health);
-                        battleActorInfo.attackBonus = Player.PhoebeSavedData.attackBonus;
-                        battleActorInfo.defenseBonus = Player.PhoebeSavedData.defenseBonus;
+                        battleActorInfo.AttackBonus = Player.PhoebeSavedData.attackBonus;
+                        battleActorInfo.DefenseBonus = Player.PhoebeSavedData.defenseBonus;
                         AllyData?.Refresh();
                         RefreshStateIcons();
                     }
@@ -459,13 +462,47 @@ namespace TheFowler
     [Serializable]
     public class BattleActorInfo
     {
+        public BattleActorInfo(BattleActor battleActor)
+        {
+            BattleActor = battleActor;
+        }
+
+        public BattleActor BattleActor;
+        
         public bool isDeath;
         public bool isStun;
         public bool isTaunt;
-        
-        public int attackBonus;
-        public int defenseBonus;
-        public int cooldownBonus;
+
+        [SerializeField] private int attackBonus, defenseBonus, cooldownBonus;
+
+        public int AttackBonus
+        {
+            get => attackBonus;
+            set
+            {
+                attackBonus = value;
+                BattleActor.StateIcons?.Refresh_Att(BattleActor);
+            }
+        }
+
+        public int DefenseBonus
+        {
+            get => defenseBonus;
+            set
+            {
+                defenseBonus = value;
+                BattleActor.StateIcons?.RefreshBuff_Def(BattleActor);
+            }
+        }
+        public int CooldownBonus
+        {
+            get => cooldownBonus;
+            set
+            {
+                cooldownBonus = value;
+                BattleActor.StateIcons?.Refresh_CD(BattleActor);
+            }
+        }
 
         public bool isAlly;
     }

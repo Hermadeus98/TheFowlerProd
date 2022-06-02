@@ -97,7 +97,7 @@ namespace TheFowler
                 }
                 else
                 {
-                    s.CurrentCooldown = s.Cooldown - ReferedActor.BattleActorInfo.cooldownBonus;
+                    s.CurrentCooldown = s.Cooldown - ReferedActor.BattleActorInfo.CooldownBonus;
                     if (s.CurrentCooldown < 0) s.CurrentCooldown = 0;
                 }
 
