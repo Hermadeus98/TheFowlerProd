@@ -134,7 +134,7 @@ namespace TheFowler
             
             yield return new WaitForSeconds(.4f);
 
-            Health.Resurect(25f);
+            Health.Resurect(40f);
             
             SplitScreen.Instance.SetLittleCamera(resurectCam);
 

@@ -236,7 +236,6 @@ namespace TheFowler
 
         public static void DeselectAll()
         {
-            
             for (int i = 0; i < BattleManager.GetAllEnemies().Length; i++)
             {
                 BattleManager.GetAllEnemies()[i].OnEndTarget();

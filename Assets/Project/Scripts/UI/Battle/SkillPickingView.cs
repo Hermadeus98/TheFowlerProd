@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -58,6 +59,8 @@ namespace TheFowler
 
         }
 
+        public static List<EnemyActor> enemies = new List<EnemyActor>();
+        
         public override void Hide()
         {
             base.Hide();
@@ -73,6 +76,15 @@ namespace TheFowler
             triangle.GetComponent<CanvasGroup>().alpha = 1;
 
             GetComponent<RectTransform>().anchoredPosition = basicPosition;
+            
+            if (enemies.Count > 0)
+            {
+                enemies.ForEach(delegate(EnemyActor w)
+                {
+                    w.resist.Hide();
+                    w.weak.Hide();
+                });
+            }
         }
 
         private void Update()
