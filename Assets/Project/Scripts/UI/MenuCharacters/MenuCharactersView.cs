@@ -9,7 +9,8 @@ namespace TheFowler
     {
         [SerializeField] InitiativeView initiativeView; 
         [SerializeField] SkillTreeView skillTreeView;
-        [SerializeField] public GameObject firstSelectedObject, background, confirmation;
+        [SerializeField] public GameObject firstSelectedObject, background, confirmation, exclamation;
+        [SerializeField] public BattleActorData[] battleActorDatas;
         [SerializeField] public MMFeedbacks[] MMUnselects;
         [SerializeField] public UnityEngine.InputSystem.PlayerInput Inputs;
         private Battle battle;
@@ -22,6 +23,8 @@ namespace TheFowler
         public override void Show()
         {
             base.Show();
+
+            SetExclamation();
 
             numberOfAllies = battle.numberOfAllies;
 
@@ -97,6 +100,22 @@ namespace TheFowler
 
         }
 
+        private void SetExclamation()
+        {
+            for (int i = 0; i < battleActorDatas.Length; i++)
+            {
+                if (battleActorDatas[i].hasNewSkills)
+                {
+                    exclamation.SetActive(true);
+                    break;
+                }
+                else
+                {
+                    exclamation.SetActive(false);
+                }
+            }
+        }
+
         public void Show(Battle _battle)
         {
             battle = _battle;
@@ -142,6 +161,15 @@ namespace TheFowler
             background.SetActive(false);
 
             MenuCharactersSKHandler.Instance.InSkillTree();
+
+            for (int i = 0; i < battleActorDatas.Length; i++)
+            {
+                if (battleActorDatas[i].hasNewSkills)
+                {
+                    battleActorDatas[i].hasNewSkills = false;
+                }
+
+            }
         }
 
         private void Update()

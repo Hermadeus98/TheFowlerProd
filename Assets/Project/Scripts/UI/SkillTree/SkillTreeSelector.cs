@@ -79,11 +79,6 @@ namespace TheFowler
             ChangeOutline(true);
             RefreshLines();
 
-
-            Debug.LogError("SELECT : " +  (skillState.ToString()));
-            Debug.LogError("SELECT : " +  (canInteract.ToString()));
-            Debug.LogError("SELECT : " +  (isHover.ToString()));
-
             //SetLines(true);
         }
 
@@ -100,14 +95,13 @@ namespace TheFowler
         {
             if (canInteract && isHover && Inputs.actions["Select"].WasPressedThisFrame())
             {
-                Debug.LogError("PRESS A");
 
                 for (int i = 0; i < previousSelector.Count; i++)
                 {
-                    Debug.LogError("PREVIOUS LOOP");
+
                     if (previousSelector[i] == view.skillsWay[view.skillsWay.Count - 1])
                     {
-                        Debug.LogError("PREVIOUS");
+
                         Equip();
                         break;
                     }
@@ -124,12 +118,11 @@ namespace TheFowler
             {
                 if(linkedSkills[i].skillState == SkillState.EQUIPPED)
                 {
-                    Debug.LogError("EQUIP 0  : " + (skillState.ToString()));
                     return;
                 }
                 else
                 {
-                    Debug.LogError("EQUIP bis  : " + (skillState.ToString()));
+
                     linkedSkills[i].FeedbackUnselectionned();
                 }
                 
@@ -178,7 +171,7 @@ namespace TheFowler
 
             }
 
-            Debug.LogError("EQUIP 1  : " + (skillState.ToString()));
+
 
 
             FeedbackEquipped();
@@ -197,7 +190,6 @@ namespace TheFowler
             view.RefreshCircles();
 
 
-            Debug.LogError("EQUIP 2  : " + (skillState.ToString()));
 
 
         }

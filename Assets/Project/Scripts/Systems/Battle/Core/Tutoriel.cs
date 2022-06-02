@@ -18,6 +18,7 @@ namespace TheFowler
 
         public static bool hasBasicAttack = false;
         public static bool hasSpell = false;
+        public static bool hasTypes = false;
         public static bool hasQuickAttack = false;
         public static bool hasBreakdown = false;
         public static bool hasProgression = false;
@@ -47,6 +48,7 @@ namespace TheFowler
             hasFirstBattle = true;
             hasDied = true;
             endIntro = true;
+            hasTypes = true;
         }
 
         
