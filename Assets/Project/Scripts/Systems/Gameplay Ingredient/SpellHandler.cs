@@ -35,7 +35,6 @@ namespace TheFowler
         {
             base.Initialize();
             spells = new List<SpellHandled>();
-
             for (int i = 0; i < ReferedActor.BattleActorData.Spells.Length; i++)
             {
                 spells.Add(new SpellHandled()
@@ -89,6 +88,8 @@ namespace TheFowler
         {
             if (GetSpellHandled(s) != null)
             {
+
+
                 GetSpellHandled(s).cooldown = s.Cooldown;
 
                 if (s.isRechargingCooldown)
@@ -97,7 +98,7 @@ namespace TheFowler
                 }
                 else
                 {
-                    s.CurrentCooldown = s.Cooldown - ReferedActor.BattleActorInfo.cooldownBonus;
+                    s.CurrentCooldown = s.Cooldown - ReferedActor.BattleActorInfo.CooldownBonus;
                     if (s.CurrentCooldown < 0) s.CurrentCooldown = 0;
                 }
 

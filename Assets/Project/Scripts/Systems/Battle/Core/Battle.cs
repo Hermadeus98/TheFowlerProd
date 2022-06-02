@@ -431,6 +431,8 @@ namespace TheFowler
         public void Restart()
         {
             StartCoroutine(RestartIE());
+
+            FindObjectsOfType<StateIcons>().ForEach(w => w.Reset());
         }
 
         IEnumerator RestartIE()
@@ -454,6 +456,7 @@ namespace TheFowler
             UIBattleBatch.SetUIGuardsVisibility(true);
 
             allies.ForEach(w => w.InitializeComponents());
+            enemies.ForEach(w => w.InitializeComponents());
             
             //Reset CoolDown
             //
@@ -472,22 +475,22 @@ namespace TheFowler
             if (robyn != null)
             {
                 Player.RobynSavedData.health = robyn.Health.CurrentHealth;
-                Player.RobynSavedData.attackBonus = robyn.BattleActorInfo.attackBonus;
-                Player.RobynSavedData.defenseBonus = robyn.BattleActorInfo.defenseBonus;
+                Player.RobynSavedData.attackBonus = robyn.BattleActorInfo.AttackBonus;
+                Player.RobynSavedData.defenseBonus = robyn.BattleActorInfo.DefenseBonus;
             }
 
             if (abi != null)
             {
                 Player.AbiSavedData.health = abi.Health.CurrentHealth;
-                Player.AbiSavedData.attackBonus = abi.BattleActorInfo.attackBonus;
-                Player.AbiSavedData.defenseBonus = abi.BattleActorInfo.defenseBonus;
+                Player.AbiSavedData.attackBonus = abi.BattleActorInfo.AttackBonus;
+                Player.AbiSavedData.defenseBonus = abi.BattleActorInfo.DefenseBonus;
             }
 
             if (phoebe != null)
             {
                 Player.PhoebeSavedData.health = phoebe.Health.CurrentHealth;
-                Player.PhoebeSavedData.attackBonus = phoebe.BattleActorInfo.attackBonus;
-                Player.PhoebeSavedData.defenseBonus = phoebe.BattleActorInfo.defenseBonus;
+                Player.PhoebeSavedData.attackBonus = phoebe.BattleActorInfo.AttackBonus;
+                Player.PhoebeSavedData.defenseBonus = phoebe.BattleActorInfo.DefenseBonus;
             }
         }
 

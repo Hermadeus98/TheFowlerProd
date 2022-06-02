@@ -57,7 +57,12 @@ namespace TheFowler
         public IEnumerator Cast(BattleActor emitter, BattleActor[] receivers)
         {
             isPlaying = true;
-            
+
+            if (emitter is AllyActor)
+            {
+                emitter.GetBattleComponent<SpellHandler>().ApplyCooldown(Player.SelectedSpell);
+            }
+
             if (BattleManager.lastTouchedActors == null)
                 BattleManager.lastTouchedActors = new List<BattleActor>();
             BattleManager.lastTouchedActors.AddRange(receivers);

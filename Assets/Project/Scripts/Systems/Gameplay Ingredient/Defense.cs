@@ -20,12 +20,12 @@ namespace TheFowler
         [Button]
         public void BuffDefense(int value)
         {
-            ReferedActor.BattleActorInfo.defenseBonus += value;
+            ReferedActor.BattleActorInfo.DefenseBonus += value;
 
-            if (ReferedActor.BattleActorInfo.defenseBonus > SpellData.Instance.maxBuffDefense)
-                ReferedActor.BattleActorInfo.defenseBonus = SpellData.Instance.maxBuffDefense;
+            if (ReferedActor.BattleActorInfo.DefenseBonus > SpellData.Instance.maxBuffDefense)
+                ReferedActor.BattleActorInfo.DefenseBonus = SpellData.Instance.maxBuffDefense;
 
-            if (ReferedActor.BattleActorInfo.defenseBonus > 0)
+            if (ReferedActor.BattleActorInfo.DefenseBonus > 0)
             {
                 ReferedActor.BattleActorAnimator.StartDefend();
             }
@@ -33,18 +33,18 @@ namespace TheFowler
             ReferedActor.StateIcons?.RefreshBuff_Def(ReferedActor);
             buff?.PlayFeedbacks();
             
-            Apply(ReferedActor.BattleActorInfo.defenseBonus, SpellData.Instance.maxBuffDefense, SpellData.Instance.minBuffDefense);
+            Apply(ReferedActor.BattleActorInfo.DefenseBonus, SpellData.Instance.maxBuffDefense, SpellData.Instance.minBuffDefense);
         }
 
         [Button]
         public void DebuffDefense(int value)
         {
-            ReferedActor.BattleActorInfo.defenseBonus -= value;
+            ReferedActor.BattleActorInfo.DefenseBonus -= value;
             
-            if (ReferedActor.BattleActorInfo.defenseBonus < SpellData.Instance.minBuffDefense)
-                ReferedActor.BattleActorInfo.defenseBonus = SpellData.Instance.minBuffDefense;
+            if (ReferedActor.BattleActorInfo.DefenseBonus < SpellData.Instance.minBuffDefense)
+                ReferedActor.BattleActorInfo.DefenseBonus = SpellData.Instance.minBuffDefense;
 
-            if (ReferedActor.BattleActorInfo.defenseBonus <= 0)
+            if (ReferedActor.BattleActorInfo.DefenseBonus <= 0)
             {
                 ReferedActor.BattleActorAnimator.EndDefend();
             }
@@ -52,13 +52,13 @@ namespace TheFowler
             ReferedActor.StateIcons?.RefreshBuff_Def(ReferedActor);
             debuff?.PlayFeedbacks();
             
-            Apply(ReferedActor.BattleActorInfo.defenseBonus, SpellData.Instance.maxBuffDefense, SpellData.Instance.minBuffDefense);
+            Apply(ReferedActor.BattleActorInfo.DefenseBonus, SpellData.Instance.maxBuffDefense, SpellData.Instance.minBuffDefense);
         }
 
         [Button]
         public void ResetDefense()
         {
-            ReferedActor.BattleActorInfo.defenseBonus = 0;
+            ReferedActor.BattleActorInfo.DefenseBonus = 0;
             
             ReferedActor.BattleActorAnimator.EndDefend();
             

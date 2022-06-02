@@ -15,9 +15,9 @@ namespace TheFowler
 
         public void BuffCD(int value)
         {
-            ReferedActor.BattleActorInfo.cooldownBonus += value;
-            if (ReferedActor.BattleActorInfo.cooldownBonus > SpellData.Instance.maxBuffCD)
-                ReferedActor.BattleActorInfo.cooldownBonus = SpellData.Instance.maxBuffCD;
+            ReferedActor.BattleActorInfo.CooldownBonus += value;
+            if (ReferedActor.BattleActorInfo.CooldownBonus > SpellData.Instance.maxBuffCD)
+                ReferedActor.BattleActorInfo.CooldownBonus = SpellData.Instance.maxBuffCD;
 
 
             for (int i = 0; i < ReferedActor.BattleActorData.Spells.Length; i++)
@@ -34,7 +34,7 @@ namespace TheFowler
 
         public void ResetCD()
         {
-            ReferedActor.BattleActorInfo.cooldownBonus = 0;
+            ReferedActor.BattleActorInfo.CooldownBonus = 0;
 
             ReferedActor.StateIcons?.Refresh_CD(ReferedActor);
         }
