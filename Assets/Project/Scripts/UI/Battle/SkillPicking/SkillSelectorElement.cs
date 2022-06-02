@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using QRCode;
 using Sirenix.OdinInspector;
@@ -190,7 +191,7 @@ namespace TheFowler
         private Tween textSize;
 
         private int sizeUnselect = 30, sizeSelect = 35;
-        
+
         public override void Select()
         {
             //canvasGroup.alpha = 1f;
@@ -199,6 +200,19 @@ namespace TheFowler
             textSize?.Kill();
             textSize = DoFontSize(text, sizeSelect, .1f, Ease.InOutSine);
             ShowDescription();
+
+            if (referedSpell.ContainEffect<DamageEffect>(out DamageEffect damageEffect))
+            {
+                var e = TargetSelector.GetAllEnemies().Cast<EnemyActor>();
+                SkillPickingView.enemies = new List<EnemyActor>(e);
+                
+                var weak = SkillPickingView.enemies.Cast<EnemyActor>().Where(w => w.IsWeakOf(referedSpell.SpellType));
+                weak.ForEach(w => w.weak.Show());
+
+                var resist = SkillPickingView.enemies.Cast<EnemyActor>()
+                    .Where(w => w.IsResistantOf(referedSpell.SpellType));
+                resist.ForEach(w => w.resist.Show());
+            }
         }
 
         private Tween DoFontSize(TextMeshProUGUI text, float to, float duration, Ease ease)
@@ -218,6 +232,15 @@ namespace TheFowler
             textSize?.Kill();
             textSize = DoFontSize(text, sizeUnselect, .1f, Ease.InOutSine);
             HideDescription();
+            
+            if (SkillPickingView.enemies.Count > 0)
+            {
+                SkillPickingView.enemies.ForEach(delegate(EnemyActor w)
+                {
+                    w.resist.Hide();
+                    w.weak.Hide();
+                });
+            }
         }
 
         private Coroutine desc;
