@@ -466,5 +466,7 @@ namespace TheFowler
         public int attackBonus;
         public int defenseBonus;
         public int cooldownBonus;
+
+        public bool isAlly;
     }
 }
