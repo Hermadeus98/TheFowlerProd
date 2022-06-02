@@ -2,62 +2,485 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.Feedbacks;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using Unity.Collections;
 
 namespace TheFowler
 {
-    public class SkillTreeSelector : MonoBehaviour
+    public class SkillTreeSelector : CustomElement
     {
-        [SerializeField] private GameObject Picken, Unactive, Disable, Clickable;
-        public Spell linkedSpell;
-        public int complicityLevel = 0;
-        public bool isPassive = false;
-        public bool isClickable = false;
+        [SerializeField] public Palier palier;
 
-        public MMFeedbacks UnlockFeedback;
-        public MMFeedbacks ClickableFeedback;
-        public void SetPicken()
+        [SerializeField] public Spell associatedSpell;
+
+        [SerializeField] private SkillTreeSelector[] linkedSkills;
+
+        [SerializeField] private BattleActorData associatedData;
+
+        [SerializeField] private SkillState skillState;
+
+        [SerializeField] private GameObject equipped, unequipped, locked;
+        [SerializeField] private GameObject hover, unHover;
+
+        [SerializeField] private Color equippedColor, lockedColor, unselectionnedColor;
+
+        [SerializeField] private UnityEngine.InputSystem.PlayerInput Inputs;
+
+        [SerializeField] private RectTransform rect;
+
+        public RectTransform Rect => rect;
+        [SerializeField] private SkillTreeView view;
+
+        [SerializeField] private Image[] lines;
+
+        private Spell[] spellReminder;
+
+        private bool canInteract = false;
+        private bool isHover;
+
+        public SkillLinks[] links;
+
+        public List<SkillTreeSelector> previousSelector;
+    
+    
+
+        protected override void Awake()
         {
-            Picken.gameObject.SetActive(true);
-            Unactive.gameObject.SetActive(false);
-            Disable.gameObject.SetActive(false);
-
-            if(isClickable)
+            //previousSelector.Clear();
+            for (int i = 0; i < links.Length; i++)
             {
-                Clickable.SetActive(true);
-                if(!ClickableFeedback.IsPlaying)
-                    ClickableFeedback.PlayFeedbacks();
+                links[i].linkedSelector.previousSelector.Add(this);
             }
-            else
+        }
+        public override void OnSelect(BaseEventData eventData)
+        {
+            base.OnSelect(eventData);
+            _Select();
+
+        }
+
+        public override void OnDeselect(BaseEventData eventData)
+        {
+            base.OnDeselect(eventData);
+            _Deselect();
+
+
+        }
+
+        public void _Select()
+        {
+            hover.SetActive(true);
+            unHover.SetActive(false);
+            isHover = true;
+            SetState();
+            view.SetDescription(this, associatedSpell);
+            CheckSpells();
+            ChangeOutline(true);
+            RefreshLines();
+
+
+            Debug.LogError("SELECT : " +  (skillState.ToString()));
+            Debug.LogError("SELECT : " +  (canInteract.ToString()));
+            Debug.LogError("SELECT : " +  (isHover.ToString()));
+
+            //SetLines(true);
+        }
+
+        public void _Deselect()
+        {
+            hover.SetActive(false);
+            unHover.SetActive(true);
+            isHover = false;
+            ChangeOutline(false);
+            //SetLines(false);
+        }
+
+        private void Update()
+        {
+            if (canInteract && isHover && Inputs.actions["Select"].WasPressedThisFrame())
             {
-                Clickable.SetActive(false);
+                Debug.LogError("PRESS A");
+
+                for (int i = 0; i < previousSelector.Count; i++)
+                {
+                    Debug.LogError("PREVIOUS LOOP");
+                    if (previousSelector[i] == view.skillsWay[view.skillsWay.Count - 1])
+                    {
+                        Debug.LogError("PREVIOUS");
+                        Equip();
+                        break;
+                    }
+                }
+                
+
             }
         }
 
-        public void SetUnactive()
+        public void Equip()
         {
-            Picken.gameObject.SetActive(false);
-            Unactive.gameObject.SetActive(true);
-            Disable.gameObject.SetActive(false);
-            if (isClickable)
+
+            for (int i = 0; i < linkedSkills.Length; i++)
             {
-                Clickable.SetActive(true);
-                if (!ClickableFeedback.IsPlaying)
-                    ClickableFeedback.PlayFeedbacks();
+                if(linkedSkills[i].skillState == SkillState.EQUIPPED)
+                {
+                    Debug.LogError("EQUIP 0  : " + (skillState.ToString()));
+                    return;
+                }
+                else
+                {
+                    Debug.LogError("EQUIP bis  : " + (skillState.ToString()));
+                    linkedSkills[i].FeedbackUnselectionned();
+                }
+                
             }
-            else
+
+            if(palier == Palier.LITTLE && view.usedSkillPoints >=1)
             {
-                Clickable.SetActive(false);
+                
+
+                for (int i = 0; i < view.mediumSkills.Length; i++)
+                {
+                    for (int j = 0; j < links.Length; j++)
+                    {
+                        if (view.mediumSkills[i] != links[j].linkedSelector)
+                        {
+                            view.mediumSkills[i].FeedbackUnselectionned();
+                        }
+                        else
+                        {
+                            view.mediumSkills[i].FeedbackUnEquipped();
+                            break;
+                        }
+                    }
+
+                }
+            }
+            else if (palier == Palier.MEDIUM && view.usedSkillPoints >= 2)
+            {
+                for (int i = 0; i < view.bigSkills.Length; i++)
+                {
+                    for (int j = 0; j < links.Length; j++)
+                    {
+                        if (view.bigSkills[i] != links[j].linkedSelector)
+                        {
+                            view.bigSkills[i].FeedbackUnselectionned();
+                        }
+
+                        else
+                        {
+                            view.bigSkills[i].FeedbackUnEquipped();
+                            break;
+                        }
+                    }
+
+                }
+
+            }
+
+            Debug.LogError("EQUIP 1  : " + (skillState.ToString()));
+
+
+            FeedbackEquipped();
+
+
+            SetSpellArray();
+
+            view.SetSpells();
+            CheckSpells();
+
+            view.RefreshAllLines();
+
+            view.RefreshSkillsWay();
+
+            view.RefreshSkillPoint();
+            view.RefreshCircles();
+
+
+            Debug.LogError("EQUIP 2  : " + (skillState.ToString()));
+
+
+        }
+
+
+        public void UnEquip()
+        {
+            FeedbackUnEquipped();
+        }
+
+        public void SetLines(bool value)
+        {
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (value)
+                {
+                    lines[i].color = Color.white;
+                }
+                else
+                {
+                    lines[i].color = Color.grey;
+                }
+
             }
         }
 
-        public void SetDisable()
+        public void SetState()
         {
-            Picken.gameObject.SetActive(false);
-            Unactive.gameObject.SetActive(false);
-            Disable.gameObject.SetActive(true);
-            Clickable.SetActive(false);
+            
+
+            switch (associatedSpell.spellState)
+            {
+                case SkillState.BASIC:
+                    FeedbackEquipped();
+                    break;
+                case SkillState.EQUIPPED:
+                    FeedbackEquipped();
+                    break;
+                case SkillState.UNEQUIPPED:
+                    FeedbackUnEquipped();
+                    break;
+                case SkillState.LOCKED:
+                    FeedbackLocked();
+                    break;
+                case SkillState.UNSELECTIONNED:
+                    FeedbackUnselectionned();
+                    break;
+            }
+
+
         }
+
+        private void ChangeOutline(bool value)
+        {
+            for (int i = 0; i < links.Length; i++)
+            {
+                links[i].lineBehavior.EnableOutline(value);
+            }
+        }
+
+        public BattleActorData Data
+        {
+            get
+            {
+                return associatedData;
+            }
+            set
+            {
+                associatedData = value;
+            }
+        }
+
+        public void SetDatas(int ID)
+        {
+
+            associatedSpell = associatedData.AllSpells[ID];
+            skillState = associatedSpell.spellState;
+            switch (skillState)
+            {
+                case SkillState.BASIC:
+                    image.sprite = associatedSpell.sprite;
+                    break;
+                case SkillState.EQUIPPED:
+                    image.sprite = associatedSpell.sprite;
+                    break;
+                case SkillState.LOCKED:
+                    image.sprite = associatedSpell.spriteBlocked;
+                    break;
+                case SkillState.UNEQUIPPED:
+                    image.sprite = associatedSpell.spriteBlocked;
+                    break;
+                    
+
+            }
+        }
+
+        private void FeedbackUnselectionned()
+        {
+
+
+            skillState = SkillState.UNSELECTIONNED;
+
+            image.sprite = associatedSpell.spriteBlocked;
+            image.color = unselectionnedColor;
+
+            canInteract = false;
+
+            associatedSpell.spellState = SkillState.UNSELECTIONNED;
+
+            InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
+            infoButtons[0] = InfoBoxButtons.BACK;
+            UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+
+
+
+        }
+
+        private void FeedbackEquipped()
+        {
+
+
+            skillState = SkillState.EQUIPPED;
+
+            equipped.SetActive(true);
+            unequipped.SetActive(false);
+            locked.SetActive(false);
+
+            image.sprite = associatedSpell.sprite;
+            image.color = equippedColor;
+
+            canInteract = false;
+
+            associatedSpell.spellState = SkillState.EQUIPPED;
+
+            InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
+            infoButtons[0] = InfoBoxButtons.BACK;
+            UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+
+        }
+
+        private void FeedbackUnEquipped()
+        {
+
+            skillState = SkillState.UNEQUIPPED;
+
+
+            equipped.SetActive(false);
+            unequipped.SetActive(true);
+            locked.SetActive(false);
+
+            image.sprite = associatedSpell.spriteBlocked;
+            image.color = equippedColor;
+
+            canInteract = true;
+
+            associatedSpell.spellState = SkillState.UNEQUIPPED;
+
+            InfoBoxButtons[] infoButtons = new InfoBoxButtons[2];
+            infoButtons[0] = InfoBoxButtons.CONFIRM;
+            infoButtons[1] = InfoBoxButtons.BACK;
+            UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+
+        }
+
+        private void FeedbackLocked()
+        {
+            skillState = SkillState.LOCKED;
+
+            equipped.SetActive(false);
+            unequipped.SetActive(false);
+            locked.SetActive(true);
+
+            image.sprite = associatedSpell.spriteBlocked;
+            image.color = lockedColor;
+            canInteract = false;
+
+            associatedSpell.spellState = SkillState.LOCKED;
+
+            InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
+            infoButtons[0] = InfoBoxButtons.BACK;
+            UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+
+        }
+
+        private void CheckSpells()
+        {
+            for (int i = 0; i < view.SpellTreeSelectors.Length; i++)
+            {
+                view.SpellTreeSelectors[i].SetUnHover();
+
+            }
+            for (int i = 0; i < view.SpellTreeSelectors.Length; i++)
+            {
+                if (view.SpellTreeSelectors[i].associatedSpell == associatedSpell)
+                {
+                    view.SpellTreeSelectors[i].SetHover();
+
+                }
+
+            }
+
+
+
+        }
+
+        private void SetSpellArray()
+        {
+            if (associatedData.Spells.Length <= associatedSpell.unlockOrder)
+            {
+                spellReminder = new Spell[associatedData.Spells.Length];
+
+                for (int i = 0; i < spellReminder.Length; i++)
+                {
+                    spellReminder[i] = associatedData.Spells[i];
+                }
+
+                associatedData.Spells = new Spell[associatedData.Spells.Length + 1];
+
+                for (int i = 0; i < spellReminder.Length; i++)
+                {
+                    associatedData.Spells[i] = spellReminder[i];
+                }
+            }
+
+            associatedData.Spells[associatedSpell.unlockOrder] = associatedSpell;
+        }
+
+
+
+        public void RefreshLines()
+        {
+            for (int i = 0; i < links.Length; i++)
+            {
+                switch (links[i].linkedSelector.skillState)
+                {
+                    case SkillState.EQUIPPED:
+                        if(skillState == SkillState.EQUIPPED || skillState == SkillState.BASIC)
+                        {
+                            links[i].lineBehavior.ToSelected();
+                        }
+                        else
+                        {
+                            links[i].lineBehavior.ToUnSelected();
+                            
+                        }
+
+                        break;
+                    case SkillState.UNEQUIPPED:
+                        links[i].lineBehavior.ToUnSelected();
+                        break;
+                    case SkillState.LOCKED:
+                        links[i].lineBehavior.ToDisable();
+                        break;
+                    case SkillState.UNSELECTIONNED:
+                        links[i].lineBehavior.ToDisable();
+                        break;
+                }
+            
+
+            }
+
+
+
+        }
+
 
     }
+
+
+
+    [System.Serializable]
+    public struct SkillLinks
+    {
+        public LineBehavior lineBehavior;
+        public SkillTreeSelector linkedSelector;
+    }
+    [System.Serializable]
+    public enum Palier
+    {
+        LITTLE,
+        MEDIUM,
+        BIG
+    }
+
 }
 

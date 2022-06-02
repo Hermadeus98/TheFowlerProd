@@ -16,19 +16,17 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-            receivers.ForEach(w => w.Health.Heal(healValue));
+            yield return StateEvent(emitter, receivers, delegate(BattleActor emitter, BattleActor receiver)
+            {
+                Heal(healValue, emitter, new []{receiver});
+            });
+            
             yield break;
         }
 
         public override IEnumerator OnFinishCast(BattleActor emitter, BattleActor[] receivers)
         {
             yield break;
-        }
-
-        public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
-        {
-            base.OnSimpleCast(emitter, receivers);
-            receivers.ForEach(w => w.Health.Heal(healValue));
         }
     }
 }

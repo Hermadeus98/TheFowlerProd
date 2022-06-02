@@ -15,10 +15,17 @@ namespace TheFowler
         
         public static Spell SelectedSpell { get; set; }
 
+        public static bool useInitiative = false;
+        public static bool showPreview = false;
+        public static bool isInPauseMenu = false;
+        public static bool canOpenPauseMenu = false;
+        
         public struct SavedData
         {
             public float health;
-            public int mana;
+            public int initiative;
+
+            public int attackBonus, defenseBonus;
         }
 
         public static SavedData RobynSavedData, AbiSavedData, PhoebeSavedData;

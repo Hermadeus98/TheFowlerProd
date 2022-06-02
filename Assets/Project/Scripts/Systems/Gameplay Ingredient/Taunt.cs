@@ -18,6 +18,8 @@ namespace TheFowler
         {
             base.Initialize();
             waitTurn = 0;
+            taunter = null;
+            ReferedActor.BattleActorInfo.isTaunt = false;
         }
         
         [Button]
@@ -27,7 +29,7 @@ namespace TheFowler
             this.taunter = taunter;
             waitTurn = turnCount;
             OnTauntStart?.Invoke();
-            ReferedActor.StateIcons.taunt.Show();
+            ReferedActor.StateIcons?.taunt?.Show();
         }
 
         [Button]
@@ -58,5 +60,6 @@ namespace TheFowler
                     EndTaunt();
             }
         }
+
     }
 }

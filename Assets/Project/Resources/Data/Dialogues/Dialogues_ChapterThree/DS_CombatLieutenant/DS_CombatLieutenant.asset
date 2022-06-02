@@ -1,5 +1,41 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-902357104645006441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: f27f891baca095b4e8393eebf437631e
+  position: {x: 237.86487, y: 103.191345}
+  children: []
+  dialogue:
+    ActorEnum: 4
+    dialogueText: "You all shall be <b>demised!</b>\r"
+    dialogueTextFrench: "Riez et contemplez tant que vous voulez les filles... Vous
+      serez toutes <b>\xE9limin\xE9es !</b>"
+    cameraPath:
+      genericKey: 4
+      cameraName: Cam5
+      batchName: 
+    displayDuration: 4
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20,6 +56,7 @@ MonoBehaviour:
   - {fileID: 8204202044735990305}
   - {fileID: 1520390825497602242}
   - {fileID: 3230273218545667221}
+  - {fileID: -902357104645006441}
   dialogueType: 0
 --- !u!114 &1520390825497602242
 MonoBehaviour:
@@ -42,20 +79,20 @@ MonoBehaviour:
   children:
   - {fileID: 3230273218545667221}
   dialogue:
-    ActorEnum: 4
-    dialogueText: "Laugh and contemplate all you want girls\u2026 you only prolonge
-      the inevitable."
+    ActorEnum: 1
+    dialogueText: "Time to get your filthy ass <b><#EBB517>down here!</b></color>\r"
+    dialogueTextFrench: "Il est temps de ramener ton sale cul <b><#EBB517>ici !</b></color>\r"
     cameraPath:
       genericKey: 4
       cameraName: Cam5
       batchName: 
-    displayDuration: 9
+    displayDuration: 6
     choiceText: 
     isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
-      WwiseObjectReference: {fileID: 11400000, guid: af54ae50bf89e674ab227505b994c800, type: 2}
+      WwiseObjectReference: {fileID: 11400000, guid: e4671a5a2a034d24fba1a5c7c9e9fa9d, type: 2}
     animationTrigger: 0
 --- !u!114 &3230273218545667221
 MonoBehaviour:
@@ -67,7 +104,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
+  m_Name: 
   m_EditorClassIdentifier: 
   NodeName: 
   chance: 1
@@ -75,21 +112,23 @@ MonoBehaviour:
   started: 0
   guid: 99ea13925976a54459c6763619bda197
   position: {x: 71, y: 101}
-  children: []
+  children:
+  - {fileID: -902357104645006441}
   dialogue:
     ActorEnum: 4
-    dialogueText: You all shall be demised!
+    dialogueText: "Laugh and contemplate all you want girls\u2026"
+    dialogueTextFrench: 'Riez et contemplez tant que vous voulez les filles... '
     cameraPath:
       genericKey: 4
       cameraName: Cam5
       batchName: 
-    displayDuration: 4
+    displayDuration: 6
     choiceText: 
     isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
-      WwiseObjectReference: {fileID: 11400000, guid: af54ae50bf89e674ab227505b994c800, type: 2}
+      WwiseObjectReference: {fileID: 11400000, guid: d0516d04857c58347a344974780f6be5, type: 2}
     animationTrigger: 0
 --- !u!114 &6752816362832641983
 MonoBehaviour:
@@ -113,7 +152,10 @@ MonoBehaviour:
   - {fileID: 8204202044735990305}
   dialogue:
     ActorEnum: 0
-    dialogueText: "And that's what you call \u201Cguards\u201D? Bunch of wankers!"
+    dialogueText: "And that's what you call <b><#CE2020>\u201Cguards\u201D?</b></color>
+      Bunch of wankers! "
+    dialogueTextFrench: "C\u2019est \xE7a ta <b><#CE2020>garde ?</b></color> Une
+      belle bande d\u2019abrutis !"
     cameraPath:
       genericKey: 1
       cameraName: Middle
@@ -136,7 +178,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
+  m_Name: 
   m_EditorClassIdentifier: 
   NodeName: 
   chance: 1
@@ -148,12 +190,17 @@ MonoBehaviour:
   - {fileID: 1520390825497602242}
   dialogue:
     ActorEnum: 2
-    dialogueText: NO MORE HIDING!
+    dialogueText: "It\u2019s <b><#1B69B8>over</b></color>, Lieutenant, call down
+      the guards.\r\n"
+    dialogueTextFrench: 'C''est <b><#1B69B8>fini</b></color>, Lieutenant, rappelez
+      la garde.
+
+'
     cameraPath:
-      genericKey: 2
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam5
       batchName: 
-    displayDuration: 4
+    displayDuration: 5
     choiceText: 
     isHarmonisation: 0
     voice:

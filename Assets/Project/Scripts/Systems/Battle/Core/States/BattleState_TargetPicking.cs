@@ -8,6 +8,7 @@ using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 namespace TheFowler
 {
@@ -41,24 +42,37 @@ namespace TheFowler
                 }
                 else
                 {
-
                     InfoBoxButtons[] infoButtons = new InfoBoxButtons[3];
                     infoButtons[0] = InfoBoxButtons.CONFIRM;
                     infoButtons[1] = InfoBoxButtons.BACK;
                     infoButtons[2] = InfoBoxButtons.SELECTTARGET;
                     UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
                 }
-            }
-            else if(BattleManager.IsEnemyTurn)
-            {
-                SetCamera(CameraKeys.BattleKeys.TargetPickingGuard);
+
+                if (BattleManager.IsReducingCD)
+                {
+                    StartCoroutine(WaitSkillShow());
+                }
             }
             
             PlaySpellPreview();
-
-            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.TARGETPICKING);
         }
+        
+        private IEnumerator WaitSkillShow()
+        {
+            SkillPickingView skillView = UI.GetView<SkillPickingView>(UI.Views.SkillPicking);
+            RectTransform skillRect = skillView.GetComponent<RectTransform>();
+            skillRect.anchoredPosition = new Vector2(0, 422);
+            skillView.Show();
+            yield return new WaitForSeconds(.8f);
 
+            TargetPickingView pickingView = UI.GetView<TargetPickingView>(UI.Views.TargetPicking);
+            RectTransform pickingRect = pickingView.GetComponent<RectTransform>();
+
+            pickingRect.DOAnchorPos(new Vector3(0, -266, 0), .2f);
+            skillRect.DOAnchorPos(new Vector3(0, 0, 0), .2f);
+
+        }
 
         private void PlaySpellPreview()
         {
@@ -90,29 +104,69 @@ namespace TheFowler
                     }
                     if (!Tutoriel.LockTarget)
                     {
-                        if (inputs.actions["Return"].WasPressedThisFrame())
+                        if (!Fury.IsInBreakdown)
                         {
-                            SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Cancel, gameObject);
-
-                            if (Fury.IsInFury)
+                            if (inputs.actions["Return"].WasPressedThisFrame())
                             {
-                                var skillEx = BattleManager.CurrentBattle.BattleState.GetState("SkillExecution") as BattleState_SkillExecution;
-                                skillEx.fury = false;
+                                SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Cancel, gameObject);
+
+                                if (Fury.IsInFury)
+                                {
+                                    var skillEx = BattleManager.CurrentBattle.BattleState.GetState("SkillExecution") as BattleState_SkillExecution;
+                                    skillEx.fury = false;
+                                }
+
+                                if (ReturnToActionMenu)
+                                {
+                                    BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.ACTION_PICKING);
+                                    SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SwitchCamera_Light, gameObject);
+                                }
+                                else
+                                {
+                                    BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.SKILL_PICKING);
+                                    SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SwitchCamera_Light, gameObject);
+                                }
                             }
+                        }
 
-                            if (ReturnToActionMenu)
+
+                    }
+
+                    if (BattleManager.IsReducingCD)
+                    {
+                        if (TargetSelector.SelectedTargets[0] != null)
+                        {
+                            SkillPickingView pickingView = UI.GetView<SkillPickingView>(UI.Views.SkillPicking);
+
+                            if (Fury.IsInBreakdown)
                             {
-                                BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.ACTION_PICKING);
-                                SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SwitchCamera_Light, gameObject);
+
+                                if (pickingView.skillSelector.currentSpellHandler != TargetSelector.SelectedTargets[0].GetBattleComponent<SpellHandler>())
+                                {
+                                    InfoBoxButtons[] infoButtons = new InfoBoxButtons[2];
+                                    infoButtons[0] = InfoBoxButtons.CONFIRM;
+                                    infoButtons[1] = InfoBoxButtons.SELECTTARGET;
+                                    UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+
+                                    UI.GetView<SkillPickingView>(UI.Views.SkillPicking).skillSelector.Refresh(TargetSelector.SelectedTargets[0].GetBattleComponent<SpellHandler>());
+                                }
                             }
                             else
                             {
-                                BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.SKILL_PICKING);
-                                SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SwitchCamera_Light, gameObject);
+                                if (pickingView.skillSelector.currentSpellHandler != BattleManager.CurrentBattleActor.GetBattleComponent<SpellHandler>())
+                                {
+                                    
+                                    UI.GetView<SkillPickingView>(UI.Views.SkillPicking).skillSelector.Refresh(BattleManager.CurrentBattleActor.GetBattleComponent<SpellHandler>());
+                                }
                             }
+
+                            
                         }
+
                     }
-                      
+
+
+
                 }
                 else if (BattleManager.IsEnemyTurn)
                 {
@@ -130,10 +184,28 @@ namespace TheFowler
             {
                 TargetSelector.OnTargetChanged -= PreviewManager.SetPreviews;
                 PreviewManager.EndPreviews();
+                
+                UI.CloseView(UI.Views.TargetPicking);
+
+                if (BattleManager.IsReducingCD)
+                {
+
+                    SkillPickingView skillView = UI.GetView<SkillPickingView>(UI.Views.SkillPicking);
+                    skillView.Hide();
+
+                    TargetPickingView pickingView = UI.GetView<TargetPickingView>(UI.Views.TargetPicking);
+                    RectTransform pickingRect = pickingView.GetComponent<RectTransform>();
+
+                    pickingRect.anchoredPosition = Vector3.zero;
+
+                    
+                }
+
+               
             }
-            
-            UI.CloseView(UI.Views.TargetPicking);
-            
+
+            Fury.IsInBreakdown = false;
+            BattleManager.IsReducingCD = false;
             TargetSelector.Quit();
             ReturnToActionMenu = false;
         }

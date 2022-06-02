@@ -7,7 +7,8 @@ namespace TheFowler
     public class VampirismeEffect : Effect
     {
         public float damage;
-        
+        public bool preserveEnemies = false;
+
         public override IEnumerator OnBeginCast(BattleActor emitter, BattleActor[] receivers)
         {
             yield break;
@@ -15,34 +16,27 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-            emitter.BattleActorAnimator.AttackCast();
-            SoundManager.PlaySound(audioEvent, emitter.gameObject);
-
-            yield return new WaitForSeconds(emitter.BattleActorAnimator.AttackCastDuration());
-
-            foreach (var receiver in receivers)
+            var dmg = Damage(damage, emitter, receivers);
+            
+            yield return new WaitForSeconds(SpellData.Instance.StateEffect_WaitTime);
+            
+            if (emitter is AllyActor)
             {
-                var _damage = DamageCalculator.CalculateDamage(damage, emitter, receiver, ReferedSpell.SpellType, out var resistanceFaiblesseResult);
-
-                SoundManager.PlaySoundDamageTaken(receiver, resistanceFaiblesseResult);
-
-                receiver.Health.TakeDamage(
-                    _damage
-                );
-                emitter.Health.Heal(_damage);
+                CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies");
             }
+            else if(emitter is EnemyActor)
+            {
+                CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Enemies");
+            }
+            
+            Heal(dmg, emitter, new []{emitter});
+
             yield break;
         }
 
         public override IEnumerator OnFinishCast(BattleActor emitter, BattleActor[] receivers)
         {
             yield break;
-        }
-
-        public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
-        {
-            base.OnSimpleCast(emitter, receivers);
-            emitter.StartCoroutine(OnCast(emitter, receivers));
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace TheFowler
@@ -6,7 +7,9 @@ namespace TheFowler
     public class BattleManager
     {
         public static Battle CurrentBattle;
+        public static bool IsReducingCD { get; set; }
 
+        public static int numberOfBattle = 0;
         public static ITurnActor CurrentTurnActor
         {
             get
@@ -35,5 +38,10 @@ namespace TheFowler
         public static BattleActor[] GetAllEnemies() => CurrentBattle.Enemies.Where(w => !w.BattleActorInfo.isDeath).ToArray();
 
         public static bool lastTurnWasAlly { get; set; } = false;
+        
+        public static bool lastTurnWasEnemiesTurn { get; set; } = false;
+        
+        public static List<BattleActor> lastTouchedActors = new List<BattleActor>();
+
     }
 }

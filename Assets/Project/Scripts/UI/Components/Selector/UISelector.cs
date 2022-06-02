@@ -35,13 +35,14 @@ namespace TheFowler
 
         [SerializeField] protected int index;
 
+        public bool canNavigate = true;
         protected Action<UISelectorElement> OnSelect;
 
         public CanvasGroup CanvasGroup => canvasGroup;
 
         protected virtual void Update()
         {
-            if(!isActive)
+            if(!isActive ||!canNavigate)
                 return;
 
             switch (selectorType)
@@ -55,19 +56,17 @@ namespace TheFowler
 
         private void Navigate()
         {
-            if(!isActive)
+            if(!isActive || !canNavigate )
                 return;
             
             if (Inputs.actions["NavigateDown"].WasPressedThisFrame())
             {
                 SelectNext();
-                OnNavigate();
             }
 
             if (Inputs.actions["NavigateUp"].WasPressedThisFrame())
             {
                 SelectPrevious();
-                OnNavigate();
             }
 
             if (Inputs.actions["A"].WasPressedThisFrame())
@@ -111,6 +110,7 @@ namespace TheFowler
             currentSelectedElement = elements[currentIndex];
             currentSelectedElement.Select();
             OnSelect?.Invoke(currentSelectedElement);
+            OnNavigate();
         }
         
         public override void Show()

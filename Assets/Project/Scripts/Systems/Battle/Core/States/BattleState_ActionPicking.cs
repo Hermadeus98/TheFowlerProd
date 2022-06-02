@@ -9,7 +9,7 @@ namespace TheFowler
         private ActionPickingView ActionPickingView;
 
         private Coroutine openning, closing;
-        
+
         public override void OnStateEnter(EventArgs arg)
         {
             base.OnStateEnter(arg);
@@ -21,39 +21,49 @@ namespace TheFowler
             if (BattleManager.IsAllyTurn)
             {
                 ActionPickingView = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
-                BattleManager.CurrentBattleActor.BattleActorAnimator.Idle();
-                
                 UI.OpenView("FuryView");
+                BattleManager.lastTurnWasEnemiesTurn = false;
+
+                //CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle, CameraKeys.BattleKeys.ActionPicking);
+
+                InfoBoxButtons[] infoButtons = new InfoBoxButtons[0];
+
+                UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
             }
 
             if (BattleManager.IsEnemyTurn)
             {
                 UI.CloseView("FuryView");
             }
-
-            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.ACTIONPICKING);
-
             
-            InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
-            infoButtons[0] = InfoBoxButtons.HIDE;
 
-            UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+            BattleManager.CurrentBattle.BattleGameLogComponent.ShowGameLogView();
         }
 
         IEnumerator OnStateEnterIE()
         {
+            if (BattleManager.CurrentBattleActor.mustResurect)
+            {
+                if (BattleManager.CurrentBattleActor is AllyActor allyActor)
+                {
+                    if (allyActor.mustResurect)
+                    {
+                        yield return allyActor.ResurectionCoroutine();
+                    }
+                }
+            }
+            
             if (BattleManager.IsAllyTurn)
             {
                 SetCamera(CameraKeys.BattleKeys.ActionPicking);
             }
             else if (BattleManager.IsEnemyTurn)
             {
-                SetCamera(CameraKeys.BattleKeys.TargetPickingGuard);
+                if (!BattleManager.lastTurnWasEnemiesTurn)
+                {
+                    yield return new WaitForSeconds(.2f);
+                }
             }
-
-            //yield return new WaitForSeconds(UI.GetView<TurnTransitionView>(UI.Views.TurnTransition).WaitTime);
-            yield return new WaitForSeconds(.2f);
-
 
             if (BattleManager.IsAllyTurn)
             {
@@ -62,9 +72,7 @@ namespace TheFowler
                     ActionPickingView = UI.OpenView<ActionPickingView>(UI.Views.ActionPicking);
                     ActionPickingView.Refresh(EventArgs.Empty);
                 }
-
             }
-
 
             isActive = true;
             yield break;
@@ -77,7 +85,7 @@ namespace TheFowler
             if(!isActive)
                 return;
 
-            if (!Tutoriel.isTutoriel)
+            if (Tutoriel.endIntro)
             {
                 if (BattleManager.IsAllyTurn)
                 {
@@ -89,17 +97,51 @@ namespace TheFowler
                                 break;
                             case ActionPickerElement.PlayerActionType.SPELL:
                                 BattleManager.CurrentBattle.ChangeBattleState<BattleState_SkillPicking>(BattleStateEnum.SKILL_PICKING);
+
+                                if (!Tutoriel.hasSpell)
+                                {
+                                    Tutoriel.hasSpell = true;
+                                    UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.SPELL, 1.25f);
+
+                                    if(BattleManager.numberOfBattle >= 2 && !Tutoriel.hasBuff)
+                                    {
+                                        Tutoriel.hasBuff = true;
+                                        UI.GetView<TutorielView>(UI.Views.Tuto)._spell.nextElement.nextElement = UI.GetView<TutorielView>(UI.Views.Tuto)._buff;
+                                    }
+                                }
+                                else
+                                {
+                                    if (BattleManager.numberOfBattle >= 2 && !Tutoriel.hasBuff)
+                                {
+                                    Tutoriel.hasBuff = true;
+                                    UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.BUFF, .8f);
+                                }
+                                }
+
+                                
                                 break;
                             case ActionPickerElement.PlayerActionType.PARRY:
                                 Player.SelectedSpell = BattleManager.CurrentBattleActor.BattleActorData.DefendSpell;
                                 {
+                                    
                                     var skillPickingView =
                                         BattleManager.CurrentBattle.ChangeBattleState<BattleState_TargetPicking>(BattleStateEnum
                                             .TARGET_PICKING);
                                     skillPickingView.ReturnToActionMenu = true;
+
                                 }
+
+                                if (!Tutoriel.hasQuickAttack)
+                                {
+                                    Tutoriel.hasQuickAttack = true;
+                                    UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.QUICKATTACK, .8f);
+                                }
+
+                             
                                 break;
                             case ActionPickerElement.PlayerActionType.ATTACK:
+
+
                                 Player.SelectedSpell = BattleManager.CurrentBattleActor.BattleActorData.BasicAttackSpell;
                                 {
                                     var skillPickingView =
@@ -107,9 +149,23 @@ namespace TheFowler
                                             .TARGET_PICKING);
                                     skillPickingView.ReturnToActionMenu = true;
                                 }
+
+
+                                if (!Tutoriel.hasBasicAttack)
+                                {
+                                    Tutoriel.hasBasicAttack = true;
+                                    UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.BASICATTACK, 1f);
+                                }
+
                                 break;
                             case ActionPickerElement.PlayerActionType.FURY:
                                 //Fury.BatonPass();
+
+                                if (BattleManager.CurrentBattleActor.BattleActorData.FurySpell == null)
+                                {
+                                    Debug.LogError($"Il manque le spell de fury dans : {BattleManager.CurrentBattleActor.BattleActorData}", BattleManager.CurrentBattleActor.BattleActorData);
+                                    break;
+                                }
                                 
                                 Fury.PlayFury(BattleManager.CurrentBattleActor.BattleActorData.FurySpell);
                                 break;
@@ -137,7 +193,14 @@ namespace TheFowler
 
             isActive = false;
 
+            if (BattleManager.IsEnemyTurn)
+            {
+                BattleManager.lastTurnWasEnemiesTurn = true;
+            }
+
             SoundManager.PlaySound( AudioGenericEnum.TF_SFX_Combat_UI_SwitchCamera_Light, gameObject);
+
+            BattleManager.CurrentBattle.BattleGameLogComponent.HideGameLogView();
         }
 
         private IEnumerator CloseView()

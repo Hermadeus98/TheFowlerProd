@@ -8,11 +8,13 @@ namespace TheFowler
     {
         public override IEnumerator OnBeginCast(BattleActor emitter, BattleActor[] receivers)
         {
+            Fury.ResetFury();
             yield break;
         }
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
+            
             yield break;
         }
 

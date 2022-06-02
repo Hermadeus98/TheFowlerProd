@@ -42,20 +42,24 @@ namespace TheFowler
         {
             isComplete = false;
             if(clear) textComponent.SetText(string.Empty);
-            for (int i = 0; i < textToDisplay.Length; i++)
+
+            if (!string.IsNullOrEmpty(textToDisplay))
             {
-                var character = textToDisplay[i];
-                AnimatedTextException exception = null;
-                exceptions?.TryGetValue(character, out exception);
-                if (exception != null)
+                for (int i = 0; i < textToDisplay.Length; i++)
                 {
-                    textComponent.text += textToDisplay[i];
-                    yield return new WaitForSeconds(exception.overrideDuration);
-                }
-                else
-                {
-                    textComponent.text += textToDisplay[i];
-                    yield return new WaitForSeconds(displayDuration * Time.deltaTime);
+                    var character = textToDisplay[i];
+                    AnimatedTextException exception = null;
+                    exceptions?.TryGetValue(character, out exception);
+                    if (exception != null)
+                    {
+                        textComponent.text += textToDisplay[i];
+                        yield return new WaitForSeconds(exception.overrideDuration);
+                    }
+                    else
+                    {
+                        textComponent.text += textToDisplay[i];
+                        yield return new WaitForSeconds(displayDuration * Time.deltaTime);
+                    }
                 }
             }
 
@@ -67,6 +71,12 @@ namespace TheFowler
         {
             isComplete = true;
             textComponent.SetText(textToDisplay);
+        }
+
+        public void SetAndFinishText(string text)
+        {
+            textToDisplay = text;
+            Complete();
         }
     }
 

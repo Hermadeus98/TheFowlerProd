@@ -22,13 +22,15 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Flag
   m_Shader: {fileID: 4800000, guid: 8c8484a08ec54cf41b2d54b8e6e8afe6, type: 3}
-  m_ShaderKeywords: _DISABLE_DECALS _DISABLE_SSR_TRANSPARENT _NORMALMAP_TANGENT_SPACE
+  m_ShaderKeywords: _ALPHATEST_ON _DISABLE_DECALS _DISABLE_SSR_TRANSPARENT _DOUBLESIDED_ON
+    _NORMALMAP_TANGENT_SPACE
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 1
+  m_CustomRenderQueue: 2450
   stringTagMap:
     MotionVector: User
+    RenderType: TransparentCutout
   disabledShaderPasses:
   - TransparentDepthPrepass
   - TransparentDepthPostpass
@@ -43,7 +45,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ARM_1:
-        m_Texture: {fileID: 2800000, guid: b1ce63d16047d2548863fe4df98126f3, type: 3}
+        m_Texture: {fileID: 2800000, guid: f87eac2dcbb56ab419ccb4c10fd205be, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ARM_2:
@@ -79,7 +81,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Diffuse_1:
-        m_Texture: {fileID: 2800000, guid: 64b70239b0b5228489672b7793581169, type: 3}
+        m_Texture: {fileID: 2800000, guid: 78e7d0895e279324ea18d028862e70eb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Diffuse_2:
@@ -87,7 +89,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _E_1:
-        m_Texture: {fileID: 2800000, guid: 70bd977c1ae7bc74b84ac46de1041d78, type: 3}
+        m_Texture: {fileID: 2800000, guid: f87eac2dcbb56ab419ccb4c10fd205be, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissiveColorMap:
@@ -127,7 +129,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal_1:
-        m_Texture: {fileID: 2800000, guid: 3124997b41f3e4449b034965db45c7fd, type: 3}
+        m_Texture: {fileID: 2800000, guid: b3805d99477c0814ba90fc9f8662f8c4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal_2:
@@ -184,8 +186,8 @@ Material:
     - _ATDistance: 1
     - _AddPrecomputedVelocity: 0
     - _AlbedoAffectEmissive: 0
-    - _AlphaCutoff: 0.5
-    - _AlphaCutoffEnable: 0
+    - _AlphaCutoff: 0.851
+    - _AlphaCutoffEnable: 1
     - _AlphaCutoffPostpass: 0.5
     - _AlphaCutoffPrepass: 0.5
     - _AlphaCutoffShadow: 0.5
@@ -199,9 +201,9 @@ Material:
     - _BaseColorAlpha2: 1
     - _BlendMode: 0
     - _CoatMask: 0
-    - _CullMode: 2
-    - _CullModeForward: 2
-    - _Cutoff: 0.5
+    - _CullMode: 0
+    - _CullModeForward: 0
+    - _Cutoff: 0.851
     - _DIntensity: 1
     - _DIntensity1: 1
     - _DIntensity2: 1
@@ -217,7 +219,7 @@ Material:
     - _DisplacementLockObjectScale: 1
     - _DisplacementLockTilingScale: 1
     - _DisplacementMode: 0
-    - _DoubleSidedEnable: 0
+    - _DoubleSidedEnable: 1
     - _DoubleSidedNormalMode: 1
     - _DstBlend: 0
     - _E_Intensity1: 0
@@ -325,7 +327,7 @@ Material:
     - _UseShadowThreshold: 0
     - _WindIntensity: 0.5
     - _ZTestDepthEqualForOpaque: 3
-    - _ZTestGBuffer: 4
+    - _ZTestGBuffer: 3
     - _ZTestTransparent: 4
     - _ZWrite: 1
     - __dirty: 0

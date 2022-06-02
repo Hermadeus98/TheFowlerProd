@@ -1,0 +1,656 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8409969156090205747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1884b09a793565145a2ecfeff2b70fbc, type: 3}
+  m_Name: Oui
+  m_EditorClassIdentifier: 
+  NodeName: Oui
+  chance: 1
+  state: 0
+  started: 0
+  guid: a3d8f743229ab32448adcc4087e02f35
+  position: {x: 341.52582, y: -55.441776}
+  children:
+  - {fileID: 3530820903572657954}
+  - {fileID: -8105890633493380913}
+--- !u!114 &-8403901070710477329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: 9th String
+  m_EditorClassIdentifier: 
+  NodeName: 9th String
+  chance: 1
+  state: 0
+  started: 0
+  guid: 6ed2e934323ec7047b881fa2562f007d
+  position: {x: 745.49786, y: -408.2643}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: 1b75ef519e7c8c7448ab80880c1cbf8f, type: 2}
+    Chance: 0
+--- !u!114 &-8105890633493380913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: Random PC
+  m_EditorClassIdentifier: 
+  NodeName: Random PC
+  chance: 3
+  state: 0
+  started: 0
+  guid: 5b970926b04e91f4aaa95ea3d8d30ce8
+  position: {x: 519.749, y: 61.99999}
+  children:
+  - {fileID: 5130700685467931332}
+  TargetIntention: 9
+  With: 0
+  value: 0
+--- !u!114 &-7931456211683074899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1884b09a793565145a2ecfeff2b70fbc, type: 3}
+  m_Name: Oui 2
+  m_EditorClassIdentifier: 
+  NodeName: Oui 2
+  chance: 1
+  state: 0
+  started: 0
+  guid: 3348ae007fa13c44687fa1b8b8a12654
+  position: {x: 159, y: 470.251}
+  children:
+  - {fileID: 5462821488825432811}
+  - {fileID: 7731024155402817689}
+--- !u!114 &-7774286549162479844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a16d7749e1191724db8102279a8920c3, type: 3}
+  m_Name: PNJ > 2 2
+  m_EditorClassIdentifier: 
+  NodeName: PNJ > 2 2
+  chance: 1
+  state: 0
+  started: 0
+  guid: a79517d439d525447a626b0a63cef2f2
+  position: {x: 6.988682, y: 334.99997}
+  children:
+  - {fileID: 3186729882161378454}
+  - {fileID: -7931456211683074899}
+  Choices:
+  - isHardChoice: 0
+    hardChoice: 0
+    comparator_A: 5
+    component: 1
+    Operator: 3
+    comparator_B: 6
+    percent: 2
+    NextNode: {fileID: -7931456211683074899}
+  DefaultNextNode: {fileID: 3186729882161378454}
+--- !u!114 &-7041492711225074691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: 9th Choard 4
+  m_EditorClassIdentifier: 
+  NodeName: 9th Choard 4
+  chance: 1
+  state: 0
+  started: 0
+  guid: a8921f7a1d9c19040a26236f284e77ba
+  position: {x: 645.749, y: 462.251}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: 1b75ef519e7c8c7448ab80880c1cbf8f, type: 2}
+    Chance: 0
+--- !u!114 &-6562890891863230982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: Robyn
+  m_EditorClassIdentifier: 
+  NodeName: Robyn
+  chance: 3
+  state: 0
+  started: 0
+  guid: 4c2cc71be921e6f45ab18a8fc90962e7
+  position: {x: 7.011393, y: 723.99994}
+  children:
+  - {fileID: 7168479506791400108}
+  TargetIntention: 6
+  With: 0
+  value: 0
+--- !u!114 &-5137462194242084503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a16d7749e1191724db8102279a8920c3, type: 3}
+  m_Name: Robyn est Taunt ?
+  m_EditorClassIdentifier: 
+  NodeName: Robyn est Taunt ?
+  chance: 1
+  state: 0
+  started: 0
+  guid: c9e37a36e02354b43b1a29b87a5dee47
+  position: {x: -358.2553, y: 93.251}
+  children:
+  - {fileID: -2481030928593715613}
+  - {fileID: 2870462593249953338}
+  Choices:
+  - isHardChoice: 0
+    hardChoice: 0
+    comparator_A: 1
+    component: 0
+    Operator: 2
+    comparator_B: 6
+    percent: 0
+    NextNode: {fileID: 2870462593249953338}
+  - isHardChoice: 1
+    hardChoice: 2
+    comparator_A: 6
+    component: 0
+    Operator: 0
+    comparator_B: 6
+    percent: 0
+    NextNode: {fileID: 2870462593249953338}
+  DefaultNextNode: {fileID: -2481030928593715613}
+--- !u!114 &-3257855623768156852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: Random PC 3
+  m_EditorClassIdentifier: 
+  NodeName: Random PC 3
+  chance: 1
+  state: 0
+  started: 0
+  guid: 26e11cc635424bd48a9f274db259f199
+  position: {x: 424.749, y: 317}
+  children:
+  - {fileID: 1915505415317602741}
+  TargetIntention: 9
+  With: 0
+  value: 0
+--- !u!114 &-3008478447321708307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: Basic Attack
+  m_EditorClassIdentifier: 
+  NodeName: Basic Attack
+  chance: 1
+  state: 0
+  started: 0
+  guid: dee037085f5c1f347b54a02270be5d90
+  position: {x: 734.99603, y: -174.00804}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: 258cd9a2c877a694f93fa7b6ef3b8e03, type: 2}
+    Chance: 0
+--- !u!114 &-2481030928593715613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1884b09a793565145a2ecfeff2b70fbc, type: 3}
+  m_Name: Taunt Robyn ?
+  m_EditorClassIdentifier: 
+  NodeName: Taunt Robyn ?
+  chance: 1
+  state: 0
+  started: 0
+  guid: 426718ec0c388e54b90bf13aa6f47ce1
+  position: {x: -188.24304, y: 541.6178}
+  children:
+  - {fileID: -7774286549162479844}
+  - {fileID: -6562890891863230982}
+--- !u!114 &-2431745006722720345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: 9th Choard 3
+  m_EditorClassIdentifier: 
+  NodeName: 9th Choard 3
+  chance: 1
+  state: 0
+  started: 0
+  guid: 7e5bb98deefb98c4fb26d99487ac38af
+  position: {x: 660.74896, y: 180}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: 1b75ef519e7c8c7448ab80880c1cbf8f, type: 2}
+    Chance: 0
+--- !u!114 &-1265835018477411183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: Random PC 2
+  m_EditorClassIdentifier: 
+  NodeName: Random PC 2
+  chance: 1
+  state: 0
+  started: 0
+  guid: 3ae50555c1a6d5c45ba96f0f00b521fa
+  position: {x: 550.50006, y: -173.00002}
+  children:
+  - {fileID: -3008478447321708307}
+  TargetIntention: 9
+  With: 0
+  value: 0
+--- !u!114 &-253824800331094130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: All PC
+  m_EditorClassIdentifier: 
+  NodeName: All PC
+  chance: 3
+  state: 0
+  started: 0
+  guid: ca78a45250a7f3f48918070711a55e98
+  position: {x: 544.2509, y: -407.32596}
+  children:
+  - {fileID: -8403901070710477329}
+  TargetIntention: 13
+  With: 0
+  value: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cf5a2a104152e48a7bbaed625f399a, type: 3}
+  m_Name: AI_CommanderPhoebe
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: -5137462194242084503}
+  actors: 
+  treeState: 0
+  nodes:
+  - {fileID: -5137462194242084503}
+  - {fileID: 2870462593249953338}
+  - {fileID: 5302950722516030958}
+  - {fileID: -8409969156090205747}
+  - {fileID: -253824800331094130}
+  - {fileID: -1265835018477411183}
+  - {fileID: 3530820903572657954}
+  - {fileID: -8105890633493380913}
+  - {fileID: -8403901070710477329}
+  - {fileID: 4749142651316312490}
+  - {fileID: -3008478447321708307}
+  - {fileID: 5130700685467931332}
+  - {fileID: -2481030928593715613}
+  - {fileID: -6562890891863230982}
+  - {fileID: 7168479506791400108}
+  - {fileID: -7774286549162479844}
+  - {fileID: 3186729882161378454}
+  - {fileID: -7931456211683074899}
+  - {fileID: 8629257576939352498}
+  - {fileID: -3257855623768156852}
+  - {fileID: -2431745006722720345}
+  - {fileID: 1915505415317602741}
+  - {fileID: 7731024155402817689}
+  - {fileID: 5462821488825432811}
+  - {fileID: -7041492711225074691}
+  - {fileID: 202829838808580026}
+  dialogueType: 0
+--- !u!114 &202829838808580026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: Basic Attack 4
+  m_EditorClassIdentifier: 
+  NodeName: Basic Attack 4
+  chance: 1
+  state: 0
+  started: 0
+  guid: 78dbed1b0309703478cbac3522bf51fe
+  position: {x: 648.749, y: 600}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: 258cd9a2c877a694f93fa7b6ef3b8e03, type: 2}
+    Chance: 0
+--- !u!114 &1915505415317602741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: Basic Attack 3
+  m_EditorClassIdentifier: 
+  NodeName: Basic Attack 3
+  chance: 1
+  state: 0
+  started: 0
+  guid: 41cf4d306c568cf4f84e132cfe682f1a
+  position: {x: 652.251, y: 316.25497}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: 258cd9a2c877a694f93fa7b6ef3b8e03, type: 2}
+    Chance: 0
+--- !u!114 &2870462593249953338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a16d7749e1191724db8102279a8920c3, type: 3}
+  m_Name: PNJ > 2
+  m_EditorClassIdentifier: 
+  NodeName: PNJ > 2
+  chance: 1
+  state: 0
+  started: 0
+  guid: fabf382818d52104081ac47c2163b94e
+  position: {x: 148.52582, y: -182.44179}
+  children:
+  - {fileID: 5302950722516030958}
+  - {fileID: -8409969156090205747}
+  Choices:
+  - isHardChoice: 0
+    hardChoice: 0
+    comparator_A: 5
+    component: 1
+    Operator: 3
+    comparator_B: 6
+    percent: 2
+    NextNode: {fileID: -8409969156090205747}
+  DefaultNextNode: {fileID: 5302950722516030958}
+--- !u!114 &3186729882161378454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1884b09a793565145a2ecfeff2b70fbc, type: 3}
+  m_Name: Non 2
+  m_EditorClassIdentifier: 
+  NodeName: Non 2
+  chance: 1
+  state: 0
+  started: 0
+  guid: bd5e90eb98325404699a2bec475fabf1
+  position: {x: 154.0159, y: 234.56953}
+  children:
+  - {fileID: 8629257576939352498}
+  - {fileID: -3257855623768156852}
+--- !u!114 &3530820903572657954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: All PC 2
+  m_EditorClassIdentifier: 
+  NodeName: All PC 2
+  chance: 1
+  state: 0
+  started: 0
+  guid: 4721d796f270d5b418eb5ae254612ae9
+  position: {x: 520.99994, y: -54.999985}
+  children:
+  - {fileID: 4749142651316312490}
+  TargetIntention: 13
+  With: 0
+  value: 0
+--- !u!114 &4749142651316312490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: 9th String 2
+  m_EditorClassIdentifier: 
+  NodeName: 9th String 2
+  chance: 1
+  state: 0
+  started: 0
+  guid: 0c7878356e9b9fa449b7ccfb67c3258e
+  position: {x: 741.5259, y: -53.4418}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: 1b75ef519e7c8c7448ab80880c1cbf8f, type: 2}
+    Chance: 0
+--- !u!114 &5130700685467931332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: Basic Attack 2
+  m_EditorClassIdentifier: 
+  NodeName: Basic Attack 2
+  chance: 1
+  state: 0
+  started: 0
+  guid: 3005564eec5d1f5459fc930bc6ff2974
+  position: {x: 739.5258, y: 64.558174}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: 258cd9a2c877a694f93fa7b6ef3b8e03, type: 2}
+    Chance: 0
+--- !u!114 &5302950722516030958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1884b09a793565145a2ecfeff2b70fbc, type: 3}
+  m_Name: Non
+  m_EditorClassIdentifier: 
+  NodeName: Non
+  chance: 1
+  state: 0
+  started: 0
+  guid: 086000d7ea4246d4aae9ce4dfde73989
+  position: {x: 343.5259, y: -250.44177}
+  children:
+  - {fileID: -253824800331094130}
+  - {fileID: -1265835018477411183}
+--- !u!114 &5462821488825432811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: Random PC
+  m_EditorClassIdentifier: 
+  NodeName: Random PC
+  chance: 3
+  state: 0
+  started: 0
+  guid: d04b2a3b5e9e14b4b8613b113282f864
+  position: {x: 426.7575, y: 596.4111}
+  children:
+  - {fileID: 202829838808580026}
+  TargetIntention: 9
+  With: 0
+  value: 0
+--- !u!114 &7168479506791400108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: Taunt
+  m_EditorClassIdentifier: 
+  NodeName: Taunt
+  chance: 1
+  state: 0
+  started: 0
+  guid: 830506e0ae0f71a4a8c1f9a110353526
+  position: {x: 203.75696, y: 722.61774}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: ae04576d30351cb428e1c792133d5f66, type: 2}
+    Chance: 0
+--- !u!114 &7731024155402817689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: All PC 4
+  m_EditorClassIdentifier: 
+  NodeName: All PC 4
+  chance: 1
+  state: 0
+  started: 0
+  guid: d904763c0d7e63846bb32eccb8828d1d
+  position: {x: 428.50653, y: 463.13684}
+  children:
+  - {fileID: -7041492711225074691}
+  TargetIntention: 13
+  With: 0
+  value: 0
+--- !u!114 &8629257576939352498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: All PC 2
+  m_EditorClassIdentifier: 
+  NodeName: All PC 2
+  chance: 3
+  state: 0
+  started: 0
+  guid: 0b24fc625eee24d41b05ec9530b39513
+  position: {x: 423.74905, y: 179.99998}
+  children:
+  - {fileID: -2431745006722720345}
+  TargetIntention: 13
+  With: 0
+  value: 0

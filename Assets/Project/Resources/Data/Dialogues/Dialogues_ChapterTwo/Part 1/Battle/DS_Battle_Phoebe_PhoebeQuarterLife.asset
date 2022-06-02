@@ -1,0 +1,173 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6642321078143833144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: Main
+  m_EditorClassIdentifier: 
+  NodeName: Main
+  chance: 1
+  state: 0
+  started: 0
+  guid: f60670f95dc38cf408eafe19015b1aed
+  position: {x: 154.6, y: 0}
+  children:
+  - {fileID: -4542809427349163145}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: IS THAT <b><#CE2020>YOUR AMBITION?!</b></color> IS THAT <b><#CE2020>WHY</b></color>
+      YOU FOLLOW THE FOWLER?!?
+    dialogueTextFrench: "T\u2019OUVRES TOUJOURS PAS LES <b><#CE2020>YEUX?</b></color>
+      TU VAS CONTINUER \xC0 <b><#CE2020>SUIVRE</b></color> LE FOWLER ENCORE LONGTEMPS
+      ? "
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: 
+    displayDuration: 8
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &-4542809427349163145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 97b7e76a9c25d674bb928951a6c446d9
+  position: {x: 333.88522, y: 2.0113347}
+  children:
+  - {fileID: 7818983122399377829}
+  dialogue:
+    ActorEnum: 2
+    dialogueText: "HOW <b><#CE2020>DARE</b></color> YOU ?!! THE FOWLER IS <b><#CE2020>NOT</b></color>
+      WHY I\u2019M HERE!"
+    dialogueTextFrench: 'COMMENT <b><#CE2020>OSES</b></color>-TU ?!! LE FOWLER N''EST
+      <b><#CE2020>PAS</b></color> LA RAISON POUR LAQUELLE JE SUIS ICI ! '
+    cameraPath:
+      genericKey: 2
+      cameraName: Default
+      batchName: 
+    displayDuration: 7
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cf5a2a104152e48a7bbaed625f399a, type: 3}
+  m_Name: DS_Battle_Phoebe_PhoebeQuarterLife
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: -6642321078143833144}
+  actors: 
+  treeState: 0
+  nodes:
+  - {fileID: -6642321078143833144}
+  - {fileID: 8838685816219231954}
+  - {fileID: 7818983122399377829}
+  - {fileID: -4542809427349163145}
+  dialogueType: 0
+--- !u!114 &7818983122399377829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: f818178b448a5b94b8815afb10913499
+  position: {x: 507.98828, y: 2.0113347}
+  children:
+  - {fileID: 8838685816219231954}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: "Save the pity story for yourself! Abby and I are gonna stop y\u2019all
+      <b><#CE2020>ONCE AND FOR ALL!</b></color>"
+    dialogueTextFrench: "Garde ton histoire tragique pour toi ! Abby et moi, on va
+      t'arr\xEAter une <b><#CE2020>bonne fois pour toutes !</b></color>"
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: 
+    displayDuration: 9
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &8838685816219231954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: ee6102843f6fde946aebce4e04528676
+  position: {x: 691.74585, y: 2.0113347}
+  children: []
+  dialogue:
+    ActorEnum: 2
+    dialogueText: THEN SHOW ME WHAT YOU GOT!
+    dialogueTextFrench: ALORS MONTREZ MOI CE QUE VOUS VALEZ !
+    cameraPath:
+      genericKey: 2
+      cameraName: Default
+      batchName: 
+    displayDuration: 5
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0

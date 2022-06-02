@@ -42,55 +42,71 @@ namespace TheFowler
             currentIndex = 0;
             blockNavigation = false;
 
-            if (BattleManager.CurrentBattleActor.BattleActorInfo.isTaunt && 
-                !BattleManager.CurrentBattleActor.GetBattleComponent<Taunt>().taunter.BattleActorInfo.isDeath)
+            if (Player.SelectedSpell.Effects[0] is BatonPassEffect)
             {
-                var taunt = BattleManager.CurrentBattleActor.GetBattleComponent<Taunt>();
-                AvailableTargets.Add(taunt.taunter);
-                SelectedTargets.Add(taunt.taunter);
+                Debug.Log("CORRECTION ICI");
+                if (Player.SelectedSpell.Effects[0] is BatonPassEffect)
+                    AvailableTargets.AddRange(GetAllAlliesAndDeadAllies());
+                else
+                    AvailableTargets.AddRange(GetAllAlliesOf(BattleManager.CurrentBattleActor));
                 Select(AvailableTargets[0]);
-                blockNavigation = true;
             }
             else
             {
-                switch (targetType)
+                if (BattleManager.CurrentBattleActor.BattleActorInfo.isTaunt &&
+                    !BattleManager.CurrentBattleActor.GetBattleComponent<Taunt>().taunter.BattleActorInfo.isDeath &&
+                    (targetType == TargetTypeEnum.SOLO_ENEMY || targetType == TargetTypeEnum.ALL))
                 {
-                    case TargetTypeEnum.SELF:
-                        AvailableTargets.Add(GetSelf());
-                        SelectedTargets.Add(GetSelf());
-                        Select(AvailableTargets[0]);
-                        break;
-                    case TargetTypeEnum.SOLO_ENEMY:
-                        AvailableTargets.AddRange(GetAllEnemiesOf(BattleManager.CurrentBattleActor));
-                        Select(AvailableTargets[0]);
-                        break;
-                    case TargetTypeEnum.ALL_ENEMIES:
-                        AvailableTargets.AddRange(GetAllEnemiesOf(BattleManager.CurrentBattleActor));
-                        SelectedTargets.AddRange(GetAllEnemiesOf(BattleManager.CurrentBattleActor));
-                        SelectAll(SelectedTargets);
-                        break;
-                    case TargetTypeEnum.SOLO_ALLY:
-                        AvailableTargets.AddRange(GetAllAlliesOf(BattleManager.CurrentBattleActor));
-                        Select(AvailableTargets[0]);
-                        break;
-                    case TargetTypeEnum.ALL_ALLIES:
-                        AvailableTargets.AddRange(GetAllAlliesOf(BattleManager.CurrentBattleActor));
-                        SelectedTargets.AddRange(GetAllAlliesOf(BattleManager.CurrentBattleActor));
-                        SelectAll(SelectedTargets);
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(targetType), targetType, null);
+                    var taunt = BattleManager.CurrentBattleActor.GetBattleComponent<Taunt>();
+                    AvailableTargets.Add(taunt.taunter);
+                    SelectedTargets.Add(taunt.taunter);
+                    Select(AvailableTargets[0]);
+                    blockNavigation = true;
+                }
+                else
+                {
+                    switch (targetType)
+                    {
+                        case TargetTypeEnum.SELF:
+                            AvailableTargets.Add(GetSelf());
+                            SelectedTargets.Add(GetSelf());
+                            Select(AvailableTargets[0]);
+                            break;
+                        case TargetTypeEnum.SOLO_ENEMY:
+                            AvailableTargets.AddRange(GetAllEnemiesOf(BattleManager.CurrentBattleActor));
+                            Select(AvailableTargets[0]);
+                            break;
+                        case TargetTypeEnum.ALL_ENEMIES:
+                            AvailableTargets.AddRange(GetAllEnemiesOf(BattleManager.CurrentBattleActor));
+                            SelectedTargets.AddRange(GetAllEnemiesOf(BattleManager.CurrentBattleActor));
+                            SelectAll(SelectedTargets);
+                            break;
+                        case TargetTypeEnum.SOLO_ALLY:
+                            if (Player.SelectedSpell.Effects[0] is BatonPassEffect)
+                                AvailableTargets.AddRange(GetAllAlliesAndDeadAllies());
+                            else
+                                AvailableTargets.AddRange(GetAllAlliesOf(BattleManager.CurrentBattleActor));
+                            Select(AvailableTargets[0]);
+                            break;
+                        case TargetTypeEnum.ALL_ALLIES:
+                            AvailableTargets.AddRange(GetAllAlliesOf(BattleManager.CurrentBattleActor));
+                            SelectedTargets.AddRange(GetAllAlliesOf(BattleManager.CurrentBattleActor));
+                            SelectAll(SelectedTargets);
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException(nameof(targetType), targetType, null);
+                    }
                 }
             }
 
             if (BattleManager.IsAllyTurn && (targetType == TargetTypeEnum.ALL_ENEMIES || targetType == TargetTypeEnum.SOLO_ENEMY))
             {
                 var weak = AvailableTargets.Cast<EnemyActor>().Where(w => w.IsWeakOf(Player.SelectedSpell.SpellType));
-                weak.ForEach(w => w.weak.gameObject.SetActive(true));
+                weak.ForEach(w => w.weak.Show());
 
                 var resist = AvailableTargets.Cast<EnemyActor>()
                     .Where(w => w.IsResistantOf(Player.SelectedSpell.SpellType));
-                resist.ForEach(w => w.resist.gameObject.SetActive(true));
+                resist.ForEach(w => w.resist.Show());
                 
                 if (weak.Count() > 0)
                 {
@@ -118,8 +134,8 @@ namespace TheFowler
                 {
                     if (AvailableTargets[i] is EnemyActor enemyActor)
                     {
-                        enemyActor.weak.SetActive(false);
-                        enemyActor.resist.SetActive(false);
+                        enemyActor.weak.Hide();
+                        enemyActor.resist.Hide();
                     }
                     EndPreview(AvailableTargets[i]);
                 }
@@ -220,7 +236,6 @@ namespace TheFowler
 
         public static void DeselectAll()
         {
-            
             for (int i = 0; i < BattleManager.GetAllEnemies().Length; i++)
             {
                 BattleManager.GetAllEnemies()[i].OnEndTarget();
@@ -280,6 +295,30 @@ namespace TheFowler
 
             return null;
         }
+
+        public static BattleActor[] GetAllAlliesAndDeadAllies()
+        {
+            var list = new List<BattleActor>();
+            if (BattleManager.CurrentBattle.abi != null)
+            {
+                if(BattleManager.CurrentBattle.abi.isParticipant)
+                    list.Add(BattleManager.CurrentBattle.abi);
+            }
+
+            if (BattleManager.CurrentBattle.phoebe != null)
+            {
+                if(BattleManager.CurrentBattle.phoebe.isParticipant)
+                    list.Add(BattleManager.CurrentBattle.phoebe);
+            }
+
+            if (BattleManager.CurrentBattle.robyn != null)
+            {
+                if(BattleManager.CurrentBattle.robyn.isParticipant)
+                    list.Add(BattleManager.CurrentBattle.robyn);
+            }
+
+            return list.ToArray();
+        }
         
         public static BattleActor[] GetAllEnemies()
         {
@@ -289,6 +328,25 @@ namespace TheFowler
         public static BattleActor[] GetAllAllies()
         {
             return BattleManager.GetAllAllies();
+        }
+
+        public static BattleActor[] GetAllActors(BattleActor contraint = null)
+        {
+            var allies = GetAllAllies();
+            var enemies = GetAllEnemies();
+            var list = new List<BattleActor>(allies);
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                list.Add(enemies[i]);
+            }
+
+            if (contraint != null)
+            {
+                if(list.Contains(contraint))
+                    list.Remove(contraint);
+            }
+            
+            return list.ToArray();
         }
 
         //---<AI>------------------------------------------------------------------------------------------------------<
@@ -348,5 +406,6 @@ namespace TheFowler
         ALL_ENEMIES = 2,
         SOLO_ALLY = 3,
         ALL_ALLIES = 4,
+        ALL
     }
 }

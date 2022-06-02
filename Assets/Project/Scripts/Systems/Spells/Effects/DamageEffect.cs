@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using QRCode;
 using UnityEngine;
 
 namespace TheFowler
@@ -12,8 +13,6 @@ namespace TheFowler
         public override void PreviewEffect(BattleActor emitter)
         {
             base.PreviewEffect(emitter);
-            
-            
         }
 
         public override IEnumerator OnBeginCast(BattleActor emitter, BattleActor[] receivers)
@@ -23,13 +22,69 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-            //emitter.BattleActorAnimator.AttackCast();
-            //SoundManager.PlaySound(audioEvent, emitter.gameObject);
+            var actor = BattleManager.CurrentBattleActor;
+                        
+            //actor.Mana.RemoveMana(Player.SelectedSpell.ManaCost);
 
-            //yield return new WaitForSeconds(emitter.BattleActorAnimator.AttackCastDuration());
+            if (emitter is AllyActor)
+            {
+                actor.GetBattleComponent<SpellHandler>().ApplyCooldown(Player.SelectedSpell);
+            }
 
-            Damage(damage, emitter, receivers);
-            yield break;
+            if (ReferedSpell.sequenceBinding != SequenceEnum.NULL)
+            {
+                var action = actor.SignalReceiver_CastSpell.GetReaction(actor.SignalAsset_CastSpell);
+                action.AddListener(delegate
+                {
+                    emitter.StartCoroutine(DamageExecution(emitter,receivers));
+                });
+
+                var sequence = actor.SequenceHandler.GetSequence(ReferedSpell.sequenceBinding);
+                
+                if (sequence == null)
+                {
+                    if (emitter is EnemyActor enemyActor)
+                    {
+                        Debug.LogError(
+                            $"SEQUENCE \"{enemyActor.AI.SelectedSpell.sequenceBinding}\" IS MISSING FOR {enemyActor.name}",
+                            enemyActor.AI.SelectedSpell);
+                        BattleManager.CurrentBattle.TurnSystem.NextTurn();
+                        yield break;
+                    }
+                }
+                
+                sequence.Play();
+                yield return new WaitForSeconds((float) sequence.duration);
+
+                action.RemoveAllListeners();
+
+                if (vampirisme)
+                {
+                    yield return StateEvent(emitter, receivers, delegate(BattleActor battleActor, BattleActor actor1)
+                    {
+                        Heal(_damage, emitter, new []{emitter});
+                    }, false, true);
+                }
+
+                if (berserk)
+                {
+                    yield return StateEvent(emitter, receivers, delegate(BattleActor battleActor, BattleActor actor1)
+                    {
+                        ApplyDamage(berserkDamage, emitter, emitter, berserk);
+                    }, false, true);
+                }
+
+                if (emitter is AllyActor)
+                {
+                    Debug.Log("EVENT : ON_LIFE (Ally Death)");
+                    if (BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnLife() != null)
+                    {
+                        yield return BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnLife()
+                            .NarrativeEvent();
+                    }
+                }
+                yield break;
+            }
         }
 
         public override IEnumerator OnFinishCast(BattleActor emitter, BattleActor[] receivers)
@@ -37,24 +92,10 @@ namespace TheFowler
             yield break;
         }
 
-        public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
+        protected virtual IEnumerator DamageExecution(BattleActor emitter, BattleActor[] receivers)
         {
-            base.OnSimpleCast(emitter, receivers);
-            foreach (var receiver in receivers)
-            {
-                var _damage = DamageCalculator.CalculateDamage(damage, emitter, receiver, ReferedSpell.SpellType, out var resistanceFaiblesseResult);
-
-                if(resistanceFaiblesseResult == DamageCalculator.ResistanceFaiblesseResult.FAIBLESSE)
-                {
-                    Fury.AddFuryPoint(10);
-                }
-
-                SoundManager.PlaySoundDamageTaken(receiver, resistanceFaiblesseResult);
-                
-                receiver.Health.TakeDamage(
-                    _damage
-                );
-            }
+            Damage(damage, emitter, receivers);
+            yield break;
         }
     }
 }

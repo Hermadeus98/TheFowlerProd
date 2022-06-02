@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using QRCode;
 using QRCode.Extensions;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -28,15 +30,28 @@ namespace TheFowler
         [TitleGroup("General Settings")]
         [SerializeField]
         public bool enableProgression = true;
+        [TitleGroup("General Settings")] [ShowIf("enableProgression")]
+        [SerializeField]
+        public bool showSkillTree = true;
+        [TitleGroup("General Settings")]
+        [ShowIf("enableProgression")]
+        [SerializeField]
+        public int  numberOfAllies = 2;
+
+        [TitleGroup("General Settings")]
+        public float battleSpeed = 1;
 
         private bool hasPlayed = false;
+
+        [SerializeField] private UnityEngine.Events.UnityEvent OnStartProgression;
 
 
         [TabGroup("References")] [SerializeField]
         private Istate[] battleStates;
 
         [TabGroup("References")] public CameraBatch BattleCameraBatch;
-        
+        [TabGroup("References")] public PlayerInput Inputs;
+
         [TabGroup("Debug")] [SerializeField] private bool finishDirectly = false;
         [TabGroup("Debug")]
         [SerializeField, ReadOnly] private List<BattleActor> allies = new List<BattleActor>();
@@ -57,15 +72,23 @@ namespace TheFowler
         public bool StartWithSavedData = false;
 
         public BattleNarrationComponent BattleNarrationComponent;
+        public BattleGameLogComponent BattleGameLogComponent;
         
-        public bool HasRestart { get; set; }
+        [ShowInInspector] public bool HasRestart { get; set; }
         public bool IsFinish { get; set; }
 
         public int EnemyDeathCount { get; set; } = 0;
-        
-        [Sirenix.OdinInspector.FilePath] public string referenceBattlePath;
 
         public BattleActor lastDeath { get; set; }
+
+        [SerializeField] private Battle BattleToRestart;
+        [SerializeField] private Battle[] BattleToReset;
+
+        public bool useUIOnPivot = false;
+        public Transform UIPivot;
+        public GameObject battleStateObj;
+
+
         
         private void FixedUpdate()
         {
@@ -85,20 +108,32 @@ namespace TheFowler
         protected override void OnAwake()
         {
             base.OnAwake();
+
+            battleStates = battleStateObj.GetComponentsInChildren<Istate>();
+            
             SetActorState(false);
         }
 
         private IEnumerator Start()
         {
-            
-
             yield return new WaitForSeconds(1f);
+            
             if (playAtStart)
             {
                 if (enableProgression)
                 {
-                    UI.GetView<SkillTreeView>(UI.Views.SkillTree).Show(this);
-                    hasPlayed = true;
+                    if (showSkillTree)
+                    {
+
+                        OnStartProgression.Invoke();
+                        UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Show(this);
+                        hasPlayed = true;
+                    }
+                    else
+                    {
+                        PlayPhase();
+                    }
+
                 }
                 else
                 {
@@ -111,50 +146,65 @@ namespace TheFowler
 
         public override void PlayPhase()
         {
+            FindObjectOfType<GameTimer>().incrementeCombatTimer = true;
+            
             if (!enableProgression)
             {
-                for (int i = 0; i < allies.Count; i++)
+                if (!showSkillTree)
                 {
-                    allies[i].BattleActorData = allies[i].BattleActorData.defaultData;
+                    for (int i = 0; i < allies.Count; i++)
+                    {
+                        allies[i].BattleActorData = allies[i].BattleActorData.defaultData;
+                    }
                 }
             }
             else 
             {
                 if (!hasPlayed)
                 {
-                    UI.GetView<SkillTreeView>(UI.Views.SkillTree).Show(this);
-                    hasPlayed = true;
-                    return;
+                    if (showSkillTree)
+                    {
+                        OnStartProgression.Invoke();
+                        UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Show(this);
+                        hasPlayed = true;
+                        return;
+                    }
+
                 }
-
-            }
-
-            for (int i = 0; i < Allies.Count; i++)
-            {
-                Allies[i].CameraBatchBattle.Generate();
-            }
-
-            for (int i = 0; i < Enemies.Count; i++)
-            {
-                Enemies[i].CameraBatchBattle.Generate();
             }
 
             base.PlayPhase();
 
             BattleManager.CurrentBattle = this;
 
-            if (!StartWithSavedData)
-                Fury.FuryPoint = 0;
-
+            SortByInitiative();
             RegisterActors();
             InitializeTurnSystem();
 
             StartCoroutine(StartBattle());
+        }
 
+        public override void EndPhase()
+        {
+            base.EndPhase();
+            MoreMountains.Feedbacks.MMTimeManager.Instance.ApplyTimeScale(1);
+        }
+
+        private void Update()
+        {
+            if (isActive)
+            {
+                MoreMountains.Feedbacks.MMTimeManager.Instance.ApplyTimeScale(battleSpeed);
+            }
         }
 
         private IEnumerator StartBattle()
         {
+            BattleManager.numberOfBattle++;
+
+            BattleManager.IsReducingCD = false;
+            Fury.IsInBreakdown = false;
+
             IsFinish = false;
 
             //Event On Start
@@ -170,6 +220,15 @@ namespace TheFowler
             ChangeBattleState(BattleStateEnum.START_BATTLE);
             CreateTurnSystem();
 
+
+            if (!Tutoriel.hasFirstBattle)
+            {
+
+                Tutoriel.hasFirstBattle = true;
+                UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.WELCOME, 1.5f);
+            }
+
+
             yield break;
         }
 
@@ -183,6 +242,8 @@ namespace TheFowler
         
         private void InitializeUI()
         {
+            UIBattleBatch.Instance.CanvasGroup.alpha = 1;
+            
             var alliesDataView = UI.GetView<AlliesDataView>("AlliesDataView");
             alliesDataView.Initialize(robyn, abi, phoebe);
             alliesDataView.Show();
@@ -233,43 +294,16 @@ namespace TheFowler
         {
             StartCoroutine(StopBattleCoroutine());
 
-
-            for (int i = 0; i < allies.Count; i++)
-            {
-                allies[i].BattleActorData.AddComplicity(1);
-            }
-
             hasPlayed = false;
         }
 
         private IEnumerator StopBattleCoroutine()
         {
             IsFinish = true;
+            FindObjectOfType<GameTimer>().incrementeCombatTimer = false;
             ChangeBattleState(BattleStateEnum.END_BATTLE);
-            
             SaveData();
             yield break;
-        }
-
-        private void SaveData()
-        {
-            if (robyn != null)
-            {
-                Player.RobynSavedData.health = robyn.Health.CurrentHealth;
-                Player.RobynSavedData.mana = robyn.Mana.CurrentMana;
-            }
-
-            if (abi != null)
-            {
-                Player.AbiSavedData.health = abi.Health.CurrentHealth;
-                Player.AbiSavedData.mana = abi.Mana.CurrentMana;
-            }
-
-            if (phoebe != null)
-            {
-                Player.PhoebeSavedData.health = phoebe.Health.CurrentHealth;
-                Player.PhoebeSavedData.mana = phoebe.Mana.CurrentMana;
-            }
         }
 
         [Button]
@@ -326,6 +360,34 @@ namespace TheFowler
                     enemies.Add(enemiesBatch.GetChild(i).GetComponent<BattleActor>());
                 }
             }
+
+            enemies = new List<BattleActor>(enemies.OrderBy(w => w.orderInBattle));
+        }
+
+        private void SortByInitiative()
+        {
+            Player.useInitiative = true;
+
+            robyn.Initiative = robyn.BattleActorData.initiativeOrder;
+            abi.Initiative = abi.BattleActorData.initiativeOrder;
+            phoebe.Initiative = phoebe.BattleActorData.initiativeOrder;
+
+            var initiativeList = new List<BattleActor>();
+            initiativeList.Add(robyn);
+            initiativeList.Add(abi);
+            if(phoebe != null) initiativeList.Add(phoebe);
+
+            var orderedEnumerable = initiativeList.OrderBy(w => w.Initiative);
+
+            if (Player.useInitiative)
+            {
+                for (int i = 0; i < orderedEnumerable.Count(); i++)
+                {
+                    orderedEnumerable.ElementAt(i).transform.SetSiblingIndex(i);
+                }
+                
+                UI.GetView<AlliesDataView>(UI.Views.AlliesDataView).Sort(orderedEnumerable);
+            }
         }
 
         private string GetBattleStateKey(BattleStateEnum key)
@@ -351,7 +413,8 @@ namespace TheFowler
 
         private IEnumerator LoseIE()
         {
-            callOnEnd = false;
+            callOnEndEvent = false;
+            BattleManager.numberOfBattle--;
 
             Debug.Log("EVENT : ON_LOSE");
             if (BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnLose() != null)
@@ -363,9 +426,91 @@ namespace TheFowler
             StopBattle();
             UI.OpenView("LoseView");
         }
-        
+
         [Button]
         public void Restart()
+        {
+            StartCoroutine(RestartIE());
+        }
+
+        IEnumerator RestartIE()
+        {
+            callOnEndEvent = false;
+            HasRestart = true;
+            StopBattle();
+
+            yield return new WaitForSeconds(1f);
+
+            BattleToReset.ForEach(w => w.ResetBattle());
+
+            BattleToRestart.PlayPhase();
+        }
+
+        public void ResetBattle()
+        {
+            //Reset Health
+            allies.ForEach(w => w.Health.ResetHealth());
+            enemies.ForEach(w => w.Health.ResetHealth());
+            UIBattleBatch.SetUIGuardsVisibility(true);
+
+            allies.ForEach(w => w.InitializeComponents());
+            
+            //Reset CoolDown
+            //
+            
+            //Reset Status
+            //
+
+            HasRestart = false;
+            callOnEndEvent = true;
+        }
+        
+        private void SaveData()
+        {
+            QRDebug.Log("DATA INJECTION", FrenchPallet.PUMPKIN, "SAVE DATA");
+            
+            if (robyn != null)
+            {
+                Player.RobynSavedData.health = robyn.Health.CurrentHealth;
+                Player.RobynSavedData.attackBonus = robyn.BattleActorInfo.attackBonus;
+                Player.RobynSavedData.defenseBonus = robyn.BattleActorInfo.defenseBonus;
+            }
+
+            if (abi != null)
+            {
+                Player.AbiSavedData.health = abi.Health.CurrentHealth;
+                Player.AbiSavedData.attackBonus = abi.BattleActorInfo.attackBonus;
+                Player.AbiSavedData.defenseBonus = abi.BattleActorInfo.defenseBonus;
+            }
+
+            if (phoebe != null)
+            {
+                Player.PhoebeSavedData.health = phoebe.Health.CurrentHealth;
+                Player.PhoebeSavedData.attackBonus = phoebe.BattleActorInfo.attackBonus;
+                Player.PhoebeSavedData.defenseBonus = phoebe.BattleActorInfo.defenseBonus;
+            }
+        }
+
+        public void DesactivateAllActors()
+        {
+            for (var i = 0; i < alliesBatch.childCount; i++)
+            {
+                alliesBatch.GetChild(i).gameObject.SetActive(false);
+#if UNITY_EDITOR
+                EditorUtility.SetDirty(alliesBatch.GetChild(i).gameObject);
+#endif
+            }
+
+            for (var i = 0; i < enemiesBatch.childCount; i++)
+            {
+                enemiesBatch.GetChild(i).gameObject.SetActive(false);
+#if UNITY_EDITOR
+                EditorUtility.SetDirty(enemiesBatch.GetChild(i).gameObject);
+#endif
+            }
+        }
+        
+        /*public void Restart()
         {
             var battle = this;
             battle.gameObject.SetActive(false);
@@ -376,7 +521,7 @@ namespace TheFowler
 
             newBattle.HasRestart = true;
             newBattle.PlayPhase();
-        }
+        }*/
 
         //---<EDITOR>--------------------------------------------------------------------------------------------------<
 #if UNITY_EDITOR
@@ -404,4 +549,5 @@ namespace TheFowler
         END_BATTLE,
         
     }
+
 }

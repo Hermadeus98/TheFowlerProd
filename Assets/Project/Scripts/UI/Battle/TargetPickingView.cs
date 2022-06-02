@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using QRCode;
+
 
 namespace TheFowler
 {
     public class TargetPickingView : UIView
     {
-        public TextMeshProUGUI spellName, targetText, easyDesc;
+        public TextMeshProUGUI spellName;
 
         private Tween opening, move;
 
         [SerializeField] private RectTransform box;
-        
+
+        [SerializeField] private SkillSelectorElement SkillSelectorElement;
+
         public override void Show()
         {
             base.Show();
@@ -34,13 +38,33 @@ namespace TheFowler
             
             move?.Kill();
             move = box.DOMoveX(-box.sizeDelta.x, .5f);
+
+            SkillSelectorElement.manaCostText.gameObject.SetActive(true);
+            
+            UI.GetView<FuryView>("FuryView").Hide();
         }
 
         public void Refresh(Spell spell)
         {
-            spellName.SetText(spell.SpellName);
-            targetText.SetText(spell.TargetDescription);
-            easyDesc.SetText(spell.EasySpellDescription);
+            SkillSelectorElement.referedSpell = spell;
+            SkillSelectorElement.DeSelect();
+            SkillSelectorElement.Select();
+            //SkillSelectorElement.Refresh(new WrapperArgs<SpellHandler.SpellHandled>(BattleManager.CurrentBattleActor.GetBattleComponent<SpellHandler>().GetSpellHandled(spell)));
+            if (LocalisationManager.language == Language.ENGLISH)
+            {
+                spellName.SetText(spell.SpellName);
+            }
+            else
+            {
+                spellName.SetText(spell.SpellNameFrench);
+            }
+
+
+            if(spell.Cooldown <= 0)
+            {
+
+                SkillSelectorElement.manaCostText.gameObject.SetActive(false);
+            }
         }
     }
 }

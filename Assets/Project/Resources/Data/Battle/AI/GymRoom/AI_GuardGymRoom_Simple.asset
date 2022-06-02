@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cf5a2a104152e48a7bbaed625f399a, type: 3}
+  m_Name: AI_GuardGymRoom_Simple
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: 7566194923784690443}
+  actors: 
+  treeState: 0
+  nodes:
+  - {fileID: 1915716711646245305}
+  - {fileID: 7566194923784690443}
+  dialogueType: 0
+--- !u!114 &1915716711646245305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: Cast
+  m_EditorClassIdentifier: 
+  NodeName: Cast
+  chance: 1
+  state: 0
+  started: 0
+  guid: ff40f9b779b2f1e4b80b8df1971a7b33
+  position: {x: 237, y: 0}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: 993800c774216a1448e4f191a1e73ea3, type: 2}
+    Chance: 100
+--- !u!114 &7566194923784690443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: TargetNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: e53544c7275e09141863ec26de06336a
+  position: {x: 0, y: 0}
+  children:
+  - {fileID: 1915716711646245305}
+  TargetIntention: 9
+  With: 0
+  value: 0

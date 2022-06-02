@@ -24,21 +24,19 @@ namespace TheFowler
                 skillPickingView.skillSelector.Refresh(BattleManager.CurrentBattleActor.GetBattleComponent<SpellHandler>());
                 
                 openning = StartCoroutine(OpenView());
-                BattleManager.CurrentBattleActor.BattleActorAnimator.Idle();
                 SetCamera(CameraKeys.BattleKeys.SkillPicking);
+                
+                InfoBoxButtons[] infoButtons = new InfoBoxButtons[3];
+                infoButtons[0] = InfoBoxButtons.CONFIRM;
+                infoButtons[1] = InfoBoxButtons.BACK;
+                infoButtons[2] = InfoBoxButtons.SELECTSKILL;
+
+                UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
             }
             else if (BattleManager.IsEnemyTurn)
             {
-                SetCamera(CameraKeys.BattleKeys.TargetPickingGuard);
+                //SetCamera(CameraKeys.BattleKeys.TargetPickingGuard);
             }
-
-            InfoBoxButtons[] infoButtons = new InfoBoxButtons[3];
-            infoButtons[0] = InfoBoxButtons.CONFIRM;
-            infoButtons[1] = InfoBoxButtons.BACK;
-            infoButtons[2] = InfoBoxButtons.SELECTSKILL;
-
-            UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
-
         }
 
         private IEnumerator OpenView()
@@ -61,6 +59,8 @@ namespace TheFowler
                         SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SkillSelection, gameObject);
                         Player.SelectedSpell = skillSelectorElement.referedSpell;
                         BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.TARGET_PICKING);
+                        
+                        BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.SKILL_PICKING);
                     }
 
                     if (!Tutoriel.LockSkill)
@@ -79,8 +79,6 @@ namespace TheFowler
             {
                 BattleManager.CurrentBattle.ChangeBattleState(BattleStateEnum.TARGET_PICKING);
             }
-
-            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.SKILLPICKING);
         }
 
         public override void OnStateExit(EventArgs arg)

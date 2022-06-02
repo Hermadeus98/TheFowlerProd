@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace TheFowler
         [SerializeField] private NavMeshPresets NavMeshPresets;
         
         private Coroutine moveAlongWaypointsCoroutine;
+
         
         [Button]
         public void GoTo(Transform transform)
@@ -81,11 +83,17 @@ namespace TheFowler
                 StopCoroutine(moveAlongWaypointsCoroutine);
         }
 
-        private void ApplyNavMeshAgentPresset(ControllerMovement controllerMovement)
+        public void ApplyNavMeshAgentPresset(ControllerMovement controllerMovement)
         {
             var presset = NavMeshPresets.GetElement(controllerMovement);
 
-            agent.speed = presset.Speed;
+            DOTween.To(
+                () => agent.speed,
+                (x) => agent.speed = x,
+                presset.Speed,
+                2f
+            ).SetEase(Ease.InOutSine);
+
             agent.angularSpeed = presset.AngularSpeed;
             agent.acceleration = presset.Acceleration;
         }

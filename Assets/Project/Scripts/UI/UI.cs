@@ -28,8 +28,12 @@ namespace TheFowler
                 Complicity = "ComplicityView",
                 End = "EndView",
                 SkillTree = "SkillTreeView",
+                Initiative = "InitiativeView",
+                MenuCharacters = "MenuCharactersView",
                 GainSkill = "GainSkillView",
-                BattleDialog = "BattleDialog";
+                BattleDialog = "BattleDialog",
+                ContextualAction = "ContextualActionView",
+                GameLog = "GameLogView";
         }
         
         private static Dictionary<string, UIView> views = new Dictionary<string, UIView>();

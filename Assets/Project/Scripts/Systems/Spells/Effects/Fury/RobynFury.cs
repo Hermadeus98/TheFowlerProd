@@ -18,9 +18,11 @@ namespace TheFowler
         {
             yield return base.OnCast(emitter, receivers);
             
-            Damage(damage, emitter, receivers);
+            //Damage(damage, emitter, receivers);
 
             yield return new WaitForSeconds(1f);
+
+            
             
             yield break;
         }

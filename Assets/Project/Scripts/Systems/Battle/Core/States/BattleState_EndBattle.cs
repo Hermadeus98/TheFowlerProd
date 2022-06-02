@@ -34,7 +34,8 @@ namespace TheFowler
             }
 
             yield return new WaitForEndOfFrame();
-            FinishBattle();
+            StartCoroutine(FinishBattle());
+            //FinishBattle();
             yield return new WaitForEndOfFrame();
             BattleManager.CurrentBattle.EndPhase();
             
@@ -42,22 +43,33 @@ namespace TheFowler
             TargetSelector.ResetSelectedTargets();
         }
 
-        private void FinishBattle()
+        private IEnumerator FinishBattle()
         {
-            Player.Robyn?.gameObject.SetActive(true);
-            Player.Abigael?.gameObject.SetActive(true);
-            Player.Pheobe?.gameObject.SetActive(true);
-            
-            BattleManager.CurrentBattle.Enemies.ForEach(w => w.gameObject.SetActive(false));
-            BattleManager.CurrentBattle.Allies.ForEach(w => w.gameObject.SetActive(false));
-            
+            //Player.Robyn?.gameObject.SetActive(true);
+            //Player.Abigael?.gameObject.SetActive(true);
+            //Player.Pheobe?.gameObject.SetActive(true);
+
             UI.CloseView(UI.Views.ActionPicking);
             UI.CloseView(UI.Views.SkillPicking);
             UI.CloseView(UI.Views.TargetPicking);
             UI.CloseView(UI.Views.AlliesDataView);
+
+            UI.GetView<TurnTransitionView>(UI.Views.TurnTransition).CameraSwipTransition(null);
+
+
+            HeartBeating.Instance.isBeating = false;
+
+
+            yield return new WaitForSeconds(.5f);
+
+            BattleManager.CurrentBattle.Enemies.ForEach(w => w.gameObject.SetActive(false));
+            BattleManager.CurrentBattle.Allies.ForEach(w => w.gameObject.SetActive(false));
+            
+
             
             SoundManager.PlaySound(AudioGenericEnum.TF_Main_SetExplo, gameObject);
-            HeartBeating.Instance.isBeating = false;
+
+            yield break;
         }
     }
 }

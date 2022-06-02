@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -17,19 +18,20 @@ namespace TheFowler
         [SerializeField] private TextMeshProUGUI healthText;
         [SerializeField] private TextMeshProUGUI manaText;
 
-        [SerializeField, ReadOnly] private BattleActor referedActor;
+        [SerializeField, ReadOnly] public BattleActor referedActor;
 
-        [SerializeField] private Image head;
+        [SerializeField] [CanBeNull] private Image head, glowSprite;
         [SerializeField] private Sprite normalSprite;
-        [SerializeField] private Sprite deathSprite, outlineSprite;
+        [SerializeField] private Sprite deathSprite, selectedSprite;
 
         [SerializeField] private Image blood, hearth_icon, mana_icon;
 
-        [SerializeField] private Color hp_color, mana_color, death_color;
-
         public StateIcons StateIcons;
 
-        [SerializeField] private Image furyFlamme;
+        //[SerializeField] private Image furyFlamme;
+
+        [SerializeField] private Image picks;
+        [SerializeField] private Sprite pick_tall, pick_medium, pick_none;
 
         protected override void OnStart()
         {
@@ -48,11 +50,10 @@ namespace TheFowler
 
         public void Refresh()
         {
+            if (referedActor == null) return;
             healthBar.DOFillAmount(referedActor.Health.NormalizedHealth, .2f);
-            manaBar.DOFillAmount(referedActor.Mana.NormalizedMana, .2f);
             
             healthText.SetText(referedActor.Health.CurrentHealth.ToString() + "/" + referedActor.Health.MaxHealth);
-            manaText.SetText(referedActor.Mana.CurrentMana.ToString() + "/" + referedActor.Mana.MaxMana);
 
             if (referedActor.BattleActorInfo.isDeath)
             {
@@ -64,8 +65,21 @@ namespace TheFowler
             }
             
             HearthIconBeating();
+            SetNext();
         }
 
+        private void SetNext()
+        {
+            var nextTurnActor = BattleManager.CurrentRound.GetNextAlly();
+
+            if (nextTurnActor != null)
+            {
+                if (nextTurnActor is AllyActor)
+                {
+                    picks.sprite = pick_medium;
+                }
+            }
+        }
 
         private Sequence beat;
         private bool isBeating;
@@ -110,24 +124,20 @@ namespace TheFowler
         }
 
         [Button]
-        private void SetGraphicToNormal()
+        public void SetGraphicToNormal()
         {
-            if (head.sprite == outlineSprite)
+            if (head.sprite == selectedSprite)
             {
-                head.sprite = outlineSprite;
+                head.sprite = selectedSprite;
+                glowSprite.DOFade(0f, .1f).SetEase(Ease.OutSine);
             }
             else
             {
                 head.sprite = normalSprite;
+                glowSprite.DOFade(0f, .1f).SetEase(Ease.OutSine);
             }
             
             blood.fillAmount = 0;
-
-            healthBar.color = hp_color;
-            manaBar.color = mana_color;
-
-            hearth_icon.color = hp_color;
-            mana_icon.color = mana_color;
         }
         
         [Button]
@@ -136,11 +146,7 @@ namespace TheFowler
             head.sprite = deathSprite;
             blood.DOFillAmount(1f, .5f).SetEase(Ease.InOutSine);
 
-            healthBar.color = death_color;
-            manaBar.color = death_color;
-            
-            hearth_icon.color = death_color;
-            mana_icon.color = death_color;
+            glowSprite.DOFade(0f, .1f).SetEase(Ease.OutSine);
             
             StateIcons.HideAll();
             
@@ -149,14 +155,18 @@ namespace TheFowler
 
         public void Select()
         {
-            head.sprite = outlineSprite;
+            head.sprite = selectedSprite;
             transform.DOScale(1f, .2f);
+            glowSprite.DOFade(1f, .1f).SetEase(Ease.OutSine);
+            picks.sprite = pick_tall;
         }
 
         public void UnSelect()
         {
             head.sprite = normalSprite;
             transform.DOScale(.85f, .2f);
+            glowSprite.DOFade(0f, .1f).SetEase(Ease.OutSine);
+            picks.sprite = pick_none;
         }
 
         public void ShakeHearth()
@@ -170,14 +180,14 @@ namespace TheFowler
 
         public void Fury(bool state)
         {
-            if (state)
+            /*if (state)
             {
                 furyFlamme.DOFade(1f, 0.01f);
             }
             else
             {
                 furyFlamme.DOFade(0f, 0.01f);
-            }
+            }*/
         }
     }
 }

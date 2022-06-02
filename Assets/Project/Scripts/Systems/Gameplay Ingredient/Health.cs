@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Linq;
 using MoreMountains.Feedbacks;
 using QRCode.Utils;
@@ -5,6 +7,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using Random = UnityEngine.Random;
 
 namespace TheFowler
 {
@@ -22,12 +25,12 @@ namespace TheFowler
         private MMPopupText popupDamageComponent;
         private MMPopupText popupHealComponent;
         [SerializeField] private TextMeshProUGUI lifeTxt;
-        
+
         public FillBar FillBar => fillBar;
         public float CurrentHealth => currentHealth;
         public float MaxHealth => maxHealth;
 
-
+        public void SetFillBar(FillBar fb) => fillBar = fb;
 
         public float NormalizedHealth
         {
@@ -56,33 +59,81 @@ namespace TheFowler
         }
 
         [Button]
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damage, DamageCalculator.ResistanceFaiblesseResult result = DamageCalculator.ResistanceFaiblesseResult.NEUTRE, bool leaveOneHP = false)
         {
-            if(damage == 0)
+            if(damage == 0 ||currentHealth <= 0)
                 return;
+
+            damage = Mathf.RoundToInt(damage);
             
+            ReferedActor.BattleActorAnimator.Hit();
+
             currentHealth -= damage;
             if (currentHealth <= 0)
             {
                 currentHealth = 0;
-                Death();
+
+                if (leaveOneHP)
+                    currentHealth = 1;
+                else
+                    Death();
             }
             else
             {
-                ReferedActor.punchline.PlayPunchline(PunchlineEnum.DAMAGETAKEN);
+                if (currentHealth < maxHealth / 4f)
+                {
+                    ReferedActor.punchline.PlayPunchline(PunchlineCallback.LOW_HP);
+                }
+                else
+                {
+                    if (damage < 100)
+                    {
+                        ReferedActor.punchline.PlayPunchline(PunchlineCallback.DAMAGE_TAKEN_LOW);
+                    }
+                    else
+                    {
+                        ReferedActor.punchline.PlayPunchline(PunchlineCallback.DAMAGE_TAKEN_HIGH);
+                    }
+                }
             }
-            
-            popupDamageComponent.message = damage.ToString();
+
+            StartCoroutine(AllyReaction());
+
+            switch (result)
+            {
+                case DamageCalculator.ResistanceFaiblesseResult.RESISTANCE:
+                    popupDamageComponent.extraImage = Spawnables.Instance.resist;
+                    break;
+                case DamageCalculator.ResistanceFaiblesseResult.FAIBLESSE:
+                    popupDamageComponent.extraImage = Spawnables.Instance.weak;
+                    break;
+                case DamageCalculator.ResistanceFaiblesseResult.NEUTRE:
+                    popupDamageComponent.extraImage = null;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(result), result, null);
+            }
+
+            popupDamageComponent.message = "-" + damage.ToString();
+
+            popupDamageComponent.setSize = true;
+            popupDamageComponent.sizePercent = Mathf.Clamp01(damage / 400f);
 
             ReferedActor.BattleActorStats.health = currentHealth;
             onDamaged?.Invoke(currentHealth);
             fillBar?.SetFill(currentHealth);
-            
 
             ReferedActor.AllyData?.Refresh();
             ReferedActor.AllyData?.ShakeHearth();
 
             if (lifeTxt != null) lifeTxt.text = currentHealth.ToString();
+        }
+
+        IEnumerator AllyReaction()
+        {
+            
+            
+            yield break;
         }
 
         public void SetCurrentHealth(float value)
@@ -91,22 +142,26 @@ namespace TheFowler
             ReferedActor.BattleActorStats.health = currentHealth;
             ReferedActor.AllyData?.Refresh();
             ReferedActor.AllyData?.ShakeHearth();
+
+            if (value == 0) Kill();
         }
 
         [Button]
         public void Heal(float heal)
         {
-            if(heal == 0)
+            if(currentHealth == 0)
                 return;
 
-            popupHealComponent.message = heal.ToString();
+            heal = Mathf.RoundToInt(heal);
+            
+            currentHealth += heal;
 
+            popupHealComponent.message = "+" + heal.ToString();
+            
             ReferedActor.BattleActorStats.health = currentHealth;
             onHealed?.Invoke(currentHealth);
             fillBar?.SetFill(currentHealth);
-            
-            
-            currentHealth += heal;
+
             if (currentHealth > maxHealth) currentHealth = maxHealth;
             
             ReferedActor.AllyData?.Refresh();
@@ -126,6 +181,7 @@ namespace TheFowler
             Death();
         }
 
+
         private void Death()
         {
             onDeath?.Invoke();
@@ -133,9 +189,19 @@ namespace TheFowler
             ReferedActor.OnDeath();
             ReferedActor.BattleActorStats.health = currentHealth;
 
-            ReferedActor.punchline.PlayPunchline(PunchlineEnum.DEATH);
+            //ReferedActor.punchline.PlayPunchline(PunchlineEnum.DEATH);
             PunchlineAllyDeath();
-            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.KILL);
+            //BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.KILL);
+            if (!Tutoriel.hasDied)
+            {
+                if (BattleManager.GetAllAllies().Contains(ReferedActor))
+                {
+                    Tutoriel.hasDied = true;
+                    UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.DEAD, 3f);
+                }
+            }
+
+
 
         }
 
@@ -151,7 +217,7 @@ namespace TheFowler
                     {
                         if (act.BattleActorInfo.isDeath == false)
                         {
-                            act.punchline.PlayPunchline(PunchlineEnum.ALLYDEATH);
+                            //act.punchline.PlayPunchline(PunchlineEnum.ALLYDEATH);
                         }
 
                     }
@@ -167,9 +233,8 @@ namespace TheFowler
                     {
                         if (act.BattleActorInfo.isDeath == false)
                         {
-                            act.punchline.PlayPunchline(PunchlineEnum.ALLYDEATH);
+                            //act.punchline.PlayPunchline(PunchlineEnum.ALLYDEATH);
                         }
-
                     }
                 }
 
@@ -177,18 +242,53 @@ namespace TheFowler
         }
 
         [Button]
-        public void Resurect(int health)
+        public void Resurect(float healthPercent)
         {
-            currentHealth = health;
+            if (currentHealth > 0) return;
+
+            healthPercent /= 100f;
+            float x = maxHealth * healthPercent;
+            x = Mathf.CeilToInt(x);
+                
+            ReferedActor.BattleActorInfo.isDeath = false;
+            
+            currentHealth = x;
             onHealed?.Invoke(currentHealth);
             fillBar?.SetFill(currentHealth);
+            ReferedActor.AllyData?.SetGraphicToNormal();
             ReferedActor.AllyData?.Refresh();
             ReferedActor.BattleActorStats.health = currentHealth;
 
             onResurect?.Invoke();
-            ReferedActor.BattleActorInfo.isDeath = false;
+            
+            ReferedActor.OnResurect();
 
             if (lifeTxt != null) lifeTxt.text = currentHealth.ToString();
+        }
+
+        public void ResetHealth()
+        {
+            ReferedActor.BattleActorInfo.isDeath = false;
+            currentHealth = maxHealth;
+            fillBar?.SetFill(currentHealth);
+            ReferedActor.AllyData?.Refresh();
+            ReferedActor.BattleActorStats.health = currentHealth;
+        }
+
+        public bool IsMidLife()
+        {
+            if (currentHealth == 0)
+                return false;
+            
+            return currentHealth < maxHealth / 2f;
+        }
+        
+        public bool IsQuartLife()
+        {
+            if (currentHealth == 0)
+                return false;
+            
+            return currentHealth < maxHealth / 4f;
         }
     }
 }

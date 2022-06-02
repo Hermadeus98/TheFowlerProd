@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_State_Damage_Pan_Lv1
+  m_Shader: {fileID: 4800000, guid: ab6b209461cce3a47815fc62f8c5cffb, type: 3}
+  m_ShaderKeywords: _ADD_PRECOMPUTED_VELOCITY _EDGEFADE_ENABLE_ON _ENABLE_FOG_ON_TRANSPARENT
+    _SURFACE_TYPE_TRANSPARENT
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap:
+    MotionVector: User
+    RenderType: Transparent
+  disabledShaderPasses:
+  - DistortionVectors
+  - TransparentBackface
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _DistortTex:
+        m_Texture: {fileID: 2800000, guid: 3fa8e32cda9d0614cb7c23b94f38cc88, type: 3}
+        m_Scale: {x: 0.3, y: 0.4}
+        m_Offset: {x: 0.04, y: -0.07}
+    - _PanningTex:
+        m_Texture: {fileID: 2800000, guid: 95cc73dbc162d9a4ba755846bd0e1937, type: 3}
+        m_Scale: {x: 1, y: 0.7}
+        m_Offset: {x: 0.03, y: -0.1}
+    m_Floats:
+    - _AddPrecomputedVelocity: 1
+    - _AddedEdgeFade: 0
+    - _AlphaCutoff: 0.5
+    - _AlphaCutoffEnable: 0
+    - _AlphaDstBlend: 1
+    - _AlphaLerp_TexInfluence: 0.2
+    - _AlphaSharp_OneMinus: 0
+    - _AlphaSmoothness: 1
+    - _AlphaSrcBlend: 1
+    - _AlphaThreshold: 0
+    - _Base_Smoothness: 0.74
+    - _Base_Threshold: 0.46
+    - _BicolorSmoothness: 1
+    - _BicolorThreshold: 0
+    - _Bicolor_OneMinus: 0
+    - _BlendMode: 1
+    - _CullMode: 2
+    - _CullModeForward: 2
+    - _DistortStrength: 0.06
+    - _DistortionEnable: 0
+    - _DistortionOnly: 0
+    - _DoubleSidedEnable: 0
+    - _DoubleSidedNormalMode: 2
+    - _DstBlend: 1
+    - _EdgeFade_Enable: 1
+    - _EnableFogOnTransparent: 1
+    - _PanningTex_InvertUV: 0
+    - _PanningTex_ManualOffset: 0
+    - _ReceivesSSR: 0
+    - _RenderQueueType: 4
+    - _RequireSplitLighting: 0
+    - _SrcBlend: 1
+    - _StencilRef: 0
+    - _StencilRefDepth: 0
+    - _StencilRefDistortionVec: 4
+    - _StencilRefGBuffer: 2
+    - _StencilRefMV: 32
+    - _StencilWriteMask: 6
+    - _StencilWriteMaskDepth: 8
+    - _StencilWriteMaskDistortionVec: 4
+    - _StencilWriteMaskGBuffer: 14
+    - _StencilWriteMaskMV: 40
+    - _SurfaceType: 1
+    - _TransparentBackfaceEnable: 0
+    - _TransparentCullMode: 2
+    - _TransparentSortPriority: 0
+    - _TransparentZWrite: 0
+    - _UseShadowThreshold: 0
+    - _ZTestDepthEqualForOpaque: 4
+    - _ZTestGBuffer: 4
+    - _ZTestTransparent: 4
+    - _ZWrite: 0
+    m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
+    - _Base_Color: {r: 0.49056602, g: 0.15072569, b: 0.09024564, a: 0}
+    - _ColorA: {r: 0.33962262, g: 0, b: 0, a: 1}
+    - _ColorB: {r: 1.0575209, g: 0.07751462, b: 0.027683793, a: 1}
+    - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
+    - _EdgeFadeU: {r: 0, g: 0.45, b: 0, a: 0.45}
+    - _EdgeFadeV: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []

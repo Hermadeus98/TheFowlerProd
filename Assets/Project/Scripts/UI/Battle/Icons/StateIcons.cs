@@ -9,7 +9,7 @@ namespace TheFowler
     {
         public StateIcon taunt, stun; 
 
-        public BuffIcon buff_def, buff_att;
+        public BuffIcon buff_def, buff_att, buff_CD;
         
         public void HideAll()
         {
@@ -17,38 +17,43 @@ namespace TheFowler
             stun.Hide();
             buff_def.Hide();
             buff_att.Hide();
+            buff_CD.Hide();
         }
 
         public void RefreshBuff_Def(BattleActor actor)
         {
-            var def = actor.BattleActorInfo.defenseBonus;
-            
-            if (def != 0)
-            {
-                buff_def.Show();
-                buff_def.Refresh(def);
-            }
+            if(actor.BattleActorInfo.defenseBonus == 0)
+                buff_def.gameObject.SetActive(false);
             else
             {
-                buff_def.Hide();
+                buff_def.gameObject.SetActive(true);
+                buff_def.Refresh(actor.BattleActorInfo.defenseBonus);
+                buff_def.Show();
             }
-            
         }
 
         public void Refresh_Att(BattleActor actor)
         {
-            var att = actor.BattleActorInfo.buffBonus + actor.BattleActorInfo.debuffMalus;
-
-            if (att != 0)
-            {
-                buff_att.Show();
-                buff_att.Refresh(att);
-            }
+            if(actor.BattleActorInfo.attackBonus == 0)
+                buff_att.gameObject.SetActive(false);
             else
             {
-                buff_att.Hide();
+                buff_att.gameObject.SetActive(true);
+                buff_att.Refresh(actor.BattleActorInfo.attackBonus);
+                buff_att.Show();
             }
-            
         }
+        public void Refresh_CD(BattleActor actor)
+        {
+            if (actor.BattleActorInfo.cooldownBonus == 0)
+                buff_CD.gameObject.SetActive(false);
+            else
+            {
+                buff_CD.gameObject.SetActive(true);
+                buff_CD.Refresh(actor.BattleActorInfo.cooldownBonus);
+                buff_CD.Show();
+            }
+        }
+
     }
 }

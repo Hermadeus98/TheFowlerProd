@@ -8,7 +8,7 @@ namespace TheFowler
 {
     public class FeedbackHandler : SerializedMonoBehaviour
     {
-        public Dictionary<string, MMFeedbacks> FeedbacksMap = new Dictionary<string, MMFeedbacks>();
+        /*public Dictionary<string, MMFeedbacks> FeedbacksMap = new Dictionary<string, MMFeedbacks>();
 
         public void PlayFeedback(string key)
         {
@@ -33,6 +33,6 @@ namespace TheFowler
             {
                 FeedbacksMap.Add(transform.GetChild(i).gameObject.name, transform.GetChild(i).GetComponent<MMFeedbacks>());
             }
-        }
+        }*/
     }
 }

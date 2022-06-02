@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
+  m_Name: 
   m_EditorClassIdentifier: 
   NodeName: 
   chance: 1
@@ -22,7 +22,9 @@ MonoBehaviour:
   - {fileID: -4956760713917664753}
   dialogue:
     ActorEnum: 1
-    dialogueText: "But..we can\u2019t leave them here, alone.."
+    dialogueText: "But..we can\u2019t <b><#EBB517>leave</b></color> them here, alone\u2026"
+    dialogueTextFrench: Mais...on ne peut pas les <b><#EBB517>laisser</b></color>
+      ici, seuls...
     cameraPath:
       genericKey: 7
       cameraName: Default
@@ -45,7 +47,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
+  m_Name: 
   m_EditorClassIdentifier: 
   NodeName: 
   chance: 1
@@ -55,9 +57,11 @@ MonoBehaviour:
   position: {x: 224.0113, y: 71.999985}
   children: []
   dialogue:
-    ActorEnum: 1
+    ActorEnum: 2
     dialogueText: "It\u2019s not here we\u2019ll find any solution, Robyn is right,
-      let us go"
+      let us go."
+    dialogueTextFrench: Ce n'est pas ici que nous trouverons une solution, Robyn
+      a raison, allons-y.
     cameraPath:
       genericKey: 7
       cameraName: Default
@@ -89,6 +93,7 @@ MonoBehaviour:
   - {fileID: 3992382426278007304}
   - {fileID: -5958612543143814147}
   - {fileID: -4956760713917664753}
+  dialogueType: 0
 --- !u!114 &3992382426278007304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,11 +117,12 @@ MonoBehaviour:
   dialogue:
     ActorEnum: 0
     dialogueText: Come on, we should head out.
+    dialogueTextFrench: Allez, on devrait y aller.
     cameraPath:
       genericKey: 7
       cameraName: Default
       batchName: 
-    displayDuration: 4
+    displayDuration: 3
     choiceText: 
     isHarmonisation: 0
     voice:

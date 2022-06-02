@@ -6,16 +6,25 @@ using DG.Tweening;
 using QRCode;
 using QRCode.Extensions;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TheFowler
 {
     public class SkillSelector : UISelector
     {
         [SerializeField] private RectTransform cursor;
+
+        [SerializeField] private Image up, down;
+
+        public SpellHandler currentSpellHandler;
+
+        private SkillPickingView view;
         
         protected override void RegisterEvent()
         {
             base.RegisterEvent();
+
+            
             OnSelect += RepositionningCursor;
         }
 
@@ -27,6 +36,14 @@ namespace TheFowler
 
         public void Refresh(SpellHandler spellHandler)
         {
+            if(view == null)
+                view = UI.GetView<SkillPickingView>(UI.Views.SkillPicking);
+
+
+            canNavigate = !view.isBreakdown;
+
+            currentSpellHandler = spellHandler;
+
             ResetElements();
             HideAllElements();
             DeselectedAll();
@@ -43,8 +60,16 @@ namespace TheFowler
             StartCoroutine(ShowElements());
 
             currentIndex = 0;
-            SelectElement();
+
+            if (!view.isBreakdown)
+            {
+                SelectElement();
+
+            }
+
         }
+
+
 
         private IEnumerator ShowElements()
         {
@@ -71,17 +96,23 @@ namespace TheFowler
         
         public bool WaitChoice(out SkillSelectorElement skillSelectorElement)
         {
+
+
             var skillElement = elements[currentIndex] as SkillSelectorElement;
-            
-            if (Inputs.actions["Select"].WasPressedThisFrame() && skillElement != null)
+
+            if (!view.isBreakdown)
             {
-                if (skillElement.isSelectable)
+                if (Inputs.actions["Select"].WasPressedThisFrame() && skillElement != null)
                 {
-                    Hide();
-                    skillSelectorElement = skillElement;
-                    return true;
+                    if (skillElement.isSelectable)
+                    {
+                        Hide();
+                        skillSelectorElement = skillElement;
+                        return true;
+                    }
                 }
             }
+
 
             skillSelectorElement = null;
             return false;
@@ -89,18 +120,50 @@ namespace TheFowler
 
         private void RepositionningCursor(UISelectorElement element)
         {
+            if (view.isBreakdown) return;
+
             cursor.DOMoveY(element.RectTransform.position.y, .1f);
             
             var skillPickingView = UI.GetView<SkillPickingView>(UI.Views.SkillPicking);
-            skillPickingView.descriptionText.SetText(((SkillSelectorElement)element).referedSpell.SpellDescription);
-            skillPickingView.easyDescriptionText.SetText(((SkillSelectorElement)element).referedSpell.EasySpellDescription);
-            skillPickingView.targetDescription.SetText(((SkillSelectorElement)element).referedSpell.TargetDescription);
+
+            if (LocalisationManager.language == Language.ENGLISH)
+            {
+                skillPickingView.descriptionText.SetText(((SkillSelectorElement)element).referedSpell.SpellDescription);
+            }
+            else
+            {
+                skillPickingView.descriptionText.SetText(((SkillSelectorElement)element).referedSpell.SpellDescriptionFrench);
+            }
+
+            
+            //skillPickingView.easyDescriptionText.SetText(((SkillSelectorElement)element).referedSpell.EasySpellDescription);
+            //skillPickingView.targetDescription.SetText(((SkillSelectorElement)element).referedSpell.TargetDescription);
         }
 
         protected override void OnNavigate()
         {
+            if (view.isBreakdown) return;
+
             base.OnNavigate();
             SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Hover, gameObject);
+
+            if (currentIndex == 0)
+            {
+                up.rectTransform.DOScale(0f, .2f).SetEase(Ease.InOutSine);
+            }
+            else
+            {
+                up.rectTransform.DOScale(1f, .2f).SetEase(Ease.InOutSine);
+            }
+            
+            if (currentIndex == elements.Count - 1)
+            {
+                down.rectTransform.DOScale(0f, .2f).SetEase(Ease.InOutSine);
+            }
+            else
+            {
+                down.rectTransform.DOScale(1f, .2f).SetEase(Ease.InOutSine);
+            }
         }
     }
 }

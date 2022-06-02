@@ -7,18 +7,15 @@ namespace TheFowler
 {
     public class DefendEffect : Effect
     {
-        [SerializeField] private int effectDuration = 1;
-        [SerializeField, Range(0, 100)] private float effect = 25;
-        [SerializeField] private int manaToRestaure = 2;
-        
-        public enum RestaureManaAt
+        public enum DefenseBonusType
         {
-            Cast,
-            Start_Turn
+            Buff,
+            Debuff,
         }
 
-        [SerializeField] private RestaureManaAt restaureManaAt = RestaureManaAt.Cast;
-        
+        public DefenseBonusType bonusType;
+        public bool isAOE = false;
+
         public override IEnumerator OnBeginCast(BattleActor emitter, BattleActor[] receivers)
         {
             yield break;
@@ -26,39 +23,49 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-            foreach (var receiver in receivers)
+            if (emitter == BattleManager.CurrentBattle.phoebe)
             {
-                switch (restaureManaAt)
-                {
-                    case RestaureManaAt.Cast:
-                        //receiver.Mana.AddMana(manaToRestaure);
-                        if(emitter.GetBattleComponent<SpellHandler>() != null)
-                            emitter.GetBattleComponent<SpellHandler>().LoseCoolDown(1);
-                        break;
-                    case RestaureManaAt.Start_Turn:
-                        //receiver.GetBattleComponent<Defense>().RestaureMana.AddListener(() => receiver.Mana.AddMana(manaToRestaure));
-                        //emitter.GetBattleComponent<SpellHandler>().re
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-                receiver.GetBattleComponent<Defense>().DefendActor(effectDuration, effect);
-                receiver.BattleActorAnimator.Parry();
+                emitter.punchline.PlayPunchline(PunchlineCallback.PROTECT);
             }
             
-            
+            if (TargetType == TargetTypeEnum.SELF)
+            {
+                yield return StateEvent(emitter, receivers, (actor, BattleActor) =>
+                {
+                    var def = emitter.GetBattleComponent<Defense>();
+                    Apply(def);
+                });
+            }
+            else
+            {
+                yield return StateEvent(emitter, receivers, (actor, BattleActor) =>
+                {
+                    var def = BattleActor.GetBattleComponent<Defense>();
+                    Apply(def);
+                });
+            }
+
             yield break;
+        }
+
+        private void Apply(Defense def)
+        {
+            switch (bonusType)
+            {
+                case DefenseBonusType.Buff:
+                    def.BuffDefense(isAOE ? SpellData.Instance.buffDefenseAOE : SpellData.Instance.buffDefense);
+                    break;
+                case DefenseBonusType.Debuff:
+                    def.DebuffDefense(isAOE ? SpellData.Instance.debuffDefenseAOE : SpellData.Instance.debuffDefense);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         public override IEnumerator OnFinishCast(BattleActor emitter, BattleActor[] receivers)
         {
             yield break;
-        }
-
-        public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
-        {
-            base.OnSimpleCast(emitter, receivers);
-            emitter.StartCoroutine(OnCast(emitter, receivers));
         }
     }
 }

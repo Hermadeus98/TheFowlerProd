@@ -27,6 +27,9 @@ namespace TheFowler
         private Image backgroundImage, previewImage, fillImage;
         [SerializeField] private Image cross, hearth;
 
+        [SerializeField] private bool beatHearth = false;
+        private Sequence beat;
+
         protected override void OnStart()
         {
             base.OnStart();
@@ -53,50 +56,76 @@ namespace TheFowler
             {
                 fillImage.color = fillColor.Evaluate(valueInPercent);
             });
+            
+            if (beatHearth)
+            {
+                if (currentValue < maxValue / 4f)
+                {
+                    beat = DOTween.Sequence();
+                    beat.Append(hearth.transform.DOScale(1.1f, .2f).SetEase(Ease.InSine));
+                    beat.Append(hearth.transform.DOScale(1f, .2f).SetEase(Ease.InSine));
+                    beat.SetLoops(-1);
+                    beat.Play();
+                }
+            }
+
+            if (currentValue <= 0)
+            {
+                beat?.Kill();
+                hearth.transform.localScale = Vector3.one;
+            }
         }
 
         public void ShowPreview()
         {
-            preview.gameObject.SetActive(true);
+            if (Player.showPreview)
+            {
+                preview.gameObject.SetActive(true);
+            }
         }
 
         public void HidePreview()
         {
-            preview.gameObject.SetActive(false);
-            cross.gameObject.SetActive(false);
-            hearth.color = Color.white;
-
+            if (Player.showPreview)
+            {
+                preview.gameObject.SetActive(false);
+                cross.gameObject.SetActive(false);
+                hearth.color = Color.white;
+            }
         }
         
         [Button]
         public void SetPreview(float newValue)
         {
-            ShowPreview();
+            if (Player.showPreview)
+            {
+                ShowPreview();
 
-            newValue = Mathf.Clamp(newValue, 0f, maxValue);
-            
-            if (newValue < currentValue)
-            {
-                preview.SetRight(fill.GetRight());
-                preview.SetLeft((newValue / maxValue) * RectTransform.rect.width);
-                previewImage.color = previewMinus;
-            }
-            else if (newValue > currentValue)
-            {
-                preview.SetLeft(RectTransform.rect.width - fill.GetRight());
-                preview.SetRight( ( 1 - (newValue / maxValue)) * RectTransform.rect.width);
-                previewImage.color = previewAdd;
-            }
+                newValue = Mathf.Clamp(newValue, 0f, maxValue);
 
-            if(newValue == 0)
-            {
-                cross.gameObject.SetActive(true);
-                hearth.color = Color.black;
-            }
-            else
-            {
-                cross.gameObject.SetActive(false);
-                hearth.color = Color.white;
+                if (newValue < currentValue)
+                {
+                    preview.SetRight(fill.GetRight());
+                    preview.SetLeft((newValue / maxValue) * RectTransform.rect.width);
+                    previewImage.color = previewMinus;
+                }
+                else if (newValue > currentValue)
+                {
+                    preview.SetLeft(RectTransform.rect.width - fill.GetRight());
+                    preview.SetRight((1 - (newValue / maxValue)) * RectTransform.rect.width);
+                    previewImage.color = previewAdd;
+                }
+
+                if (newValue == 0)
+                {
+                    cross.gameObject.SetActive(true);
+                    hearth.color = Color.black;
+                }
+                else
+                {
+                    cross.gameObject.SetActive(false);
+                    hearth.color = Color.white;
+                }
             }
         }
 

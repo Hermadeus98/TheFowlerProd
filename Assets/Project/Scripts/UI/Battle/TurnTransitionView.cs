@@ -20,9 +20,9 @@ namespace TheFowler
         [SerializeField] private float transitionDuration = .2f;
 
         [SerializeField] private Animator Animator;
-        
-        public float WaitTime =>
-            InOutComponent.in_duration + InOutComponent.between_duration + InOutComponent.out_duration;
+
+        public float WaitTime => transitionDuration;
+            //InOutComponent.in_duration + InOutComponent.between_duration + InOutComponent.out_duration;
 
 
         [Button]
@@ -47,7 +47,11 @@ namespace TheFowler
             image.texture = targettex;
             image.rectTransform.sizeDelta = new Vector2((int)dim.x, (int)dim.y);
 
-            transitionEvent?.Invoke();
+            if(transitionEvent != null)
+            {
+                transitionEvent?.Invoke();
+            }
+
 
             Animator.ResetTrigger("play");
             Animator.SetTrigger("play");

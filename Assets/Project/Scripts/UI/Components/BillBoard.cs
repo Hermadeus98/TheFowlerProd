@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace TheFowler
 {
+    [ExecuteInEditMode]
     public class BillBoard : MonoBehaviour
     {
         [SerializeField, BoxGroup("References")]
@@ -30,6 +31,12 @@ namespace TheFowler
 
         private void LateUpdate()
         {
+            if (m_Camera == null)
+            {
+                m_Camera = Camera.main;
+                return;
+            }
+            
             var rotation = Camera.transform.rotation;
             transform.LookAt(transform.position + rotation * Vector3.forward,
                 rotation * Vector3.up

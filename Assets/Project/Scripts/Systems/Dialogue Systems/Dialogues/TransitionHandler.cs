@@ -3,7 +3,7 @@ using QRCode;
 using QRCode.Extensions;
 using UnityEngine;
 using MoreMountains.Feedbacks;
-
+using System.Collections;
 
 namespace TheFowler
 {
@@ -18,12 +18,13 @@ namespace TheFowler
         {
             base.PlayPhase();
             feedbacks?.PlayFeedbacks();
-            
+
         }
 
 
         public override void EndPhase()
         {
+            if(!IsActive) return;
             base.EndPhase();
             if(nextPhase != null)
             {
@@ -35,6 +36,7 @@ namespace TheFowler
 
         public void Transition()
         {
+
             UI.GetView<TransitionView>(UI.Views.TransitionView).Show(transitionType, null);
         }
 
@@ -51,6 +53,7 @@ namespace TheFowler
             GainSkillView view = UI.GetView<GainSkillView>(UI.Views.GainSkill);
             view.Show(value);
         }
+
 
     }
 

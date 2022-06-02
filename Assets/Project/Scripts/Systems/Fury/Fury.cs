@@ -7,19 +7,22 @@ using QRCode.Extensions;
 using QRCode.Utils;
 using Sirenix.Utilities;
 using UnityEngine;
+using DG.Tweening;
 
 namespace TheFowler
 {
     public static class Fury
     {
         public static bool IsInFury { get; private set; }
+        public static bool IsInBreakdown { get; set; }
         public static int FuryPoint = 0;
+        
 
         public static void AddFuryPoint(int point)
         {
             SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_Generic_FuryGain, null);
 
-            FuryPoint += point;
+            //FuryPoint += point;
 
             if (FuryPoint >= 100)
             {
@@ -48,19 +51,31 @@ namespace TheFowler
         /// </summary>
         public static void PlayBreakDown()
         {
+            UI.GetView<SkillPickingView>(UI.Views.SkillPicking).isBreakdown = true;
+
             //Pas de breakdown si le dernier ennemie meurt.
             if (BattleManager.CurrentBattle.Enemies.All(w => w.BattleActorInfo.isDeath))
             {
                 StopBreakDown();
                 return;
             }
+
+            if (!Tutoriel.hasBreakdown)
+            {
+                Tutoriel.hasBreakdown = true;
+                UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.BREAKDOWN, 3f);
+            }
             
             QRDebug.Log("FURY", FrenchPallet.TOMATO_RED, "START");
-            IsInFury = true;
+            IsInFury = true; 
+            IsInBreakdown = true;
+            BattleManager.IsReducingCD = true;
 
             if (batonPass != null)
                 Coroutiner.Instance.StopCoroutine(batonPass);
             Coroutiner.Instance.StartCoroutine(LaunchBatonPass());
+
+            
         }
 
         /// <summary>
@@ -85,8 +100,13 @@ namespace TheFowler
                 yield return BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnDeathCount()
                     .NarrativeEvent();
             }
+            
+            BreakdownElement.Instance.Play();
+
+            yield return new WaitForSeconds(.7f);
 
             BatonPass();
+            UI.GetView<FuryView>("FuryView").Show();
             
             yield break;
         }
@@ -96,12 +116,16 @@ namespace TheFowler
             QRDebug.Log("FURY", FrenchPallet.TOMATO_RED, "END");
             IsInFury = false;
             StopFeedbackBreackDown();
+
+            //UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Hide();
         }
 
         private static void StopFeedbackBreackDown()
         {
             var element = UI.GetView<AlliesDataView>(UI.Views.AlliesDataView).datas;
             element.ForEach(w => w.Fury(false));
+
+
         }
 
         /// <summary>
@@ -117,9 +141,9 @@ namespace TheFowler
                 BattleManager.CurrentBattle.ChangeBattleState<BattleState_TargetPicking>(BattleStateEnum
                     .TARGET_PICKING);
             skillPickingView.ReturnToActionMenu = true;
-
-            Fury.AddFuryPoint(15);
         }
+        
+        
 
         public static void AllowFury()
         {

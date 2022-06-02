@@ -1,0 +1,133 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2284472743654815771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 00f66f14ea329624ca530d626d5e007c
+  position: {x: 179.01074, y: -0.000022411346}
+  children:
+  - {fileID: 380695404230932236}
+  dialogue:
+    ActorEnum: 2
+    dialogueText: 'Your sentimentality robs you of your <b><#1B69B8>true ambition!</b></color> '
+    dialogueTextFrench: "Tes \xE9motions <b><#1B69B8>t\u2019aveuglent !</b></color>"
+    cameraPath:
+      genericKey: 2
+      cameraName: Default
+      batchName: 
+    displayDuration: 7
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cf5a2a104152e48a7bbaed625f399a, type: 3}
+  m_Name: DS_Battle_Phoebe_PhoebeMidLife
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: 4815760018362570266}
+  actors: 
+  treeState: 0
+  nodes:
+  - {fileID: 4815760018362570266}
+  - {fileID: 380695404230932236}
+  - {fileID: -2284472743654815771}
+  dialogueType: 0
+--- !u!114 &380695404230932236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 793f85d0a47b1cd41b1ca304218da00e
+  position: {x: 382.1578, y: -10.0568075}
+  children: []
+  dialogue:
+    ActorEnum: 0
+    dialogueText: OH YEAH?!? WANNA TALK AMBITION?!? <b><#CE2020>YOU?!</b></color>
+      JUST TAKE A LOOK AROUND!
+    dialogueTextFrench: AH OUAIS ?!? <b><#CE2020>MOI?!</b></color> AVEUGLE ??? REGARDE
+      AUTOUR DE TOI !
+    cameraPath:
+      genericKey: 1
+      cameraName: Default
+      batchName: 
+    displayDuration: 9
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &4815760018362570266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: Main
+  m_EditorClassIdentifier: 
+  NodeName: Main
+  chance: 1
+  state: 0
+  started: 0
+  guid: 506efafa3fd06914683add8e61e3bf6f
+  position: {x: 0, y: 0}
+  children:
+  - {fileID: -2284472743654815771}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: "I\u2019m gonna use my <b><#CE2020>rage</b></color> to fight for
+      the things that really  <b><#CE2020>matter!</b></color"
+    dialogueTextFrench: "Gr\xE2ce \xE0 ma <b><#CE2020>rage!</b></color>, je vais
+      r\xE9soudre tout ce bordel ! "
+    cameraPath:
+      genericKey: 0
+      cameraName: Default
+      batchName: 
+    displayDuration: 2
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0

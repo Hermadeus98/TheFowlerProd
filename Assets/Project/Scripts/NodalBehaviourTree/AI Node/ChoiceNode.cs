@@ -73,7 +73,7 @@ namespace TheFowler
                 {
                     case HardChoice.AT_LEAST_AN_ENEMY_HAVE_BUFF:
                     {
-                        var enemies = TargetSelector.GetAllEnemies().Where(w => w.BattleActorInfo.buffBonus > 0).ToArray();
+                        var enemies = TargetSelector.GetAllEnemies().Where(w => w.BattleActorInfo.attackBonus > 0).ToArray();
                         if (!enemies.IsNullOrEmpty())
                             return true;
                         
@@ -87,13 +87,20 @@ namespace TheFowler
                         
                         return false;
                     }
-                        break;
                     case HardChoice.AT_LEAST_AN_ALLY_HAVE_TAUNT:
+                    {
                         var allies = TargetSelector.GetAllAllies().Where(w => w.BattleActorInfo.isTaunt).ToArray();
                         if (allies.Length > 0)
                             return true;
 
                         return false;
+                    }
+                    case HardChoice.IM_TAUNT:
+                    {
+                        if (BattleManager.CurrentBattleActor.BattleActorInfo.isTaunt)
+                            return true;
+                        else return false;
+                    }
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -293,5 +300,6 @@ namespace TheFowler
         AT_LEAST_AN_ENEMY_HAVE_BUFF,
         AT_LEAST_AN_ENEMY_HAVE_DEFEND_BUFF,
         AT_LEAST_AN_ALLY_HAVE_TAUNT,
+        IM_TAUNT,
     }
 }

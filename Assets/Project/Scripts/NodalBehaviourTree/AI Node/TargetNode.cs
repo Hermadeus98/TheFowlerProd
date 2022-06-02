@@ -20,7 +20,7 @@ namespace TheFowler
         public void SelectTarget()
         {
             var taunt = BattleManager.CurrentBattleActor.GetBattleComponent<Taunt>();
-            if (BattleManager.CurrentBattleActor.BattleActorInfo.isTaunt)
+            if (BattleManager.CurrentBattleActor.BattleActorInfo.isTaunt && !taunt.taunter.BattleActorInfo.isDeath && TargetIntention != TargetIntention.ALL)
             {
                 taunt.taunter.SelectAsTarget();
                 return;
@@ -32,6 +32,7 @@ namespace TheFowler
                 case TargetIntention.NONE:
                     break;
                 case TargetIntention.ALL:
+                    TargetSelector.GetAllActors(BattleManager.CurrentBattleActor).SelectAsTargets();
                     break;
                 case TargetIntention.WEAKER_ALLY:
                     TargetSelector.GetWeakerAlly().SelectAsTarget();
@@ -66,7 +67,7 @@ namespace TheFowler
                         case SelectTargetWith.NONE:
                             break;
                         case SelectTargetWith.WITH_DEFEND_BUFF:
-                            TargetSelector.GetAllAllies().First(w => w.BattleActorInfo.buffBonus > 0).SelectAsTarget();
+                            TargetSelector.GetAllAllies().First(w => w.BattleActorInfo.attackBonus > 0).SelectAsTarget();
                             break;
                         case SelectTargetWith.WITH_LESS_HEALTH_THAN:
                         {
@@ -104,7 +105,7 @@ namespace TheFowler
                         case SelectTargetWith.NONE:
                             break;
                         case SelectTargetWith.WITH_DEFEND_BUFF:
-                            TargetSelector.GetAllEnemies().First(w => w.BattleActorInfo.buffBonus > 0).SelectAsTarget();
+                            TargetSelector.GetAllEnemies().First(w => w.BattleActorInfo.attackBonus > 0).SelectAsTarget();
                             break;
                         case SelectTargetWith.WITH_LESS_HEALTH_THAN:
                         {
@@ -141,6 +142,9 @@ namespace TheFowler
                     break;
                 case TargetIntention.ALL_ENEMIES:
                     TargetSelector.GetAllEnemies().SelectAsTargets();
+                    break;
+                case TargetIntention.SELF:
+                    BattleManager.CurrentBattleActor.SelectAsTarget();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -179,6 +183,7 @@ namespace TheFowler
         ENEMY = 12,
         ALL_ALLIES = 13,
         ALL_ENEMIES = 14,
+        SELF,
     }
         
     public enum SelectTargetWith

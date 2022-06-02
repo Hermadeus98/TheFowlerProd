@@ -15,7 +15,7 @@ namespace TheFowler
         [TabGroup("References")]
         [SerializeField] private GameObject profile1, profile2, profile3, profileUp;
         [TabGroup("References")]
-        [SerializeField] private GameObject confirm, back, characters, selectSkill, selectTarget, hide, select, close;
+        [SerializeField] private GameObject confirm, back, characters, selectSkill, selectTarget, hide, select, close, reset;
         private delegate void ProfileReminder(InfoBoxButtons[] buttons);
         private event ProfileReminder OnProfileReminder;
         [SerializeField] private List<InfoBoxButtons> infoBoxReminder;
@@ -34,6 +34,9 @@ namespace TheFowler
 
             var actionPicking = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
             actionPicking.ShowDescription(true);
+
+            var skillPicking = UI.GetView<SkillPickingView>(UI.Views.SkillPicking);
+            skillPicking.ShowTriangle(true);
         }
 
         public override void Hide()
@@ -85,6 +88,9 @@ namespace TheFowler
 
                 var actionPicking = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
                 actionPicking.ShowDescription(false);
+
+                var skillPicking = UI.GetView<SkillPickingView>(UI.Views.SkillPicking);
+                skillPicking.ShowTriangle(false);
             }
 
 
@@ -109,6 +115,7 @@ namespace TheFowler
             hide.SetActive(false);
             select.SetActive(false);
             close.SetActive(false);
+            reset.SetActive(false);
         }
 
         private void SwitchButtons(InfoBoxButtons button)
@@ -139,6 +146,9 @@ namespace TheFowler
                 case InfoBoxButtons.CLOSE:
                     close.SetActive(true);
                     break;
+                case InfoBoxButtons.RESET:
+                    reset.SetActive(true);
+                    break;
             }
         }
 
@@ -163,6 +173,9 @@ namespace TheFowler
                     var actionPicking = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
                     actionPicking.ShowDescription(true);
 
+                    var skillPicking = UI.GetView<SkillPickingView>(UI.Views.SkillPicking);
+                    skillPicking.ShowTriangle(true);
+
                 }
 
             }
@@ -172,6 +185,9 @@ namespace TheFowler
                 
                 var actionPicking = UI.GetView<ActionPickingView>(UI.Views.ActionPicking);
                 actionPicking.ShowDescription(false);
+
+                var skillPicking = UI.GetView<SkillPickingView>(UI.Views.SkillPicking);
+                skillPicking.ShowTriangle(false);
                 isOpen = false;
             }
         }
@@ -193,10 +209,10 @@ namespace TheFowler
         {
             if (isActive)
             {
-                if (Inputs.actions["InfoBox"].WasPressedThisFrame())
-                {
-                    CheckInfoBox();
-                }
+                //if (Inputs.actions["InfoBox"].WasPressedThisFrame())
+                //{
+                //    CheckInfoBox();
+                //}
             }
 
         }
@@ -212,7 +228,8 @@ namespace TheFowler
         SELECTTARGET,
         HIDE,
         SELECT,
-        CLOSE
+        CLOSE,
+        RESET
     }
 
 }

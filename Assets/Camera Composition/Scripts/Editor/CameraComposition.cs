@@ -75,7 +75,7 @@
             /// </summary>
             private void OnDestroy()
             {
-                DestroyImmediate(compositionObject);
+                //DestroyImmediate(compositionObject);
             }
 
             /// <summary>
@@ -85,7 +85,11 @@
             /// </summary>
             private void OnGUI()
             {
-                compositionObject = FindObjectOfType<CompositionOverlay>().transform.parent.gameObject;
+                var o = FindObjectOfType<CompositionOverlay>();
+                    
+                if(o == null)
+                    return;
+                compositionObject = o.transform.parent.gameObject;
                 
                 if (compositionObject == null)
                     compositionObject = Instantiate(Resources.Load<GameObject>("Prefabs/Camera Composition"));

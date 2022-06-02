@@ -15,6 +15,7 @@ namespace TheFowler
     {
         public ActorEnum ActorEnum;
         [TextArea(3,5)] public string dialogueText;
+        [TextArea(3,5)] public string dialogueTextFrench;
         public cameraPath cameraPath;
         public float displayDuration = 2f;
         public string choiceText;

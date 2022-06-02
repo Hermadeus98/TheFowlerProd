@@ -96,5 +96,14 @@ namespace TheFowler
         TF_SFX_Explo_Generic_ChangeChapter_In,
         TF_SFX_Explo_Generic_ChangeChapter_Out,
 
+        TF_SFX_Explo_Generic_Presence_Short,
+        TF_SFX_Explo_Generic_Presence_Long,
+        TF_SFX_Cutscene_Impact,
+        TF_SFX_Cutscene_Guard_GroundHit01,
+        TF_SFX_Cutscene_Guard_GroundHit02,
+
+        TF_SFX_Explo_Phoebe_Footstep,
+        TF_SFX_Cutscene_Robyn_InstrumentOut,
+        TF_SFX_Cutscene_Robyn_Tantrum,
     }
 }

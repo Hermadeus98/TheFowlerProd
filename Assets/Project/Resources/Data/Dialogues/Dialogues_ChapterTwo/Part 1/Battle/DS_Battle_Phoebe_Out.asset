@@ -1,5 +1,77 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8981803571937527036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 60f70ceed08fa194ab539447912077ff
+  position: {x: 100.75181, y: 102.61326}
+  children:
+  - {fileID: -4172031867982675083}
+  dialogue:
+    ActorEnum: 2
+    dialogueText: Stand down!
+    dialogueTextFrench: Repos, soldats !
+    cameraPath:
+      genericKey: 2
+      cameraName: Default
+      batchName: 
+    displayDuration: 3
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &-6050496815893448202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 40d010a018436074381848cb8fb54f21
+  position: {x: 514.9074, y: -4.0227365}
+  children:
+  - {fileID: -8981803571937527036}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: "WE\u2019RE JUST STARTING- "
+    dialogueTextFrench: ON COMMENCE A PEINE-
+    cameraPath:
+      genericKey: 4
+      cameraName: Default
+      batchName: 
+    displayDuration: 3
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
 --- !u!114 &-4921013801745784083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17,11 +89,13 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 17062ce6664c0424b8edd7991e0f1274
-  position: {x: 0, y: 0}
-  children: []
+  position: {x: 98, y: -2}
+  children:
+  - {fileID: -3893619374995567494}
   dialogue:
     ActorEnum: 0
-    dialogueText: You should've seen it coming!
+    dialogueText: "Take that dipshit! \r\n"
+    dialogueTextFrench: "ET BAM ! Prends \xE7a, trouduc ! "
     cameraPath:
       genericKey: 4
       cameraName: Cam2
@@ -34,6 +108,77 @@ MonoBehaviour:
       valueGuidInternal: 
       WwiseObjectReference: {fileID: 11400000, guid: dd6b43e8ad535f348b8ba0fb3989d3a2, type: 2}
     animationTrigger: 2
+--- !u!114 &-4172031867982675083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 2a6bd9b937fcfb844b8ecef812fc1872
+  position: {x: 242.99997, y: 101.250984}
+  children: []
+  dialogue:
+    ActorEnum: 2
+    dialogueText: Let me give you an explanation.
+    dialogueTextFrench: ' Laissez-moi vous donner une explication. '
+    cameraPath:
+      genericKey: 2
+      cameraName: Default
+      batchName: 
+    displayDuration: 5
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &-3893619374995567494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 8425c909f14a0f44f82236c920f76386
+  position: {x: 193.09027, y: -4.0227365}
+  children:
+  - {fileID: 2534125943175415317}
+  dialogue:
+    ActorEnum: 2
+    dialogueText: "I think you\u2019re ready! "
+    dialogueTextFrench: "On dirait que vous \xEAtes pr\xEAtes."
+    cameraPath:
+      genericKey: 2
+      cameraName: Default
+      batchName: 
+    displayDuration: 3
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51,3 +196,45 @@ MonoBehaviour:
   treeState: 0
   nodes:
   - {fileID: -4921013801745784083}
+  - {fileID: -4172031867982675083}
+  - {fileID: -8981803571937527036}
+  - {fileID: -6050496815893448202}
+  - {fileID: 2534125943175415317}
+  - {fileID: -3893619374995567494}
+  dialogueType: 0
+--- !u!114 &2534125943175415317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 5c504ac9fdabace4c9bf6602e45ea12d
+  position: {x: 349.96594, y: -6.0113826}
+  children:
+  - {fileID: -6050496815893448202}
+  dialogue:
+    ActorEnum: 1
+    dialogueText: 'WHAT ARE YOU UP TO? '
+    dialogueTextFrench: 'DE QUOI TU PARLES ? '
+    cameraPath:
+      genericKey: 3
+      cameraName: Default
+      batchName: 
+    displayDuration: 4
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0

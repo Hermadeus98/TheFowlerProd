@@ -1,8 +1,13 @@
 using System;
+using System.Collections;
+using DG.Tweening;
+using QRCode;
+using QRCode.Extensions;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using Unity.RemoteConfig;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Timeline;
 
 namespace TheFowler
@@ -12,13 +17,16 @@ namespace TheFowler
         public bool isParticipant = true;
         
         [TabGroup("References")] 
-        [SerializeField] private BattleActorData battleActorData;
+        [SerializeField] protected BattleActorData battleActorData;
         [TabGroup("References")]
         [SerializeField] private CameraBatch cameraBatchBattle;
         [TabGroup("References")]
         public Sockets sockets;
         [TabGroup("References")]
         public SelectionPointer SelectionPointer;
+
+        [TabGroup("References")]
+        public ParticleSystem SelectionVFX, SelectionVFXEmitter;
         [TabGroup("References")]
         [SerializeField] protected StateIcons stateIcons;
 
@@ -36,25 +44,29 @@ namespace TheFowler
         [TabGroup("Components")] [SerializeField]
         private Health health;
         [TabGroup("Components")] [SerializeField]
-        private Mana mana;
+        private CooldownComponent mana;
         [TabGroup("Components")] [SerializeField]
         public Punchline punchline;
 
+        public GameObject reviveFeedback;
         
         [TabGroup("Datas")]
         [SerializeField] protected BattleActorInfo battleActorInfo;
         public BattleActorStats BattleActorStats;
 
         public int TurnCount { get; set; } = 0;
+        [ShowInInspector, ReadOnly] public int Initiative { get; set; }
         
-        protected Turn actorTurn;
+        public Turn actorTurn { get; set; }
 
         //--<Properties>-----------------------------------------------------------------------------------------------<
         public CameraBatch CameraBatchBattle => cameraBatchBattle;
         public BattleActorData BattleActorData { get { return battleActorData; } set { battleActorData = value; } }
         public BattleActorInfo BattleActorInfo => battleActorInfo;
         public Health Health => health;
-        public Mana Mana => mana;
+        public CooldownComponent Mana => mana;
+
+        public int orderInBattle;
 
         public StateIcons StateIcons
         {
@@ -63,78 +75,113 @@ namespace TheFowler
         }
 
         public AllyData AllyData { get; set; }
+        
+        public bool mustResurect { get; set; }
 
         protected override void OnStart()
         {
-            FeedbackHandler.Generate();
-            
             base.OnStart();
             
             OnChangeDifficulty(DifficultyManager.currentDifficulty);
-
         }
 
-        protected virtual void InitializeComponents()
+        public virtual void InitializeComponents()
         {
-            
             health?.Initialize(BattleActorStats.health);
-            mana?.Initialize(BattleActorStats.mana);
 
             battleActorInfo.isStun = false;
             BattleActorInfo.isTaunt = false;
-
+            GetBattleComponent<Taunt>().taunter = null;
+            
             var currentBattle = BattleManager.CurrentBattle;
             
-            if (currentBattle.HasRestart || currentBattle.StartWithSavedData)
+            if (currentBattle.HasRestart || !currentBattle.StartWithSavedData)
             {
+                QRDebug.Log("DATA INJECTION", FrenchPallet.PUMPKIN, "INITIALIZE DATA");
+                
+                battleActorComponents.ForEach(w => w.Initialize());
+                battleActorInfo.isDeath = false;
+                battleActorInfo.attackBonus = 0;
+                battleActorInfo.defenseBonus = 0;
+                RefreshStateIcons();
+                GetBattleComponent<CooldownComponent>().ResetCD();
+            }
+            else
+            {
+                QRDebug.Log("DATA INJECTION", FrenchPallet.PUMPKIN, "INITIALIZE DATA WITH SAVED DATA");
+                
                 for (int i = 0; i < battleActorComponents.Length; i++)
                 {
-                    if (battleActorComponents[i].GetType() != typeof(SpellHandler))
+                    if (battleActorComponents[i].GetType() == typeof(SpellHandler))
+                    {
+                        SpellHandler sh  = battleActorComponents[i] as SpellHandler;
+
+                        if (currentBattle.robyn != null)
+                            if (currentBattle.robyn == this)
+                            {
+                                sh.InitializeWithData();
+                            }
+
+                        if (currentBattle.abi != null)
+                            if (currentBattle.abi == this)
+                            {
+                                sh.InitializeWithData();
+                            }
+
+                        if (currentBattle.phoebe != null)
+                            if (currentBattle.phoebe == this)
+                            {
+                                sh.InitializeWithData();
+                            }
+                    }
+                    else
                     {
                         battleActorComponents[i].Initialize();
                     }
-
                 }
-
-
 
                 if (currentBattle.robyn != null)
                     if (currentBattle.robyn == this)
                     {
                         health?.SetCurrentHealth(Player.RobynSavedData.health);
-                        mana?.SetMana(Player.RobynSavedData.mana);
+                        battleActorInfo.attackBonus = Player.RobynSavedData.attackBonus;
+                        battleActorInfo.defenseBonus = Player.RobynSavedData.defenseBonus;
+                        AllyData?.Refresh();
+                        RefreshStateIcons();
                     }
                 
                 if(currentBattle.abi != null)
                     if (currentBattle.abi == this)
                     {
                         health?.SetCurrentHealth(Player.AbiSavedData.health);
-                        mana?.SetMana(Player.AbiSavedData.mana);
+                        battleActorInfo.attackBonus = Player.AbiSavedData.attackBonus;
+                        battleActorInfo.defenseBonus = Player.AbiSavedData.defenseBonus;
+                        AllyData?.Refresh();
+                        RefreshStateIcons();
                     }
                 
                 if(currentBattle.phoebe != null)
                     if (currentBattle.phoebe == this)
                     {
                         health?.SetCurrentHealth(Player.PhoebeSavedData.health);
-                        mana?.SetMana(Player.PhoebeSavedData.mana);
+                        battleActorInfo.attackBonus = Player.PhoebeSavedData.attackBonus;
+                        battleActorInfo.defenseBonus = Player.PhoebeSavedData.defenseBonus;
+                        AllyData?.Refresh();
+                        RefreshStateIcons();
                     }
-
-
-
-            }
-
-            else
-            {
-                battleActorComponents.ForEach(w => w.Initialize());
-                battleActorInfo.isDeath = false;
-                battleActorInfo.buffBonus = 0;
-                battleActorInfo.debuffMalus = 0;
             }
         }
 
         [Button]
         public virtual void OnTurnStart()
         {
+            var taunt = GetBattleComponent<Taunt>();
+            if (taunt.taunter != null)
+            {
+                if(taunt.taunter.battleActorInfo.isDeath)
+                    taunt.EndTaunt();
+            }
+            
             TurnCount++;
             
             Debug.Log(gameObject.name + " start turn");
@@ -143,6 +190,7 @@ namespace TheFowler
 
             AllyData?.Select();
         }
+
 
         public virtual void OnTurnEnd()
         {
@@ -215,6 +263,7 @@ namespace TheFowler
                     case BattleStateEnum.FURY:
                         break;
                     case BattleStateEnum.END_BATTLE:
+
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(currentBattleState), currentBattleState, null);
@@ -271,16 +320,61 @@ namespace TheFowler
             }
             
             InitializeComponents();
+            AllyData?.Refresh();
+            RefreshStateIcons();
         }
+        
+        private void RefreshStateIcons()
+        {
+            stateIcons?.Refresh_Att(this);
+            stateIcons?.Refresh_CD(this);
+            stateIcons?.RefreshBuff_Def(this);
+        }
+
+        private Sequence pulse;
         
         public void OnTarget()
         {
-            SelectionPointer.Show();
+            SelectionPointer?.Show();
+            SelectionVFX.gameObject.SetActive(true);
+            SelectionVFX?.Play();
+
+            if (battleActorInfo.isDeath)
+            {
+                reviveFeedback.gameObject.SetActive(true);
+                pulse?.Kill();
+                pulse = DOTween.Sequence();
+                pulse.Append(reviveFeedback.transform.DOScale(Vector3.one * 1.1f, .2f).SetEase(Ease.InOutSine));
+                pulse.Append(reviveFeedback.transform.DOScale(Vector3.one, .2f).SetEase(Ease.InOutSine));
+                pulse.SetLoops(-1);
+                pulse.Play();
+            }
         }
 
         public void OnEndTarget()
         {
-            SelectionPointer.Hide();
+            SelectionPointer?.Hide();
+            SelectionVFX?.Stop();
+            SelectionVFX.gameObject.SetActive(false);
+            
+            if (battleActorInfo.isDeath)
+            {
+                reviveFeedback.gameObject.SetActive(false);
+                pulse?.Kill();
+                reviveFeedback.transform.localScale = Vector3.one;
+            }
+        }
+
+        public void OnTargetEmitterLog()
+        {
+            SelectionVFXEmitter.gameObject.SetActive(true);
+            SelectionVFXEmitter?.Play();
+        }
+
+        public void OnEndTargetEmitterLog()
+        {
+            SelectionVFXEmitter?.Stop();
+            SelectionVFXEmitter.gameObject.SetActive(false);
         }
 
         public T GetBattleComponent<T>() where T : BattleActorComponent
@@ -322,13 +416,43 @@ namespace TheFowler
 
         public virtual void OnDeath()
         {
+            if (GetBattleComponent<Taunt>().taunter != null)
+            {
+                GetBattleComponent<Taunt>().taunter.GetBattleComponent<Taunt>().EndTaunt();
+            }
+
             BattleManager.CurrentBattle.lastDeath = this;
-            BattleActorAnimator.Death();
+            GetBattleComponent<Buff>().StopVFX();
+            GetBattleComponent<Defense>().StopVFX();
         }
 
-        public virtual void ResetActor()
+        public virtual void OnResurect()
         {
-            BattleActorAnimator.ResetAnimator();
+            BattleActorAnimator.Resurect();
+        }
+
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+
+
+            for (int i = 0; i < BattleActorData.Spells.Length; i++)
+            {
+                BattleActorData.Spells[i].Reset();
+            }
+        }
+
+
+        protected virtual void Update()
+        {
+            if(this is EnemyActor)
+                return;
+            
+            if (Keyboard.current.cKey.wasPressedThisFrame)
+            {
+                GetBattleComponent<CooldownComponent>().ResetCD();
+            }
         }
     }
 
@@ -337,9 +461,10 @@ namespace TheFowler
     {
         public bool isDeath;
         public bool isStun;
-        public float buffBonus;
-        public float debuffMalus;
         public bool isTaunt;
-        public float defenseBonus;
+        
+        public int attackBonus;
+        public int defenseBonus;
+        public int cooldownBonus;
     }
 }

@@ -22,8 +22,15 @@ namespace TheFowler
         [TitleGroup("Settings")]
         [SerializeField, Tooltip(ToolTips.TT_loadPlayer)] private bool loadPlayer;
 
+        [TitleGroup("Settings"), SerializeField] private bool loadUI;
+
         [TitleGroup("Settings")] [SerializeField]
         private bool loadMainMenu;
+        [TitleGroup("Settings")] [SerializeField]
+        private bool loadBattles;
+        [TitleGroup("Settings")]
+        [SerializeField]
+        public bool SkipTuto;
         
         [TitleGroup("Difficulty Settings")] [SerializeField]
         private DifficultyEnum startDifficulty = DifficultyEnum.TEST;
@@ -41,7 +48,12 @@ namespace TheFowler
             //--<SCENE UI>
             if (loadMainMenu)
                 SceneManager.LoadSceneAsync("Scene_MenuPrincipal", LoadSceneMode.Additive);
-            Game.LoadSceneAdditive(SceneEnum.Scene_UI);
+
+            if (loadBattles)
+                SceneManager.LoadSceneAsync("Scene_Playtest_Edrick", LoadSceneMode.Additive);
+
+            if (loadUI)
+                Game.LoadSceneAdditive(SceneEnum.Scene_UI);
 
             yield return new WaitForEndOfFrame();
             
@@ -72,6 +84,11 @@ namespace TheFowler
             {
                 GameState.gameArguments.noloadingChapter = true;
                 Player.Initialize();
+            }
+
+            if (SkipTuto)
+            {
+                Tutoriel.SkipTuto();
             }
         }
     }

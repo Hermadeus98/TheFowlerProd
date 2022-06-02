@@ -15,5 +15,7 @@ namespace TheFowler
         [Required] public DialogueUIElement DialogueUIElement;
 
         [TitleGroup("UI")] [Required] public PopupText PopupText;
+        [TitleGroup("UI")] [Required] public Sprite weak, resist;
+
     }
 }

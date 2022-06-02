@@ -24,6 +24,8 @@ namespace TheFowler
         [SerializeField] private bool resetCamera = true;
 
         [SerializeField, Required] private bool applyMove = true;
+        
+        [ShowInInspector, ReadOnly] public float SpeedModifier { get; set; }
 
         public override void OnStateEnter(EventArgs arg)
         {
@@ -32,6 +34,8 @@ namespace TheFowler
             
             if(resetCamera)
                 SetCameraToTPSCamera();
+
+            SpeedModifier = 1f;
         }
 
         public override void OnStateExecute()
@@ -44,7 +48,7 @@ namespace TheFowler
             SetVelocity(savedVelocity);
 
             var moveAmount = Mathf.Abs(horizontal) + Mathf.Abs(vertical);
-            UpdateAnimatorController(moveAmount);
+            UpdateAnimatorController(moveAmount * SpeedModifier);
         }
         
         private void FixedUpdate()
@@ -91,7 +95,7 @@ namespace TheFowler
             velocity.y += GRAVITY_FORCE;
 
             if(applyMove && characterController.gameObject.activeInHierarchy) 
-                characterController.Move(velocity * Time.deltaTime);
+                characterController.Move(velocity * SpeedModifier * Time.deltaTime);
             
             return velocity;
         }
@@ -111,11 +115,13 @@ namespace TheFowler
                     throw new ArgumentOutOfRangeException(nameof(controllerMovement), controllerMovement, null);
             }
         }
-
+        
         public void SetCameraToTPSCamera()
         {
+            referedController.SetControllerMovement(ControllerMovement.RUN);
             CameraManager.Instance.SetCamera(CameraGenericKey.GetCameraGenericKey(CameraGenericKeyEnum.TPS_CAMERA));
+            CameraManager.Instance.SetCamera("Robyn_TPS", "CM TPS Explo");
+            SpeedModifier = 1f;
         }
-
     }
 }

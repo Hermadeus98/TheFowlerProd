@@ -26,6 +26,8 @@ namespace TheFowler
         public int cameraClosePriority = 0;
         public int currentCameraPriority = 50;
 
+        public Camera splitCam;
+
         public void SetCamera(CinemachineVirtualCameraBase newCamera)
         {
             if(newCamera == current)
@@ -38,7 +40,7 @@ namespace TheFowler
         {
             if (!cameraBatches.ContainsKey(batchName))
             {
-                Debug.LogError($"cameraBatches don't contain {batchName}");
+                //Debug.LogError($"cameraBatches don't contain {batchName}");
                 return;
             }
             
@@ -76,6 +78,16 @@ namespace TheFowler
         public T GetCamera<T>(cameraPath cameraPath) where T : CinemachineVirtualCameraBase
         {
             return cameraBatches[cameraPath.batchName].CameraReferences[cameraPath.cameraName].virtualCamera as T;
+        }
+        
+        public T GetCamera<T>(string batch, string key) where T : CinemachineVirtualCameraBase
+        {
+            return cameraBatches[batch].CameraReferences[key].virtualCamera as T;
+        }
+
+        public CinemachineVirtualCameraBase GetCamera(CameraBatch batch, string key)
+        {
+            return batch.CameraReferences[key].virtualCamera;
         }
         
         private void ChangeCamera(CameraBatch cameraBatch, string key = "Default")

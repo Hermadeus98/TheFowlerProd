@@ -77,7 +77,7 @@ ModelImporter:
     second: ANIM_Explo_Phoebe_Run
   - first:
       74: 7585939926022368845
-    second: Armature|ANIM_Combat_Phoebe_Idle
+    second: ANIM_Combat_Phoebe_Idle
   - first:
       74: 3968962685561631641
     second: ANIM_Combat_Phoebe_DefenseIdle
@@ -90,7 +90,63 @@ ModelImporter:
   - first:
       74: -7824931482465435003
     second: ANIM_Combat_Phoebe_Death
+  - first:
+      74: -1188372962245406987
+    second: ANIM_Explo_Phoebe_Idle
+  - first:
+      74: -3684428382950231779
+    second: ANIM_Combat_Phoebe_Death_Idle
+  - first:
+      74: -2069498067626716815
+    second: Armature|ANIM_Combat_Phoebe_Revive
+  - first:
+      74: 3569552147452670139
+    second: ANIM_Cinematic_Phoebe_Combat_Idle_HeadTurn_Left_01_Loop
+  - first:
+      74: -2300395342717134487
+    second: ANIM_Cinematic_Phoebe_Combat_Idle_HeadTurn_Left_01_Return
+  - first:
+      74: -3834648811732701235
+    second: ANIM_Cinematic_Phoebe_Combat_Idle_HeadTurn_Left_01_Start
+  - first:
+      74: 5431709993363827767
+    second: ANIM_Cinematic_Phoebe_Combat_Idle_HeadTurn_Right_01_Loop
+  - first:
+      74: -326126196040339422
+    second: ANIM_Cinematic_Phoebe_Combat_Idle_HeadTurn_Right_01_Return
+  - first:
+      74: -7544338257422872859
+    second: ANIM_Cinematic_Phoebe_Combat_Idle_HeadTurn_Right_01_Start
+  - first:
+      74: -7266083822369595423
+    second: ANIM_Cinematic_Phoebe_Explo_Idle_Fist
+  - first:
+      74: -494350813585273751
+    second: ANIM_Cinematic_Phoebe_Explo_Idle_HeartHand_Loop
+  - first:
+      74: -7131651055721525520
+    second: ANIM_Cinematic_Phoebe_Explo_Idle_HeartHand_Return
+  - first:
+      74: 125893068660889406
+    second: ANIM_Cinematic_Phoebe_Explo_Idle_HeartHand_Start
+  - first:
+      74: -6880556393121198106
+    second: ANIM_Cinematics_Phoebe_Explo_Idle_HeadTurn_Loop
+  - first:
+      74: 3614370068559822835
+    second: ANIM_Cinematics_Phoebe_Explo_Idle_HeadTurn_Return
+  - first:
+      74: 7822431067534867474
+    second: ANIM_Cinematics_Phoebe_Explo_Idle_HeadTurn_Start
+  - first:
+      74: 7922116643158065058
+    second: ANIM_Cinematics_Phoebe_Lift
   externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Outline
+    second: {fileID: 2100000, guid: 2c9d726a656009945a414e562cf8b34b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -101,8 +157,38 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: M_Robyn_01.001
     second: {fileID: 2100000, guid: 1da64872968325e448ce7b86c773e605, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_TissuandHair
+    second: {fileID: 2100000, guid: 79846da0f711bf94781dfb20eb994e37, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_body
+    second: {fileID: 2100000, guid: 5d6a48c07ec34814b8f964b1c4da1277, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_eye_2
+    second: {fileID: 2100000, guid: bca5de0f9cb6b9641b51cedeaba98101, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_helmet
+    second: {fileID: 2100000, guid: 5a6b3dc201107ce4cbea98e55c3784ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: T_PhoebeBass
+    second: {fileID: 2100000, guid: 42827f95d749af94682a6d2753920672, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m_face
+    second: {fileID: 2100000, guid: 126f6c492d90d9546b526753c2389ecc, type: 2}
   materials:
-    materialImportMode: 2
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -176,7 +262,7 @@ ModelImporter:
       takeName: Armature|ANIM_Explo_Phoebe_Run
       internalID: 0
       firstFrame: 1
-      lastFrame: 24
+      lastFrame: 23
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -244,40 +330,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Anim_VictoryCombat
-      takeName: Armature|Anim_VictoryCombat
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 24
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
       name: ANIM_Explo_Phoebe_Walk
       takeName: Armature|ANIM_Explo_Phoebe_Walk
       internalID: 0
-      firstFrame: 0
-      lastFrame: 40
+      firstFrame: 1
+      lastFrame: 35
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -316,11 +373,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Anim_Idle
-      takeName: Anim_Idle
+      name: ANIM_Explo_Phoebe_Idle
+      takeName: Armature|ANIM_Explo_Phoebe_Idle
       internalID: 0
-      firstFrame: 0
-      lastFrame: 24
+      firstFrame: 1
+      lastFrame: 120
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -345,7 +402,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|ANIM_Combat_Phoebe_Idle
+      name: ANIM_Combat_Phoebe_Idle
       takeName: Armature|ANIM_Combat_Phoebe_Idle
       internalID: 0
       firstFrame: 1
@@ -377,8 +434,8 @@ ModelImporter:
       name: ANIM_Combat_Phoebe_DefenseIdle
       takeName: Armature|ANIM_Combat_Phoebe_DefenseIdle
       internalID: 0
-      firstFrame: 0
-      lastFrame: 23
+      firstFrame: 1
+      lastFrame: 26
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -466,6 +523,470 @@ ModelImporter:
       internalID: 0
       firstFrame: 0
       lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ANIM_Combat_Phoebe_Death_Idle
+      takeName: Armature|ANIM_Combat_Phoebe_Death_Idle
+      internalID: 0
+      firstFrame: 2
+      lastFrame: 32
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|ANIM_Combat_Phoebe_Revive
+      takeName: Armature|ANIM_Combat_Phoebe_Revive
+      internalID: 0
+      firstFrame: 1
+      lastFrame: 65
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ANIM_Cinematic_Phoebe_Combat_Idle_HeadTurn_Left_01_Loop
+      takeName: Armature|ANIM_Cinematic_Phoebe_Combat_Idle_HeadTurn_Left_01_Loop
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 48
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ANIM_Cinematic_Phoebe_Combat_Idle_HeadTurn_Left_01_Return
+      takeName: Armature|ANIM_Cinematic_Phoebe_Combat_Idle_HeadTurn_Left_01_Return
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 15
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ANIM_Cinematic_Phoebe_Combat_Idle_HeadTurn_Left_01_Start
+      takeName: Armature|ANIM_Cinematic_Phoebe_Combat_Idle_HeadTurn_Left_01_Start
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 10
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ANIM_Cinematic_Phoebe_Combat_Idle_HeadTurn_Right_01_Loop
+      takeName: Armature|ANIM_Cinematic_Phoebe_Combat_Idle_HeadTurn_Right_01_Loop
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 56
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ANIM_Cinematic_Phoebe_Combat_Idle_HeadTurn_Right_01_Return
+      takeName: Armature|ANIM_Cinematic_Phoebe_Combat_Idle_HeadTurn_Right_01_Return
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 15
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ANIM_Cinematic_Phoebe_Combat_Idle_HeadTurn_Right_01_Start
+      takeName: Armature|ANIM_Cinematic_Phoebe_Combat_Idle_HeadTurn_Right_01_Start
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ANIM_Cinematic_Phoebe_Explo_Idle_Fist
+      takeName: Armature|ANIM_Cinematic_Phoebe_Explo_Idle_Fist
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ANIM_Cinematic_Phoebe_Explo_Idle_HeartHand_Loop
+      takeName: Armature|ANIM_Cinematic_Phoebe_Explo_Idle_HeartHand_Loop
+      internalID: 0
+      firstFrame: 2
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ANIM_Cinematic_Phoebe_Explo_Idle_HeartHand_Return
+      takeName: Armature|ANIM_Cinematic_Phoebe_Explo_Idle_HeartHand_Return
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ANIM_Cinematic_Phoebe_Explo_Idle_HeartHand_Start
+      takeName: Armature|ANIM_Cinematic_Phoebe_Explo_Idle_HeartHand_Start
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ANIM_Cinematics_Phoebe_Explo_Idle_HeadTurn_Loop
+      takeName: Armature|ANIM_Cinematics_Phoebe_Explo_Idle_HeadTurn_Loop
+      internalID: 0
+      firstFrame: 1
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ANIM_Cinematics_Phoebe_Explo_Idle_HeadTurn_Return
+      takeName: Armature|ANIM_Cinematics_Phoebe_Explo_Idle_HeadTurn_Return
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ANIM_Cinematics_Phoebe_Explo_Idle_HeadTurn_Start
+      takeName: Armature|ANIM_Cinematics_Phoebe_Explo_Idle_HeadTurn_Start
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ANIM_Cinematics_Phoebe_Lift
+      takeName: Armature|ANIM_Cinematics_Phoebe_Lift
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 120
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,73 +10,80 @@ namespace TheFowler
 {
     public class Buff : BattleActorComponent
     {
-        [SerializeField] private int waitTurn;
-        [SerializeField, Range(0,100)] private float buffPercent = 25f;
+        [SerializeField] private MMFeedbacks buff, debuff;
 
-        public UnityEvent OnBuffStart, OnBuffEnd;
+        public ParticleSystem[] ps;
 
-        public float BuffPercent
-        {
-            get => buffPercent;
-            set
-            {
-                if (waitTurn > 0)
-                {
-                    if (value > buffPercent)
-                    {
-                        buffPercent = value;
-                    }
-                }
-                else
-                {
-                    buffPercent = value;
-                }
-            }
-        }
+        public ParticleSystem[] ps_Debuff;
         
-        public override void Initialize()
+        [Button]
+        public void BuffAttack(int value)
         {
-            base.Initialize();
-            waitTurn = 0;
+            ReferedActor.BattleActorInfo.attackBonus += value;
+
+            if (ReferedActor.BattleActorInfo.attackBonus > SpellData.Instance.maxBuffAttack)
+                ReferedActor.BattleActorInfo.attackBonus = SpellData.Instance.maxBuffAttack;
+            
+            ReferedActor.StateIcons?.Refresh_Att(ReferedActor);
+            buff?.PlayFeedbacks();
+            
+            Apply(ReferedActor.BattleActorInfo.attackBonus, SpellData.Instance.maxBuffAttack, SpellData.Instance.minBuffAttack);
         }
 
         [Button]
-        public void BuffActor(int turnCount)
+        public void DebuffAttack(int value)
         {
-            waitTurn = turnCount;
-            ReferedActor.BattleActorInfo.buffBonus = buffPercent;
-            OnBuffStart?.Invoke();
+            ReferedActor.BattleActorInfo.attackBonus -= value;
+            
+            if (ReferedActor.BattleActorInfo.defenseBonus < SpellData.Instance.minBuffAttack)
+                ReferedActor.BattleActorInfo.defenseBonus = SpellData.Instance.minBuffAttack;
             
             ReferedActor.StateIcons?.Refresh_Att(ReferedActor);
+            //debuff?.PlayFeedbacks();
+            
+            Apply(ReferedActor.BattleActorInfo.attackBonus, SpellData.Instance.maxBuffAttack, SpellData.Instance.minBuffAttack);
         }
 
         [Button]
-        public void EndBuff()
+        public void ResetAttack()
         {
-            waitTurn = 0;
-            ReferedActor.BattleActorInfo.buffBonus = 0;
-            OnBuffEnd?.Invoke();
-            
+            ReferedActor.BattleActorInfo.attackBonus = 0;
             ReferedActor.StateIcons?.Refresh_Att(ReferedActor);
+            StopVFX();
         }
         
-        public override void OnTurnStart()
+        private void Apply(float value, float max, float min)
         {
-            base.OnTurnStart();
-
-            if (Fury.IsInFury)
-                return;
-
-            if (waitTurn == 0)
+            if (value > 0)
             {
-                EndBuff();
+                ps.ForEach(w => w.Stop());
+                ps_Debuff.ForEach(w => w.Stop()); 
+                
+                if (value <= max * .25f)
+                    ps[0].Play();
+                else if (value <= max * .5f)
+                    ps[1].Play();
+                else if (value <= max * .75f)
+                    ps[2].Play();
             }
-            else
+            else if (value < 0)
             {
-                waitTurn--;
-                if(waitTurn == 0)
-                    EndBuff();
+                ps.ForEach(w => w.Stop());
+                ps_Debuff.ForEach(w => w.Stop()); 
+                
+                if (value >= min * .25f)
+                    ps_Debuff[0].Play();
+                else if (value >= min * .5f)
+                    ps_Debuff[1].Play();
+                else if (value >= min * .75f)
+                    ps_Debuff[2].Play();
             }
+        }
+
+        public void StopVFX()
+        {
+            ps.ForEach(w => w.Stop());
+            ps_Debuff.ForEach(w => w.Stop());
         }
     }
 }

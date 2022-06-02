@@ -6,55 +6,77 @@ using Sirenix.OdinInspector;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using QRCode;
+using DG.Tweening;
+using System;
+
 namespace TheFowler
 {
     public class SkillTreeView : UIView
     {
-        [TabGroup("References")] [SerializeField] private GameObject  firstSelectedObject;
-        [TabGroup("References")] [SerializeField] private int complicityLevelRobyn, complicityLevelAbi, complicityLevelPhoebe;
+        [TabGroup("References")] public SkillTreeSelector firstSelectedObject;
         [TabGroup("References")] [SerializeField] private UnityEngine.InputSystem.PlayerInput Inputs;
-        [TabGroup("Tree References")] [SerializeField] private TMPro.TextMeshProUGUI spellName, spellDescription;
+        [TabGroup("Tree")] [SerializeField] public SkillTreeSelector[] skills, littleSkills, mediumSkills, bigSkills;
+        [TabGroup("Tree")] [SerializeField] private LineBehavior[] lines;
+        [TabGroup("Tree")] [SerializeField] private BattleActorData[] datas;
+        [TabGroup("Tree")] private BattleActorData currentData;
+        [TabGroup("Tree")] [SerializeField] private RectTransform descriptionBox;
+        [TabGroup("Tree")] [SerializeField] private TMPro.TextMeshProUGUI descriptionName, descriptionText;
+        [TabGroup("Tree")] [SerializeField] private Image targetImage, typeImage;
+        [TabGroup("Tree")] [SerializeField] private Image[] hearts;
+        [TabGroup("Tree")] [SerializeField] private Sprite heartEmpty, heartFilled;
+        [TabGroup("Tree")] [SerializeField] private SpellTypeDatabase spellTypeDatabase;
+        [TabGroup("Tree")] [SerializeField] private TargetTypeDatabase targetTypeDatabase;
+        [TabGroup("Tree")] [SerializeField] public List<SkillTreeSelector> skillsWay;
+        [TabGroup("Tree")] [SerializeField] public RectTransform littleCircle,mediumCircle,bigCircle;
+        [TabGroup("Tree")] [SerializeField] public Color yellow;
 
-        [TabGroup("Spell References")]
-        [SerializeField] private TMPro.TextMeshProUGUI descriptionText, easyDescriptionText, targetText, titleText;
 
-        [TabGroup("Spell References")]
-        [Title("Robyn")]
-        [SerializeField] private SkillSelectorElement[] skillSelectorsRobyn;
-        [TabGroup("Spell References")]
-        [SerializeField] private SkillTreeSelector[] skillTreeSelectorsRobyn;
+        [TabGroup("Character")] [SerializeField] private Image character;
+        [TabGroup("Character")] [SerializeField] private RectTransform characterBox;
+        [TabGroup("Character")] [SerializeField] private TMPro.TextMeshProUGUI characterName;
+        [TabGroup("Character")] [SerializeField] private Sprite[] characterSprites;
 
-        [TabGroup("Spell References")]
-        [Title("Abi")]
-        [SerializeField] private SkillSelectorElement[] skillSelectorsAbi;
-        [TabGroup("Spell References")]
-        [SerializeField] private SkillTreeSelector[] skillTreeSelectorsAbi;
+        [TabGroup("Spell")] [SerializeField] private SpellTreeSelector[] spellTreeSelectors;
 
-        [TabGroup("Spell References")]
-        [Title("Phoebe")]
-        [SerializeField] private SkillSelectorElement[] skillSelectorsPhoebe;
-        [TabGroup("Spell References")]
-        [SerializeField] private SkillTreeSelector[] skillTreeSelectorsPhoebe;
+        [SerializeField] private MenuCharactersView menuView;
+
+        public int usedSkillPoints;
+        private int availableSkillPoints;
+        public SpellTreeSelector[] SpellTreeSelectors
+        {
+            get
+            {
+                return spellTreeSelectors;
+            }
+            set
+            {
+                spellTreeSelectors = value;
+            }
+        }
 
         private GameObject eventSytemGO;
         private UnityEngine.EventSystems.EventSystem eventSytem;
-        private Spell currentSpell;
-        private BattleActorData currentBattleActorData;
-        public CustomElement currentCustomElement;
-        private Battle battle;
+        private int ID;
 
         public override void Show()
         {
             base.Show();
 
-            InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
-            infoButtons[0] = InfoBoxButtons.CLOSE;
+            ID = 0;
 
-            UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+            MenuCharactersSKHandler.Instance.DisableEveryone();
 
+            for (int i = 0; i < skills.Length; i++)
+            {
+                skills[i]._Deselect();
+            }
 
-            if (VolumesManager.Instance != null)
-                VolumesManager.Instance.BlurryUI.enabled = true;
+            CharacterPicker(0);
+
+            SetCharacter();
+
+            SetSpells();
+
 
             if (eventSytemGO == null)
             {
@@ -63,15 +85,17 @@ namespace TheFowler
                 eventSytem = eventSytemGO.GetComponent<EventSystem>();
 
             }
-            eventSytem.SetSelectedGameObject(firstSelectedObject);
+
+            if (!menuView.onMenu)
+            {
+                descriptionBox.gameObject.SetActive(true);
+            }
+
+            SpawnCircles();
+            RefreshSkillPoint();
+            RefreshCircles();
         }
 
-        public void Show(Battle newBattle)
-        {
-            battle = newBattle;
-
-            Show();
-        }
 
         public override void Hide()
         {
@@ -79,232 +103,331 @@ namespace TheFowler
 
             UI.GetView<InfoBoxView>(UI.Views.InfoBox).Hide();
 
-            if (VolumesManager.Instance != null)
-                VolumesManager.Instance.BlurryUI.enabled = false;
+            descriptionBox.gameObject.SetActive(false);
+            menuView.background.SetActive(true);
 
-            if (battle != null)
-            {
-                battle.PlayPhase();
-                battle = null;
-            }
+            StartCoroutine(WaitShowMenu());
         }
 
         private void Update()
         {
-            if (!isActive) return;
-            if (Inputs.actions["Return"].WasPressedThisFrame())
+            if (isActive)
             {
-                Hide();
+                if (Inputs.actions["RightBumper"].WasPressedThisFrame())
+                {
+                    ID++;
+                    if (ID == menuView.numberOfAllies) ID = 0;
+
+                    for (int i = 0; i < skills.Length; i++)
+                    {
+                        skills[i]._Deselect();
+                    }
+
+                    CharacterPicker(ID);
+                    SetCharacter();
+                    SetSpells();
+
+                    firstSelectedObject._Select();
+                    if(!menuView.onMenu)
+                        eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
+
+                    RefreshSkillPoint();
+                    RefreshCircles();
+
+                }
+                else if (Inputs.actions["LeftBumper"].WasPressedThisFrame())
+                {
+                    ID--;
+                    if (ID == -1) ID = menuView.numberOfAllies - 1;
+
+                    for (int i = 0; i < skills.Length; i++)
+                    {
+                        skills[i]._Deselect();
+                    }
+
+                    CharacterPicker(ID);
+                    SetCharacter();
+                    SetSpells();
+
+                    firstSelectedObject._Select();
+
+                    if(!menuView.onMenu)
+                        eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
+
+                    RefreshSkillPoint();
+                    RefreshCircles();
+
+                }
+
+                else if (Inputs.actions["C"].WasPressedThisFrame())
+                {
+                    ResetTree();
+                }
+
+                else if (Inputs.actions["Return"].WasPressedThisFrame())
+                {
+                    Hide();
+                }
+
+            }
+
+        }
+
+        private IEnumerator WaitShowMenu()
+        {
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+            menuView.Show();
+            yield break;
+
+        }
+
+        public void ResetTree()
+        {
+
+            Array.Resize(ref datas[ID].Spells, 1);
+
+            for (int i = 1; i < datas[ID].AllSpells.Length; i++)
+            {
+                if(datas[ID].AllSpells[i].spellState == SkillState.EQUIPPED || datas[ID].AllSpells[i].spellState == SkillState.UNSELECTIONNED)
+                {
+                    datas[ID].AllSpells[i].spellState = SkillState.UNEQUIPPED;
+                }
+            }
+
+            SetCharacter();
+
+            SetSpells();
+
+            eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
+
+            RefreshSkillPoint();
+            RefreshCircles();
+
+
+        }
+
+
+        private void CharacterPicker(int newID)
+        {
+            currentData = datas[newID];
+
+            MenuCharactersSKHandler.Instance.DisableEveryone();
+
+            switch (newID)
+            {
+                case 0:
+                    characterName.text = "ROBYN";
+                    break;
+                case 1:
+                    characterName.text = "ABIGAIL";
+                    break;
+                case 2:
+                    characterName.text = "PHOEBE";
+                    break;
+            }
+
+            MenuCharactersSKHandler.Instance.SetActorTree(newID);
+
+
+
+        }
+
+        private void SetCharacter()
+        {
+            for (int i = 0; i < skills.Length; i++)
+            {
+
+                skills[i].Data = currentData;
+                skills[i].SetDatas(i);
+                skills[i].SetState();
+
+
+            }
+
+            RefreshAllLines();
+
+            RefreshSkillsWay();
+            
+        }
+
+        public void RefreshSkillsWay()
+        {
+            skillsWay.Clear();
+
+            for (int i = 0; i < datas[ID].Spells.Length; i++)
+            {
+                for (int j = 0; j < skills.Length; j++)
+                {
+                    if (skills[j].associatedSpell == datas[ID].Spells[i])
+                    {
+                        skillsWay.Add(skills[j]);
+                    }
+                }
+
             }
         }
 
-        public void ShowTreeSkillData(Spell spell)
+        public void RefreshAllLines()
         {
-            titleText.SetText(spell.SpellName);
-            descriptionText.SetText(spell.SpellDescription);
-            easyDescriptionText.SetText(spell.EasySpellDescription.ToString());
-            targetText.SetText(spell.TargetDescription);
-
-            currentSpell = spell;
-
-            if (currentCustomElement.skillTreeSelector.isClickable)
+            for (int i = 0; i < skills.Length; i++)
             {
+                skills[i].RefreshLines();
 
-                if(currentCustomElement.skillTreeSelector.complicityLevel <= currentBattleActorData.complicityLevel)
+            }
+        }
+
+        public void SetSpells()
+        {
+            for (int i = 0; i < spellTreeSelectors.Length; i++)
+            {
+                if(i >= currentData.Spells.Length)
                 {
-                    InfoBoxButtons[] infoButtons = new InfoBoxButtons[2];
-                    infoButtons[0] = InfoBoxButtons.SELECT;
-                    infoButtons[1] = InfoBoxButtons.CLOSE;
-
-
-                    UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+                    spellTreeSelectors[i].SetSpells(null);
                 }
                 else
                 {
-                    InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
-                    infoButtons[0] = InfoBoxButtons.CLOSE;
-
-                    UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+                    spellTreeSelectors[i].SetSpells(currentData.Spells[i]);
                 }
+                
+            }
+        }
+
+        public void SetDescription(SkillTreeSelector selector, Spell spell)
+        {
+            descriptionName.text = spell.SpellName;
 
 
+
+            if (LocalisationManager.language == Language.ENGLISH)
+            {
+                descriptionName.text = spell.SpellName;
+                descriptionText.text = spell.SpellDescription;
             }
             else
             {
-                InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
-                infoButtons[0] = InfoBoxButtons.CLOSE;
+                descriptionName.text = spell.SpellNameFrench;
+                descriptionText.text = spell.SpellDescriptionFrench;
+            }
 
-                UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
+
+            targetImage.sprite = targetTypeDatabase.GetElement(spell.TargetType);
+            typeImage.sprite = spellTypeDatabase.GetElement(spell.SpellType);
+
+            switch (spell.SpellPower)
+            {
+                case Spell.SpellPowerEnum.EASY:
+                    hearts[0].sprite = heartFilled;
+                    hearts[1].sprite = heartEmpty;
+                    hearts[2].sprite = heartEmpty;
+                    break;
+                case Spell.SpellPowerEnum.MEDIUM:
+                    hearts[0].sprite = heartFilled;
+                    hearts[1].sprite = heartFilled;
+                    hearts[2].sprite = heartEmpty;
+                    break;
+                case Spell.SpellPowerEnum.HARD:
+                    hearts[0].sprite = heartFilled;
+                    hearts[1].sprite = heartFilled;
+                    hearts[2].sprite = heartFilled;
+                    break;
             }
 
         }
 
-        public void ShowTreeSkillData(SkillSelectorElement skillSelector)
+        private Tween spawnTween;
+        public void SpawnCircles()
         {
-            titleText.SetText(skillSelector.referedSpell.SpellName);
-            descriptionText.SetText(skillSelector.referedSpell.SpellDescription);
-            easyDescriptionText.SetText(skillSelector.referedSpell.EasySpellDescription.ToString());
-            targetText.SetText(skillSelector.referedSpell.TargetDescription);
+            if (spawnTween != null)
+                spawnTween.Kill();
 
-            InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
-            infoButtons[0] = InfoBoxButtons.CLOSE;
+            littleCircle.localScale = Vector2.zero;
+            mediumCircle.localScale = Vector2.zero;
+            bigCircle.localScale = Vector2.zero;
 
-            UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
-        }
-
-        public void ChangeDataCharacter(int ID)
-        {
-            if (currentBattleActorData.complicityLevel < ID)
+            for (int i = 0; i < skills.Length; i++)
             {
-                // Insérer feedback négatifs lorsqu'on clique sur un sort qui n'est pas encore débloqué.
-
-                return;
+                skills[i].GetComponent<RectTransform>().localScale = Vector2.zero;
             }
 
-
-            // Insérer feedback positifs car le click est réussi
-            if (ID > currentBattleActorData.Spells.Length -1)
+            for (int i = 0; i < lines.Length; i++)
             {
-                Spell[] reminder = new Spell[currentBattleActorData.Spells.Length];
-                
-                for (int i = 0; i < reminder.Length; i++)
-                {
-                    reminder[i] = currentBattleActorData.Spells[i];
-                }
+                lines[i].GetComponent<RectTransform>().localScale = Vector2.zero;
+            };
 
-                currentBattleActorData.Spells = new Spell[ID + 1];
-
-                for (int i = 0; i < reminder.Length; i++)
-                {
-                    currentBattleActorData.Spells[i] = reminder[i];
-                }
-                
-            }
-
-
-            currentBattleActorData.Spells[ID] = currentSpell;
-            ChangeSkillSelector(currentBattleActorData);
+            spawnTween = littleCircle.DOScale(Vector2.one, .2f).
+                OnComplete(() => mediumCircle.DOScale(Vector2.one, .2f).
+                OnComplete(() => bigCircle.DOScale(Vector2.one, .2f).
+                OnComplete(() => RescaleSkills())));
 
         }
 
-        private void CheckComplicityLevel(SkillTreeSelector[] skillTreeSelector)
+        private void RescaleSkills()
         {
-            for (int j = 0; j < skillTreeSelector.Length; j++)
+            for (int i = 0; i < skills.Length; i++)
             {
-                if (skillTreeSelector[j].isPassive)
-                {
-                    if(skillTreeSelector[j].complicityLevel <= currentBattleActorData.complicityLevel)
-                    {
-                        skillTreeSelector[j].SetPicken();
-                    }
-                    else
-                    {
-                        skillTreeSelector[j].SetDisable();
-                    }
+                skills[i].GetComponent<RectTransform>().DOScale(new Vector3(.5f, .5f, 1f), .1f);
+            };
 
-                    
-                }
-                else
-                {
-                    for (int i = 0; i < currentBattleActorData.Spells.Length; i++)
-                    {
+            RescaleLines();
+        }
 
+        private void RescaleLines()
+        {
+            for (int i = 0; i < lines.Length; i++)
+            {
+                lines[i].GetComponent<RectTransform>().DOScale(Vector2.one, .1f);
+            };
+        }
 
-                        if (currentBattleActorData.Spells[i] == skillTreeSelector[j].linkedSpell)
-                        {
-                            skillTreeSelector[j].SetPicken();
-                            break;
-                        }
-                        else
-                        {
-                            if (skillTreeSelector[j].complicityLevel <= currentBattleActorData.complicityLevel)
-                            {
-                                skillTreeSelector[j].SetUnactive();
-                            }
-                            else
-                            {
-                                skillTreeSelector[j].SetDisable();
-                            }
-                        }
-                    }
-
-                }
-
-
+        public void RefreshCircles()
+        {
+            switch (datas[ID].complicityLevel)
+            {
+                case 1:
+                    littleCircle.GetComponent<Image>().color = Color.white;
+                    mediumCircle.GetComponent<Image>().color = Color.grey;
+                    bigCircle.GetComponent<Image>().color = Color.grey;
+                    break;
+                case 2:
+                    littleCircle.GetComponent<Image>().color = Color.white;
+                    mediumCircle.GetComponent<Image>().color = Color.white;
+                    bigCircle.GetComponent<Image>().color = Color.grey;
+                    break;
+                case 3:
+                    littleCircle.GetComponent<Image>().color = Color.white;
+                    mediumCircle.GetComponent<Image>().color = Color.white;
+                    bigCircle.GetComponent<Image>().color = Color.white;
+                    break;
             }
 
+            switch (usedSkillPoints)
+            {
+                case 1:
+                    littleCircle.GetComponent<Image>().color = yellow;
+                    break;
+                case 2:
+                    littleCircle.GetComponent<Image>().color = yellow;
+                    mediumCircle.GetComponent<Image>().color = yellow;
+                    break;
+                case 3:
+                    littleCircle.GetComponent<Image>().color = yellow;
+                    mediumCircle.GetComponent<Image>().color = yellow;
+                    bigCircle.GetComponent<Image>().color = yellow;
+                    break;
+            }
             
         }
 
-
-
-        public void ChangeSkillSelector(BattleActorData data)
+        public void RefreshSkillPoint()
         {
-            InfoBoxButtons[] infoButtons = new InfoBoxButtons[1];
-            infoButtons[0] = InfoBoxButtons.CLOSE;
+            availableSkillPoints = datas[ID].complicityLevel - usedSkillPoints ;
+            usedSkillPoints = datas[ID].Spells.Length - 1;
 
-            UI.GetView<InfoBoxView>(UI.Views.InfoBox).ShowProfile(infoButtons);
 
-            ChangeSkill(skillSelectorsRobyn, data);
-            ChangeSkill(skillSelectorsAbi, data);
-            ChangeSkill(skillSelectorsPhoebe, data);
-
-            CheckComplicityLevel(skillTreeSelectorsRobyn);
-            CheckComplicityLevel(skillTreeSelectorsAbi);
-            CheckComplicityLevel(skillTreeSelectorsPhoebe);
-
-            switch (data.actorName)
-            {
-                case "Robyn":
-                    complicityLevelRobyn = FeedbackNewComplicity(complicityLevelRobyn, skillTreeSelectorsRobyn);
-                    break;
-                case "Phoebe":
-                    complicityLevelPhoebe = FeedbackNewComplicity(complicityLevelPhoebe, skillTreeSelectorsPhoebe);
-                    break;
-                case "Abigail":
-                    complicityLevelAbi = FeedbackNewComplicity(complicityLevelAbi, skillTreeSelectorsAbi);
-                    break;
-            }
-
-            
-        }
-
-        private void ChangeSkill(SkillSelectorElement[] elements, BattleActorData data)
-        {
-            for (int i = 0; i < elements.Length; i++)
-            {
-                if (i <= data.Spells.Length - 1)
-                {
-                    elements[i].gameObject.SetActive(true);
-                    elements[i].transform.parent.GetComponent<CustomElement>().enabled = true;
-                    elements[i].Refresh(data.Spells[i]);
-                }
-                else
-                {
-                    elements[i].transform.parent.GetComponent<CustomElement>().enabled = false;
-                    elements[i].gameObject.SetActive(false);
-
-                }
-
-            }
-
-            currentBattleActorData = data;
-        }
-
-        private int FeedbackNewComplicity(int complicityLevel, SkillTreeSelector[] skillTreeSelectors)
-        {
-            for (int i = 0; i < skillTreeSelectors.Length; i++)
-            {
-                if (skillTreeSelectors[i].complicityLevel > complicityLevel && skillTreeSelectors[i].complicityLevel <= currentBattleActorData.complicityLevel)
-                {
-                    skillTreeSelectors[i].UnlockFeedback.PlayFeedbacks();
-                }
-            }
-
-            return currentBattleActorData.complicityLevel;
         }
 
 
     }
 
-}
+    }

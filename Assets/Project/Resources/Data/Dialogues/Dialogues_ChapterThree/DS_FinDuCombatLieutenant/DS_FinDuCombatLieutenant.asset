@@ -10,30 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
+  m_Name: 
   m_EditorClassIdentifier: 
   NodeName: 
   chance: 1
   state: 0
   started: 0
   guid: 49ff396de6c55e445891c7341c6f8be4
-  position: {x: 216.87692, y: 293.83304}
+  position: {x: 402.6775, y: 300}
   children:
   - {fileID: 950821740595950752}
   dialogue:
     ActorEnum: 1
     dialogueText: Are the rest as devoted as him?
+    dialogueTextFrench: "Les autres sont aussi d\xE9vou\xE9s que lui ?"
     cameraPath:
-      genericKey: 3
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam5
       batchName: 
-    displayDuration: 4
+    displayDuration: 3.5
     choiceText: 
     isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
-      WwiseObjectReference: {fileID: 0}
+      WwiseObjectReference: {fileID: 11400000, guid: c0aa50ca9ab054443805432477598905, type: 2}
     animationTrigger: 0
 --- !u!114 &-7680440856517835271
 MonoBehaviour:
@@ -45,30 +46,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
+  m_Name: 
   m_EditorClassIdentifier: 
   NodeName: 
   chance: 1
   state: 0
   started: 0
   guid: bfda35811a982f04dab161c4ea97ef60
-  position: {x: 218, y: 101}
+  position: {x: 251.35002, y: 97.549995}
   children:
   - {fileID: -5622981812329495451}
   dialogue:
     ActorEnum: 4
-    dialogueText: "You do not know what outcome you\u2019ve brought upon yourself\u2026 "
+    dialogueText: "You do not <b>know</b> what you\u2019ve brought upon <b>yourself</b>\u2026"
+    dialogueTextFrench: "Vous ne <b>savez</b> pas ce que vous avez provoqu\xE9..."
     cameraPath:
       genericKey: 4
-      cameraName: Cam5
+      cameraName: Cam2
       batchName: 
-    displayDuration: 8
+    displayDuration: 4.5
     choiceText: 
     isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
-      WwiseObjectReference: {fileID: 0}
+      WwiseObjectReference: {fileID: 11400000, guid: 2db5dbff71036774da7d3d217f2cf332, type: 2}
     animationTrigger: 0
 --- !u!114 &-7643886287816936155
 MonoBehaviour:
@@ -92,12 +94,50 @@ MonoBehaviour:
   - {fileID: -1894201154258531617}
   dialogue:
     ActorEnum: 4
-    dialogueText: 'LIAR! ONLY HIM DESERVES IT! '
+    dialogueText: <b>LIAR!</b> ONLY <b>HE</b> DESERVES IT!
+    dialogueTextFrench: " <b>MENTEURS !</b> <b>IL</b> EST LE SEUL \xC0 M\xC9RITER
+      CE POUVOIR ! "
     cameraPath:
-      genericKey: 1
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam2
       batchName: 
-    displayDuration: 4
+    displayDuration: 3
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 11400000, guid: 1cac8dd4469be034297648012584b62d, type: 2}
+    animationTrigger: 0
+--- !u!114 &-7486046030274074024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: a373b79e6bf62784e8e2b0de5c4418f4
+  position: {x: -46.099937, y: 297.80002}
+  children:
+  - {fileID: -3381951127666935881}
+  dialogue:
+    ActorEnum: 5
+    dialogueText: 
+    dialogueTextFrench: 
+    cameraPath:
+      genericKey: 4
+      cameraName: Cam3
+      batchName: 
+    displayDuration: 3
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -122,17 +162,18 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 94cca18132c933c4ba1d056f9d115c72
-  position: {x: -200, y: 504}
+  position: {x: -198.25099, y: 503.99997}
   children:
   - {fileID: 2363845411703572572}
   dialogue:
     ActorEnum: 2
-    dialogueText: "We are not ready to face the Fowler for now\u2026"
+    dialogueText: "I can\u2019t contradict that."
+    dialogueTextFrench: Certes.
     cameraPath:
-      genericKey: 2
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam2
       batchName: 
-    displayDuration: 4
+    displayDuration: 3
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -150,24 +191,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
+  m_Name: 
   m_EditorClassIdentifier: 
   NodeName: 
   chance: 1
   state: 0
   started: 0
   guid: b5cf7e0002998fb4e9ec18ec4b62dbff
-  position: {x: -197, y: 195}
+  position: {x: -198, y: 195}
   children:
   - {fileID: 3375280563388665626}
   dialogue:
     ActorEnum: 4
-    dialogueText: HE WILL SLAUGHTER ALL OF YOU! NONE CAN STOP HIS HIGHNESS!
+    dialogueText: <b>HE</b> WILL SLAUGHTER ALL OF YOU! NONE CAN STOP <b>HIS</b> HIGHNESS!
+    dialogueTextFrench: "<b>IL</b> VA TOUS VOUS MASSACRER ! PERSONNE NE PEUT ARR\xCATER
+      <b>SON</b> ALTESSE !"
     cameraPath:
-      genericKey: 3
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam2
       batchName: 
-    displayDuration: 8
+    displayDuration: 4.5
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -192,15 +235,16 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e658ddb2993500a48a297e9d86b70738
-  position: {x: -57.717037, y: 290.33502}
+  position: {x: 129.34998, y: 295.85007}
   children:
   - {fileID: 6942070322500933704}
   dialogue:
     ActorEnum: 2
     dialogueText: What has he done to you?
+    dialogueTextFrench: "Qu\u2019est ce qu\u2019il t\u2019as fait ?"
     cameraPath:
-      genericKey: 2
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam4
       batchName: 
     displayDuration: 3
     choiceText: 
@@ -232,10 +276,11 @@ MonoBehaviour:
   - {fileID: 6320221986522863936}
   dialogue:
     ActorEnum: 2
-    dialogueText: Not very discreet, girls.
+    dialogueText: Not very <b><#1B69B8>discreet, girls.</b></color>
+    dialogueTextFrench: "Pas tr\xE8s <b><#1B69B8>discr\xE8tes</b></color>, les filles."
     cameraPath:
-      genericKey: 2
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam2
       batchName: 
     displayDuration: 3
     choiceText: 
@@ -267,12 +312,13 @@ MonoBehaviour:
   - {fileID: 3989988961430197412}
   dialogue:
     ActorEnum: 2
-    dialogueText: "We might need to do a detour before we get to the Fowler\u2026"
+    dialogueText: "And you think you\u2019re capable of it?"
+    dialogueTextFrench: "Et tu penses en \xEAtre capable ?"
     cameraPath:
-      genericKey: 2
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam5
       batchName: 
-    displayDuration: 7
+    displayDuration: 3
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -290,25 +336,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
+  m_Name: 
   m_EditorClassIdentifier: 
   NodeName: 
   chance: 1
   state: 0
   started: 0
   guid: 0c5df325871ebf145b075d583dc86487
-  position: {x: -197, y: 290}
+  position: {x: -200.14998, y: 290.00003}
   children:
-  - {fileID: -3381951127666935881}
+  - {fileID: -7486046030274074024}
   dialogue:
     ActorEnum: 4
-    dialogueText: HE CAN TAKE MY INSTRUMENT FOR HIS OWN AND I WILL BE HONORED TO
-      BE PART OF HIS MAGNIFICENCE!
+    dialogueText: <b>HE</b> CAN TAKE MY INSTRUMENT FOR HIS OWN AND I WILL BE HONORED
+      TO BE PART OF <b>HIS</b> MAGNIFICENCE!
+    dialogueTextFrench: "<b>IL</b> PEUT PRENDRE MON INSTRUMENT <b>S\u2019IL</b> LE
+      SOUHAITE  ET JE SERAI HONOR\xC9 DE FAIRE PARTIE DE <b>SA</b> MAGNIFICENCE !"
     cameraPath:
-      genericKey: 2
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam3
       batchName: 
-    displayDuration: 8
+    displayDuration: 10
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -326,7 +374,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
+  m_Name: 
   m_EditorClassIdentifier: 
   NodeName: 
   chance: 1
@@ -338,10 +386,11 @@ MonoBehaviour:
   - {fileID: -1630138229952888071}
   dialogue:
     ActorEnum: 0
-    dialogueText: You think so?
+    dialogueText: You think <b><#EBB517>so?</b></color>
+    dialogueTextFrench: Tu <b><#CE2020>crois ?</b></color>
     cameraPath:
-      genericKey: 1
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam2
       batchName: 
     displayDuration: 3
     choiceText: 
@@ -373,18 +422,19 @@ MonoBehaviour:
   - {fileID: -2929473106823049253}
   dialogue:
     ActorEnum: 1
-    dialogueText: "Can\u2019t you read the room or are you blind?"
+    dialogueText: "Can\u2019t you read the room or are you <b><#EBB517>blind?</b></color>"
+    dialogueTextFrench: "Tu le fais expr\xE8s ou t'es <b><#EBB517>aveugle ?</b></color>"
     cameraPath:
-      genericKey: 3
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam2
       batchName: 
-    displayDuration: 3
+    displayDuration: 4
     choiceText: 
     isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
-      WwiseObjectReference: {fileID: 0}
+      WwiseObjectReference: {fileID: 11400000, guid: b77119a845cd261439734277c241ba58, type: 2}
     animationTrigger: 0
 --- !u!114 &11400000
 MonoBehaviour:
@@ -429,6 +479,8 @@ MonoBehaviour:
   - {fileID: 6320221986522863936}
   - {fileID: -2929473106823049253}
   - {fileID: -1630138229952888071}
+  - {fileID: 5225204689844916343}
+  - {fileID: -7486046030274074024}
   dialogueType: 0
 --- !u!114 &506330341598280541
 MonoBehaviour:
@@ -452,10 +504,13 @@ MonoBehaviour:
   - {fileID: 7693023845488186585}
   dialogue:
     ActorEnum: 0
-    dialogueText: "I can\u2019t believe I need to train by someone like you."
+    dialogueText: "I can\u2019t believe I\u2019m gonna take down the <b><#CE2020>whole
+      kingship</b></color> with someone like <b><#CE2020>you.</b></color>"
+    dialogueTextFrench: "J'arrive pas \xE0 croire que je vais faire tomber son <b><#CE2020>royaume</b></color>
+      avec quelqu'un comme <b><#CE2020>toi.</b></color> \r"
     cameraPath:
-      genericKey: 1
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam2
       batchName: 
     displayDuration: 4
     choiceText: 
@@ -475,22 +530,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
+  m_Name: 
   m_EditorClassIdentifier: 
   NodeName: 
   chance: 1
   state: 0
   started: 0
   guid: 8976f1df4e14bf24aa08072cf3962e60
-  position: {x: -59.999958, y: 100.99996}
+  position: {x: -191.67761, y: 100}
   children:
   - {fileID: 5068810509047620278}
   dialogue:
     ActorEnum: 2
-    dialogueText: "THIS\u2026 IS WHAT YOU GET! "
+    dialogueText: "<b><#1B69B8>THIS</b></color>\u2026 IS WHAT YOU GET! "
+    dialogueTextFrench: "<b><#1B69B8>C'est</b></color>... tout ce que tu m\xE9rites
+      ! "
     cameraPath:
-      genericKey: 1
-      cameraName: Cam5
+      genericKey: 4
+      cameraName: Cam1
       batchName: 
     displayDuration: 4
     choiceText: 
@@ -517,17 +574,20 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: c9818e4e0f01f8a46ae0ace8926b47a1
-  position: {x: -59.748825, y: 394.00003}
+  position: {x: -60.520836, y: 393}
   children:
   - {fileID: -2137150277963655024}
   dialogue:
     ActorEnum: 0
-    dialogueText: "Well\u2026 that gives us more reasons to get rid of the Fowler!"
+    dialogueText: "Then we\u2019ll just <b><#CE2020>eradicate</b></color> them one
+      by one."
+    dialogueTextFrench: "Alors on les <b><#CE2020>\xE9crasera</b></color> un par
+      un."
     cameraPath:
-      genericKey: 1
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam5
       batchName: 
-    displayDuration: 6
+    displayDuration: 3
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -552,18 +612,18 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 2247ce152c7f8b14fb0d09217bb7e8f8
-  position: {x: -199.50188, y: 394.00003}
+  position: {x: -198.47906, y: 394}
   children:
   - {fileID: 934616351672484733}
   dialogue:
     ActorEnum: 2
-    dialogueText: "I know one of them\u2026But to a man of his honor\u2026 the man
-      who taught me how to fight\u2026 "
+    dialogueText: Perhaps <b><#1B69B8>even more</b></color> so.
+    dialogueTextFrench: "Peut-\xEAtre <b><#1B69B8>m\xEAme plus.</b></color>"
     cameraPath:
-      genericKey: 2
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam5
       batchName: 
-    displayDuration: 8
+    displayDuration: 3
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -592,20 +652,22 @@ MonoBehaviour:
   children:
   - {fileID: 506330341598280541}
   dialogue:
-    ActorEnum: 2
-    dialogueText: "We need training\u2026 We need discipline\u2026 And I will teach
-      you, like how the lieutenant taught me."
+    ActorEnum: 1
+    dialogueText: "Can\u2019t wait to see the bastard\u2019s face when he sees the
+      3 of us."
+    dialogueTextFrench: "J'ai h\xE2te de voir la t\xEAte de ce salaud quand il nous
+      verra toutes les trois."
     cameraPath:
-      genericKey: 2
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam2
       batchName: 
-    displayDuration: 8
+    displayDuration: 5.2
     choiceText: 
     isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
-      WwiseObjectReference: {fileID: 0}
+      WwiseObjectReference: {fileID: 11400000, guid: 987e5bf977793c342818be5febb49858, type: 2}
     animationTrigger: 0
 --- !u!114 &3375280563388665626
 MonoBehaviour:
@@ -617,7 +679,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
+  m_Name: 
   m_EditorClassIdentifier: 
   NodeName: 
   chance: 1
@@ -629,18 +691,20 @@ MonoBehaviour:
   - {fileID: 8024662905564055377}
   dialogue:
     ActorEnum: 1
-    dialogueText: "Stop talking as if he\u2019s some sort of God!"
+    dialogueText: "Stop talking as if he\u2019s some sort of <b><#EBB517>God!</b></color>"
+    dialogueTextFrench: "Arr\xEAte de le mentionner comme si c'\xE9tait une sorte
+      de <b><#EBB517>Dieu !</b></color>"
     cameraPath:
       genericKey: 4
-      cameraName: Cam5
+      cameraName: Cam3
       batchName: 
-    displayDuration: 5
+    displayDuration: 3.7
     choiceText: 
     isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
-      WwiseObjectReference: {fileID: 0}
+      WwiseObjectReference: {fileID: 11400000, guid: d0aad3377575eaf4d91d5a88fbbcdd86, type: 2}
     animationTrigger: 0
 --- !u!114 &3651394335642136575
 MonoBehaviour:
@@ -659,17 +723,18 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 349946134dd656f47bd8328723b3ac28
-  position: {x: -54.219025, y: 606.90515}
+  position: {x: -55.32249, y: 605.6775}
   children:
   - {fileID: -1748358441398701632}
   dialogue:
     ActorEnum: 1
-    dialogueText: "Robyn! She\u2019s opening to us!"
+    dialogueText: "Robyn! She\u2019s <b><#EBB517>opening</b></color> to us!"
+    dialogueTextFrench: "Elle <b><#EBB517>s'ouvre</b></color> \xE0 nous !"
     cameraPath:
-      genericKey: 3
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam2
       batchName: 
-    displayDuration: 3
+    displayDuration: 3.5
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -687,7 +752,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
+  m_Name: 
   m_EditorClassIdentifier: 
   NodeName: 
   chance: 1
@@ -699,12 +764,15 @@ MonoBehaviour:
   - {fileID: -6726904698652763460}
   dialogue:
     ActorEnum: 0
-    dialogueText: Party pooper.
+    dialogueText: "See <b><#CE2020>all</b></color> we\u2019ve already accomplished?
+      They can\u2019t do shit against <b><#CE2020>us.</b></color>"
+    dialogueTextFrench: "T\u2019as vu <b><#CE2020>tout</b></color> ce qu\u2019on
+      a accompli ? Ils peuvent rien faire contre <b><#CE2020>nous.</b></color>"
     cameraPath:
-      genericKey: 1
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam5
       batchName: 
-    displayDuration: 3
+    displayDuration: 4.5
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -729,23 +797,24 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: d21e9618cffd35a4bb8ee6269e84076f
-  position: {x: -204.6336, y: 605.1561}
+  position: {x: -208.52083, y: 604.99994}
   children:
   - {fileID: 3651394335642136575}
   dialogue:
     ActorEnum: 1
-    dialogueText: OOOOOH!
+    dialogueText: <b><#EBB517>OOOOOH!</b></color>
+    dialogueTextFrench: <b><#EBB517>OOOOOH !</b></color>
     cameraPath:
-      genericKey: 3
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam2
       batchName: 
-    displayDuration: 2
+    displayDuration: 1.5
     choiceText: 
     isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
-      WwiseObjectReference: {fileID: 0}
+      WwiseObjectReference: {fileID: 11400000, guid: e19b9c231ac3cf742ad4462a538b1585, type: 2}
     animationTrigger: 0
 --- !u!114 &5068810509047620278
 MonoBehaviour:
@@ -764,17 +833,56 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e2dea473ee6d9c44ca673898ca641f65
-  position: {x: 83.99991, y: 100.999985}
+  position: {x: -49, y: 100}
   children:
   - {fileID: -7680440856517835271}
   dialogue:
     ActorEnum: 2
-    dialogueText: NEVER MENTION HER AGAIN!
+    dialogueText: 'NEVER MENTION <b><#1B69B8>HER AGAIN!</b></color>
+
+'
+    dialogueTextFrench: NE LA MENTIONNE <b><#1B69B8>PLUS JAMAIS !</b></color>
     cameraPath:
-      genericKey: 2
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam1
       batchName: 
     displayDuration: 4
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &5225204689844916343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 001c4114a66f72e4b919c1023130e807
+  position: {x: -356, y: 98}
+  children:
+  - {fileID: 895098416517305829}
+  dialogue:
+    ActorEnum: 5
+    dialogueText: 
+    dialogueTextFrench: 
+    cameraPath:
+      genericKey: 4
+      cameraName: Cam1
+      batchName: 
+    displayDuration: 2
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -792,7 +900,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
+  m_Name: 
   m_EditorClassIdentifier: 
   NodeName: 
   chance: 1
@@ -803,18 +911,19 @@ MonoBehaviour:
   children: []
   dialogue:
     ActorEnum: 1
-    dialogueText: OH CRAP-
+    dialogueText: <b><#EBB517>OH CRAP-</b></color>
+    dialogueTextFrench: <b><#EBB517>OH MERD-</b></color>
     cameraPath:
-      genericKey: 3
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam2
       batchName: 
-    displayDuration: 2
+    displayDuration: 1.7
     choiceText: 
     isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
-      WwiseObjectReference: {fileID: 0}
+      WwiseObjectReference: {fileID: 11400000, guid: 247f19b088f08d841944418b4ab61511, type: 2}
     animationTrigger: 0
 --- !u!114 &6752816362832641983
 MonoBehaviour:
@@ -833,17 +942,20 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 8384445cffb549845b2fcb34b055f73e
-  position: {x: -286, y: 100.76}
+  position: {x: -597, y: 99}
   children:
   - {fileID: 8204202044735990305}
   dialogue:
     ActorEnum: 0
-    dialogueText: "How\u2019s that? Look who\u2019s been \u201Cdemised\u201D now!"
+    dialogueText: "How\u2019s that? Look who\u2019s been <b><#CE2020>\u201Cdemised\u201D</b></color>
+      now!\r"
+    dialogueTextFrench: "Alors ? Qui a \xE9t\xE9 <b><#CE2020>\"\xE9limin\xE9\"</b></color>
+      maintenant !\r"
     cameraPath:
-      genericKey: 1
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam1
       batchName: 
-    displayDuration: 6
+    displayDuration: 4
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -861,24 +973,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
+  m_Name: 
   m_EditorClassIdentifier: 
   NodeName: 
   chance: 1
   state: 0
   started: 0
   guid: c9be837c81b617441bc3823c25555a04
-  position: {x: 80.45445, y: 292.084}
+  position: {x: 267.34998, y: 297.85007}
   children:
   - {fileID: -8877381447918795783}
   dialogue:
     ActorEnum: 0
-    dialogueText: Well that was awkward
+    dialogueText: "He\u2019s just a <b><#EBB517>worthless puppet.</b></color>"
+    dialogueTextFrench: C'est juste une <b><#CE2020>marionnette</b></color> sans
+      valeur.
     cameraPath:
-      genericKey: 1
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam4
       batchName: 
-    displayDuration: 3
+    displayDuration: 4
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -908,12 +1022,14 @@ MonoBehaviour:
   - {fileID: 4652798946573529226}
   dialogue:
     ActorEnum: 2
-    dialogueText: How about a friend?
+    dialogueText: How about a <b><#1B69B8>friend?</b></color>
+    dialogueTextFrench: "Et pourquoi pas une <b><#1B69B8>amie</b></color> \xE0 la
+      place?"
     cameraPath:
-      genericKey: 2
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam2
       batchName: 
-    displayDuration: 3
+    displayDuration: 2
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -943,13 +1059,15 @@ MonoBehaviour:
   - {fileID: -7643886287816936155}
   dialogue:
     ActorEnum: 2
-    dialogueText: "He\u2019s merely a tyrant who seized the godly power that was
-      given to us!"
+    dialogueText: "He\u2019s merely a tyrant who seized the <b><#1B69B8>godly power</b></color>
+      that was given to <b><#1B69B8>us!</b></color>"
+    dialogueTextFrench: "Ce n\u2019est qu\u2019un tyran qui s'est empar\xE9 du <b><#1B69B8>pouvoir
+      divin</b></color> qui <b><#1B69B8>nous</b></color> a \xE9t\xE9 donn\xE9 !"
     cameraPath:
       genericKey: 4
-      cameraName: Cam5
+      cameraName: Cam3
       batchName: 
-    displayDuration: 8
+    displayDuration: 4.5
     choiceText: 
     isHarmonisation: 0
     voice:
@@ -974,21 +1092,23 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 8698f5192be841f4a9e2f7f1e07bcbbd
-  position: {x: -197, y: 101}
+  position: {x: -508, y: 99}
   children:
-  - {fileID: 895098416517305829}
+  - {fileID: 5225204689844916343}
   dialogue:
     ActorEnum: 1
-    dialogueText: Only prolonged the inevitable? HA, my ass!
+    dialogueText: Only prolonged the inevitable? <b><#EBB517>HA</b></color>, my ass!
+    dialogueTextFrench: "Seulement <b><#EBB517>prolonger l'in\xE9vitable ?</b></color>
+      HA, mon cul !"
     cameraPath:
-      genericKey: 3
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam1
       batchName: 
-    displayDuration: 5
+    displayDuration: 4.7
     choiceText: 
     isHarmonisation: 0
     voice:
       idInternal: 0
       valueGuidInternal: 
-      WwiseObjectReference: {fileID: 0}
+      WwiseObjectReference: {fileID: 11400000, guid: e23cbd5519f43d441a660814c6952c0d, type: 2}
     animationTrigger: 0

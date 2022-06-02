@@ -15,14 +15,20 @@ namespace TheFowler
         public override void OnStateEnter(EventArgs arg)
         {
             BattleManager.CurrentBattleActor.AllyData?.Fury(false);
+            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.GIVING_BREAKDOWN);
+
             if (selectedActorForFury is AllyActor actor)
             {
-                actor.AllyData?.Fury(true);   
-            }
-            
-            BattleManager.CurrentRound.OverrideTurn(selectedActorForFury);
+                actor.AllyData?.Fury(true);
 
-            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineEnum.FURY);
+                if (actor.BattleActorInfo.isDeath)
+                {
+                    actor.resurector = BattleManager.CurrentBattleActor;
+                    actor.mustResurect = true;
+                }
+            }
+
+            BattleManager.CurrentRound.OverrideTurn(selectedActorForFury);
 
              InfoBoxButtons[] infoButtons = new InfoBoxButtons[2];
             infoButtons[0] = InfoBoxButtons.CONFIRM;
@@ -32,8 +38,6 @@ namespace TheFowler
             
             var skillExecutionState = BattleManager.CurrentBattle.BattleState.GetState("SkillExecution") as BattleState_SkillExecution;
             skillExecutionState.fury = false;
-
-            Fury.ResetFury();
         }
     }
 }

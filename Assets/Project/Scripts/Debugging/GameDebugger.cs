@@ -1,5 +1,9 @@
+using System;
+using MoreMountains.Feedbacks;
 using QRCode.Extensions;
 using Sirenix.OdinInspector;
+using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -28,5 +32,36 @@ namespace TheFowler
 #endif
             }
         }
+
+        private bool itPause;
+
+
+        [Button]
+        private void DesactiveAllActorsInBattles()
+        {
+            var battles = FindObjectsOfType<Battle>();
+
+            foreach (var battle in battles)
+            {
+                battle.DesactivateAllActors();
+            }
+        }
+
+        /*private void Update()
+        {
+            if (GetComponent<PlayerInput>().actions["Pause"].WasPressedThisFrame())
+            {
+                if (!itPause)
+                {
+                    FindObjectOfType<MMTimeManager>().SetTimescaleTo(0);
+                    itPause = true;
+                }
+                else if (itPause)
+                {
+                    FindObjectOfType<MMTimeManager>().SetTimescaleTo(1);
+                    itPause = false;
+                }
+            }
+        }*/
     }
 }

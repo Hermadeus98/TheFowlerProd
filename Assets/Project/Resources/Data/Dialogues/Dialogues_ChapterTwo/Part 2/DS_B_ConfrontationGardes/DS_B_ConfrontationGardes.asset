@@ -1,6 +1,121 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1248799063095595835
+--- !u!114 &-8808810579933953923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: d540fc07bd35d534593229fca6a8896c
+  position: {x: -269.32248, y: 12.000004}
+  children:
+  - {fileID: -6912653026870541735}
+  dialogue:
+    ActorEnum: 1
+    dialogueText: "Well, it\u2019s been kind of a <b><#EBB517>rollercoaster</b></color>
+      of emotions left and right."
+    dialogueTextFrench: "Eh bien, c'est un peu une <b><#EBB517>montagne russe</b></color>
+      d'\xE9motions \xE0 gauche et \xE0 droite."
+    cameraPath:
+      genericKey: 4
+      cameraName: Cam2
+      batchName: 
+    displayDuration: 4.8
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 11400000, guid: f58d1f2b24f085046a45b3fcb72af30a, type: 2}
+    animationTrigger: 0
+--- !u!114 &-6912653026870541735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: df0a03f41c193e949bc6a259851af3e5
+  position: {x: -124.179405, y: 10.494048}
+  children:
+  - {fileID: -2896133851270899614}
+  dialogue:
+    ActorEnum: 1
+    dialogueText: "First, there\u2019s\u2026 <b><#EBB517>this</b></color> and then
+      <b><#EBB517>Phoebe joining us</b></color>\u2026It\u2019s just a lot you know\u2026"
+    dialogueTextFrench: "D'abord, il y a... <b><#EBB517>\xE7a</b></color> et puis
+      <b><#EBB517>Phoebe</b></color> qui nous rejoint... \xC7a fait beaucoup, tu
+      sais..."
+    cameraPath:
+      genericKey: 4
+      cameraName: Cam3
+      batchName: 
+    displayDuration: 5
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &-2896133851270899614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 2533c7bbc5c0b8a429e8f5bf4d86ed12
+  position: {x: 38.00026, y: 10}
+  children:
+  - {fileID: 4112460796251337495}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: "You know <b><#CE2020>I\u2019ve got your back</b></color>, no matter
+      what!"
+    dialogueTextFrench: Tu sais que <b><#CE2020>je te soutiens</b></color>, quoi
+      qu'il arrive !
+    cameraPath:
+      genericKey: 4
+      cameraName: Cam3
+      batchName: 
+    displayDuration: 5
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &-1272769318422141683
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16,16 +131,53 @@ MonoBehaviour:
   chance: 1
   state: 0
   started: 0
+  guid: 0aa36b24e40be6e49a80ee08fdd728aa
+  position: {x: -433.75345, y: 17.490072}
+  children:
+  - {fileID: -8808810579933953923}
+  dialogue:
+    ActorEnum: 0
+    dialogueText: "Hey\u2026 feeling better?"
+    dialogueTextFrench: Hey... tu te sens mieux ?
+    cameraPath:
+      genericKey: 4
+      cameraName: Cam1
+      batchName: 
+    displayDuration: 4
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
+--- !u!114 &-1248799063095595835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
   guid: 57d7762211de0f74fac5bebb3692e186
-  position: {x: -434, y: 161}
+  position: {x: -430.67752, y: 161}
   children:
   - {fileID: 6965270673268810762}
   dialogue:
     ActorEnum: 3
-    dialogueText: Stop right there criminal scum!
+    dialogueText: Stop right there <b>criminal scum!</b>
+    dialogueTextFrench: "Arr\xEAtez-vous, <b>bande de criminels !</b>"
     cameraPath:
       genericKey: 4
-      cameraName: Cam5
+      cameraName: Cam1
       batchName: Robyn_Facial
     displayDuration: 4
     choiceText: 
@@ -33,7 +185,7 @@ MonoBehaviour:
     voice:
       idInternal: 0
       valueGuidInternal: 
-      WwiseObjectReference: {fileID: 11400000, guid: af54ae50bf89e674ab227505b994c800, type: 2}
+      WwiseObjectReference: {fileID: 11400000, guid: b3de967f67f660043b76dd92c260a7c3, type: 2}
     animationTrigger: 0
 --- !u!114 &11400000
 MonoBehaviour:
@@ -47,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9cf5a2a104152e48a7bbaed625f399a, type: 3}
   m_Name: DS_B_ConfrontationGardes
   m_EditorClassIdentifier: 
-  rootNode: {fileID: -1248799063095595835}
+  rootNode: {fileID: -1272769318422141683}
   actors: 
   treeState: 0
   nodes:
@@ -57,6 +209,50 @@ MonoBehaviour:
   - {fileID: 7413616161941266586}
   - {fileID: 6665712545289257312}
   - {fileID: 6965270673268810762}
+  - {fileID: -2896133851270899614}
+  - {fileID: 4112460796251337495}
+  - {fileID: -6912653026870541735}
+  - {fileID: -8808810579933953923}
+  - {fileID: -1272769318422141683}
+  dialogueType: 0
+--- !u!114 &4112460796251337495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: 
+  NodeName: 
+  chance: 1
+  state: 0
+  started: 0
+  guid: 55f7bffa32c1b66409a1159915559f79
+  position: {x: 197.74907, y: 12.000036}
+  children:
+  - {fileID: -1248799063095595835}
+  dialogue:
+    ActorEnum: 2
+    dialogueText: "Not that I want to interrupt this emotional moment but, <b><#1B69B8>take
+      a look</b></color>, at what\u2019s coming."
+    dialogueTextFrench: "Non pas que je veuille interrompre ce moment \xE9mouvant
+      mais <b><#1B69B8>regardez</b></color> ce qui arrive.\r"
+    cameraPath:
+      genericKey: 4
+      cameraName: Cam4
+      batchName: 
+    displayDuration: 6
+    choiceText: 
+    isHarmonisation: 0
+    voice:
+      idInternal: 0
+      valueGuidInternal: 
+      WwiseObjectReference: {fileID: 0}
+    animationTrigger: 0
 --- !u!114 &5338549579494542790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,15 +270,16 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 6ab1ecb4f97aaa9469ff0ab103ef1a7c
-  position: {x: 23, y: 161}
+  position: {x: 25, y: 160}
   children:
   - {fileID: 7413616161941266586}
   dialogue:
     ActorEnum: 0
     dialogueText: "Seems like you\u2019ve lost your-"
+    dialogueTextFrench: "On dirait que tu as perdu ton\u2026"
     cameraPath:
       genericKey: 4
-      cameraName: Cam5
+      cameraName: Cam1
       batchName: 
     displayDuration: 4
     choiceText: 
@@ -102,7 +299,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
+  m_Name: 
   m_EditorClassIdentifier: 
   NodeName: 
   chance: 1
@@ -115,9 +312,11 @@ MonoBehaviour:
   dialogue:
     ActorEnum: 3
     dialogueText: Commander! Why are these worms by your side?
+    dialogueTextFrench: "Commandante ! Pourquoi cette vermine est \xE0 vos c\xF4t\xE9s
+      ?"
     cameraPath:
-      genericKey: 1
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam1
       batchName: Robyn_Facial
     displayDuration: 5
     choiceText: 
@@ -125,7 +324,7 @@ MonoBehaviour:
     voice:
       idInternal: 0
       valueGuidInternal: 
-      WwiseObjectReference: {fileID: 11400000, guid: af54ae50bf89e674ab227505b994c800, type: 2}
+      WwiseObjectReference: {fileID: 11400000, guid: 1bd178be2d793a1448a3bcd20782dd55, type: 2}
     animationTrigger: 2
 --- !u!114 &6665712545289257312
 MonoBehaviour:
@@ -144,14 +343,15 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: f71d882508e4a11469fecb8612accdbd
-  position: {x: 306, y: 161}
+  position: {x: 305.99997, y: 159.6775}
   children: []
   dialogue:
     ActorEnum: 3
-    dialogueText: TRAITOR!
+    dialogueText: <b>TRAITOR!</b> THE LIEUTENANT WILL HAVE YOUR HEAD!!!
+    dialogueTextFrench: "<b>TRA\xCETRESSE !</b> LE LIEUTENANT AURA TA T\xCATE !!!"
     cameraPath:
-      genericKey: 3
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam5
       batchName: 
     displayDuration: 3
     choiceText: 
@@ -159,7 +359,7 @@ MonoBehaviour:
     voice:
       idInternal: 0
       valueGuidInternal: 
-      WwiseObjectReference: {fileID: 11400000, guid: af54ae50bf89e674ab227505b994c800, type: 2}
+      WwiseObjectReference: {fileID: 11400000, guid: 84baee604ddeca744bc100a9199ae743, type: 2}
     animationTrigger: 2
 --- !u!114 &6965270673268810762
 MonoBehaviour:
@@ -178,15 +378,17 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 6457cbd21d92ed747a8ec7c4959b69ca
-  position: {x: -305, y: 161}
+  position: {x: -304.50006, y: 161.00002}
   children:
   - {fileID: 5880321718542277815}
   dialogue:
     ActorEnum: 0
-    dialogueText: "Get lost you arsehole! I\u2019ve got a King to depose!"
+    dialogueText: "Get lost you arsehole! I\u2019ve got a <b><#CE2020>King to depose!</b></color>"
+    dialogueTextFrench: "D\xE9gage, trouduc ! J'ai un <b><#CE2020>Roi \xE0 destituer
+      !</b></color>"
     cameraPath:
       genericKey: 4
-      cameraName: Cam5
+      cameraName: Cam3
       batchName: 
     displayDuration: 5
     choiceText: 
@@ -206,7 +408,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff897e320621c284c81b569f628cef4f, type: 3}
-  m_Name: DialogueNode
+  m_Name: 
   m_EditorClassIdentifier: 
   NodeName: 
   chance: 1
@@ -219,11 +421,12 @@ MonoBehaviour:
   dialogue:
     ActorEnum: 2
     dialogueText: You dare question me?
+    dialogueTextFrench: Tu oses me questionner ?
     cameraPath:
-      genericKey: 2
-      cameraName: Middle
+      genericKey: 4
+      cameraName: Cam5
       batchName: 
-    displayDuration: 3
+    displayDuration: 4
     choiceText: 
     isHarmonisation: 0
     voice:

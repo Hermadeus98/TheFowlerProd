@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using QRCode.Utils;
 using Sirenix.OdinInspector;
@@ -13,31 +14,21 @@ namespace TheFowler
     {
         [TitleGroup("Main Settings")]
         public string SpellName;
-        
         [TitleGroup("Main Settings")]
-        public int ManaCost;
+        public string SpellNameFrench;
 
         [TitleGroup("Main Settings")] public int Cooldown;
+        [TitleGroup("Main Settings"), HideInInspector ] public int InitialCooldown;
+        [TitleGroup("Main Settings")] public int CurrentCooldown;
+        [TitleGroup("Main Settings")] public Sprite logoBuff;
 
         [TitleGroup("Main Settings")] public TargetTypeEnum TargetType;
-
-        [TitleGroup("Main Settings")] public float
-            executionDurationBeforeCast = .3f,
-            executionDurationAfterCast = .3f;
+        [TitleGroup("Main Settings")] public SpellPowerEnum SpellPower;
         
         [TitleGroup("Main Settings"), TextArea(3,5)] 
         public string SpellDescription;
-
         [TitleGroup("Main Settings"), TextArea(3, 5)]
-        public string TargetDescription, EasySpellDescription;
-        
-        [TitleGroup("Main Settings")] 
-        public ExecutionTypeEnum ExecutionType;
-        public enum ExecutionTypeEnum
-        {
-            SIMULTANEOUS,
-            CONSECUTIVE,
-        }
+        public string SpellDescriptionFrench;
 
         [TitleGroup("Effects")] public SpellTypeEnum SpellType;
         
@@ -46,58 +37,59 @@ namespace TheFowler
 
         public SequenceEnum sequenceBinding;
 
+        [TitleGroup("Progression")]
+        public Sprite sprite, spriteBlocked;
+        [TitleGroup("Progression")]
+        [ReadOnly] public SkillState spellState;
+        [TitleGroup("Progression")]
+        public int unlockOrder;
+
+        [ReadOnly] public bool isRechargingCooldown;
+
+        [ReadOnly] public bool isPlaying;
+        
         private void OnEnable()
         {
             Effects.ForEach(w => w.ReferedSpell = this);
+            InitialCooldown = Cooldown;
         }
 
         public IEnumerator Cast(BattleActor emitter, BattleActor[] receivers)
         {
-            yield return new WaitForSeconds(executionDurationBeforeCast);
+            isPlaying = true;
+            
+            if (BattleManager.lastTouchedActors == null)
+                BattleManager.lastTouchedActors = new List<BattleActor>();
+            BattleManager.lastTouchedActors.AddRange(receivers);
+            
+            yield return new WaitForSeconds(.3f);
 
-            switch (ExecutionType)
+            for (int i = 0; i < Effects.Length; i++)
             {
-                case ExecutionTypeEnum.SIMULTANEOUS:
-                    for (int i = 0; i < Effects.Length; i++)
-                    {
-                        if(Effects[i].GetType() != typeof(BatonPassEffect))
-                            Fury.StopBreakDown();
-                        
-                        Effects[i].SetCamera();
-                        yield return new WaitForSeconds(.3f);
-                        Coroutiner.Play(Effects[i].OnBeginCast(emitter, receivers));
-                        
-                        Coroutiner.Play(Effects[i].OnCast(emitter, receivers));
-                        emitter.FeedbackHandler.PlayFeedback(Effects[i].eventName);
-
-                        Coroutiner.Play(Effects[i].OnFinishCast(emitter, receivers));
-                    }
-                    break;
-                case ExecutionTypeEnum.CONSECUTIVE:
-                    for (int i = 0; i < Effects.Length; i++)
-                    {
-                        if(Effects[i].GetType() != typeof(BatonPassEffect))
-                            Fury.StopBreakDown();
-                        
-                        Effects[i].SetCamera();
-                        yield return Effects[i].OnBeginCast(emitter, receivers);
-                        
-                        yield return Effects[i].OnCast(emitter, receivers);
-                        emitter.FeedbackHandler.PlayFeedback(Effects[i].eventName);
-
-                        yield return Effects[i].OnFinishCast(emitter, receivers);
-                    }
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                Effects[i].Emitter = emitter;
+                Effects[i].Receivers = new BattleActor[receivers.Length];
+                for (int j = 0; j < receivers.Length; j++)
+                {
+                    Effects[i].Receivers[j] = receivers[j];
+                }
+                
+                yield return Effects[i].OnCast(emitter, receivers);
             }
             
-            yield return new WaitForSeconds(executionDurationAfterCast);
+            yield return new WaitForSeconds(.3f);
+
+            isPlaying = false;
         }
 
-        public void SimpleCast(BattleActor emitter, BattleActor[] receivers)
+        private void OnDisable()
         {
-            Effects.ForEach(w => w.OnSimpleCast(emitter, receivers));
+            CurrentCooldown = 0;
+        }
+
+        public void Reset()
+        {
+            CurrentCooldown = 0;
+            Cooldown = InitialCooldown;
         }
         
         public bool ContainEffect<T>(out T component) where T : Effect
@@ -121,6 +113,14 @@ namespace TheFowler
             CLAW = 1,
             BEAK = 2,
             FEATHER = 3,
+        }
+
+        public enum SpellPowerEnum
+        {
+            NULL = 0,
+            EASY = 1,
+            MEDIUM = 2,
+            HARD = 3
         }
     }
 }

@@ -16,21 +16,23 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-            emitter.BattleActorAnimator.AttackCast();
-            receivers.ForEach(w => w.GetBattleComponent<Taunt>().TauntActor(turnDuration, emitter));
+            //emitter.BattleActorAnimator.AttackCast();
+
+            yield return StateEvent(emitter, receivers, delegate(BattleActor actor, BattleActor battleActor)
+            {
+                if (emitter == BattleManager.CurrentBattle.phoebe)
+                {
+                    emitter.punchline.PlayPunchline(PunchlineCallback.TAUNT);
+                }
+
+                battleActor.GetBattleComponent<Taunt>().TauntActor(turnDuration, emitter);
+            }, false, false);
             yield break;
         }
 
         public override IEnumerator OnFinishCast(BattleActor emitter, BattleActor[] receivers)
         {
             yield break;
-        }
-
-        public override void OnSimpleCast(BattleActor emitter, BattleActor[] receivers)
-        {
-            base.OnSimpleCast(emitter, receivers);
-            emitter.BattleActorAnimator.AttackCast();
-            receivers.ForEach(w => w.GetBattleComponent<Taunt>().TauntActor(turnDuration, emitter));
         }
     }
 }

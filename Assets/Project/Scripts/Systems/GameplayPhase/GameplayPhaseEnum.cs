@@ -62,5 +62,8 @@ namespace TheFowler
         
         //OUTRO
         CINEMATIQUE_OUTRO,
+
+        //FIX
+        TRANSITION_DS_ENTREE_EXPLOSION_OUT,
     }
 }

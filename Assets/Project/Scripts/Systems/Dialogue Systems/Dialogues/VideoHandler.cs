@@ -8,14 +8,17 @@ namespace TheFowler
 {
     public class VideoHandler : GameplayPhase
     {
-        [SerializeField] private VideoClip video;
+        [SerializeField] protected VideoClip video;
         [SerializeField] private ActorActivator activator;
         [SerializeField] private PlayerInput Inputs;
 
         private float elapsedTimePassCutscene;
-        private bool videoPassed = false;
+        protected bool videoPassed = false;
 
-        public bool PlayWWISESTate;
+        public bool PlayWWISEState;
+        [SerializeField] private bool canPass = false;
+        [SerializeField] private bool playBlackPanel = true;
+
 
         private VideoView view;
 
@@ -49,7 +52,7 @@ namespace TheFowler
 
             BlackPanel.Instance.Hide(.5f);
 
-            if (PlayWWISESTate)
+            if (PlayWWISEState)
             {
                 AkSoundEngine.SetState("GameplayPhase", "Intro");
                 AkSoundEngine.SetState("Scene", "Intro");
@@ -62,12 +65,12 @@ namespace TheFowler
 
             view.Hide();
 
-            if (PlayWWISESTate)
+            /*if (PlayWWISEState)
             {
                 AkSoundEngine.SetState("Scene", "Scene1_TheGarden");
                 AkSoundEngine.SetState("GameplayPhase", "Explo");
 
-            }
+            }*/
 
             StopAllCoroutines();
 
@@ -79,20 +82,20 @@ namespace TheFowler
         private IEnumerator WaitEndVideo()
         {
             yield return new WaitForSeconds((float)video.length - 1);
-            BlackPanel.Instance.Show(.5f);
+            if(playBlackPanel)
+                BirdPanel.Instance.Play();
             yield return new WaitForSeconds(1);
             EndPhase();
-            BlackPanel.Instance.Hide(1);
             yield return null;
         }
 
         private IEnumerator WaitEndVideoInput()
         {
             videoPassed = true;
-            BlackPanel.Instance.Show();
-            yield return new WaitForSeconds(1);
+            if(playBlackPanel)
+                BirdPanel.Instance.Play();
+            yield return new WaitForSeconds(.2f);
             EndPhase();
-            BlackPanel.Instance.Hide(1);
             yield return null;
         }
 
@@ -108,26 +111,35 @@ namespace TheFowler
 
         private void CallRappelInput()
         {
-
-            if (Inputs.actions["Select"].IsPressed())
+            if (canPass)
             {
-                elapsedTimePassCutscene += Time.deltaTime;
-                view.rappelInput.RappelInputFeedback(elapsedTimePassCutscene);
+                view.rappelInput.gameObject.SetActive(true);
 
-                if (elapsedTimePassCutscene >= 1)
+                if (Inputs.actions["Select"].IsPressed())
+                {
+                    elapsedTimePassCutscene += Time.deltaTime;
+                    view.rappelInput.RappelInputFeedback(elapsedTimePassCutscene);
+
+                    if (elapsedTimePassCutscene >= 1)
+                    {
+                        elapsedTimePassCutscene = 0;
+                        view.rappelInput.RappelInputFeedback(elapsedTimePassCutscene);
+                        StartCoroutine(WaitEndVideoInput());
+                    }
+                }
+                else if (Inputs.actions["Select"].WasReleasedThisFrame())
                 {
                     elapsedTimePassCutscene = 0;
                     view.rappelInput.RappelInputFeedback(elapsedTimePassCutscene);
-                    StartCoroutine(WaitEndVideoInput());
                 }
             }
-            else if (Inputs.actions["Select"].WasReleasedThisFrame())
+            else
             {
-                elapsedTimePassCutscene = 0;
-                view.rappelInput.RappelInputFeedback(elapsedTimePassCutscene);
+                view.rappelInput.gameObject.SetActive(false);
             }
-
         }
+        
+        
     }
 }
 

@@ -8,10 +8,16 @@ namespace TheFowler
     public abstract class Turn
     {
         private TurnTransitionView _turnTransitionView;
+
+        public bool haveSaidPunchline = false;
         
         public virtual void OnTurnStart()
         {
+            BattleManager.lastTouchedActors.Clear();
+            
             Coroutiner.Play(ActorTransition());
+
+            haveSaidPunchline = false;
         }
 
         public virtual void OnTurnEnd()
@@ -21,18 +27,48 @@ namespace TheFowler
 
         IEnumerator ActorTransition()
         {
-            var curActor = BattleManager.CurrentBattleActor;
-            
-            Debug.Log("EVENT : ON_TURN_OF");
-            
             BattleManager.CurrentBattle.ChangeBattleState<BattleState_ActionPicking>(BattleStateEnum.ACTION_PICKING);
 
-            
+            if (BattleManager.IsEnemyTurn && !BattleManager.lastTurnWasEnemiesTurn)
+            {
+                yield return Transition();
+                _turnTransitionView = UI.GetView<TurnTransitionView>(UI.Views.TurnTransition);
+                yield return new WaitForSeconds(_turnTransitionView.WaitTime - .2f);
+            }
+            else if(BattleManager.IsAllyTurn)
+            {
+                yield return Transition();
+                _turnTransitionView = UI.GetView<TurnTransitionView>(UI.Views.TurnTransition);
+                yield return new WaitForSeconds(_turnTransitionView.WaitTime - .2f);
+                
+                CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle,
+                    CameraKeys.BattleKeys.ActionPicking);
+
+                if (!haveSaidPunchline)
+                {
+                    if (BattleManager.CurrentRound.overrideTurnActor == BattleManager.CurrentBattleActor)
+                    {
+                        BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.RECEIVING_BREAKDOWN);
+                    }
+                    else
+                    {
+                        BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.START_TURN);
+                    }
+
+                    haveSaidPunchline = true;
+                }
+            }
+        }
+
+        private IEnumerator Transition()
+        {
             _turnTransitionView = UI.GetView<TurnTransitionView>(UI.Views.TurnTransition);
+
             _turnTransitionView.CameraSwipTransition(delegate
             {
                 var actor = BattleManager.CurrentBattleActor;
-                CameraManager.Instance.SetCamera(actor.CameraBatchBattle, CameraKeys.BattleKeys.ActionPicking);
+                
+                CameraManager.Instance.SetCamera(actor.CameraBatchBattle, "EnterTurn");
 
                 
                 if (BattleManager.IsAllyTurn)
@@ -61,10 +97,7 @@ namespace TheFowler
                 }
             });
 
-            //_turnTransitionView = UI.OpenView<TurnTransitionView>(UI.Views.TurnTransition);
-            yield return new WaitForSeconds(_turnTransitionView.WaitTime);
-            
-            yield break;
+            yield return null;
         }
     }
 }

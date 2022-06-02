@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 using DG.Tweening;
 using System.Collections;
 using UnityEngine.Playables;
+using UnityEngine.Timeline;
+using Cinemachine;
 
 namespace TheFowler
 {
@@ -55,6 +57,7 @@ namespace TheFowler
 
         public Animator currentAnim;
         private AK.Wwise.Event currentSound;
+        private GameObject currentSoundEmitter;
 
         private UIView currentView;
 
@@ -64,6 +67,7 @@ namespace TheFowler
         private bool waitInput;
 
         private bool hasPassedDialogue = false;
+        private bool canPass = false;
         protected override void RegisterEvent()
         {
             base.RegisterEvent();
@@ -83,9 +87,30 @@ namespace TheFowler
 
         public override void PlayPhase()
         {
-            if(Timeline != null)
+            FindObjectOfType<GameTimer>().incrementeDialogueTimer = true;
+
+
+
+            if (Timeline != null)
             {
+                CinemachineBrain cineCam =  CameraManager.Camera.GetComponent<CinemachineBrain>();
+
+
+                foreach (var playableAssetOutput in Timeline.playableAsset.outputs)
+                {
+                    if (playableAssetOutput.outputTargetType == typeof(CinemachineBrain))
+                    {
+                        Timeline.SetGenericBinding(playableAssetOutput.sourceObject, cineCam);
+                        
+                    }
+
+                }
+
+
+
                 Timeline.Play();
+
+
 
             }
 
@@ -150,7 +175,18 @@ namespace TheFowler
                     }
                     else
                     {
+
                         Next();
+                        //if (currentDialogue.dialogueText.Length <= 20)
+                        //{
+                        //    Next();
+                        //}
+                        //else
+                        //{
+                            
+                        //    //Timeline.Pause();
+                        //}
+
 
                     }
                 }
@@ -163,43 +199,85 @@ namespace TheFowler
         {
             if (isActive)
             {
-                if (Inputs.actions["Next"].WasReleasedThisFrame() && !waitInput)
+                if (Inputs.actions["Next"].WasReleasedThisFrame() && !waitInput && canPass)
                 {
                     if(elapsedTimePassCutscene < 0.3f)
                     {
                         if (currentView.GetType() == typeof(HarmonisationView))
                         {
-                            if (!hasPassedDialogue && 
-                                !String.IsNullOrEmpty(currentDialogue.dialogueText)&&
-                                UI.GetView<HarmonisationView>(UI.Views.Harmo).AnimatedText.TextComponent.text != currentDialogue.dialogueText)
+                            if (LocalisationManager.language == Language.ENGLISH)
                             {
+                                if (!hasPassedDialogue &&
+                               !String.IsNullOrEmpty(currentDialogue.dialogueText) &&
+                               UI.GetView<HarmonisationView>(UI.Views.Harmo).AnimatedText.TextComponent.text != currentDialogue.dialogueText)
+                                {
 
-                                UI.GetView<HarmonisationView>(UI.Views.Harmo).EndDialog(currentDialogue.dialogueText);
-                                hasPassedDialogue = true;
+                                    UI.GetView<HarmonisationView>(UI.Views.Harmo).EndDialog(currentDialogue.dialogueText);
+                                    hasPassedDialogue = true;
+                                }
+                                else
+                                {
+                                    Next();
+                                }
                             }
                             else
                             {
-                                Next();
+
+
+                                if (!hasPassedDialogue &&
+                               !String.IsNullOrEmpty(currentDialogue.dialogueTextFrench) &&
+                               UI.GetView<HarmonisationView>(UI.Views.Harmo).AnimatedText.TextComponent.text != currentDialogue.dialogueTextFrench)
+                                {
+
+                                    UI.GetView<HarmonisationView>(UI.Views.Harmo).EndDialog(currentDialogue.dialogueTextFrench);
+                                    hasPassedDialogue = true;
+                                }
+                                else
+                                {
+                                    Next();
+                                }
                             }
+
+                           
 
                             
                         }
                         else if (currentView.GetType() == typeof(DialogueStaticView))
                         {
-                            if (!hasPassedDialogue &&
-                                !String.IsNullOrEmpty(currentDialogue.dialogueText) &&
-                                UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs).AnimatedText.TextComponent.text != currentDialogue.dialogueText)
+                            if (LocalisationManager.language == Language.ENGLISH)
                             {
+                                if (!hasPassedDialogue &&
+                               !String.IsNullOrEmpty(currentDialogue.dialogueText) &&
+                               UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs).AnimatedText.TextComponent.text != currentDialogue.dialogueText)
+                                {
 
-                                UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs).EndDialog(currentDialogue.dialogueText);
-                                hasPassedDialogue = true;
+                                    UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs).EndDialog(currentDialogue.dialogueText);
+                                    hasPassedDialogue = true;
+                                }
+                                else
+                                {
+                                    Next();
+                                }
+
                             }
                             else
                             {
-                                Next();
+                                if (!hasPassedDialogue &&
+                               !String.IsNullOrEmpty(currentDialogue.dialogueTextFrench) &&
+                               UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs).AnimatedText.TextComponent.text != currentDialogue.dialogueTextFrench)
+                                {
+
+                                    UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs).EndDialog(currentDialogue.dialogueTextFrench);
+                                    hasPassedDialogue = true;
+                                }
+                                else
+                                {
+                                    Next();
+                                }
+
                             }
 
-                            
+
                         }
 
                        
@@ -319,10 +397,9 @@ namespace TheFowler
 
             if (currentView == null) return;
 
-            if (currentView.GetType() == typeof(HarmonisationView)) {  view = UI.GetView<HarmonisationView>(UI.Views.Harmo); }
-            else if (currentView.GetType() == typeof(DialogueStaticView)) { view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs); }
+            view = UI.GetView<DialogueStaticView>(UI.Views.StaticDialogs);
 
-            if (Inputs.actions["Select"].IsPressed() && !waitInput)
+            if (Inputs.actions["Select"].IsPressed() && !waitInput && canPass)
             {
                 elapsedTimePassCutscene += Time.deltaTime;
                 
@@ -343,12 +420,6 @@ namespace TheFowler
 
                                 DialogueNode newNode = BehaviourTree.nodes[i] as DialogueNode;
 
-                                //if (newNode.hasMultipleChoices)
-                                //{
-
-                                //    DisplayDialogue(newNode.dialogue);
-                                //    break;
-                                //}
                                  if (!newNode.hasMultipleChoices)
                                 {
                                     Next();
@@ -362,8 +433,6 @@ namespace TheFowler
                         }
                         else
                         {
-
-
                             EndPhase();
                         }
 
@@ -389,6 +458,13 @@ namespace TheFowler
                 if (view.rappelInput != null)
                     view.rappelInput?.RappelInputFeedback(elapsedTimePassCutscene);
             }
+
+            else if (Inputs.actions["Select"].WasPressedThisFrame())
+            {
+                canPass = true;
+            }
+
+
 
         }
         private void Next()
@@ -474,6 +550,8 @@ namespace TheFowler
 
         public override void EndPhase()
         {
+            FindObjectOfType<GameTimer>().incrementeDialogueTimer = false;
+            
             hasPassChoices = false;
 
 
@@ -481,15 +559,12 @@ namespace TheFowler
             {
                 
                 ReplaceActor(replacementActors.timeOfReplacement);
-                SoundManager.StopSound(currentSound, gameObject);
+                SoundManager.StopSound(currentSound, currentSoundEmitter);
             }
-
-
-            if (Timeline != null)
-            {
-                Timeline.time = Timeline.duration;
-            }
-
+            
+            if(Timeline != null)
+                Timeline.Pause();
+        
             base.EndPhase();
             
             switch (dialogueType)
@@ -502,29 +577,23 @@ namespace TheFowler
                     //UI.CloseView(UI.Views.MovementDialogs);
                     UI.CloseView(UI.Views.StaticDialogs);
                     break;
-                case DialogueType.HARMONISATION:
-                    //UI.CloseView(UI.Views.MovementDialogs);
-                    UI.CloseView(UI.Views.Harmo);
-                    if(replacementActors.replaceActorAtTheEnd)
-                        ReplaceActor(replacementActors.timeOfReplacement);
-
-                    harmoVCam.Priority = -1;
-                    harmoVCam.gameObject.SetActive(false);
-                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
             idGuards = 0;
         }
 
+  
+
         private void DisplayDialogue(Dialogue dialogue)
         {
-            
-            
+            if(Timeline != null)
+                Timeline.Play();
+
             switch (dialogueType)
             {
                 case DialogueType.STATIC:
-                    CameraManager.Instance.SetCamera(dialogue.cameraPath);
+                    //CameraManager.Instance.SetCamera(dialogue.cameraPath);
 
                     if (dialogue.isHarmonisation)
                     {
@@ -571,10 +640,12 @@ namespace TheFowler
                             if(robynAnim != null)
                             {
                                 SoundManager.PlaySound(dialogue.voice, robynAnim.GetComponent<AnimTriggerBase>().Sockets.body_Middle.gameObject);
+                                currentSoundEmitter = robynAnim.GetComponent<AnimTriggerBase>().Sockets.body_Middle.gameObject;
                             }
                             else
                             {
                                 SoundManager.PlaySound(dialogue.voice, Player.Robyn.pawnTransform.gameObject);
+                                currentSoundEmitter = Player.Robyn.pawnTransform.gameObject;
                             }
 
                             currentAnim = robynAnim;
@@ -583,10 +654,12 @@ namespace TheFowler
                             if (phoebeAnim != null)
                             {
                                 SoundManager.PlaySound(dialogue.voice, phoebeAnim.GetComponent<AnimTriggerBase>().Sockets.body_Middle.gameObject);
+                                currentSoundEmitter = phoebeAnim.GetComponent<AnimTriggerBase>().Sockets.body_Middle.gameObject;
                             }
                             else
                             {
                                 SoundManager.PlaySound(dialogue.voice, Player.Pheobe.pawnTransform.gameObject);
+                                currentSoundEmitter = Player.Pheobe.pawnTransform.gameObject;
 
                             }
                             
@@ -596,10 +669,12 @@ namespace TheFowler
                             if (abiAnim != null)
                             {
                                 SoundManager.PlaySound(dialogue.voice, abiAnim.GetComponent<AnimTriggerBase>().Sockets.body_Middle.gameObject);
+                                currentSoundEmitter = abiAnim.GetComponent<AnimTriggerBase>().Sockets.body_Middle.gameObject;
                             }
                             else
                             {
                                 SoundManager.PlaySound(dialogue.voice, Player.Abigael.pawnTransform.gameObject);
+                                currentSoundEmitter = Player.Abigael.pawnTransform.gameObject;
 
                             }
 
@@ -607,18 +682,21 @@ namespace TheFowler
                             break;
                         case ActorEnum.GUARD:
                             
-                            if(guardsSockets[idGuards] != null)
+                            if(guardsSockets.Length> 0 && guardsSockets[idGuards] != null)
                             {
                                 SoundManager.PlaySound(dialogue.voice, guardsSockets[idGuards].body_Middle.gameObject);
+                                currentSoundEmitter = guardsSockets[idGuards].body_Middle.gameObject;
                                 idGuards++;
                             }
 
                             break;
                         case ActorEnum.LIEUTENANT:
                             SoundManager.PlaySound(dialogue.voice, gameObject);
+                            currentSoundEmitter = gameObject;
                             break;
                         default:
                             SoundManager.PlaySound(dialogue.voice, gameObject);
+                            currentSoundEmitter = gameObject;
                             break;
                     }
 
@@ -630,12 +708,6 @@ namespace TheFowler
                     currentSound = dialogue.voice;
                     break;
                 case DialogueType.MOVEMENT:
-                    //UI.RefreshView(UI.Views.MovementDialogs, new DialogueArg()
-                    //{
-                    //    Dialogue = dialogue,
-                    //    DialogueNode = currentDialogueNode,
-                    //});
-                    CameraManager.Instance.SetCamera(dialogue.cameraPath);
                     UI.RefreshView(UI.Views.StaticDialogs, new DialogueArg()
                     {
                         Dialogue = dialogue,
@@ -740,6 +812,11 @@ namespace TheFowler
         private IEnumerator WaitReplaceActor(float timer)
         {
             yield return new WaitForSeconds(timer);
+            if (Timeline != null)
+            {
+                Timeline.Stop();
+            }
+
             ReplaceActor();
             yield break;
         }
