@@ -83,7 +83,7 @@ namespace TheFowler
         {
             yield return new WaitForSeconds((float)video.length - 1);
             if(playBlackPanel)
-                BirdPanel.Instance.Play();
+                BlackPanel.Instance.Show();
             yield return new WaitForSeconds(1);
             EndPhase();
             yield return null;
@@ -93,7 +93,7 @@ namespace TheFowler
         {
             videoPassed = true;
             if(playBlackPanel)
-                BirdPanel.Instance.Play();
+                BlackPanel.Instance.Show();
             yield return new WaitForSeconds(.2f);
             EndPhase();
             yield return null;
