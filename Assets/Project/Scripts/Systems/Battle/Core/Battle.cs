@@ -459,6 +459,7 @@ namespace TheFowler
             enemies.ForEach(w => w.InitializeComponents());
             
             //Reset CoolDown
+            allies.ForEach(w => w.GetBattleComponent<CooldownComponent>().ResetCD());
             //
             
             //Reset Status
