@@ -31,6 +31,8 @@ namespace TheFowler
         public bool isDestrucCam = false;
         private bool isDoingDestruction = false;
 
+        public bool useAnimatic = true;
+
         private void Awake()
         {
             Instance = this;
@@ -57,13 +59,13 @@ namespace TheFowler
             if(iteration >= LevelOfDestructions.Length)
                 return;
 
-            if (LevelOfDestructions[iteration].useCam)
+            if (useAnimatic && LevelOfDestructions[iteration].useCam)
             {
-                
                 StartCoroutine(SetCam());
                 return;
             }
 
+            useAnimatic = true;
             feedback?.PlayFeedbacks();
             LevelOfDestructions[iteration].ObjectsToDesactivate.ForEach(w => w.SetActive(false));
             LevelOfDestructions[iteration].ObjectToActivate.ForEach(w => w.SetActive(true));

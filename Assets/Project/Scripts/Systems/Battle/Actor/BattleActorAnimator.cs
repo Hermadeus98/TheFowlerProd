@@ -32,7 +32,7 @@ namespace TheFowler
         [CanBeNull] private const string SpellExecution1Name= "SpellExecution1";
         private static readonly int SpellExecution1Trigger = Animator.StringToHash(SpellExecution1Name);
 
-        private void ResetTriggers()
+        public void ResetTriggers()
         {
             Animator.ResetTrigger(DefendTrigger);
             Animator.ResetTrigger(ResurectTrigger);
@@ -87,7 +87,6 @@ namespace TheFowler
         [Button]
         public void Death()
         {
-            Debug.Log("DEATH ANIMATION");
             ResetTriggers();
             Animator.SetTrigger(DeathTrigger);
         }

@@ -115,12 +115,14 @@ MonoBehaviour:
   punchline: {fileID: 5275145578759116895}
   reviveFeedback: {fileID: 8461639268427163626}
   battleActorInfo:
+    BattleActor: {fileID: 0}
     isDeath: 0
     isStun: 0
     isTaunt: 0
     attackBonus: 0
     defenseBonus: 0
     cooldownBonus: 0
+    isAlly: 0
   BattleActorStats:
     health: 0
     mana: 0
@@ -450,84 +452,12 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 5435310747984560729}
-    - {fileID: 4572441591797687675}
-    - {fileID: 7618913456412426589}
-    - {fileID: 7483161009442615480}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: FeedbacksMap
-      Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[MoreMountains.Feedbacks.MMFeedbacks,
-        MoreMountains.Feedbacks]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
-        mscorlib]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 4
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 1
-      Data: Attack Feedback
-    - Name: $v
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 1
-      Data: Charge Attack Feedback
-    - Name: $v
-      Entry: 10
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 1
-      Data: Charge Attack Feedback Out
-    - Name: $v
-      Entry: 10
-      Data: 2
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 1
-      Data: ShockWaveEffect
-    - Name: $v
-      Entry: 10
-      Data: 3
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
 --- !u!1 &5941579843641085622
 GameObject:
   m_ObjectHideFlags: 0
@@ -1771,19 +1701,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8550199551286246451, guid: 37182de213c186141969dbf3c358acd7, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 3.118e-42
+      value: 1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 8550199551286246451, guid: 37182de213c186141969dbf3c358acd7, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: -0.036220174
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8550199551286246451, guid: 37182de213c186141969dbf3c358acd7, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 1.6203108e+15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8550199551286246451, guid: 37182de213c186141969dbf3c358acd7, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 9.49e-43
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8587501134756195801, guid: 37182de213c186141969dbf3c358acd7, type: 3}
       propertyPath: m_Name
@@ -1792,6 +1722,18 @@ PrefabInstance:
     - target: {fileID: 8591049501025049795, guid: 37182de213c186141969dbf3c358acd7, type: 3}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8591049501025049795, guid: 37182de213c186141969dbf3c358acd7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8591049501025049795, guid: 37182de213c186141969dbf3c358acd7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8591049501025049795, guid: 37182de213c186141969dbf3c358acd7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 8591049501025049795, guid: 37182de213c186141969dbf3c358acd7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2360,7 +2302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3910087269593455293, guid: f0955212c729bea4fb729e8241822888, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.13052607
+      value: -0.9945029
       objectReference: {fileID: 0}
     - target: {fileID: 3910087269593455293, guid: f0955212c729bea4fb729e8241822888, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2368,7 +2310,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3910087269593455293, guid: f0955212c729bea4fb729e8241822888, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9914449
+      value: 0.104709715
       objectReference: {fileID: 0}
     - target: {fileID: 3910087269593455293, guid: f0955212c729bea4fb729e8241822888, type: 3}
       propertyPath: m_LocalRotation.z
@@ -2756,19 +2698,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8550199551286246451, guid: 37182de213c186141969dbf3c358acd7, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8550199551286246451, guid: 37182de213c186141969dbf3c358acd7, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: -1
+      value: 7.006224e+22
       objectReference: {fileID: 0}
     - target: {fileID: 8550199551286246451, guid: 37182de213c186141969dbf3c358acd7, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 8.520432e+30
       objectReference: {fileID: 0}
     - target: {fileID: 8550199551286246451, guid: 37182de213c186141969dbf3c358acd7, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: 6.7e-43
       objectReference: {fileID: 0}
     - target: {fileID: 8587501134756195801, guid: 37182de213c186141969dbf3c358acd7, type: 3}
       propertyPath: m_Name
@@ -2777,6 +2719,18 @@ PrefabInstance:
     - target: {fileID: 8591049501025049795, guid: 37182de213c186141969dbf3c358acd7, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8591049501025049795, guid: 37182de213c186141969dbf3c358acd7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8591049501025049795, guid: 37182de213c186141969dbf3c358acd7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8591049501025049795, guid: 37182de213c186141969dbf3c358acd7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 8591049501025049795, guid: 37182de213c186141969dbf3c358acd7, type: 3}
       propertyPath: m_LocalPosition.x

@@ -53,6 +53,7 @@ namespace TheFowler
     {
         NULL,
         DAMAGE,
-        HEAL
+        HEAL,
+        DAMAGE_GROUP
     }
 }

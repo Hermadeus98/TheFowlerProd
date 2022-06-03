@@ -23,9 +23,6 @@ namespace TheFowler
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
             var actor = BattleManager.CurrentBattleActor;
-                        
-            //actor.Mana.RemoveMana(Player.SelectedSpell.ManaCost);
-            
 
             if (ReferedSpell.sequenceBinding != SequenceEnum.NULL)
             {

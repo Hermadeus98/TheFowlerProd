@@ -18,6 +18,8 @@ namespace TheFowler
             Coroutiner.Play(ActorTransition());
 
             haveSaidPunchline = false;
+            
+            BlackPanel.Instance.Hide();
         }
 
         public virtual void OnTurnEnd()

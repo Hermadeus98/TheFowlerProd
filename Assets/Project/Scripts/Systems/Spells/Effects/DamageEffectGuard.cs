@@ -16,19 +16,19 @@ namespace TheFowler
 
         protected override IEnumerator DamageExecution(BattleActor emitter, BattleActor[] receivers)
         {
-            foreach (var r in receivers)
+            for (int i = 0; i < receivers.Length; i++)
             {
-                CameraManager.Instance.SetCamera(r.CameraBatchBattle, "OnBasicAttack");
+                CameraManager.Instance.SetCamera(receivers[i].CameraBatchBattle, "OnBasicAttack");
 
                 yield return new WaitForSeconds(1f);
 
                 var guardBasicAttack = Object.Instantiate(SpellData.Instance.Guard_BasicAttackBinding,
                     emitter.transform);
                 guardBasicAttack.emitter = emitter;
-                guardBasicAttack.receiver = r;
+                guardBasicAttack.receiver = receivers[i];
                 guardBasicAttack.BindData(delegate
                 {
-                    Damage(damage, emitter, new []{r});
+                    Damage(damage, emitter, new []{receivers[i]});
                 });
 
                 yield return new WaitForSeconds(.1f);
@@ -37,6 +37,8 @@ namespace TheFowler
                 
                 yield return new WaitForSeconds(SpellData.Instance.Guard_Timer_BasicAttack_ImpactDuration);
             }
+            
+            yield return new WaitForSeconds(SpellData.Instance.Guard_Timer_BasicAttack_ImpactDuration);
         }
     }
 }
