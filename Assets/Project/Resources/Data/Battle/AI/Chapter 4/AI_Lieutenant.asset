@@ -128,7 +128,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 9b67102c1cdbc954db72af119214b88d
-  position: {x: 21, y: 585}
+  position: {x: 20.999979, y: 585}
   children:
   - {fileID: -7517385446224719497}
   TargetIntention: 4
@@ -190,11 +190,11 @@ MonoBehaviour:
     hardChoice: 0
     comparator_A: 5
     component: 1
-    Operator: 2
+    Operator: 0
     comparator_B: 6
     percent: 1
-    NextNode: {fileID: -6686092193023682952}
-  DefaultNextNode: {fileID: 1345946793637848093}
+    NextNode: {fileID: 1345946793637848093}
+  DefaultNextNode: {fileID: -4774438034785970880}
 --- !u!114 &-4774438034785970880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,7 +235,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 4de1ae6322859714590b5af3fb6093aa
-  position: {x: 783, y: 927}
+  position: {x: 781, y: 927}
   children: []
   spellList:
   - Spell: {fileID: 11400000, guid: 3f4f46a3a5933b945b4442ea6490c515, type: 2}
@@ -389,12 +389,20 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: c1d5ac8c910f46a4faca67c5853fb270
-  position: {x: -236, y: 320}
+  position: {x: -241, y: 320}
   children:
   - {fileID: 6189216935421902975}
   - {fileID: -6686092193023682952}
   - {fileID: 5618286483939560906}
   Choices:
+  - isHardChoice: 1
+    hardChoice: 3
+    comparator_A: 0
+    component: 0
+    Operator: 0
+    comparator_B: 0
+    percent: 0
+    NextNode: {fileID: 6189216935421902975}
   - isHardChoice: 0
     hardChoice: 0
     comparator_A: 0
@@ -407,19 +415,11 @@ MonoBehaviour:
     hardChoice: 0
     comparator_A: 5
     component: 0
-    Operator: 4
+    Operator: 3
     comparator_B: 6
-    percent: 25
-    NextNode: {fileID: 6189216935421902975}
-  - isHardChoice: 1
-    hardChoice: 3
-    comparator_A: 0
-    component: 0
-    Operator: 0
-    comparator_B: 0
-    percent: 0
-    NextNode: {fileID: 6189216935421902975}
-  DefaultNextNode: {fileID: -6686092193023682952}
+    percent: 30
+    NextNode: {fileID: -6686092193023682952}
+  DefaultNextNode: {fileID: 6189216935421902975}
 --- !u!114 &1467263115192644493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,14 +519,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a16d7749e1191724db8102279a8920c3, type: 3}
-  m_Name: An Enemie have less to 45% hp
+  m_Name: An Enemie have less to 50% hp
   m_EditorClassIdentifier: 
-  NodeName: An Enemie have less to 45% hp
+  NodeName: An Enemie have less to 50% hp
   chance: 1
   state: 0
   started: 0
   guid: e01e950264ef3974ea7e66aa0cdaed9e
-  position: {x: 348, y: 585}
+  position: {x: 349.1501, y: 585}
   children:
   - {fileID: -6687556664085984303}
   - {fileID: 6977718253787576658}
@@ -545,7 +545,7 @@ MonoBehaviour:
     component: 0
     Operator: 2
     comparator_B: 6
-    percent: 45
+    percent: 50
     NextNode: {fileID: 6977718253787576658}
   DefaultNextNode: {fileID: -6687556664085984303}
 --- !u!114 &6189216935421902975
@@ -652,7 +652,7 @@ MonoBehaviour:
   m_Name: WeakerEmy
   m_EditorClassIdentifier: 
   NodeName: WeakerEmy
-  chance: 2
+  chance: 1
   state: 0
   started: 0
   guid: 242530bdc2a6e9045ac063d034e4bd1a
