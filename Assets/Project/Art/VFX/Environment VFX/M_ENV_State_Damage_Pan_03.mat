@@ -9,11 +9,11 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: M_ENV_State_Damage_Pan_03
   m_Shader: {fileID: 4800000, guid: ab6b209461cce3a47815fc62f8c5cffb, type: 3}
-  m_ShaderKeywords: _ADD_PRECOMPUTED_VELOCITY _EDGEFADE_ENABLE_ON _ENABLE_FOG_ON_TRANSPARENT
-    _PANNINGTEX_INVERTUV_ON _SURFACE_TYPE_TRANSPARENT
+  m_ShaderKeywords: _ADD_PRECOMPUTED_VELOCITY _DOUBLESIDED_ON _EDGEFADE_ENABLE_ON
+    _ENABLE_FOG_ON_TRANSPARENT _PANNINGTEX_INVERTUV_ON _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
+  m_DoubleSidedGI: 1
   m_CustomRenderQueue: 3000
   stringTagMap:
     MotionVector: User
@@ -49,14 +49,14 @@ Material:
     - _BicolorThreshold: 0.26
     - _Bicolor_OneMinus: 0
     - _BlendMode: 0
-    - _CullMode: 2
-    - _CullModeForward: 2
+    - _CullMode: 0
+    - _CullModeForward: 0
     - _DF_Distance: 6.31
     - _DF_OneMinus: 0
     - _DistortStrength: 0.11
     - _DistortionEnable: 0
     - _DistortionOnly: 0
-    - _DoubleSidedEnable: 0
+    - _DoubleSidedEnable: 1
     - _DoubleSidedNormalMode: 2
     - _DstBlend: 10
     - _EdgeFade_Enable: 1
@@ -91,7 +91,7 @@ Material:
     m_Colors:
     - _AddedDistortCol: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
-    - _Base_Color: {r: 9.2916565, g: 0.24323702, b: 0.60118675, a: 0}
+    - _Base_Color: {r: 1.1486983, g: 1.1486983, b: 1.1486983, a: 1}
     - _ColorA: {r: 1.9766747, g: 0.08157524, b: 0, a: 1}
     - _ColorB: {r: 0, g: 3.1283262, b: 7.3772106, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}

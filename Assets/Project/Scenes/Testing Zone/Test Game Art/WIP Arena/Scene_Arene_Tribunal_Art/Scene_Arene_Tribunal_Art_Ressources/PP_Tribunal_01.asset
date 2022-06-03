@@ -1,5 +1,43 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2491244700345830963
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8bcdf71d7fafa419fca1ed162f5fc9, type: 3}
+  m_Name: ColorAdjustments
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  postExposure:
+    m_OverrideState: 1
+    m_Value: -0.24
+  contrast:
+    m_OverrideState: 1
+    m_Value: 4.7
+    min: -100
+    max: 100
+  colorFilter:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    hdr: 1
+    showAlpha: 0
+    showEyeDropper: 1
+  hueShift:
+    m_OverrideState: 0
+    m_Value: 0
+    min: -180
+    max: 180
+  saturation:
+    m_OverrideState: 1
+    m_Value: -4.5
+    min: -100
+    max: 100
 --- !u!114 &-1556037730616200862
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -12,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1be1b6c95cd2e41b27903b9270817f, type: 3}
   m_Name: Vignette
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
@@ -28,7 +66,7 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.471
+    m_Value: 0.2
     min: 0
     max: 1
   smoothness:
@@ -73,7 +111,7 @@ MonoBehaviour:
   - {fileID: 8083434624142442856}
   - {fileID: 3810159660930056045}
   - {fileID: 837872497425202658}
-  - {fileID: 5804244391409083069}
+  - {fileID: -2491244700345830963}
 --- !u!114 &837872497425202658
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -86,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bff652df78c97c4f963064ad1f34619, type: 3}
   m_Name: ColorCurves
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   master:
     m_OverrideState: 1
@@ -281,7 +319,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   quality:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 1
   rayTracing:
     m_OverrideState: 0
     m_Value: 0
@@ -325,15 +363,15 @@ MonoBehaviour:
       m_Bits: 4294967295
   m_StepCount:
     m_OverrideState: 1
-    m_Value: 16
+    m_Value: 6
     min: 2
     max: 32
   m_FullResolution:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   m_MaximumRadiusInPixels:
     m_OverrideState: 1
-    m_Value: 42
+    m_Value: 40
     min: 16
     max: 256
   m_BilateralUpsample:
@@ -341,16 +379,16 @@ MonoBehaviour:
     m_Value: 1
   m_DirectionCount:
     m_OverrideState: 1
-    m_Value: 4
+    m_Value: 2
     min: 1
     max: 6
   m_RayLength:
     m_OverrideState: 1
-    m_Value: 20
+    m_Value: 3
     min: 0.01
   m_SampleCount:
     m_OverrideState: 1
-    m_Value: 8
+    m_Value: 2
     min: 1
     max: 64
   m_Denoise:
@@ -358,7 +396,7 @@ MonoBehaviour:
     m_Value: 1
   m_DenoiserRadius:
     m_OverrideState: 1
-    m_Value: 0.65
+    m_Value: 0.5
     min: 0.001
     max: 1
 --- !u!114 &2581011132633782863
@@ -373,7 +411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a6b00fcf518bb94a90b408492e07b44, type: 3}
   m_Name: FilmGrain
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   type:
     m_OverrideState: 1
@@ -462,29 +500,6 @@ MonoBehaviour:
   cascadeShadowBorder3:
     m_OverrideState: 1
     m_Value: 0.000000005122274
---- !u!114 &5804244391409083069
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da5ab44aadfb1804db5fd470983ac1b8, type: 3}
-  m_Name: LiftGammaGain
-  m_EditorClassIdentifier: 
-  active: 0
-  m_AdvancedMode: 0
-  lift:
-    m_OverrideState: 1
-    m_Value: {x: 0.97280425, y: 1, z: 0.99108046, w: 0}
-  gamma:
-    m_OverrideState: 1
-    m_Value: {x: 1, y: 0.8926667, z: 0.86, w: 0}
-  gain:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
 --- !u!114 &6050023050175129096
 MonoBehaviour:
   m_ObjectHideFlags: 3
