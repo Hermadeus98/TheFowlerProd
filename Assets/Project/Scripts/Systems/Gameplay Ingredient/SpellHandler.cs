@@ -60,14 +60,26 @@ namespace TheFowler
             {
                 s.cooldown--;
                 
-                if (s.cooldown <= 0)
+                if (s.cooldown < 0)
                 {
                     s.cooldown = 0;
+                    s.Spell.CurrentCooldown = 0;
                     s.Spell.isRechargingCooldown = false;
+                }
+                else
+                {
+                    if (Fury.IsInFury)
+                    {
+                        s.Spell.CurrentCooldown = s.cooldown;
+                    }
+                    else
+                    {
+                        s.Spell.CurrentCooldown = s.cooldown + 1;
+                    }
+
                 }
 
 
-                s.Spell.CurrentCooldown = s.cooldown;
             }
         }
 
