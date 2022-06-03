@@ -5,12 +5,21 @@ using UnityEngine;
 
 public class AnimatedIcon : MonoBehaviour
 {
-    private RectTransform rt => GetComponent<RectTransform>();
+    private RectTransform rt;
     private Tween anim;
     private Sequence beat;
 
     public Ease easing = Ease.OutBack;
     public float duration = .2f;
+
+    private void OnEnable()
+    {
+        if (TryGetComponent(out RectTransform rt))
+        {
+            
+        }
+
+    }
 
     public void Show()
     {
@@ -33,5 +42,11 @@ public class AnimatedIcon : MonoBehaviour
         beat.Append(rt.DOScale(1f, .2f).SetEase(Ease.InSine));
         beat.SetLoops(-1);
         beat.Play();
+    }
+
+    private void OnDestroy()
+    {
+        anim?.Kill();
+        beat?.Kill();
     }
 }
