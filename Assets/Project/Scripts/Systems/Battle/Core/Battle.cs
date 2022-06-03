@@ -457,6 +457,9 @@ namespace TheFowler
 
             allies.ForEach(w => w.InitializeComponents());
             enemies.ForEach(w => w.InitializeComponents());
+
+            allies.ForEach(w => w.BattleActorAnimator.ResetTriggers());
+            enemies.ForEach(w => w.BattleActorAnimator.ResetTriggers());
             
             //Reset CoolDown
             allies.ForEach(w => w.GetBattleComponent<CooldownComponent>().ResetCD());

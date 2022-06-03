@@ -8,6 +8,7 @@ using UnityEngine.Experimental.GlobalIllumination;
 
 namespace TheFowler
 {
+    [ExecuteInEditMode]
     public class PointLightController : SerializedMonoBehaviour
     {
         [SerializeField] private Light light;
@@ -16,8 +17,16 @@ namespace TheFowler
         [SerializeField] private AnimationCurve controller;
 
         private float s;
+
+        public bool destroyAtEnd = true;
         
         private void OnEnable()
+        {
+            Play();
+        }
+
+        [Button]
+        public void Play()
         {
             s = 0f;
 
@@ -26,9 +35,13 @@ namespace TheFowler
                 (x) => s = x,
                 strenght,
                 duration
-            ).SetEase(controller).OnComplete(delegate { Destroy(gameObject); });
+            ).SetEase(controller).OnComplete(delegate
+            {
+                if (destroyAtEnd) Destroy(gameObject);
+                else s = 0f;
+            });
         }
-
+        
         private void Update()
         {
             light.intensity = s;

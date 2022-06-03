@@ -15,6 +15,7 @@ namespace TheFowler
         [Button]
         public void Restart()
         {
+            BlackPanel.Instance.Show();
             BattleManager.CurrentBattle.Restart();
             Hide();
         }
