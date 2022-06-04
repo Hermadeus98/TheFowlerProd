@@ -172,14 +172,24 @@ namespace TheFowler
             Application.Quit();
         }
 
-        public void SetDifficultyEasy()
+        public void SetPreviewOn()
         {
             Player.showPreview = true;
         }
 
-        public void SetDifficultyHard()
+        public void SetPreviewOff()
         {
             Player.showPreview = false;
+        }
+
+        public void SetDifficultyEasy()
+        {
+
+        }
+
+        public void SetDifficultyMedium()
+        {
+
         }
 
         public void SetLanguageFrench()
@@ -215,6 +225,11 @@ namespace TheFowler
         public void SetEffectsVolume(float v)
         {
             SoundManager.SetMusicVolume(v);
+        }
+
+        public void ChangeColorBlind(int v)
+        {
+            ColorBlindHandler.Instance.ChangeProfile(v);
         }
     }
 }

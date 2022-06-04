@@ -14,7 +14,9 @@ public class TextChoice : MonoBehaviour
     public class TextOption
     {
         public string text;
+        public string textFrench;
         [TextArea(2,4)] public string description;
+        [TextArea(2,4)] public string descriptionFrench;
         public UnityEvent OnSelected;
     }
 
@@ -25,16 +27,24 @@ public class TextChoice : MonoBehaviour
     
     public Image rightArrow, leftArrow;
     private Tween rTween, lTween;
-    
+
+    private void OnEnable()
+    {
+        LocalisationManager.Register(() => SetDescriptionText());
+        LocalisationManager.Register(() => SetTitleText());
+    }
+
+    private void OnDisable()
+    {
+        LocalisationManager.UnRegister(() => SetDescriptionText());
+        LocalisationManager.UnRegister(() => SetTitleText());
+    }
     public void Initialize()
     {
         current = 0;
-        GetComponent<TextMeshProUGUI>().SetText(options[current].text);
+        SetTitleText();
 
-        options.ForEach(w => w.OnSelected.AddListener(delegate
-        {
-            FindObjectsOfType<DescriptionText>().ForEach(x => x.UpdateText(w.description));
-        }));
+        SetDescriptionText();
     }
 
     public void Next()
@@ -42,7 +52,9 @@ public class TextChoice : MonoBehaviour
         current++;
         if (current >= options.Length)
             current = 0;
-        GetComponent<TextMeshProUGUI>().SetText(options[current].text);
+
+        SetTitleText();
+
         options[current].OnSelected?.Invoke();
         
         rTween?.Kill();
@@ -54,10 +66,45 @@ public class TextChoice : MonoBehaviour
         current--;
         if (current < 0)
             current = options.Length - 1;
-        GetComponent<TextMeshProUGUI>().SetText(options[current].text);
+
+        SetTitleText();
+
         options[current].OnSelected?.Invoke();
         
         lTween?.Kill();
         lTween = leftArrow.DOFade(.5f, .2f).OnComplete(delegate { leftArrow.DOFade(1f, .1f); });
+    }
+
+    private void SetDescriptionText()
+    {
+        if(LocalisationManager.language == Language.ENGLISH)
+        {
+
+            options.ForEach(w => w.OnSelected.AddListener(delegate
+            {
+                FindObjectsOfType<DescriptionText>().ForEach(x => x.UpdateText(w.description));
+            }));
+        }
+        else
+        {
+            options.ForEach(w => w.OnSelected.AddListener(delegate
+            {
+                FindObjectsOfType<DescriptionText>().ForEach(x => x.UpdateText(w.descriptionFrench));
+            }));
+        }
+
+    }
+
+    private void SetTitleText()
+    {
+        if (LocalisationManager.language == Language.ENGLISH)
+        {
+            GetComponent<TextMeshProUGUI>().SetText(options[current].text);
+        }
+        else
+        {
+            GetComponent<TextMeshProUGUI>().SetText(options[current].textFrench);
+        }
+
     }
 }
