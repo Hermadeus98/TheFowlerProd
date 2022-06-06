@@ -8,7 +8,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using DG.Tweening;
 namespace TheFowler
 {
     public class MainMenuManager : SerializedMonoBehaviour
@@ -24,9 +24,10 @@ namespace TheFowler
 
         [SerializeField] private PlayerInput input;
 
-        [SerializeField] private CanvasGroup openning, manette, menu;
+        [SerializeField] private CanvasGroup openning, manette, menu, blackscreen;
         public float fadeDuration = .2f;
         public float showDuration = 2f;
+        private float dissolveValue;
 
         public RectTransform backGround;
 
@@ -54,8 +55,8 @@ namespace TheFowler
             menu.alpha = 0;
             openning.alpha = 0;
             manette.alpha = 0;
-            
-            if(!havePlayIntro)
+            blackscreen.alpha = 1;
+            if (!havePlayIntro)
                 StartCoroutine(Opening());
             else
             {
@@ -78,6 +79,8 @@ namespace TheFowler
 
             manette.DOFade(0f, fadeDuration);
             yield return new WaitForSeconds(fadeDuration);
+            blackscreen.DOFade(0f, fadeDuration + 1);
+            yield return new WaitForSeconds(fadeDuration + 1);
             menu.DOFade(1f, fadeDuration);
 
             ReturnToMain();
@@ -107,6 +110,7 @@ namespace TheFowler
                         throw new ArgumentOutOfRangeException();
                 }
             }
+
         }
 
         public void OpenChapter()
@@ -146,9 +150,9 @@ namespace TheFowler
 
         IEnumerator ChooseChapterIE(int chapter)
         {
-            backGround.DOScale(backGround.localScale * 1.2f, 1f).SetEase(Ease.InOutSine);
-            yield return new WaitForSeconds(1f + .1f);
-            
+            //backGround.DOScale(backGround.localScale * 1.2f, 1f).SetEase(Ease.InOutSine);
+            yield return new WaitForSeconds(.3f);
+
             BlackPanel.Instance.Show();
             yield return new WaitForSeconds(fadeDuration + .1f);
 
