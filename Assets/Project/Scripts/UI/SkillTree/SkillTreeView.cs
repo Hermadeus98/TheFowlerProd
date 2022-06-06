@@ -21,8 +21,8 @@ namespace TheFowler
         [TabGroup("Tree")] private BattleActorData currentData;
         [TabGroup("Tree")] [SerializeField] private RectTransform descriptionBox;
         [TabGroup("Tree")] [SerializeField] private TMPro.TextMeshProUGUI descriptionName, descriptionText;
-        [TabGroup("Tree")] [SerializeField] private Image targetImage, typeImage;
-        [TabGroup("Tree")] [SerializeField] private Image[] hearts;
+        [TabGroup("Tree")] [SerializeField] private Image typeImage, strengthImage;
+        [TabGroup("Tree")] [SerializeField] private Image[] targetImages;
         [TabGroup("Tree")] [SerializeField] private Sprite heartEmpty, heartFilled;
         [TabGroup("Tree")] [SerializeField] private SpellTypeDatabase spellTypeDatabase;
         [TabGroup("Tree")] [SerializeField] private TargetTypeDatabase targetTypeDatabase;
@@ -311,25 +311,45 @@ namespace TheFowler
             }
 
 
-            targetImage.sprite = targetTypeDatabase.GetElement(spell.TargetType);
             typeImage.sprite = spellTypeDatabase.GetElement(spell.SpellType);
+
+            for (int i = 0; i < targetImages.Length; i++)
+            {
+                targetImages[i].gameObject.SetActive(false);
+            }
+
+            switch (spell.TargetType)
+            {
+                case TargetTypeEnum.ALL:
+                    targetImages[0].gameObject.SetActive(true);
+                    break;
+                case TargetTypeEnum.ALL_ENEMIES:
+                    targetImages[1].gameObject.SetActive(true);
+                    break;
+                case TargetTypeEnum.ALL_ALLIES:
+                    targetImages[2].gameObject.SetActive(true);
+                    break;
+                case TargetTypeEnum.SELF:
+                    targetImages[4].gameObject.SetActive(true);
+                    break;
+                case TargetTypeEnum.SOLO_ALLY:
+                    targetImages[4].gameObject.SetActive(true);
+                    break;
+                case TargetTypeEnum.SOLO_ENEMY:
+                    targetImages[3].gameObject.SetActive(true);
+                    break;
+            }
 
             switch (spell.SpellPower)
             {
                 case Spell.SpellPowerEnum.EASY:
-                    hearts[0].sprite = heartFilled;
-                    hearts[1].sprite = heartEmpty;
-                    hearts[2].sprite = heartEmpty;
+                    strengthImage.fillAmount = .3f;
                     break;
                 case Spell.SpellPowerEnum.MEDIUM:
-                    hearts[0].sprite = heartFilled;
-                    hearts[1].sprite = heartFilled;
-                    hearts[2].sprite = heartEmpty;
+                    strengthImage.fillAmount = .5f;
                     break;
                 case Spell.SpellPowerEnum.HARD:
-                    hearts[0].sprite = heartFilled;
-                    hearts[1].sprite = heartFilled;
-                    hearts[2].sprite = heartFilled;
+                    strengthImage.fillAmount = 1f;
                     break;
             }
 
