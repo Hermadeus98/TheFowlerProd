@@ -38,7 +38,11 @@ namespace TheFowler
             ).SetEase(controller).OnComplete(delegate
             {
                 if (destroyAtEnd) Destroy(gameObject);
-                else s = 0f;
+                else
+                {
+                    s = 0f;
+                    enabled = false;
+                }
             });
         }
         

@@ -151,10 +151,20 @@ public class MenuPauseManager : MonoBehaviour
     
     public void SetDifficultyEasy()
     {
-        Player.showPreview = true;
+        DifficultyManager.ChangeDifficulty(DifficultyEnum.EASY);
     }
 
     public void SetDifficultyHard()
+    {
+        DifficultyManager.ChangeDifficulty(DifficultyEnum.HARD);
+    }
+    
+    public void SetPreviewOn()
+    {
+        Player.showPreview = true;
+    }
+
+    public void SetPreviewOff()
     {
         Player.showPreview = false;
     }
@@ -192,6 +202,11 @@ public class MenuPauseManager : MonoBehaviour
     public void SetAmbiantVolume(float v)
     {
         SoundManager.SetAmbiantVolume(v);
+    }
+    
+    public void ChangeColorBlind(int v)
+    {
+        ColorBlindHandler.Instance.ChangeProfile(v);
     }
 }
 
