@@ -19,6 +19,9 @@ namespace TheFowler
         public static bool showPreview = false;
         public static bool isInPauseMenu = false;
         public static bool canOpenPauseMenu = false;
+
+        public static bool isAttacking = false;
+        public static bool enemyIsAttacking = false;
         
         public struct SavedData
         {

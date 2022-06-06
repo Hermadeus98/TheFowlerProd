@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -12,23 +13,25 @@ public class AnimatedIcon : MonoBehaviour
     public Ease easing = Ease.OutBack;
     public float duration = .2f;
 
-    private void OnEnable()
+    private void Start()
     {
-        if (TryGetComponent(out RectTransform rt))
-        {
-            
-        }
-
+        rt = GetComponent<RectTransform>();
     }
 
     public void Show()
     {
+        if(rt == null)
+            return;
+        
         anim?.Kill();
         anim = rt.DOScale(Vector3.one, duration).SetEase(easing).OnComplete(Beat);
     }
 
     public void Hide()
     {
+        if(rt == null)
+            return;
+        
         beat?.Kill();
 
         anim?.Kill();
@@ -37,6 +40,9 @@ public class AnimatedIcon : MonoBehaviour
 
     private void Beat()
     {
+        if(rt == null)
+            return;
+        
         beat = DOTween.Sequence();
         beat.Append(rt.DOScale(1.1f, .2f).SetEase(Ease.InSine));
         beat.Append(rt.DOScale(1f, .2f).SetEase(Ease.InSine));

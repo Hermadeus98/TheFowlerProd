@@ -116,6 +116,9 @@ namespace TheFowler
             OnSelect?.Invoke();
         }
 
+        private const float wait = .7f;
+        private float c_wait = 0f;
+        
         private void Update()
         {
             if (!isActive && !Player.isInPauseMenu)
@@ -125,20 +128,57 @@ namespace TheFowler
             {
                 if (Gamepad.current != null)
                 {
-
-                    if (Gamepad.current.dpad.right.wasPressedThisFrame)
+                    if (Gamepad.current.dpad.right.wasReleasedThisFrame ||
+                        Gamepad.current.leftStick.right.wasReleasedThisFrame)
+                        c_wait = 0f;
+                    if (Gamepad.current.dpad.left.wasReleasedThisFrame ||
+                        Gamepad.current.leftStick.left.wasReleasedThisFrame)
+                        c_wait = 0f;
+                    
+                    if (Gamepad.current.dpad.right.wasPressedThisFrame || Gamepad.current.leftStick.right.wasPressedThisFrame)
                     {
+                        c_wait = 0f;
+                        
                         Slider?.Add();
                         TextChoice?.Next();
+                        
+                        if (SliderSimple != null)
+                        {
+                            SliderSimple.value++;
+                            SliderSimple.value = Mathf.Clamp(SliderSimple.value, 0, SliderSimple.maxValue);
+                            return;
+                        }
                     }
 
-                    if (Gamepad.current.dpad.left.wasPressedThisFrame)
+                    if (Gamepad.current.dpad.left.wasPressedThisFrame || Gamepad.current.leftStick.left.wasPressedThisFrame)
                     {
+                        c_wait = 0f;
+                        
                         Slider?.Remove();
                         TextChoice?.Previous();
+                        
+                        if (SliderSimple != null)
+                        {
+                            SliderSimple.value--;
+                            SliderSimple.value = Mathf.Clamp(SliderSimple.value, 0, SliderSimple.maxValue);
+                            return;
+                        }
                     }
 
-                    if (Gamepad.current.dpad.right.isPressed)
+                    if (Gamepad.current.dpad.right.isPressed || Gamepad.current.leftStick.right.IsPressed())
+                    {
+                        c_wait += Time.deltaTime;
+                    }
+
+                    if (Gamepad.current.dpad.left.isPressed || Gamepad.current.leftStick.left.isPressed)
+                    {
+                        c_wait += Time.deltaTime;
+                    }
+                        
+                    if(c_wait < wait)
+                        return;
+                    
+                    if (Gamepad.current.dpad.right.isPressed || Gamepad.current.leftStick.right.IsPressed())
                     {
                         if (SliderSimple != null)
                         {
@@ -147,7 +187,7 @@ namespace TheFowler
                         }
                     }
 
-                    if (Gamepad.current.dpad.left.isPressed)
+                    if (Gamepad.current.dpad.left.isPressed || Gamepad.current.leftStick.left.isPressed)
                     {
                         if (SliderSimple != null)
                         {
