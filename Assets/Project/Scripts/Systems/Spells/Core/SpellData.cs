@@ -38,20 +38,20 @@ namespace TheFowler
         
         
         [FoldoutGroup("Balancing - Buff Defense")] public int
-            buffDefense = 35,
-            buffDefenseAOE = 20,
-            debuffDefense = 25,
-            debuffDefenseAOE = 20,
-            maxBuffDefense = 100,
-            minBuffDefense = -100;
+            buffDefense = 20,
+            buffDefenseAOE = 15,
+            debuffDefense = 15,
+            debuffDefenseAOE = 10,
+            maxBuffDefense = 60,
+            minBuffDefense = -60;
 
         [FoldoutGroup("Balancing - Buff Attack")] public int 
             buffAttack = 35,
             buffAttackAOE = 20,
-            debuffAttack = 25,
-            debuffAttackAOE = 20,
-            maxBuffAttack = 100,
-            minBuffAttack = -100;
+            debuffAttack = 30,
+            debuffAttackAOE = 15,
+            maxBuffAttack = 80,
+            minBuffAttack = -60;
 
         [FoldoutGroup("Balancing - Coodldown")]
         public int
