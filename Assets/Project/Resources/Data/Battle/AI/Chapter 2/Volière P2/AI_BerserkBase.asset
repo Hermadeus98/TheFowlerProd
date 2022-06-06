@@ -1,5 +1,51 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9038944555676539527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: All_1
+  m_EditorClassIdentifier: 
+  NodeName: All_1
+  chance: 1
+  state: 0
+  started: 0
+  guid: bac8ccbbabaa40b4096532fab248c326
+  position: {x: -142, y: -166}
+  children:
+  - {fileID: 510056099493338595}
+  TargetIntention: 13
+  With: 0
+  value: 0
+--- !u!114 &-7687563357382465215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: All_3
+  m_EditorClassIdentifier: 
+  NodeName: All_3
+  chance: 1
+  state: 0
+  started: 0
+  guid: 52a2cd0547e257e4ab2b35dc143020f4
+  position: {x: -142, y: 302}
+  children:
+  - {fileID: -3446850136465912943}
+  TargetIntention: 13
+  With: 0
+  value: 0
 --- !u!114 &-5760006492523007491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17,11 +63,9 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 8ee65d221856c4245b3e7d670f3e6afe
-  position: {x: -51, y: -47}
+  position: {x: 117, y: -31}
   children: []
   spellList:
-  - Spell: {fileID: 11400000, guid: 852ad3aa49bff674f9531d918e851b54, type: 2}
-    Chance: 2
   - Spell: {fileID: 11400000, guid: fcd5817425c33004b83333bb54eceb1b, type: 2}
     Chance: 1
   - Spell: {fileID: 11400000, guid: bcc5bbc3f2273a14fa93e98e978e28da, type: 2}
@@ -43,37 +87,102 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 716ef1726c9d0fe479a32a137b129274
-  position: {x: -481, y: -48}
+  position: {x: -480, y: -47}
   children:
-  - {fileID: 4151569233255065424}
-  - {fileID: 5388224996074128664}
-  - {fileID: 5395469812233328941}
+  - {fileID: 5826869602947150173}
+  - {fileID: 4996154264800849429}
+  - {fileID: -3131261532981838923}
   Choices:
   - isHardChoice: 0
     hardChoice: 0
     comparator_A: 0
     component: 0
     Operator: 4
-    comparator_B: 4
+    comparator_B: 6
     percent: 75
-    NextNode: {fileID: 4151569233255065424}
+    NextNode: {fileID: -3131261532981838923}
   - isHardChoice: 0
     hardChoice: 0
     comparator_A: 0
     component: 0
     Operator: 2
-    comparator_B: 4
+    comparator_B: 6
     percent: 40
-    NextNode: {fileID: 5388224996074128664}
+    NextNode: {fileID: 4996154264800849429}
   - isHardChoice: 0
     hardChoice: 0
     comparator_A: 0
     component: 0
     Operator: 1
-    comparator_B: 4
+    comparator_B: 6
     percent: 75
-    NextNode: {fileID: 5395469812233328941}
-  DefaultNextNode: {fileID: 4151569233255065424}
+    NextNode: {fileID: 5826869602947150173}
+  DefaultNextNode: {fileID: -3131261532981838923}
+--- !u!114 &-3446850136465912943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: Spell3_3
+  m_EditorClassIdentifier: 
+  NodeName: Spell3_3
+  chance: 1
+  state: 0
+  started: 0
+  guid: 40f07fadc8720eb43b995f1e18cda87f
+  position: {x: 119, y: 302}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: 852ad3aa49bff674f9531d918e851b54, type: 2}
+    Chance: 1
+--- !u!114 &-3131261532981838923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1884b09a793565145a2ecfeff2b70fbc, type: 3}
+  m_Name: Aleatory_1
+  m_EditorClassIdentifier: 
+  NodeName: Aleatory_1
+  chance: 1
+  state: 0
+  started: 0
+  guid: 475142cac025bec40b3ce24a595ce66f
+  position: {x: -332, y: -236}
+  children:
+  - {fileID: -9038944555676539527}
+  - {fileID: 4151569233255065424}
+--- !u!114 &-425152512987911658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: Spell3_2
+  m_EditorClassIdentifier: 
+  NodeName: Spell3_2
+  chance: 1
+  state: 0
+  started: 0
+  guid: dbda03b7a0d3e4b4297f400afc762e3f
+  position: {x: 119, y: 66}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: 852ad3aa49bff674f9531d918e851b54, type: 2}
+    Chance: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,6 +206,38 @@ MonoBehaviour:
   - {fileID: 4151569233255065424}
   - {fileID: 5388224996074128664}
   - {fileID: 5395469812233328941}
+  - {fileID: 5826869602947150173}
+  - {fileID: 7294075026089148236}
+  - {fileID: -425152512987911658}
+  - {fileID: -3446850136465912943}
+  - {fileID: -7687563357382465215}
+  - {fileID: 4996154264800849429}
+  - {fileID: -9038944555676539527}
+  - {fileID: 510056099493338595}
+  - {fileID: -3131261532981838923}
+  dialogueType: 0
+--- !u!114 &510056099493338595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: Spell3_1
+  m_EditorClassIdentifier: 
+  NodeName: Spell3_1
+  chance: 1
+  state: 0
+  started: 0
+  guid: 37345a05edd8e4c45beead11b7c5b092
+  position: {x: 118, y: -166}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: 852ad3aa49bff674f9531d918e851b54, type: 2}
+    Chance: 1
 --- !u!114 &4151569233255065424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,14 +248,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
-  m_Name: Random A
+  m_Name: Random_1
   m_EditorClassIdentifier: 
-  NodeName: Random A
-  chance: 1
+  NodeName: Random_1
+  chance: 3
   state: 0
   started: 0
   guid: 2843550e539117842bf2c0503c7c77c8
-  position: {x: -310, y: -150}
+  position: {x: -142, y: -287}
   children:
   - {fileID: 4554433209448224214}
   TargetIntention: 9
@@ -137,13 +278,32 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: a9420b19c3f107c46a9a46696c727a80
-  position: {x: -49, y: -151}
+  position: {x: 117, y: -287}
   children: []
   spellList:
   - Spell: {fileID: 11400000, guid: bcc5bbc3f2273a14fa93e98e978e28da, type: 2}
-    Chance: 3
-  - Spell: {fileID: 11400000, guid: 852ad3aa49bff674f9531d918e851b54, type: 2}
     Chance: 1
+--- !u!114 &4996154264800849429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1884b09a793565145a2ecfeff2b70fbc, type: 3}
+  m_Name: Aleatory_3
+  m_EditorClassIdentifier: 
+  NodeName: Aleatory_3
+  chance: 1
+  state: 0
+  started: 0
+  guid: 853be3cd056d056498d8ef808aa612df
+  position: {x: -331, y: 234}
+  children:
+  - {fileID: 5395469812233328941}
+  - {fileID: -7687563357382465215}
 --- !u!114 &5388224996074128664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,14 +314,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
-  m_Name: Random B
+  m_Name: Random_2
   m_EditorClassIdentifier: 
-  NodeName: Random B
+  NodeName: Random_2
   chance: 1
   state: 0
   started: 0
   guid: b560c6d42326a314e8b46f4255b58e8d
-  position: {x: -311, y: -47}
+  position: {x: -142, y: -31}
   children:
   - {fileID: -5760006492523007491}
   TargetIntention: 9
@@ -177,17 +337,61 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
-  m_Name: Random C
+  m_Name: Random_3
   m_EditorClassIdentifier: 
-  NodeName: Random C
-  chance: 1
+  NodeName: Random_3
+  chance: 3
   state: 0
   started: 0
   guid: 8f6e2d60b3b351d469935f224ce0a087
-  position: {x: -311, y: 65}
+  position: {x: -142, y: 183}
   children:
   - {fileID: 8564941626517358859}
   TargetIntention: 9
+  With: 0
+  value: 0
+--- !u!114 &5826869602947150173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1884b09a793565145a2ecfeff2b70fbc, type: 3}
+  m_Name: Aleatory_2
+  m_EditorClassIdentifier: 
+  NodeName: Aleatory_2
+  chance: 1
+  state: 0
+  started: 0
+  guid: a4198f7e537315a44ae97d274cd41f92
+  position: {x: -331, y: 7.5}
+  children:
+  - {fileID: 5388224996074128664}
+  - {fileID: 7294075026089148236}
+--- !u!114 &7294075026089148236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: All_2
+  m_EditorClassIdentifier: 
+  NodeName: All_2
+  chance: 1
+  state: 0
+  started: 0
+  guid: 57e4fe58a73b29a4cb425d6baa5ca292
+  position: {x: -142, y: 67}
+  children:
+  - {fileID: -425152512987911658}
+  TargetIntention: 13
   With: 0
   value: 0
 --- !u!114 &8564941626517358859
@@ -207,10 +411,8 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 50e8a4a7751e84944947ce3c0809012a
-  position: {x: -51, y: 65}
+  position: {x: 119, y: 183}
   children: []
   spellList:
   - Spell: {fileID: 11400000, guid: fcd5817425c33004b83333bb54eceb1b, type: 2}
-    Chance: 3
-  - Spell: {fileID: 11400000, guid: 852ad3aa49bff674f9531d918e851b54, type: 2}
     Chance: 1
