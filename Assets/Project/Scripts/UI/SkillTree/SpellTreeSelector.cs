@@ -8,9 +8,9 @@ namespace TheFowler
     public class SpellTreeSelector : MonoBehaviour
     {
         [SerializeField] private GameObject hover, unhover;
-        [SerializeField] private Image spellSprite, cooldownSprite;
+        [SerializeField] private Image spellSprite, cooldownSprite, typeImage;
         [SerializeField] private TMPro.TextMeshProUGUI spellNameTxt, cooldownTxt;
-
+        [SerializeField] private SpellTypeDatabase spellTypeDatabase;
 
         public Spell associatedSpell;
 
@@ -23,11 +23,15 @@ namespace TheFowler
             if(spell == null)
             {
                 spellSprite.enabled = false;
+                typeImage.enabled = false;
                 spellNameTxt.text = "????";
                 cooldownTxt.text = "X";
                 associatedSpell = null;
+                
                 return;
             }
+            typeImage.enabled = true;
+            typeImage.sprite = spellTypeDatabase.GetElement(spell.SpellType);
             associatedSpell = spell;
             spellSprite.enabled = true;
             spellSprite.sprite = spell.sprite;
