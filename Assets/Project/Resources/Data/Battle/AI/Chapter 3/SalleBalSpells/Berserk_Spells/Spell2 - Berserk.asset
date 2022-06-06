@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e149a2579aff4143b3bbd3fa9201768, type: 3}
-  m_Name: Basic Attack - Berserk Base
+  m_Name: Spell2 - Berserk
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000}
+    - {fileID: 21300000, guid: 14f5732eda60b9c4f997c89c8d8ae9b2, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -27,22 +28,34 @@ MonoBehaviour:
       Data: 0|TheFowler.Effect[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 1|TheFowler.DamageEffectGuard, Assembly-CSharp
     - Name: TargetType
       Entry: 3
-      Data: 1
+      Data: 3
     - Name: Emitter
       Entry: 6
       Data: 
     - Name: Receivers
+      Entry: 7
+      Data: 2|TheFowler.BattleActor[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
       Entry: 6
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
       Data: 
     - Name: _damage
       Entry: 4
-      Data: 0
+      Data: 173
     - Name: _heal
       Entry: 4
       Data: 0
@@ -66,10 +79,70 @@ MonoBehaviour:
       Data: false
     - Name: berserkDamage
       Entry: 4
-      Data: 0
+      Data: 100
     - Name: damage
       Entry: 4
       Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|TheFowler.DefendEffect, Assembly-CSharp
+    - Name: TargetType
+      Entry: 3
+      Data: 3
+    - Name: Emitter
+      Entry: 6
+      Data: 
+    - Name: Receivers
+      Entry: 7
+      Data: 4|TheFowler.BattleActor[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _damage
+      Entry: 4
+      Data: 0
+    - Name: _heal
+      Entry: 4
+      Data: 0
+    - Name: sprite
+      Entry: 10
+      Data: 1
+    - Name: ReferedSpell
+      Entry: 10
+      Data: 0
+    - Name: rage
+      Entry: 5
+      Data: false
+    - Name: berserk
+      Entry: 5
+      Data: false
+    - Name: vampirisme
+      Entry: 5
+      Data: false
+    - Name: preserveEnemies
+      Entry: 5
+      Data: false
+    - Name: berserkDamage
+      Entry: 4
+      Data: 100
+    - Name: bonusType
+      Entry: 3
+      Data: 1
+    - Name: isAOE
+      Entry: 5
+      Data: false
     - Name: 
       Entry: 8
       Data: 
@@ -79,16 +152,16 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  SpellName: Basic Attack
-  SpellNameFrench: Attaque Basique
+  SpellName: Sound of Rage
+  SpellNameFrench: "Chant de col\xE8re"
   Cooldown: 0
   InitialCooldown: 0
   CurrentCooldown: 0
-  logoBuff: {fileID: 0}
-  TargetType: 1
+  logoBuff: {fileID: 21300000, guid: 14f5732eda60b9c4f997c89c8d8ae9b2, type: 3}
+  TargetType: 2
   SpellPower: 0
-  SpellDescription: Inflicts damages.
-  SpellDescriptionFrench: "Inflige des d\xE9g\xE2ts."
+  SpellDescription: Inflicts damages and reduces defense.
+  SpellDescriptionFrench: "Inflige des d\xE9g\xE2ts et r\xE9duit la d\xE9fense."
   SpellType: 0
   sequenceBinding: 1
   sprite: {fileID: 0}

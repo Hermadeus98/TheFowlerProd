@@ -7,7 +7,9 @@ using System;
 using Sirenix.OdinInspector;
 using UnityEngine.Timeline;
 using System.Linq;
-
+using UnityEngine.Rendering;
+using DG.Tweening;
+using Cinemachine;
 namespace TheFowler
 {
     public class TimelineCutscene : MonoBehaviour
@@ -59,6 +61,13 @@ namespace TheFowler
         public void PlayUnityEvent(int ID)
         {
             evs[ID].Invoke();
+        }
+
+        public void ChangePPWeight(Volume volume)
+        {
+
+            DOTween.To(() => volume.weight, x => volume.weight = x, 1, 2.5f);
+            
         }
 
 
