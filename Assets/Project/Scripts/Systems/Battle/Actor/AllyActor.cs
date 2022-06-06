@@ -76,6 +76,11 @@ namespace TheFowler
 
         public IEnumerator OnDeathSequence()
         {
+            while (Player.enemyIsAttacking)
+            {
+                yield return null;
+            }
+            
             if(hasShowDeathSequence)
                 yield break;
             
@@ -118,6 +123,8 @@ namespace TheFowler
 
         public IEnumerator ResurectionCoroutine()
         {
+            hasShowDeathSequence = false;
+
             if(!mustResurect && !BattleActorInfo.isDeath)
                 yield break;
             

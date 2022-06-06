@@ -44,21 +44,9 @@ namespace TheFowler
                 
                 else if (BattleManager.IsEnemyTurn)
                 {
+                    Player.enemyIsAttacking = true;
                     CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "EnemiesSpellStart");
                     yield return new WaitForSeconds(.2f);
-                    
-                    /*if (!BattleManager.lastTurnWasEnemiesTurn)
-                    {
-                        CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "EnemiesSpellStart");
-                        yield return new WaitForSeconds(1f);
-                        CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "EnemiesSpell");
-                    }
-                    else
-                    {
-                        CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "EnemiesSpellStart");
-                        yield return new WaitForSeconds(.2f);
-                        CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "EnemiesSpell");
-                    }*/
                     
                     if (BattleManager.CurrentBattleActor is EnemyActor enemyActor)
                     {
@@ -79,7 +67,7 @@ namespace TheFowler
                                 yield return null;
                             }
                             
-                            Debug.Log("--> 2");
+                            Player.enemyIsAttacking = false;
                         }
                     }
                 }
