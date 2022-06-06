@@ -31,7 +31,10 @@ namespace TheFowler
 
         public RectTransform backGround;
 
+        private bool isCredit = false;
         private bool isActive;
+
+        public Animator robyn;
         
         public enum MenuPanel
         {
@@ -93,6 +96,14 @@ namespace TheFowler
             
             if (input.actions["B"].WasPressedThisFrame())
             {
+                if (CreditView.Instance.isActive)
+                {
+                    CreditView.Instance.Hide();
+                    ReturnToMain();
+                    main.canNavigate = true;
+                    return;
+                }
+                
                 switch (currentPanel)
                 {
                     case MenuPanel.MAIN:
@@ -110,7 +121,6 @@ namespace TheFowler
                         throw new ArgumentOutOfRangeException();
                 }
             }
-
         }
 
         public void OpenChapter()
@@ -150,8 +160,10 @@ namespace TheFowler
 
         IEnumerator ChooseChapterIE(int chapter)
         {
+            robyn.SetTrigger("Play");
+            
             //backGround.DOScale(backGround.localScale * 1.2f, 1f).SetEase(Ease.InOutSine);
-            yield return new WaitForSeconds(.3f);
+            yield return new WaitForSeconds(.6f);
 
             BlackPanel.Instance.Show();
             yield return new WaitForSeconds(fadeDuration + .1f);
@@ -234,6 +246,13 @@ namespace TheFowler
         public void ChangeColorBlind(int v)
         {
             ColorBlindHandler.Instance.ChangeProfile(v);
+        }
+
+        public void Credit()
+        {
+            CreditView.Instance.Show();
+
+            main.canNavigate = false;
         }
     }
 }
