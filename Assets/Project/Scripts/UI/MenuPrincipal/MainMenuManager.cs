@@ -184,12 +184,12 @@ namespace TheFowler
 
         public void SetDifficultyEasy()
         {
-
+            DifficultyManager.ChangeDifficulty(DifficultyEnum.EASY);
         }
 
         public void SetDifficultyMedium()
         {
-
+            DifficultyManager.ChangeDifficulty(DifficultyEnum.HARD);
         }
 
         public void SetLanguageFrench()
