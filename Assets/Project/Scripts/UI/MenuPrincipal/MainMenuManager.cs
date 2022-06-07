@@ -84,9 +84,7 @@ namespace TheFowler
             yield return new WaitForSeconds(fadeDuration);
             blackscreen.DOFade(0f, fadeDuration + 1);
             yield return new WaitForSeconds(fadeDuration + 1);
-            menu.DOFade(1f, fadeDuration);
-
-            ReturnToMain();
+            menu.DOFade(1f, fadeDuration + 1).OnComplete(()=>ReturnToMain());
         }
 
         private void Update()
