@@ -10,7 +10,7 @@ namespace TheFowler
     public class BlackPanel : MonoBehaviourSingleton<BlackPanel>
     {
         [SerializeField] private Image panel;
-        [SerializeField] private float duration;
+        public float duration;
             
         public void Show()
         {

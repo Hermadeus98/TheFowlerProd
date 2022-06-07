@@ -24,6 +24,7 @@ namespace TheFowler
         public float WaitTime => transitionDuration;
             //InOutComponent.in_duration + InOutComponent.between_duration + InOutComponent.out_duration;
 
+        public static bool isLock = false;
 
         [Button]
         private void Test() => CameraSwipTransition(null);
@@ -35,7 +36,7 @@ namespace TheFowler
         
         private IEnumerator CameraSwipTransitionIE(Action transitionEvent)
         {
-            CanvasGroup.alpha = 1;
+            if(!isLock) CanvasGroup.alpha = 1;
             mask.fillAmount = 1f;
             
             var cam = CameraManager.Camera;
