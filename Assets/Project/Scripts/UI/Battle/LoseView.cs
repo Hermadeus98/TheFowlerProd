@@ -17,6 +17,12 @@ namespace TheFowler
         {
             BlackPanel.Instance.Show();
             BattleManager.CurrentBattle.Restart();
+            StartCoroutine(HideIE());
+        }
+
+        IEnumerator HideIE()
+        {
+            yield return new WaitForSeconds(.2f);
             Hide();
         }
 

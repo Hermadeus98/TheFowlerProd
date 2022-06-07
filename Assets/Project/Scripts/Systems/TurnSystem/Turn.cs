@@ -18,8 +18,6 @@ namespace TheFowler
             Coroutiner.Play(ActorTransition());
 
             haveSaidPunchline = false;
-            
-            BlackPanel.Instance.Hide();
         }
 
         public virtual void OnTurnEnd()
@@ -40,11 +38,15 @@ namespace TheFowler
             else if(BattleManager.IsAllyTurn)
             {
                 yield return Transition();
+
                 _turnTransitionView = UI.GetView<TurnTransitionView>(UI.Views.TurnTransition);
                 yield return new WaitForSeconds(_turnTransitionView.WaitTime - .2f);
                 
                 CameraManager.Instance.SetCamera(BattleManager.CurrentBattleActor.CameraBatchBattle,
                     CameraKeys.BattleKeys.ActionPicking);
+
+                yield return new WaitForSeconds(.1f);
+                BlackPanel.Instance.Hide();
 
                 if (!haveSaidPunchline)
                 {
