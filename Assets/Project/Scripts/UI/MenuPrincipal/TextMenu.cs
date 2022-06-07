@@ -62,6 +62,13 @@ namespace TheFowler
                 }*/
             }
 
+            if (TextChoice != null)
+            {
+                TextChoice.gameObject.SetActive(true);
+                TextChoice.Initialize();
+
+            }
+
         }
 
         public override void Select()
@@ -94,8 +101,6 @@ namespace TheFowler
         {
             if (TextChoice != null)
             {
-                TextChoice.gameObject.SetActive(true);
-                TextChoice.Initialize();
 
                 if (LocalisationManager.language == Language.ENGLISH)
                 {
