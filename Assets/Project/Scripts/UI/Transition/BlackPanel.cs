@@ -11,20 +11,31 @@ namespace TheFowler
     {
         [SerializeField] private Image panel;
         public float duration;
-            
+
+        private Tween a;
+        
         public void Show()
         {
-            panel.DOFade(1f, duration);
+            a?.Kill();
+            a = panel.DOFade(1f, duration);
         }
 
         public void Show(float delay = 1)
         {
-            panel.DOFade(1f, delay);
+            a?.Kill();
+            a = panel.DOFade(1f, delay);
         }
 
+        public void Hide()
+        {
+            a?.Kill();
+            a = panel.DOFade(0f, duration);
+        }
+        
         public void Hide(float delay = 2f)
         {
-            panel.DOFade(0f, duration).SetDelay(delay);
+            a?.Kill();
+            a = panel.DOFade(0f, duration).SetDelay(delay);
         }
         
         private void OnEnable()

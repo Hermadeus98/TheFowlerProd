@@ -24,6 +24,8 @@ namespace TheFowler
         {
             base.Show();
 
+            BlackPanel.Instance.Hide(1f);
+            
             SetExclamation();
 
             numberOfAllies = battle.numberOfAllies;
@@ -252,10 +254,15 @@ namespace TheFowler
 
         private IEnumerator WaitLaunchBattle()
         {
+            BlackPanel.Instance.Show();
+            
             yield return new WaitForEndOfFrame();
             yield return new WaitForEndOfFrame();
             battle.PlayPhase();
 
+            yield return new WaitForSeconds(BlackPanel.Instance.duration + .1f);
+            BlackPanel.Instance.Hide(2.25f);
+            
             Hide();
         }
     }

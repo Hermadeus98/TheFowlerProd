@@ -161,8 +161,7 @@ namespace TheFowler
 
             if (isMenu)
             {
-                if (menuView != null)
-                    menuView.Show();
+                StartCoroutine(WaitShowMenu());
                 isInitiative = false;
             }
 
@@ -170,6 +169,15 @@ namespace TheFowler
             rectInitiative.DOAnchorPos(new Vector2(-281, -254), .3f).SetEase(Ease.OutBounce);
 
             initiativeButton.SetActive(false);
+        }
+
+        private IEnumerator WaitShowMenu()
+        {
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+            menuView.Show();
+            yield break;
+
         }
 
         public void Hide(bool value)
