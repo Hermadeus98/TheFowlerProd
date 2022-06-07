@@ -1063,6 +1063,30 @@ MonoBehaviour:
   m_OpenClipOffsetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_ApplyOffsets: 0
+--- !u!114 &-4220126326831853760
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c71165ea31ade4c91773bcf2dba9a0, type: 3}
+  m_Name: AkTimelineEventPlayable
+  m_EditorClassIdentifier: 
+  akEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 46969d5d57bd2e746bfc914a2e57f949, type: 2}
+  blendInCurve: 4
+  blendOutCurve: 4
+  eventDurationMax: 1
+  eventDurationMin: 1
+  retriggerEvent: 0
+  UseWwiseEventDuration: 1
+  PrintDebugInformation: 0
+  StopEventAtClipEnd: 1
 --- !u!114 &-3627429754995141190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1081,8 +1105,8 @@ MonoBehaviour:
     WwiseObjectReference: {fileID: 11400000, guid: bc103dfda3dd2314ca176640830ac7fd, type: 2}
   blendInCurve: 4
   blendOutCurve: 4
-  eventDurationMax: 0.937528
-  eventDurationMin: 0.937528
+  eventDurationMax: 2.032354
+  eventDurationMin: 2.032354
   retriggerEvent: 0
   UseWwiseEventDuration: 1
   PrintDebugInformation: 0
@@ -1229,8 +1253,8 @@ MonoBehaviour:
     WwiseObjectReference: {fileID: 11400000, guid: 803937f4180d4a6419b56012e39b8eed, type: 2}
   blendInCurve: 4
   blendOutCurve: 4
-  eventDurationMax: 2.292313
-  eventDurationMin: 2.292313
+  eventDurationMax: 1.348604
+  eventDurationMin: 1.348604
   retriggerEvent: 0
   UseWwiseEventDuration: 1
   PrintDebugInformation: 0
@@ -1849,7 +1873,100 @@ MonoBehaviour:
   m_Children:
   - {fileID: 8242485197010200156}
   - {fileID: -5924604753362814782}
+  - {fileID: 5965849782385931196}
   m_Clips: []
+  m_Markers:
+    m_Objects: []
+--- !u!114 &5965849782385931196
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b7d36416e83d124f82ec5d7682e462a, type: 3}
+  m_Name: Ak Timeline Event Track (1)
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 5340513338482723405}
+  m_Children: []
+  m_Clips:
+  - m_Version: 1
+    m_Start: 0
+    m_ClipIn: 0
+    m_Asset: {fileID: -4220126326831853760}
+    m_Duration: 5
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: 5965849782385931196}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: -1
+    m_BlendOutDuration: -1
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: AkTimelineEventPlayable
   m_Markers:
     m_Objects: []
 --- !u!114 &6283923783763166090
