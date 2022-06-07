@@ -15,27 +15,39 @@ namespace TheFowler
         [Button]
         public void Restart()
         {
-            BlackPanel.Instance.Show();
-            BattleManager.CurrentBattle.Restart();
-            StartCoroutine(HideIE());
+            StartCoroutine(Close(BattleManager.CurrentBattle.Restart));
         }
 
-        IEnumerator HideIE()
+        IEnumerator Close(Action onEnd)
         {
+            TextNavigation.isActive = false;
+            anim?.Kill();
+            anim = CanvasGroup.DOFade(0f, .2f);
             yield return new WaitForSeconds(.2f);
-            Hide();
+            yield return H();
+            Player.isInPauseMenu = false;
+            onEnd?.Invoke();
         }
 
         [Button]
         public void MainMenu()
         {
-            Game.GoToMainMenu();
-            Hide();
+            StartCoroutine(Close(Game.GoToMainMenu));
         }
 
         public override void Show()
         {
             base.Show();
+            StartCoroutine(S());
+        }
+
+        IEnumerator S()
+        {
+            Player.isInPauseMenu = true;
+            TurnTransitionView.isLock = true;
+
+            yield return LoseGraphics.Instance.Open();
+            
             anim?.Kill();
             anim = CanvasGroup.DOFade(1f, .2f);
             TextNavigation.isActive = true;
@@ -46,9 +58,18 @@ namespace TheFowler
         {
             TextNavigation.isActive = false;
 
+            StartCoroutine(H());
+            
             base.Hide();
+        }
+
+        IEnumerator H()
+        {
             anim?.Kill();
             anim = CanvasGroup.DOFade(0, .2f);
+            yield return new WaitForSeconds(.2f);
+            yield return LoseGraphics.Instance.Close();
+            TurnTransitionView.isLock = false;
         }
     }
 }
