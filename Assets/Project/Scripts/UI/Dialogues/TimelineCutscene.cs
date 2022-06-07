@@ -66,7 +66,7 @@ namespace TheFowler
         public void ChangePPWeight(Volume volume)
         {
 
-            DOTween.To(() => volume.weight, x => volume.weight = x, 1, 2.5f);
+            DOTween.To(() => volume.weight, x => volume.weight = x, 1, 4.5f);
             
         }
 
