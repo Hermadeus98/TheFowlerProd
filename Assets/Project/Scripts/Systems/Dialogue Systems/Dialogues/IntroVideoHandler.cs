@@ -29,6 +29,7 @@ namespace TheFowler
             onEndWWISE.Post(gameObject);
             onBreakWallWwise.Post(gameObject);
 
+            AkSoundEngine.SetState("Scene", "Scene1_TheGarden");
         }
 
         public void LaunchContextualAction()
@@ -46,8 +47,6 @@ namespace TheFowler
         {
             yield return new WaitForSeconds(timeCodeBreakWall);
 
-            //Wall Break State
-            Debug.Log("Set State Wwise");
             onBreakWallWwise.Post(gameObject);
 
         }
