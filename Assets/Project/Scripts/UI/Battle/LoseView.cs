@@ -11,6 +11,8 @@ namespace TheFowler
     {
         private Tween anim;
         public TextNavigation TextNavigation;
+
+        private bool isClosed = true;
         
         [Button]
         public void Restart()
@@ -21,6 +23,7 @@ namespace TheFowler
         IEnumerator Close(Action onEnd)
         {
             TextNavigation.isActive = false;
+            Hide();
             anim?.Kill();
             anim = CanvasGroup.DOFade(0f, .2f);
             yield return new WaitForSeconds(.2f);
@@ -43,6 +46,8 @@ namespace TheFowler
 
         IEnumerator S()
         {
+            isClosed = false;
+            
             Player.isInPauseMenu = true;
             TurnTransitionView.isLock = true;
 
@@ -56,6 +61,8 @@ namespace TheFowler
 
         public override void Hide()
         {
+            Debug.Log("aaa");
+
             TextNavigation.isActive = false;
 
             StartCoroutine(H());
@@ -65,11 +72,17 @@ namespace TheFowler
 
         IEnumerator H()
         {
+            if(isClosed)
+                yield break;
+            isClosed = true;
+
+            
             anim?.Kill();
             anim = CanvasGroup.DOFade(0, .2f);
             yield return new WaitForSeconds(.2f);
             yield return LoseGraphics.Instance.Close();
             TurnTransitionView.isLock = false;
+            yield return new WaitForSeconds(.25f);
         }
     }
 }
