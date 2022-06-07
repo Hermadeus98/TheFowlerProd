@@ -28,7 +28,7 @@ namespace TheFowler
         
         private bool isSelected = false;
 
-        [TextArea(2,4)] public string descriptionText;
+        [TextArea(2, 4)] public string descriptionText, descriptionTextFrench;
 
         protected override void OnStart()
         {
@@ -62,22 +62,6 @@ namespace TheFowler
                 }*/
             }
 
-            if (TextChoice != null)
-            {
-                TextChoice.gameObject.SetActive(true);
-                TextChoice.Initialize();
-                OnHighLigh.AddListener(delegate
-                {
-                    FindObjectsOfType<DescriptionText>().ForEach(w => w.UpdateText(TextChoice.CurrentOption.description));
-                });
-            }
-            else
-            {
-                OnHighLigh.AddListener(delegate
-                {
-                    FindObjectsOfType<DescriptionText>().ForEach(w=> w.UpdateText(descriptionText));
-                });
-            }
         }
 
         public override void Select()
@@ -97,8 +81,46 @@ namespace TheFowler
                 );
             pulse.SetLoops(-1);
             pulse.Play();
-            
+
+            OnHighLigh.AddListener(() => ChangeLanguage());
+
+
             OnHighLigh?.Invoke();
+
+           
+        }
+
+        private void ChangeLanguage()
+        {
+            if (TextChoice != null)
+            {
+                TextChoice.gameObject.SetActive(true);
+                TextChoice.Initialize();
+
+                if (LocalisationManager.language == Language.ENGLISH)
+                {
+                    FindObjectsOfType<DescriptionText>().ForEach(w => w.UpdateText(TextChoice.CurrentOption.description));
+                }
+                else
+                {
+                    FindObjectsOfType<DescriptionText>().ForEach(w => w.UpdateText(TextChoice.CurrentOption.descriptionFrench));
+                }
+
+
+            }
+            else
+            {
+                if (LocalisationManager.language == Language.ENGLISH)
+                {
+                    FindObjectsOfType<DescriptionText>().ForEach(w => w.UpdateText(descriptionText));
+                }
+                else
+                {
+                    FindObjectsOfType<DescriptionText>().ForEach(w => w.UpdateText(descriptionTextFrench));
+                }
+
+
+            }
         }
 
         public override void DeSelect()
@@ -108,6 +130,8 @@ namespace TheFowler
             text.color = normalColor;
             pulse?.Kill();
             text.rectTransform.DOScale(1f, .2f).SetUpdate(true);
+
+            OnHighLigh.RemoveListener(() => ChangeLanguage());
         }
 
         public override void OnClick()
