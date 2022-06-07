@@ -46,7 +46,8 @@ namespace TheFowler
                     CameraKeys.BattleKeys.ActionPicking);
 
                 yield return new WaitForSeconds(.1f);
-                BlackPanel.Instance.Hide();
+                
+                BlackPanel.Instance.Hide(3f);
 
                 if (!haveSaidPunchline)
                 {

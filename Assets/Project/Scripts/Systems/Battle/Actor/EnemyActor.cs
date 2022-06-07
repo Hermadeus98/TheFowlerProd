@@ -43,7 +43,8 @@ namespace TheFowler
         public override void InitializeComponents()
         {
             base.InitializeComponents();
-            StartCoroutine(SetCanvasWorld());
+            if(gameObject.activeSelf)
+                StartCoroutine(SetCanvasWorld());
         }
 
         IEnumerator SetCanvasWorld()

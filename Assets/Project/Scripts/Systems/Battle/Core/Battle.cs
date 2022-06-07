@@ -430,6 +430,8 @@ namespace TheFowler
         [Button]
         public void Restart()
         {
+            hasPlayed = false;
+            
             StartCoroutine(RestartIE());
 
             FindObjectsOfType<StateIcons>().ForEach(w => w.Reset());
