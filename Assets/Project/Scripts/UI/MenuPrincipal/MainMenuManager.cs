@@ -14,6 +14,9 @@ namespace TheFowler
     public class MainMenuManager : SerializedMonoBehaviour
     {
         public static bool havePlayIntro = false;
+
+        public AK.Wwise.Event robynPlay;
+        public float delay;
         
         [SerializeField] private TextNavigation
             main,
@@ -156,10 +159,18 @@ namespace TheFowler
             StartCoroutine(ChooseChapterIE(chapter));
         }
 
+        IEnumerator PlaySound()
+        {
+            yield return new WaitForSeconds(delay);
+            if(robynPlay != null)
+                robynPlay.Post(gameObject);
+        }
+
         IEnumerator ChooseChapterIE(int chapter)
         {
             robyn.SetTrigger("Play");
-            
+            yield return PlaySound();
+
             //backGround.DOScale(backGround.localScale * 1.2f, 1f).SetEase(Ease.InOutSine);
             yield return new WaitForSeconds(.6f);
 

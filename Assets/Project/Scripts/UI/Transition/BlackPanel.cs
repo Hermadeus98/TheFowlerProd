@@ -50,7 +50,7 @@ namespace TheFowler
 
         private void OnChapterLoaded(Chapter chapter)
         {
-            Hide();
+            Hide(2f);
         }
     }
 }
