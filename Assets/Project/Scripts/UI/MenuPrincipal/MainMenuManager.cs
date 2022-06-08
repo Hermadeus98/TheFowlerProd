@@ -166,7 +166,7 @@ namespace TheFowler
             BlackPanel.Instance.Show();
             yield return new WaitForSeconds(fadeDuration + .1f);
 
-            SceneManager.UnloadSceneAsync("Scene_MenuPrincipal");
+            AsyncOperation asyncLoad =  SceneManager.UnloadSceneAsync("Scene_MenuPrincipal");
 
             if(chapter == 1)
                 ChapterManager.GoChapterOne();
@@ -179,6 +179,13 @@ namespace TheFowler
             
             Player.canOpenPauseMenu = true;
             Player.isInPauseMenu = false;
+
+            //while (!asyncLoad.isDone)
+            //{
+            //    yield return null;
+            //}
+
+            //BlackPanel.Instance.Hide(4);
         }
 
         public void Quit()
