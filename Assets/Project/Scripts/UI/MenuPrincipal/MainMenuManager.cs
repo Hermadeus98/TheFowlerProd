@@ -203,7 +203,7 @@ namespace TheFowler
 
         public void SetDifficultyMedium()
         {
-            DifficultyManager.ChangeDifficulty(DifficultyEnum.HARD);
+            DifficultyManager.ChangeDifficulty(DifficultyEnum.MEDIUM);
         }
 
         public void SetLanguageFrench()

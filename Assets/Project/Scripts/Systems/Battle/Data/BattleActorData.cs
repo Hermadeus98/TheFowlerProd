@@ -144,7 +144,7 @@ namespace TheFowler
                 Spells[i].isRechargingCooldown = false;
             }
 
-            complicityLevel = 1;
+            complicityLevel = 0;
 
             for (int i = 0; i < AllSpells.Length; i++)
             {

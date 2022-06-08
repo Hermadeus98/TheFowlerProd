@@ -3682,11 +3682,11 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 957001456933502016}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 32214989f1e7f04458e2ca42b2808e65, type: 3}
+  m_VideoClip: {fileID: 0}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: f6002422042e7d447a78b985f036a5f5, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: _MainTex
@@ -9157,7 +9157,7 @@ VideoPlayer:
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: f6002422042e7d447a78b985f036a5f5, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: _MainTex
@@ -9835,8 +9835,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  englishText: Ressuciter
-  frenchText: Resurect
+  englishText: Resurect
+  frenchText: 'Ressuciter '
 --- !u!1 &3790678018486146296
 GameObject:
   m_ObjectHideFlags: 0
@@ -15774,6 +15774,7 @@ GameObject:
   - component: {fileID: 1568110469216228371}
   - component: {fileID: 8171456922836146482}
   - component: {fileID: 7071182196136588837}
+  - component: {fileID: 1096236522}
   m_Layer: 5
   m_Name: Legend
   m_TagString: Untagged
@@ -15900,6 +15901,26 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1096236522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6552353149912953313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: "        Increased attack                 Reduced attack\r\n\n       
+    Increased defence               Reduced defence\r\n\n        1 point reduction
+    for each <#33E7D3>cooldown</color> cost (3 max)\r\n\n        The character can
+    only attack the character that taunted him/her"
+  frenchText: "\tAugmentation de l'attaque \tBaisse de l'attaque\n\n\tAugmentation
+    de la d\xE9fense \tBaisse de la d\xE9fense\n\n\tR\xE9duction de 1 point pour
+    chaque co\xFBt de <#33E7D3>recharge</color> (3 max).\n\n\tLe personnage ne peut
+    attaquer que le personnage qui l'a provoqu\xE9."
 --- !u!1 &6600970044911820280
 GameObject:
   m_ObjectHideFlags: 0
@@ -16893,8 +16914,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  englishText: 
-  frenchText: 
+  englishText: "Some allied or enemy skills grant <i>bonuses</i> or <i>maluses.</i>\n\nThese
+    are indicated around the life bars of <#FFCF00>allies</color> and enemies. \n\nThese
+    effects are applied until the <b>end of the fight.</b>"
+  frenchText: "Certaines comp\xE9tences alli\xE9es ou ennemies accordent des <i>bonus</i>
+    ou des <i>malus</i>\n\nCeux-ci sont indiqu\xE9s autour des barres de vie des
+    <#FFCF00>alli\xE9s</color> et des ennemis. \n\nCes effets sont appliqu\xE9s jusqu'\xE0
+    la <b>fin du combat.</b>"
 --- !u!1 &6831003389843655070
 GameObject:
   m_ObjectHideFlags: 0
@@ -19394,7 +19420,7 @@ VideoPlayer:
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: f6002422042e7d447a78b985f036a5f5, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: _MainTex

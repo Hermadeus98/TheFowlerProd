@@ -17,7 +17,8 @@ namespace TheFowler
 
         public void Initialize()
         {
-            player.Play();
+            if(player.clip != null)
+                player.Play();
         }
 
         public void End()
