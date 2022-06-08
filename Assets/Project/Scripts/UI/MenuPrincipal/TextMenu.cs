@@ -49,26 +49,13 @@ namespace TheFowler
                 {
                     textSlider.SetText(value + "/" + SliderSimple.maxValue);
                 });
-                /*
-                if (TryGetComponent<VolumeUpdater>(out var s))
-                {
-                    Debug.Log(s.GetValue());
-                    SliderSimple.value = s.GetValue();
-                    Debug.Log("set");
-                }
-                else
-                {
-                    SliderSimple.value = 100;
-                }*/
             }
 
             if (TextChoice != null)
             {
                 TextChoice.gameObject.SetActive(true);
                 TextChoice.Initialize();
-
             }
-
         }
 
         public override void Select()
@@ -91,10 +78,7 @@ namespace TheFowler
 
             OnHighLigh.AddListener(() => ChangeLanguage());
 
-
             OnHighLigh?.Invoke();
-
-           
         }
 
         private void ChangeLanguage()
@@ -110,8 +94,6 @@ namespace TheFowler
                 {
                     FindObjectsOfType<DescriptionText>().ForEach(w => w.UpdateText(TextChoice.CurrentOption.descriptionFrench));
                 }
-
-
             }
             else
             {
@@ -123,8 +105,6 @@ namespace TheFowler
                 {
                     FindObjectsOfType<DescriptionText>().ForEach(w => w.UpdateText(descriptionTextFrench));
                 }
-
-
             }
         }
 
@@ -143,6 +123,8 @@ namespace TheFowler
         {
             base.OnClick();
             OnSelect?.Invoke();
+            if(isActive)
+                SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Confirm, null);
         }
 
         private const float wait = .7f;

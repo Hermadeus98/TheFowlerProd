@@ -31,7 +31,6 @@ namespace TheFowler
             isActive = false;
             
             all_elements.ForEach(w => w.isActive = false);
-
         }
     }
 }

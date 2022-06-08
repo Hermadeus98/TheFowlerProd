@@ -21,7 +21,6 @@ namespace TheFowler
         [TabGroup("Main Settings")]
         [SerializeField] protected bool resetIndex;
 
-
         [TabGroup("References")]
         [SerializeField, GetComponent] protected CanvasGroup canvasGroup;
 
@@ -77,7 +76,8 @@ namespace TheFowler
 
         protected virtual void OnNavigate()
         {
-            
+            if(canNavigate)
+                SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Hover, null);
         }
 
         private void SelectNext()
