@@ -1,30 +1,34 @@
 // Made with Amplify Shader Editor
 // Available at the Unity Asset Store - http://u3d.as/y3X 
-Shader "S_State_Panning"
+Shader "S_State_Heal_Curve"
 {
 	Properties
 	{
 		[HideInInspector] _EmissionColor("Emission Color", Color) = (1,1,1,1)
 		[HideInInspector] _AlphaCutoff("Alpha Cutoff ", Range(0, 1)) = 0.5
-		[ASEBegin][Header(Distort Texture)]_DistortTex("DistortTex", 2D) = "white" {}
+		[ASEBegin][Header(Soulercoaster)]_SoulercoasterTex("SoulercoasterTex", 2D) = "white" {}
+		[Toggle]_Souler_InvertUV("Souler_InvertUV", Float) = 0
+		[Toggle]_Souler_FlipU("Souler_FlipU", Float) = 0
+		[Toggle]_Souler_FlipV("Souler_FlipV", Float) = 0
+		[Toggle]_Soulercoaster_OneMinus("Soulercoaster_OneMinus", Float) = 0
+		[Header(Distort Texture)]_DistortTex("DistortTex", 2D) = "white" {}
 		_DistortStrength("DistortStrength", Float) = 0.2
-		[Header(Alpha Sharp)]_AlphaThreshold("AlphaThreshold", Float) = 0
-		_AlphaSmoothness("AlphaSmoothness", Float) = 1
-		[Toggle]_AlphaSharp_OneMinus("AlphaSharp_OneMinus", Float) = 0
-		[Header(AlphaLerp)]_AlphaLerp_TexInfluence("AlphaLerp_TexInfluence", Range( 0 , 1)) = 0.2
+		[Header(DepthFade)]_DF_Distance("DF_Distance", Float) = 0.5
+		[Toggle]_DF_OneMinus("DF_OneMinus", Float) = 0
+		_DistortScreen("DistortScreen", Float) = 0.1
+		_DistortAlpha("DistortAlpha", Float) = 0.1
+		_AlphaColorInfluence("AlphaColorInfluence", Float) = 0.2
+		_Fresnel_Threshold("Fresnel_Threshold", Float) = 0
+		_Fresnel_Smoothness("Fresnel_Smoothness", Float) = 0.8
+		_Souler_Debug("Souler_Debug", Float) = 0
 		[Header(Panning Texture)]_PanningTex("PanningTex", 2D) = "white" {}
 		[Toggle]_PanningTex_InvertUV("PanningTex_InvertUV", Float) = 0
 		_PanningTex_ManualOffset("PanningTex_ManualOffset", Float) = 0
-		_Lerp("Lerp", Float) = 0
-		[HDR]_AddedDistortCol("AddedDistortCol", Color) = (0,0,0,0)
 		[HDR][Header(Bicolor)][HideIf(_NOBICOLOR_ON)]_ColorA("ColorA", Color) = (0,0,0,1)
 		[HDR][HideIf(_NOBICOLOR_ON)]_ColorB("ColorB", Color) = (1,1,1,1)
 		[HideIf(_NOBICOLOR_ON)]_BicolorThreshold("BicolorThreshold", Float) = 0
 		[HideIf(_NOBICOLOR_ON)]_BicolorSmoothness("BicolorSmoothness", Float) = 1
 		[Toggle]_Bicolor_OneMinus("Bicolor_OneMinus", Float) = 0
-		[Header(Base)]_Base_Threshold("Base_Threshold", Float) = 0
-		_Base_Smoothness("Base_Smoothness", Float) = 0.5
-		[HDR]_Base_Color("Base_Color", Color) = (1,1,1,0)
 		[Toggle][Header(EdgeFade)]_EdgeFade_Enable("EdgeFade_Enable", Float) = 1
 		_EdgeFadeU("EdgeFadeU", Vector) = (0,0,0,0)
 		_EdgeFadeV("EdgeFadeV", Vector) = (0,0,0,0)
@@ -52,7 +56,7 @@ Shader "S_State_Panning"
 		[HideInInspector]_DstBlend("_DstBlend", Float) = 0
 		[HideInInspector]_AlphaSrcBlend("Vec_AlphaSrcBlendtor1", Float) = 1
 		[HideInInspector]_AlphaDstBlend("_AlphaDstBlend", Float) = 0
-		[HideInInspector][ToggleUI]_ZWrite("_ZWrite", Float) = 0
+		[HideInInspector][ToggleUI]_ZWrite("_ZWrite", Float) = 1
 		[HideInInspector][ToggleUI]_TransparentZWrite("_TransparentZWrite", Float) = 1
 		[HideInInspector]_CullMode("Cull Mode", Float) = 2
 		[HideInInspector]_TransparentSortPriority("_TransparentSortPriority", Int) = 0
@@ -64,7 +68,7 @@ Shader "S_State_Panning"
 		[HideInInspector][ToggleUI]_TransparentBackfaceEnable("_TransparentBackfaceEnable", Float) = 0
 		[HideInInspector][ToggleUI]_AlphaCutoffEnable("_AlphaCutoffEnable", Float) = 0
 		[HideInInspector][ToggleUI]_UseShadowThreshold("_UseShadowThreshold", Float) = 0
-		[HideInInspector][ToggleUI]_DoubleSidedEnable("_DoubleSidedEnable", Float) = 0
+		[HideInInspector][ToggleUI]_DoubleSidedEnable("_DoubleSidedEnable", Float) = 1
 		[HideInInspector][Enum(Flip, 0, Mirror, 1, None, 2)]_DoubleSidedNormalMode("_DoubleSidedNormalMode", Float) = 2
 		[HideInInspector]_DoubleSidedConstants("_DoubleSidedConstants", Vector) = (1, 1, -1, 0)
 		[HideInInspector]_DistortionEnable("_DistortionEnable",Float) = 0
@@ -218,6 +222,7 @@ Shader "S_State_Panning"
 			HLSLPROGRAM
 			#pragma multi_compile_instancing
 			#define ASE_SRP_VERSION 999999
+			#define REQUIRE_OPAQUE_TEXTURE 1
 
 			#define SHADERPASS SHADERPASS_FORWARD_UNLIT
 			#pragma multi_compile _ DEBUG_DISPLAY
@@ -251,7 +256,11 @@ Shader "S_State_Panning"
 
 
 
-			
+			#define ASE_NEEDS_VERT_POSITION
+			#define ASE_NEEDS_FRAG_WORLD_VIEW_DIR
+			#define ASE_NEEDS_VERT_NORMAL
+			#define ASE_NEEDS_FRAG_COLOR
+
 
 			struct VertexInput
 			{
@@ -267,35 +276,42 @@ Shader "S_State_Panning"
 				float4 positionCS : SV_Position;
 				float3 positionRWS : TEXCOORD0;
 				float4 ase_texcoord1 : TEXCOORD1;
+				float4 ase_texcoord2 : TEXCOORD2;
 				float4 ase_color : COLOR;
+				float4 ase_texcoord3 : TEXCOORD3;
+				float4 ase_texcoord4 : TEXCOORD4;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
 
 			CBUFFER_START( UnityPerMaterial )
 			float4 _DistortTex_ST;
-			float4 _AddedDistortCol;
-			float4 _EdgeFadeV;
 			float4 _PanningTex_ST;
 			float4 _EdgeFadeU;
-			float4 _ColorA;
+			float4 _EdgeFadeV;
+			float4 _SoulercoasterTex_ST;
 			float4 _ColorB;
-			float4 _Base_Color;
-			float _AddedEdgeFade;
-			float _AlphaSmoothness;
-			float _AlphaThreshold;
-			float _AlphaLerp_TexInfluence;
-			float _Base_Smoothness;
-			float _Bicolor_OneMinus;
-			float _EdgeFade_Enable;
-			float _BicolorSmoothness;
-			float _BicolorThreshold;
-			float _Lerp;
-			float _DistortStrength;
+			float4 _ColorA;
 			float _PanningTex_InvertUV;
 			float _PanningTex_ManualOffset;
-			float _Base_Threshold;
-			float _AlphaSharp_OneMinus;
+			float _BicolorSmoothness;
+			float _BicolorThreshold;
+			float _DistortScreen;
+			float _Fresnel_Smoothness;
+			float _Fresnel_Threshold;
+			float _DF_Distance;
+			float _AlphaColorInfluence;
+			float _Soulercoaster_OneMinus;
+			float _Souler_FlipV;
+			float _Souler_FlipU;
+			float _Souler_InvertUV;
+			float _Souler_Debug;
+			float _DistortAlpha;
+			float _EdgeFade_Enable;
+			float _AddedEdgeFade;
+			float _DistortStrength;
+			float _DF_OneMinus;
+			float _Bicolor_OneMinus;
 			float4 _EmissionColor;
 			float _RenderQueueType;
 			#ifdef _ADD_PRECOMPUTED_VELOCITY
@@ -350,6 +366,7 @@ Shader "S_State_Panning"
 			CBUFFER_END
 			sampler2D _DistortTex;
 			SAMPLER(sampler_DistortTex);
+			sampler2D _SoulercoasterTex;
 			sampler2D _PanningTex;
 			SAMPLER(sampler_PanningTex);
 
@@ -360,7 +377,15 @@ Shader "S_State_Panning"
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/MaterialUtilities.hlsl"
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/ShaderLibrary/ShaderGraphFunctions.hlsl"
 
+			float4 ASEHDSampleSceneColor(float2 uv, float lod, float exposureMultiplier)
+			{
+				#if defined(REQUIRE_OPAQUE_TEXTURE) && defined(_SURFACE_TYPE_TRANSPARENT) && defined(SHADERPASS) && (SHADERPASS != SHADERPASS_LIGHT_TRANSPORT)
+				return float4( SampleCameraColor(uv, lod) * exposureMultiplier, 1.0 );
+				#endif
+				return float4(0.0, 0.0, 0.0, 1.0);
+			}
 			
+
 			struct SurfaceDescription
 			{
 				float3 Color;
@@ -418,8 +443,21 @@ Shader "S_State_Panning"
 				UNITY_TRANSFER_INSTANCE_ID(inputMesh, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO( o );
 
-				o.ase_texcoord1 = inputMesh.ase_texcoord;
+				float4 ase_clipPos = TransformWorldToHClip( TransformObjectToWorld(inputMesh.positionOS));
+				float4 screenPos = ComputeScreenPos( ase_clipPos , _ProjectionParams.x );
+				o.ase_texcoord1 = screenPos;
+				float3 vertexPos1_g42 = inputMesh.positionOS;
+				float4 ase_clipPos1_g42 = TransformWorldToHClip( TransformObjectToWorld(vertexPos1_g42));
+				float4 screenPos1_g42 = ComputeScreenPos( ase_clipPos1_g42 , _ProjectionParams.x );
+				o.ase_texcoord3 = screenPos1_g42;
+				float3 ase_worldNormal = TransformObjectToWorldNormal(inputMesh.normalOS);
+				o.ase_texcoord4.xyz = ase_worldNormal;
+				
+				o.ase_texcoord2 = inputMesh.ase_texcoord;
 				o.ase_color = inputMesh.ase_color;
+				
+				//setting value to unused interpolator channels and avoid initialization warnings
+				o.ase_texcoord4.w = 0;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 				float3 defaultVertexValue = inputMesh.positionOS.xyz;
 				#else
@@ -545,62 +583,78 @@ Shader "S_State_Panning"
 				float3 V = GetWorldSpaceNormalizeViewDir( input.positionRWS );
 
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
-				float2 texCoord13_g60 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner1_g61 = ( _TimeParameters.x * _DistortTex_ST.zw + ( texCoord13_g60 * _DistortTex_ST.xy ));
-				float4 tex2DNode24_g60 = tex2D( _DistortTex, ( float2( 0,0 ) + panner1_g61 ) );
-				float4 texCoord49 = packedInput.ase_texcoord1;
-				texCoord49.xy = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 appendResult50 = (float2(0.0 , texCoord49.z));
-				float4 appendResult43_g63 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
-				float4 appendResult42_g63 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
-				float4 lerpResult41_g63 = lerp( appendResult43_g63 , appendResult42_g63 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g65 = _PanningTex_ST.zw;
-				float2 break3_g65 = temp_output_1_0_g65;
-				float4 appendResult5_g65 = (float4(break3_g65.y , break3_g65.x , 0.0 , 0.0));
-				float4 lerpResult2_g65 = lerp( float4( temp_output_1_0_g65, 0.0 , 0.0 ) , appendResult5_g65 , _PanningTex_InvertUV);
-				float2 texCoord11 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
-				float4 temp_cast_3 = (1.0).xxxx;
-				float2 temp_output_1_0_g66 = ( texCoord11 + (( ( ( tex2DNode24_g60 * 2.0 ) - temp_cast_3 ) * ( _DistortStrength + 0.0 ) * 1.0 )).rg );
-				float2 break3_g66 = temp_output_1_0_g66;
-				float4 appendResult5_g66 = (float4(break3_g66.y , break3_g66.x , 0.0 , 0.0));
-				float4 lerpResult2_g66 = lerp( float4( temp_output_1_0_g66, 0.0 , 0.0 ) , appendResult5_g66 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g67 = ( _PanningTex_ST.xy * float2( 1,1 ) );
-				float2 break3_g67 = temp_output_1_0_g67;
-				float4 appendResult5_g67 = (float4(break3_g67.y , break3_g67.x , 0.0 , 0.0));
-				float4 lerpResult2_g67 = lerp( float4( temp_output_1_0_g67, 0.0 , 0.0 ) , appendResult5_g67 , _PanningTex_InvertUV);
-				float2 panner1_g64 = ( _TimeParameters.x * (lerpResult2_g65).xy + ( (lerpResult2_g66).xy * (lerpResult2_g67).xy ));
-				float2 texCoord9_g63 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
-				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( appendResult50, 0.0 , 0.0 ) + lerpResult41_g63 ).xy + panner1_g64 ), ddx( texCoord9_g63 ), ddy( texCoord9_g63 ) );
-				float2 texCoord46 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
-				float4 temp_cast_6 = (( 1.0 - texCoord46.y )).xxxx;
-				float4 lerpResult44 = lerp( temp_output_7_0 , temp_cast_6 , _Lerp);
-				float smoothstepResult5_g72 = smoothstep( _BicolorThreshold , ( _BicolorThreshold + _BicolorSmoothness ) , lerpResult44.r);
-				float lerpResult12_g72 = lerp( smoothstepResult5_g72 , ( 1.0 - smoothstepResult5_g72 ) , _Bicolor_OneMinus);
-				float4 lerpResult4_g72 = lerp( _ColorA , _ColorB , lerpResult12_g72);
-				float4 temp_output_9_0 = lerpResult4_g72;
-				float2 texCoord13 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
-				float lerpResult1_g73 = lerp( texCoord13.y , temp_output_7_0.r , _AlphaLerp_TexInfluence);
-				float smoothstepResult18 = smoothstep( _Base_Threshold , ( _Base_Threshold + _Base_Smoothness ) , ( 1.0 - lerpResult1_g73 ));
+				float4 screenPos = packedInput.ase_texcoord1;
+				float4 ase_screenPosNorm = screenPos / screenPos.w;
+				ase_screenPosNorm.z = ( UNITY_NEAR_CLIP_VALUE >= 0 ) ? ase_screenPosNorm.z : ase_screenPosNorm.z * 0.5 + 0.5;
+				float2 texCoord13_g54 = packedInput.ase_texcoord2.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 panner1_g55 = ( _TimeParameters.x * _DistortTex_ST.zw + ( texCoord13_g54 * _DistortTex_ST.xy ));
+				float4 tex2DNode24_g54 = tex2D( _DistortTex, ( float2( 0,0 ) + panner1_g55 ) );
+				float4 temp_cast_0 = (1.0).xxxx;
+				float2 temp_output_31_0 = (( ( ( tex2DNode24_g54 * 2.0 ) - temp_cast_0 ) * ( _DistortStrength + 0.0 ) * 1.0 )).rg;
+				float2 texCoord7_g46 = packedInput.ase_texcoord2.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 break9_g46 = frac( texCoord7_g46 );
+				float smoothstepResult3_g46 = smoothstep( _EdgeFadeU.x , ( _AddedEdgeFade + _EdgeFadeU.y ) , break9_g46.x);
+				float smoothstepResult4_g46 = smoothstep( _EdgeFadeU.z , ( _EdgeFadeU.w + _AddedEdgeFade ) , ( 1.0 - break9_g46.x ));
+				float smoothstepResult5_g46 = smoothstep( _EdgeFadeV.x , ( _EdgeFadeV.y + _AddedEdgeFade ) , break9_g46.y);
+				float smoothstepResult6_g46 = smoothstep( _EdgeFadeV.z , ( _EdgeFadeV.w + _AddedEdgeFade ) , ( 1.0 - break9_g46.y ));
+				float lerpResult14_g46 = lerp( 1.0 , ( smoothstepResult3_g46 * smoothstepResult4_g46 * smoothstepResult5_g46 * smoothstepResult6_g46 ) , _EdgeFade_Enable);
+				float4 texCoord14 = packedInput.ase_texcoord2;
+				texCoord14.xy = packedInput.ase_texcoord2.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 appendResult10 = (float2(( _Souler_Debug + texCoord14.z ) , 0.0));
+				float4 appendResult21_g43 = (float4(( ( temp_output_31_0 * _DistortAlpha ) + appendResult10 ) , 0.0 , 0.0));
+				float2 texCoord3_g43 = packedInput.ase_texcoord2.xy * ( float2( 1,1 ) * _SoulercoasterTex_ST.xy ) + ( float4( _SoulercoasterTex_ST.zw, 0.0 , 0.0 ) + float4( ( _SoulercoasterTex_ST.xy / float2( -2,-2 ) ), 0.0 , 0.0 ) + float4( float2( 0.5,0.5 ), 0.0 , 0.0 ) + appendResult21_g43 ).xy;
+				float2 temp_output_1_0_g45 = texCoord3_g43;
+				float2 break3_g45 = temp_output_1_0_g45;
+				float4 appendResult5_g45 = (float4(break3_g45.y , break3_g45.x , 0.0 , 0.0));
+				float4 lerpResult2_g45 = lerp( float4( temp_output_1_0_g45, 0.0 , 0.0 ) , appendResult5_g45 , _Souler_InvertUV);
+				float2 break2_g44 = (lerpResult2_g45).xy;
+				float lerpResult6_g44 = lerp( break2_g44.x , ( 1.0 - break2_g44.x ) , _Souler_FlipU);
+				float lerpResult11_g44 = lerp( break2_g44.y , ( 1.0 - break2_g44.y ) , _Souler_FlipV);
+				float4 appendResult9_g44 = (float4(lerpResult6_g44 , lerpResult11_g44 , 0.0 , 0.0));
+				float4 tex2DNode1_g43 = tex2D( _SoulercoasterTex, (appendResult9_g44).xy );
+				float lerpResult32_g43 = lerp( tex2DNode1_g43.r , ( 1.0 - tex2DNode1_g43.r ) , _Soulercoaster_OneMinus);
+				float temp_output_7_0 = lerpResult32_g43;
+				float4 screenPos1_g42 = packedInput.ase_texcoord3;
+				float4 ase_screenPosNorm1 = screenPos1_g42 / screenPos1_g42.w;
+				ase_screenPosNorm1.z = ( UNITY_NEAR_CLIP_VALUE >= 0 ) ? ase_screenPosNorm1.z : ase_screenPosNorm1.z * 0.5 + 0.5;
+				float screenDepth1_g42 = LinearEyeDepth(SampleCameraDepth( ase_screenPosNorm1.xy ),_ZBufferParams);
+				float distanceDepth1_g42 = saturate( abs( ( screenDepth1_g42 - LinearEyeDepth( ase_screenPosNorm1.z,_ZBufferParams ) ) / ( _DF_Distance ) ) );
+				float lerpResult3_g42 = lerp( distanceDepth1_g42 , ( 1.0 - distanceDepth1_g42 ) , _DF_OneMinus);
+				float3 ase_worldNormal = packedInput.ase_texcoord4.xyz;
+				float dotResult20 = dot( V , ase_worldNormal );
+				float temp_output_23_0 = abs( dotResult20 );
+				float smoothstepResult25 = smoothstep( _Fresnel_Threshold , ( _Fresnel_Threshold + _Fresnel_Smoothness ) , temp_output_23_0);
+				float temp_output_13_0 = ( lerpResult14_g46 * temp_output_7_0 * packedInput.ase_color.a * lerpResult3_g42 * smoothstepResult25 );
+				float4 fetchOpaqueVal37 = ASEHDSampleSceneColor(( ase_screenPosNorm + float4( ( temp_output_31_0 * temp_output_13_0 * _DistortScreen ), 0.0 , 0.0 ) ).xy, 0.0, GetInverseCurrentExposureMultiplier());
+				float4 appendResult43_g47 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
+				float4 appendResult42_g47 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
+				float4 lerpResult41_g47 = lerp( appendResult43_g47 , appendResult42_g47 , _PanningTex_InvertUV);
+				float2 temp_output_1_0_g49 = _PanningTex_ST.zw;
+				float2 break3_g49 = temp_output_1_0_g49;
+				float4 appendResult5_g49 = (float4(break3_g49.y , break3_g49.x , 0.0 , 0.0));
+				float4 lerpResult2_g49 = lerp( float4( temp_output_1_0_g49, 0.0 , 0.0 ) , appendResult5_g49 , _PanningTex_InvertUV);
+				float2 texCoord32 = packedInput.ase_texcoord2.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 temp_output_1_0_g50 = ( texCoord32 + temp_output_31_0 );
+				float2 break3_g50 = temp_output_1_0_g50;
+				float4 appendResult5_g50 = (float4(break3_g50.y , break3_g50.x , 0.0 , 0.0));
+				float4 lerpResult2_g50 = lerp( float4( temp_output_1_0_g50, 0.0 , 0.0 ) , appendResult5_g50 , _PanningTex_InvertUV);
+				float2 temp_output_1_0_g51 = ( _PanningTex_ST.xy * float2( 1,1 ) );
+				float2 break3_g51 = temp_output_1_0_g51;
+				float4 appendResult5_g51 = (float4(break3_g51.y , break3_g51.x , 0.0 , 0.0));
+				float4 lerpResult2_g51 = lerp( float4( temp_output_1_0_g51, 0.0 , 0.0 ) , appendResult5_g51 , _PanningTex_InvertUV);
+				float2 panner1_g48 = ( _TimeParameters.x * (lerpResult2_g49).xy + ( (lerpResult2_g50).xy * (lerpResult2_g51).xy ));
+				float2 texCoord9_g47 = packedInput.ase_texcoord2.xy * float2( 1,1 ) + float2( 0,0 );
+				float4 temp_cast_13 = (temp_output_7_0).xxxx;
+				float4 lerpResult29 = lerp( tex2D( _PanningTex, ( ( float4( float2( 0,0 ), 0.0 , 0.0 ) + lerpResult41_g47 ).xy + panner1_g48 ), ddx( texCoord9_g47 ), ddy( texCoord9_g47 ) ) , temp_cast_13 , _AlphaColorInfluence);
+				float smoothstepResult5_g53 = smoothstep( _BicolorThreshold , ( _BicolorThreshold + _BicolorSmoothness ) , lerpResult29.r);
+				float lerpResult12_g53 = lerp( smoothstepResult5_g53 , ( 1.0 - smoothstepResult5_g53 ) , _Bicolor_OneMinus);
+				float4 lerpResult4_g53 = lerp( _ColorA , _ColorB , lerpResult12_g53);
 				
-				float temp_output_7_0_g69 = ( _AlphaThreshold + 0.0 );
-				float2 texCoord7_g62 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 break9_g62 = frac( texCoord7_g62 );
-				float smoothstepResult3_g62 = smoothstep( _EdgeFadeU.x , ( _AddedEdgeFade + _EdgeFadeU.y ) , break9_g62.x);
-				float smoothstepResult4_g62 = smoothstep( _EdgeFadeU.z , ( _EdgeFadeU.w + _AddedEdgeFade ) , ( 1.0 - break9_g62.x ));
-				float smoothstepResult5_g62 = smoothstep( _EdgeFadeV.x , ( _EdgeFadeV.y + _AddedEdgeFade ) , break9_g62.y);
-				float smoothstepResult6_g62 = smoothstep( _EdgeFadeV.z , ( _EdgeFadeV.w + _AddedEdgeFade ) , ( 1.0 - break9_g62.y ));
-				float lerpResult14_g62 = lerp( 1.0 , ( smoothstepResult3_g62 * smoothstepResult4_g62 * smoothstepResult5_g62 * smoothstepResult6_g62 ) , _EdgeFade_Enable);
-				float temp_output_8_0 = lerpResult14_g62;
-				float lerpResult1_g68 = lerp( temp_output_8_0 , temp_output_7_0.r , _AlphaLerp_TexInfluence);
-				float temp_output_1_0_g69 = lerpResult1_g68;
-				float lerpResult9_g69 = lerp( temp_output_1_0_g69 , ( 1.0 - temp_output_1_0_g69 ) , _AlphaSharp_OneMinus);
-				float smoothstepResult2_g69 = smoothstep( temp_output_7_0_g69 , ( temp_output_7_0_g69 + _AlphaSmoothness ) , lerpResult9_g69);
-				float2 texCoord28 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
-				float smoothstepResult29 = smoothstep( 0.0 , 0.15 , texCoord28.y);
+				float smoothstepResult43 = smoothstep( 0.0 , 0.1 , temp_output_13_0);
 				
-				surfaceDescription.Color = ( ( ( tex2DNode24_g60 * _AddedDistortCol * lerpResult44 ) + temp_output_9_0 ) + ( _Base_Color * smoothstepResult18 * temp_output_9_0 ) ).rgb;
+				surfaceDescription.Color = ( fetchOpaqueVal37 + ( lerpResult4_g53 * temp_output_13_0 ) ).rgb;
 				surfaceDescription.Emission = 0;
-				surfaceDescription.Alpha = ( smoothstepResult2_g69 * smoothstepResult29 * temp_output_8_0 * packedInput.ase_color.a );
+				surfaceDescription.Alpha = smoothstepResult43;
 				surfaceDescription.AlphaClipThreshold = _AlphaCutoff;
 				surfaceDescription.ShadowTint = float4( 0, 0 ,0 ,1 );
 				float2 Distortion = float2 ( 0, 0 );
@@ -682,7 +736,9 @@ Shader "S_State_Panning"
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/ShaderPass/ShaderPass.cs.hlsl"
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/ShaderLibrary/ShaderGraphHeader.hlsl"
 
-			
+			#define ASE_NEEDS_VERT_POSITION
+			#define ASE_NEEDS_VERT_NORMAL
+
 
 			struct VertexInput
 			{
@@ -698,34 +754,41 @@ Shader "S_State_Panning"
 				float4 positionCS : SV_Position;
 				float4 ase_texcoord : TEXCOORD0;
 				float4 ase_color : COLOR;
+				float4 ase_texcoord1 : TEXCOORD1;
+				float4 ase_texcoord2 : TEXCOORD2;
+				float4 ase_texcoord3 : TEXCOORD3;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
 
 			CBUFFER_START( UnityPerMaterial )
 			float4 _DistortTex_ST;
-			float4 _AddedDistortCol;
-			float4 _EdgeFadeV;
 			float4 _PanningTex_ST;
 			float4 _EdgeFadeU;
-			float4 _ColorA;
+			float4 _EdgeFadeV;
+			float4 _SoulercoasterTex_ST;
 			float4 _ColorB;
-			float4 _Base_Color;
-			float _AddedEdgeFade;
-			float _AlphaSmoothness;
-			float _AlphaThreshold;
-			float _AlphaLerp_TexInfluence;
-			float _Base_Smoothness;
-			float _Bicolor_OneMinus;
-			float _EdgeFade_Enable;
-			float _BicolorSmoothness;
-			float _BicolorThreshold;
-			float _Lerp;
-			float _DistortStrength;
+			float4 _ColorA;
 			float _PanningTex_InvertUV;
 			float _PanningTex_ManualOffset;
-			float _Base_Threshold;
-			float _AlphaSharp_OneMinus;
+			float _BicolorSmoothness;
+			float _BicolorThreshold;
+			float _DistortScreen;
+			float _Fresnel_Smoothness;
+			float _Fresnel_Threshold;
+			float _DF_Distance;
+			float _AlphaColorInfluence;
+			float _Soulercoaster_OneMinus;
+			float _Souler_FlipV;
+			float _Souler_FlipU;
+			float _Souler_InvertUV;
+			float _Souler_Debug;
+			float _DistortAlpha;
+			float _EdgeFade_Enable;
+			float _AddedEdgeFade;
+			float _DistortStrength;
+			float _DF_OneMinus;
+			float _Bicolor_OneMinus;
 			float4 _EmissionColor;
 			float _RenderQueueType;
 			#ifdef _ADD_PRECOMPUTED_VELOCITY
@@ -778,8 +841,7 @@ Shader "S_State_Panning"
 				float _TessMaxDisp;
 			#endif
 			CBUFFER_END
-			sampler2D _PanningTex;
-			SAMPLER(sampler_PanningTex);
+			sampler2D _SoulercoasterTex;
 			sampler2D _DistortTex;
 			SAMPLER(sampler_DistortTex);
 
@@ -820,8 +882,21 @@ Shader "S_State_Panning"
 				UNITY_TRANSFER_INSTANCE_ID(inputMesh, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO( o );
 
+				float3 vertexPos1_g42 = inputMesh.positionOS;
+				float4 ase_clipPos1_g42 = TransformWorldToHClip( TransformObjectToWorld(vertexPos1_g42));
+				float4 screenPos1_g42 = ComputeScreenPos( ase_clipPos1_g42 , _ProjectionParams.x );
+				o.ase_texcoord1 = screenPos1_g42;
+				float3 ase_worldPos = GetAbsolutePositionWS( TransformObjectToWorld( (inputMesh.positionOS).xyz ) );
+				o.ase_texcoord2.xyz = ase_worldPos;
+				float3 ase_worldNormal = TransformObjectToWorldNormal(inputMesh.normalOS);
+				o.ase_texcoord3.xyz = ase_worldNormal;
+				
 				o.ase_texcoord = inputMesh.ase_texcoord;
 				o.ase_color = inputMesh.ase_color;
+				
+				//setting value to unused interpolator channels and avoid initialization warnings
+				o.ase_texcoord2.w = 0;
+				o.ase_texcoord3.w = 0;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 				float3 defaultVertexValue = inputMesh.positionOS.xyz;
 				#else
@@ -961,49 +1036,51 @@ Shader "S_State_Panning"
 				float3 V = float3( 1.0, 1.0, 1.0 );
 
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
-				float temp_output_7_0_g69 = ( _AlphaThreshold + 0.0 );
-				float2 texCoord7_g62 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 break9_g62 = frac( texCoord7_g62 );
-				float smoothstepResult3_g62 = smoothstep( _EdgeFadeU.x , ( _AddedEdgeFade + _EdgeFadeU.y ) , break9_g62.x);
-				float smoothstepResult4_g62 = smoothstep( _EdgeFadeU.z , ( _EdgeFadeU.w + _AddedEdgeFade ) , ( 1.0 - break9_g62.x ));
-				float smoothstepResult5_g62 = smoothstep( _EdgeFadeV.x , ( _EdgeFadeV.y + _AddedEdgeFade ) , break9_g62.y);
-				float smoothstepResult6_g62 = smoothstep( _EdgeFadeV.z , ( _EdgeFadeV.w + _AddedEdgeFade ) , ( 1.0 - break9_g62.y ));
-				float lerpResult14_g62 = lerp( 1.0 , ( smoothstepResult3_g62 * smoothstepResult4_g62 * smoothstepResult5_g62 * smoothstepResult6_g62 ) , _EdgeFade_Enable);
-				float temp_output_8_0 = lerpResult14_g62;
-				float4 texCoord49 = packedInput.ase_texcoord;
-				texCoord49.xy = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 appendResult50 = (float2(0.0 , texCoord49.z));
-				float4 appendResult43_g63 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
-				float4 appendResult42_g63 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
-				float4 lerpResult41_g63 = lerp( appendResult43_g63 , appendResult42_g63 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g65 = _PanningTex_ST.zw;
-				float2 break3_g65 = temp_output_1_0_g65;
-				float4 appendResult5_g65 = (float4(break3_g65.y , break3_g65.x , 0.0 , 0.0));
-				float4 lerpResult2_g65 = lerp( float4( temp_output_1_0_g65, 0.0 , 0.0 ) , appendResult5_g65 , _PanningTex_InvertUV);
-				float2 texCoord11 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 texCoord13_g60 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner1_g61 = ( _TimeParameters.x * _DistortTex_ST.zw + ( texCoord13_g60 * _DistortTex_ST.xy ));
-				float4 tex2DNode24_g60 = tex2D( _DistortTex, ( float2( 0,0 ) + panner1_g61 ) );
+				float2 texCoord7_g46 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 break9_g46 = frac( texCoord7_g46 );
+				float smoothstepResult3_g46 = smoothstep( _EdgeFadeU.x , ( _AddedEdgeFade + _EdgeFadeU.y ) , break9_g46.x);
+				float smoothstepResult4_g46 = smoothstep( _EdgeFadeU.z , ( _EdgeFadeU.w + _AddedEdgeFade ) , ( 1.0 - break9_g46.x ));
+				float smoothstepResult5_g46 = smoothstep( _EdgeFadeV.x , ( _EdgeFadeV.y + _AddedEdgeFade ) , break9_g46.y);
+				float smoothstepResult6_g46 = smoothstep( _EdgeFadeV.z , ( _EdgeFadeV.w + _AddedEdgeFade ) , ( 1.0 - break9_g46.y ));
+				float lerpResult14_g46 = lerp( 1.0 , ( smoothstepResult3_g46 * smoothstepResult4_g46 * smoothstepResult5_g46 * smoothstepResult6_g46 ) , _EdgeFade_Enable);
+				float2 texCoord13_g54 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 panner1_g55 = ( _TimeParameters.x * _DistortTex_ST.zw + ( texCoord13_g54 * _DistortTex_ST.xy ));
+				float4 tex2DNode24_g54 = tex2D( _DistortTex, ( float2( 0,0 ) + panner1_g55 ) );
 				float4 temp_cast_3 = (1.0).xxxx;
-				float2 temp_output_1_0_g66 = ( texCoord11 + (( ( ( tex2DNode24_g60 * 2.0 ) - temp_cast_3 ) * ( _DistortStrength + 0.0 ) * 1.0 )).rg );
-				float2 break3_g66 = temp_output_1_0_g66;
-				float4 appendResult5_g66 = (float4(break3_g66.y , break3_g66.x , 0.0 , 0.0));
-				float4 lerpResult2_g66 = lerp( float4( temp_output_1_0_g66, 0.0 , 0.0 ) , appendResult5_g66 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g67 = ( _PanningTex_ST.xy * float2( 1,1 ) );
-				float2 break3_g67 = temp_output_1_0_g67;
-				float4 appendResult5_g67 = (float4(break3_g67.y , break3_g67.x , 0.0 , 0.0));
-				float4 lerpResult2_g67 = lerp( float4( temp_output_1_0_g67, 0.0 , 0.0 ) , appendResult5_g67 , _PanningTex_InvertUV);
-				float2 panner1_g64 = ( _TimeParameters.x * (lerpResult2_g65).xy + ( (lerpResult2_g66).xy * (lerpResult2_g67).xy ));
-				float2 texCoord9_g63 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( appendResult50, 0.0 , 0.0 ) + lerpResult41_g63 ).xy + panner1_g64 ), ddx( texCoord9_g63 ), ddy( texCoord9_g63 ) );
-				float lerpResult1_g68 = lerp( temp_output_8_0 , temp_output_7_0.r , _AlphaLerp_TexInfluence);
-				float temp_output_1_0_g69 = lerpResult1_g68;
-				float lerpResult9_g69 = lerp( temp_output_1_0_g69 , ( 1.0 - temp_output_1_0_g69 ) , _AlphaSharp_OneMinus);
-				float smoothstepResult2_g69 = smoothstep( temp_output_7_0_g69 , ( temp_output_7_0_g69 + _AlphaSmoothness ) , lerpResult9_g69);
-				float2 texCoord28 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float smoothstepResult29 = smoothstep( 0.0 , 0.15 , texCoord28.y);
+				float2 temp_output_31_0 = (( ( ( tex2DNode24_g54 * 2.0 ) - temp_cast_3 ) * ( _DistortStrength + 0.0 ) * 1.0 )).rg;
+				float4 texCoord14 = packedInput.ase_texcoord;
+				texCoord14.xy = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 appendResult10 = (float2(( _Souler_Debug + texCoord14.z ) , 0.0));
+				float4 appendResult21_g43 = (float4(( ( temp_output_31_0 * _DistortAlpha ) + appendResult10 ) , 0.0 , 0.0));
+				float2 texCoord3_g43 = packedInput.ase_texcoord.xy * ( float2( 1,1 ) * _SoulercoasterTex_ST.xy ) + ( float4( _SoulercoasterTex_ST.zw, 0.0 , 0.0 ) + float4( ( _SoulercoasterTex_ST.xy / float2( -2,-2 ) ), 0.0 , 0.0 ) + float4( float2( 0.5,0.5 ), 0.0 , 0.0 ) + appendResult21_g43 ).xy;
+				float2 temp_output_1_0_g45 = texCoord3_g43;
+				float2 break3_g45 = temp_output_1_0_g45;
+				float4 appendResult5_g45 = (float4(break3_g45.y , break3_g45.x , 0.0 , 0.0));
+				float4 lerpResult2_g45 = lerp( float4( temp_output_1_0_g45, 0.0 , 0.0 ) , appendResult5_g45 , _Souler_InvertUV);
+				float2 break2_g44 = (lerpResult2_g45).xy;
+				float lerpResult6_g44 = lerp( break2_g44.x , ( 1.0 - break2_g44.x ) , _Souler_FlipU);
+				float lerpResult11_g44 = lerp( break2_g44.y , ( 1.0 - break2_g44.y ) , _Souler_FlipV);
+				float4 appendResult9_g44 = (float4(lerpResult6_g44 , lerpResult11_g44 , 0.0 , 0.0));
+				float4 tex2DNode1_g43 = tex2D( _SoulercoasterTex, (appendResult9_g44).xy );
+				float lerpResult32_g43 = lerp( tex2DNode1_g43.r , ( 1.0 - tex2DNode1_g43.r ) , _Soulercoaster_OneMinus);
+				float temp_output_7_0 = lerpResult32_g43;
+				float4 screenPos1_g42 = packedInput.ase_texcoord1;
+				float4 ase_screenPosNorm1 = screenPos1_g42 / screenPos1_g42.w;
+				ase_screenPosNorm1.z = ( UNITY_NEAR_CLIP_VALUE >= 0 ) ? ase_screenPosNorm1.z : ase_screenPosNorm1.z * 0.5 + 0.5;
+				float screenDepth1_g42 = LinearEyeDepth(SampleCameraDepth( ase_screenPosNorm1.xy ),_ZBufferParams);
+				float distanceDepth1_g42 = saturate( abs( ( screenDepth1_g42 - LinearEyeDepth( ase_screenPosNorm1.z,_ZBufferParams ) ) / ( _DF_Distance ) ) );
+				float lerpResult3_g42 = lerp( distanceDepth1_g42 , ( 1.0 - distanceDepth1_g42 ) , _DF_OneMinus);
+				float3 ase_worldPos = packedInput.ase_texcoord2.xyz;
+				float3 ase_worldViewDir = ( _WorldSpaceCameraPos.xyz - ase_worldPos );
+				ase_worldViewDir = normalize(ase_worldViewDir);
+				float3 ase_worldNormal = packedInput.ase_texcoord3.xyz;
+				float dotResult20 = dot( ase_worldViewDir , ase_worldNormal );
+				float temp_output_23_0 = abs( dotResult20 );
+				float smoothstepResult25 = smoothstep( _Fresnel_Threshold , ( _Fresnel_Threshold + _Fresnel_Smoothness ) , temp_output_23_0);
+				float temp_output_13_0 = ( lerpResult14_g46 * temp_output_7_0 * packedInput.ase_color.a * lerpResult3_g42 * smoothstepResult25 );
+				float smoothstepResult43 = smoothstep( 0.0 , 0.1 , temp_output_13_0);
 				
-				surfaceDescription.Alpha = ( smoothstepResult2_g69 * smoothstepResult29 * temp_output_8_0 * packedInput.ase_color.a );
+				surfaceDescription.Alpha = smoothstepResult43;
 				surfaceDescription.AlphaClipThreshold = _AlphaCutoff;
 
 				SurfaceData surfaceData;
@@ -1041,6 +1118,7 @@ Shader "S_State_Panning"
 			HLSLPROGRAM
 			#pragma multi_compile_instancing
 			#define ASE_SRP_VERSION 999999
+			#define REQUIRE_OPAQUE_TEXTURE 1
 
 			#define SHADERPASS SHADERPASS_LIGHT_TRANSPORT
 
@@ -1060,28 +1138,32 @@ Shader "S_State_Panning"
 
 			CBUFFER_START( UnityPerMaterial )
 			float4 _DistortTex_ST;
-			float4 _AddedDistortCol;
-			float4 _EdgeFadeV;
 			float4 _PanningTex_ST;
 			float4 _EdgeFadeU;
-			float4 _ColorA;
+			float4 _EdgeFadeV;
+			float4 _SoulercoasterTex_ST;
 			float4 _ColorB;
-			float4 _Base_Color;
-			float _AddedEdgeFade;
-			float _AlphaSmoothness;
-			float _AlphaThreshold;
-			float _AlphaLerp_TexInfluence;
-			float _Base_Smoothness;
-			float _Bicolor_OneMinus;
-			float _EdgeFade_Enable;
-			float _BicolorSmoothness;
-			float _BicolorThreshold;
-			float _Lerp;
-			float _DistortStrength;
+			float4 _ColorA;
 			float _PanningTex_InvertUV;
 			float _PanningTex_ManualOffset;
-			float _Base_Threshold;
-			float _AlphaSharp_OneMinus;
+			float _BicolorSmoothness;
+			float _BicolorThreshold;
+			float _DistortScreen;
+			float _Fresnel_Smoothness;
+			float _Fresnel_Threshold;
+			float _DF_Distance;
+			float _AlphaColorInfluence;
+			float _Soulercoaster_OneMinus;
+			float _Souler_FlipV;
+			float _Souler_FlipU;
+			float _Souler_InvertUV;
+			float _Souler_Debug;
+			float _DistortAlpha;
+			float _EdgeFade_Enable;
+			float _AddedEdgeFade;
+			float _DistortStrength;
+			float _DF_OneMinus;
+			float _Bicolor_OneMinus;
 			float4 _EmissionColor;
 			float _RenderQueueType;
 			#ifdef _ADD_PRECOMPUTED_VELOCITY
@@ -1144,6 +1226,7 @@ Shader "S_State_Panning"
 			float unity_MaxOutputValue;
 			sampler2D _DistortTex;
 			SAMPLER(sampler_DistortTex);
+			sampler2D _SoulercoasterTex;
 			sampler2D _PanningTex;
 			SAMPLER(sampler_PanningTex);
 
@@ -1154,7 +1237,10 @@ Shader "S_State_Panning"
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/MaterialUtilities.hlsl"
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/ShaderLibrary/ShaderGraphFunctions.hlsl"
 
-			
+			#define ASE_NEEDS_VERT_POSITION
+			#define ASE_NEEDS_VERT_NORMAL
+			#define ASE_NEEDS_FRAG_COLOR
+
 
 			struct VertexInput
 			{
@@ -1171,12 +1257,24 @@ Shader "S_State_Panning"
 			{
 				float4 positionCS : SV_Position;
 				float4 ase_texcoord : TEXCOORD0;
+				float4 ase_texcoord1 : TEXCOORD1;
 				float4 ase_color : COLOR;
+				float4 ase_texcoord2 : TEXCOORD2;
+				float4 ase_texcoord3 : TEXCOORD3;
+				float4 ase_texcoord4 : TEXCOORD4;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 
+			float4 ASEHDSampleSceneColor(float2 uv, float lod, float exposureMultiplier)
+			{
+				#if defined(REQUIRE_OPAQUE_TEXTURE) && defined(_SURFACE_TYPE_TRANSPARENT) && defined(SHADERPASS) && (SHADERPASS != SHADERPASS_LIGHT_TRANSPORT)
+				return float4( SampleCameraColor(uv, lod) * exposureMultiplier, 1.0 );
+				#endif
+				return float4(0.0, 0.0, 0.0, 1.0);
+			}
 			
+
 			struct SurfaceDescription
 			{
 				float3 Color;
@@ -1209,8 +1307,24 @@ Shader "S_State_Panning"
 				UNITY_SETUP_INSTANCE_ID( inputMesh );
 				UNITY_TRANSFER_INSTANCE_ID( inputMesh, o );
 
-				o.ase_texcoord = inputMesh.ase_texcoord;
+				float4 ase_clipPos = TransformWorldToHClip( TransformObjectToWorld(inputMesh.positionOS));
+				float4 screenPos = ComputeScreenPos( ase_clipPos , _ProjectionParams.x );
+				o.ase_texcoord = screenPos;
+				float3 vertexPos1_g42 = inputMesh.positionOS;
+				float4 ase_clipPos1_g42 = TransformWorldToHClip( TransformObjectToWorld(vertexPos1_g42));
+				float4 screenPos1_g42 = ComputeScreenPos( ase_clipPos1_g42 , _ProjectionParams.x );
+				o.ase_texcoord2 = screenPos1_g42;
+				float3 ase_worldPos = GetAbsolutePositionWS( TransformObjectToWorld( (inputMesh.positionOS).xyz ) );
+				o.ase_texcoord3.xyz = ase_worldPos;
+				float3 ase_worldNormal = TransformObjectToWorldNormal(inputMesh.normalOS);
+				o.ase_texcoord4.xyz = ase_worldNormal;
+				
+				o.ase_texcoord1 = inputMesh.ase_texcoord;
 				o.ase_color = inputMesh.ase_color;
+				
+				//setting value to unused interpolator channels and avoid initialization warnings
+				o.ase_texcoord3.w = 0;
+				o.ase_texcoord4.w = 0;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 				float3 defaultVertexValue = inputMesh.positionOS.xyz;
 				#else
@@ -1346,62 +1460,81 @@ Shader "S_State_Panning"
 				float3 V = float3( 1.0, 1.0, 1.0 );
 
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
-				float2 texCoord13_g60 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner1_g61 = ( _TimeParameters.x * _DistortTex_ST.zw + ( texCoord13_g60 * _DistortTex_ST.xy ));
-				float4 tex2DNode24_g60 = tex2D( _DistortTex, ( float2( 0,0 ) + panner1_g61 ) );
-				float4 texCoord49 = packedInput.ase_texcoord;
-				texCoord49.xy = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 appendResult50 = (float2(0.0 , texCoord49.z));
-				float4 appendResult43_g63 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
-				float4 appendResult42_g63 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
-				float4 lerpResult41_g63 = lerp( appendResult43_g63 , appendResult42_g63 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g65 = _PanningTex_ST.zw;
-				float2 break3_g65 = temp_output_1_0_g65;
-				float4 appendResult5_g65 = (float4(break3_g65.y , break3_g65.x , 0.0 , 0.0));
-				float4 lerpResult2_g65 = lerp( float4( temp_output_1_0_g65, 0.0 , 0.0 ) , appendResult5_g65 , _PanningTex_InvertUV);
-				float2 texCoord11 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float4 temp_cast_3 = (1.0).xxxx;
-				float2 temp_output_1_0_g66 = ( texCoord11 + (( ( ( tex2DNode24_g60 * 2.0 ) - temp_cast_3 ) * ( _DistortStrength + 0.0 ) * 1.0 )).rg );
-				float2 break3_g66 = temp_output_1_0_g66;
-				float4 appendResult5_g66 = (float4(break3_g66.y , break3_g66.x , 0.0 , 0.0));
-				float4 lerpResult2_g66 = lerp( float4( temp_output_1_0_g66, 0.0 , 0.0 ) , appendResult5_g66 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g67 = ( _PanningTex_ST.xy * float2( 1,1 ) );
-				float2 break3_g67 = temp_output_1_0_g67;
-				float4 appendResult5_g67 = (float4(break3_g67.y , break3_g67.x , 0.0 , 0.0));
-				float4 lerpResult2_g67 = lerp( float4( temp_output_1_0_g67, 0.0 , 0.0 ) , appendResult5_g67 , _PanningTex_InvertUV);
-				float2 panner1_g64 = ( _TimeParameters.x * (lerpResult2_g65).xy + ( (lerpResult2_g66).xy * (lerpResult2_g67).xy ));
-				float2 texCoord9_g63 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( appendResult50, 0.0 , 0.0 ) + lerpResult41_g63 ).xy + panner1_g64 ), ddx( texCoord9_g63 ), ddy( texCoord9_g63 ) );
-				float2 texCoord46 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float4 temp_cast_6 = (( 1.0 - texCoord46.y )).xxxx;
-				float4 lerpResult44 = lerp( temp_output_7_0 , temp_cast_6 , _Lerp);
-				float smoothstepResult5_g72 = smoothstep( _BicolorThreshold , ( _BicolorThreshold + _BicolorSmoothness ) , lerpResult44.r);
-				float lerpResult12_g72 = lerp( smoothstepResult5_g72 , ( 1.0 - smoothstepResult5_g72 ) , _Bicolor_OneMinus);
-				float4 lerpResult4_g72 = lerp( _ColorA , _ColorB , lerpResult12_g72);
-				float4 temp_output_9_0 = lerpResult4_g72;
-				float2 texCoord13 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float lerpResult1_g73 = lerp( texCoord13.y , temp_output_7_0.r , _AlphaLerp_TexInfluence);
-				float smoothstepResult18 = smoothstep( _Base_Threshold , ( _Base_Threshold + _Base_Smoothness ) , ( 1.0 - lerpResult1_g73 ));
+				float4 screenPos = packedInput.ase_texcoord;
+				float4 ase_screenPosNorm = screenPos / screenPos.w;
+				ase_screenPosNorm.z = ( UNITY_NEAR_CLIP_VALUE >= 0 ) ? ase_screenPosNorm.z : ase_screenPosNorm.z * 0.5 + 0.5;
+				float2 texCoord13_g54 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 panner1_g55 = ( _TimeParameters.x * _DistortTex_ST.zw + ( texCoord13_g54 * _DistortTex_ST.xy ));
+				float4 tex2DNode24_g54 = tex2D( _DistortTex, ( float2( 0,0 ) + panner1_g55 ) );
+				float4 temp_cast_0 = (1.0).xxxx;
+				float2 temp_output_31_0 = (( ( ( tex2DNode24_g54 * 2.0 ) - temp_cast_0 ) * ( _DistortStrength + 0.0 ) * 1.0 )).rg;
+				float2 texCoord7_g46 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 break9_g46 = frac( texCoord7_g46 );
+				float smoothstepResult3_g46 = smoothstep( _EdgeFadeU.x , ( _AddedEdgeFade + _EdgeFadeU.y ) , break9_g46.x);
+				float smoothstepResult4_g46 = smoothstep( _EdgeFadeU.z , ( _EdgeFadeU.w + _AddedEdgeFade ) , ( 1.0 - break9_g46.x ));
+				float smoothstepResult5_g46 = smoothstep( _EdgeFadeV.x , ( _EdgeFadeV.y + _AddedEdgeFade ) , break9_g46.y);
+				float smoothstepResult6_g46 = smoothstep( _EdgeFadeV.z , ( _EdgeFadeV.w + _AddedEdgeFade ) , ( 1.0 - break9_g46.y ));
+				float lerpResult14_g46 = lerp( 1.0 , ( smoothstepResult3_g46 * smoothstepResult4_g46 * smoothstepResult5_g46 * smoothstepResult6_g46 ) , _EdgeFade_Enable);
+				float4 texCoord14 = packedInput.ase_texcoord1;
+				texCoord14.xy = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 appendResult10 = (float2(( _Souler_Debug + texCoord14.z ) , 0.0));
+				float4 appendResult21_g43 = (float4(( ( temp_output_31_0 * _DistortAlpha ) + appendResult10 ) , 0.0 , 0.0));
+				float2 texCoord3_g43 = packedInput.ase_texcoord1.xy * ( float2( 1,1 ) * _SoulercoasterTex_ST.xy ) + ( float4( _SoulercoasterTex_ST.zw, 0.0 , 0.0 ) + float4( ( _SoulercoasterTex_ST.xy / float2( -2,-2 ) ), 0.0 , 0.0 ) + float4( float2( 0.5,0.5 ), 0.0 , 0.0 ) + appendResult21_g43 ).xy;
+				float2 temp_output_1_0_g45 = texCoord3_g43;
+				float2 break3_g45 = temp_output_1_0_g45;
+				float4 appendResult5_g45 = (float4(break3_g45.y , break3_g45.x , 0.0 , 0.0));
+				float4 lerpResult2_g45 = lerp( float4( temp_output_1_0_g45, 0.0 , 0.0 ) , appendResult5_g45 , _Souler_InvertUV);
+				float2 break2_g44 = (lerpResult2_g45).xy;
+				float lerpResult6_g44 = lerp( break2_g44.x , ( 1.0 - break2_g44.x ) , _Souler_FlipU);
+				float lerpResult11_g44 = lerp( break2_g44.y , ( 1.0 - break2_g44.y ) , _Souler_FlipV);
+				float4 appendResult9_g44 = (float4(lerpResult6_g44 , lerpResult11_g44 , 0.0 , 0.0));
+				float4 tex2DNode1_g43 = tex2D( _SoulercoasterTex, (appendResult9_g44).xy );
+				float lerpResult32_g43 = lerp( tex2DNode1_g43.r , ( 1.0 - tex2DNode1_g43.r ) , _Soulercoaster_OneMinus);
+				float temp_output_7_0 = lerpResult32_g43;
+				float4 screenPos1_g42 = packedInput.ase_texcoord2;
+				float4 ase_screenPosNorm1 = screenPos1_g42 / screenPos1_g42.w;
+				ase_screenPosNorm1.z = ( UNITY_NEAR_CLIP_VALUE >= 0 ) ? ase_screenPosNorm1.z : ase_screenPosNorm1.z * 0.5 + 0.5;
+				float screenDepth1_g42 = LinearEyeDepth(SampleCameraDepth( ase_screenPosNorm1.xy ),_ZBufferParams);
+				float distanceDepth1_g42 = saturate( abs( ( screenDepth1_g42 - LinearEyeDepth( ase_screenPosNorm1.z,_ZBufferParams ) ) / ( _DF_Distance ) ) );
+				float lerpResult3_g42 = lerp( distanceDepth1_g42 , ( 1.0 - distanceDepth1_g42 ) , _DF_OneMinus);
+				float3 ase_worldPos = packedInput.ase_texcoord3.xyz;
+				float3 ase_worldViewDir = ( _WorldSpaceCameraPos.xyz - ase_worldPos );
+				ase_worldViewDir = normalize(ase_worldViewDir);
+				float3 ase_worldNormal = packedInput.ase_texcoord4.xyz;
+				float dotResult20 = dot( ase_worldViewDir , ase_worldNormal );
+				float temp_output_23_0 = abs( dotResult20 );
+				float smoothstepResult25 = smoothstep( _Fresnel_Threshold , ( _Fresnel_Threshold + _Fresnel_Smoothness ) , temp_output_23_0);
+				float temp_output_13_0 = ( lerpResult14_g46 * temp_output_7_0 * packedInput.ase_color.a * lerpResult3_g42 * smoothstepResult25 );
+				float4 fetchOpaqueVal37 = ASEHDSampleSceneColor(( ase_screenPosNorm + float4( ( temp_output_31_0 * temp_output_13_0 * _DistortScreen ), 0.0 , 0.0 ) ).xy, 0.0, GetInverseCurrentExposureMultiplier());
+				float4 appendResult43_g47 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
+				float4 appendResult42_g47 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
+				float4 lerpResult41_g47 = lerp( appendResult43_g47 , appendResult42_g47 , _PanningTex_InvertUV);
+				float2 temp_output_1_0_g49 = _PanningTex_ST.zw;
+				float2 break3_g49 = temp_output_1_0_g49;
+				float4 appendResult5_g49 = (float4(break3_g49.y , break3_g49.x , 0.0 , 0.0));
+				float4 lerpResult2_g49 = lerp( float4( temp_output_1_0_g49, 0.0 , 0.0 ) , appendResult5_g49 , _PanningTex_InvertUV);
+				float2 texCoord32 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 temp_output_1_0_g50 = ( texCoord32 + temp_output_31_0 );
+				float2 break3_g50 = temp_output_1_0_g50;
+				float4 appendResult5_g50 = (float4(break3_g50.y , break3_g50.x , 0.0 , 0.0));
+				float4 lerpResult2_g50 = lerp( float4( temp_output_1_0_g50, 0.0 , 0.0 ) , appendResult5_g50 , _PanningTex_InvertUV);
+				float2 temp_output_1_0_g51 = ( _PanningTex_ST.xy * float2( 1,1 ) );
+				float2 break3_g51 = temp_output_1_0_g51;
+				float4 appendResult5_g51 = (float4(break3_g51.y , break3_g51.x , 0.0 , 0.0));
+				float4 lerpResult2_g51 = lerp( float4( temp_output_1_0_g51, 0.0 , 0.0 ) , appendResult5_g51 , _PanningTex_InvertUV);
+				float2 panner1_g48 = ( _TimeParameters.x * (lerpResult2_g49).xy + ( (lerpResult2_g50).xy * (lerpResult2_g51).xy ));
+				float2 texCoord9_g47 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
+				float4 temp_cast_13 = (temp_output_7_0).xxxx;
+				float4 lerpResult29 = lerp( tex2D( _PanningTex, ( ( float4( float2( 0,0 ), 0.0 , 0.0 ) + lerpResult41_g47 ).xy + panner1_g48 ), ddx( texCoord9_g47 ), ddy( texCoord9_g47 ) ) , temp_cast_13 , _AlphaColorInfluence);
+				float smoothstepResult5_g53 = smoothstep( _BicolorThreshold , ( _BicolorThreshold + _BicolorSmoothness ) , lerpResult29.r);
+				float lerpResult12_g53 = lerp( smoothstepResult5_g53 , ( 1.0 - smoothstepResult5_g53 ) , _Bicolor_OneMinus);
+				float4 lerpResult4_g53 = lerp( _ColorA , _ColorB , lerpResult12_g53);
 				
-				float temp_output_7_0_g69 = ( _AlphaThreshold + 0.0 );
-				float2 texCoord7_g62 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 break9_g62 = frac( texCoord7_g62 );
-				float smoothstepResult3_g62 = smoothstep( _EdgeFadeU.x , ( _AddedEdgeFade + _EdgeFadeU.y ) , break9_g62.x);
-				float smoothstepResult4_g62 = smoothstep( _EdgeFadeU.z , ( _EdgeFadeU.w + _AddedEdgeFade ) , ( 1.0 - break9_g62.x ));
-				float smoothstepResult5_g62 = smoothstep( _EdgeFadeV.x , ( _EdgeFadeV.y + _AddedEdgeFade ) , break9_g62.y);
-				float smoothstepResult6_g62 = smoothstep( _EdgeFadeV.z , ( _EdgeFadeV.w + _AddedEdgeFade ) , ( 1.0 - break9_g62.y ));
-				float lerpResult14_g62 = lerp( 1.0 , ( smoothstepResult3_g62 * smoothstepResult4_g62 * smoothstepResult5_g62 * smoothstepResult6_g62 ) , _EdgeFade_Enable);
-				float temp_output_8_0 = lerpResult14_g62;
-				float lerpResult1_g68 = lerp( temp_output_8_0 , temp_output_7_0.r , _AlphaLerp_TexInfluence);
-				float temp_output_1_0_g69 = lerpResult1_g68;
-				float lerpResult9_g69 = lerp( temp_output_1_0_g69 , ( 1.0 - temp_output_1_0_g69 ) , _AlphaSharp_OneMinus);
-				float smoothstepResult2_g69 = smoothstep( temp_output_7_0_g69 , ( temp_output_7_0_g69 + _AlphaSmoothness ) , lerpResult9_g69);
-				float2 texCoord28 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float smoothstepResult29 = smoothstep( 0.0 , 0.15 , texCoord28.y);
+				float smoothstepResult43 = smoothstep( 0.0 , 0.1 , temp_output_13_0);
 				
-				surfaceDescription.Color = ( ( ( tex2DNode24_g60 * _AddedDistortCol * lerpResult44 ) + temp_output_9_0 ) + ( _Base_Color * smoothstepResult18 * temp_output_9_0 ) ).rgb;
+				surfaceDescription.Color = ( fetchOpaqueVal37 + ( lerpResult4_g53 * temp_output_13_0 ) ).rgb;
 				surfaceDescription.Emission = 0;
-				surfaceDescription.Alpha = ( smoothstepResult2_g69 * smoothstepResult29 * temp_output_8_0 * packedInput.ase_color.a );
+				surfaceDescription.Alpha = smoothstepResult43;
 				surfaceDescription.AlphaClipThreshold =  _AlphaCutoff;
 
 				SurfaceData surfaceData;
@@ -1467,28 +1600,32 @@ Shader "S_State_Panning"
 
 			CBUFFER_START( UnityPerMaterial )
 			float4 _DistortTex_ST;
-			float4 _AddedDistortCol;
-			float4 _EdgeFadeV;
 			float4 _PanningTex_ST;
 			float4 _EdgeFadeU;
-			float4 _ColorA;
+			float4 _EdgeFadeV;
+			float4 _SoulercoasterTex_ST;
 			float4 _ColorB;
-			float4 _Base_Color;
-			float _AddedEdgeFade;
-			float _AlphaSmoothness;
-			float _AlphaThreshold;
-			float _AlphaLerp_TexInfluence;
-			float _Base_Smoothness;
-			float _Bicolor_OneMinus;
-			float _EdgeFade_Enable;
-			float _BicolorSmoothness;
-			float _BicolorThreshold;
-			float _Lerp;
-			float _DistortStrength;
+			float4 _ColorA;
 			float _PanningTex_InvertUV;
 			float _PanningTex_ManualOffset;
-			float _Base_Threshold;
-			float _AlphaSharp_OneMinus;
+			float _BicolorSmoothness;
+			float _BicolorThreshold;
+			float _DistortScreen;
+			float _Fresnel_Smoothness;
+			float _Fresnel_Threshold;
+			float _DF_Distance;
+			float _AlphaColorInfluence;
+			float _Soulercoaster_OneMinus;
+			float _Souler_FlipV;
+			float _Souler_FlipU;
+			float _Souler_InvertUV;
+			float _Souler_Debug;
+			float _DistortAlpha;
+			float _EdgeFade_Enable;
+			float _AddedEdgeFade;
+			float _DistortStrength;
+			float _DF_OneMinus;
+			float _Bicolor_OneMinus;
 			float4 _EmissionColor;
 			float _RenderQueueType;
 			#ifdef _ADD_PRECOMPUTED_VELOCITY
@@ -1541,8 +1678,7 @@ Shader "S_State_Panning"
 				float _TessMaxDisp;
 			#endif
 			CBUFFER_END
-			sampler2D _PanningTex;
-			SAMPLER(sampler_PanningTex);
+			sampler2D _SoulercoasterTex;
 			sampler2D _DistortTex;
 			SAMPLER(sampler_DistortTex);
 
@@ -1553,7 +1689,9 @@ Shader "S_State_Panning"
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/MaterialUtilities.hlsl"
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/ShaderLibrary/ShaderGraphFunctions.hlsl"
 
-			
+			#define ASE_NEEDS_VERT_POSITION
+			#define ASE_NEEDS_VERT_NORMAL
+
 
 			struct VertexInput
 			{
@@ -1569,6 +1707,9 @@ Shader "S_State_Panning"
 				float4 positionCS : SV_Position;
 				float4 ase_texcoord : TEXCOORD0;
 				float4 ase_color : COLOR;
+				float4 ase_texcoord1 : TEXCOORD1;
+				float4 ase_texcoord2 : TEXCOORD2;
+				float4 ase_texcoord3 : TEXCOORD3;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -1604,8 +1745,21 @@ Shader "S_State_Panning"
 				UNITY_TRANSFER_INSTANCE_ID(inputMesh, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO( o );
 
+				float3 vertexPos1_g42 = inputMesh.positionOS;
+				float4 ase_clipPos1_g42 = TransformWorldToHClip( TransformObjectToWorld(vertexPos1_g42));
+				float4 screenPos1_g42 = ComputeScreenPos( ase_clipPos1_g42 , _ProjectionParams.x );
+				o.ase_texcoord1 = screenPos1_g42;
+				float3 ase_worldPos = GetAbsolutePositionWS( TransformObjectToWorld( (inputMesh.positionOS).xyz ) );
+				o.ase_texcoord2.xyz = ase_worldPos;
+				float3 ase_worldNormal = TransformObjectToWorldNormal(inputMesh.normalOS);
+				o.ase_texcoord3.xyz = ase_worldNormal;
+				
 				o.ase_texcoord = inputMesh.ase_texcoord;
 				o.ase_color = inputMesh.ase_color;
+				
+				//setting value to unused interpolator channels and avoid initialization warnings
+				o.ase_texcoord2.w = 0;
+				o.ase_texcoord3.w = 0;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 				float3 defaultVertexValue = inputMesh.positionOS.xyz;
 				#else
@@ -1735,49 +1889,51 @@ Shader "S_State_Panning"
 				SurfaceData surfaceData;
 				BuiltinData builtinData;
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
-				float temp_output_7_0_g69 = ( _AlphaThreshold + 0.0 );
-				float2 texCoord7_g62 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 break9_g62 = frac( texCoord7_g62 );
-				float smoothstepResult3_g62 = smoothstep( _EdgeFadeU.x , ( _AddedEdgeFade + _EdgeFadeU.y ) , break9_g62.x);
-				float smoothstepResult4_g62 = smoothstep( _EdgeFadeU.z , ( _EdgeFadeU.w + _AddedEdgeFade ) , ( 1.0 - break9_g62.x ));
-				float smoothstepResult5_g62 = smoothstep( _EdgeFadeV.x , ( _EdgeFadeV.y + _AddedEdgeFade ) , break9_g62.y);
-				float smoothstepResult6_g62 = smoothstep( _EdgeFadeV.z , ( _EdgeFadeV.w + _AddedEdgeFade ) , ( 1.0 - break9_g62.y ));
-				float lerpResult14_g62 = lerp( 1.0 , ( smoothstepResult3_g62 * smoothstepResult4_g62 * smoothstepResult5_g62 * smoothstepResult6_g62 ) , _EdgeFade_Enable);
-				float temp_output_8_0 = lerpResult14_g62;
-				float4 texCoord49 = packedInput.ase_texcoord;
-				texCoord49.xy = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 appendResult50 = (float2(0.0 , texCoord49.z));
-				float4 appendResult43_g63 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
-				float4 appendResult42_g63 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
-				float4 lerpResult41_g63 = lerp( appendResult43_g63 , appendResult42_g63 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g65 = _PanningTex_ST.zw;
-				float2 break3_g65 = temp_output_1_0_g65;
-				float4 appendResult5_g65 = (float4(break3_g65.y , break3_g65.x , 0.0 , 0.0));
-				float4 lerpResult2_g65 = lerp( float4( temp_output_1_0_g65, 0.0 , 0.0 ) , appendResult5_g65 , _PanningTex_InvertUV);
-				float2 texCoord11 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 texCoord13_g60 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner1_g61 = ( _TimeParameters.x * _DistortTex_ST.zw + ( texCoord13_g60 * _DistortTex_ST.xy ));
-				float4 tex2DNode24_g60 = tex2D( _DistortTex, ( float2( 0,0 ) + panner1_g61 ) );
+				float2 texCoord7_g46 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 break9_g46 = frac( texCoord7_g46 );
+				float smoothstepResult3_g46 = smoothstep( _EdgeFadeU.x , ( _AddedEdgeFade + _EdgeFadeU.y ) , break9_g46.x);
+				float smoothstepResult4_g46 = smoothstep( _EdgeFadeU.z , ( _EdgeFadeU.w + _AddedEdgeFade ) , ( 1.0 - break9_g46.x ));
+				float smoothstepResult5_g46 = smoothstep( _EdgeFadeV.x , ( _EdgeFadeV.y + _AddedEdgeFade ) , break9_g46.y);
+				float smoothstepResult6_g46 = smoothstep( _EdgeFadeV.z , ( _EdgeFadeV.w + _AddedEdgeFade ) , ( 1.0 - break9_g46.y ));
+				float lerpResult14_g46 = lerp( 1.0 , ( smoothstepResult3_g46 * smoothstepResult4_g46 * smoothstepResult5_g46 * smoothstepResult6_g46 ) , _EdgeFade_Enable);
+				float2 texCoord13_g54 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 panner1_g55 = ( _TimeParameters.x * _DistortTex_ST.zw + ( texCoord13_g54 * _DistortTex_ST.xy ));
+				float4 tex2DNode24_g54 = tex2D( _DistortTex, ( float2( 0,0 ) + panner1_g55 ) );
 				float4 temp_cast_3 = (1.0).xxxx;
-				float2 temp_output_1_0_g66 = ( texCoord11 + (( ( ( tex2DNode24_g60 * 2.0 ) - temp_cast_3 ) * ( _DistortStrength + 0.0 ) * 1.0 )).rg );
-				float2 break3_g66 = temp_output_1_0_g66;
-				float4 appendResult5_g66 = (float4(break3_g66.y , break3_g66.x , 0.0 , 0.0));
-				float4 lerpResult2_g66 = lerp( float4( temp_output_1_0_g66, 0.0 , 0.0 ) , appendResult5_g66 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g67 = ( _PanningTex_ST.xy * float2( 1,1 ) );
-				float2 break3_g67 = temp_output_1_0_g67;
-				float4 appendResult5_g67 = (float4(break3_g67.y , break3_g67.x , 0.0 , 0.0));
-				float4 lerpResult2_g67 = lerp( float4( temp_output_1_0_g67, 0.0 , 0.0 ) , appendResult5_g67 , _PanningTex_InvertUV);
-				float2 panner1_g64 = ( _TimeParameters.x * (lerpResult2_g65).xy + ( (lerpResult2_g66).xy * (lerpResult2_g67).xy ));
-				float2 texCoord9_g63 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( appendResult50, 0.0 , 0.0 ) + lerpResult41_g63 ).xy + panner1_g64 ), ddx( texCoord9_g63 ), ddy( texCoord9_g63 ) );
-				float lerpResult1_g68 = lerp( temp_output_8_0 , temp_output_7_0.r , _AlphaLerp_TexInfluence);
-				float temp_output_1_0_g69 = lerpResult1_g68;
-				float lerpResult9_g69 = lerp( temp_output_1_0_g69 , ( 1.0 - temp_output_1_0_g69 ) , _AlphaSharp_OneMinus);
-				float smoothstepResult2_g69 = smoothstep( temp_output_7_0_g69 , ( temp_output_7_0_g69 + _AlphaSmoothness ) , lerpResult9_g69);
-				float2 texCoord28 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float smoothstepResult29 = smoothstep( 0.0 , 0.15 , texCoord28.y);
+				float2 temp_output_31_0 = (( ( ( tex2DNode24_g54 * 2.0 ) - temp_cast_3 ) * ( _DistortStrength + 0.0 ) * 1.0 )).rg;
+				float4 texCoord14 = packedInput.ase_texcoord;
+				texCoord14.xy = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 appendResult10 = (float2(( _Souler_Debug + texCoord14.z ) , 0.0));
+				float4 appendResult21_g43 = (float4(( ( temp_output_31_0 * _DistortAlpha ) + appendResult10 ) , 0.0 , 0.0));
+				float2 texCoord3_g43 = packedInput.ase_texcoord.xy * ( float2( 1,1 ) * _SoulercoasterTex_ST.xy ) + ( float4( _SoulercoasterTex_ST.zw, 0.0 , 0.0 ) + float4( ( _SoulercoasterTex_ST.xy / float2( -2,-2 ) ), 0.0 , 0.0 ) + float4( float2( 0.5,0.5 ), 0.0 , 0.0 ) + appendResult21_g43 ).xy;
+				float2 temp_output_1_0_g45 = texCoord3_g43;
+				float2 break3_g45 = temp_output_1_0_g45;
+				float4 appendResult5_g45 = (float4(break3_g45.y , break3_g45.x , 0.0 , 0.0));
+				float4 lerpResult2_g45 = lerp( float4( temp_output_1_0_g45, 0.0 , 0.0 ) , appendResult5_g45 , _Souler_InvertUV);
+				float2 break2_g44 = (lerpResult2_g45).xy;
+				float lerpResult6_g44 = lerp( break2_g44.x , ( 1.0 - break2_g44.x ) , _Souler_FlipU);
+				float lerpResult11_g44 = lerp( break2_g44.y , ( 1.0 - break2_g44.y ) , _Souler_FlipV);
+				float4 appendResult9_g44 = (float4(lerpResult6_g44 , lerpResult11_g44 , 0.0 , 0.0));
+				float4 tex2DNode1_g43 = tex2D( _SoulercoasterTex, (appendResult9_g44).xy );
+				float lerpResult32_g43 = lerp( tex2DNode1_g43.r , ( 1.0 - tex2DNode1_g43.r ) , _Soulercoaster_OneMinus);
+				float temp_output_7_0 = lerpResult32_g43;
+				float4 screenPos1_g42 = packedInput.ase_texcoord1;
+				float4 ase_screenPosNorm1 = screenPos1_g42 / screenPos1_g42.w;
+				ase_screenPosNorm1.z = ( UNITY_NEAR_CLIP_VALUE >= 0 ) ? ase_screenPosNorm1.z : ase_screenPosNorm1.z * 0.5 + 0.5;
+				float screenDepth1_g42 = LinearEyeDepth(SampleCameraDepth( ase_screenPosNorm1.xy ),_ZBufferParams);
+				float distanceDepth1_g42 = saturate( abs( ( screenDepth1_g42 - LinearEyeDepth( ase_screenPosNorm1.z,_ZBufferParams ) ) / ( _DF_Distance ) ) );
+				float lerpResult3_g42 = lerp( distanceDepth1_g42 , ( 1.0 - distanceDepth1_g42 ) , _DF_OneMinus);
+				float3 ase_worldPos = packedInput.ase_texcoord2.xyz;
+				float3 ase_worldViewDir = ( _WorldSpaceCameraPos.xyz - ase_worldPos );
+				ase_worldViewDir = normalize(ase_worldViewDir);
+				float3 ase_worldNormal = packedInput.ase_texcoord3.xyz;
+				float dotResult20 = dot( ase_worldViewDir , ase_worldNormal );
+				float temp_output_23_0 = abs( dotResult20 );
+				float smoothstepResult25 = smoothstep( _Fresnel_Threshold , ( _Fresnel_Threshold + _Fresnel_Smoothness ) , temp_output_23_0);
+				float temp_output_13_0 = ( lerpResult14_g46 * temp_output_7_0 * packedInput.ase_color.a * lerpResult3_g42 * smoothstepResult25 );
+				float smoothstepResult43 = smoothstep( 0.0 , 0.1 , temp_output_13_0);
 				
-				surfaceDescription.Alpha = ( smoothstepResult2_g69 * smoothstepResult29 * temp_output_8_0 * packedInput.ase_color.a );
+				surfaceDescription.Alpha = smoothstepResult43;
 				surfaceDescription.AlphaClipThreshold =  _AlphaCutoff;
 
 				GetSurfaceAndBuiltinData(surfaceDescription, input, V, posInput, surfaceData, builtinData);
@@ -1837,28 +1993,32 @@ Shader "S_State_Panning"
 
 			CBUFFER_START( UnityPerMaterial )
 			float4 _DistortTex_ST;
-			float4 _AddedDistortCol;
-			float4 _EdgeFadeV;
 			float4 _PanningTex_ST;
 			float4 _EdgeFadeU;
-			float4 _ColorA;
+			float4 _EdgeFadeV;
+			float4 _SoulercoasterTex_ST;
 			float4 _ColorB;
-			float4 _Base_Color;
-			float _AddedEdgeFade;
-			float _AlphaSmoothness;
-			float _AlphaThreshold;
-			float _AlphaLerp_TexInfluence;
-			float _Base_Smoothness;
-			float _Bicolor_OneMinus;
-			float _EdgeFade_Enable;
-			float _BicolorSmoothness;
-			float _BicolorThreshold;
-			float _Lerp;
-			float _DistortStrength;
+			float4 _ColorA;
 			float _PanningTex_InvertUV;
 			float _PanningTex_ManualOffset;
-			float _Base_Threshold;
-			float _AlphaSharp_OneMinus;
+			float _BicolorSmoothness;
+			float _BicolorThreshold;
+			float _DistortScreen;
+			float _Fresnel_Smoothness;
+			float _Fresnel_Threshold;
+			float _DF_Distance;
+			float _AlphaColorInfluence;
+			float _Soulercoaster_OneMinus;
+			float _Souler_FlipV;
+			float _Souler_FlipU;
+			float _Souler_InvertUV;
+			float _Souler_Debug;
+			float _DistortAlpha;
+			float _EdgeFade_Enable;
+			float _AddedEdgeFade;
+			float _DistortStrength;
+			float _DF_OneMinus;
+			float _Bicolor_OneMinus;
 			float4 _EmissionColor;
 			float _RenderQueueType;
 			#ifdef _ADD_PRECOMPUTED_VELOCITY
@@ -1911,8 +2071,7 @@ Shader "S_State_Panning"
 				float _TessMaxDisp;
 			#endif
 			CBUFFER_END
-			sampler2D _PanningTex;
-			SAMPLER(sampler_PanningTex);
+			sampler2D _SoulercoasterTex;
 			sampler2D _DistortTex;
 			SAMPLER(sampler_DistortTex);
 
@@ -1923,7 +2082,9 @@ Shader "S_State_Panning"
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/MaterialUtilities.hlsl"
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/ShaderLibrary/ShaderGraphFunctions.hlsl"
 
-			
+			#define ASE_NEEDS_VERT_POSITION
+			#define ASE_NEEDS_VERT_NORMAL
+
 
 			struct VertexInput
 			{
@@ -1939,6 +2100,9 @@ Shader "S_State_Panning"
 				float4 positionCS : SV_Position;
 				float4 ase_texcoord : TEXCOORD0;
 				float4 ase_color : COLOR;
+				float4 ase_texcoord1 : TEXCOORD1;
+				float4 ase_texcoord2 : TEXCOORD2;
+				float4 ase_texcoord3 : TEXCOORD3;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -1973,8 +2137,21 @@ Shader "S_State_Panning"
 				UNITY_TRANSFER_INSTANCE_ID(inputMesh, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO( o );
 
+				float3 vertexPos1_g42 = inputMesh.positionOS;
+				float4 ase_clipPos1_g42 = TransformWorldToHClip( TransformObjectToWorld(vertexPos1_g42));
+				float4 screenPos1_g42 = ComputeScreenPos( ase_clipPos1_g42 , _ProjectionParams.x );
+				o.ase_texcoord1 = screenPos1_g42;
+				float3 ase_worldPos = GetAbsolutePositionWS( TransformObjectToWorld( (inputMesh.positionOS).xyz ) );
+				o.ase_texcoord2.xyz = ase_worldPos;
+				float3 ase_worldNormal = TransformObjectToWorldNormal(inputMesh.normalOS);
+				o.ase_texcoord3.xyz = ase_worldNormal;
+				
 				o.ase_texcoord = inputMesh.ase_texcoord;
 				o.ase_color = inputMesh.ase_color;
+				
+				//setting value to unused interpolator channels and avoid initialization warnings
+				o.ase_texcoord2.w = 0;
+				o.ase_texcoord3.w = 0;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 				float3 defaultVertexValue = inputMesh.positionOS.xyz;
 				#else
@@ -2113,49 +2290,51 @@ Shader "S_State_Panning"
 				float3 V = float3( 1.0, 1.0, 1.0 );
 
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
-				float temp_output_7_0_g69 = ( _AlphaThreshold + 0.0 );
-				float2 texCoord7_g62 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 break9_g62 = frac( texCoord7_g62 );
-				float smoothstepResult3_g62 = smoothstep( _EdgeFadeU.x , ( _AddedEdgeFade + _EdgeFadeU.y ) , break9_g62.x);
-				float smoothstepResult4_g62 = smoothstep( _EdgeFadeU.z , ( _EdgeFadeU.w + _AddedEdgeFade ) , ( 1.0 - break9_g62.x ));
-				float smoothstepResult5_g62 = smoothstep( _EdgeFadeV.x , ( _EdgeFadeV.y + _AddedEdgeFade ) , break9_g62.y);
-				float smoothstepResult6_g62 = smoothstep( _EdgeFadeV.z , ( _EdgeFadeV.w + _AddedEdgeFade ) , ( 1.0 - break9_g62.y ));
-				float lerpResult14_g62 = lerp( 1.0 , ( smoothstepResult3_g62 * smoothstepResult4_g62 * smoothstepResult5_g62 * smoothstepResult6_g62 ) , _EdgeFade_Enable);
-				float temp_output_8_0 = lerpResult14_g62;
-				float4 texCoord49 = packedInput.ase_texcoord;
-				texCoord49.xy = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 appendResult50 = (float2(0.0 , texCoord49.z));
-				float4 appendResult43_g63 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
-				float4 appendResult42_g63 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
-				float4 lerpResult41_g63 = lerp( appendResult43_g63 , appendResult42_g63 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g65 = _PanningTex_ST.zw;
-				float2 break3_g65 = temp_output_1_0_g65;
-				float4 appendResult5_g65 = (float4(break3_g65.y , break3_g65.x , 0.0 , 0.0));
-				float4 lerpResult2_g65 = lerp( float4( temp_output_1_0_g65, 0.0 , 0.0 ) , appendResult5_g65 , _PanningTex_InvertUV);
-				float2 texCoord11 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 texCoord13_g60 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner1_g61 = ( _TimeParameters.x * _DistortTex_ST.zw + ( texCoord13_g60 * _DistortTex_ST.xy ));
-				float4 tex2DNode24_g60 = tex2D( _DistortTex, ( float2( 0,0 ) + panner1_g61 ) );
+				float2 texCoord7_g46 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 break9_g46 = frac( texCoord7_g46 );
+				float smoothstepResult3_g46 = smoothstep( _EdgeFadeU.x , ( _AddedEdgeFade + _EdgeFadeU.y ) , break9_g46.x);
+				float smoothstepResult4_g46 = smoothstep( _EdgeFadeU.z , ( _EdgeFadeU.w + _AddedEdgeFade ) , ( 1.0 - break9_g46.x ));
+				float smoothstepResult5_g46 = smoothstep( _EdgeFadeV.x , ( _EdgeFadeV.y + _AddedEdgeFade ) , break9_g46.y);
+				float smoothstepResult6_g46 = smoothstep( _EdgeFadeV.z , ( _EdgeFadeV.w + _AddedEdgeFade ) , ( 1.0 - break9_g46.y ));
+				float lerpResult14_g46 = lerp( 1.0 , ( smoothstepResult3_g46 * smoothstepResult4_g46 * smoothstepResult5_g46 * smoothstepResult6_g46 ) , _EdgeFade_Enable);
+				float2 texCoord13_g54 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 panner1_g55 = ( _TimeParameters.x * _DistortTex_ST.zw + ( texCoord13_g54 * _DistortTex_ST.xy ));
+				float4 tex2DNode24_g54 = tex2D( _DistortTex, ( float2( 0,0 ) + panner1_g55 ) );
 				float4 temp_cast_3 = (1.0).xxxx;
-				float2 temp_output_1_0_g66 = ( texCoord11 + (( ( ( tex2DNode24_g60 * 2.0 ) - temp_cast_3 ) * ( _DistortStrength + 0.0 ) * 1.0 )).rg );
-				float2 break3_g66 = temp_output_1_0_g66;
-				float4 appendResult5_g66 = (float4(break3_g66.y , break3_g66.x , 0.0 , 0.0));
-				float4 lerpResult2_g66 = lerp( float4( temp_output_1_0_g66, 0.0 , 0.0 ) , appendResult5_g66 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g67 = ( _PanningTex_ST.xy * float2( 1,1 ) );
-				float2 break3_g67 = temp_output_1_0_g67;
-				float4 appendResult5_g67 = (float4(break3_g67.y , break3_g67.x , 0.0 , 0.0));
-				float4 lerpResult2_g67 = lerp( float4( temp_output_1_0_g67, 0.0 , 0.0 ) , appendResult5_g67 , _PanningTex_InvertUV);
-				float2 panner1_g64 = ( _TimeParameters.x * (lerpResult2_g65).xy + ( (lerpResult2_g66).xy * (lerpResult2_g67).xy ));
-				float2 texCoord9_g63 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( appendResult50, 0.0 , 0.0 ) + lerpResult41_g63 ).xy + panner1_g64 ), ddx( texCoord9_g63 ), ddy( texCoord9_g63 ) );
-				float lerpResult1_g68 = lerp( temp_output_8_0 , temp_output_7_0.r , _AlphaLerp_TexInfluence);
-				float temp_output_1_0_g69 = lerpResult1_g68;
-				float lerpResult9_g69 = lerp( temp_output_1_0_g69 , ( 1.0 - temp_output_1_0_g69 ) , _AlphaSharp_OneMinus);
-				float smoothstepResult2_g69 = smoothstep( temp_output_7_0_g69 , ( temp_output_7_0_g69 + _AlphaSmoothness ) , lerpResult9_g69);
-				float2 texCoord28 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float smoothstepResult29 = smoothstep( 0.0 , 0.15 , texCoord28.y);
+				float2 temp_output_31_0 = (( ( ( tex2DNode24_g54 * 2.0 ) - temp_cast_3 ) * ( _DistortStrength + 0.0 ) * 1.0 )).rg;
+				float4 texCoord14 = packedInput.ase_texcoord;
+				texCoord14.xy = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 appendResult10 = (float2(( _Souler_Debug + texCoord14.z ) , 0.0));
+				float4 appendResult21_g43 = (float4(( ( temp_output_31_0 * _DistortAlpha ) + appendResult10 ) , 0.0 , 0.0));
+				float2 texCoord3_g43 = packedInput.ase_texcoord.xy * ( float2( 1,1 ) * _SoulercoasterTex_ST.xy ) + ( float4( _SoulercoasterTex_ST.zw, 0.0 , 0.0 ) + float4( ( _SoulercoasterTex_ST.xy / float2( -2,-2 ) ), 0.0 , 0.0 ) + float4( float2( 0.5,0.5 ), 0.0 , 0.0 ) + appendResult21_g43 ).xy;
+				float2 temp_output_1_0_g45 = texCoord3_g43;
+				float2 break3_g45 = temp_output_1_0_g45;
+				float4 appendResult5_g45 = (float4(break3_g45.y , break3_g45.x , 0.0 , 0.0));
+				float4 lerpResult2_g45 = lerp( float4( temp_output_1_0_g45, 0.0 , 0.0 ) , appendResult5_g45 , _Souler_InvertUV);
+				float2 break2_g44 = (lerpResult2_g45).xy;
+				float lerpResult6_g44 = lerp( break2_g44.x , ( 1.0 - break2_g44.x ) , _Souler_FlipU);
+				float lerpResult11_g44 = lerp( break2_g44.y , ( 1.0 - break2_g44.y ) , _Souler_FlipV);
+				float4 appendResult9_g44 = (float4(lerpResult6_g44 , lerpResult11_g44 , 0.0 , 0.0));
+				float4 tex2DNode1_g43 = tex2D( _SoulercoasterTex, (appendResult9_g44).xy );
+				float lerpResult32_g43 = lerp( tex2DNode1_g43.r , ( 1.0 - tex2DNode1_g43.r ) , _Soulercoaster_OneMinus);
+				float temp_output_7_0 = lerpResult32_g43;
+				float4 screenPos1_g42 = packedInput.ase_texcoord1;
+				float4 ase_screenPosNorm1 = screenPos1_g42 / screenPos1_g42.w;
+				ase_screenPosNorm1.z = ( UNITY_NEAR_CLIP_VALUE >= 0 ) ? ase_screenPosNorm1.z : ase_screenPosNorm1.z * 0.5 + 0.5;
+				float screenDepth1_g42 = LinearEyeDepth(SampleCameraDepth( ase_screenPosNorm1.xy ),_ZBufferParams);
+				float distanceDepth1_g42 = saturate( abs( ( screenDepth1_g42 - LinearEyeDepth( ase_screenPosNorm1.z,_ZBufferParams ) ) / ( _DF_Distance ) ) );
+				float lerpResult3_g42 = lerp( distanceDepth1_g42 , ( 1.0 - distanceDepth1_g42 ) , _DF_OneMinus);
+				float3 ase_worldPos = packedInput.ase_texcoord2.xyz;
+				float3 ase_worldViewDir = ( _WorldSpaceCameraPos.xyz - ase_worldPos );
+				ase_worldViewDir = normalize(ase_worldViewDir);
+				float3 ase_worldNormal = packedInput.ase_texcoord3.xyz;
+				float dotResult20 = dot( ase_worldViewDir , ase_worldNormal );
+				float temp_output_23_0 = abs( dotResult20 );
+				float smoothstepResult25 = smoothstep( _Fresnel_Threshold , ( _Fresnel_Threshold + _Fresnel_Smoothness ) , temp_output_23_0);
+				float temp_output_13_0 = ( lerpResult14_g46 * temp_output_7_0 * packedInput.ase_color.a * lerpResult3_g42 * smoothstepResult25 );
+				float smoothstepResult43 = smoothstep( 0.0 , 0.1 , temp_output_13_0);
 				
-				surfaceDescription.Alpha = ( smoothstepResult2_g69 * smoothstepResult29 * temp_output_8_0 * packedInput.ase_color.a );
+				surfaceDescription.Alpha = smoothstepResult43;
 				surfaceDescription.AlphaClipThreshold =  _AlphaCutoff;
 
 				SurfaceData surfaceData;
@@ -2227,28 +2406,32 @@ Shader "S_State_Panning"
 
 			CBUFFER_START( UnityPerMaterial )
 			float4 _DistortTex_ST;
-			float4 _AddedDistortCol;
-			float4 _EdgeFadeV;
 			float4 _PanningTex_ST;
 			float4 _EdgeFadeU;
-			float4 _ColorA;
+			float4 _EdgeFadeV;
+			float4 _SoulercoasterTex_ST;
 			float4 _ColorB;
-			float4 _Base_Color;
-			float _AddedEdgeFade;
-			float _AlphaSmoothness;
-			float _AlphaThreshold;
-			float _AlphaLerp_TexInfluence;
-			float _Base_Smoothness;
-			float _Bicolor_OneMinus;
-			float _EdgeFade_Enable;
-			float _BicolorSmoothness;
-			float _BicolorThreshold;
-			float _Lerp;
-			float _DistortStrength;
+			float4 _ColorA;
 			float _PanningTex_InvertUV;
 			float _PanningTex_ManualOffset;
-			float _Base_Threshold;
-			float _AlphaSharp_OneMinus;
+			float _BicolorSmoothness;
+			float _BicolorThreshold;
+			float _DistortScreen;
+			float _Fresnel_Smoothness;
+			float _Fresnel_Threshold;
+			float _DF_Distance;
+			float _AlphaColorInfluence;
+			float _Soulercoaster_OneMinus;
+			float _Souler_FlipV;
+			float _Souler_FlipU;
+			float _Souler_InvertUV;
+			float _Souler_Debug;
+			float _DistortAlpha;
+			float _EdgeFade_Enable;
+			float _AddedEdgeFade;
+			float _DistortStrength;
+			float _DF_OneMinus;
+			float _Bicolor_OneMinus;
 			float4 _EmissionColor;
 			float _RenderQueueType;
 			#ifdef _ADD_PRECOMPUTED_VELOCITY
@@ -2301,8 +2484,7 @@ Shader "S_State_Panning"
 				float _TessMaxDisp;
 			#endif
 			CBUFFER_END
-			sampler2D _PanningTex;
-			SAMPLER(sampler_PanningTex);
+			sampler2D _SoulercoasterTex;
 			sampler2D _DistortTex;
 			SAMPLER(sampler_DistortTex);
 
@@ -2313,7 +2495,10 @@ Shader "S_State_Panning"
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/Material/MaterialUtilities.hlsl"
 			#include "Packages/com.unity.render-pipelines.high-definition/Runtime/ShaderLibrary/ShaderGraphFunctions.hlsl"
 
-			
+			#define ASE_NEEDS_VERT_POSITION
+			#define ASE_NEEDS_FRAG_WORLD_VIEW_DIR
+			#define ASE_NEEDS_VERT_NORMAL
+
 
 			struct VertexInput
 			{
@@ -2336,6 +2521,8 @@ Shader "S_State_Panning"
 				float3 vpassInterpolators1 : TEXCOORD2; //interpolators1
 				float4 ase_texcoord3 : TEXCOORD3;
 				float4 ase_color : COLOR;
+				float4 ase_texcoord4 : TEXCOORD4;
+				float4 ase_texcoord5 : TEXCOORD5;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -2366,8 +2553,18 @@ Shader "S_State_Panning"
 			VertexInput ApplyMeshModification(VertexInput inputMesh, float3 timeParameters, inout VertexOutput o )
 			{
 				_TimeParameters.xyz = timeParameters;
+				float3 vertexPos1_g42 = inputMesh.positionOS;
+				float4 ase_clipPos1_g42 = TransformWorldToHClip( TransformObjectToWorld(vertexPos1_g42));
+				float4 screenPos1_g42 = ComputeScreenPos( ase_clipPos1_g42 , _ProjectionParams.x );
+				o.ase_texcoord4 = screenPos1_g42;
+				float3 ase_worldNormal = TransformObjectToWorldNormal(inputMesh.normalOS);
+				o.ase_texcoord5.xyz = ase_worldNormal;
+				
 				o.ase_texcoord3 = inputMesh.ase_texcoord;
 				o.ase_color = inputMesh.ase_color;
+				
+				//setting value to unused interpolator channels and avoid initialization warnings
+				o.ase_texcoord5.w = 0;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 				float3 defaultVertexValue = inputMesh.positionOS.xyz;
@@ -2588,49 +2785,48 @@ Shader "S_State_Panning"
 				float3 V = GetWorldSpaceNormalizeViewDir(input.positionRWS);
 
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
-				float temp_output_7_0_g69 = ( _AlphaThreshold + 0.0 );
-				float2 texCoord7_g62 = packedInput.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 break9_g62 = frac( texCoord7_g62 );
-				float smoothstepResult3_g62 = smoothstep( _EdgeFadeU.x , ( _AddedEdgeFade + _EdgeFadeU.y ) , break9_g62.x);
-				float smoothstepResult4_g62 = smoothstep( _EdgeFadeU.z , ( _EdgeFadeU.w + _AddedEdgeFade ) , ( 1.0 - break9_g62.x ));
-				float smoothstepResult5_g62 = smoothstep( _EdgeFadeV.x , ( _EdgeFadeV.y + _AddedEdgeFade ) , break9_g62.y);
-				float smoothstepResult6_g62 = smoothstep( _EdgeFadeV.z , ( _EdgeFadeV.w + _AddedEdgeFade ) , ( 1.0 - break9_g62.y ));
-				float lerpResult14_g62 = lerp( 1.0 , ( smoothstepResult3_g62 * smoothstepResult4_g62 * smoothstepResult5_g62 * smoothstepResult6_g62 ) , _EdgeFade_Enable);
-				float temp_output_8_0 = lerpResult14_g62;
-				float4 texCoord49 = packedInput.ase_texcoord3;
-				texCoord49.xy = packedInput.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 appendResult50 = (float2(0.0 , texCoord49.z));
-				float4 appendResult43_g63 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
-				float4 appendResult42_g63 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
-				float4 lerpResult41_g63 = lerp( appendResult43_g63 , appendResult42_g63 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g65 = _PanningTex_ST.zw;
-				float2 break3_g65 = temp_output_1_0_g65;
-				float4 appendResult5_g65 = (float4(break3_g65.y , break3_g65.x , 0.0 , 0.0));
-				float4 lerpResult2_g65 = lerp( float4( temp_output_1_0_g65, 0.0 , 0.0 ) , appendResult5_g65 , _PanningTex_InvertUV);
-				float2 texCoord11 = packedInput.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 texCoord13_g60 = packedInput.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 panner1_g61 = ( _TimeParameters.x * _DistortTex_ST.zw + ( texCoord13_g60 * _DistortTex_ST.xy ));
-				float4 tex2DNode24_g60 = tex2D( _DistortTex, ( float2( 0,0 ) + panner1_g61 ) );
+				float2 texCoord7_g46 = packedInput.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 break9_g46 = frac( texCoord7_g46 );
+				float smoothstepResult3_g46 = smoothstep( _EdgeFadeU.x , ( _AddedEdgeFade + _EdgeFadeU.y ) , break9_g46.x);
+				float smoothstepResult4_g46 = smoothstep( _EdgeFadeU.z , ( _EdgeFadeU.w + _AddedEdgeFade ) , ( 1.0 - break9_g46.x ));
+				float smoothstepResult5_g46 = smoothstep( _EdgeFadeV.x , ( _EdgeFadeV.y + _AddedEdgeFade ) , break9_g46.y);
+				float smoothstepResult6_g46 = smoothstep( _EdgeFadeV.z , ( _EdgeFadeV.w + _AddedEdgeFade ) , ( 1.0 - break9_g46.y ));
+				float lerpResult14_g46 = lerp( 1.0 , ( smoothstepResult3_g46 * smoothstepResult4_g46 * smoothstepResult5_g46 * smoothstepResult6_g46 ) , _EdgeFade_Enable);
+				float2 texCoord13_g54 = packedInput.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 panner1_g55 = ( _TimeParameters.x * _DistortTex_ST.zw + ( texCoord13_g54 * _DistortTex_ST.xy ));
+				float4 tex2DNode24_g54 = tex2D( _DistortTex, ( float2( 0,0 ) + panner1_g55 ) );
 				float4 temp_cast_3 = (1.0).xxxx;
-				float2 temp_output_1_0_g66 = ( texCoord11 + (( ( ( tex2DNode24_g60 * 2.0 ) - temp_cast_3 ) * ( _DistortStrength + 0.0 ) * 1.0 )).rg );
-				float2 break3_g66 = temp_output_1_0_g66;
-				float4 appendResult5_g66 = (float4(break3_g66.y , break3_g66.x , 0.0 , 0.0));
-				float4 lerpResult2_g66 = lerp( float4( temp_output_1_0_g66, 0.0 , 0.0 ) , appendResult5_g66 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g67 = ( _PanningTex_ST.xy * float2( 1,1 ) );
-				float2 break3_g67 = temp_output_1_0_g67;
-				float4 appendResult5_g67 = (float4(break3_g67.y , break3_g67.x , 0.0 , 0.0));
-				float4 lerpResult2_g67 = lerp( float4( temp_output_1_0_g67, 0.0 , 0.0 ) , appendResult5_g67 , _PanningTex_InvertUV);
-				float2 panner1_g64 = ( _TimeParameters.x * (lerpResult2_g65).xy + ( (lerpResult2_g66).xy * (lerpResult2_g67).xy ));
-				float2 texCoord9_g63 = packedInput.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
-				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( appendResult50, 0.0 , 0.0 ) + lerpResult41_g63 ).xy + panner1_g64 ), ddx( texCoord9_g63 ), ddy( texCoord9_g63 ) );
-				float lerpResult1_g68 = lerp( temp_output_8_0 , temp_output_7_0.r , _AlphaLerp_TexInfluence);
-				float temp_output_1_0_g69 = lerpResult1_g68;
-				float lerpResult9_g69 = lerp( temp_output_1_0_g69 , ( 1.0 - temp_output_1_0_g69 ) , _AlphaSharp_OneMinus);
-				float smoothstepResult2_g69 = smoothstep( temp_output_7_0_g69 , ( temp_output_7_0_g69 + _AlphaSmoothness ) , lerpResult9_g69);
-				float2 texCoord28 = packedInput.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
-				float smoothstepResult29 = smoothstep( 0.0 , 0.15 , texCoord28.y);
+				float2 temp_output_31_0 = (( ( ( tex2DNode24_g54 * 2.0 ) - temp_cast_3 ) * ( _DistortStrength + 0.0 ) * 1.0 )).rg;
+				float4 texCoord14 = packedInput.ase_texcoord3;
+				texCoord14.xy = packedInput.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 appendResult10 = (float2(( _Souler_Debug + texCoord14.z ) , 0.0));
+				float4 appendResult21_g43 = (float4(( ( temp_output_31_0 * _DistortAlpha ) + appendResult10 ) , 0.0 , 0.0));
+				float2 texCoord3_g43 = packedInput.ase_texcoord3.xy * ( float2( 1,1 ) * _SoulercoasterTex_ST.xy ) + ( float4( _SoulercoasterTex_ST.zw, 0.0 , 0.0 ) + float4( ( _SoulercoasterTex_ST.xy / float2( -2,-2 ) ), 0.0 , 0.0 ) + float4( float2( 0.5,0.5 ), 0.0 , 0.0 ) + appendResult21_g43 ).xy;
+				float2 temp_output_1_0_g45 = texCoord3_g43;
+				float2 break3_g45 = temp_output_1_0_g45;
+				float4 appendResult5_g45 = (float4(break3_g45.y , break3_g45.x , 0.0 , 0.0));
+				float4 lerpResult2_g45 = lerp( float4( temp_output_1_0_g45, 0.0 , 0.0 ) , appendResult5_g45 , _Souler_InvertUV);
+				float2 break2_g44 = (lerpResult2_g45).xy;
+				float lerpResult6_g44 = lerp( break2_g44.x , ( 1.0 - break2_g44.x ) , _Souler_FlipU);
+				float lerpResult11_g44 = lerp( break2_g44.y , ( 1.0 - break2_g44.y ) , _Souler_FlipV);
+				float4 appendResult9_g44 = (float4(lerpResult6_g44 , lerpResult11_g44 , 0.0 , 0.0));
+				float4 tex2DNode1_g43 = tex2D( _SoulercoasterTex, (appendResult9_g44).xy );
+				float lerpResult32_g43 = lerp( tex2DNode1_g43.r , ( 1.0 - tex2DNode1_g43.r ) , _Soulercoaster_OneMinus);
+				float temp_output_7_0 = lerpResult32_g43;
+				float4 screenPos1_g42 = packedInput.ase_texcoord4;
+				float4 ase_screenPosNorm1 = screenPos1_g42 / screenPos1_g42.w;
+				ase_screenPosNorm1.z = ( UNITY_NEAR_CLIP_VALUE >= 0 ) ? ase_screenPosNorm1.z : ase_screenPosNorm1.z * 0.5 + 0.5;
+				float screenDepth1_g42 = LinearEyeDepth(SampleCameraDepth( ase_screenPosNorm1.xy ),_ZBufferParams);
+				float distanceDepth1_g42 = saturate( abs( ( screenDepth1_g42 - LinearEyeDepth( ase_screenPosNorm1.z,_ZBufferParams ) ) / ( _DF_Distance ) ) );
+				float lerpResult3_g42 = lerp( distanceDepth1_g42 , ( 1.0 - distanceDepth1_g42 ) , _DF_OneMinus);
+				float3 ase_worldNormal = packedInput.ase_texcoord5.xyz;
+				float dotResult20 = dot( V , ase_worldNormal );
+				float temp_output_23_0 = abs( dotResult20 );
+				float smoothstepResult25 = smoothstep( _Fresnel_Threshold , ( _Fresnel_Threshold + _Fresnel_Smoothness ) , temp_output_23_0);
+				float temp_output_13_0 = ( lerpResult14_g46 * temp_output_7_0 * packedInput.ase_color.a * lerpResult3_g42 * smoothstepResult25 );
+				float smoothstepResult43 = smoothstep( 0.0 , 0.1 , temp_output_13_0);
 				
-				surfaceDescription.Alpha = ( smoothstepResult2_g69 * smoothstepResult29 * temp_output_8_0 * packedInput.ase_color.a );
+				surfaceDescription.Alpha = smoothstepResult43;
 				surfaceDescription.AlphaClipThreshold = _AlphaCutoff;
 
 				SurfaceData surfaceData;
@@ -2679,82 +2875,93 @@ Shader "S_State_Panning"
 }
 /*ASEBEGIN
 Version=18900
-1920;231;1920;1019;2062.266;604.9383;1.3;True;False
-Node;AmplifyShaderEditor.TextureCoordinatesNode;11;-1383.887,-189.7731;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.FunctionNode;33;-1531.359,-54.23908;Inherit;False;SF_DistortTexture;0;;60;96c99f2862d31594fbaa887784570dd8;0;3;16;FLOAT;0;False;17;FLOAT;1;False;11;FLOAT2;0,0;False;2;FLOAT2;0;COLOR;25
-Node;AmplifyShaderEditor.TextureCoordinatesNode;49;-1581.266,137.3617;Inherit;False;0;-1;4;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.DynamicAppendNode;50;-1282.266,111.3617;Inherit;False;FLOAT2;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT2;0
-Node;AmplifyShaderEditor.SimpleAddOpNode;12;-1165.887,-119.7731;Inherit;False;2;2;0;FLOAT2;0,0;False;1;FLOAT2;0,0;False;1;FLOAT2;0
-Node;AmplifyShaderEditor.FunctionNode;7;-1040.5,-153.6;Inherit;False;SF_PanningTexture;9;;63;b045855c7f4c7344eb8723194efc0969;0;7;3;SAMPLER2D;;False;46;FLOAT;0;False;5;FLOAT2;0,0;False;8;FLOAT2;0,0;False;6;FLOAT2;0,0;False;14;FLOAT2;1,1;False;7;FLOAT2;0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.FunctionNode;8;-244.8,478.9999;Inherit;False;SF_EdgeFade;30;;62;2c737c027c7911941847cd940f44e2cc;0;1;8;FLOAT2;0,0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.TextureCoordinatesNode;28;133.0168,592.9559;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.FunctionNode;23;1.716919,377.1558;Inherit;False;SF_AlphaLerp;7;;68;853a1742ead4a334f9e5c5176cca2294;0;2;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.FunctionNode;24;230.5168,378.4558;Inherit;False;SF_AlphaSharp;3;;69;1a46ba76a207bfe4e97ac05d03cb8401;0;2;1;FLOAT;0;False;6;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.VertexColorNode;48;440.2349,709.3616;Inherit;False;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.SmoothstepOpNode;29;447.6167,612.4559;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0.15;False;1;FLOAT;0
-Node;AmplifyShaderEditor.TextureCoordinatesNode;13;-880.5872,228.4269;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.TextureCoordinatesNode;46;-1110.665,81.4616;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.OneMinusNode;47;-742.7649,-104.4384;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;14;14.5127,78.52695;Inherit;False;3;3;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;2;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;25;593.2169,349.8558;Inherit;False;4;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.FunctionNode;9;-258.2807,-203.5396;Inherit;False;SF_Bicolor;21;;72;8f1c0adb31a562646a4d2a8fec362420;0;3;9;COLOR;0,0,0,0;False;10;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
-Node;AmplifyShaderEditor.LerpOp;44;-577.6664,-162.938;Inherit;False;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;31;-496.9473,-368.2216;Inherit;False;3;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.FunctionNode;22;-676.1874,151.1268;Inherit;False;SF_AlphaLerp;7;;73;853a1742ead4a334f9e5c5176cca2294;0;2;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;21;-641.4873,437.5269;Inherit;False;Property;_Base_Smoothness;Base_Smoothness;28;0;Create;True;0;0;0;False;0;False;0.5;0.2;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleAddOpNode;30;-83.2838,-297.5438;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.SimpleAddOpNode;16;427.5127,-44.17305;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.SmoothstepOpNode;18;-300.4873,202.5269;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;1;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;19;-640.4873,364.5269;Inherit;False;Property;_Base_Threshold;Base_Threshold;27;1;[Header];Create;True;1;Base;0;0;False;0;False;0;0.61;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.OneMinusNode;17;-456.4873,178.5269;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleAddOpNode;20;-413.4873,270.5269;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.ColorNode;15;-210.4873,35.52695;Inherit;False;Property;_Base_Color;Base_Color;29;1;[HDR];Create;True;0;0;0;False;0;False;1,1,1,0;0,0.3018868,0.2931094,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.RangedFloatNode;45;-706.3663,9.962036;Inherit;False;Property;_Lerp;Lerp;19;0;Create;True;0;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.ColorNode;34;-1185.772,-381.9669;Inherit;False;Property;_AddedDistortCol;AddedDistortCol;20;1;[HDR];Create;True;0;0;0;False;0;False;0,0,0,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+1920;231;1920;1019;1310.821;763.3863;1.3;True;False
+Node;AmplifyShaderEditor.TextureCoordinatesNode;14;-1297.118,-72.85754;Inherit;False;0;-1;4;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.RangedFloatNode;11;-1189.118,121.1425;Inherit;False;Property;_Souler_Debug;Souler_Debug;25;0;Create;True;0;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.WorldNormalVector;22;-596.118,654.1425;Inherit;False;False;1;0;FLOAT3;0,0,1;False;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
+Node;AmplifyShaderEditor.SimpleAddOpNode;15;-1057.118,43.14246;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.ViewDirInputsCoordNode;21;-591.118,473.1425;Inherit;False;World;False;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
+Node;AmplifyShaderEditor.FunctionNode;31;-1268.118,-403.8575;Inherit;False;SF_DistortTexture;8;;54;96c99f2862d31594fbaa887784570dd8;0;3;16;FLOAT;0;False;17;FLOAT;1;False;11;FLOAT2;0,0;False;2;FLOAT2;0;COLOR;25
+Node;AmplifyShaderEditor.RangedFloatNode;36;-1027.118,-134.8575;Inherit;False;Property;_DistortAlpha;DistortAlpha;21;0;Create;True;0;0;0;False;0;False;0.1;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;35;-905.1179,-207.8575;Inherit;False;2;2;0;FLOAT2;0,0;False;1;FLOAT;0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.DynamicAppendNode;10;-951.118,158.1425;Inherit;False;FLOAT2;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.RangedFloatNode;26;-255.118,602.1425;Inherit;False;Property;_Fresnel_Threshold;Fresnel_Threshold;23;0;Create;True;0;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.DotProductOpNode;20;-348.118,528.1425;Inherit;False;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;28;-297.118,683.1425;Inherit;False;Property;_Fresnel_Smoothness;Fresnel_Smoothness;24;0;Create;True;0;0;0;False;0;False;0.8;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleAddOpNode;27;-58.11798,659.1425;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.AbsOpNode;23;-173.118,527.1425;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleAddOpNode;34;-747.1179,140.1425;Inherit;False;2;2;0;FLOAT2;0,0;False;1;FLOAT2;0,0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.VertexColorNode;16;-256.118,-86.85754;Inherit;False;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.FunctionNode;7;-553.118,183.1425;Inherit;False;SF_SoulercoasterTexture;0;;43;d3775d2591d677949a8ef4fe69a6994e;0;2;2;FLOAT2;0,0;False;29;FLOAT2;1,1;False;1;FLOAT;0
+Node;AmplifyShaderEditor.FunctionNode;12;-460.118,80.14246;Inherit;False;SF_EdgeFade;42;;46;2c737c027c7911941847cd940f44e2cc;0;1;8;FLOAT2;0,0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SmoothstepOpNode;25;-3.117981,515.1425;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;1;False;1;FLOAT;0
+Node;AmplifyShaderEditor.FunctionNode;18;-263.118,256.1425;Inherit;False;SF_DepthFade;11;;42;adc458ead34511148bae829420de626c;0;1;6;FLOAT3;0,0,0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;13;125.882,92.1425;Inherit;False;5;5;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;4;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SmoothstepOpNode;43;363.579,125.8135;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0.1;False;1;FLOAT;0
+Node;AmplifyShaderEditor.LerpOp;29;-471.1179,-220.8575;Inherit;False;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
+Node;AmplifyShaderEditor.ScreenColorNode;37;285.9821,-528.3575;Inherit;False;Global;_GrabScreen0;Grab Screen 0;16;0;Create;True;0;0;0;False;0;False;Object;-1;False;False;False;2;0;FLOAT2;0,0;False;1;FLOAT;0;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;44;-96.621,-460.4865;Inherit;False;3;3;0;FLOAT2;0,0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.TextureCoordinatesNode;32;-1166.118,-523.8575;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SimpleAddOpNode;42;575.4788,-222.5867;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.FunctionNode;8;-798.118,-399.8575;Inherit;False;SF_PanningTexture;26;;47;b045855c7f4c7344eb8723194efc0969;0;7;3;SAMPLER2D;;False;46;FLOAT;0;False;5;FLOAT2;0,0;False;8;FLOAT2;0,0;False;6;FLOAT2;0,0;False;14;FLOAT2;1,1;False;7;FLOAT2;0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.ScreenPosInputsNode;38;-317.5179,-684.8576;Float;False;0;False;0;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;46;139.9789,-271.9863;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
+Node;AmplifyShaderEditor.SimpleAddOpNode;33;-939.1179,-436.8575;Inherit;False;2;2;0;FLOAT2;0,0;False;1;FLOAT2;0,0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.PowerNode;24;189.882,480.1425;Inherit;False;False;2;0;FLOAT;0;False;1;FLOAT;2;False;1;FLOAT;0
+Node;AmplifyShaderEditor.FunctionNode;17;-513.118,303.1425;Inherit;False;SF_Fresnel;14;;52;328e81c82eef2f646b26eac37838dca5;0;1;12;FLOAT3;0,0,0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;45;-536.0209,-505.9864;Inherit;False;Property;_DistortScreen;DistortScreen;20;0;Create;True;0;0;0;False;0;False;0.1;0.1;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleAddOpNode;39;113.4821,-531.0576;Inherit;False;2;2;0;FLOAT4;0,0,0,0;False;1;FLOAT2;0,0;False;1;FLOAT4;0
+Node;AmplifyShaderEditor.TextureCoordinatesNode;19;-83.11804,-35.85754;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.FunctionNode;9;-252.118,-259.8575;Inherit;False;SF_Bicolor;36;;53;8f1c0adb31a562646a4d2a8fec362420;0;3;9;COLOR;0,0,0,0;False;10;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
+Node;AmplifyShaderEditor.RangedFloatNode;30;-665.1179,-85.85754;Inherit;False;Property;_AlphaColorInfluence;AlphaColorInfluence;22;0;Create;True;0;0;0;False;0;False;0.2;0.2;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;6;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;DistortionVectors;0;6;DistortionVectors;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;True;4;1;False;-1;1;False;-1;4;1;False;-1;1;False;-1;True;1;False;-1;1;False;-1;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;False;False;False;False;False;False;False;False;True;True;0;True;-11;255;False;-1;255;True;-12;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;2;False;-1;True;3;False;-1;False;True;1;LightMode=DistortionVectors;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;2;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;META;0;2;META;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;-1;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=Meta;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;1;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;ShadowCaster;0;1;ShadowCaster;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;True;False;False;False;False;0;False;-1;False;False;False;False;False;False;False;False;False;True;1;False;-1;False;False;True;1;LightMode=ShadowCaster;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;4;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;DepthForwardOnly;0;4;DepthForwardOnly;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;True;False;False;False;False;0;False;-1;False;False;False;False;False;False;False;True;True;0;True;-7;255;False;-1;255;True;-8;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;1;False;-1;False;False;True;1;LightMode=DepthForwardOnly;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;0;896.9,69.10001;Float;False;True;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;13;S_State_Panning;7f5cb9c3ea6481f469fdd856555439ef;True;Forward Unlit;0;0;Forward Unlit;9;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Transparent=Queue=0;True;5;0;False;True;1;0;True;-20;0;True;-21;1;0;True;-22;0;True;-23;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;False;False;False;False;False;False;False;False;True;True;0;True;-5;255;False;-1;255;True;-6;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;0;True;-24;True;0;True;-32;False;True;1;LightMode=ForwardOnly;False;0;Hidden/InternalErrorShader;0;0;Standard;29;Surface Type;1;  Rendering Pass ;0;  Rendering Pass;1;  Blending Mode;0;  Receive Fog;1;  Distortion;0;    Distortion Mode;0;    Distortion Only;1;  Depth Write;0;  Cull Mode;0;  Depth Test;4;Double-Sided;0;Alpha Clipping;0;Motion Vectors;1;  Add Precomputed Velocity;0;Shadow Matte;0;Cast Shadows;1;DOTS Instancing;0;GPU Instancing;1;Tessellation;0;  Phong;0;  Strength;0.5,False,-1;  Type;0;  Tess;16,False,-1;  Min;10,False,-1;  Max;25,False,-1;  Edge Length;16,False,-1;  Max Displacement;25,False,-1;Vertex Position,InvertActionOnDeselection;1;0;7;True;True;True;True;True;True;False;False;;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;3;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;SceneSelectionPass;0;3;SceneSelectionPass;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;True;False;False;False;False;0;False;-1;False;False;False;False;False;False;False;False;False;True;1;False;-1;False;False;True;1;LightMode=SceneSelectionPass;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;5;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;Motion Vectors;0;5;Motion Vectors;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;False;False;False;False;False;False;False;False;True;True;0;True;-9;255;False;-1;255;True;-10;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;1;False;-1;False;False;True;1;LightMode=MotionVectors;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-WireConnection;50;1;49;3
-WireConnection;12;0;11;0
-WireConnection;12;1;33;0
-WireConnection;7;5;12;0
-WireConnection;7;8;50;0
-WireConnection;23;2;8;0
-WireConnection;23;3;7;0
-WireConnection;24;1;23;0
-WireConnection;29;0;28;2
-WireConnection;47;0;46;2
-WireConnection;14;0;15;0
-WireConnection;14;1;18;0
-WireConnection;14;2;9;0
-WireConnection;25;0;24;0
-WireConnection;25;1;29;0
-WireConnection;25;2;8;0
-WireConnection;25;3;48;4
-WireConnection;9;1;44;0
-WireConnection;44;0;7;0
-WireConnection;44;1;47;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;4;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;DepthForwardOnly;0;4;DepthForwardOnly;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;True;False;False;False;False;0;False;-1;False;False;False;False;False;False;False;True;True;0;True;-7;255;False;-1;255;True;-8;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;1;False;-1;False;False;True;1;LightMode=DepthForwardOnly;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;1;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;ShadowCaster;0;1;ShadowCaster;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;True;False;False;False;False;0;False;-1;False;False;False;False;False;False;False;False;False;True;1;False;-1;False;False;True;1;LightMode=ShadowCaster;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;0;800.5001,-115.1;Float;False;True;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;13;S_State_Heal_Curve;7f5cb9c3ea6481f469fdd856555439ef;True;Forward Unlit;0;0;Forward Unlit;9;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Transparent=Queue=0;True;5;0;False;True;1;0;True;-20;0;True;-21;1;0;True;-22;0;True;-23;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;False;False;False;False;False;False;False;False;True;True;0;True;-5;255;False;-1;255;True;-6;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;0;True;-24;True;0;True;-32;False;True;1;LightMode=ForwardOnly;False;0;Hidden/InternalErrorShader;0;0;Standard;29;Surface Type;1;  Rendering Pass ;0;  Rendering Pass;1;  Blending Mode;0;  Receive Fog;1;  Distortion;0;    Distortion Mode;0;    Distortion Only;1;  Depth Write;1;  Cull Mode;0;  Depth Test;4;Double-Sided;1;Alpha Clipping;0;Motion Vectors;1;  Add Precomputed Velocity;0;Shadow Matte;0;Cast Shadows;1;DOTS Instancing;0;GPU Instancing;1;Tessellation;0;  Phong;0;  Strength;0.5,False,-1;  Type;0;  Tess;16,False,-1;  Min;10,False,-1;  Max;25,False,-1;  Edge Length;16,False,-1;  Max Displacement;25,False,-1;Vertex Position,InvertActionOnDeselection;1;0;7;True;True;True;True;True;True;False;False;;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;3;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;SceneSelectionPass;0;3;SceneSelectionPass;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;True;False;False;False;False;0;False;-1;False;False;False;False;False;False;False;False;False;True;1;False;-1;False;False;True;1;LightMode=SceneSelectionPass;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;2;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;META;0;2;META;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;-1;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=Meta;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
+WireConnection;15;0;11;0
+WireConnection;15;1;14;3
+WireConnection;35;0;31;0
+WireConnection;35;1;36;0
+WireConnection;10;0;15;0
+WireConnection;20;0;21;0
+WireConnection;20;1;22;0
+WireConnection;27;0;26;0
+WireConnection;27;1;28;0
+WireConnection;23;0;20;0
+WireConnection;34;0;35;0
+WireConnection;34;1;10;0
+WireConnection;7;2;34;0
+WireConnection;25;0;23;0
+WireConnection;25;1;26;0
+WireConnection;25;2;27;0
+WireConnection;13;0;12;0
+WireConnection;13;1;7;0
+WireConnection;13;2;16;4
+WireConnection;13;3;18;0
+WireConnection;13;4;25;0
+WireConnection;43;0;13;0
+WireConnection;29;0;8;0
+WireConnection;29;1;7;0
+WireConnection;29;2;30;0
+WireConnection;37;0;39;0
+WireConnection;44;0;31;0
+WireConnection;44;1;13;0
 WireConnection;44;2;45;0
-WireConnection;31;0;33;25
-WireConnection;31;1;34;0
-WireConnection;31;2;44;0
-WireConnection;22;2;13;2
-WireConnection;22;3;7;0
-WireConnection;30;0;31;0
-WireConnection;30;1;9;0
-WireConnection;16;0;30;0
-WireConnection;16;1;14;0
-WireConnection;18;0;17;0
-WireConnection;18;1;19;0
-WireConnection;18;2;20;0
-WireConnection;17;0;22;0
-WireConnection;20;0;19;0
-WireConnection;20;1;21;0
-WireConnection;0;0;16;0
-WireConnection;0;2;25;0
+WireConnection;42;0;37;0
+WireConnection;42;1;46;0
+WireConnection;8;5;33;0
+WireConnection;46;0;9;0
+WireConnection;46;1;13;0
+WireConnection;33;0;32;0
+WireConnection;33;1;31;0
+WireConnection;24;0;23;0
+WireConnection;39;0;38;0
+WireConnection;39;1;44;0
+WireConnection;9;1;29;0
+WireConnection;0;0;42;0
+WireConnection;0;2;43;0
 ASEEND*/
-//CHKSM=2783813C0201AD1A85C09208FF804AD6D758346C
+//CHKSM=70F99FCA06B1FC4E2684E186B3817DDF91ECC21E

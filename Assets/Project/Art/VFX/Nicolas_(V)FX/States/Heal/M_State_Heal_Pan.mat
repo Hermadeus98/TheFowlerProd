@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_State_Damage_Pan_Lv3
+  m_Name: M_State_Heal_Pan
   m_Shader: {fileID: 4800000, guid: ab6b209461cce3a47815fc62f8c5cffb, type: 3}
   m_ShaderKeywords: _ADD_PRECOMPUTED_VELOCITY _EDGEFADE_ENABLE_ON _ENABLE_FOG_ON_TRANSPARENT
     _SURFACE_TYPE_TRANSPARENT
@@ -25,13 +25,13 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _DistortTex:
-        m_Texture: {fileID: 2800000, guid: 3fa8e32cda9d0614cb7c23b94f38cc88, type: 3}
-        m_Scale: {x: 0.3, y: 0.4}
-        m_Offset: {x: 0.15, y: -0.25}
+        m_Texture: {fileID: 2800000, guid: 9e4cdea43bd4b4548b36509a8d8596b3, type: 3}
+        m_Scale: {x: 0.5, y: 1}
+        m_Offset: {x: 0.03, y: -0.1}
     - _PanningTex:
-        m_Texture: {fileID: 2800000, guid: 95cc73dbc162d9a4ba755846bd0e1937, type: 3}
-        m_Scale: {x: 1, y: 0.8}
-        m_Offset: {x: 0, y: -0.7}
+        m_Texture: {fileID: 2800000, guid: 9e4cdea43bd4b4548b36509a8d8596b3, type: 3}
+        m_Scale: {x: 0.6, y: 0.7}
+        m_Offset: {x: 0, y: -0.1}
     m_Floats:
     - _AddPrecomputedVelocity: 1
     - _AddedEdgeFade: 0
@@ -53,7 +53,7 @@ Material:
     - _CullModeForward: 2
     - _DF_Distance: 6.31
     - _DF_OneMinus: 0
-    - _DistortStrength: 0.11
+    - _DistortStrength: 0.1
     - _DistortionEnable: 0
     - _DistortionOnly: 0
     - _DoubleSidedEnable: 0
@@ -89,11 +89,11 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 0
     m_Colors:
-    - _AddedDistortCol: {r: 0, g: 0, b: 0, a: 0}
+    - _AddedDistortCol: {r: 0, g: 0.7490196, b: 0.6392157, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
-    - _Base_Color: {r: 9.179368, g: 3.5855548, b: 0, a: 0}
-    - _ColorA: {r: 0.7372549, g: 0.02352941, b: 0.05434909, a: 1}
-    - _ColorB: {r: 1.4980392, g: 0.13333334, b: 0.039215688, a: 1}
+    - _Base_Color: {r: 0, g: 0.78128433, b: 1, a: 0}
+    - _ColorA: {r: 0, g: 0.13398346, b: 0.1509434, a: 1}
+    - _ColorB: {r: 0.06132078, g: 0.8448261, b: 1, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EdgeFadeU: {r: 0, g: 0.45, b: 0, a: 0.45}
     - _EdgeFadeV: {r: 0, g: 0, b: 0, a: 1}
