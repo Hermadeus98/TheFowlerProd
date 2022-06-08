@@ -54,18 +54,41 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
-  m_Name: Spell3_1
+  m_Name: Basic Attaque_3
   m_EditorClassIdentifier: 
-  NodeName: Spell3_1
+  NodeName: Basic Attaque_3
   chance: 1
   state: 0
   started: 0
   guid: b7fd8e2c2fbeb3646b0a0e053858f2f0
-  position: {x: 406.36, y: 98}
+  position: {x: 406, y: -67.5}
   children: []
   spellList:
-  - Spell: {fileID: 11400000, guid: 2f7e15c347f4c994caba9ae667a7696b, type: 2}
+  - Spell: {fileID: 11400000, guid: eb9d0cb6cfcabbe408b98e8cc910f13c, type: 2}
     Chance: 1
+--- !u!114 &-6722158814120470090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
+  m_Name: WeakerPJ_2
+  m_EditorClassIdentifier: 
+  NodeName: WeakerPJ_2
+  chance: 1
+  state: 0
+  started: 0
+  guid: d962ee291fd42234896bdfa2edebf9ea
+  position: {x: 239, y: 98}
+  children:
+  - {fileID: 7251702681488826367}
+  TargetIntention: 2
+  With: 0
+  value: 0
 --- !u!114 &-6687556664085984303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,14 +122,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 645eb2d98a09aa543a8bab8b379c91a5, type: 3}
-  m_Name: WeakerPJ
+  m_Name: WeakerPJ_1
   m_EditorClassIdentifier: 
-  NodeName: WeakerPJ
+  NodeName: WeakerPJ_1
   chance: 1
   state: 0
   started: 0
   guid: 9b67102c1cdbc954db72af119214b88d
-  position: {x: 238, y: 98}
+  position: {x: 238, y: -67.5}
   children:
   - {fileID: -7517385446224719497}
   TargetIntention: 2
@@ -144,17 +167,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a16d7749e1191724db8102279a8920c3, type: 3}
-  m_Name: Moi 25%
+  m_Name: Moi 35%
   m_EditorClassIdentifier: 
-  NodeName: Moi 25%
+  NodeName: Moi 35%
   chance: 1
   state: 0
   started: 0
   guid: c9e37a36e02354b43b1a29b87a5dee47
-  position: {x: -117.52002, y: 98}
+  position: {x: -118, y: 98}
   children:
   - {fileID: -6686092193023682952}
   - {fileID: 6189216935421902975}
+  - {fileID: -6722158814120470090}
   Choices:
   - isHardChoice: 0
     hardChoice: 0
@@ -162,8 +186,16 @@ MonoBehaviour:
     component: 0
     Operator: 5
     comparator_B: 6
-    percent: 30
+    percent: 35
     NextNode: {fileID: 6189216935421902975}
+  - isHardChoice: 0
+    hardChoice: 0
+    comparator_A: 0
+    component: 0
+    Operator: 1
+    comparator_B: 6
+    percent: 10
+    NextNode: {fileID: -6722158814120470090}
   DefaultNextNode: {fileID: -6686092193023682952}
 --- !u!114 &-4677017494967907431
 MonoBehaviour:
@@ -326,6 +358,8 @@ MonoBehaviour:
   - {fileID: 4730154780402187612}
   - {fileID: -7808780336663098400}
   - {fileID: -3819644650445693351}
+  - {fileID: -6722158814120470090}
+  - {fileID: 7251702681488826367}
   dialogueType: 0
 --- !u!114 &1292580448383206562
 MonoBehaviour:
@@ -545,6 +579,28 @@ MonoBehaviour:
   - {fileID: 9072063718284060364}
   - {fileID: -579483139517182759}
   - {fileID: -2260025738980072683}
+--- !u!114 &7251702681488826367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2865ed82b415c294b82209b08173231c, type: 3}
+  m_Name: Spell4
+  m_EditorClassIdentifier: 
+  NodeName: Spell4
+  chance: 1
+  state: 0
+  started: 0
+  guid: 9018fcf6fbf43654fa0404a4a512a69d
+  position: {x: 406, y: 98}
+  children: []
+  spellList:
+  - Spell: {fileID: 11400000, guid: 18f551b800c911840815d28810ee8f52, type: 2}
+    Chance: 1
 --- !u!114 &9072063718284060364
 MonoBehaviour:
   m_ObjectHideFlags: 0
