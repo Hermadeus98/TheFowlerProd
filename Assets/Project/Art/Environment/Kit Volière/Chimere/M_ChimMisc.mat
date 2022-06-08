@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_ChimMisc
-  m_Shader: {fileID: 4800000, guid: 8c8484a08ec54cf41b2d54b8e6e8afe6, type: 3}
+  m_Shader: {fileID: 4800000, guid: c105dc6ec575d194c8e13d04767c5c20, type: 3}
   m_ShaderKeywords: _DISABLE_SSR_TRANSPARENT _NORMALMAP_TANGENT_SPACE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
@@ -39,6 +39,10 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _ARM_1:
+        m_Texture: {fileID: 2800000, guid: dc987726849294a4babdf29d37d9cc1d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ARM_2:
         m_Texture: {fileID: 2800000, guid: dc987726849294a4babdf29d37d9cc1d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -70,7 +74,15 @@ Material:
         m_Texture: {fileID: 2800000, guid: 0feaf59bb97f37c4c81edd11bfa8d100, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Diffuse_2:
+        m_Texture: {fileID: 2800000, guid: 0feaf59bb97f37c4c81edd11bfa8d100, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _E_1:
+        m_Texture: {fileID: 2800000, guid: 70bd977c1ae7bc74b84ac46de1041d78, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _E_2:
         m_Texture: {fileID: 2800000, guid: 70bd977c1ae7bc74b84ac46de1041d78, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -107,6 +119,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal_1:
+        m_Texture: {fileID: 2800000, guid: a4eccc4347b46b34182884666bdd3d58, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal_2:
         m_Texture: {fileID: 2800000, guid: a4eccc4347b46b34182884666bdd3d58, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -163,12 +179,14 @@ Material:
     - _AlphaToMaskInspectorValue: 0
     - _Anisotropy: 0
     - _BaseColorAlpha1: 1
+    - _BaseColorAlpha2: 1
     - _BlendMode: 0
     - _CoatMask: 0
     - _CullMode: 2
     - _CullModeForward: 2
     - _Cutoff: 0.5
     - _DIntensity1: 1
+    - _DIntensity2: 1
     - _DepthOffsetEnable: 0
     - _DesaturationAmount1: 0
     - _DetailAlbedoScale: 1
@@ -183,6 +201,7 @@ Material:
     - _DoubleSidedNormalMode: 1
     - _DstBlend: 0
     - _E_Intensity1: 0
+    - _E_Intensity2: 0
     - _EmissiveColorMode: 1
     - _EmissiveExposureWeight: 1
     - _EmissiveIntensity: 1
@@ -203,6 +222,7 @@ Material:
     - _HeightTessAmplitude: 2
     - _HeightTessCenter: 0.5
     - _HueShift1: 0
+    - _HueShift2: 0
     - _InvTilingScale: 1
     - _Ior: 1.5
     - _IridescenceMask: 1
@@ -210,11 +230,14 @@ Material:
     - _LinkDetailsWithBase: 1
     - _MaterialID: 1
     - _MetalMax1: 1
+    - _MetalMax2: 1
     - _MetalMin1: 0
+    - _MetalMin2: 0
     - _Metallic: 0
     - _MetallicRemapMax: 1
     - _MetallicRemapMin: 0
     - _NormalIntensity1: 1
+    - _NormalIntensity2: 1
     - _NormalMapSpace: 0
     - _NormalScale: 1
     - _OpaqueCullMode: 2
@@ -230,7 +253,9 @@ Material:
     - _RenderQueueType: 1
     - _RequireSplitLighting: 0
     - _RoughnessMax1: 1
+    - _RoughnessMax2: 1
     - _RoughnessMin1: 0
+    - _RoughnessMin2: 0
     - _Smoothness: 0.5
     - _SmoothnessRemapMax: 1
     - _SmoothnessRemapMin: 0
@@ -252,10 +277,12 @@ Material:
     - _SupportDecals: 1
     - _SurfaceType: 0
     - _SwitchNormalAxis: 0
+    - _SwitchNormalAxis1: 0
     - _TexWorldScale: 1
     - _TexWorldScaleEmissive: 1
     - _Thickness: 1
     - _Tiling1: 1
+    - _Tiling2: 1
     - _TransmissionEnable: 1
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
@@ -278,6 +305,7 @@ Material:
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorOverlay1: {r: 1, g: 0, b: 0, a: 0}
+    - _ColorOverlay2: {r: 1, g: 0, b: 0, a: 0}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
