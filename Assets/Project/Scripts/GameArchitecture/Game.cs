@@ -18,6 +18,7 @@ namespace TheFowler
     public static class Game
     {
         public static string lastBatchLoaded;
+
         
         public static void Initialize()
         {
@@ -25,6 +26,7 @@ namespace TheFowler
             GameEvent.AddListener(GameEventAddressCore.OnGamePause, () => QRDebug.Log("GameState", FrenchPallet.CARROT, "Pause Game"));
             GameEvent.AddListener(GameEventAddressCore.OnGameUnpause, () => QRDebug.Log("GameState", FrenchPallet.CARROT, "Unpause Game"));
             GameEvent.AddListener(GameEventAddressCore.SetDependancies, () => QRDebug.Log("GameState", FrenchPallet.CARROT, "Set Dependancies"));
+
         }
 
         public static void SetDependancies()
@@ -58,6 +60,7 @@ namespace TheFowler
 
         private static IEnumerator IELoadSceneAdditive(string key, Action OnComplete)
         {
+
             var db = SceneDatabase.Instance;
             var batch = db.GetBatch(key);
 
