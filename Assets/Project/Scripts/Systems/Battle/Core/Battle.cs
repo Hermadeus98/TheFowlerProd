@@ -235,7 +235,12 @@ namespace TheFowler
         private void CreateTurnSystem()
         {
             var turnActors = new List<ITurnActor>(allies);
-            turnActors.AddRange(enemies);
+
+            var l = new List<BattleActor>(enemies);
+            l.OrderBy(w => w.orderInTurnSystem);
+            
+            turnActors.AddRange(l);
+            
             TurnSystem = new TurnSystem(turnActors);
             TurnSystem.StartTurnSystem();
         }
@@ -294,6 +299,8 @@ namespace TheFowler
         {
             StartCoroutine(StopBattleCoroutine());
 
+            TurnTransitionView.Instance.ForceHide();
+            
             hasPlayed = false;
         }
 

@@ -11,6 +11,8 @@ namespace TheFowler
 {
     public class TurnTransitionView : UIView
     {
+        public static TurnTransitionView Instance;
+        
         [SerializeField] private Image icon;
         [SerializeField] private StringSpriteDatabase sprites;
         [SerializeField] private InOutComponent InOutComponent;
@@ -25,6 +27,12 @@ namespace TheFowler
             //InOutComponent.in_duration + InOutComponent.between_duration + InOutComponent.out_duration;
 
         public static bool isLock = false;
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+            Instance = this;
+        }
 
         [Button]
         private void Test() => CameraSwipTransition(null);
@@ -85,6 +93,11 @@ namespace TheFowler
             {
                 spr = sprites.GetElement("enemy");
             }
+        }
+
+        public void ForceHide()
+        {
+            CanvasGroup.alpha = 0;
         }
     }
 }

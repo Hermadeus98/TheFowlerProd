@@ -13,6 +13,8 @@ public class LoseGraphics : SerializedMonoBehaviour
     public Animator[] Animators;
     public CinemachineVirtualCamera cam;
 
+    public GameObject container;
+
     private void Awake()
     {
         Instance = this;

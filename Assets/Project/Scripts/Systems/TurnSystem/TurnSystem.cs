@@ -15,7 +15,8 @@ namespace TheFowler
         
         public TurnSystem(IEnumerable<ITurnActor> turnActors)
         {
-            TurnActors = new List<ITurnActor>(turnActors);
+            var l = turnActors.Cast<BattleActor>().OrderBy(w => w.orderInTurnSystem);
+            TurnActors = new List<ITurnActor>(l);
         }
         
         public void StartTurnSystem()
