@@ -9,6 +9,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
+
 namespace TheFowler
 {
     public class MainMenuManager : SerializedMonoBehaviour
@@ -38,6 +40,8 @@ namespace TheFowler
         private bool isActive;
 
         public Animator robyn;
+
+        public TextMeshProUGUI description;
         
         public enum MenuPanel
         {
@@ -49,15 +53,12 @@ namespace TheFowler
         
         private void Awake()
         {
+            description.gameObject.SetActive(false);
             Player.canOpenPauseMenu = false;
             Player.isInPauseMenu = true;
             
             currentPanel = MenuPanel.MAIN;
             
-            main.StartNavigate();
-            chapters.StartNavigate();
-            settings.StartNavigate();
-
             menu.alpha = 0;
             openning.alpha = 0;
             manette.alpha = 0;
@@ -87,7 +88,16 @@ namespace TheFowler
             yield return new WaitForSeconds(fadeDuration);
             blackscreen.DOFade(0f, fadeDuration + 1);
             yield return new WaitForSeconds(fadeDuration + 1);
-            menu.DOFade(1f, fadeDuration + 1).OnComplete(()=>ReturnToMain());
+
+            menu.DOFade(1f, fadeDuration + 1).OnComplete(()=>
+            {
+                chapters.StartNavigate();
+                settings.StartNavigate();
+                main.StartNavigate();
+
+                ReturnToMain();
+                description.gameObject.SetActive(true);
+            });
         }
 
         private void Update()
@@ -267,6 +277,7 @@ namespace TheFowler
         public void Credit()
         {
             CreditView.Instance.Show();
+            CreditView.Instance.onEnd.AddListener(()=> main.canNavigate = true);
 
             main.canNavigate = false;
         }
