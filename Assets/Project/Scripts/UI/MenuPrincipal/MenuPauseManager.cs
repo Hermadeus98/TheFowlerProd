@@ -154,6 +154,11 @@ public class MenuPauseManager : MonoBehaviour
         DifficultyManager.ChangeDifficulty(DifficultyEnum.EASY);
     }
 
+    public void SetDifficultyNormal()
+    {
+        DifficultyManager.ChangeDifficulty(DifficultyEnum.MEDIUM);
+    }
+
     public void SetDifficultyHard()
     {
         DifficultyManager.ChangeDifficulty(DifficultyEnum.HARD);
