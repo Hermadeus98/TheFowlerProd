@@ -550,6 +550,15 @@ namespace TheFowler
 
         public override void EndPhase()
         {
+
+            //if (Timeline != null)
+            //{
+            //    Timeline.
+            //    Timeline.time = BehaviourTree.GetDuration() - 0.001f;
+            //    Timeline.Pause();
+            //}
+
+
             FindObjectOfType<GameTimer>().incrementeDialogueTimer = false;
             
             hasPassChoices = false;
@@ -562,8 +571,9 @@ namespace TheFowler
                 SoundManager.StopSound(currentSound, currentSoundEmitter);
             }
             
-            if(Timeline != null)
-                Timeline.Pause();
+            
+
+
         
             base.EndPhase();
             
@@ -588,7 +598,11 @@ namespace TheFowler
         private void DisplayDialogue(Dialogue dialogue)
         {
             if(Timeline != null)
+            {
+                Debug.Log("PLAYY");
                 Timeline.Play();
+            }
+
 
             switch (dialogueType)
             {
@@ -811,6 +825,10 @@ namespace TheFowler
 
         private IEnumerator WaitReplaceActor(float timer)
         {
+            if (Timeline != null)
+            {
+                Timeline.Pause();
+            }
             yield return new WaitForSeconds(timer);
             if (Timeline != null)
             {
