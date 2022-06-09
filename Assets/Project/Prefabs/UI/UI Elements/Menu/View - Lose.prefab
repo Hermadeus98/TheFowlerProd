@@ -939,7 +939,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 240}
+  m_AnchoredPosition: {x: 0, y: 414}
   m_SizeDelta: {x: 1202.1194, y: 104.2837}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1861076972592823049
@@ -1162,7 +1162,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 5}
+  m_AnchoredPosition: {x: 0, y: 2}
   m_SizeDelta: {x: 388.2532, y: 75.6754}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1802214587946538815
@@ -1237,7 +1237,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 23.4, y: 14.3}
+  m_AnchoredPosition: {x: 23.400002, y: 7.0000124}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &1351009179740478791
@@ -1423,7 +1423,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -215.9, y: -5.7}
+  m_AnchoredPosition: {x: -215.9, y: -13}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &92713007578595285
@@ -1960,7 +1960,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -477}
+  m_AnchoredPosition: {x: -615, y: -323}
   m_SizeDelta: {x: 210.01965, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &6521027528062912923
@@ -2109,7 +2109,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 250.4, y: 0}
+  m_AnchoredPosition: {x: 250.4, y: 3}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8415081501075530839
@@ -2250,7 +2250,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuPauseManager, Assembly-CSharp
-          m_MethodName: SetDifficultyHard
+          m_MethodName: SetDifficultyNormal
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2269,12 +2269,12 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: 
+          m_TargetAssemblyTypeName: MenuPauseManager, Assembly-CSharp
+          m_MethodName: SetDifficultyHard
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -2649,6 +2649,10 @@ PrefabInstance:
       propertyPath: OnSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1472989709953816839, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3297437451520236266, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
       propertyPath: m_SizeDelta.y
       value: 114.4027
@@ -2677,9 +2681,29 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6636402716336530705, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c4475e2804e10a74d99d954af77bdbe0, type: 3}
     - target: {fileID: 6766260684524325699, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020956256900316815, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 388.4458
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020956256900316815, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 114.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020956256900316815, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020956256900316815, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
@@ -3354,6 +3378,10 @@ PrefabInstance:
     - target: {fileID: 1412232049017136241, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
       propertyPath: OnSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472989709953816839, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3998997501562686247, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
       propertyPath: m_Name
