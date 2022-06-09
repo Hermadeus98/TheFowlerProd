@@ -67,6 +67,7 @@ namespace TheFowler
         public CooldownComponent Mana => mana;
 
         public int orderInBattle;
+        public int orderInTurnSystem;
 
         public StateIcons StateIcons
         {
