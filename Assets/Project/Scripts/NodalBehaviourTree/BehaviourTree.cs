@@ -117,5 +117,18 @@ namespace TheFowler
                 }
             }
         }
+
+        public float GetDuration()
+        {
+            float duration = 0;
+
+            for (int i = 0; i < nodes.Count; i++)
+            {
+                DialogueNode node = nodes[i] as DialogueNode;
+                duration += node.dialogue.displayDuration;
+            }
+
+            return duration;
+        }
     }
 }
