@@ -27,7 +27,7 @@ namespace TheFowler
             base.OnStart();
         }
 
-        public override void Show()
+        public void Show()
         {
             CanvasGroup.alpha = 1f;
             isActive = true;
@@ -37,7 +37,18 @@ namespace TheFowler
 
         IEnumerator Wait()
         {
-            yield return new WaitForSeconds(clip.length);
+            var t = clip.length;
+            while (t > 0)
+            {
+                t -= Time.deltaTime;
+                if (Gamepad.current.bButton.wasPressedThisFrame)
+                {
+                    Hide();
+                    t = 0;
+                }
+                
+                yield return null;
+            }
             Hide();
         }
 
@@ -47,6 +58,7 @@ namespace TheFowler
             isActive = false;
             animator.SetTrigger(stop);
             
+            onEnd?.Invoke();
             onEnd?.RemoveAllListeners();
             StopCoroutine(wait);
         }
