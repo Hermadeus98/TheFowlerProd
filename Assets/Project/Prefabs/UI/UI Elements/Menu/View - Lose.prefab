@@ -182,7 +182,7 @@ RectTransform:
   - {fileID: 3825023159373029970}
   - {fileID: 3440471424739808336}
   m_Father: {fileID: 8196602109425680287}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -498,6 +498,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 6136702744176005888}
   - {fileID: 3462119605232930313}
   - {fileID: 7058245263898596697}
   - {fileID: 8772517770838902868}
@@ -549,6 +550,7 @@ MonoBehaviour:
   textSlider: {fileID: 9011146258028487114}
   TextChoice: {fileID: 7033019865575800310}
   descriptionText: 
+  descriptionTextFrench: 
 --- !u!114 &6917490884496806664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -611,7 +613,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8196602109425680287}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -937,8 +939,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 131.6}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: 240}
+  m_SizeDelta: {x: 1202.1194, y: 104.2837}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1861076972592823049
 CanvasRenderer:
@@ -968,10 +970,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Your spark has burned out...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d7ef1c9f4bf1a7f41a635e9217cfe5b1, type: 2}
+  m_sharedMaterial: {fileID: -3240752074383731453, guid: d7ef1c9f4bf1a7f41a635e9217cfe5b1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -995,15 +997,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 90
+  m_fontSizeBase: 90
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1049,8 +1051,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  englishText: You lose !
-  frenchText: Perdu !
+  englishText: Your spark has burned out...
+  frenchText: "Votre \xE9tincelle s'est \xE9teinte..."
 --- !u!1 &3450411841877571786
 GameObject:
   m_ObjectHideFlags: 0
@@ -1117,6 +1119,81 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 16a86a7f581fc4dfb953e0df8ad3ecac, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3503768093535928393
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6136702744176005888}
+  - component: {fileID: 1802214587946538815}
+  - component: {fileID: 1815725902090084259}
+  m_Layer: 5
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6136702744176005888
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3503768093535928393}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8196602109425680287}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 5}
+  m_SizeDelta: {x: 388.2532, y: 75.6754}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1802214587946538815
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3503768093535928393}
+  m_CullTransparentMesh: 1
+--- !u!114 &1815725902090084259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3503768093535928393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 157c3e198645dc240b62e02c0c4598d2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1218,7 +1295,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &259938096085895357
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1418,7 +1495,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8196602109425680287}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1455,8 +1532,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Difficulty
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2c269728b7f73ec49a2958a14c6de211, type: 2}
-  m_sharedMaterial: {fileID: -1037114233993443885, guid: 2c269728b7f73ec49a2958a14c6de211, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 88795c44e062db04b829f99713c6e223, type: 2}
+  m_sharedMaterial: {fileID: -7852670438021853451, guid: 88795c44e062db04b829f99713c6e223, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1535,7 +1612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   englishText: Difficulty
-  frenchText: "Difficult\xE9"
+  frenchText: "Difficult\xE9e"
 --- !u!1 &5722236953188548779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1584,8 +1661,8 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5722236953188548779}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
+  m_Alpha: 0
+  m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!114 &5722236953188548777
@@ -1608,7 +1685,7 @@ MonoBehaviour:
   AudioEventShow: 0
   canvasGroup: {fileID: 5722236953188548774}
   rappelInput: {fileID: 0}
-  TextNavigation: {fileID: 0}
+  TextNavigation: {fileID: 6521027528062912924}
 --- !u!1 &5822061890575653140
 GameObject:
   m_ObjectHideFlags: 0
@@ -1719,7 +1796,7 @@ RectTransform:
   - {fileID: 7162014183706940278}
   - {fileID: 3018001586181750351}
   m_Father: {fileID: 8196602109425680287}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -1881,11 +1958,11 @@ RectTransform:
   m_Father: {fileID: 5722236953188548776}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -477}
   m_SizeDelta: {x: 210.01965, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &6521027528062912923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1904,7 +1981,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 1
-  m_Spacing: 0
+  m_Spacing: 100
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
@@ -2028,7 +2105,7 @@ RectTransform:
   - {fileID: 9204020975704885939}
   - {fileID: 407484408011478163}
   m_Father: {fileID: 8196602109425680287}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2065,8 +2142,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Choice 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2c269728b7f73ec49a2958a14c6de211, type: 2}
-  m_sharedMaterial: {fileID: -1037114233993443885, guid: 2c269728b7f73ec49a2958a14c6de211, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4a62ed01ad4b5a24a8479a5bc4827b9c, type: 2}
+  m_sharedMaterial: {fileID: 4078013715556231578, guid: 4a62ed01ad4b5a24a8479a5bc4827b9c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2145,10 +2222,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options:
-  - text: Easy
-    textFrench: 
-    description: Set difficulty on easy to see preview bar in battle.
-    descriptionFrench: 
+  - text: Narrative
+    textFrench: Naratif
+    description: Set the difficulty on narrative to enjoy the story.
+    descriptionFrench: "Met la difficult\xE9e en narratif pour profiter de l'aventure"
     OnSelected:
       m_PersistentCalls:
         m_Calls:
@@ -2164,10 +2241,10 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - text: Medium
-    textFrench: 
-    description: Set difficulty on medium to be a gigachad.
-    descriptionFrench: 
+  - text: Normal
+    textFrench: Normal
+    description: Set difficulty on normal mode.
+    descriptionFrench: "Met la difficult\xE9e en mode normal."
     OnSelected:
       m_PersistentCalls:
         m_Calls:
@@ -2178,6 +2255,26 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: Revolution
+    textFrench: "R\xE9volution"
+    description: Set the difficulty on revolution to enjoy a real challenge.
+    descriptionFrench: "Met la difficult\xE9e en mode r\xE9volution pour avoir un
+      v\xE9ritable d\xE9fi."
+    OnSelected:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: 
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -2552,10 +2649,22 @@ PrefabInstance:
       propertyPath: OnSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3297437451520236266, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 114.4027
+      objectReference: {fileID: 0}
     - target: {fileID: 3998997501562686247, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
       propertyPath: m_Name
       value: Try Again
       objectReference: {fileID: 0}
+    - target: {fileID: 4516293471779994702, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4516293471779994702, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c4475e2804e10a74d99d954af77bdbe0, type: 3}
     - target: {fileID: 5036304550393322329, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
       propertyPath: m_text
       value: Try Again
@@ -2568,8 +2677,17 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6766260684524325699, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
+--- !u!1 &5102089099430348249 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8056359936113685835, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
+  m_PrefabInstance: {fileID: 2955403338533761170}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9085458407955211907 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6275128246196459025, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
@@ -2591,6 +2709,20 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 516374796628794065, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
   m_PrefabInstance: {fileID: 2955403338533761170}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9074056055374742854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5102089099430348249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Choice 1
+  frenchText: Choix 1
 --- !u!114 &5813404140700706762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2603,8 +2735,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  englishText: New Game
-  frenchText: Nouvelle Partie
+  englishText: Retry
+  frenchText: Recommencer
 --- !u!1001 &6521027527632146652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3239,13 +3371,12 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6766260684524325699, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
---- !u!224 &6725527740039287888 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 516374796628794065, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
-  m_PrefabInstance: {fileID: 6521027529125777025}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &966844659837606032 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6275128246196459025, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
@@ -3262,6 +3393,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fafcdb938fa61a0438386a29ce11d9f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &6725527740039287888 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 516374796628794065, guid: 3c8fbb42b3f6af044850af826cf5a6d9, type: 3}
+  m_PrefabInstance: {fileID: 6521027529125777025}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3406785133064823820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3274,5 +3410,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  englishText: Chapters
-  frenchText: Chapitres
+  englishText: Main Menu
+  frenchText: Menu Principale
