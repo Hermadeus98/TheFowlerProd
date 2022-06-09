@@ -19,7 +19,7 @@ public class LoseGraphics : SerializedMonoBehaviour
     {
         Instance = this;
 
-        gameObject.SetActive(false);
+        container.SetActive(false);
     }
 
     [Button]
@@ -34,7 +34,7 @@ public class LoseGraphics : SerializedMonoBehaviour
         
         BlackPanel.Instance.Show();
         yield return new WaitForSeconds(BlackPanel.Instance.duration);
-        gameObject.SetActive(true);
+        container.SetActive(true);
         cam.m_Priority = 1000;
         BlackPanel.Instance.Hide();
     }
@@ -57,6 +57,6 @@ public class LoseGraphics : SerializedMonoBehaviour
     IEnumerator SetFalse()
     {
         yield return new WaitForSeconds(.5f);
-        gameObject.SetActive(false);
+        container.SetActive(false);
     }
 }
