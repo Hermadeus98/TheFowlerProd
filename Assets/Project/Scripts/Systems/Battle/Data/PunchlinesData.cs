@@ -30,8 +30,15 @@ namespace TheFowler
                 Structures.Add(new PunchlineDataStructure()
                 {
                     Callback = database.ElementAt(i).Key,
-                    PunchlineDatas = new List<PunchlineData>(database.ElementAt(i).Value)
+                    PunchlineDatas = new List<PunchlineData>()
                 });
+
+                var s =Structures.Find(w => w.Callback == database.ElementAt(i).Key);
+                
+                for (int j = 0; j < database.ElementAt(i).Value.Length; j++)
+                {
+                    s.PunchlineDatas.Add(database.ElementAt(i).Value[j]);
+                }
             }
         }
         
