@@ -27,10 +27,18 @@ namespace TheFowler
             if (ReferedSpell.sequenceBinding != SequenceEnum.NULL)
             {
                 var action = actor.SignalReceiver_CastSpell.GetReaction(actor.SignalAsset_CastSpell);
-                action.AddListener(delegate
+
+                if (emitter is EnemyActor)
                 {
-                    emitter.StartCoroutine(DamageExecution(emitter,receivers));
-                });
+                    yield return DamageExecution(emitter, receivers);
+                }
+                else
+                {
+                    action.AddListener(delegate
+                    {
+                        emitter.StartCoroutine(DamageExecution(emitter,receivers));
+                    });
+                }
 
                 var sequence = actor.SequenceHandler.GetSequence(ReferedSpell.sequenceBinding);
                 
@@ -46,8 +54,15 @@ namespace TheFowler
                     }
                 }
                 
-                sequence.Play();
-                yield return new WaitForSeconds((float) sequence.duration);
+                if (emitter is EnemyActor)
+                {
+                    
+                }
+                else
+                {
+                    sequence.Play();
+                    yield return new WaitForSeconds((float) sequence.duration);
+                }
 
                 action.RemoveAllListeners();
 
