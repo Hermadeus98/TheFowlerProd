@@ -234,6 +234,11 @@ namespace TheFowler
             DifficultyManager.ChangeDifficulty(DifficultyEnum.MEDIUM);
         }
 
+        public void SetDifficultyHard()
+        {
+            DifficultyManager.ChangeDifficulty(DifficultyEnum.HARD);
+        }
+
         public void SetLanguageFrench()
         {
             LocalisationManager.ChangeLanguage(1);
