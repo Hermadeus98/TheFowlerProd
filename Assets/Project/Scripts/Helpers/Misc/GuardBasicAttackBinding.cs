@@ -17,7 +17,7 @@ public class GuardBasicAttackBinding : MonoBehaviour
     public BattleActor emitter, receiver;
 
     public Transform hitPS;
-    
+
     [Button]
     public void BindData(Action action)
     {
