@@ -15,21 +15,22 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-            Debug.Log(receivers);
-
+            EnemySpellBox.Instance.Popup("Bonus de recharge", "Cooldown bonus");
+            
             if (TargetType == TargetTypeEnum.SELF)
             {
-                emitter.GetBattleComponent<CooldownComponent>().BuffCD(1);
+                yield return StateEvent(emitter, receivers, delegate(BattleActor emitter, BattleActor receiver)
+                {
+                    emitter.GetBattleComponent<CooldownComponent>().BuffCD(1);
+                });
             }
             else
             {
-                foreach (var receiver in receivers)
+                yield return StateEvent(emitter, receivers, (actor, BattleActor) =>
                 {
-                    receiver.GetBattleComponent<CooldownComponent>().BuffCD(1);
-                }
+                    BattleActor.GetBattleComponent<CooldownComponent>().BuffCD(1);
+                });
             }
-
-
 
             yield break;
         }

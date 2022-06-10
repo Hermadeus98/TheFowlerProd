@@ -23,6 +23,8 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
+            EnemySpellBox.Instance.Popup("Bonus de défense", "Defend bonus");
+            
             if (emitter == BattleManager.CurrentBattle.phoebe)
             {
                 emitter.punchline.PlayPunchline(PunchlineCallback.PROTECT);

@@ -25,6 +25,8 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
+            EnemySpellBox.Instance.Popup("Bonus de dégâts", "Damage bonus");
+            
             if (TargetType == TargetTypeEnum.SELF)
             {
                 yield return StateEvent(emitter, receivers, (actor, battleActor) =>

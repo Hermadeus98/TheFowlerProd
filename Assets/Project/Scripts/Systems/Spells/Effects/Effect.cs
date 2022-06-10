@@ -126,9 +126,12 @@ namespace TheFowler
             {
                 CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Enemies");
             }
-            
-            if(playAnimation)
+
+            if (playAnimation)
+            {
                 emitter.BattleActorAnimator.SpellExecution1();
+                yield return new WaitForSeconds(3f);
+            }
 
             yield return new WaitForSeconds(SpellData.Instance.StateEffect_WaitTime);
 

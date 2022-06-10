@@ -10,21 +10,23 @@ namespace TheFowler
 {
     public class EnemySpellBox : UIView
     {
-
         [SerializeField]
         private RectTransform Container;
 
         [SerializeField] private Image logo;
         [SerializeField] private TextMeshProUGUI text;
 
+        public static EnemySpellBox Instance;
+        
         protected override void OnStart()
         {
             base.OnStart();
+            Instance = this;
         }
 
         IEnumerator HideIE()
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(2f);
             Hide();
         }
 
@@ -63,6 +65,20 @@ namespace TheFowler
             }
 
            
+        }
+
+        public void Popup(string textF, string textA)
+        {
+            logo.gameObject.SetActive(false);
+            if (LocalisationManager.language == Language.ENGLISH)
+            {
+                text.SetText(textA);
+            }
+            else
+            {
+                text.SetText(textF);
+            }
+            Show();
         }
     }
 }
