@@ -52,6 +52,8 @@ namespace TheFowler
         [SerializeField] Animator robynAnim, phoebeAnim, abiAnim;
         [TabGroup("References")]
         [SerializeField] Sockets[] guardsSockets;
+        [TabGroup("References")]
+        [SerializeField] TimelineCutscene timelineCutscene;
         [TabGroup("References"), ShowIf("@this.dialogueType == DialogueType.HARMONISATION")]
         [SerializeField] private Cinemachine.CinemachineVirtualCamera harmoVCam;
 
@@ -570,11 +572,12 @@ namespace TheFowler
                 ReplaceActor(replacementActors.timeOfReplacement);
                 SoundManager.StopSound(currentSound, currentSoundEmitter);
             }
-            
-            
+
+            timelineCutscene.HideTwoDCutscene();
 
 
-        
+
+
             base.EndPhase();
             
             switch (dialogueType)
@@ -820,6 +823,7 @@ namespace TheFowler
 
         private void ReplaceActor(float timer)
         {
+
             StartCoroutine(WaitReplaceActor(timer));
         }
 

@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using MoreMountains.Feedbacks;
+using UnityEngine.InputSystem;
 namespace TheFowler
 {
     public class MenuCharactersView : UIView
     {
-        [SerializeField] InitiativeView initiativeView; 
+        [SerializeField] InitiativeView initiativeView;
         [SerializeField] SkillTreeView skillTreeView;
         [SerializeField] public GameObject firstSelectedObject, background, confirmation, exclamation;
         [SerializeField] public BattleActorData[] battleActorDatas;
         [SerializeField] public MMFeedbacks[] MMUnselects;
-        [SerializeField] public UnityEngine.InputSystem.PlayerInput Inputs;
+        public UnityEngine.InputSystem.PlayerInput Inputs;
+        public CustomElement[] customElements;
         private Battle battle;
         public bool onMenu;
 
@@ -100,6 +102,23 @@ namespace TheFowler
 
             //skillTreeView.Show();
 
+        }
+
+        public void ChangeCustomeElementState(bool value)
+        {
+            for (int i = 0; i < customElements.Length; i++)
+            {
+                customElements[i].enabled = value;
+                customElements[i]._OnDeselect.PlayFeedbacks();
+            }
+
+            if (value)
+            {
+                eventSytem.SetSelectedGameObject(firstSelectedObject);
+                customElements[2]._OnSelect.PlayFeedbacks();
+            }
+
+            
         }
 
         private void SetExclamation()

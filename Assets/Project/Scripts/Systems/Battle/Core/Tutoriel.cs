@@ -23,6 +23,7 @@ namespace TheFowler
         public static bool hasBreakdown = false;
         public static bool hasProgression = false;
         public static bool hasDied = false;
+        public static bool hasTriggerDeath = false;
         public static bool hasFirstBattle = false;
         public static bool endIntro = false;
         public static bool hasBuff = false;
@@ -49,6 +50,7 @@ namespace TheFowler
             hasDied = true;
             endIntro = true;
             hasTypes = true;
+            hasTriggerDeath = true;
         }
 
         

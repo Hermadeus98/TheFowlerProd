@@ -41,6 +41,12 @@ namespace TheFowler
             turnTime = 0;
             hasPunchline = false;
 
+            if (!Tutoriel.hasDied && Tutoriel.hasTriggerDeath)
+            {
+                Tutoriel.hasDied = true;
+                UI.GetView<TutorielView>(UI.Views.Tuto).Show(TutorielEnum.DEAD, 1f);
+            }
+
         }
 
         protected override void Update()

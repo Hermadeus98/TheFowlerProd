@@ -24,6 +24,7 @@ namespace TheFowler
         private CanvasGroup currentPanel;
         private TutorielElement currentElement;
 
+        private Tween tween;
 
         private bool isShowed = false;
         private bool isDisplayed = false;
@@ -46,9 +47,7 @@ namespace TheFowler
                 if (VolumesManager.Instance != null)
                     VolumesManager.Instance.TutoVolume.enabled = true;
 
-                
-                
-                menuCharacters.gameObject.SetActive(false);
+                UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).ChangeCustomeElementState(false);
 
                 battleUI.alpha = 0;
             }
@@ -79,22 +78,51 @@ namespace TheFowler
 
             if (currentElement != null && currentElement.nextElement != null)
             {
-                currentElement.canvasGroup.alpha = 0;
-                currentElement.End();
-                currentElement.nextElement.canvasGroup.DOFade(1, .2f).OnComplete(() => playerInput.enabled = true);
-                currentElement.nextElement.Initialize();
+                playerInput.enabled = false;
+                currentElement.GetComponent<RectTransform>().DOAnchorPos(new Vector3(800, 91, 0), .2f).SetEase(Ease.Linear).OnComplete(() => EndTutoElementAndLaunchNext());
 
-                currentElement = currentElement.nextElement;
 
                 isDisplayed = true;
             }
             else
             {
-                FadeAllCanvasGroup();
+                currentElement.GetComponent<RectTransform>().DOAnchorPos(new Vector3(800, 91, 0), .2f).SetEase(Ease.Linear).OnComplete(()=>EndTutoElement());
+            
                 isDisplayed = false;
             }
 
             yield break;
+        }
+
+        private void EndTutoElement()
+        {
+            if (currentElement != null)
+            {
+                currentElement.canvasGroup.alpha = 0;
+                currentElement.End();
+
+            }
+
+            Hide();
+        }
+
+        private void EndTutoElementAndLaunchNext()
+        {
+            if (currentElement != null)
+            {
+                currentElement.canvasGroup.alpha = 0;
+                currentElement.End();
+
+
+                currentElement.nextElement.GetComponent<RectTransform>().anchoredPosition = new Vector3(800, 91, 0);
+                currentElement.nextElement.canvasGroup.alpha = 1;
+                currentElement.nextElement.GetComponent<RectTransform>().DOAnchorPos(new Vector3(0, 91, 0), .2f).SetEase(Ease.Linear).OnComplete(() => playerInput.enabled = true);
+                currentElement.nextElement.Initialize();
+
+                currentElement = currentElement.nextElement;
+
+            }
+
         }
 
         public  void Show(PanelTutoriel panel)
@@ -204,9 +232,9 @@ namespace TheFowler
 
             yield return new WaitForSeconds(timeToWait);
 
-
-
-            currentElement.canvasGroup.DOFade(1, .2f).OnComplete(() => playerInput.enabled = true);
+            currentElement.canvasGroup.alpha = 1;
+            currentElement.GetComponent<RectTransform>().anchoredPosition = new Vector3(800, 91, 0);
+            currentElement.GetComponent<RectTransform>().DOAnchorPos(new Vector3(0, 91, 0), .2f).SetEase(Ease.Linear).OnComplete(() => playerInput.enabled = true);
             currentElement.Initialize();
 
             Show();
@@ -266,6 +294,7 @@ namespace TheFowler
                     BattleManager.CurrentBattle.Inputs.enabled = true;
                 }
 
+                UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).ChangeCustomeElementState(true);
                 UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Inputs.enabled = true;
                 UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Inputs.enabled = true;
                 playerInput.enabled = false;
