@@ -187,16 +187,29 @@ namespace TheFowler
             BlackPanel.Instance.Show();
             yield return new WaitForSeconds(fadeDuration + .1f);
 
-            AsyncOperation asyncLoad =  SceneManager.UnloadSceneAsync("Scene_MenuPrincipal");
+            AsyncOperation asyncLoad = SceneManager.UnloadSceneAsync("Scene_MenuPrincipal");
 
-            if(chapter == 1)
+            if (chapter == 1)
                 ChapterManager.GoChapterOne();
-            if(chapter == 2)
+
+            if (chapter == 2)
+            {
                 ChapterManager.GoChapterTwo();
-            if(chapter == 3)
+                Tutoriel.SkipTuto();
+            }
+
+            if (chapter == 3)
+            {
                 ChapterManager.GoChapterThree();
+                Tutoriel.SkipTuto();
+            }
+
             if(chapter == 4)
+            {
                 ChapterManager.GoChapterFour();
+                Tutoriel.SkipTuto();
+            }
+
             
             Player.canOpenPauseMenu = true;
             Player.isInPauseMenu = false;
