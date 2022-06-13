@@ -56,6 +56,7 @@ namespace TheFowler
             {
                 AkSoundEngine.SetState("GameplayPhase", "Intro");
                 AkSoundEngine.SetState("Scene", "Intro");
+                AkSoundEngine.SetState("Environement", "Regular");
             }
 
         }

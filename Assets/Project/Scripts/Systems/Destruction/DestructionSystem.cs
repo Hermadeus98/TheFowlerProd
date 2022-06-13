@@ -33,6 +33,8 @@ namespace TheFowler
 
         public bool useAnimatic = true;
 
+        [SerializeField] private AK.Wwise.Event destructionSFX;
+
         private void Awake()
         {
             Instance = this;
@@ -100,10 +102,11 @@ namespace TheFowler
                 {
                     if(BattleManager.GetAllAllies()[i].BattleActorData.actorName == "Robyn")
                     {
-                        
-
                         SplitScreen.Instance.Show(BattleManager.CurrentBattle.BattleCameraBatch.CameraReferences["Destruction_Robyn"].virtualCamera, destructionCam);
                         anim = BattleManager.GetAllAllies()[i].BattleActorAnimator.Animator;
+
+                        destructionSFX.Post(gameObject);
+
                         break;
                     }
                     else if (BattleManager.GetAllAllies()[i].BattleActorData.actorName == "Abigail")
@@ -138,6 +141,8 @@ namespace TheFowler
             yield return new WaitForSeconds(.2f);
             LevelOfDestructions[1].ObjectsToDesactivate.ForEach(w => w.SetActive(false));
             LevelOfDestructions[1].ObjectToActivate.ForEach(w => w.SetActive(true));
+
+            AkSoundEngine.SetState("Environement", "Destroyed");
 
             yield return new WaitForSeconds(4.5f);
 
