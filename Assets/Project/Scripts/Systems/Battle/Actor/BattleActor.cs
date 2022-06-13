@@ -435,6 +435,10 @@ namespace TheFowler
             BattleManager.CurrentBattle.lastDeath = this;
             GetBattleComponent<Buff>().StopVFX();
             GetBattleComponent<Defense>().StopVFX();
+
+            BattleActorInfo.AttackBonus = 0;
+            BattleActorInfo.DefenseBonus = 0;
+            BattleActorInfo.CooldownBonus = 0;
         }
 
         public virtual void OnResurect()
