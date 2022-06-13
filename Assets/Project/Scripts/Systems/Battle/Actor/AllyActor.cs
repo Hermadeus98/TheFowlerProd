@@ -78,6 +78,7 @@ namespace TheFowler
         public override void OnDeath()
         {
             base.OnDeath();
+            punchline.PlayPunchline(PunchlineCallback.DEATH);
         }
 
         public IEnumerator OnDeathSequence()
@@ -103,8 +104,7 @@ namespace TheFowler
             yield return new WaitForSeconds(.4f);
             
             BattleActorAnimator.Death();
-            punchline.PlayPunchline(PunchlineCallback.DEATH);
-            
+
             SplitScreen.Instance.SetLittleCamera(deathCamDown);
             
             if (BattleManager.CurrentBattle.BattleNarrationComponent.TryGetEvent_OnDeathOf() != null)

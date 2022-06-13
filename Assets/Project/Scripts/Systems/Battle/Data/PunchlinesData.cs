@@ -54,6 +54,11 @@ namespace TheFowler
             }
             
             var pool = Get(callback);
+            
+            var s = Structures.First(w => w.Callback == callback);
+            var chance = Random.Range(0, 100);
+            if (chance <= s.chance)
+                return null;
 
             if (pool.IsNullOrEmpty())
             {
@@ -66,6 +71,7 @@ namespace TheFowler
                 pool.ForEach(w => w.isPlayed = false);
             }
 
+            
             var selected = pool.Where(w => !w.isPlayed).ToArray();
             
             return selected[Random.Range(0, pool.Count - 1)];
@@ -75,6 +81,7 @@ namespace TheFowler
     [System.Serializable]
     public class PunchlineDataStructure
     {
+        [Button] public int chance = 100;
         public PunchlineCallback Callback;
         public List<PunchlineData> PunchlineDatas;
     }

@@ -98,6 +98,9 @@ namespace TheFowler
             
             var currentBattle = BattleManager.CurrentBattle;
             
+            if(currentBattle == null)
+                return;
+            
             if (currentBattle.HasRestart || !currentBattle.StartWithSavedData)
             {
                 QRDebug.Log("DATA INJECTION", FrenchPallet.PUMPKIN, "INITIALIZE DATA");
@@ -235,6 +238,10 @@ namespace TheFowler
             base.RegisterEvent();
             BattleManager.OnBattleStateChange += OnBattleStateChange;
             DifficultyManager.OnDifficultyChange += OnChangeDifficulty;
+            
+            if(BattleManager.CurrentBattle != null)
+                OnChangeDifficulty(DifficultyManager.currentDifficulty);
+
         }
 
         protected override void UnregisterEvent()
@@ -435,18 +442,15 @@ namespace TheFowler
             BattleActorAnimator.Resurect();
         }
 
-
         protected override void OnDisable()
         {
             base.OnDisable();
-
 
             for (int i = 0; i < BattleActorData.Spells.Length; i++)
             {
                 BattleActorData.Spells[i].Reset();
             }
         }
-
 
         protected virtual void Update()
         {
@@ -482,7 +486,8 @@ namespace TheFowler
             set
             {
                 attackBonus = value;
-                BattleActor.StateIcons?.Refresh_Att(BattleActor);
+                if(BattleActor != null)
+                    BattleActor.StateIcons?.Refresh_Att(BattleActor);
             }
         }
 
@@ -492,7 +497,8 @@ namespace TheFowler
             set
             {
                 defenseBonus = value;
-                BattleActor.StateIcons?.RefreshBuff_Def(BattleActor);
+                if(BattleActor != null)
+                    BattleActor.StateIcons?.RefreshBuff_Def(BattleActor);
             }
         }
         public int CooldownBonus
@@ -501,7 +507,8 @@ namespace TheFowler
             set
             {
                 cooldownBonus = value;
-                BattleActor.StateIcons?.Refresh_CD(BattleActor);
+                if(BattleActor != null)
+                    BattleActor.StateIcons?.Refresh_CD(BattleActor);
             }
         }
 
