@@ -89,6 +89,8 @@ namespace TheFowler
 
         public override void PlayPhase()
         {
+            Player.canOpenPauseMenu = false;
+
             FindObjectOfType<GameTimer>().incrementeDialogueTimer = true;
 
 
@@ -594,6 +596,7 @@ namespace TheFowler
                     throw new ArgumentOutOfRangeException();
             }
             idGuards = 0;
+
         }
 
   

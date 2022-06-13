@@ -33,11 +33,13 @@ namespace TheFowler
             phoebe.Rebind();
             robyn.Rebind();
             abi.Rebind();
+            Player.canOpenPauseMenu = false;
         }
 
         public void Close()
         {
             handler.SetActive(false);
+            Player.canOpenPauseMenu = true;
         }
 
         public void DisableEveryone()

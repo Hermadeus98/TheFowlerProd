@@ -78,6 +78,7 @@ namespace TheFowler
         [HideIf("@this.dataType == ActorType.GUARD")]
         [TitleGroup("Progression")] public bool hasNewSkills;
 
+
         [TitleGroup("Data Binding")]
         public enum BindingType{DEFAULT,REMOTE_SETTINGS}
         public BindingType bindingType = BindingType.DEFAULT;
