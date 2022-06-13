@@ -486,7 +486,8 @@ namespace TheFowler
             set
             {
                 attackBonus = value;
-                BattleActor.StateIcons?.Refresh_Att(BattleActor);
+                if(BattleActor != null)
+                    BattleActor.StateIcons?.Refresh_Att(BattleActor);
             }
         }
 
@@ -496,7 +497,8 @@ namespace TheFowler
             set
             {
                 defenseBonus = value;
-                BattleActor.StateIcons?.RefreshBuff_Def(BattleActor);
+                if(BattleActor != null)
+                    BattleActor.StateIcons?.RefreshBuff_Def(BattleActor);
             }
         }
         public int CooldownBonus
@@ -505,7 +507,8 @@ namespace TheFowler
             set
             {
                 cooldownBonus = value;
-                BattleActor.StateIcons?.Refresh_CD(BattleActor);
+                if(BattleActor != null)
+                    BattleActor.StateIcons?.Refresh_CD(BattleActor);
             }
         }
 
