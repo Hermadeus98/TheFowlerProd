@@ -136,26 +136,26 @@ namespace TheFowler
             
             mustResurect = false;
             
-            UIBattleBatch.Instance.Hide();
+            /*UIBattleBatch.Instance.Hide();
             UIBattleBatch.SetUIGuardsVisibility(false);
             
             SplitScreen.Instance.Show(deathCamDown, resurector.CameraBatchBattle.CameraReferences["OnResurectStart"].virtualCamera);
-            SplitScreen.Instance.SetBigCamera(resurector.CameraBatchBattle.CameraReferences["OnResurectStart"].virtualCamera);
+            SplitScreen.Instance.SetBigCamera(resurector.CameraBatchBattle.CameraReferences["OnResurectStart"].virtualCamera);*/
 
             var data = punchline.ReferedPunchlinesData.GetRandom(PunchlineCallback.RECEIVING_REVIVE);
-            SplitScreen.Instance.SetPunchLine(data);
+            //SplitScreen.Instance.SetPunchLine(data);
             
             yield return new WaitForSeconds(.4f);
 
             Health.Resurect(40f);
             
-            SplitScreen.Instance.SetLittleCamera(resurectCam);
+            //SplitScreen.Instance.SetLittleCamera(resurectCam);
 
             yield return new WaitForSeconds(2.5f);
             
-            SplitScreen.Instance.Hide();
+            /*SplitScreen.Instance.Hide();
             UIBattleBatch.Instance.Show();
-            UIBattleBatch.SetUIGuardsVisibility(true);
+            UIBattleBatch.SetUIGuardsVisibility(true);*/
             
             yield break;
         }

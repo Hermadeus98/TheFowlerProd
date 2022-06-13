@@ -30,9 +30,13 @@ namespace TheFowler
 
         [TextArea(2, 4)] public string descriptionText, descriptionTextFrench;
 
+        public TextNavigation TextNavigation;
+        
         protected override void OnStart()
         {
             base.OnStart();
+
+            transform.parent.TryGetComponent<TextNavigation>(out TextNavigation);
 
             if (Slider != null)
             {
@@ -134,6 +138,12 @@ namespace TheFowler
         {
             if (!isActive && !Player.isInPauseMenu)
                 return;
+
+            if (TextNavigation != null)
+            {
+                if(!TextNavigation.isActive)
+                    return;
+            }
             
             if (isSelected)
             {

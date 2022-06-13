@@ -3179,19 +3179,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8666878097432334601, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.923984
+      value: 0.9682374
       objectReference: {fileID: 0}
     - target: {fileID: 8666878097432334601, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.03208897
+      value: 0.08885825
       objectReference: {fileID: 0}
     - target: {fileID: 8666878097432334601, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.38085288
+      value: -0.23298103
       objectReference: {fileID: 0}
     - target: {fileID: 8666878097432334601, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.013226612
+      value: 0.018452637
       objectReference: {fileID: 0}
     - target: {fileID: 8900099574962576855, guid: 4c895a9f993578b41a0ce27d9d555cf2, type: 3}
       propertyPath: referedActor
@@ -3531,6 +3531,7 @@ MonoBehaviour:
   punchline: {fileID: 6041863195900747935}
   reviveFeedback: {fileID: 8034947789288611626}
   battleActorInfo:
+    BattleActor: {fileID: 0}
     isDeath: 0
     isStun: 0
     isTaunt: 0
@@ -3542,6 +3543,7 @@ MonoBehaviour:
     health: 0
     mana: 0
   orderInBattle: 0
+  orderInTurnSystem: 0
   deathCam: {fileID: 1002013152268781423}
   deathCamDown: {fileID: 4983623202000900715}
   resurectCam: {fileID: 740986124921504198}
@@ -7511,6 +7513,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.056128126
       objectReference: {fileID: 0}
+    - target: {fileID: 575122301383536468, guid: 83fcf89819c163646994e971074cd583, type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 651953480407364133, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -7630,6 +7636,46 @@ PrefabInstance:
     - target: {fileID: 2751752811299952788, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_Name
       value: Battle Camera Abigael
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617521608983401871, guid: 83fcf89819c163646994e971074cd583, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.074
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617521608983401871, guid: 83fcf89819c163646994e971074cd583, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.845
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617521608983401871, guid: 83fcf89819c163646994e971074cd583, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.753
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617521608983401871, guid: 83fcf89819c163646994e971074cd583, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9682374
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617521608983401871, guid: 83fcf89819c163646994e971074cd583, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.08885808
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617521608983401871, guid: 83fcf89819c163646994e971074cd583, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.23298106
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617521608983401871, guid: 83fcf89819c163646994e971074cd583, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.018452598
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617521608983401871, guid: 83fcf89819c163646994e971074cd583, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 10.409
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617521608983401871, guid: 83fcf89819c163646994e971074cd583, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -27.089
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617521608983401871, guid: 83fcf89819c163646994e971074cd583, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -0.33
       objectReference: {fileID: 0}
     - target: {fileID: 3862122670296267439, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_Lens.FieldOfView
@@ -7842,6 +7888,46 @@ PrefabInstance:
     - target: {fileID: 7076975688896365833, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.934
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174344602605662956, guid: 83fcf89819c163646994e971074cd583, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174344602605662956, guid: 83fcf89819c163646994e971074cd583, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.845
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174344602605662956, guid: 83fcf89819c163646994e971074cd583, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.753
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174344602605662956, guid: 83fcf89819c163646994e971074cd583, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9682374
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174344602605662956, guid: 83fcf89819c163646994e971074cd583, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.08885808
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174344602605662956, guid: 83fcf89819c163646994e971074cd583, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.23298106
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174344602605662956, guid: 83fcf89819c163646994e971074cd583, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.018452598
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174344602605662956, guid: 83fcf89819c163646994e971074cd583, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 10.409
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174344602605662956, guid: 83fcf89819c163646994e971074cd583, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -27.089
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174344602605662956, guid: 83fcf89819c163646994e971074cd583, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -0.33
       objectReference: {fileID: 0}
     - target: {fileID: 7231688960268703282, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_Lens.FieldOfView
@@ -8946,6 +9032,10 @@ PrefabInstance:
     - target: {fileID: 8830247300598469396, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861083000853883138, guid: 83fcf89819c163646994e971074cd583, type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8973590661180082408, guid: 83fcf89819c163646994e971074cd583, type: 3}
       propertyPath: m_NoiseProfile

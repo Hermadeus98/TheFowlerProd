@@ -23,7 +23,17 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-            EnemySpellBox.Instance.Popup("Bonus de défense", "Defend bonus");
+            switch (bonusType)
+            {
+                case DefenseBonusType.Buff:
+                    EnemySpellBox.Instance.Popup("Bonus de défense", "Defend bonus");
+                    break;
+                case DefenseBonusType.Debuff:
+                    EnemySpellBox.Instance.Popup("Malus de défense", "Defend malus");
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
             
             if (emitter == BattleManager.CurrentBattle.phoebe)
             {
