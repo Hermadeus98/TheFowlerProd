@@ -12,10 +12,21 @@ namespace TheFowler
     {
         public ITurnActor selectedActorForFury;
 
+        public static float punchlineDuration;
+        
         public override void OnStateEnter(EventArgs arg)
         {
             BattleManager.CurrentBattleActor.AllyData?.Fury(false);
-            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.GIVING_BREAKDOWN);
+            
+            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.GIVING_BREAKDOWN, out var data);
+            if (data != null)
+            {
+                punchlineDuration = data.soundDuration;
+            }
+            else
+            {
+                punchlineDuration = 2f;
+            }
 
             if (selectedActorForFury is AllyActor actor)
             {

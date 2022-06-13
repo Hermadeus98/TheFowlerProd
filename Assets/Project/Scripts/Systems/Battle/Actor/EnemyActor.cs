@@ -139,6 +139,7 @@ namespace TheFowler
             BattleManager.CurrentBattle.EnemyDeathCount++;
             Fury.PlayBreakDown();
             
+            BattleManager.CurrentBattleActor.punchline.ReferedPunchlinesData.GetRandom(PunchlineCallback.KILL);
             punchline.PlayPunchline(PunchlineCallback.DEATH);
         }
 

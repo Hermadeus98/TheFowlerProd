@@ -53,7 +53,7 @@ namespace TheFowler
                 {
                     if (BattleManager.CurrentRound.overrideTurnActor == BattleManager.CurrentBattleActor)
                     {
-                        BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.RECEIVING_BREAKDOWN);
+                        Coroutiner.Play(PlayPunchline());
                     }
                     else
                     {
@@ -63,6 +63,12 @@ namespace TheFowler
                     haveSaidPunchline = true;
                 }
             }
+        }
+
+        IEnumerator PlayPunchline()
+        {
+            yield return new WaitForSeconds(BattleState_Fury.punchlineDuration);
+            BattleManager.CurrentBattleActor.punchline.PlayPunchline(PunchlineCallback.RECEIVING_BREAKDOWN);
         }
 
         private IEnumerator Transition()

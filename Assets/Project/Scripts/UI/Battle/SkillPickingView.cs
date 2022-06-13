@@ -96,24 +96,6 @@ namespace TheFowler
             triTween = triangleImage.DOFade(0f, .2f);
         }
 
-        private void Update()
-        {
-
-
-            //if (isActive)
-            //{
-            //    if(isBreakdown && TargetSelector.SelectedTargets[0].GetBattleComponent<SpellHandler>() != null)
-            //    {
-            //        if(battleActor != TargetSelector.SelectedTargets[0])
-            //        {
-            //            skillSelector.Refresh(TargetSelector.SelectedTargets[0].GetBattleComponent<SpellHandler>());
-            //            battleActor = TargetSelector.SelectedTargets[0];
-            //        }
-
-            //    }
-            //}
-        }
-
         public void ShowTriangle(bool state) => triangle.SetActive(state);
     }
 }
