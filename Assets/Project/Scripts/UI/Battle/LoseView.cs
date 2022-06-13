@@ -40,6 +40,7 @@ namespace TheFowler
 
         public override void Show()
         {
+            Player.isInPauseMenu = true;
             base.Show();
             StartCoroutine(S());
         }
@@ -72,6 +73,7 @@ namespace TheFowler
 
         IEnumerator H()
         {
+            Player.isInPauseMenu = false;
             if(isClosed)
                 yield break;
             isClosed = true;
