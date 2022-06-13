@@ -17,6 +17,8 @@ namespace TheFowler
         
         public override void OnStateEnter(EventArgs arg)
         {
+
+            Player.canOpenPauseMenu = true;
             SoundManager.PlaySound(ChapterData.audioEventOnChapterStart, null);
             
             GameState.gameArguments.currentChapter = this;

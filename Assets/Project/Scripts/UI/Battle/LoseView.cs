@@ -47,10 +47,13 @@ namespace TheFowler
 
         IEnumerator S()
         {
+
             isClosed = false;
             
             Player.isInPauseMenu = true;
             TurnTransitionView.isLock = true;
+
+            
 
             yield return LoseGraphics.Instance.Open();
             

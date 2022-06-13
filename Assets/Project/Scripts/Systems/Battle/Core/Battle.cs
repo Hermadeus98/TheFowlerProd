@@ -87,7 +87,7 @@ namespace TheFowler
         public bool useUIOnPivot = false;
         public Transform UIPivot;
         public GameObject battleStateObj;
-
+        public NumberOfAllies numberOfAlliesSO;
 
         
         private void FixedUpdate()
@@ -147,6 +147,8 @@ namespace TheFowler
         public override void PlayPhase()
         {
             FindObjectOfType<GameTimer>().incrementeCombatTimer = true;
+
+            numberOfAlliesSO.numberOfAllies = numberOfAllies;
             
             if (!enableProgression)
             {
@@ -182,6 +184,8 @@ namespace TheFowler
             InitializeTurnSystem();
 
             StartCoroutine(StartBattle());
+
+            Player.canOpenPauseMenu = true;
         }
 
         public override void EndPhase()
@@ -418,8 +422,12 @@ namespace TheFowler
             StartCoroutine(LoseIE());
         }
 
+
+
         private IEnumerator LoseIE()
         {
+
+            
             callOnEndEvent = false;
             BattleManager.numberOfBattle--;
 

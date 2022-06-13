@@ -13,7 +13,7 @@ namespace TheFowler
         [TabGroup("Main Settings")]
         [SerializeField] protected SelectorType selectorType;
         [TabGroup("Main Settings")]
-        [SerializeField] protected List<UISelectorElement> all_elements = new List<UISelectorElement>();
+        [SerializeField] public List<UISelectorElement> all_elements = new List<UISelectorElement>();
         
         [TabGroup("Debug")]
         [SerializeField, ReadOnly] protected List<UISelectorElement> elements = new List<UISelectorElement>();

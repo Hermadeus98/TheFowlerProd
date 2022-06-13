@@ -26,6 +26,13 @@ public class MenuPauseManager : MonoBehaviour
     
     public RectTransform backGround;
     public GameObject menu;
+    [SerializeField]
+    private CanvasGroup battleUI;
+
+    [SerializeField]
+    private TextNavigation textNavigation;
+    [SerializeField]
+    private UISelectorElement restartElement;
 
     private void Awake()
     {
@@ -48,6 +55,52 @@ public class MenuPauseManager : MonoBehaviour
         isOpen = true;
         ReturnToMain();
         GetComponent<CanvasGroup>().alpha = 1;
+
+        MenuPauseHandler.Instance.Initialize();
+
+
+
+
+        Player.canOpenPauseMenu = true;
+
+        if(BattleManager.CurrentBattle != null)
+        {
+            if (!textNavigation.all_elements.Contains(restartElement))
+            {
+                restartElement.gameObject.SetActive(true);
+                textNavigation.all_elements.Insert(1, restartElement);
+                textNavigation.StartNavigate();
+            }
+            
+        }
+    }
+
+    private IEnumerator WaitIsActive()
+    {
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+
+
+        if (BattleManager.CurrentBattle != null)
+        {
+            BattleManager.CurrentBattle.Inputs.enabled = true;
+            battleUI.alpha = 1;
+
+            UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Inputs.enabled = true;
+            UI.GetView<ActionPickingView>(UI.Views.ActionPicking).Inputs.enabled = true;
+        }
+
+        if (BattleManager.CurrentBattle != null)
+        {
+            if (!textNavigation.all_elements.Contains(restartElement))
+            {
+                restartElement.gameObject.SetActive(false);
+                textNavigation.all_elements.Remove(restartElement);
+
+            }
+
+        }
+
     }
 
     public void Hide()
@@ -55,10 +108,14 @@ public class MenuPauseManager : MonoBehaviour
         menu.gameObject.SetActive(false);
         
         Player.isInPauseMenu = false;
-        
-        isActive = false;
+
+        StartCoroutine(WaitIsActive());
         isOpen = false;
+        isActive = false;
         GetComponent<CanvasGroup>().alpha = 0;
+
+        MenuPauseHandler.Instance.Close();
+
     }
     
     [Button]
@@ -76,6 +133,21 @@ public class MenuPauseManager : MonoBehaviour
     public void ChooseChapter(int chapter)
     {
         StartCoroutine(ChooseChapterIE(chapter));
+    }
+
+    public void RestartBattle()
+    {
+
+        BattleManager.CurrentBattle.Lose();
+        menu.gameObject.SetActive(false);
+
+        Player.isInPauseMenu = false;
+        isOpen = false;
+        isActive = false;
+        GetComponent<CanvasGroup>().alpha = 0;
+
+        MenuPauseHandler.Instance.Close();
+
     }
     
     IEnumerator ChooseChapterIE(int chapter)
@@ -122,6 +194,19 @@ public class MenuPauseManager : MonoBehaviour
                 FindObjectOfType<MMTimeManager>().SetTimescaleTo(1);
                 Hide();
             }
+        }
+
+        if (isActive)
+        {
+            if (BattleManager.CurrentBattle != null)
+            {
+                BattleManager.CurrentBattle.Inputs.enabled = false;
+                battleUI.alpha = 0;
+
+                UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Inputs.enabled = false;
+                UI.GetView<ActionPickingView>(UI.Views.ActionPicking).Inputs.enabled = false;
+            }
+
         }
         
         if(!isActive)

@@ -34,5 +34,6 @@ namespace TheFowler
         public const string spell = data + "Spell";
 
         public const string targetTypeDB = ui + "TargetTypeDatabase";
+        public const string numberOfAllies = data + "NumberOfAllies";
     }
 }

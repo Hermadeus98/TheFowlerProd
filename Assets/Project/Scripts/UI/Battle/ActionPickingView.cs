@@ -16,7 +16,7 @@ namespace TheFowler
         [SerializeField] private CanvasGroup backPart;
         public ActionPicker ActionPicker;
 
-        [SerializeField] private PlayerInput Inputs;
+        public PlayerInput Inputs;
         [SerializeField] public ActionPickerElement[] actions;
 
         public ActionPickerElement furyButton, basicAttack, parry, skill;

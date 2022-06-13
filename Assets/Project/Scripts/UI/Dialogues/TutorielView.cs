@@ -52,7 +52,7 @@ namespace TheFowler
                 battleUI.alpha = 0;
             }
 
-
+            Player.canOpenPauseMenu = false;
             playerInput.enabled = true;
         }
 
@@ -298,6 +298,7 @@ namespace TheFowler
                 UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Inputs.enabled = true;
                 UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Inputs.enabled = true;
                 playerInput.enabled = false;
+                Player.canOpenPauseMenu = true;
             }
         }
     }

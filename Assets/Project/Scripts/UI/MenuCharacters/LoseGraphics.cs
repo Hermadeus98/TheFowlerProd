@@ -30,11 +30,12 @@ public class LoseGraphics : SerializedMonoBehaviour
 
     public IEnumerator Open()
     {
-        Animators.ForEach(w => w.SetTrigger("Death"));
+
         
         BlackPanel.Instance.Show();
         yield return new WaitForSeconds(BlackPanel.Instance.duration);
         container.SetActive(true);
+        Animators.ForEach(w => w.SetTrigger("Death"));
         cam.m_Priority = 1000;
         BlackPanel.Instance.Hide();
     }
