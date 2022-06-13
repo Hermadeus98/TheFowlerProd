@@ -26,12 +26,70 @@ namespace TheFowler
         [SerializeField] private Image flamme;
         [SerializeField] private GameObject fury_desc;
 
-        [FoldoutGroup("Anim")] public Image X, Y, A, B;
-        [FoldoutGroup("Anim")] public Image X_box, Y_box, A_box, B_box;
-        [FoldoutGroup("Anim")] public Image middle;
-        [FoldoutGroup("Anim")] public TextMeshProUGUI X_text, Y_text, A_text, B_text;
-        [FoldoutGroup("Anim"), SerializeField] private float fillDurationHide = .2f, fillDurationShow = .2f;
+        private ActionPickerElement.PlayerActionType selectedAction;
+        
+        [Serializable]
+        public class ActionButton
+        {
+            public ActionPickerElement.PlayerActionType action;
+            public Image box, ornament, background;
+            public TextMeshProUGUI desc;
+            public GameObject text, input;
+            public float duration = .2f;
 
+            private Tween boxTween, ornamentTween, backgroundTween, descTween;
+            
+            public void InitShow()
+            {
+                boxTween?.Kill();
+                ornamentTween?.Kill();
+                backgroundTween?.Kill();
+                descTween?.Kill();
+                
+                box.fillAmount = 0;
+                ornament.fillAmount = 0;
+                background.fillAmount = 0;
+                text.SetActive(false);
+                input.SetActive(false);
+                desc.DOFade(0f, 0f);
+            }
+            
+            public IEnumerator Show()
+            {
+                yield return new WaitForEndOfFrame();
+                backgroundTween = background.DOFillAmount(1f, duration);
+                boxTween = box.DOFillAmount(1f, duration);
+                ornamentTween = ornament.DOFillAmount(1f, duration);
+                descTween = desc.DOFade(1f, duration);
+                yield return new WaitForSeconds(duration);
+                text.SetActive(true);
+                input.SetActive(true);
+            }
+
+            public void InitHide()
+            {
+                boxTween?.Kill();
+                ornamentTween?.Kill();
+                backgroundTween?.Kill();
+                descTween?.Kill();
+            }
+
+            public IEnumerator Hide()
+            {
+                yield return new WaitForEndOfFrame();
+                backgroundTween = background.DOFillAmount(0f, duration);
+                boxTween = box.DOFillAmount(0f, duration);
+                ornamentTween = ornament.DOFillAmount(0f, duration);
+                descTween = desc.DOFade(0f, duration);
+                yield return new WaitForSeconds(duration);
+                text.SetActive(false);
+                input.SetActive(false);
+            }
+        }
+
+        [FoldoutGroup("Anim")] public ActionButton[] ActionButtonsAnims;
+        [FoldoutGroup("Anim")] public Image middle;
+        
         private Coroutine opening;
 
         public GameObject[] decriptions;
@@ -49,59 +107,28 @@ namespace TheFowler
         public void HideTuto()
         {
             CanvasGroup.alpha = 0;
-
         }
 
         [Button]
         public void ShowAnim()
         {
-            X.fillAmount = 0;
-            Y.fillAmount = 0;
-            A.fillAmount = 0;
-            B.fillAmount = 0;
-
-            X_box.fillAmount = 0;
-            Y_box.fillAmount = 0;
-            A_box.fillAmount = 0;
-            B_box.fillAmount = 0;
-
-            X_text.gameObject.SetActive(false);
-            Y_text.gameObject.SetActive(false);
-            B_text.gameObject.SetActive(false);
-            A_text.gameObject.SetActive(false);
-            
             middle.fillAmount = 0;
-
             CanvasGroup.alpha = 1f;
 
             if(opening != null) StopCoroutine(opening);
             opening = StartCoroutine(ShowAnimIE());
+
+            ActionButtonsAnims.ForEach(w => w.InitShow());
         }
 
         IEnumerator ShowAnimIE()
         {
-            middle.DOFillAmount(1f, fillDurationShow * 4f);
-            
-            B.DOFillAmount(1f, fillDurationShow);
-            yield return new WaitForSeconds(fillDurationShow);
-            
-            Y.DOFillAmount(1f, fillDurationShow);
-            A.DOFillAmount(1f, fillDurationShow);
-            yield return new WaitForSeconds(fillDurationShow);
-            
-            X.DOFillAmount(1f, fillDurationShow);
-            yield return new WaitForSeconds(fillDurationShow);
-
-            Y_box.DOFillAmount(1f, fillDurationShow);
-            A_box.DOFillAmount(1f, fillDurationShow);
-            X_box.DOFillAmount(1f, fillDurationShow);
-            B_box.DOFillAmount(1f, fillDurationShow);
-            yield return new WaitForSeconds(fillDurationShow);
-
-            X_text.gameObject.SetActive(true);
-            Y_text.gameObject.SetActive(true);
-            B_text.gameObject.SetActive(true);
-            A_text.gameObject.SetActive(true);
+            middle.DOFillAmount(1f, .2f * 2f);
+            for (int i = 0; i < ActionButtonsAnims.Length; i++)
+            {
+                yield return ActionButtonsAnims[i].Show();
+            }
+            yield break;
         }
 
         [Button]
@@ -109,35 +136,23 @@ namespace TheFowler
         {
             if(opening != null) StopCoroutine(opening);
             opening = StartCoroutine(HideAnimIE());
+            
+            ActionButtonsAnims.ForEach(w => w.InitHide());
         }
         
         IEnumerator HideAnimIE()
         {
-            middle.DOFillAmount(0f, fillDurationHide * 4f);
-            
-            X_text.gameObject.SetActive(false);
-            Y_text.gameObject.SetActive(false);
-            B_text.gameObject.SetActive(false);
-            A_text.gameObject.SetActive(false);
-            yield return new WaitForSeconds(fillDurationHide);
+            middle.DOFillAmount(0f, .2f * 2f);
+            for (int i = 0; i < ActionButtonsAnims.Length; i++)
+            {
+                if (ActionButtonsAnims[i].action != selectedAction)
+                {
+                    yield return ActionButtonsAnims[i].Hide();
+                }
+            }
 
-            Y_box.DOFillAmount(0f, fillDurationHide);
-            A_box.DOFillAmount(0f, fillDurationHide);
-            X_box.DOFillAmount(0f, fillDurationHide);
-            B_box.DOFillAmount(0f, fillDurationHide);
-            yield return new WaitForSeconds(fillDurationHide);
-            
-            X.DOFillAmount(0f, fillDurationHide);
-            yield return new WaitForSeconds(fillDurationHide);
-            
-            Y.DOFillAmount(0f, fillDurationHide);
-            A.DOFillAmount(0f, fillDurationHide);
-            yield return new WaitForSeconds(fillDurationHide);
-            
-            B.DOFillAmount(0f, fillDurationHide);
-
-            yield return new WaitForSeconds(fillDurationHide);
-            CanvasGroup.alpha = 0;
+            yield return new WaitForSeconds(.2f);
+            CanvasGroup.alpha = 0f;
         }
 
         public override void Refresh(EventArgs args)
@@ -167,6 +182,7 @@ namespace TheFowler
             {
                 check = actions[i].CheckInput(Inputs, out var action);
                 playerActionType = action;
+                selectedAction = action;
 
                 if (check)
                     return true;

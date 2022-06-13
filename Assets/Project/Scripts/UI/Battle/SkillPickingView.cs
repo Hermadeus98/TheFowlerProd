@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -28,13 +29,16 @@ namespace TheFowler
         [TabGroup("References")]
         [SerializeField] GameObject triangle;
 
+        [SerializeField] private Image triangleImage;
+
         public bool isBreakdown;
 
         private BattleActor battleActor;
 
         public PlayerInput Inputs;
 
-
+        private Tween triTween;
+        
         public override void Show()
         {
             base.Show();
@@ -57,6 +61,8 @@ namespace TheFowler
                 triangle.GetComponent<CanvasGroup>().alpha = 0;
             }
 
+            triTween?.Kill();
+            triTween = triangleImage.DOFade(1f, .2f).SetDelay(.8f);
         }
 
         public static List<EnemyActor> enemies = new List<EnemyActor>();
@@ -85,6 +91,9 @@ namespace TheFowler
                     w.weak.Hide();
                 });
             }
+            
+            triTween?.Kill();
+            triTween = triangleImage.DOFade(0f, .2f);
         }
 
         private void Update()

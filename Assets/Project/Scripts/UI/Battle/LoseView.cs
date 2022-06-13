@@ -62,12 +62,8 @@ namespace TheFowler
 
         public override void Hide()
         {
-            Debug.Log("aaa");
-
             TextNavigation.isActive = false;
-
             StartCoroutine(H());
-            
             base.Hide();
         }
 
