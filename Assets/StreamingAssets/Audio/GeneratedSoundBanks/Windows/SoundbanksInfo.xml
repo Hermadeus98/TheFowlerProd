@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Language="SFX" Hash="1297729325">
+		<SoundBank Id="1355168291" Language="SFX" Hash="2105170892">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
@@ -49,13 +49,17 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3787826988" Language="English(US)" Hash="1752320962">
+		<SoundBank Id="3787826988" Language="English(US)" Hash="2361793701">
 			<ObjectPath>\SoundBanks\Default Work Unit\Core</ObjectPath>
 			<ShortName>Core</ShortName>
 			<Path>English(US)\Core.bnk</Path>
 			<IncludedEvents>
 				<Event Id="3165936634" Name="TF_Ambient_Explo_TheBallRoom_Regular" ObjectPath="\Events\Default Work Unit\Ambiant\3_TheBallRoom\TF_Ambient_Explo_TheBallRoom_Regular" DurationType="Infinite">
 					<IncludedMemoryFiles>
+						<File Id="21541603" Language="SFX">
+							<ShortName>TF_Ambiant_Generic_Destroyed.wav</ShortName>
+							<Path>SFX\TF_Ambiant_Generic_Destroyed_B92DC056.wem</Path>
+						</File>
 						<File Id="267211795" Language="SFX">
 							<ShortName>TF_Ambient_Explo_TheBallRoom_Regular.wav</ShortName>
 							<Path>SFX\TF_Ambient_Explo_TheBallRoom_Regular_EE7D2920.wem</Path>
@@ -64,6 +68,10 @@
 				</Event>
 				<Event Id="1682054273" Name="TF_Ambient_Explo_TheBirdCage_Regular" ObjectPath="\Events\Default Work Unit\Ambiant\2_TheBirdCage\TF_Ambient_Explo_TheBirdCage_Regular" DurationType="Infinite">
 					<IncludedMemoryFiles>
+						<File Id="21541603" Language="SFX">
+							<ShortName>TF_Ambiant_Generic_Destroyed.wav</ShortName>
+							<Path>SFX\TF_Ambiant_Generic_Destroyed_B92DC056.wem</Path>
+						</File>
 						<File Id="539032552" Language="SFX">
 							<ShortName>TF_Ambient_Explo_TheBirdCage_Regular.wav</ShortName>
 							<Path>SFX\TF_Ambient_Explo_TheBirdCage_Regular_EE7D2920.wem</Path>
@@ -72,6 +80,10 @@
 				</Event>
 				<Event Id="2880109544" Name="TF_Ambient_Explo_TheGardens_Regular" ObjectPath="\Events\Default Work Unit\Ambiant\1_TheGardens\TF_Ambient_Explo_TheGardens_Regular" DurationType="Infinite">
 					<IncludedMemoryFiles>
+						<File Id="21541603" Language="SFX">
+							<ShortName>TF_Ambiant_Generic_Destroyed.wav</ShortName>
+							<Path>SFX\TF_Ambiant_Generic_Destroyed_B92DC056.wem</Path>
+						</File>
 						<File Id="788313607" Language="SFX">
 							<ShortName>TF_Ambient_Explo_TheGardens_Regular.wav</ShortName>
 							<Path>SFX\TF_Ambient_Explo_TheGardens_Regular_EE7D2920.wem</Path>
@@ -80,6 +92,10 @@
 				</Event>
 				<Event Id="3012027109" Name="TF_Ambient_Explo_TheTribunal_Regular" ObjectPath="\Events\Default Work Unit\Ambiant\4_TheTribunal\TF_Ambient_Explo_TheTribunal_Regular" DurationType="Infinite">
 					<IncludedMemoryFiles>
+						<File Id="21541603" Language="SFX">
+							<ShortName>TF_Ambiant_Generic_Destroyed.wav</ShortName>
+							<Path>SFX\TF_Ambiant_Generic_Destroyed_B92DC056.wem</Path>
+						</File>
 						<File Id="162121316" Language="SFX">
 							<ShortName>TF_Ambient_Explo_TheTribunal_Regular.wav</ShortName>
 							<Path>SFX\TF_Ambient_Explo_TheTribunal_Regular_EE7D2920.wem</Path>
@@ -428,6 +444,7 @@
 						</SwitchContainer>
 					</SwitchContainers>
 					<ActionSetState>
+						<ActionSetStateEntry Id="2628937827" Name="Regular" ObjectPath="\States\Default Work Unit\Environement\Regular"/>
 						<ActionSetStateEntry Id="3814499265" Name="Explo" ObjectPath="\States\Default Work Unit\GameplayPhase\Explo"/>
 					</ActionSetState>
 				</Event>
@@ -579,6 +596,14 @@
 						<File Id="213507082" Language="SFX">
 							<ShortName>TF_SFX_Combat_BaseAttack_Robyn_Hit.wav</ShortName>
 							<Path>SFX\TF_SFX_Combat_BaseAttack_Robyn_Hit_B92DC056.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4166029236" Name="TF_SFX_Combat_DestructionSequence" ObjectPath="\Events\Default Work Unit\Cutscenes\DS_Destruction\TF_SFX_Combat_DestructionSequence" DurationType="OneShot" DurationMin="6.803991" DurationMax="6.803991">
+					<IncludedMemoryFiles>
+						<File Id="860596571" Language="SFX">
+							<ShortName>TF_SFX_Combat_DestructionSequence.wav</ShortName>
+							<Path>SFX\TF_SFX_Combat_DestructionSequence_05F9AB7E.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -2154,23 +2179,31 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3233046114" Name="TF_Voice_Generic_DamageTakenHigh_Robyn" ObjectPath="\Events\Default Work Unit\Voices\Robyn\Combat\TF_Voice_Generic_DamageTakenHigh_Robyn" DurationType="OneShot" DurationMin="0.718708" DurationMax="1.868095">
+				<Event Id="3233046114" Name="TF_Voice_Generic_DamageTakenHigh_Robyn" ObjectPath="\Events\Default Work Unit\Voices\Robyn\Combat\TF_Voice_Generic_DamageTakenHigh_Robyn" DurationType="OneShot" DurationMin="0.437937" DurationMax="0.688866">
 					<IncludedMemoryFiles>
-						<File Id="444444790" Language="English(US)">
-							<ShortName>TF_Voice_Generic_DamageTakenHigh_Abigail03.wav</ShortName>
-							<Path>Voices\English(US)\TF_Voice_Generic_DamageTakenHigh_Abigail03_05F9AB7E.wem</Path>
+						<File Id="5153677" Language="English(US)">
+							<ShortName>TF_Voice_Generic_DamageTakenHigh_Robyn02.wav</ShortName>
+							<Path>Voices\English(US)\TF_Voice_Generic_DamageTakenHigh_Robyn02_05F9AB7E.wem</Path>
 						</File>
-						<File Id="556074974" Language="English(US)">
-							<ShortName>TF_Voice_Generic_DamageTakenHigh_Abigail02.wav</ShortName>
-							<Path>Voices\English(US)\TF_Voice_Generic_DamageTakenHigh_Abigail02_05F9AB7E.wem</Path>
+						<File Id="47046849" Language="English(US)">
+							<ShortName>TF_Voice_Generic_DamageTakenHigh_Robyn03.wav</ShortName>
+							<Path>Voices\English(US)\TF_Voice_Generic_DamageTakenHigh_Robyn03_05F9AB7E.wem</Path>
 						</File>
-						<File Id="659438837" Language="English(US)">
-							<ShortName>TF_Voice_Generic_DamageTakenHigh_Abigail01.wav</ShortName>
-							<Path>Voices\English(US)\TF_Voice_Generic_DamageTakenHigh_Abigail01_05F9AB7E.wem</Path>
+						<File Id="202609069" Language="English(US)">
+							<ShortName>TF_Voice_Generic_DamageTakenHigh_Robyn01.wav</ShortName>
+							<Path>Voices\English(US)\TF_Voice_Generic_DamageTakenHigh_Robyn01_05F9AB7E.wem</Path>
 						</File>
-						<File Id="730392997" Language="English(US)">
-							<ShortName>TF_Voice_Generic_DamageTakenHigh_Abigail04.wav</ShortName>
-							<Path>Voices\English(US)\TF_Voice_Generic_DamageTakenHigh_Abigail04_05F9AB7E.wem</Path>
+						<File Id="272233271" Language="English(US)">
+							<ShortName>TF_Voice_Generic_DamageTakenHigh_Robyn05.wav</ShortName>
+							<Path>Voices\English(US)\TF_Voice_Generic_DamageTakenHigh_Robyn05_05F9AB7E.wem</Path>
+						</File>
+						<File Id="454056804" Language="English(US)">
+							<ShortName>TF_Voice_Generic_DamageTakenHigh_Robyn04.wav</ShortName>
+							<Path>Voices\English(US)\TF_Voice_Generic_DamageTakenHigh_Robyn04_05F9AB7E.wem</Path>
+						</File>
+						<File Id="817866755" Language="English(US)">
+							<ShortName>TF_Voice_Generic_DamageTakenHigh_Robyn06.wav</ShortName>
+							<Path>Voices\English(US)\TF_Voice_Generic_DamageTakenHigh_Robyn06_05F9AB7E.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -2274,35 +2307,27 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3931563902" Name="TF_Voice_Generic_DamageTakenLow_Robyn" ObjectPath="\Events\Default Work Unit\Voices\Robyn\Combat\TF_Voice_Generic_DamageTakenLow_Robyn" DurationType="OneShot" DurationMin="0.355692" DurationMax="0.8839">
+				<Event Id="3931563902" Name="TF_Voice_Generic_DamageTakenLow_Robyn" ObjectPath="\Events\Default Work Unit\Voices\Robyn\Combat\TF_Voice_Generic_DamageTakenLow_Robyn" DurationType="OneShot" DurationMin="0.323787" DurationMax="0.595737">
 					<IncludedMemoryFiles>
-						<File Id="171441012" Language="English(US)">
-							<ShortName>TF_Voice_Generic_DamageTakenLow_Abigail05.wav</ShortName>
-							<Path>Voices\English(US)\TF_Voice_Generic_DamageTakenLow_Abigail05_05F9AB7E.wem</Path>
+						<File Id="63900074" Language="English(US)">
+							<ShortName>TF_Voice_Generic_DamageTakenLow_Robyn05.wav</ShortName>
+							<Path>Voices\English(US)\TF_Voice_Generic_DamageTakenLow_Robyn05_05F9AB7E.wem</Path>
 						</File>
-						<File Id="188530616" Language="English(US)">
-							<ShortName>TF_Voice_Generic_DamageTakenLow_Abigail02.wav</ShortName>
-							<Path>Voices\English(US)\TF_Voice_Generic_DamageTakenLow_Abigail02_05F9AB7E.wem</Path>
+						<File Id="175368788" Language="English(US)">
+							<ShortName>TF_Voice_Generic_DamageTakenLow_Robyn04.wav</ShortName>
+							<Path>Voices\English(US)\TF_Voice_Generic_DamageTakenLow_Robyn04_05F9AB7E.wem</Path>
 						</File>
-						<File Id="381181492" Language="English(US)">
-							<ShortName>TF_Voice_Generic_DamageTakenLow_Abigail01.wav</ShortName>
-							<Path>Voices\English(US)\TF_Voice_Generic_DamageTakenLow_Abigail01_05F9AB7E.wem</Path>
+						<File Id="328154945" Language="English(US)">
+							<ShortName>TF_Voice_Generic_DamageTakenLow_Robyn01.wav</ShortName>
+							<Path>Voices\English(US)\TF_Voice_Generic_DamageTakenLow_Robyn01_05F9AB7E.wem</Path>
 						</File>
-						<File Id="493618245" Language="English(US)">
-							<ShortName>TF_Voice_Generic_DamageTakenLow_Abigail06.wav</ShortName>
-							<Path>Voices\English(US)\TF_Voice_Generic_DamageTakenLow_Abigail06_05F9AB7E.wem</Path>
+						<File Id="564745186" Language="English(US)">
+							<ShortName>TF_Voice_Generic_DamageTakenLow_Robyn02.wav</ShortName>
+							<Path>Voices\English(US)\TF_Voice_Generic_DamageTakenLow_Robyn02_05F9AB7E.wem</Path>
 						</File>
-						<File Id="503830985" Language="English(US)">
-							<ShortName>TF_Voice_Generic_DamageTakenLow_Abigail03.wav</ShortName>
-							<Path>Voices\English(US)\TF_Voice_Generic_DamageTakenLow_Abigail03_05F9AB7E.wem</Path>
-						</File>
-						<File Id="545275068" Language="English(US)">
-							<ShortName>TF_Voice_Generic_DamageTakenLow_Abigail07.wav</ShortName>
-							<Path>Voices\English(US)\TF_Voice_Generic_DamageTakenLow_Abigail07_05F9AB7E.wem</Path>
-						</File>
-						<File Id="761891612" Language="English(US)">
-							<ShortName>TF_Voice_Generic_DamageTakenLow_Abigail04.wav</ShortName>
-							<Path>Voices\English(US)\TF_Voice_Generic_DamageTakenLow_Abigail04_05F9AB7E.wem</Path>
+						<File Id="621322902" Language="English(US)">
+							<ShortName>TF_Voice_Generic_DamageTakenLow_Robyn03.wav</ShortName>
+							<Path>Voices\English(US)\TF_Voice_Generic_DamageTakenLow_Robyn03_05F9AB7E.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -6596,6 +6621,9 @@
 						<State Id="3037376192" Name="Scene4_TheTribunal" ObjectPath="\States\Default Work Unit\Scene\Scene4_TheTribunal" GUID="{FE294F59-3669-485C-83AC-DA13D5668902}"/>
 						<State Id="4184794294" Name="Outro" ObjectPath="\States\Default Work Unit\Scene\Outro" GUID="{BA6F1642-33DF-4F12-888C-CFA108BF5774}"/>
 					</States>
+				</StateGroup>
+				<StateGroup Id="2628937827" Name="Regular" ObjectPath="\States\Default Work Unit\Environement\Regular" GUID="{A5EEC407-73D4-40C5-A6E8-3EE6BF0002EB}">
+					<States/>
 				</StateGroup>
 				<StateGroup Id="2937832959" Name="Battle" ObjectPath="\States\Default Work Unit\GameplayPhase\Battle" GUID="{16478AC6-5BF2-42C8-86D6-91C94808F876}">
 					<States/>
