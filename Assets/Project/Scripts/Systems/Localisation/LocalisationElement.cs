@@ -30,10 +30,17 @@ public class LocalisationElement : MonoBehaviour
         switch (LocalisationManager.language)
         {
             case Language.ENGLISH:
-                displayedText.text = englishText;
+                if(displayedText != null)
+                {
+                    displayedText.text = englishText;
+                }
+
                 break;
             case Language.FRENCH:
-                displayedText.text = frenchText;
+                if (displayedText != null)
+                {
+                    displayedText.text = frenchText;
+                }
                 break;
         }
     }
