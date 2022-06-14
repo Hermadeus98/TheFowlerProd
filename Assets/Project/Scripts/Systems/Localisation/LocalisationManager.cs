@@ -40,6 +40,8 @@ public static class LocalisationManager
         action.Invoke();
     }
 
+    
+
 
     public static void UnRegister(Action action)
     {
