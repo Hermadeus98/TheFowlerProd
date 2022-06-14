@@ -57,7 +57,7 @@ namespace TheFowler
             
             var s = Structures.First(w => w.Callback == callback);
             var chance = Random.Range(0, 100);
-            if (chance <= s.chance)
+            if (chance > s.chance)
                 return null;
 
             if (pool.IsNullOrEmpty())
