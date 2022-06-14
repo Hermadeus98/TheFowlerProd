@@ -47,7 +47,7 @@ namespace TheFowler
         {
             yield return new WaitForSeconds(timeCodeBreakWall);
 
-            onBreakWallWwise.Post(gameObject);
+            //onBreakWallWwise.Post(gameObject);
 
         }
     }

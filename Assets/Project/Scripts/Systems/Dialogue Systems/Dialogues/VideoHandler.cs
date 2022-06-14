@@ -40,6 +40,8 @@ namespace TheFowler
 
         private void PlayElements()
         {
+            AkSoundEngine.SetState("Environement", "Regular");
+
             videoPassed = false;
             view = UI.GetView<VideoView>(UI.Views.Video);
 
@@ -56,7 +58,6 @@ namespace TheFowler
             {
                 AkSoundEngine.SetState("GameplayPhase", "Intro");
                 AkSoundEngine.SetState("Scene", "Intro");
-                AkSoundEngine.SetState("Environement", "Regular");
             }
 
         }
