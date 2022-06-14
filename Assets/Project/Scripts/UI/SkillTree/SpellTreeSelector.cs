@@ -24,12 +24,13 @@ namespace TheFowler
             {
                 spellSprite.enabled = false;
                 typeImage.enabled = false;
-                spellNameTxt.text = "????";
-                cooldownTxt.text = "X";
+                spellNameTxt.text = "";
+                cooldownTxt.text = "";
                 associatedSpell = null;
-                
+                cooldownSprite.enabled = false;
                 return;
             }
+            cooldownSprite.enabled = true;
             typeImage.enabled = true;
             typeImage.sprite = spellTypeDatabase.GetElement(spell.SpellType);
             associatedSpell = spell;
