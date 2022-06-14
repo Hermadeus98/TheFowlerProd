@@ -450,6 +450,7 @@ namespace TheFowler
             StartCoroutine(RestartIE());
 
             FindObjectsOfType<StateIcons>().ForEach(w => w.Reset());
+            DestructionSystem.Instance.ResetDestruction();
         }
 
         IEnumerator RestartIE()
