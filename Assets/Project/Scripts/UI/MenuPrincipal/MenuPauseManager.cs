@@ -8,6 +8,7 @@ using TheFowler;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuPauseManager : MonoBehaviour
 {
@@ -46,7 +47,10 @@ public class MenuPauseManager : MonoBehaviour
     {
         if(!Player.canOpenPauseMenu)
             return;
-        
+
+        backGround.GetComponent<Image>().DOColor(new Color(1,1,1,0), .2f);
+
+
         menu.gameObject.SetActive(true);
         
         Player.isInPauseMenu = true;
@@ -115,6 +119,7 @@ public class MenuPauseManager : MonoBehaviour
         GetComponent<CanvasGroup>().alpha = 0;
 
         MenuPauseHandler.Instance.Close();
+        BlackPanel.Instance.Hide(.2f);
 
     }
     
@@ -135,9 +140,11 @@ public class MenuPauseManager : MonoBehaviour
         StartCoroutine(ChooseChapterIE(chapter));
     }
 
-    public void RestartBattle()
+    public IEnumerator WaitRestartBattle()
     {
+        BlackPanel.Instance.Show(.2f);
 
+        yield return new WaitForSeconds(.2f);
         BattleManager.CurrentBattle.Lose();
         menu.gameObject.SetActive(false);
 
@@ -147,7 +154,14 @@ public class MenuPauseManager : MonoBehaviour
         GetComponent<CanvasGroup>().alpha = 0;
 
         MenuPauseHandler.Instance.Close();
+        BlackPanel.Instance.Hide(.2f);
+        yield break;
+    }
 
+    public void RestartBattle()
+    {
+        StartCoroutine(WaitRestartBattle());
+        
     }
     
     IEnumerator ChooseChapterIE(int chapter)
@@ -186,13 +200,14 @@ public class MenuPauseManager : MonoBehaviour
         {
             if (!isOpen)
             {
+                
                 FindObjectOfType<MMTimeManager>().SetTimescaleTo(0);
                 Open();
             }
             else
             {
                 FindObjectOfType<MMTimeManager>().SetTimescaleTo(1);
-                Hide();
+                SmoothHide();
             }
         }
 
@@ -217,7 +232,7 @@ public class MenuPauseManager : MonoBehaviour
             switch (currentPanel)
             {
                 case MenuPausePanel.MAIN:
-                    Hide();
+                    SmoothHide();
                     break;
                 case MenuPausePanel.SETTINGS:
                     ReturnToMain();
@@ -228,9 +243,15 @@ public class MenuPauseManager : MonoBehaviour
         }
     }
 
+    public void SmoothHide()
+    {
+        BlackPanel.Instance.Show(.2f);
+        backGround.GetComponent<Image>().DOColor(Color.black, .2f).OnComplete(() => Hide());
+    }
+
     public void ReturnToMainMenu()
     {
-        Hide();
+        SmoothHide();
         Game.GoToMainMenu();
     }
     

@@ -49,9 +49,10 @@ public class LoseGraphics : SerializedMonoBehaviour
     public IEnumerator Close()
     {
         Animators.ForEach(w => w.SetTrigger("Resurect"));
-            
+        yield return new WaitForSeconds(1f);
+
         BlackPanel.Instance.Show();
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         StartCoroutine(SetFalse());
     }
 
