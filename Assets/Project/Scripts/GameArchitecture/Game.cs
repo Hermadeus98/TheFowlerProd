@@ -118,5 +118,12 @@ namespace TheFowler
             Debug.Log(lastBatchLoaded);
             UnloadScene(lastBatchLoaded);
         }
+
+        public static void GoToCredit()
+        {
+            SceneManager.LoadSceneAsync("Scene_MenuPrincipal", LoadSceneMode.Additive);
+            Debug.Log(lastBatchLoaded);
+            UnloadScene(lastBatchLoaded);
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace TheFowler
         [TabGroup("Tree")] [SerializeField] private BattleActorData[] datas;
         [TabGroup("Tree")] private BattleActorData currentData;
         [TabGroup("Tree")] [SerializeField] private RectTransform descriptionBox;
-        [TabGroup("Tree")] [SerializeField] private TMPro.TextMeshProUGUI descriptionName, descriptionText;
+        [TabGroup("Tree")] [SerializeField] private TMPro.TextMeshProUGUI descriptionName, descriptionText, cooldownText;
         [TabGroup("Tree")] [SerializeField] private Image typeImage, strengthImage;
         [TabGroup("Tree")] [SerializeField] private Image[] targetImages;
         [TabGroup("Tree")] [SerializeField] private Sprite heartEmpty, heartFilled;
@@ -296,7 +296,7 @@ namespace TheFowler
         public void SetDescription(SkillTreeSelector selector, Spell spell)
         {
             descriptionName.text = spell.SpellName;
-
+            cooldownText.text = spell.Cooldown.ToString();
 
 
             if (LocalisationManager.language == Language.ENGLISH)
@@ -448,7 +448,11 @@ namespace TheFowler
         }
 
 
-
+        private void OnApplicationFocus(bool focus)
+        {
+            if (isActive && focus)
+                eventSytem.SetSelectedGameObject(firstSelectedObject.gameObject);
+        }
 
     }
 

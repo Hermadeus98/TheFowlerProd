@@ -317,6 +317,12 @@ namespace TheFowler
             onSwitch.Post(gameObject);
         }
 
+        private void OnApplicationFocus(bool focus)
+        {
+            if(isActive && focus && !menuView.onMenu)
+                eventSytem.SetSelectedGameObject(parentSelectors.GetChild(0).gameObject);
+        }
+
     }
 }
 
