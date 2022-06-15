@@ -107,6 +107,8 @@ namespace TheFowler
             menuView.background.SetActive(true);
 
             StartCoroutine(WaitShowMenu());
+
+            SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Cancel, gameObject);
         }
 
         private void Update()
@@ -115,6 +117,8 @@ namespace TheFowler
             {
                 if (Inputs.actions["RightBumper"].WasPressedThisFrame())
                 {
+                    SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SwitchTurn, gameObject);
+
                     ID++;
                     if (ID == menuView.numberOfAllies) ID = 0;
 
@@ -137,6 +141,8 @@ namespace TheFowler
                 }
                 else if (Inputs.actions["LeftBumper"].WasPressedThisFrame())
                 {
+                    SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SwitchTurn, gameObject);
+
                     ID--;
                     if (ID == -1) ID = menuView.numberOfAllies - 1;
 
@@ -204,6 +210,7 @@ namespace TheFowler
             RefreshSkillPoint();
             RefreshCircles();
 
+            SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_WeakDisplay, gameObject);
 
         }
 

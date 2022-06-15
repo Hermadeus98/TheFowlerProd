@@ -249,7 +249,7 @@ namespace TheFowler
         public void OpenConfirmationPanel()
         {
 
-
+            SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Confirm, gameObject);
 
             confirmation.SetActive(true);
             background.SetActive(false);

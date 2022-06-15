@@ -96,6 +96,8 @@ namespace TheFowler
             if (canInteract && isHover && Inputs.actions["Select"].WasPressedThisFrame())
             {
 
+                SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Confirm, gameObject);
+
                 for (int i = 0; i < previousSelector.Count; i++)
                 {
 
