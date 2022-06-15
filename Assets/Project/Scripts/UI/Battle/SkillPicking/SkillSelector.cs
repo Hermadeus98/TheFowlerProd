@@ -108,6 +108,7 @@ namespace TheFowler
                     {
                         Hide();
                         skillSelectorElement = skillElement;
+                        Debug.Log("SPELL SELECTED");
                         return true;
                     }
                 }

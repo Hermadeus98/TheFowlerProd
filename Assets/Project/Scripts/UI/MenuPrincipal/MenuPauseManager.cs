@@ -43,10 +43,18 @@ public class MenuPauseManager : MonoBehaviour
         settings.StartNavigate();
     }
 
+    private bool reopenCharacterView = false;
+    private MenuCharactersView MenuCharactersView => UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters);
+    
     public void Open()
     {
         if(!Player.canOpenPauseMenu)
             return;
+
+        if (MenuCharactersView.isOpen)
+        {
+            return;
+        }
 
         backGround.GetComponent<Image>().DOColor(new Color(1,1,1,0), .2f);
 
@@ -120,7 +128,6 @@ public class MenuPauseManager : MonoBehaviour
 
         MenuPauseHandler.Instance.Close();
         BlackPanel.Instance.Hide(.2f);
-
     }
     
     [Button]

@@ -130,6 +130,7 @@ namespace TheFowler
             if (playAnimation)
             {
                 emitter.BattleActorAnimator.SpellExecution1();
+                emitter.stateEventSound.Post(emitter.gameObject);
             }
 
             yield return new WaitForSeconds(SpellData.Instance.StateEffect_WaitTime);

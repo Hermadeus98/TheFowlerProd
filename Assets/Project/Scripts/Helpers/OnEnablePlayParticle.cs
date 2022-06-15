@@ -10,11 +10,13 @@ public class OnEnablePlayParticle : MonoBehaviour
 
     private void OnEnable()
     {
-        ps?.Play();
+        if(ps != null)
+            ps?.Play();
     }
 
     private void OnDisable()
     {
-        ps?.Stop();
+        if(ps != null)
+            ps?.Stop();
     }
 }

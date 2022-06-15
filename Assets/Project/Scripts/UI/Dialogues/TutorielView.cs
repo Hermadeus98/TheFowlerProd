@@ -274,6 +274,8 @@ namespace TheFowler
 
         public override void Hide()
         {
+            UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Inputs.enabled = true;
+            UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Inputs.enabled = true;
             base.Hide();
             if (isShowed)
             {
@@ -295,9 +297,8 @@ namespace TheFowler
                 }
 
                 UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).ChangeCustomeElementState(true);
-                UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Inputs.enabled = true;
-                UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Inputs.enabled = true;
                 playerInput.enabled = false;
+                
                 Player.canOpenPauseMenu = true;
             }
         }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,13 +7,28 @@ namespace TheFowler
 {
     public class DifficultyUpdater : MonoBehaviour
     {
-        /*private IEnumerator Start()
+        public TextChoice tc;
+        
+        private void Start()
         {
-            yield return new WaitForSeconds(.1f);
-            if (TryGetComponent<TextMenu>(out var t))
+            Refresh();
+        }
+
+        private void Refresh()
+        {
+            switch (DifficultyManager.currentDifficulty )
             {
-                t
+                case DifficultyEnum.TEST:
+                    break;
+                case DifficultyEnum.EASY:
+                    break;
+                case DifficultyEnum.MEDIUM:
+                    break;
+                case DifficultyEnum.HARD:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
-        }*/
+        }
     }
 }
