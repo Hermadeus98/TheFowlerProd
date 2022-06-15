@@ -259,6 +259,7 @@ public class MenuPauseManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         SmoothHide();
+        Hide();
         Game.GoToMainMenu();
     }
     

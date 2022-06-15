@@ -59,6 +59,8 @@ namespace TheFowler
             
             currentPanel = MenuPanel.MAIN;
             
+            BlackPanel.Instance.Hide();
+            
             menu.alpha = 0;
             openning.alpha = 0;
             manette.alpha = 0;
@@ -67,7 +69,12 @@ namespace TheFowler
                 StartCoroutine(Opening());
             else
             {
+                chapters.StartNavigate();
+                settings.StartNavigate();
+                main.StartNavigate();
                 ReturnToMain();
+                menu.DOFade(1f, .2f);
+                blackscreen.DOFade(0f, fadeDuration + 1);
             }
         }
 
@@ -155,6 +162,7 @@ namespace TheFowler
         [Button]
         public void ReturnToMain()
         {
+            blackscreen.DOFade(0f, 0f);
             havePlayIntro = true;
             isActive = true;
             
