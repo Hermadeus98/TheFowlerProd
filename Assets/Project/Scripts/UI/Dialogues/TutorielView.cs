@@ -54,6 +54,7 @@ namespace TheFowler
 
             Player.canOpenPauseMenu = false;
             playerInput.enabled = true;
+
         }
 
         private void Update()
@@ -180,9 +181,10 @@ namespace TheFowler
 
         public void Show(TutorielEnum panel, float timeToWait)
         {
+            MenuPauseHandler.Instance.Close();
             FadeAllCanvasGroup();
+            Player.canOpenPauseMenu = false;
 
-            
 
             switch (panel)
             {
@@ -276,6 +278,13 @@ namespace TheFowler
         {
             UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Inputs.enabled = true;
             UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Inputs.enabled = true;
+
+
+            if (BattleManager.CurrentBattle != null)
+            {
+                Player.canOpenPauseMenu = true;
+            }
+
             base.Hide();
             if (isShowed)
             {
