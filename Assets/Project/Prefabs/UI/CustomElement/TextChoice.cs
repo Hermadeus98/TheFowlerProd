@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Sirenix.Utilities;
+using TheFowler;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -23,7 +24,7 @@ public class TextChoice : MonoBehaviour
     public TextOption[] options;
     public TextOption CurrentOption => options[current];
 
-    private int current;
+    public int current;
     
     public Image rightArrow, leftArrow;
     private Tween rTween, lTween;
@@ -59,6 +60,11 @@ public class TextChoice : MonoBehaviour
         
         rTween?.Kill();
         rTween = rightArrow.DOFade(.5f, .2f).OnComplete(delegate { rightArrow.DOFade(1f, .1f); });
+
+        if (GetComponent<IUpdater>() != null)
+        {
+            GetComponent<IUpdater>().Refresh();
+        }
     }
 
     public void Previous()
@@ -105,6 +111,11 @@ public class TextChoice : MonoBehaviour
         {
             GetComponent<TextMeshProUGUI>().SetText(options[current].textFrench);
         }
+    }
 
+    public void SetTo(int index)
+    {
+        current = index;
+        SetTitleText();
     }
 }

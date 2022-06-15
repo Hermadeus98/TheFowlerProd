@@ -167,6 +167,12 @@ namespace TheFowler
                         {
                             SliderSimple.value++;
                             SliderSimple.value = Mathf.Clamp(SliderSimple.value, 0, SliderSimple.maxValue);
+
+                            if (GetComponent<VolumeUpdater>())
+                            {
+                                GetComponent<VolumeUpdater>().Refresh();
+                            }
+                            
                             return;
                         }
                     }
@@ -182,6 +188,12 @@ namespace TheFowler
                         {
                             SliderSimple.value--;
                             SliderSimple.value = Mathf.Clamp(SliderSimple.value, 0, SliderSimple.maxValue);
+                            
+                            if (GetComponent<VolumeUpdater>())
+                            {
+                                GetComponent<VolumeUpdater>().Refresh();
+                            }
+                            
                             return;
                         }
                     }
@@ -205,6 +217,11 @@ namespace TheFowler
                         {
                             SliderSimple.value++;
                             SliderSimple.value = Mathf.Clamp(SliderSimple.value, 0, SliderSimple.maxValue);
+                            
+                            if (GetComponent<VolumeUpdater>())
+                            {
+                                GetComponent<VolumeUpdater>().Refresh();
+                            }
                         }
                     }
 
@@ -214,6 +231,11 @@ namespace TheFowler
                         {
                             SliderSimple.value--;
                             SliderSimple.value = Mathf.Clamp(SliderSimple.value, 0, SliderSimple.maxValue);
+                            
+                            if (GetComponent<VolumeUpdater>())
+                            {
+                                GetComponent<VolumeUpdater>().Refresh();
+                            }
                         }
                     }
                 }

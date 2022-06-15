@@ -51,7 +51,7 @@ public class MenuPauseManager : MonoBehaviour
         if(!Player.canOpenPauseMenu)
             return;
 
-        if (MenuCharactersView.isOpen)
+        if (MenuCharactersView.viewIsOpen)
         {
             return;
         }
