@@ -108,7 +108,8 @@ namespace TheFowler
             for (int i = 0; i < batch.sceneReferences.Length; i++)
             {
                 var sceneName = SceneManager.GetSceneByPath(batch.sceneReferences[i].ScenePath).name;
-                SceneManager.UnloadSceneAsync(sceneName);
+                if(SceneManager.GetSceneByName(sceneName).isLoaded)
+                    SceneManager.UnloadSceneAsync(sceneName);
             }
         }
 
