@@ -37,6 +37,12 @@ namespace TheFowler
             a?.Kill();
             a = panel.DOFade(0f, duration).SetDelay(delay);
         }
+
+        public void HideDirectly()
+        {
+            a?.Kill();
+            panel.color = new Color(panel.color.r, panel.color.g, panel.color.b, 0);
+        }
         
         private void OnEnable()
         {

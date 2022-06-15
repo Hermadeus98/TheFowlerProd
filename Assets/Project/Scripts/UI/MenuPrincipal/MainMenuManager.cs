@@ -56,7 +56,8 @@ namespace TheFowler
             description.gameObject.SetActive(false);
             Player.canOpenPauseMenu = false;
             Player.isInPauseMenu = true;
-            
+
+
             currentPanel = MenuPanel.MAIN;
             
             menu.alpha = 0;
@@ -73,9 +74,12 @@ namespace TheFowler
 
         IEnumerator Opening()
         {
+            
             yield return new WaitForSeconds(showDuration);
+            BlackPanel.Instance.HideDirectly();
             openning.DOFade(1f, fadeDuration);
             yield return new WaitForSeconds(fadeDuration);
+            BlackPanel.Instance.HideDirectly();
             yield return new WaitForSeconds(showDuration);
             
             openning.DOFade(0f, fadeDuration);
@@ -157,7 +161,7 @@ namespace TheFowler
         {
             havePlayIntro = true;
             isActive = true;
-            
+
             currentPanel = MenuPanel.MAIN;
             main.ShowAnim();
             chapters.HideAnim();
@@ -215,6 +219,7 @@ namespace TheFowler
             
             Player.canOpenPauseMenu = true;
             Player.isInPauseMenu = false;
+            havePlayIntro = false;
 
             //while (!asyncLoad.isDone)
             //{

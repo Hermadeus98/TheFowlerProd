@@ -532,7 +532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fafcdb938fa61a0438386a29ce11d9f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
+  isActive: 1
   text: {fileID: 3335976276323673145}
   canvasGroup: {fileID: 2848021196834352372}
   layoutElement: {fileID: 6917490884496806664}
@@ -1679,7 +1679,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  isOpen: 0
   registerView: 1
   viewName: LoseView
   useDefaultAnimShow: 1
@@ -1687,6 +1686,7 @@ MonoBehaviour:
   AudioEventShow: 0
   canvasGroup: {fileID: 5722236953188548774}
   rappelInput: {fileID: 0}
+  viewIsOpen: 0
   TextNavigation: {fileID: 6521027528062912924}
 --- !u!1 &5822061890575653140
 GameObject:
@@ -2085,14 +2085,14 @@ GameObject:
   - component: {fileID: 8415081501075530839}
   - component: {fileID: 1245608216711507128}
   - component: {fileID: 7033019865575800310}
-  - component: {fileID: 8839433586606119298}
+  - component: {fileID: 1620801256650462259}
   m_Layer: 5
   m_Name: TextChoices
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3111483295831388044
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2142,7 +2142,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Choice 1
+  m_text: Normal
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a5269f3b020d1ff48aba6774800ad399, type: 2}
   m_sharedMaterial: {fileID: -5570266815697705377, guid: a5269f3b020d1ff48aba6774800ad399, type: 2}
@@ -2224,25 +2224,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options:
-  - text: Narrative
-    textFrench: Narratif
-    description: Set the difficulty on narrative to enjoy the story.
-    descriptionFrench: "Met la difficult\xE9e en narratif pour profiter de l'aventure"
-    OnSelected:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: MenuPauseManager, Assembly-CSharp
-          m_MethodName: SetDifficultyEasy
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
   - text: Normal
     textFrench: Normal
     description: Set difficulty on normal mode.
@@ -2253,6 +2234,25 @@ MonoBehaviour:
         - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuPauseManager, Assembly-CSharp
           m_MethodName: SetDifficultyNormal
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - text: Narrative
+    textFrench: Narratif
+    description: Set the difficulty on narrative to enjoy the story.
+    descriptionFrench: "Met la difficult\xE9e en narratif pour profiter de l'aventure"
+    OnSelected:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: MenuPauseManager, Assembly-CSharp
+          m_MethodName: SetDifficultyEasy
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2282,9 +2282,10 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  current: 0
   rightArrow: {fileID: 4838415105038892514}
   leftArrow: {fileID: 162011430880179217}
---- !u!114 &8839433586606119298
+--- !u!114 &1620801256650462259
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2293,11 +2294,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7074397739488062632}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Script: {fileID: 11500000, guid: a5816788a4a82d54c8926d9e69a3835d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  englishText: Choice 1
-  frenchText: Choix 1
+  tc: {fileID: 7033019865575800310}
 --- !u!1 &8796031104303539900
 GameObject:
   m_ObjectHideFlags: 0
