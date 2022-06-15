@@ -49,7 +49,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3787826988" Language="English(US)" Hash="2006845298">
+		<SoundBank Id="3787826988" Language="English(US)" Hash="3954438082">
 			<ObjectPath>\SoundBanks\Default Work Unit\Core</ObjectPath>
 			<ShortName>Core</ShortName>
 			<Path>English(US)\Core.bnk</Path>
@@ -284,6 +284,10 @@
 							<ShortName>TF_Music_BattleStingerRegular_Guards_190BPM_03.wav</ShortName>
 							<Path>SFX\TF_Music_BattleStingerRegular_Guards_190BPM_03_8A123740.wem</Path>
 						</File>
+						<File Id="1046560105" Language="SFX">
+							<ShortName>TF_Music_Explo_Dramatic_70BPM.wav</ShortName>
+							<Path>SFX\TF_Music_Explo_Dramatic_70BPM_8A123740.wem</Path>
+						</File>
 						<File Id="1047084377" Language="SFX">
 							<ShortName>TF_Music_BattleRegular_190BPM.wav</ShortName>
 							<Path>SFX\TF_Music_BattleRegular_190BPM_8A123740.wem</Path>
@@ -438,6 +442,24 @@
 								<SwitchContainer SwitchValue="{610DA068-6F12-49ED-A20D-B05F69BD9E62}">
 									<Media>
 										<File Id="411679508"/>
+									</Media>
+								</SwitchContainer>
+							</Children>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{9ADCD37D-AFCA-4EDE-823F-79A2510E4F0B}">
+							<Children>
+								<SwitchContainer SwitchValue="{65540419-D4EF-4DD9-B468-DEB41C3A0F99}">
+									<Media>
+										<File Id="1046560105"/>
+									</Media>
+								</SwitchContainer>
+							</Children>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{9ADCD37D-AFCA-4EDE-823F-79A2510E4F0B}">
+							<Children>
+								<SwitchContainer SwitchValue="{FE294F59-3669-485C-83AC-DA13D5668902}">
+									<Media>
+										<File Id="1046560105"/>
 									</Media>
 								</SwitchContainer>
 							</Children>
@@ -840,6 +862,14 @@
 						<File Id="1028704709" Language="SFX">
 							<ShortName>TF_SFX_Combat_UI_WeakDisplay.wav</ShortName>
 							<Path>SFX\TF_SFX_Combat_UI_WeakDisplay_05F9AB7E.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3694367035" Name="TF_SFX_Cutscene_BirdCageReveal" ObjectPath="\Events\Default Work Unit\Cutscenes\DS_BirdCageDiscovery\TF_SFX_Cutscene_BirdCageReveal" DurationType="OneShot" DurationMin="9.233561" DurationMax="9.233561">
+					<IncludedMemoryFiles>
+						<File Id="918141616" Language="SFX">
+							<ShortName>TF_SFX_Cutscene_BirdCageReveal.wav</ShortName>
+							<Path>SFX\TF_SFX_Cutscene_BirdCageReveal_B92DC056.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
