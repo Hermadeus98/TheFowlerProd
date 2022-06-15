@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Sirenix.OdinInspector;
 public class LocalisationElement : MonoBehaviour
 {
 
@@ -43,5 +43,17 @@ public class LocalisationElement : MonoBehaviour
                 }
                 break;
         }
+    }
+    [Button]
+    public void ChangeToEnglish()
+    {
+        displayedText = GetComponent<TMPro.TextMeshProUGUI>();
+        displayedText.text = englishText;
+    }
+    [Button]
+    public void ChangeToFrench()
+    {
+        displayedText = GetComponent<TMPro.TextMeshProUGUI>();
+        displayedText.text = frenchText;
     }
 }

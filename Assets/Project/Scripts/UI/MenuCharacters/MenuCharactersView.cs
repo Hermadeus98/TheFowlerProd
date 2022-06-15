@@ -286,6 +286,17 @@ namespace TheFowler
             
             Hide();
         }
+
+        private void OnApplicationFocus(bool focus)
+        {
+            if(isActive && focus)
+            {
+                Debug.Log("OnApplicationFocus");
+                eventSytem.SetSelectedGameObject(firstSelectedObject);
+                
+            }
+
+        }
     }
 }
 

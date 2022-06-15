@@ -59,10 +59,10 @@ namespace TheFowler
         }
 
         private IEnumerator WaitEnd()
-        {
-            BlackPanel.Instance.Show();
-            yield return new WaitForSeconds(1);
-            UI.GetView<EndView>(UI.Views.End).Show();
+        {                 
+            yield return new WaitForSeconds(0);
+            CreditView.Instance.Show();
+            CreditView.Instance.onEnd.AddListener(() => Game.GoToMainMenu());
             Player.Robyn?.gameObject.SetActive(false);
             Player.Abigael?.gameObject.SetActive(false);
             Player.Pheobe?.gameObject.SetActive(false);
