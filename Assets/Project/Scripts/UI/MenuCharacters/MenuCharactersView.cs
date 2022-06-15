@@ -22,6 +22,7 @@ namespace TheFowler
         private UnityEngine.EventSystems.EventSystem eventSytem;
         private bool onConfirmation;
         public int numberOfAllies = 0;
+        private bool isBattleLaunched;
         public override void Show()
         {
             base.Show();
@@ -232,7 +233,12 @@ namespace TheFowler
                     {
                         if (battle != null)
                         {
-                            StartCoroutine(WaitLaunchBattle());
+                            if (!isBattleLaunched)
+                            {
+                                isBattleLaunched = true;
+                                StartCoroutine(WaitLaunchBattle());
+                            }
+
                         }
 
                     }
@@ -285,6 +291,8 @@ namespace TheFowler
             BlackPanel.Instance.Hide(2.25f);
             
             Hide();
+
+            isBattleLaunched = false;
         }
 
         private void OnApplicationFocus(bool focus)
