@@ -32,6 +32,8 @@ namespace TheFowler
 
             numberOfAllies = battle.numberOfAllies;
 
+            AkSoundEngine.SetState("GameplayPhase", "SkillTree");
+
             if (!onMenu)
             {
                 MenuCharactersSKHandler.Instance.Initialize();
