@@ -107,6 +107,8 @@ namespace TheFowler
             
             if (input.actions["B"].WasPressedThisFrame())
             {
+                SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Cancel, null);
+                
                 if (CreditView.Instance.isActive)
                 {
                     CreditView.Instance.Hide();
