@@ -68,6 +68,7 @@ namespace TheFowler
 
         public int orderInBattle;
         public int orderInTurnSystem;
+        public AK.Wwise.Event stateEventSound;
 
         public StateIcons StateIcons
         {

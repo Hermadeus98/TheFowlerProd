@@ -23,6 +23,8 @@ namespace TheFowler
 
         [SerializeField] private Animator Animator;
 
+        private Coroutine c;
+        
         public float WaitTime => transitionDuration;
             //InOutComponent.in_duration + InOutComponent.between_duration + InOutComponent.out_duration;
 
@@ -39,7 +41,14 @@ namespace TheFowler
         
         public void CameraSwipTransition(Action transitionEvent)
         {
-            StartCoroutine(CameraSwipTransitionIE(transitionEvent));
+            if (c != null)
+            {
+                StopCoroutine(c);
+                ForceHide();
+                return;
+            }
+
+            c = StartCoroutine(CameraSwipTransitionIE(transitionEvent));
         }
         
         private IEnumerator CameraSwipTransitionIE(Action transitionEvent)
@@ -67,14 +76,6 @@ namespace TheFowler
 
             yield return new WaitForSeconds(transitionDuration);
             CanvasGroup.alpha = 0;
-
-            
-            /*mask.DOFillAmount(0, transitionDuration).OnComplete(delegate
-            {
-                CanvasGroup.alpha = 0;
-            });*/
-            
-            yield break;
         }
         
         /// <summary>

@@ -15,6 +15,9 @@ namespace TheFowler
         
         private void Update()
         {
+            if(pivot == null)
+                return;
+            
             transform.position = pivot.position;
             transform.rotation = pivot.rotation;
             transform.localScale = pivot.localScale;

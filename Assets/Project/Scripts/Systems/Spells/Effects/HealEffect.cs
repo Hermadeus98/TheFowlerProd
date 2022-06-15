@@ -17,12 +17,24 @@ namespace TheFowler
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
             EnemySpellBox.Instance.Popup("Soin", "Heal");
-            
-            yield return StateEvent(emitter, receivers, delegate(BattleActor emitter, BattleActor receiver)
+
+            if (TargetType == TargetTypeEnum.SELF)
             {
-                Heal(healValue, emitter, new []{receiver});
-            });
-            
+                yield return StateEvent(emitter, receivers,
+                    delegate(BattleActor emitter, BattleActor receiver)
+                    {
+                        Heal(healValue, emitter, new[] {emitter});
+                    });
+            }
+            else
+            {
+                yield return StateEvent(emitter, receivers,
+                    delegate(BattleActor emitter, BattleActor receiver)
+                    {
+                        Heal(healValue, emitter, new[] {receiver});
+                    });
+            }
+
             yield break;
         }
 

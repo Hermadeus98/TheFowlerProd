@@ -10,6 +10,8 @@ namespace TheFowler
     [RequireComponent(typeof(CanvasGroup))]
     public class UIView : UIElement
     {
+        [HideInInspector] public bool isOpen;
+        
         [TabGroup("Main Settings")]
         [SerializeField] private bool registerView;
         [TabGroup("Main Settings")]
@@ -45,6 +47,8 @@ namespace TheFowler
 
         public override void Show()
         {
+            isOpen = true;
+            
             if(AudioEventShow != AudioGenericEnum.NULL)
                 SoundManager.PlaySound(AudioEventShow, gameObject);
             
@@ -59,6 +63,7 @@ namespace TheFowler
 
         public override void Hide()
         {
+            isOpen = false;
             base.Hide();
             if (useDefaultAnimHide)
             {
