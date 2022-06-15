@@ -26,10 +26,10 @@ namespace TheFowler
             switch (bonusType)
             {
                 case DefenseBonusType.Buff:
-                    EnemySpellBox.Instance.Popup("Bonus de défense", "Defend bonus");
+                    EnemySpellBox.Instance.Popup("Bonus de défense", "Defense bonus");
                     break;
                 case DefenseBonusType.Debuff:
-                    EnemySpellBox.Instance.Popup("Malus de défense", "Defend malus");
+                    EnemySpellBox.Instance.Popup("Malus de défense", "Defense malus");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
