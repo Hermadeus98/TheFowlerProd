@@ -575,7 +575,11 @@ namespace TheFowler
                 SoundManager.StopSound(currentSound, currentSoundEmitter);
             }
 
-            timelineCutscene.HideTwoDCutscene();
+            if(timelineCutscene != null)
+            {
+                timelineCutscene.HideTwoDCutscene();
+
+            }
 
 
 
