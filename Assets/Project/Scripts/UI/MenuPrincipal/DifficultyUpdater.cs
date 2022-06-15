@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.Utilities;
 using UnityEngine;
 
 namespace TheFowler
 {
-    public class DifficultyUpdater : MonoBehaviour
+    public class DifficultyUpdater : MonoBehaviour, IUpdater
     {
         public TextChoice tc;
         
@@ -14,21 +15,22 @@ namespace TheFowler
             Refresh();
         }
 
-        private void Refresh()
+        public void Refresh()
         {
-            switch (DifficultyManager.currentDifficulty )
-            {
-                case DifficultyEnum.TEST:
-                    break;
-                case DifficultyEnum.EASY:
-                    break;
-                case DifficultyEnum.MEDIUM:
-                    break;
-                case DifficultyEnum.HARD:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            int index = tc.current;
+
+            var difficultyTexts = FindObjectsOfType<DifficultyUpdater>();
+            difficultyTexts.ForEach(w => w.Apply(index));
         }
+
+        public void Apply(int current)
+        {
+            tc.SetTo(current);
+        }
+    }
+
+    public interface IUpdater
+    {
+        public void Refresh();
     }
 }

@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.Utilities;
 using TheFowler;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class VolumeUpdater : MonoBehaviour
+public class VolumeUpdater : MonoBehaviour, IUpdater
 {
     public VolumeSettings setting;
 
@@ -30,6 +31,21 @@ public class VolumeUpdater : MonoBehaviour
             VolumeSettings.AMBIANT => SoundManager.AmbiantVolume,
             _ => throw new ArgumentOutOfRangeException()
         };
+    }
+
+    public void Refresh()
+    {
+        var up = GameObject.FindObjectsOfType<VolumeUpdater>();
+        up.ForEach(w => w.Apply());
+    }
+
+    public void Apply()
+    {
+        if (TryGetComponent<TextMenu>(out var t))
+        {
+            t.SliderSimple.value = GetValue();
+            t.textSlider.text = t.SliderSimple.value + "/" + t.SliderSimple.maxValue;
+        }
     }
 }
 
