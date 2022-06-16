@@ -281,6 +281,8 @@ namespace TheFowler
             desc = StartCoroutine(ShowCor());
         }
 
+        public Sprite enemyIcon, allyIcon;
+        
         IEnumerator ShowCor()
         {
             strenght.fillAmount = 0f;
@@ -302,14 +304,17 @@ namespace TheFowler
             switch (referedSpell.TargetType)
             {
                 case TargetTypeEnum.SELF:
+                    targets.ForEach(w => w.GetComponent<Image>().sprite = allyIcon);
                     targets[0].transform.DOScale(Vector3.one, .1f).SetEase(Ease.OutCirc);
                     yield return new WaitForSeconds(.1f);
                     break;
                 case TargetTypeEnum.SOLO_ENEMY:
+                    targets.ForEach(w => w.GetComponent<Image>().sprite = enemyIcon);
                     targets[0].transform.DOScale(Vector3.one, .1f).SetEase(Ease.OutCirc);
                     yield return new WaitForSeconds(.1f);
                     break;
                 case TargetTypeEnum.ALL_ENEMIES:
+                    targets.ForEach(w => w.GetComponent<Image>().sprite = enemyIcon);
                     for (int i = 0; i < targets.Length; i++)
                     {
                         targets[i].transform.DOScale(Vector3.one, .1f).SetEase(Ease.OutCirc);
@@ -317,10 +322,12 @@ namespace TheFowler
                     }
                     break;
                 case TargetTypeEnum.SOLO_ALLY:
+                    targets.ForEach(w => w.GetComponent<Image>().sprite = allyIcon);
                     targets[0].transform.DOScale(Vector3.one, .1f).SetEase(Ease.OutCirc);
                     yield return new WaitForSeconds(.1f);
                     break;
                 case TargetTypeEnum.ALL_ALLIES:
+                    targets.ForEach(w => w.GetComponent<Image>().sprite = allyIcon);
                     for (int i = 0; i < targets.Length; i++)
                     {
                         targets[i].transform.DOScale(Vector3.one, .1f).SetEase(Ease.OutCirc);
