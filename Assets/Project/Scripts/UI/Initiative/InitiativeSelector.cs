@@ -110,14 +110,18 @@ namespace TheFowler
             switch (transform.GetSiblingIndex())
             {
                 case 0:
-                    customNav.selectOnDown = parent.GetChild(1).GetComponent<InitiativeSelector>();
+                    if(parent.GetChild(1).gameObject.activeSelf)
+                        customNav.selectOnDown = parent.GetChild(1).GetComponent<InitiativeSelector>();
                     break;
                 case 1:
-                    customNav.selectOnUp = parent.GetChild(0).GetComponent<InitiativeSelector>();
-                    customNav.selectOnDown = parent.GetChild(2).GetComponent<InitiativeSelector>();
+                    if (parent.GetChild(0).gameObject.activeSelf)
+                        customNav.selectOnUp = parent.GetChild(0).GetComponent<InitiativeSelector>();
+                    if (parent.GetChild(2).gameObject.activeSelf)
+                        customNav.selectOnDown = parent.GetChild(2).GetComponent<InitiativeSelector>();
                     break;
                 case 2:
-                    customNav.selectOnUp = parent.GetChild(1).GetComponent<InitiativeSelector>();
+                    if (parent.GetChild(1).gameObject.activeSelf)
+                        customNav.selectOnUp = parent.GetChild(1).GetComponent<InitiativeSelector>();
                     break;
             }
 
