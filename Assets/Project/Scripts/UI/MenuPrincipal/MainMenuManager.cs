@@ -314,5 +314,10 @@ namespace TheFowler
 
             main.canNavigate = false;
         }
+
+        private void OnDisable()
+        {
+            Player.canOpenPauseMenu = true;
+        }
     }
 }

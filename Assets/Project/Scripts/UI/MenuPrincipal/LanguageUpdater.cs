@@ -15,10 +15,22 @@ public class LanguageUpdater : MonoBehaviour, IUpdater
 
     public void Refresh()
     {
-        int index = tc.current;
 
-        var difficultyTexts = FindObjectsOfType<LanguageUpdater>();
-        difficultyTexts.ForEach(w => w.Apply(index));
+        switch (LocalisationManager.language)
+        {
+            case Language.ENGLISH:
+                tc.SetTo(0);
+                break;
+            case Language.FRENCH:
+                tc.SetTo(1);
+                break;
+
+        }
+
+        //int index = tc.current;
+
+        //var difficultyTexts = FindObjectsOfType<LanguageUpdater>();
+        //difficultyTexts.ForEach(w => w.Apply(index));
     }
 
     public void Apply(int current)

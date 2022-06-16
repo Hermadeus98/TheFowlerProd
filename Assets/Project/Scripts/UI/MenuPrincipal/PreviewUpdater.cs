@@ -15,10 +15,20 @@ public class PreviewUpdater : MonoBehaviour, IUpdater
 
     public void Refresh()
     {
-        int index = tc.current;
+        if (Player.showPreview)
+        {
+            tc.SetTo(1);
+        }
+        else
+        {
+            tc.SetTo(0);
+        }
 
-        var difficultyTexts = FindObjectsOfType<PreviewUpdater>();
-        difficultyTexts.ForEach(w => w.Apply(index));
+
+        //int index = tc.current;
+
+        //var difficultyTexts = FindObjectsOfType<PreviewUpdater>();
+        //difficultyTexts.ForEach(w => w.Apply(index));
     }
 
     public void Apply(int current)
