@@ -26,9 +26,22 @@ namespace TheFowler
         {
             for (int i = 0; i < receivers.Length; i++)
             {
-                var attackEffect = GameObject.Instantiate(SpellData.Instance.Robyn_VisualEffect_BasicAttack_BirdFalling, receivers[i].transform.position, Quaternion.identity);
-                attackEffect.gameObject.AddComponent<BillBoard>();
-                attackEffect.Play();
+                if (emitter == BattleManager.CurrentBattle.robyn)
+                {
+                    var attackEffect = GameObject.Instantiate(
+                        SpellData.Instance.Robyn_VisualEffect_BasicAttack_BirdFalling, receivers[i].transform.position,
+                        Quaternion.identity);
+                    attackEffect.gameObject.AddComponent<BillBoard>();
+                    attackEffect.Play();
+                }
+                else if (emitter == BattleManager.CurrentBattle.phoebe)
+                {
+                    var attackEffect = GameObject.Instantiate(
+                        SpellData.Instance.Robyn_VisualEffect_BasicAttack_BirdFalling_Phoebe, receivers[i].transform.position,
+                        Quaternion.identity);
+                    attackEffect.gameObject.AddComponent<BillBoard>();
+                    attackEffect.Play();
+                }
             }
 
             yield return new WaitForSeconds(SpellData.Instance.Robyn_Timer_BasicAttack_BirdFallingDuration);

@@ -30,6 +30,9 @@ namespace TheFowler
         [FoldoutGroup("Abi Basic Attack")]
         public GameObject Abi_Flash_BasicAttack_Shock;
 
+        [FoldoutGroup("Phoebe Basic Attack")]
+        public VisualEffect Robyn_VisualEffect_BasicAttack_BirdFalling_Phoebe;
+        
         [FoldoutGroup("Guard Basic Attack")] public GuardBasicAttackBinding Guard_BasicAttackBinding;
         [FoldoutGroup("Guard Basic Attack")]
         public float Guard_Timer_BasicAttack_ImpactDuration = 1f;
