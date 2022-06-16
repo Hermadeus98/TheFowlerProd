@@ -22,21 +22,34 @@ namespace TheFowler
 
                 yield return new WaitForSeconds(1f);
 
-                var guardBasicAttack = Object.Instantiate(SpellData.Instance.Guard_BasicAttackBinding,
-                    emitter.transform);
-                guardBasicAttack.emitter = emitter;
-                guardBasicAttack.receiver = receivers[i];
-                guardBasicAttack.BindData(delegate
-                {
-                    Damage(damage, emitter, new []{receivers[i]});
-                });
-
-                yield return new WaitForSeconds(.1f);
+                var s = emitter.SequenceHandler.GetSequence(SequenceEnum.DAMAGE);
                 
-                guardBasicAttack.Play();
+                var action = emitter.SignalReceiver_CastSpell.GetReaction(emitter.SignalAsset_CastSpell);
+                action.AddListener(delegate { emitter.StartCoroutine(D(emitter, receivers[i])); });
+                
+                s.Play();
+                
+                
                 
                 yield return new WaitForSeconds(2f);
+                action.RemoveAllListeners();
             }
+        }
+
+        IEnumerator D(BattleActor emitter, BattleActor receiver)
+        {
+            var guardBasicAttack = Object.Instantiate(SpellData.Instance.Guard_BasicAttackBinding,
+                emitter.transform);
+            guardBasicAttack.emitter = emitter;
+            guardBasicAttack.receiver = receiver;
+            guardBasicAttack.BindData(delegate
+            {
+                Damage(damage, emitter, new []{receiver});
+            });
+
+            yield return new WaitForSeconds(.1f);
+                
+            guardBasicAttack.Play();
         }
     }
 }
