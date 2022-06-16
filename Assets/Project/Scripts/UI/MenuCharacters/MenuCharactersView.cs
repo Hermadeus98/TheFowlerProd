@@ -23,6 +23,8 @@ namespace TheFowler
         private bool onConfirmation;
         public int numberOfAllies = 0;
         private bool isBattleLaunched;
+
+        [SerializeField] private CanvasGroup battleUI;
         public override void Show()
         {
             base.Show();
@@ -102,6 +104,8 @@ namespace TheFowler
             }
 
             MenuCharactersSKHandler.Instance.InMenu();
+
+            battleUI.alpha = 1;
 
             //skillTreeView.Show();
 
