@@ -54,7 +54,8 @@ namespace TheFowler
             UI.CloseView(UI.Views.TargetPicking);
             UI.CloseView(UI.Views.AlliesDataView);
 
-            UI.GetView<TurnTransitionView>(UI.Views.TurnTransition).CameraSwipTransition(null);
+            //UI.GetView<TurnTransitionView>(UI.Views.TurnTransition).CameraSwipTransition(null);
+            UI.GetView<TurnTransitionView>(UI.Views.TurnTransition).ForceHide();
 
 
             HeartBeating.Instance.isBeating = false;

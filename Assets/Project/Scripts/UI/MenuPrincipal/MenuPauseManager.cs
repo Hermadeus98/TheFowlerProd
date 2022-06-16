@@ -56,6 +56,7 @@ public class MenuPauseManager : MonoBehaviour
             return;
         }
 
+        FindObjectOfType<MMTimeManager>().SetTimescaleTo(0);
         backGround.GetComponent<Image>().DOColor(new Color(1,1,1,0), .2f);
 
 
@@ -118,7 +119,8 @@ public class MenuPauseManager : MonoBehaviour
     public void Hide()
     {
         menu.gameObject.SetActive(false);
-        
+        FindObjectOfType<MMTimeManager>().SetTimescaleTo(1);
+
         Player.isInPauseMenu = false;
 
         StartCoroutine(WaitIsActive());
@@ -149,19 +151,8 @@ public class MenuPauseManager : MonoBehaviour
 
     public IEnumerator WaitRestartBattle()
     {
-        BlackPanel.Instance.Show(.2f);
-
-        yield return new WaitForSeconds(.2f);
+        Hide();
         BattleManager.CurrentBattle.Lose();
-        menu.gameObject.SetActive(false);
-
-        Player.isInPauseMenu = false;
-        isOpen = false;
-        isActive = false;
-        GetComponent<CanvasGroup>().alpha = 0;
-
-        MenuPauseHandler.Instance.Close();
-        BlackPanel.Instance.Hide(.2f);
         yield break;
     }
 
@@ -207,13 +198,10 @@ public class MenuPauseManager : MonoBehaviour
         {
             if (!isOpen)
             {
-                
-                FindObjectOfType<MMTimeManager>().SetTimescaleTo(0);
                 Open();
             }
             else
             {
-                FindObjectOfType<MMTimeManager>().SetTimescaleTo(1);
                 SmoothHide();
             }
         }
@@ -252,6 +240,7 @@ public class MenuPauseManager : MonoBehaviour
 
     public void SmoothHide()
     {
+        FindObjectOfType<MMTimeManager>().SetTimescaleTo(1);
         BlackPanel.Instance.Show(.2f);
         backGround.GetComponent<Image>().DOColor(Color.black, .2f).OnComplete(() => Hide());
     }
