@@ -52,7 +52,8 @@ namespace TheFowler
             }
             if (desactivatePhoebe)
             {
-                Player.Pheobe?.gameObject.SetActive(state);
+                if(Player.Pheobe != null)
+                    Player.Pheobe?.gameObject.SetActive(state);
             }
         }
     }
