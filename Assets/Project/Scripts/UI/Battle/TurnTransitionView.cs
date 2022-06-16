@@ -35,9 +35,6 @@ namespace TheFowler
             base.OnStart();
             Instance = this;
         }
-
-        [Button]
-        private void Test() => CameraSwipTransition(null);
         
         public void CameraSwipTransition(Action transitionEvent)
         {
@@ -98,6 +95,7 @@ namespace TheFowler
 
         public void ForceHide()
         {
+            StopCoroutine(c);
             CanvasGroup.alpha = 0;
         }
     }
