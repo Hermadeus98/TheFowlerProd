@@ -8,6 +8,7 @@ public class ChapterOne : Chapter
     public override void OnStateEnter(EventArgs arg)
     {
         base.OnStateEnter(arg);
+
         
         Game.LoadSceneAdditive("Scenes Chapter One", () =>
         {
