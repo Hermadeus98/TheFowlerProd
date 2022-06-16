@@ -1001,6 +1001,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options: []
+  current: 0
   rightArrow: {fileID: 6015942238204893375}
   leftArrow: {fileID: 958890042865820434}
 --- !u!114 &1730380685060518198
@@ -1320,6 +1321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options: []
+  current: 0
   rightArrow: {fileID: 5231880967302359509}
   leftArrow: {fileID: 3753651597291643907}
 --- !u!114 &1730380685060518197
@@ -1866,6 +1868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options: []
+  current: 0
   rightArrow: {fileID: 5272816993280297451}
   leftArrow: {fileID: 9068814217354111094}
 --- !u!114 &1730380685060518160
@@ -2144,6 +2147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options: []
+  current: 0
   rightArrow: {fileID: 6141818079244380247}
   leftArrow: {fileID: 5980870959940382336}
 --- !u!114 &1730380685060518172
@@ -2940,6 +2944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options: []
+  current: 0
   rightArrow: {fileID: 1925565722222436296}
   leftArrow: {fileID: 2269190644645858319}
 --- !u!114 &1730380685060518217
@@ -3107,6 +3112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options: []
+  current: 0
   rightArrow: {fileID: 4633374602490425712}
   leftArrow: {fileID: 7985729209883368908}
 --- !u!114 &1730380685060518196
@@ -4189,7 +4195,7 @@ GameObject:
   - component: {fileID: 433062614168056259}
   - component: {fileID: 8842297590402193402}
   - component: {fileID: 5244102219169433821}
-  - component: {fileID: 1730380685060518213}
+  - component: {fileID: 1452606489}
   m_Layer: 5
   m_Name: TextChoices
   m_TagString: Untagged
@@ -4329,9 +4335,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   options:
   - text: English
-    textFrench: 
-    description: Set text in English.
-    descriptionFrench: 
+    textFrench: Anglais
+    description: Set text in english
+    descriptionFrench: Met les textes en anglais
     OnSelected:
       m_PersistentCalls:
         m_Calls:
@@ -4348,9 +4354,9 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - text: French
-    textFrench: 
-    description: "Mettre les textes en fran\xE7ais."
-    descriptionFrench: 
+    textFrench: Francais
+    description: Set text in french
+    descriptionFrench: "Met les textes en fran\xE7ais"
     OnSelected:
       m_PersistentCalls:
         m_Calls:
@@ -4366,9 +4372,10 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  current: 0
   rightArrow: {fileID: 2800961835707759118}
   leftArrow: {fileID: 2300815561526106136}
---- !u!114 &1730380685060518213
+--- !u!114 &1452606489
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4377,11 +4384,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1012008439531828930}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 398fa14776b10c24da98b5739b50e6a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  englishText: Choice 1
-  frenchText: Choix 1
+  tc: {fileID: 5244102219169433821}
 --- !u!1 &1023742316840542298
 GameObject:
   m_ObjectHideFlags: 0
@@ -10902,6 +10908,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options: []
+  current: 0
   rightArrow: {fileID: 5435980803048754957}
   leftArrow: {fileID: 297391010012924688}
 --- !u!114 &1730380685060518174
@@ -12879,6 +12886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options: []
+  current: 0
   rightArrow: {fileID: 4762879062032201188}
   leftArrow: {fileID: 3588711859193410585}
 --- !u!114 &1730380685060518170
@@ -16000,6 +16008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options: []
+  current: 0
   rightArrow: {fileID: 6921424151575224654}
   leftArrow: {fileID: 2543890326845639285}
 --- !u!114 &1730380685060518195
@@ -17475,6 +17484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options: []
+  current: 0
   rightArrow: {fileID: 1176080191264126064}
   leftArrow: {fileID: 8689072412957875785}
 --- !u!114 &1730380685060518199
@@ -18835,7 +18845,7 @@ MonoBehaviour:
   textSlider: {fileID: 1022022821220644593}
   TextChoice: {fileID: 0}
   descriptionText: Restart current battle
-  descriptionTextFrench: Recommencer le combat actuel
+  descriptionTextFrench: Recommencer le combat
   TextNavigation: {fileID: 0}
 --- !u!114 &7320136932727761453
 MonoBehaviour:
@@ -19171,6 +19181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options: []
+  current: 0
   rightArrow: {fileID: 8287329173286523350}
   leftArrow: {fileID: 6188878742734333259}
 --- !u!114 &1730380685060518201
@@ -20137,7 +20148,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Settings
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2c269728b7f73ec49a2958a14c6de211, type: 2}
   m_sharedMaterial: {fileID: -1037114233993443885, guid: 2c269728b7f73ec49a2958a14c6de211, type: 2}
@@ -23618,6 +23629,7 @@ GameObject:
   - component: {fileID: 8108226252955592067}
   - component: {fileID: 3281428647023185236}
   - component: {fileID: 4393840375277609643}
+  - component: {fileID: 821604099}
   m_Layer: 5
   m_Name: TextChoices
   m_TagString: Untagged
@@ -23797,8 +23809,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  current: 0
   rightArrow: {fileID: 0}
   leftArrow: {fileID: 0}
+--- !u!114 &821604099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5860738570376035868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccf18088001dfe047841cee6ecff9645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tc: {fileID: 4393840375277609643}
 --- !u!1 &5865632544395476682
 GameObject:
   m_ObjectHideFlags: 0
@@ -24321,7 +24347,7 @@ GameObject:
   - component: {fileID: 4472048565674760999}
   - component: {fileID: 3532488543140466363}
   - component: {fileID: 8253730885993322007}
-  - component: {fileID: 2705005175696325244}
+  - component: {fileID: 2043470863}
   m_Layer: 5
   m_Name: TextChoices
   m_TagString: Untagged
@@ -24612,9 +24638,10 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  current: 0
   rightArrow: {fileID: 0}
   leftArrow: {fileID: 0}
---- !u!114 &2705005175696325244
+--- !u!114 &2043470863
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -24623,164 +24650,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5966510098741011619}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d03785445f48f74980ee47aabc5b5d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 8cf9f27b6f8862043917d726230111dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  options:
-  - text: Nothing
-    textFrench: Aucun
-    description: No colorblind
-    descriptionFrench: Pas de daltonisme
-    OnSelected:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8785510624224988913}
-          m_TargetAssemblyTypeName: MenuPauseManager, Assembly-CSharp
-          m_MethodName: ChangeColorBlind
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - text: Protanopia
-    textFrench: Protanopie
-    description: Protanopia
-    descriptionFrench: Protanopie
-    OnSelected:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8785510624224988913}
-          m_TargetAssemblyTypeName: MenuPauseManager, Assembly-CSharp
-          m_MethodName: ChangeColorBlind
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 1
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - text: Protanomaly
-    textFrench: Protanomalie
-    description: Protanomaly
-    descriptionFrench: Protanomalie
-    OnSelected:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8785510624224988913}
-          m_TargetAssemblyTypeName: MenuPauseManager, Assembly-CSharp
-          m_MethodName: ChangeColorBlind
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 2
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - text: Deuteranomaly
-    textFrench: "Deut\xE9ranomalie"
-    description: Deuteranomaly
-    descriptionFrench: "Deut\xE9ranomalie"
-    OnSelected:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8785510624224988913}
-          m_TargetAssemblyTypeName: MenuPauseManager, Assembly-CSharp
-          m_MethodName: ChangeColorBlind
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 3
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - text: Tritanopia
-    textFrench: Tritanopie
-    description: Tritanopia
-    descriptionFrench: Tritanopie
-    OnSelected:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8785510624224988913}
-          m_TargetAssemblyTypeName: MenuPauseManager, Assembly-CSharp
-          m_MethodName: ChangeColorBlind
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 4
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - text: Tritanomaly
-    textFrench: Tritanomalie
-    description: Tritanomaly
-    descriptionFrench: Tritanomalie
-    OnSelected:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8785510624224988913}
-          m_TargetAssemblyTypeName: MenuPauseManager, Assembly-CSharp
-          m_MethodName: ChangeColorBlind
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 5
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - text: Achromatopsia
-    textFrench: Achromatopsie
-    description: Achromatopsia
-    descriptionFrench: Achromatopsie
-    OnSelected:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8785510624224988913}
-          m_TargetAssemblyTypeName: MenuPauseManager, Assembly-CSharp
-          m_MethodName: ChangeColorBlind
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 6
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - text: Achromatomaly
-    textFrench: Achromatomalie
-    description: Achromatomaly
-    descriptionFrench: Achromatomalie
-    OnSelected:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8785510624224988913}
-          m_TargetAssemblyTypeName: MenuPauseManager, Assembly-CSharp
-          m_MethodName: ChangeColorBlind
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 7
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  rightArrow: {fileID: 0}
-  leftArrow: {fileID: 0}
+  tc: {fileID: 8253730885993322007}
 --- !u!1 &6003680906693685695
 GameObject:
   m_ObjectHideFlags: 0
@@ -26692,6 +26565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options: []
+  current: 0
   rightArrow: {fileID: 619390123583380704}
   leftArrow: {fileID: 8977567390987588037}
 --- !u!114 &1730380685060518158
@@ -29262,6 +29136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options: []
+  current: 0
   rightArrow: {fileID: 6910639000757772561}
   leftArrow: {fileID: 7363811344451822005}
 --- !u!114 &1730380685060518203
@@ -34653,6 +34528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options: []
+  current: 0
   rightArrow: {fileID: 1949215689236830544}
   leftArrow: {fileID: 6059120181608251117}
 --- !u!114 &1730380685060518211
@@ -35996,6 +35872,7 @@ GameObject:
   - component: {fileID: 7963936932915368075}
   - component: {fileID: 7785240485804328085}
   - component: {fileID: 986144328935631036}
+  - component: {fileID: 1730380685060518148}
   m_Layer: 5
   m_Name: TextChoices
   m_TagString: Untagged
@@ -36142,9 +36019,9 @@ MonoBehaviour:
     OnSelected:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: TheFowler.MainMenuManager, Assembly-CSharp
-          m_MethodName: SetDifficultyMedium
+        - m_Target: {fileID: 8785510624224988913}
+          m_TargetAssemblyTypeName: MenuPauseManager, Assembly-CSharp
+          m_MethodName: SetDifficultyNormal
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -36162,8 +36039,8 @@ MonoBehaviour:
     OnSelected:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: TheFowler.MainMenuManager, Assembly-CSharp
+        - m_Target: {fileID: 8785510624224988913}
+          m_TargetAssemblyTypeName: MenuPauseManager, Assembly-CSharp
           m_MethodName: SetDifficultyEasy
           m_Mode: 1
           m_Arguments:
@@ -36181,8 +36058,8 @@ MonoBehaviour:
     OnSelected:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: TheFowler.MainMenuManager, Assembly-CSharp
+        - m_Target: {fileID: 8785510624224988913}
+          m_TargetAssemblyTypeName: MenuPauseManager, Assembly-CSharp
           m_MethodName: SetDifficultyHard
           m_Mode: 1
           m_Arguments:
@@ -36193,8 +36070,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  current: 0
   rightArrow: {fileID: 7814661312334335005}
   leftArrow: {fileID: 4504506727222196813}
+--- !u!114 &1730380685060518148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8583504669611871245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5816788a4a82d54c8926d9e69a3835d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tc: {fileID: 986144328935631036}
 --- !u!1 &8595636557414026486
 GameObject:
   m_ObjectHideFlags: 0
@@ -37447,6 +37338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options: []
+  current: 0
   rightArrow: {fileID: 2379166202078123016}
   leftArrow: {fileID: 6013265620424765420}
 --- !u!114 &1730380685060518162
@@ -37967,7 +37859,7 @@ MonoBehaviour:
   textSlider: {fileID: 4435597640931525763}
   TextChoice: {fileID: 0}
   descriptionText: Go to main menu.
-  descriptionTextFrench: 
+  descriptionTextFrench: Retourner au menu principal
   TextNavigation: {fileID: 0}
 --- !u!114 &678123753837358089
 MonoBehaviour:
@@ -39904,7 +39796,6 @@ GameObject:
   - component: {fileID: 4131009286716617930}
   - component: {fileID: 6297012957358009681}
   - component: {fileID: 7947741488824059617}
-  - component: {fileID: 1730380685060518156}
   m_Layer: 5
   m_Name: TextChoices
   m_TagString: Untagged
@@ -39961,7 +39852,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Choice 1
+  m_text: Settings
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2c269728b7f73ec49a2958a14c6de211, type: 2}
   m_sharedMaterial: {fileID: -1037114233993443885, guid: 2c269728b7f73ec49a2958a14c6de211, type: 2}
@@ -40043,22 +39934,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options: []
+  current: 0
   rightArrow: {fileID: 7470365705187725092}
   leftArrow: {fileID: 5905987746529761784}
---- !u!114 &1730380685060518156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9193769054857777813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0fabda5868a2c14585fea5b7cddf9b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  englishText: Choice 1
-  frenchText: Choix 1
 --- !u!1 &9202027744924686328
 GameObject:
   m_ObjectHideFlags: 0

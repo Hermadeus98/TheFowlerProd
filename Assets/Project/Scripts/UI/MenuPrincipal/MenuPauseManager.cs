@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using System.Linq;
 public class MenuPauseManager : MonoBehaviour
 {
     [SerializeField] private TextNavigation
@@ -57,6 +57,13 @@ public class MenuPauseManager : MonoBehaviour
         }
 
         FindObjectOfType<MMTimeManager>().SetTimescaleTo(0);
+
+        var ss = FindObjectsOfType<MonoBehaviour>().OfType<IUpdater>();
+        foreach (IUpdater s in ss)
+        {
+            s.Refresh();
+        }
+
         backGround.GetComponent<Image>().DOColor(new Color(1,1,1,0), .2f);
 
 
@@ -247,9 +254,15 @@ public class MenuPauseManager : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        if(BattleManager.CurrentBattle != null)
+        {
+            BattleManager.CurrentBattle.StopBattle();
+        }
+
         SmoothHide();
         Hide();
         Game.GoToMainMenu();
+
     }
     
     public void SetDifficultyEasy()

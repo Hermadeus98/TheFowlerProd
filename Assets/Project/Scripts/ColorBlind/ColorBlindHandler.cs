@@ -9,12 +9,14 @@ namespace TheFowler
     public class ColorBlindHandler : MonoBehaviourSingleton<ColorBlindHandler>
     {
         public Volume colorBlindVolume;
+        public ColorBlindMode currentMode;
 
         [SerializeField] private VolumeProfile[] volumeProfiles;
 
         public void ChangeProfile(int mode)
         {
             colorBlindVolume.profile = volumeProfiles[mode];
+            currentMode = (ColorBlindMode)mode;
         }
 
 
