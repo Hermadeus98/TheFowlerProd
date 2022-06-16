@@ -13,6 +13,8 @@ public class LoseGraphics : SerializedMonoBehaviour
     public Animator[] Animators;
     public CinemachineVirtualCamera cam;
 
+    [SerializeField] private GameObject Phoebe;
+
     public GameObject container;
 
     private void Awake()
@@ -30,7 +32,14 @@ public class LoseGraphics : SerializedMonoBehaviour
 
     public IEnumerator Open()
     {
-
+        if(BattleManager.CurrentBattle.numberOfAllies == 2)
+        {
+            Phoebe.SetActive(false);
+        }
+        else
+        {
+            Phoebe.SetActive(true);
+        }
         
         BlackPanel.Instance.Show();
         yield return new WaitForSeconds(BlackPanel.Instance.duration);
