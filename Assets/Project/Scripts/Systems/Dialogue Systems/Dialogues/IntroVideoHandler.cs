@@ -15,9 +15,10 @@ namespace TheFowler
         public override void PlayPhase()
         {
             base.PlayPhase();
+           
             animSubtitles.SetTrigger("Play");
             onStartWWISE.Post(gameObject);
-            StartCoroutine(WaitEventWall());
+            StartCoroutine(WaitUnfadePanel());
 
         }
 
@@ -43,10 +44,16 @@ namespace TheFowler
             nextPhase.PlayPhase();
         }
 
+        private IEnumerator WaitUnfadePanel()
+        {
+            yield return new WaitForSeconds(.3f);
+            BlackPanel.instance.HidePanelIntro();
+        }
+
         private IEnumerator WaitEventWall()
         {
             yield return new WaitForSeconds(timeCodeBreakWall);
-
+            
             //onBreakWallWwise.Post(gameObject);
 
         }

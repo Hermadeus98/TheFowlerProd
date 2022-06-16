@@ -174,7 +174,7 @@ public class MenuPauseManager : MonoBehaviour
         backGround.DOScale(backGround.localScale * 1.2f, 1f).SetEase(Ease.InOutSine);
         yield return new WaitForSeconds(1f + .1f);
             
-        BlackPanel.Instance.Show();
+        BlackPanel.instance.Show();
         yield return new WaitForSeconds(fadeDuration + .1f);
 
         SceneManager.UnloadSceneAsync("Scene_MenuPrincipal");

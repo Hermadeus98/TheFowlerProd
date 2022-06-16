@@ -42,6 +42,7 @@ namespace TheFowler
         public Animator robyn;
 
         public TextMeshProUGUI description;
+
         
         public enum MenuPanel
         {
@@ -195,16 +196,26 @@ namespace TheFowler
             robyn.SetTrigger("Play");
             yield return PlaySound();
 
-            //backGround.DOScale(backGround.localScale * 1.2f, 1f).SetEase(Ease.InOutSine);
-            yield return new WaitForSeconds(.6f);
 
-            BlackPanel.Instance.Show();
+            //backGround.DOScale(backGround.localScale * 1.2f, 1f).SetEase(Ease.InOutSine);
+
+
+            yield return new WaitForSeconds(.6f);
+            if (chapter == 1)
+            {
+                BlackPanel.instance.ShowPanelIntro();
+            }
+
             yield return new WaitForSeconds(fadeDuration + .1f);
 
             AsyncOperation asyncLoad = SceneManager.UnloadSceneAsync("Scene_MenuPrincipal");
 
             if (chapter == 1)
+            {
+                //UI.OpenView("VideoView");
                 ChapterManager.GoChapterOne();
+            }
+
 
             if (chapter == 2)
             {
