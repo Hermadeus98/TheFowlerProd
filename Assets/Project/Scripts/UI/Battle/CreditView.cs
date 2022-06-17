@@ -57,6 +57,7 @@ namespace TheFowler
             {
                 if (Gamepad.current.aButton.wasPressedThisFrame)
                 {
+                    //System.Diagnostics.Process.Start(Application.dataPath.Replace("_Data", ".exe"));
                     Application.Quit();
                     Debug.Log("Quit");
                 }
