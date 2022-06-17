@@ -42,6 +42,8 @@ namespace TheFowler
 
         public override void InitializeComponents()
         {
+            transform.localScale = Vector3.one;
+            
             base.InitializeComponents();
             if(gameObject.activeSelf)
                 StartCoroutine(SetCanvasWorld());
