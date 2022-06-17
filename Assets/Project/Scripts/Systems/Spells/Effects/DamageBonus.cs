@@ -25,7 +25,22 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-            EnemySpellBox.Instance.Popup("Bonus de dégâts", "Damage bonus");
+            if (emitter is AllyActor)
+            {
+                switch (attackBonusType)
+                {
+                    case AttackBonusType.BONUS:
+                        EnemySpellBox.Instance.Popup("Bonus de dégâts", "Damage bonus");
+                        break;
+                    case AttackBonusType.MALUS:
+                        EnemySpellBox.Instance.Popup("Malus de dégâts", "Damage malus");
+                        break;
+                    case AttackBonusType.NEUTRE:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
             
             if (TargetType == TargetTypeEnum.SELF)
             {
