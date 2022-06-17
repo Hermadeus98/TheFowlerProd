@@ -70,6 +70,8 @@ namespace TheFowler
             
             SoundManager.PlaySound(AudioGenericEnum.TF_Main_SetExplo, gameObject);
 
+            BattleManager.CurrentBattle = null;
+
             yield break;
         }
     }
