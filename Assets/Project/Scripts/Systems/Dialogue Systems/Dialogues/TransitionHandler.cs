@@ -45,7 +45,8 @@ namespace TheFowler
 
             Player.Robyn?.gameObject.SetActive(true);
             Player.Abigael?.gameObject.SetActive(true);
-            Player.Pheobe?.gameObject.SetActive(true);
+            if (Player.Pheobe != null)
+                Player.Pheobe?.gameObject.SetActive(true);
         }
 
         public void ShowGainSkill(int value)
