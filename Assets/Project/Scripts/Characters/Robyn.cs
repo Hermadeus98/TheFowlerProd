@@ -13,6 +13,12 @@ namespace TheFowler
             base.OnEnable();
 
             Player.canOpenPauseMenu = true;
+
+        }
+
+        private void Update()
+        {
+            Player.canOpenPauseMenu = true;
         }
         protected override void OnStart()
         {
