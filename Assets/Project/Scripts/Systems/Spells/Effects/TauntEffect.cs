@@ -17,7 +17,8 @@ namespace TheFowler
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
             //emitter.BattleActorAnimator.AttackCast();
-            EnemySpellBox.Instance.Popup("Taunt", "Taunt");
+            if(emitter is AllyActor)
+                EnemySpellBox.Instance.Popup("Taunt", "Taunt");
 
             yield return StateEvent(emitter, receivers, delegate(BattleActor actor, BattleActor battleActor)
             {

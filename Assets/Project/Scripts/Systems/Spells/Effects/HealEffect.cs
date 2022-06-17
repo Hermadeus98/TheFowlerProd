@@ -16,7 +16,8 @@ namespace TheFowler
 
         public override IEnumerator OnCast(BattleActor emitter, BattleActor[] receivers)
         {
-            EnemySpellBox.Instance.Popup("Soin", "Heal");
+            if(emitter is AllyActor)
+                EnemySpellBox.Instance.Popup("Soin", "Heal");
 
             if (TargetType == TargetTypeEnum.SELF)
             {
