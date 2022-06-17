@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cinemachine;
 using DG.Tweening;
 using QRCode;
 using QRCode.Extensions;
@@ -73,6 +74,8 @@ namespace TheFowler
 
         public BattleNarrationComponent BattleNarrationComponent;
         public BattleGameLogComponent BattleGameLogComponent;
+
+        public CinemachineVirtualCamera firstCamOnRestart;
         
         [ShowInInspector] public bool HasRestart { get; set; }
         public bool IsFinish { get; set; }
@@ -464,6 +467,7 @@ namespace TheFowler
             BattleToReset.ForEach(w => w.ResetBattle());
 
             BattleToRestart.PlayPhase();
+            CameraManager.Instance.SetCamera(firstCamOnRestart);
         }
 
         public void ResetBattle()

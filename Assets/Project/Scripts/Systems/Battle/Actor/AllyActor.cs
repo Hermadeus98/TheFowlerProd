@@ -81,6 +81,9 @@ namespace TheFowler
             punchline.PlayPunchline(PunchlineCallback.DEATH);
         }
 
+        [Button]
+        public void TestDeathSeq() => StartCoroutine(OnDeathSequence());
+        
         public IEnumerator OnDeathSequence()
         {
             while (Player.enemyIsAttacking)
