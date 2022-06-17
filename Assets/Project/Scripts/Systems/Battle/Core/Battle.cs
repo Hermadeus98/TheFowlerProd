@@ -427,7 +427,7 @@ namespace TheFowler
         private IEnumerator LoseIE()
         {
 
-            
+            StartWithSavedData = false;
             callOnEndEvent = false;
             BattleManager.numberOfBattle--;
 

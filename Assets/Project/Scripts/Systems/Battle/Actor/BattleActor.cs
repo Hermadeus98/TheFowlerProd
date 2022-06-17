@@ -151,7 +151,14 @@ namespace TheFowler
                 if (currentBattle.robyn != null)
                     if (currentBattle.robyn == this)
                     {
-                        health?.SetCurrentHealth(Player.RobynSavedData.health);
+                        float v = 0;
+
+                        if (Player.RobynSavedData.health < GetBattleComponent<Health>().MaxHealth)
+                        {
+                            v = GetBattleComponent<Health>().MaxHealth * .5f - Player.RobynSavedData.health;
+                        }
+
+                        health?.SetCurrentHealth(Player.RobynSavedData.health + v);
                         battleActorInfo.AttackBonus = Player.RobynSavedData.attackBonus;
                         battleActorInfo.DefenseBonus = Player.RobynSavedData.defenseBonus;
                         AllyData?.Refresh();
@@ -161,7 +168,14 @@ namespace TheFowler
                 if(currentBattle.abi != null)
                     if (currentBattle.abi == this)
                     {
-                        health?.SetCurrentHealth(Player.AbiSavedData.health);
+                        float v = 0;
+
+                        if (Player.AbiSavedData.health < GetBattleComponent<Health>().MaxHealth)
+                        {
+                            v = GetBattleComponent<Health>().MaxHealth * .5f - Player.AbiSavedData.health;
+                        }
+
+                        health?.SetCurrentHealth(Player.AbiSavedData.health + v);
                         battleActorInfo.AttackBonus = Player.AbiSavedData.attackBonus;
                         battleActorInfo.DefenseBonus = Player.AbiSavedData.defenseBonus;
                         AllyData?.Refresh();
@@ -171,7 +185,14 @@ namespace TheFowler
                 if(currentBattle.phoebe != null)
                     if (currentBattle.phoebe == this)
                     {
-                        health?.SetCurrentHealth(Player.PhoebeSavedData.health);
+                        float v = 0;
+
+                        if (Player.PhoebeSavedData.health < GetBattleComponent<Health>().MaxHealth)
+                        {
+                            v = GetBattleComponent<Health>().MaxHealth * .5f - Player.PhoebeSavedData.health;
+                        }
+
+                        health?.SetCurrentHealth(Player.PhoebeSavedData.health + v);
                         battleActorInfo.AttackBonus = Player.PhoebeSavedData.attackBonus;
                         battleActorInfo.DefenseBonus = Player.PhoebeSavedData.defenseBonus;
                         AllyData?.Refresh();
@@ -467,6 +488,7 @@ namespace TheFowler
                 GetBattleComponent<CooldownComponent>().ResetCD();
             }
         }
+
     }
 
     [Serializable]
@@ -518,5 +540,7 @@ namespace TheFowler
         }
 
         public bool isAlly;
+
+        
     }
 }

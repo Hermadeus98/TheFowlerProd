@@ -95,6 +95,7 @@ namespace TheFowler
 
         public void ForceHide()
         {
+            if (c == null) return;
             StopCoroutine(c);
             CanvasGroup.alpha = 0;
         }
