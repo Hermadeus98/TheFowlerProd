@@ -79,8 +79,6 @@ namespace TheFowler
             skillSelector.canNavigate = true;
             skillSelector.Hide();
 
-            triangle.GetComponent<CanvasGroup>().alpha = 1;
-
             GetComponent<RectTransform>().anchoredPosition = basicPosition;
             
             if (enemies.Count > 0)
