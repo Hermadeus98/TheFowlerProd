@@ -40,7 +40,9 @@ namespace TheFowler
 
             Player.Robyn?.gameObject.SetActive(false);
             Player.Abigael?.gameObject.SetActive(false);
-            Player.Pheobe?.gameObject.SetActive(false);
+
+            if(Player.Pheobe != null)
+                Player.Pheobe?.gameObject.SetActive(false);
 
 
 
@@ -61,11 +63,14 @@ namespace TheFowler
         private IEnumerator WaitEnd()
         {                 
             yield return new WaitForSeconds(0);
+            CreditView.Instance.isEndCredit = true;
             CreditView.Instance.Show();
+
             CreditView.Instance.onEnd.AddListener(() => Game.GoToMainMenu());
             Player.Robyn?.gameObject.SetActive(false);
             Player.Abigael?.gameObject.SetActive(false);
-            Player.Pheobe?.gameObject.SetActive(false);
+            if (Player.Pheobe != null)
+                Player.Pheobe?.gameObject.SetActive(false);
         }
         
         //---<EDITOR>--------------------------------------------------------------------------------------------------<

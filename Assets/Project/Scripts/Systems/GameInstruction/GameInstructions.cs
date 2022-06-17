@@ -41,11 +41,13 @@ namespace TheFowler
 
                     case GameInstructionEnum.SET_ALLIES_CONTROLLER_TO_NAVMESH_CONTROLLER:
                         Player.Abigael?.Controller.SetController(ControllerEnum.NAV_MESH_CONTROLLER);
-                        Player.Pheobe?.Controller.SetController(ControllerEnum.NAV_MESH_CONTROLLER);
+                        if (Player.Pheobe != null)
+                            Player.Pheobe?.Controller.SetController(ControllerEnum.NAV_MESH_CONTROLLER);
                         break;
                     case GameInstructionEnum.SET_ALLIES_CONTROLLER_TO_NAVMESH_FOLLOWER:
                         Player.Abigael?.Controller.SetController(ControllerEnum.NAV_MESH_FOLLOWER);
-                        Player.Pheobe?.Controller.SetController(ControllerEnum.NAV_MESH_FOLLOWER);
+                        if (Player.Pheobe != null)
+                            Player.Pheobe?.Controller.SetController(ControllerEnum.NAV_MESH_FOLLOWER);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();

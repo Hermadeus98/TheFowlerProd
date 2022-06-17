@@ -265,7 +265,9 @@ namespace TheFowler
         {
             Player.Robyn?.gameObject.SetActive(false);
             Player.Abigael?.gameObject.SetActive(false);
-            Player.Pheobe?.gameObject.SetActive(false);
+
+            if(Player.Pheobe != null)
+                Player.Pheobe?.gameObject.SetActive(false);
 
             SetActorState(true);
         }
@@ -343,7 +345,8 @@ namespace TheFowler
 
             Player.Robyn?.gameObject.SetActive(replaceActorAtTheEnd);
             Player.Abigael?.gameObject.SetActive(replaceActorAtTheEnd);
-            Player.Pheobe?.gameObject.SetActive(replaceActorAtTheEnd);
+            if (Player.Pheobe != null)
+                Player.Pheobe?.gameObject.SetActive(replaceActorAtTheEnd);
         }
         
         public T ChangeBattleState<T>(BattleStateEnum key) where T : class, Istate
