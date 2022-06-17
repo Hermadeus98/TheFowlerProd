@@ -85,13 +85,19 @@ public class MenuPauseManager : MonoBehaviour
 
         if(BattleManager.CurrentBattle != null)
         {
+            restartElement.gameObject.SetActive(true);
             if (!textNavigation.all_elements.Contains(restartElement))
             {
-                restartElement.gameObject.SetActive(true);
+                
                 textNavigation.all_elements.Insert(1, restartElement);
                 textNavigation.StartNavigate();
             }
             
+        }
+
+        else
+        {
+            restartElement.gameObject.SetActive(false);
         }
     }
 
@@ -114,12 +120,13 @@ public class MenuPauseManager : MonoBehaviour
         {
             if (!textNavigation.all_elements.Contains(restartElement))
             {
-                restartElement.gameObject.SetActive(false);
                 textNavigation.all_elements.Remove(restartElement);
 
             }
 
         }
+
+
 
     }
 
