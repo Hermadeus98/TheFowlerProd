@@ -20,6 +20,10 @@ namespace TheFowler
         public UnityEvent onEnd;
 
         private Coroutine wait;
+
+        public bool isEndCredit;
+        private bool canQuit;
+        public GameObject quitSigns;
         
         protected override void OnStart()
         {
@@ -31,10 +35,55 @@ namespace TheFowler
         {
             CanvasGroup.alpha = 1f;
             isActive = true;
-            animator.SetTrigger(play);
-            wait = StartCoroutine(Wait());
+
+            if (isEndCredit)
+            {
+                animator.SetTrigger(play);
+                wait = StartCoroutine(WaitEnd());
+
+            }
+            else
+            {
+
+                wait = StartCoroutine(Wait());
+            }
+
+
         }
 
+        public void Update()
+        {
+            if(isActive && canQuit)
+            {
+                if (Gamepad.current.aButton.wasPressedThisFrame)
+                {
+                    Application.Quit();
+                    Debug.Log("Quit");
+                }
+            }
+        }
+
+        IEnumerator WaitEnd()
+        {
+            var t = clip.length;
+            while (t > 0)
+            {
+                t -= Time.deltaTime;
+                if (t <= 0)
+                {
+                    ShowQuit();
+                    t = 0;
+                }
+
+                yield return null;
+            }
+        }
+
+        private void ShowQuit()
+        {
+            canQuit = true;
+            quitSigns.SetActive(true);
+        }
         IEnumerator Wait()
         {
             var t = clip.length;

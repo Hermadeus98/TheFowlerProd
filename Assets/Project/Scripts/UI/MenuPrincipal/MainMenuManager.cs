@@ -43,7 +43,7 @@ namespace TheFowler
 
         public TextMeshProUGUI description;
 
-        
+        [SerializeField] private BattleActorData[] datas;
         public enum MenuPanel
         {
             MAIN,
@@ -54,6 +54,8 @@ namespace TheFowler
         
         private void Awake()
         {
+            ResetBattleActor();
+
             description.gameObject.SetActive(false);
             Player.canOpenPauseMenu = false;
             Player.isInPauseMenu = true;
@@ -246,6 +248,14 @@ namespace TheFowler
             //}
 
             //BlackPanel.Instance.Hide(4);
+        }
+
+        private void ResetBattleActor()
+        {
+            for (int i = 0; i < datas.Length; i++)
+            {
+                datas[i].Reset();
+            }
         }
 
         public void Quit()
