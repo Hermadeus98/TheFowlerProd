@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor;
 using UnityEngine;
 
 namespace TheFowler
@@ -18,7 +17,6 @@ namespace TheFowler
                 var trail = GameObject.Instantiate(SpellData.Instance.Abi_PS_BasicAttack_Trail, emitter.transform.position, Quaternion.identity);
                 trail.GetComponentInChildren<VFXDistanceScaler>().SetTarget(receivers[i].transform);
                 trail.Play();
-                Selection.activeGameObject = trail.gameObject;
             }
 
             yield return new WaitForSeconds(SpellData.Instance.Abi_Timer_BasicAttack_TrailDuration);
