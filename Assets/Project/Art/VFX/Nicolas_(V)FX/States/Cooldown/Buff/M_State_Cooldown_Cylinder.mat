@@ -7,13 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_State_Damage_Pan_Lv3
-  m_Shader: {fileID: 4800000, guid: ab6b209461cce3a47815fc62f8c5cffb, type: 3}
-  m_ShaderKeywords: _ADD_PRECOMPUTED_VELOCITY _EDGEFADE_ENABLE_ON _ENABLE_FOG_ON_TRANSPARENT
-    _SURFACE_TYPE_TRANSPARENT
+  m_Name: M_State_Cooldown_Cylinder
+  m_Shader: {fileID: 4800000, guid: 092ef7d11eb054a4ba9c9896868e90ff, type: 3}
+  m_ShaderKeywords: _ADD_PRECOMPUTED_VELOCITY _DOUBLESIDED_ON _EDGEFADE_ENABLE_ON
+    _ENABLE_FOG_ON_TRANSPARENT _PANNINGTEX_INVERTUV_ON _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
+  m_DoubleSidedGI: 1
   m_CustomRenderQueue: 3000
   stringTagMap:
     MotionVector: User
@@ -25,44 +25,37 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _DistortTex:
-        m_Texture: {fileID: 2800000, guid: 3fa8e32cda9d0614cb7c23b94f38cc88, type: 3}
-        m_Scale: {x: 0.3, y: 0.4}
-        m_Offset: {x: 0.15, y: -0.25}
+        m_Texture: {fileID: 2800000, guid: 9e4cdea43bd4b4548b36509a8d8596b3, type: 3}
+        m_Scale: {x: 1, y: 0.2}
+        m_Offset: {x: 0.5, y: 0.2}
     - _PanningTex:
-        m_Texture: {fileID: 2800000, guid: 95cc73dbc162d9a4ba755846bd0e1937, type: 3}
-        m_Scale: {x: 1, y: 0.8}
-        m_Offset: {x: 0, y: -0.7}
+        m_Texture: {fileID: 2800000, guid: b9fe1e842706ad54abaf67f75328e278, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 2, y: 0}
     m_Floats:
     - _AddPrecomputedVelocity: 1
     - _AddedEdgeFade: 0
     - _AlphaCutoff: 0.5
     - _AlphaCutoffEnable: 0
     - _AlphaDstBlend: 1
-    - _AlphaLerp_TexInfluence: 0.2
-    - _AlphaSharp_OneMinus: 0
-    - _AlphaSmoothness: 0.4
     - _AlphaSrcBlend: 1
-    - _AlphaThreshold: 0.16
-    - _Base_Smoothness: 0.2
-    - _Base_Threshold: 0.61
-    - _BicolorSmoothness: 0.4
-    - _BicolorThreshold: 0.13
+    - _BicolorSmoothness: 1
+    - _BicolorThreshold: 0
     - _Bicolor_OneMinus: 0
     - _BlendMode: 1
-    - _CullMode: 2
-    - _CullModeForward: 2
-    - _DF_Distance: 6.31
+    - _CullMode: 0
+    - _CullModeForward: 0
+    - _DF_Distance: 0.5
     - _DF_OneMinus: 0
-    - _DistortStrength: 0.11
+    - _DistortStrength: -0.13
     - _DistortionEnable: 0
     - _DistortionOnly: 0
-    - _DoubleSidedEnable: 0
+    - _DoubleSidedEnable: 1
     - _DoubleSidedNormalMode: 2
     - _DstBlend: 1
     - _EdgeFade_Enable: 1
     - _EnableFogOnTransparent: 1
-    - _Lerp: 0
-    - _PanningTex_InvertUV: 0
+    - _PanningTex_InvertUV: 1
     - _PanningTex_ManualOffset: 0
     - _ReceivesSSR: 0
     - _RenderQueueType: 4
@@ -89,13 +82,10 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 0
     m_Colors:
-    - _AddedDistortCol: {r: 0, g: 0, b: 0, a: 0}
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
-    - _Base_Color: {r: 9.179368, g: 3.5855548, b: 0, a: 0}
-    - _ColorA: {r: 0.7372549, g: 0.02352941, b: 0.05434909, a: 1}
-    - _ColorB: {r: 1.4980392, g: 0.13333334, b: 0.039215688, a: 1}
+    - _ColorA: {r: 0.0464133, g: 0.059905086, b: 0.066037714, a: 1}
+    - _ColorB: {r: 0.38625848, g: 0.49490556, b: 0.5283019, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
-    - _EdgeFadeU: {r: 0, g: 0.45, b: 0, a: 0.45}
-    - _EdgeFadeV: {r: 0, g: 0, b: 0, a: 1}
+    - _EdgeFadeU: {r: 0, g: 0, b: 0, a: 0}
+    - _EdgeFadeV: {r: 0, g: 0.4, b: 0, a: 0.4}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
