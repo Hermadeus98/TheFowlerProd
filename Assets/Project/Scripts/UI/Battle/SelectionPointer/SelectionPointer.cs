@@ -29,11 +29,11 @@ namespace TheFowler
             y = transform.position.y;
             anim?.Kill();
 
-            anim = DOTween.Sequence();
+            /*anim = DOTween.Sequence();
             anim.Append(transform.DOMoveY(y + .1f, .5f)).SetEase(Ease.InOutSine);
             anim.Append(transform.DOMoveY(y, .5f)).SetEase(Ease.InOutSine);
             anim.SetLoops(-1);
-            anim.Play();
+            anim.Play();*/
         }
 
         public override void Hide()

@@ -224,12 +224,27 @@ namespace TheFowler
                     SetCamera(CameraKeys.BattleKeys.TargetPickingEnemies);
                     break;
                 case TargetTypeEnum.SOLO_ALLY:
-                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies");
+                    if (BattleManager.CurrentBattle.numberOfAllies == 2)
+                    {
+                        CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies Two Allies");
+                    }
+                    else
+                    {
+                        CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies");
+                    }
                     SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SwitchCamera_Heavy, gameObject);
                     //SetCamera(CameraKeys.BattleKeys.TargetPickingAllies);
                     break;
                 case TargetTypeEnum.ALL_ALLIES:
-                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies");
+                    if (BattleManager.CurrentBattle.numberOfAllies == 2)
+                    {
+                        CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies Two Allies");
+                    }
+                    else
+                    {
+                        CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies");
+                    }
+
                     SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SwitchCamera_Heavy, gameObject);
                     //SetCamera(CameraKeys.BattleKeys.TargetPickingAllies);
                     break;
