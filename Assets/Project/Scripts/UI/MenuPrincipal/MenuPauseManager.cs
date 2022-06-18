@@ -44,11 +44,13 @@ public class MenuPauseManager : MonoBehaviour
     }
 
     private bool reopenCharacterView = false;
-    private MenuCharactersView MenuCharactersView => UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters);
+    private MenuCharactersView MenuCharactersView;
     
     public void Open()
     {
-        if(!Player.canOpenPauseMenu)
+        MenuCharactersView = UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters);
+
+        if (!Player.canOpenPauseMenu)
             return;
 
         if (MenuCharactersView.viewIsOpen)

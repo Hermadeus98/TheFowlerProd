@@ -10,7 +10,7 @@ namespace TheFowler
     {
         public TextChoice tc;
         
-        private void Start()
+        private void OnEnable()
         {
             Refresh();
         }
@@ -31,11 +31,18 @@ namespace TheFowler
                     break;
             }
 
+            
+
 
             //int index = tc.current;
 
             //var difficultyTexts = FindObjectsOfType<DifficultyUpdater>();
             //difficultyTexts.ForEach(w => w.Apply(index));
+        }
+
+        private void Update()
+        {
+            Refresh();
         }
 
         public void Apply(int current)

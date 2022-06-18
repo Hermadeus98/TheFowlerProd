@@ -18,6 +18,7 @@ namespace TheFowler
         [SerializeField] private Color selectedColor;
 
         [SerializeField] private UnityEvent OnSelect, OnHighLigh;
+        
 
         private Sequence pulse;
 
@@ -31,7 +32,8 @@ namespace TheFowler
         [TextArea(2, 4)] public string descriptionText, descriptionTextFrench;
 
         public TextNavigation TextNavigation;
-        
+
+
         protected override void OnStart()
         {
             base.OnStart();
