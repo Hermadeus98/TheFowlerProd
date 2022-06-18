@@ -82,6 +82,7 @@ namespace TheFowler
                 playerInput.enabled = false;
                 currentElement.GetComponent<RectTransform>().DOAnchorPos(new Vector3(800, 91, 0), .2f).SetEase(Ease.Linear).OnComplete(() => EndTutoElementAndLaunchNext());
 
+                yield return new WaitForSeconds(.7f);
 
                 isDisplayed = true;
             }
@@ -240,6 +241,8 @@ namespace TheFowler
             currentElement.Initialize();
 
             Show();
+
+            yield return new WaitForSeconds(.5f);
 
             isDisplayed = true;
 

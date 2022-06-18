@@ -127,8 +127,93 @@ namespace TheFowler
             ReferedActor.AllyData?.ShakeHearth();
 
             if (lifeTxt != null) lifeTxt.text = currentHealth.ToString();
+            
+            React();
         }
 
+        private void React()
+        {
+            if(ReferedActor is EnemyActor)
+                return;
+            
+            //Robyn
+            if (ReferedActor == BattleManager.CurrentBattle.robyn)
+            {
+                var rand = Random.Range(0, 3);
+                if (rand == 0 && !ReferedActor.BattleActorInfo.isDeath)
+                {
+                    ReferedActor.punchline.PlayPunchline(PunchlineCallback.REACT_ROBYN_ROBYN);
+                    //React to herself
+                }
+                else if (rand == 1 && BattleManager.CurrentBattle.abi != null)
+                {
+                    if (!BattleManager.CurrentBattle.abi.BattleActorInfo.isDeath)
+                    {
+                        BattleManager.CurrentBattle.abi.punchline.PlayPunchline(PunchlineCallback.REACT_ABI_ROBYN);
+                        //Abi react
+                    }
+                }
+                else if (rand == 2  && BattleManager.CurrentBattle.phoebe != null)
+                {
+                    if (!BattleManager.CurrentBattle.phoebe.BattleActorInfo.isDeath)
+                    {
+                        BattleManager.CurrentBattle.phoebe.punchline.PlayPunchline(PunchlineCallback.REACT_PHOEBE_ROBYN);
+                        //Phoebe react
+                    }
+                }
+            }
+            else if (ReferedActor == BattleManager.CurrentBattle.abi)
+            {
+                var rand = Random.Range(0, 3);
+                if (rand == 0 && !ReferedActor.BattleActorInfo.isDeath)
+                {
+                    ReferedActor.punchline.PlayPunchline(PunchlineCallback.REACT_ABI_ABI);
+                    //React to herself
+                }
+                else if (rand == 1 && BattleManager.CurrentBattle.robyn != null)
+                {
+                    if (!BattleManager.CurrentBattle.robyn.BattleActorInfo.isDeath)
+                    {
+                        BattleManager.CurrentBattle.robyn.punchline.PlayPunchline(PunchlineCallback.REACT_ROBYN_ABI);
+                        //Robyn react
+                    }
+                }
+                else if (rand == 2 && BattleManager.CurrentBattle.phoebe != null)
+                {
+                    if (!BattleManager.CurrentBattle.phoebe.BattleActorInfo.isDeath)
+                    {
+                        BattleManager.CurrentBattle.phoebe.punchline.PlayPunchline(PunchlineCallback.REACT_PHOEBE_ABI);
+                        //Phoebe react
+                    }
+                }
+            }
+            else if (ReferedActor == BattleManager.CurrentBattle.phoebe)
+            {
+                var rand = Random.Range(0, 3);
+                if (rand == 0 && !ReferedActor.BattleActorInfo.isDeath)
+                {
+                    ReferedActor.punchline.PlayPunchline(PunchlineCallback.REACT_PHOEBE_PHOEBE);
+                    //React to herself
+                }
+                else if (rand == 1 && BattleManager.CurrentBattle.robyn != null)
+                {
+                    if (!BattleManager.CurrentBattle.robyn.BattleActorInfo.isDeath)
+                    {
+                        BattleManager.CurrentBattle.robyn.punchline.PlayPunchline(PunchlineCallback.REACT_ROBYN_PHOEBE);
+                        //Robyn react
+                    }
+                }
+                else if (rand == 2 && BattleManager.CurrentBattle.abi != null)
+                {
+                    if (!BattleManager.CurrentBattle.abi.BattleActorInfo.isDeath)
+                    {
+                        BattleManager.CurrentBattle.abi.punchline.PlayPunchline(PunchlineCallback.REACT_ABI_PHOEBE);
+                        //Phoebe react
+                    }
+                }
+            }
+        }
+        
         IEnumerator AllyReaction()
         {
             

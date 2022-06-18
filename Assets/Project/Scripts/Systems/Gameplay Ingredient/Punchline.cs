@@ -76,6 +76,7 @@ namespace TheFowler
             
             yield return new WaitForSeconds(data.soundDuration);
             punchlineIsPlaying = false;
+            data.isPlayed = true;
 
             /*if (!registerPunchlines.IsNullOrEmpty())
             {
@@ -108,6 +109,15 @@ namespace TheFowler
         START_TURN,
         DEATH,
         RECEIVING_REVIVE,
+        REACT_ROBYN_ROBYN,
+        REACT_ROBYN_ABI,
+        REACT_ROBYN_PHOEBE,
+        REACT_ABI_ABI,
+        REACT_ABI_ROBYN,
+        REACT_ABI_PHOEBE,
+        REACT_PHOEBE_PHOEBE,
+        REACT_PHOEBE_ABI,
+        REACT_PHOEBE_ROBYN
     }
 }
 

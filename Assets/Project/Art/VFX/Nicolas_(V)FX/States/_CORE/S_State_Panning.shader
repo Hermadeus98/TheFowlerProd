@@ -258,6 +258,7 @@ Shader "S_State_Panning"
 				float3 positionOS : POSITION;
 				float3 normalOS : NORMAL;
 				float4 ase_texcoord : TEXCOORD0;
+				float4 ase_color : COLOR;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -266,6 +267,7 @@ Shader "S_State_Panning"
 				float4 positionCS : SV_Position;
 				float3 positionRWS : TEXCOORD0;
 				float4 ase_texcoord1 : TEXCOORD1;
+				float4 ase_color : COLOR;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -416,10 +418,8 @@ Shader "S_State_Panning"
 				UNITY_TRANSFER_INSTANCE_ID(inputMesh, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO( o );
 
-				o.ase_texcoord1.xy = inputMesh.ase_texcoord.xy;
-				
-				//setting value to unused interpolator channels and avoid initialization warnings
-				o.ase_texcoord1.zw = 0;
+				o.ase_texcoord1 = inputMesh.ase_texcoord;
+				o.ase_color = inputMesh.ase_color;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 				float3 defaultVertexValue = inputMesh.positionOS.xyz;
 				#else
@@ -446,6 +446,7 @@ Shader "S_State_Panning"
 				float3 positionOS : INTERNALTESSPOS;
 				float3 normalOS : NORMAL;
 				float4 ase_texcoord : TEXCOORD0;
+				float4 ase_color : COLOR;
 
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
@@ -464,6 +465,7 @@ Shader "S_State_Panning"
 				o.positionOS = v.positionOS;
 				o.normalOS = v.normalOS;
 				o.ase_texcoord = v.ase_texcoord;
+				o.ase_color = v.ase_color;
 				return o;
 			}
 
@@ -508,6 +510,7 @@ Shader "S_State_Panning"
 				o.positionOS = patch[0].positionOS * bary.x + patch[1].positionOS * bary.y + patch[2].positionOS * bary.z;
 				o.normalOS = patch[0].normalOS * bary.x + patch[1].normalOS * bary.y + patch[2].normalOS * bary.z;
 				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
+				o.ase_color = patch[0].ase_color * bary.x + patch[1].ase_color * bary.y + patch[2].ase_color * bary.z;
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -545,6 +548,9 @@ Shader "S_State_Panning"
 				float2 texCoord13_g60 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 panner1_g61 = ( _TimeParameters.x * _DistortTex_ST.zw + ( texCoord13_g60 * _DistortTex_ST.xy ));
 				float4 tex2DNode24_g60 = tex2D( _DistortTex, ( float2( 0,0 ) + panner1_g61 ) );
+				float4 texCoord49 = packedInput.ase_texcoord1;
+				texCoord49.xy = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 appendResult50 = (float2(0.0 , texCoord49.z));
 				float4 appendResult43_g63 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
 				float4 appendResult42_g63 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
 				float4 lerpResult41_g63 = lerp( appendResult43_g63 , appendResult42_g63 , _PanningTex_InvertUV);
@@ -564,7 +570,7 @@ Shader "S_State_Panning"
 				float4 lerpResult2_g67 = lerp( float4( temp_output_1_0_g67, 0.0 , 0.0 ) , appendResult5_g67 , _PanningTex_InvertUV);
 				float2 panner1_g64 = ( _TimeParameters.x * (lerpResult2_g65).xy + ( (lerpResult2_g66).xy * (lerpResult2_g67).xy ));
 				float2 texCoord9_g63 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
-				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( float2( 0,0 ), 0.0 , 0.0 ) + lerpResult41_g63 ).xy + panner1_g64 ), ddx( texCoord9_g63 ), ddy( texCoord9_g63 ) );
+				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( appendResult50, 0.0 , 0.0 ) + lerpResult41_g63 ).xy + panner1_g64 ), ddx( texCoord9_g63 ), ddy( texCoord9_g63 ) );
 				float2 texCoord46 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
 				float4 temp_cast_6 = (( 1.0 - texCoord46.y )).xxxx;
 				float4 lerpResult44 = lerp( temp_output_7_0 , temp_cast_6 , _Lerp);
@@ -573,8 +579,8 @@ Shader "S_State_Panning"
 				float4 lerpResult4_g72 = lerp( _ColorA , _ColorB , lerpResult12_g72);
 				float4 temp_output_9_0 = lerpResult4_g72;
 				float2 texCoord13 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
-				float lerpResult1_g71 = lerp( texCoord13.y , temp_output_7_0.r , _AlphaLerp_TexInfluence);
-				float smoothstepResult18 = smoothstep( _Base_Threshold , ( _Base_Threshold + _Base_Smoothness ) , ( 1.0 - lerpResult1_g71 ));
+				float lerpResult1_g73 = lerp( texCoord13.y , temp_output_7_0.r , _AlphaLerp_TexInfluence);
+				float smoothstepResult18 = smoothstep( _Base_Threshold , ( _Base_Threshold + _Base_Smoothness ) , ( 1.0 - lerpResult1_g73 ));
 				
 				float temp_output_7_0_g69 = ( _AlphaThreshold + 0.0 );
 				float2 texCoord7_g62 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
@@ -594,7 +600,7 @@ Shader "S_State_Panning"
 				
 				surfaceDescription.Color = ( ( ( tex2DNode24_g60 * _AddedDistortCol * lerpResult44 ) + temp_output_9_0 ) + ( _Base_Color * smoothstepResult18 * temp_output_9_0 ) ).rgb;
 				surfaceDescription.Emission = 0;
-				surfaceDescription.Alpha = ( smoothstepResult2_g69 * smoothstepResult29 * temp_output_8_0 );
+				surfaceDescription.Alpha = ( smoothstepResult2_g69 * smoothstepResult29 * temp_output_8_0 * packedInput.ase_color.a );
 				surfaceDescription.AlphaClipThreshold = _AlphaCutoff;
 				surfaceDescription.ShadowTint = float4( 0, 0 ,0 ,1 );
 				float2 Distortion = float2 ( 0, 0 );
@@ -683,6 +689,7 @@ Shader "S_State_Panning"
 				float3 positionOS : POSITION;
 				float3 normalOS : NORMAL;
 				float4 ase_texcoord : TEXCOORD0;
+				float4 ase_color : COLOR;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -690,6 +697,7 @@ Shader "S_State_Panning"
 			{
 				float4 positionCS : SV_Position;
 				float4 ase_texcoord : TEXCOORD0;
+				float4 ase_color : COLOR;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -812,10 +820,8 @@ Shader "S_State_Panning"
 				UNITY_TRANSFER_INSTANCE_ID(inputMesh, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO( o );
 
-				o.ase_texcoord.xy = inputMesh.ase_texcoord.xy;
-				
-				//setting value to unused interpolator channels and avoid initialization warnings
-				o.ase_texcoord.zw = 0;
+				o.ase_texcoord = inputMesh.ase_texcoord;
+				o.ase_color = inputMesh.ase_color;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 				float3 defaultVertexValue = inputMesh.positionOS.xyz;
 				#else
@@ -841,6 +847,7 @@ Shader "S_State_Panning"
 				float3 positionOS : INTERNALTESSPOS;
 				float3 normalOS : NORMAL;
 				float4 ase_texcoord : TEXCOORD0;
+				float4 ase_color : COLOR;
 
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
@@ -859,6 +866,7 @@ Shader "S_State_Panning"
 				o.positionOS = v.positionOS;
 				o.normalOS = v.normalOS;
 				o.ase_texcoord = v.ase_texcoord;
+				o.ase_color = v.ase_color;
 				return o;
 			}
 
@@ -903,6 +911,7 @@ Shader "S_State_Panning"
 				o.positionOS = patch[0].positionOS * bary.x + patch[1].positionOS * bary.y + patch[2].positionOS * bary.z;
 				o.normalOS = patch[0].normalOS * bary.x + patch[1].normalOS * bary.y + patch[2].normalOS * bary.z;
 				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
+				o.ase_color = patch[0].ase_color * bary.x + patch[1].ase_color * bary.y + patch[2].ase_color * bary.z;
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -961,6 +970,9 @@ Shader "S_State_Panning"
 				float smoothstepResult6_g62 = smoothstep( _EdgeFadeV.z , ( _EdgeFadeV.w + _AddedEdgeFade ) , ( 1.0 - break9_g62.y ));
 				float lerpResult14_g62 = lerp( 1.0 , ( smoothstepResult3_g62 * smoothstepResult4_g62 * smoothstepResult5_g62 * smoothstepResult6_g62 ) , _EdgeFade_Enable);
 				float temp_output_8_0 = lerpResult14_g62;
+				float4 texCoord49 = packedInput.ase_texcoord;
+				texCoord49.xy = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 appendResult50 = (float2(0.0 , texCoord49.z));
 				float4 appendResult43_g63 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
 				float4 appendResult42_g63 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
 				float4 lerpResult41_g63 = lerp( appendResult43_g63 , appendResult42_g63 , _PanningTex_InvertUV);
@@ -983,7 +995,7 @@ Shader "S_State_Panning"
 				float4 lerpResult2_g67 = lerp( float4( temp_output_1_0_g67, 0.0 , 0.0 ) , appendResult5_g67 , _PanningTex_InvertUV);
 				float2 panner1_g64 = ( _TimeParameters.x * (lerpResult2_g65).xy + ( (lerpResult2_g66).xy * (lerpResult2_g67).xy ));
 				float2 texCoord9_g63 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( float2( 0,0 ), 0.0 , 0.0 ) + lerpResult41_g63 ).xy + panner1_g64 ), ddx( texCoord9_g63 ), ddy( texCoord9_g63 ) );
+				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( appendResult50, 0.0 , 0.0 ) + lerpResult41_g63 ).xy + panner1_g64 ), ddx( texCoord9_g63 ), ddy( texCoord9_g63 ) );
 				float lerpResult1_g68 = lerp( temp_output_8_0 , temp_output_7_0.r , _AlphaLerp_TexInfluence);
 				float temp_output_1_0_g69 = lerpResult1_g68;
 				float lerpResult9_g69 = lerp( temp_output_1_0_g69 , ( 1.0 - temp_output_1_0_g69 ) , _AlphaSharp_OneMinus);
@@ -991,7 +1003,7 @@ Shader "S_State_Panning"
 				float2 texCoord28 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
 				float smoothstepResult29 = smoothstep( 0.0 , 0.15 , texCoord28.y);
 				
-				surfaceDescription.Alpha = ( smoothstepResult2_g69 * smoothstepResult29 * temp_output_8_0 );
+				surfaceDescription.Alpha = ( smoothstepResult2_g69 * smoothstepResult29 * temp_output_8_0 * packedInput.ase_color.a );
 				surfaceDescription.AlphaClipThreshold = _AlphaCutoff;
 
 				SurfaceData surfaceData;
@@ -1151,6 +1163,7 @@ Shader "S_State_Panning"
 				float4 uv1 : TEXCOORD1;
 				float4 uv2 : TEXCOORD2;
 				float4 ase_texcoord : TEXCOORD0;
+				float4 ase_color : COLOR;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -1158,6 +1171,7 @@ Shader "S_State_Panning"
 			{
 				float4 positionCS : SV_Position;
 				float4 ase_texcoord : TEXCOORD0;
+				float4 ase_color : COLOR;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -1195,10 +1209,8 @@ Shader "S_State_Panning"
 				UNITY_SETUP_INSTANCE_ID( inputMesh );
 				UNITY_TRANSFER_INSTANCE_ID( inputMesh, o );
 
-				o.ase_texcoord.xy = inputMesh.ase_texcoord.xy;
-				
-				//setting value to unused interpolator channels and avoid initialization warnings
-				o.ase_texcoord.zw = 0;
+				o.ase_texcoord = inputMesh.ase_texcoord;
+				o.ase_color = inputMesh.ase_color;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 				float3 defaultVertexValue = inputMesh.positionOS.xyz;
 				#else
@@ -1235,6 +1247,7 @@ Shader "S_State_Panning"
 				float4 uv1 : TEXCOORD1;
 				float4 uv2 : TEXCOORD2;
 				float4 ase_texcoord : TEXCOORD0;
+				float4 ase_color : COLOR;
 
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
@@ -1255,6 +1268,7 @@ Shader "S_State_Panning"
 				o.uv1 = v.uv1;
 				o.uv2 = v.uv2;
 				o.ase_texcoord = v.ase_texcoord;
+				o.ase_color = v.ase_color;
 				return o;
 			}
 
@@ -1301,6 +1315,7 @@ Shader "S_State_Panning"
 				o.uv1 = patch[0].uv1 * bary.x + patch[1].uv1 * bary.y + patch[2].uv1 * bary.z;
 				o.uv2 = patch[0].uv2 * bary.x + patch[1].uv2 * bary.y + patch[2].uv2 * bary.z;
 				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
+				o.ase_color = patch[0].ase_color * bary.x + patch[1].ase_color * bary.y + patch[2].ase_color * bary.z;
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -1334,6 +1349,9 @@ Shader "S_State_Panning"
 				float2 texCoord13_g60 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 panner1_g61 = ( _TimeParameters.x * _DistortTex_ST.zw + ( texCoord13_g60 * _DistortTex_ST.xy ));
 				float4 tex2DNode24_g60 = tex2D( _DistortTex, ( float2( 0,0 ) + panner1_g61 ) );
+				float4 texCoord49 = packedInput.ase_texcoord;
+				texCoord49.xy = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 appendResult50 = (float2(0.0 , texCoord49.z));
 				float4 appendResult43_g63 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
 				float4 appendResult42_g63 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
 				float4 lerpResult41_g63 = lerp( appendResult43_g63 , appendResult42_g63 , _PanningTex_InvertUV);
@@ -1353,7 +1371,7 @@ Shader "S_State_Panning"
 				float4 lerpResult2_g67 = lerp( float4( temp_output_1_0_g67, 0.0 , 0.0 ) , appendResult5_g67 , _PanningTex_InvertUV);
 				float2 panner1_g64 = ( _TimeParameters.x * (lerpResult2_g65).xy + ( (lerpResult2_g66).xy * (lerpResult2_g67).xy ));
 				float2 texCoord9_g63 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( float2( 0,0 ), 0.0 , 0.0 ) + lerpResult41_g63 ).xy + panner1_g64 ), ddx( texCoord9_g63 ), ddy( texCoord9_g63 ) );
+				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( appendResult50, 0.0 , 0.0 ) + lerpResult41_g63 ).xy + panner1_g64 ), ddx( texCoord9_g63 ), ddy( texCoord9_g63 ) );
 				float2 texCoord46 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
 				float4 temp_cast_6 = (( 1.0 - texCoord46.y )).xxxx;
 				float4 lerpResult44 = lerp( temp_output_7_0 , temp_cast_6 , _Lerp);
@@ -1362,8 +1380,8 @@ Shader "S_State_Panning"
 				float4 lerpResult4_g72 = lerp( _ColorA , _ColorB , lerpResult12_g72);
 				float4 temp_output_9_0 = lerpResult4_g72;
 				float2 texCoord13 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float lerpResult1_g71 = lerp( texCoord13.y , temp_output_7_0.r , _AlphaLerp_TexInfluence);
-				float smoothstepResult18 = smoothstep( _Base_Threshold , ( _Base_Threshold + _Base_Smoothness ) , ( 1.0 - lerpResult1_g71 ));
+				float lerpResult1_g73 = lerp( texCoord13.y , temp_output_7_0.r , _AlphaLerp_TexInfluence);
+				float smoothstepResult18 = smoothstep( _Base_Threshold , ( _Base_Threshold + _Base_Smoothness ) , ( 1.0 - lerpResult1_g73 ));
 				
 				float temp_output_7_0_g69 = ( _AlphaThreshold + 0.0 );
 				float2 texCoord7_g62 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
@@ -1383,7 +1401,7 @@ Shader "S_State_Panning"
 				
 				surfaceDescription.Color = ( ( ( tex2DNode24_g60 * _AddedDistortCol * lerpResult44 ) + temp_output_9_0 ) + ( _Base_Color * smoothstepResult18 * temp_output_9_0 ) ).rgb;
 				surfaceDescription.Emission = 0;
-				surfaceDescription.Alpha = ( smoothstepResult2_g69 * smoothstepResult29 * temp_output_8_0 );
+				surfaceDescription.Alpha = ( smoothstepResult2_g69 * smoothstepResult29 * temp_output_8_0 * packedInput.ase_color.a );
 				surfaceDescription.AlphaClipThreshold =  _AlphaCutoff;
 
 				SurfaceData surfaceData;
@@ -1542,6 +1560,7 @@ Shader "S_State_Panning"
 				float3 positionOS : POSITION;
 				float3 normalOS : NORMAL;
 				float4 ase_texcoord : TEXCOORD0;
+				float4 ase_color : COLOR;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -1549,6 +1568,7 @@ Shader "S_State_Panning"
 			{
 				float4 positionCS : SV_Position;
 				float4 ase_texcoord : TEXCOORD0;
+				float4 ase_color : COLOR;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -1584,10 +1604,8 @@ Shader "S_State_Panning"
 				UNITY_TRANSFER_INSTANCE_ID(inputMesh, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO( o );
 
-				o.ase_texcoord.xy = inputMesh.ase_texcoord.xy;
-				
-				//setting value to unused interpolator channels and avoid initialization warnings
-				o.ase_texcoord.zw = 0;
+				o.ase_texcoord = inputMesh.ase_texcoord;
+				o.ase_color = inputMesh.ase_color;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 				float3 defaultVertexValue = inputMesh.positionOS.xyz;
 				#else
@@ -1613,6 +1631,7 @@ Shader "S_State_Panning"
 				float3 positionOS : INTERNALTESSPOS;
 				float3 normalOS : NORMAL;
 				float4 ase_texcoord : TEXCOORD0;
+				float4 ase_color : COLOR;
 
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
@@ -1631,6 +1650,7 @@ Shader "S_State_Panning"
 				o.positionOS = v.positionOS;
 				o.normalOS = v.normalOS;
 				o.ase_texcoord = v.ase_texcoord;
+				o.ase_color = v.ase_color;
 				return o;
 			}
 
@@ -1675,6 +1695,7 @@ Shader "S_State_Panning"
 				o.positionOS = patch[0].positionOS * bary.x + patch[1].positionOS * bary.y + patch[2].positionOS * bary.z;
 				o.normalOS = patch[0].normalOS * bary.x + patch[1].normalOS * bary.y + patch[2].normalOS * bary.z;
 				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
+				o.ase_color = patch[0].ase_color * bary.x + patch[1].ase_color * bary.y + patch[2].ase_color * bary.z;
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -1723,6 +1744,9 @@ Shader "S_State_Panning"
 				float smoothstepResult6_g62 = smoothstep( _EdgeFadeV.z , ( _EdgeFadeV.w + _AddedEdgeFade ) , ( 1.0 - break9_g62.y ));
 				float lerpResult14_g62 = lerp( 1.0 , ( smoothstepResult3_g62 * smoothstepResult4_g62 * smoothstepResult5_g62 * smoothstepResult6_g62 ) , _EdgeFade_Enable);
 				float temp_output_8_0 = lerpResult14_g62;
+				float4 texCoord49 = packedInput.ase_texcoord;
+				texCoord49.xy = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 appendResult50 = (float2(0.0 , texCoord49.z));
 				float4 appendResult43_g63 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
 				float4 appendResult42_g63 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
 				float4 lerpResult41_g63 = lerp( appendResult43_g63 , appendResult42_g63 , _PanningTex_InvertUV);
@@ -1745,7 +1769,7 @@ Shader "S_State_Panning"
 				float4 lerpResult2_g67 = lerp( float4( temp_output_1_0_g67, 0.0 , 0.0 ) , appendResult5_g67 , _PanningTex_InvertUV);
 				float2 panner1_g64 = ( _TimeParameters.x * (lerpResult2_g65).xy + ( (lerpResult2_g66).xy * (lerpResult2_g67).xy ));
 				float2 texCoord9_g63 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( float2( 0,0 ), 0.0 , 0.0 ) + lerpResult41_g63 ).xy + panner1_g64 ), ddx( texCoord9_g63 ), ddy( texCoord9_g63 ) );
+				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( appendResult50, 0.0 , 0.0 ) + lerpResult41_g63 ).xy + panner1_g64 ), ddx( texCoord9_g63 ), ddy( texCoord9_g63 ) );
 				float lerpResult1_g68 = lerp( temp_output_8_0 , temp_output_7_0.r , _AlphaLerp_TexInfluence);
 				float temp_output_1_0_g69 = lerpResult1_g68;
 				float lerpResult9_g69 = lerp( temp_output_1_0_g69 , ( 1.0 - temp_output_1_0_g69 ) , _AlphaSharp_OneMinus);
@@ -1753,7 +1777,7 @@ Shader "S_State_Panning"
 				float2 texCoord28 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
 				float smoothstepResult29 = smoothstep( 0.0 , 0.15 , texCoord28.y);
 				
-				surfaceDescription.Alpha = ( smoothstepResult2_g69 * smoothstepResult29 * temp_output_8_0 );
+				surfaceDescription.Alpha = ( smoothstepResult2_g69 * smoothstepResult29 * temp_output_8_0 * packedInput.ase_color.a );
 				surfaceDescription.AlphaClipThreshold =  _AlphaCutoff;
 
 				GetSurfaceAndBuiltinData(surfaceDescription, input, V, posInput, surfaceData, builtinData);
@@ -1906,6 +1930,7 @@ Shader "S_State_Panning"
 				float3 positionOS : POSITION;
 				float3 normalOS : NORMAL;
 				float4 ase_texcoord : TEXCOORD0;
+				float4 ase_color : COLOR;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -1913,6 +1938,7 @@ Shader "S_State_Panning"
 			{
 				float4 positionCS : SV_Position;
 				float4 ase_texcoord : TEXCOORD0;
+				float4 ase_color : COLOR;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -1947,10 +1973,8 @@ Shader "S_State_Panning"
 				UNITY_TRANSFER_INSTANCE_ID(inputMesh, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO( o );
 
-				o.ase_texcoord.xy = inputMesh.ase_texcoord.xy;
-				
-				//setting value to unused interpolator channels and avoid initialization warnings
-				o.ase_texcoord.zw = 0;
+				o.ase_texcoord = inputMesh.ase_texcoord;
+				o.ase_color = inputMesh.ase_color;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 				float3 defaultVertexValue = inputMesh.positionOS.xyz;
 				#else
@@ -1976,6 +2000,7 @@ Shader "S_State_Panning"
 				float3 positionOS : INTERNALTESSPOS;
 				float3 normalOS : NORMAL;
 				float4 ase_texcoord : TEXCOORD0;
+				float4 ase_color : COLOR;
 
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
@@ -1994,6 +2019,7 @@ Shader "S_State_Panning"
 				o.positionOS = v.positionOS;
 				o.normalOS = v.normalOS;
 				o.ase_texcoord = v.ase_texcoord;
+				o.ase_color = v.ase_color;
 				return o;
 			}
 
@@ -2038,6 +2064,7 @@ Shader "S_State_Panning"
 				o.positionOS = patch[0].positionOS * bary.x + patch[1].positionOS * bary.y + patch[2].positionOS * bary.z;
 				o.normalOS = patch[0].normalOS * bary.x + patch[1].normalOS * bary.y + patch[2].normalOS * bary.z;
 				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
+				o.ase_color = patch[0].ase_color * bary.x + patch[1].ase_color * bary.y + patch[2].ase_color * bary.z;
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -2095,6 +2122,9 @@ Shader "S_State_Panning"
 				float smoothstepResult6_g62 = smoothstep( _EdgeFadeV.z , ( _EdgeFadeV.w + _AddedEdgeFade ) , ( 1.0 - break9_g62.y ));
 				float lerpResult14_g62 = lerp( 1.0 , ( smoothstepResult3_g62 * smoothstepResult4_g62 * smoothstepResult5_g62 * smoothstepResult6_g62 ) , _EdgeFade_Enable);
 				float temp_output_8_0 = lerpResult14_g62;
+				float4 texCoord49 = packedInput.ase_texcoord;
+				texCoord49.xy = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 appendResult50 = (float2(0.0 , texCoord49.z));
 				float4 appendResult43_g63 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
 				float4 appendResult42_g63 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
 				float4 lerpResult41_g63 = lerp( appendResult43_g63 , appendResult42_g63 , _PanningTex_InvertUV);
@@ -2117,7 +2147,7 @@ Shader "S_State_Panning"
 				float4 lerpResult2_g67 = lerp( float4( temp_output_1_0_g67, 0.0 , 0.0 ) , appendResult5_g67 , _PanningTex_InvertUV);
 				float2 panner1_g64 = ( _TimeParameters.x * (lerpResult2_g65).xy + ( (lerpResult2_g66).xy * (lerpResult2_g67).xy ));
 				float2 texCoord9_g63 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( float2( 0,0 ), 0.0 , 0.0 ) + lerpResult41_g63 ).xy + panner1_g64 ), ddx( texCoord9_g63 ), ddy( texCoord9_g63 ) );
+				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( appendResult50, 0.0 , 0.0 ) + lerpResult41_g63 ).xy + panner1_g64 ), ddx( texCoord9_g63 ), ddy( texCoord9_g63 ) );
 				float lerpResult1_g68 = lerp( temp_output_8_0 , temp_output_7_0.r , _AlphaLerp_TexInfluence);
 				float temp_output_1_0_g69 = lerpResult1_g68;
 				float lerpResult9_g69 = lerp( temp_output_1_0_g69 , ( 1.0 - temp_output_1_0_g69 ) , _AlphaSharp_OneMinus);
@@ -2125,7 +2155,7 @@ Shader "S_State_Panning"
 				float2 texCoord28 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
 				float smoothstepResult29 = smoothstep( 0.0 , 0.15 , texCoord28.y);
 				
-				surfaceDescription.Alpha = ( smoothstepResult2_g69 * smoothstepResult29 * temp_output_8_0 );
+				surfaceDescription.Alpha = ( smoothstepResult2_g69 * smoothstepResult29 * temp_output_8_0 * packedInput.ase_color.a );
 				surfaceDescription.AlphaClipThreshold =  _AlphaCutoff;
 
 				SurfaceData surfaceData;
@@ -2294,6 +2324,7 @@ Shader "S_State_Panning"
 					float3 precomputedVelocity : TEXCOORD5;
 				#endif
 				float4 ase_texcoord : TEXCOORD0;
+				float4 ase_color : COLOR;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -2304,6 +2335,7 @@ Shader "S_State_Panning"
 				float3 vpassInterpolators0 : TEXCOORD1; //interpolators0
 				float3 vpassInterpolators1 : TEXCOORD2; //interpolators1
 				float4 ase_texcoord3 : TEXCOORD3;
+				float4 ase_color : COLOR;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
 			};
@@ -2334,10 +2366,8 @@ Shader "S_State_Panning"
 			VertexInput ApplyMeshModification(VertexInput inputMesh, float3 timeParameters, inout VertexOutput o )
 			{
 				_TimeParameters.xyz = timeParameters;
-				o.ase_texcoord3.xy = inputMesh.ase_texcoord.xy;
-				
-				//setting value to unused interpolator channels and avoid initialization warnings
-				o.ase_texcoord3.zw = 0;
+				o.ase_texcoord3 = inputMesh.ase_texcoord;
+				o.ase_color = inputMesh.ase_color;
 
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 				float3 defaultVertexValue = inputMesh.positionOS.xyz;
@@ -2437,6 +2467,7 @@ Shader "S_State_Panning"
 					float3 precomputedVelocity : TEXCOORD5;
 				#endif
 				float4 ase_texcoord : TEXCOORD0;
+				float4 ase_color : COLOR;
 
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
@@ -2459,6 +2490,7 @@ Shader "S_State_Panning"
 					o.precomputedVelocity = v.precomputedVelocity;
 				#endif
 				o.ase_texcoord = v.ase_texcoord;
+				o.ase_color = v.ase_color;
 				return o;
 			}
 
@@ -2507,6 +2539,7 @@ Shader "S_State_Panning"
 					o.precomputedVelocity = patch[0].precomputedVelocity * bary.x + patch[1].precomputedVelocity * bary.y + patch[2].precomputedVelocity * bary.z;
 				#endif
 				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
+				o.ase_color = patch[0].ase_color * bary.x + patch[1].ase_color * bary.y + patch[2].ase_color * bary.z;
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -2564,6 +2597,9 @@ Shader "S_State_Panning"
 				float smoothstepResult6_g62 = smoothstep( _EdgeFadeV.z , ( _EdgeFadeV.w + _AddedEdgeFade ) , ( 1.0 - break9_g62.y ));
 				float lerpResult14_g62 = lerp( 1.0 , ( smoothstepResult3_g62 * smoothstepResult4_g62 * smoothstepResult5_g62 * smoothstepResult6_g62 ) , _EdgeFade_Enable);
 				float temp_output_8_0 = lerpResult14_g62;
+				float4 texCoord49 = packedInput.ase_texcoord3;
+				texCoord49.xy = packedInput.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 appendResult50 = (float2(0.0 , texCoord49.z));
 				float4 appendResult43_g63 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
 				float4 appendResult42_g63 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
 				float4 lerpResult41_g63 = lerp( appendResult43_g63 , appendResult42_g63 , _PanningTex_InvertUV);
@@ -2586,7 +2622,7 @@ Shader "S_State_Panning"
 				float4 lerpResult2_g67 = lerp( float4( temp_output_1_0_g67, 0.0 , 0.0 ) , appendResult5_g67 , _PanningTex_InvertUV);
 				float2 panner1_g64 = ( _TimeParameters.x * (lerpResult2_g65).xy + ( (lerpResult2_g66).xy * (lerpResult2_g67).xy ));
 				float2 texCoord9_g63 = packedInput.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
-				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( float2( 0,0 ), 0.0 , 0.0 ) + lerpResult41_g63 ).xy + panner1_g64 ), ddx( texCoord9_g63 ), ddy( texCoord9_g63 ) );
+				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( appendResult50, 0.0 , 0.0 ) + lerpResult41_g63 ).xy + panner1_g64 ), ddx( texCoord9_g63 ), ddy( texCoord9_g63 ) );
 				float lerpResult1_g68 = lerp( temp_output_8_0 , temp_output_7_0.r , _AlphaLerp_TexInfluence);
 				float temp_output_1_0_g69 = lerpResult1_g68;
 				float lerpResult9_g69 = lerp( temp_output_1_0_g69 , ( 1.0 - temp_output_1_0_g69 ) , _AlphaSharp_OneMinus);
@@ -2594,7 +2630,7 @@ Shader "S_State_Panning"
 				float2 texCoord28 = packedInput.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
 				float smoothstepResult29 = smoothstep( 0.0 , 0.15 , texCoord28.y);
 				
-				surfaceDescription.Alpha = ( smoothstepResult2_g69 * smoothstepResult29 * temp_output_8_0 );
+				surfaceDescription.Alpha = ( smoothstepResult2_g69 * smoothstepResult29 * temp_output_8_0 * packedInput.ase_color.a );
 				surfaceDescription.AlphaClipThreshold = _AlphaCutoff;
 
 				SurfaceData surfaceData;
@@ -2643,54 +2679,62 @@ Shader "S_State_Panning"
 }
 /*ASEBEGIN
 Version=18900
-1920;231;1920;1019;1752.865;546.4383;1.3;True;False
+1920;231;1920;1019;2062.266;604.9383;1.3;True;False
 Node;AmplifyShaderEditor.TextureCoordinatesNode;11;-1383.887,-189.7731;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.FunctionNode;33;-1531.359,-54.23908;Inherit;False;SF_DistortTexture;0;;60;96c99f2862d31594fbaa887784570dd8;0;3;16;FLOAT;0;False;17;FLOAT;1;False;11;FLOAT2;0,0;False;2;FLOAT2;0;COLOR;25
+Node;AmplifyShaderEditor.TextureCoordinatesNode;49;-1581.266,137.3617;Inherit;False;0;-1;4;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.DynamicAppendNode;50;-1282.266,111.3617;Inherit;False;FLOAT2;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.SimpleAddOpNode;12;-1165.887,-119.7731;Inherit;False;2;2;0;FLOAT2;0,0;False;1;FLOAT2;0,0;False;1;FLOAT2;0
-Node;AmplifyShaderEditor.FunctionNode;8;-244.8,478.9999;Inherit;False;SF_EdgeFade;30;;62;2c737c027c7911941847cd940f44e2cc;0;1;8;FLOAT2;0,0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.FunctionNode;7;-1040.5,-153.6;Inherit;False;SF_PanningTexture;9;;63;b045855c7f4c7344eb8723194efc0969;0;7;3;SAMPLER2D;;False;46;FLOAT;0;False;5;FLOAT2;0,0;False;8;FLOAT2;0,0;False;6;FLOAT2;0,0;False;14;FLOAT2;1,1;False;7;FLOAT2;0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.FunctionNode;8;-244.8,478.9999;Inherit;False;SF_EdgeFade;30;;62;2c737c027c7911941847cd940f44e2cc;0;1;8;FLOAT2;0,0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.TextureCoordinatesNode;28;133.0168,592.9559;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.FunctionNode;23;1.716919,377.1558;Inherit;False;SF_AlphaLerp;7;;68;853a1742ead4a334f9e5c5176cca2294;0;2;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SmoothstepOpNode;29;447.6167,612.4559;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0.15;False;1;FLOAT;0
 Node;AmplifyShaderEditor.FunctionNode;24;230.5168,378.4558;Inherit;False;SF_AlphaSharp;3;;69;1a46ba76a207bfe4e97ac05d03cb8401;0;2;1;FLOAT;0;False;6;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleAddOpNode;30;-83.2838,-297.5438;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;25;593.2169,349.8558;Inherit;False;3;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.VertexColorNode;48;440.2349,709.3616;Inherit;False;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SmoothstepOpNode;29;447.6167,612.4559;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0.15;False;1;FLOAT;0
+Node;AmplifyShaderEditor.TextureCoordinatesNode;13;-880.5872,228.4269;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.TextureCoordinatesNode;46;-1110.665,81.4616;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.OneMinusNode;47;-742.7649,-104.4384;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;14;14.5127,78.52695;Inherit;False;3;3;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;2;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;25;593.2169,349.8558;Inherit;False;4;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.FunctionNode;9;-258.2807,-203.5396;Inherit;False;SF_Bicolor;21;;72;8f1c0adb31a562646a4d2a8fec362420;0;3;9;COLOR;0,0,0,0;False;10;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.LerpOp;44;-577.6664,-162.938;Inherit;False;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;31;-496.9473,-368.2216;Inherit;False;3;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.TextureCoordinatesNode;13;-936.4873,159.5269;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.FunctionNode;22;-676.1874,151.1268;Inherit;False;SF_AlphaLerp;7;;71;853a1742ead4a334f9e5c5176cca2294;0;2;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SmoothstepOpNode;18;-300.4873,202.5269;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;1;False;1;FLOAT;0
-Node;AmplifyShaderEditor.OneMinusNode;47;-742.7649,-104.4384;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;14;14.5127,78.52695;Inherit;False;3;3;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;2;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.RangedFloatNode;21;-641.4873,437.5269;Inherit;False;Property;_Base_Smoothness;Base_Smoothness;28;0;Create;True;0;0;0;False;0;False;0.5;0.74;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;45;-706.3663,9.962036;Inherit;False;Property;_Lerp;Lerp;19;0;Create;True;0;0;0;False;0;False;0;0.7;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.TextureCoordinatesNode;46;-1143.165,51.5616;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.OneMinusNode;17;-456.4873,178.5269;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.ColorNode;15;-210.4873,35.52695;Inherit;False;Property;_Base_Color;Base_Color;29;1;[HDR];Create;True;0;0;0;False;0;False;1,1,1,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.SimpleAddOpNode;20;-413.4873,270.5269;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.ColorNode;34;-1185.772,-381.9669;Inherit;False;Property;_AddedDistortCol;AddedDistortCol;20;1;[HDR];Create;True;0;0;0;False;0;False;0,0,0,0;0,0.3679245,0.3390677,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.RangedFloatNode;19;-640.4873,364.5269;Inherit;False;Property;_Base_Threshold;Base_Threshold;27;1;[Header];Create;True;1;Base;0;0;False;0;False;0;0.46;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.FunctionNode;22;-676.1874,151.1268;Inherit;False;SF_AlphaLerp;7;;73;853a1742ead4a334f9e5c5176cca2294;0;2;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;21;-641.4873,437.5269;Inherit;False;Property;_Base_Smoothness;Base_Smoothness;28;0;Create;True;0;0;0;False;0;False;0.5;0.2;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleAddOpNode;30;-83.2838,-297.5438;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.SimpleAddOpNode;16;427.5127,-44.17305;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.SmoothstepOpNode;18;-300.4873,202.5269;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;1;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;19;-640.4873,364.5269;Inherit;False;Property;_Base_Threshold;Base_Threshold;27;1;[Header];Create;True;1;Base;0;0;False;0;False;0;0.61;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.OneMinusNode;17;-456.4873,178.5269;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleAddOpNode;20;-413.4873,270.5269;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.ColorNode;15;-210.4873,35.52695;Inherit;False;Property;_Base_Color;Base_Color;29;1;[HDR];Create;True;0;0;0;False;0;False;1,1,1,0;0,0.3018868,0.2931094,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.RangedFloatNode;45;-706.3663,9.962036;Inherit;False;Property;_Lerp;Lerp;19;0;Create;True;0;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.ColorNode;34;-1185.772,-381.9669;Inherit;False;Property;_AddedDistortCol;AddedDistortCol;20;1;[HDR];Create;True;0;0;0;False;0;False;0,0,0,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;6;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;DistortionVectors;0;6;DistortionVectors;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;True;4;1;False;-1;1;False;-1;4;1;False;-1;1;False;-1;True;1;False;-1;1;False;-1;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;False;False;False;False;False;False;False;False;True;True;0;True;-11;255;False;-1;255;True;-12;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;2;False;-1;True;3;False;-1;False;True;1;LightMode=DistortionVectors;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;2;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;META;0;2;META;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;-1;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=Meta;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;5;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;Motion Vectors;0;5;Motion Vectors;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;False;False;False;False;False;False;False;False;True;True;0;True;-9;255;False;-1;255;True;-10;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;1;False;-1;False;False;True;1;LightMode=MotionVectors;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;1;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;ShadowCaster;0;1;ShadowCaster;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;True;False;False;False;False;0;False;-1;False;False;False;False;False;False;False;False;False;True;1;False;-1;False;False;True;1;LightMode=ShadowCaster;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;4;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;DepthForwardOnly;0;4;DepthForwardOnly;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;True;False;False;False;False;0;False;-1;False;False;False;False;False;False;False;True;True;0;True;-7;255;False;-1;255;True;-8;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;1;False;-1;False;False;True;1;LightMode=DepthForwardOnly;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;0;896.9,69.10001;Float;False;True;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;13;S_State_Panning;7f5cb9c3ea6481f469fdd856555439ef;True;Forward Unlit;0;0;Forward Unlit;9;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Transparent=Queue=0;True;5;0;False;True;1;0;True;-20;0;True;-21;1;0;True;-22;0;True;-23;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;False;False;False;False;False;False;False;False;True;True;0;True;-5;255;False;-1;255;True;-6;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;0;True;-24;True;0;True;-32;False;True;1;LightMode=ForwardOnly;False;0;Hidden/InternalErrorShader;0;0;Standard;29;Surface Type;1;  Rendering Pass ;0;  Rendering Pass;1;  Blending Mode;0;  Receive Fog;1;  Distortion;0;    Distortion Mode;0;    Distortion Only;1;  Depth Write;0;  Cull Mode;0;  Depth Test;4;Double-Sided;0;Alpha Clipping;0;Motion Vectors;1;  Add Precomputed Velocity;0;Shadow Matte;0;Cast Shadows;1;DOTS Instancing;0;GPU Instancing;1;Tessellation;0;  Phong;0;  Strength;0.5,False,-1;  Type;0;  Tess;16,False,-1;  Min;10,False,-1;  Max;25,False,-1;  Edge Length;16,False,-1;  Max Displacement;25,False,-1;Vertex Position,InvertActionOnDeselection;1;0;7;True;True;True;True;True;True;False;False;;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;3;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;SceneSelectionPass;0;3;SceneSelectionPass;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;True;False;False;False;False;0;False;-1;False;False;False;False;False;False;False;False;False;True;1;False;-1;False;False;True;1;LightMode=SceneSelectionPass;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;6;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;DistortionVectors;0;6;DistortionVectors;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;True;4;1;False;-1;1;False;-1;4;1;False;-1;1;False;-1;True;1;False;-1;1;False;-1;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;False;False;False;False;False;False;False;False;True;True;0;True;-11;255;False;-1;255;True;-12;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;2;False;-1;True;3;False;-1;False;True;1;LightMode=DistortionVectors;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;5;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;Motion Vectors;0;5;Motion Vectors;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;False;False;False;False;False;False;False;False;True;True;0;True;-9;255;False;-1;255;True;-10;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;1;False;-1;False;False;True;1;LightMode=MotionVectors;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
+WireConnection;50;1;49;3
 WireConnection;12;0;11;0
 WireConnection;12;1;33;0
 WireConnection;7;5;12;0
+WireConnection;7;8;50;0
 WireConnection;23;2;8;0
 WireConnection;23;3;7;0
-WireConnection;29;0;28;2
 WireConnection;24;1;23;0
-WireConnection;30;0;31;0
-WireConnection;30;1;9;0
+WireConnection;29;0;28;2
+WireConnection;47;0;46;2
+WireConnection;14;0;15;0
+WireConnection;14;1;18;0
+WireConnection;14;2;9;0
 WireConnection;25;0;24;0
 WireConnection;25;1;29;0
 WireConnection;25;2;8;0
+WireConnection;25;3;48;4
 WireConnection;9;1;44;0
 WireConnection;44;0;7;0
 WireConnection;44;1;47;0
@@ -2700,19 +2744,17 @@ WireConnection;31;1;34;0
 WireConnection;31;2;44;0
 WireConnection;22;2;13;2
 WireConnection;22;3;7;0
+WireConnection;30;0;31;0
+WireConnection;30;1;9;0
+WireConnection;16;0;30;0
+WireConnection;16;1;14;0
 WireConnection;18;0;17;0
 WireConnection;18;1;19;0
 WireConnection;18;2;20;0
-WireConnection;47;0;46;2
-WireConnection;14;0;15;0
-WireConnection;14;1;18;0
-WireConnection;14;2;9;0
 WireConnection;17;0;22;0
 WireConnection;20;0;19;0
 WireConnection;20;1;21;0
-WireConnection;16;0;30;0
-WireConnection;16;1;14;0
 WireConnection;0;0;16;0
 WireConnection;0;2;25;0
 ASEEND*/
-//CHKSM=C50299F54ABA1936771D14523CA2F690E9649DB1
+//CHKSM=2783813C0201AD1A85C09208FF804AD6D758346C
