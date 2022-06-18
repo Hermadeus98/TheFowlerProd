@@ -22,7 +22,7 @@ namespace TheFowler
             if (defaultPlayerSpawn.IsNull())
                 defaultPlayerSpawn = this;
 
-            SecurityFallBox.Instance.playerSpawn = transform;
+            //SecurityFallBox.Instance.playerSpawn = transform;
         }
 
         public void SpawnRobyn()
