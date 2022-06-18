@@ -8,7 +8,7 @@ public class PreviewUpdater : MonoBehaviour, IUpdater
 {
     public TextChoice tc;
         
-    private void Start()
+    private void OnEnable()
     {
         Refresh();
     }
@@ -29,6 +29,11 @@ public class PreviewUpdater : MonoBehaviour, IUpdater
 
         //var difficultyTexts = FindObjectsOfType<PreviewUpdater>();
         //difficultyTexts.ForEach(w => w.Apply(index));
+    }
+
+    private void Update()
+    {
+        Refresh();
     }
 
     public void Apply(int current)

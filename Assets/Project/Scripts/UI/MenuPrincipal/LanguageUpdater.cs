@@ -8,7 +8,7 @@ public class LanguageUpdater : MonoBehaviour, IUpdater
 {
     public TextChoice tc;
         
-    private void Start()
+    private void OnEnable()
     {
         Refresh();
     }
@@ -27,10 +27,17 @@ public class LanguageUpdater : MonoBehaviour, IUpdater
 
         }
 
+
+
         //int index = tc.current;
 
         //var difficultyTexts = FindObjectsOfType<LanguageUpdater>();
         //difficultyTexts.ForEach(w => w.Apply(index));
+    }
+
+    private void Update()
+    {
+        Refresh();
     }
 
     public void Apply(int current)

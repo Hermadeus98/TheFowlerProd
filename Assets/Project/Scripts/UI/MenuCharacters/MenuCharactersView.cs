@@ -25,6 +25,19 @@ namespace TheFowler
         private bool isBattleLaunched;
 
         [SerializeField] private CanvasGroup battleUI;
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+
+            if (eventSytemGO == null)
+            {
+
+                eventSytemGO = GameObject.Find("EventSystem");
+                eventSytem = eventSytemGO.GetComponent<EventSystem>();
+
+            }
+        }
         public override void Show()
         {
             base.Show();
@@ -121,6 +134,7 @@ namespace TheFowler
 
             if (value)
             {
+                if (eventSytem == null) return;
                 eventSytem.SetSelectedGameObject(firstSelectedObject);
                 customElements[2]._OnSelect.PlayFeedbacks();
             }

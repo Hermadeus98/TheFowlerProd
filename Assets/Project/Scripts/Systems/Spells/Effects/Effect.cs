@@ -120,7 +120,14 @@ namespace TheFowler
             
             if (emitter is AllyActor)
             {
-                CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies");
+                if (BattleManager.CurrentBattle.numberOfAllies == 2)
+                {
+                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies Two Allies");
+                }
+                else
+                {
+                    CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies");
+                }
             }
             else if(emitter is EnemyActor)
             {

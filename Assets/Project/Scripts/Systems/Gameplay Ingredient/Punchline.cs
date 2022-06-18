@@ -76,6 +76,7 @@ namespace TheFowler
             
             yield return new WaitForSeconds(data.soundDuration);
             punchlineIsPlaying = false;
+            data.isPlayed = true;
 
             /*if (!registerPunchlines.IsNullOrEmpty())
             {
