@@ -36,9 +36,11 @@ namespace TheFowler
             CanvasGroup.alpha = 1f;
             isActive = true;
 
+
+            animator.SetTrigger(play);
+
             if (isEndCredit)
             {
-                animator.SetTrigger(play);
                 wait = StartCoroutine(WaitEnd());
 
             }
