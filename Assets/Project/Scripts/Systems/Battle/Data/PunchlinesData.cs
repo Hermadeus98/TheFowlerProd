@@ -73,9 +73,7 @@ namespace TheFowler
 
             
             var selected = pool.Where(w => !w.isPlayed).ToArray();
-            var element = selected[Random.Range(0, pool.Count - 1)];
-            element.isPlayed = true;
-            return element;
+            return selected[Random.Range(0, pool.Count - 1)];
         }
     }
 
