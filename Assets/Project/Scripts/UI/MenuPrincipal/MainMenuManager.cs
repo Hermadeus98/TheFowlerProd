@@ -19,11 +19,14 @@ namespace TheFowler
 
         public AK.Wwise.Event robynPlay;
         public float delay;
-        
-        [SerializeField] private TextNavigation
+
+        [SerializeField]
+        private TextNavigation
             main,
             chapters,
-            settings;
+            settings,
+            language,
+            difficulty;
 
         [SerializeField] private MenuPanel currentPanel;
 
@@ -44,6 +47,9 @@ namespace TheFowler
         public TextMeshProUGUI description;
 
         [SerializeField] private BattleActorData[] datas;
+        [SerializeField] private CanvasGroup confLanguage, confDifficulty;
+
+        private bool onConfLanguage, onConfDifficulty;
         public enum MenuPanel
         {
             MAIN,
@@ -134,6 +140,19 @@ namespace TheFowler
                 switch (currentPanel)
                 {
                     case MenuPanel.MAIN:
+                        if(onConfDifficulty || onConfLanguage)
+                        {
+                            confLanguage.gameObject.SetActive(false);
+                            confDifficulty.gameObject.SetActive(false);
+
+                            onConfLanguage = false;
+                            onConfDifficulty = false;
+
+                            language.isActive = false;
+                            difficulty.isActive = false;
+
+                            ReturnToMain();
+                        }
                         break;
                     case MenuPanel.SETTINGS:
                         ReturnToMain();
@@ -146,6 +165,28 @@ namespace TheFowler
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
+                }
+            }
+
+            if (input.actions["A"].WasPressedThisFrame())
+            {
+                if (onConfLanguage)
+                {
+                    onConfDifficulty = true;
+                    onConfLanguage = false;
+
+                    confLanguage.gameObject.SetActive(false);
+                    confDifficulty.gameObject.SetActive(true);
+                    language.isActive = false;
+                    difficulty.isActive = true;
+
+                    difficulty.StartNavigate();
+                }
+                else if (onConfDifficulty)
+                {
+                    confDifficulty.gameObject.SetActive(false);
+
+                    ChooseChapter(1);
                 }
             }
         }
@@ -179,7 +220,26 @@ namespace TheFowler
             settings.HideAnim();
         }
 
-        public void NewGame() => ChooseChapter(1);
+        public void NewGame()
+        {
+            main.HideAnim();
+
+
+            confLanguage.gameObject.SetActive(true);
+            language.StartNavigate();
+            language.isActive = true;
+
+            StartCoroutine(WaitNewGame());
+        } 
+
+        private IEnumerator WaitNewGame()
+        {
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+            onConfLanguage = true;
+
+            yield break;
+        }
         
         public void ChooseChapter(int chapter)
         {
@@ -198,6 +258,11 @@ namespace TheFowler
             robyn.SetTrigger("Play");
             yield return PlaySound();
 
+            for (int i = 0; i < FindObjectsOfType<DescriptionText>().Length; i++)
+            {
+                FindObjectsOfType<DescriptionText>()[i].gameObject.SetActive(false);
+            }
+
 
             //backGround.DOScale(backGround.localScale * 1.2f, 1f).SetEase(Ease.InOutSine);
 
@@ -206,6 +271,10 @@ namespace TheFowler
             if (chapter == 1)
             {
                 BlackPanel.instance.ShowPanelIntro();
+            }
+            else
+            {
+                BlackPanel.instance.Show(.5f);
             }
 
             yield return new WaitForSeconds(fadeDuration + .1f);

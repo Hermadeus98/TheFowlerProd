@@ -8,7 +8,7 @@ public class ColorBlindUpdater : MonoBehaviour, IUpdater
 {
     public TextChoice tc;
         
-    private void Start()
+    private void OnEnable()
     {
         Refresh();
     }
@@ -44,11 +44,16 @@ public class ColorBlindUpdater : MonoBehaviour, IUpdater
 
         }
 
-
+        
         //int index = tc.current;
 
         //var difficultyTexts = FindObjectsOfType<ColorBlindUpdater>();
         //difficultyTexts.ForEach(w => w.Apply(index));
+    }
+
+    private void Update()
+    {
+        Refresh();
     }
 
     public void Apply(int current)

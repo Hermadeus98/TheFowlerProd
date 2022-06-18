@@ -39,6 +39,7 @@ public class VolumeUpdater : MonoBehaviour, IUpdater
         up.ForEach(w => w.Apply());
     }
 
+
     public void Apply()
     {
         if (TryGetComponent<TextMenu>(out var t))
