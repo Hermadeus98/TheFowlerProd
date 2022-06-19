@@ -33,7 +33,9 @@ namespace TheFowler
 
         public bool useAnimatic = true;
 
-        [SerializeField] private AK.Wwise.Event destructionSFX;
+        [SerializeField] private AK.Wwise.Event destructionRobynSFX;
+        [SerializeField] private AK.Wwise.Event destructionAbiSFX;
+        [SerializeField] private AK.Wwise.Event destructionPhoebeSFX;
 
         private void Awake()
         {
@@ -105,7 +107,7 @@ namespace TheFowler
                         SplitScreen.Instance.Show(BattleManager.CurrentBattle.BattleCameraBatch.CameraReferences["Destruction_Robyn"].virtualCamera, destructionCam);
                         anim = BattleManager.GetAllAllies()[i].BattleActorAnimator.Animator;
 
-                        destructionSFX.Post(gameObject);
+                        destructionRobynSFX.Post(gameObject);
 
                         break;
                     }
@@ -113,6 +115,9 @@ namespace TheFowler
                     {
                         SplitScreen.Instance.Show(BattleManager.CurrentBattle.BattleCameraBatch.CameraReferences["Destruction_Abi"].virtualCamera, destructionCam);
                         anim = BattleManager.GetAllAllies()[i].BattleActorAnimator.Animator;
+
+                        destructionAbiSFX.Post(gameObject);
+
                         break;
                     }
 
@@ -120,6 +125,9 @@ namespace TheFowler
                     {
                         SplitScreen.Instance.Show(BattleManager.CurrentBattle.BattleCameraBatch.CameraReferences["Destruction_Phoebe"].virtualCamera, destructionCam);
                         anim = BattleManager.GetAllAllies()[i].BattleActorAnimator.Animator;
+
+                        destructionPhoebeSFX.Post(gameObject);
+
                         break;
                     }
 
