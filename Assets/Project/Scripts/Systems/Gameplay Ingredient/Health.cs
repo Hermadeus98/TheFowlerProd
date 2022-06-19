@@ -127,8 +127,15 @@ namespace TheFowler
             ReferedActor.AllyData?.ShakeHearth();
 
             if (lifeTxt != null) lifeTxt.text = currentHealth.ToString();
-            
-            StartCoroutine(AllyReaction(hitData.soundDuration));
+
+            if (hitData != null)
+            {
+                StartCoroutine(AllyReaction(hitData.soundDuration));
+            }
+            else
+            {
+                StartCoroutine(AllyReaction(0f));
+            }
         }
         
         IEnumerator AllyReaction(float wait)
