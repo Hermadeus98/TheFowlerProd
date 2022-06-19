@@ -65,6 +65,8 @@ namespace TheFowler
                 return;
 
             damage = Mathf.RoundToInt(damage);
+
+            PunchlineData hitData = null;
             
             ReferedActor.BattleActorAnimator.Hit();
 
@@ -82,22 +84,20 @@ namespace TheFowler
             {
                 if (currentHealth < maxHealth / 4f)
                 {
-                    ReferedActor.punchline.PlayPunchline(PunchlineCallback.LOW_HP);
+                    ReferedActor.punchline.PlayPunchline(PunchlineCallback.LOW_HP, out hitData);
                 }
                 else
                 {
                     if (damage < 100)
                     {
-                        ReferedActor.punchline.PlayPunchline(PunchlineCallback.DAMAGE_TAKEN_LOW);
+                        ReferedActor.punchline.PlayPunchline(PunchlineCallback.DAMAGE_TAKEN_LOW, out hitData);
                     }
                     else
                     {
-                        ReferedActor.punchline.PlayPunchline(PunchlineCallback.DAMAGE_TAKEN_HIGH);
+                        ReferedActor.punchline.PlayPunchline(PunchlineCallback.DAMAGE_TAKEN_HIGH, out hitData);
                     }
                 }
             }
-
-            StartCoroutine(AllyReaction());
 
             switch (result)
             {
@@ -128,13 +128,15 @@ namespace TheFowler
 
             if (lifeTxt != null) lifeTxt.text = currentHealth.ToString();
             
-            React();
+            StartCoroutine(AllyReaction(hitData.soundDuration));
         }
-
-        private void React()
+        
+        IEnumerator AllyReaction(float wait)
         {
+            yield return new WaitForSeconds(wait);
+            
             if(ReferedActor is EnemyActor)
-                return;
+                yield break;
             
             //Robyn
             if (ReferedActor == BattleManager.CurrentBattle.robyn)
@@ -212,11 +214,6 @@ namespace TheFowler
                     }
                 }
             }
-        }
-        
-        IEnumerator AllyReaction()
-        {
-            
             
             yield break;
         }

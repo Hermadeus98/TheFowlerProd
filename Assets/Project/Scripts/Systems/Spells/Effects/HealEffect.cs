@@ -19,6 +19,12 @@ namespace TheFowler
             if(emitter is AllyActor)
                 EnemySpellBox.Instance.Popup("Soin", "Heal");
 
+            if (emitter == BattleManager.CurrentBattle.abi)
+            {
+                var s = emitter.SequenceHandler.GetSequence(SequenceEnum.HEAL);
+                s.Play();
+            }
+            
             if (TargetType == TargetTypeEnum.SELF)
             {
                 yield return StateEvent(emitter, receivers,
