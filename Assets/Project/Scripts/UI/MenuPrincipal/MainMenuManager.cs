@@ -75,6 +75,7 @@ namespace TheFowler
             openning.alpha = 0;
             manette.alpha = 0;
             blackscreen.alpha = 1;
+
             if (!havePlayIntro)
                 StartCoroutine(Opening());
             else
@@ -176,6 +177,8 @@ namespace TheFowler
 
             if (input.actions["A"].WasPressedThisFrame())
             {
+                SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Confirm, gameObject);
+
                 if (onConfLanguage)
                 {
                     onConfDifficulty = true;
