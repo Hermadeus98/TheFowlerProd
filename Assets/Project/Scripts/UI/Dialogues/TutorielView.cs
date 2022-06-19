@@ -64,7 +64,8 @@ namespace TheFowler
                 {
 
                     StartCoroutine(WaitEndTutoElement());
-                    
+
+                    SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_SkillSelection, gameObject);
                 }
             }
         }
@@ -218,6 +219,7 @@ namespace TheFowler
 
         public override void Hide()
         {
+
             if(UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).isActive)
                 UI.GetView<MenuCharactersView>(UI.Views.MenuCharacters).Inputs.enabled = true;
             UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Inputs.enabled = true;
