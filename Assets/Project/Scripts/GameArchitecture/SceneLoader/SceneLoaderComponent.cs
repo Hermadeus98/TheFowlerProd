@@ -61,8 +61,11 @@ namespace TheFowler
         }
 
         private IEnumerator WaitEnd()
-        {                 
-            yield return new WaitForSeconds(0);
+        {
+            BlackPanel.instance.Show(0);
+            yield return new WaitForSeconds(3);
+            BlackPanel.instance.duration = 1;
+            BlackPanel.instance.Hide();
             CreditView.Instance.isEndCredit = true;
             CreditView.Instance.Show();
 

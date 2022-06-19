@@ -59,6 +59,7 @@ namespace TheFowler
 
         }
 
+
         public void HideDirectly()
         {
             a?.Kill();

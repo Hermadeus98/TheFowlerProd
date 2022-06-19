@@ -269,6 +269,7 @@ namespace TheFowler
 
             SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Confirm, gameObject);
 
+
             confirmation.SetActive(true);
             background.SetActive(false);
 
@@ -286,10 +287,12 @@ namespace TheFowler
         private IEnumerator WaitConfirmation()
         {
             yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
 
             onConfirmation = true;
+            yield return new WaitForEndOfFrame();
+            onConfirmation = true;
+
+            yield break;
         }
 
         public void LaunchBattle()

@@ -181,7 +181,9 @@ namespace TheFowler
             base.PlayPhase();
 
             BattleManager.CurrentBattle = this;
+            BattleManager.CurrentBattleReminder = this;
 
+            
             SortByInitiative();
             RegisterActors();
             InitializeTurnSystem();
