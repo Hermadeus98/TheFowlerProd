@@ -92,22 +92,6 @@ namespace TheFowler
         public GameObject battleStateObj;
         public NumberOfAllies numberOfAlliesSO;
 
-        
-        private void FixedUpdate()
-        {
-            if (isActive)
-            {
-                if(Keyboard.current.rightArrowKey.wasPressedThisFrame)
-                    NextTurn();
-                
-                if(Keyboard.current.rKey.wasPressedThisFrame)
-                    TurnSystem.CurrentRound.OverrideTurn(robyn);
-                
-                if(Keyboard.current.qKey.wasPressedThisFrame)
-                    TurnSystem.CurrentRound.OverrideTurn(abi);
-            }
-        }
-
         protected override void OnAwake()
         {
             base.OnAwake();
@@ -181,7 +165,9 @@ namespace TheFowler
             base.PlayPhase();
 
             BattleManager.CurrentBattle = this;
+            BattleManager.CurrentBattleReminder = this;
 
+            
             SortByInitiative();
             RegisterActors();
             InitializeTurnSystem();

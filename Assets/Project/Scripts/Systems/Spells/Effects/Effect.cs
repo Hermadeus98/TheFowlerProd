@@ -148,7 +148,14 @@ namespace TheFowler
                 {
                     if (receiver is AllyActor)
                     {
-                        CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies");
+                        if (BattleManager.CurrentBattle.numberOfAllies == 2)
+                        {
+                            CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies Two Allies");
+                        }
+                        else
+                        {
+                            CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies");
+                        }
                     }
                     else if (receiver is EnemyActor)
                     {
@@ -159,7 +166,14 @@ namespace TheFowler
                 {
                     if (receiver is AllyActor)
                     {
-                        CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Enemies");
+                        if (BattleManager.CurrentBattle.numberOfAllies == 2)
+                        {
+                            CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies Two Allies");
+                        }
+                        else
+                        {
+                            CameraManager.Instance.SetCamera(BattleManager.CurrentBattle.BattleCameraBatch, "Allies");
+                        }
                     }
                     else if (receiver is EnemyActor)
                     {

@@ -30,7 +30,7 @@ namespace TheFowler
             glow.color = new Color(glow.color.r, glow.color.g, glow.color.b, 1);
             isHover = true;
             arrow.SetActive(true);
-
+            InitialState();
 
         }
 
@@ -41,6 +41,7 @@ namespace TheFowler
             glow.color = new Color(glow.color.r, glow.color.g, glow.color.b, 0);
             isHover = false;
             arrow.SetActive(false);
+
         }
 
         public void _Deselect()
@@ -72,7 +73,7 @@ namespace TheFowler
                     lifeFilled.fillAmount = Player.RobynSavedData.health / 100;
                     lifeTxt.text = Player.RobynSavedData.health.ToString() + "/100";
                     break;
-                case "Abigael":
+                case "Abigail":
                     lifeFilled.fillAmount = Player.AbiSavedData.health / 100;
                     lifeTxt.text = Player.AbiSavedData.health.ToString() + "/100";
                     break;
@@ -115,7 +116,10 @@ namespace TheFowler
                     break;
                 case 1:
                     if (parent.GetChild(0).gameObject.activeSelf)
+                    {
                         customNav.selectOnUp = parent.GetChild(0).GetComponent<InitiativeSelector>();
+                    }
+
                     if (parent.GetChild(2).gameObject.activeSelf)
                         customNav.selectOnDown = parent.GetChild(2).GetComponent<InitiativeSelector>();
                     break;

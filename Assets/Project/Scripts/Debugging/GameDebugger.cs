@@ -46,22 +46,5 @@ namespace TheFowler
                 battle.DesactivateAllActors();
             }
         }
-
-        /*private void Update()
-        {
-            if (GetComponent<PlayerInput>().actions["Pause"].WasPressedThisFrame())
-            {
-                if (!itPause)
-                {
-                    FindObjectOfType<MMTimeManager>().SetTimescaleTo(0);
-                    itPause = true;
-                }
-                else if (itPause)
-                {
-                    FindObjectOfType<MMTimeManager>().SetTimescaleTo(1);
-                    itPause = false;
-                }
-            }
-        }*/
     }
 }
