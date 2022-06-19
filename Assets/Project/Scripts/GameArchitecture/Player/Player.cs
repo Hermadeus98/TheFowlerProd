@@ -17,6 +17,7 @@ namespace TheFowler
 
         public static bool useInitiative = false;
         public static bool showPreview = false;
+        public static bool isInMenu = false;
         public static bool isInPauseMenu = false;
         public static bool canOpenPauseMenu = false;
 

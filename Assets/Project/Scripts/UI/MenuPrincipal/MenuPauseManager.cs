@@ -80,9 +80,6 @@ public class MenuPauseManager : MonoBehaviour
 
         MenuPauseHandler.Instance.Initialize();
 
-
-
-
         Player.canOpenPauseMenu = true;
 
         if(BattleManager.CurrentBattle != null)
@@ -125,11 +122,7 @@ public class MenuPauseManager : MonoBehaviour
                 textNavigation.all_elements.Remove(restartElement);
 
             }
-
         }
-
-
-
     }
 
     public void Hide()
