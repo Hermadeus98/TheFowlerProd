@@ -28,9 +28,7 @@ namespace TheFowler
                 action.AddListener(delegate { emitter.StartCoroutine(D(emitter, receivers[i])); });
                 
                 s.Play();
-                
-                
-                
+
                 yield return new WaitForSeconds(2f);
                 action.RemoveAllListeners();
             }
