@@ -42,6 +42,8 @@ namespace TheFowler
         {
             base.Show();
 
+            Inputs.enabled = true;
+
             BlackPanel.Instance.Hide(1f);
             
             SetExclamation();
