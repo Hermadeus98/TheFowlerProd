@@ -33,6 +33,8 @@ namespace TheFowler
 
         public void Show()
         {
+            AkSoundEngine.SetState("GameplayPhase", "SkillTree");
+
             CanvasGroup.alpha = 1f;
             isActive = true;
 
@@ -106,6 +108,8 @@ namespace TheFowler
 
         public override void Hide()
         {
+            AkSoundEngine.SetState("GameplayPhase", "Explo");
+
             CanvasGroup.alpha = 0f;
             isActive = false;
             animator.SetTrigger(stop);
