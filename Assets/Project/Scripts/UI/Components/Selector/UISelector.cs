@@ -76,8 +76,11 @@ namespace TheFowler
 
         protected virtual void OnNavigate()
         {
-            if(canNavigate)
+            if (canNavigate)
+            {
+                Debug.Log("OnNavigate");
                 SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Hover, null);
+            }
         }
 
         private void SelectNext()

@@ -39,8 +39,8 @@ public class MenuPauseManager : MonoBehaviour
     {
         currentPanel = MenuPausePanel.MAIN;
             
-        main.StartNavigate();
-        settings.StartNavigate();
+        /*main.StartNavigate();
+        settings.StartNavigate();*/
     }
 
     private bool reopenCharacterView = false;

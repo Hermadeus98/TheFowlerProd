@@ -146,7 +146,6 @@ namespace TheFowler
             if (view.isBreakdown) return;
 
             base.OnNavigate();
-            SoundManager.PlaySound(AudioGenericEnum.TF_SFX_Combat_UI_Hover, gameObject);
 
             if (currentIndex == 0)
             {
