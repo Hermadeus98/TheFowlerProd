@@ -108,6 +108,7 @@ namespace TheFowler
                         anim = BattleManager.GetAllAllies()[i].BattleActorAnimator.Animator;
 
                         destructionRobynSFX.Post(gameObject);
+                        BattleManager.CurrentBattle.robyn.punchline.PlayPunchline(PunchlineCallback.SKILL_EXECUTION);
 
                         break;
                     }
@@ -117,6 +118,7 @@ namespace TheFowler
                         anim = BattleManager.GetAllAllies()[i].BattleActorAnimator.Animator;
 
                         destructionAbiSFX.Post(gameObject);
+                        BattleManager.CurrentBattle.abi.punchline.PlayPunchline(PunchlineCallback.SKILL_EXECUTION);
 
                         break;
                     }
@@ -127,6 +129,7 @@ namespace TheFowler
                         anim = BattleManager.GetAllAllies()[i].BattleActorAnimator.Animator;
 
                         destructionPhoebeSFX.Post(gameObject);
+                        BattleManager.CurrentBattle.phoebe.punchline.PlayPunchline(PunchlineCallback.SKILL_EXECUTION);
 
                         break;
                     }
