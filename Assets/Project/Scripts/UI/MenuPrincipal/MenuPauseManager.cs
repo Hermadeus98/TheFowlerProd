@@ -326,7 +326,7 @@ public class MenuPauseManager : MonoBehaviour
 
     public void SetEffectsVolume(float v)
     {
-        SoundManager.SetMusicVolume(v);
+        SoundManager.SetEffectsVolume(v);
     }
     
     public void SetAmbiantVolume(float v)
