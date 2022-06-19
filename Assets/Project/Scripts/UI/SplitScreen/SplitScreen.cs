@@ -25,6 +25,8 @@ namespace TheFowler
         [SerializeField] private TextMeshProUGUI text;
 
         private Camera splitCam;
+
+        public bool isActive;
         
         private void Start()
         {
@@ -35,6 +37,8 @@ namespace TheFowler
         [Button]
         public void Show(CinemachineVirtualCameraBase splitCam, CinemachineVirtualCameraBase bigCam)
         {
+            isActive = true;
+
             CameraManager.Instance.splitCam.gameObject.SetActive(true);
             
             SetLittleCamera(splitCam);
@@ -90,6 +94,7 @@ namespace TheFowler
                     splitCam.gameObject.SetActive(false);
                 });
 
+            isActive = false;
             /*move?.Kill();
             move = splitScreenRect.DOAnchorPosX(-splitScreenRect.sizeDelta.x, .2f).SetEase(Ease.OutBack);
             fill?.Kill();
