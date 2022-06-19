@@ -86,6 +86,12 @@ namespace TheFowler
                 menu.DOFade(1f, .2f);
                 blackscreen.DOFade(0f, fadeDuration + 1);
             }
+
+            if (SplitScreen.Instance.isActive)
+            {
+                SplitScreen.Instance.Hide();
+            }
+
         }
 
         IEnumerator Opening()

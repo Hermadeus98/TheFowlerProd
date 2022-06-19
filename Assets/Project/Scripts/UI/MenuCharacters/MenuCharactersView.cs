@@ -174,7 +174,7 @@ namespace TheFowler
             onConfirmation = false;
 
             confirmation.SetActive(false);
-            background.SetActive(true);
+            //background.SetActive(true);
             initiativeView.gameObject.SetActive(true);
             initiativeView.isActive = false;
 
@@ -182,7 +182,7 @@ namespace TheFowler
             //    VolumesManager.Instance.BlurryUI.enabled = false;
 
             eventSytem.SetSelectedGameObject(null);
-
+            background.SetActive(false);
             MenuCharactersSKHandler.Instance.Close();
         }
 

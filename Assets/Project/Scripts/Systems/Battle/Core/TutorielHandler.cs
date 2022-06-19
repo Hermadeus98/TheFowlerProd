@@ -77,7 +77,6 @@ namespace TheFowler
             BlockInputs();
 
             var view = UI.GetView<TutorielView>(UI.Views.Tuto);
-            view.Show((PanelTutoriel)System.Enum.Parse(typeof(PanelTutoriel), panel));
 
             //UI.GetView<ActionPickingView>(UI.Views.ActionPicking).Hide();
             //UI.GetView<AlliesDataView>(UI.Views.AlliesDataView).Hide();
