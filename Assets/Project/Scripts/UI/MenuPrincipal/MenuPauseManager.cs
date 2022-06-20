@@ -31,9 +31,9 @@ public class MenuPauseManager : MonoBehaviour
     private CanvasGroup battleUI;
 
     [SerializeField]
-    private TextNavigation textNavigation;
+    private TextNavigation textNavigation, settingsNavigation;
     [SerializeField]
-    private UISelectorElement restartElement;
+    private UISelectorElement restartElement, difficultyElement;
 
     private void Awake()
     {
@@ -91,12 +91,23 @@ public class MenuPauseManager : MonoBehaviour
                 textNavigation.all_elements.Insert(1, restartElement);
                 textNavigation.StartNavigate();
             }
-            
+
+
+            difficultyElement.gameObject.SetActive(false);
+
+            if (!settingsNavigation.all_elements.Contains(difficultyElement))
+            {
+                settingsNavigation.all_elements.Remove(difficultyElement);
+
+            }
+
+
         }
 
         else
         {
             restartElement.gameObject.SetActive(false);
+            difficultyElement.gameObject.SetActive(true);
         }
     }
 
@@ -122,6 +133,15 @@ public class MenuPauseManager : MonoBehaviour
                 textNavigation.all_elements.Remove(restartElement);
 
             }
+
+            restartElement.gameObject.SetActive(true);
+            if (!settingsNavigation.all_elements.Contains(difficultyElement))
+            {
+
+                settingsNavigation.all_elements.Insert(6, difficultyElement);
+                settingsNavigation.StartNavigate();
+            }
+
         }
     }
 
