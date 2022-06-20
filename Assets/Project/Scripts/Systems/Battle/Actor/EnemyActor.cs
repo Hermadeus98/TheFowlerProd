@@ -140,18 +140,28 @@ namespace TheFowler
         public override void OnDeath()
         {
             base.OnDeath();
-            BattleActorAnimator.Death();
             if(playParticleSystemOnDeath)
             {
-                Instantiate(onDeathPS, transform.position, Quaternion.identity);
-                transform.DOScale(Vector3.zero, .2f);
+                var ps = Instantiate(onDeathPS, transform.position, Quaternion.identity);
+                ps.Play();
+                StartCoroutine(PlayDoScale());
+            }
+            else
+            {
+                BattleActorAnimator.Death();
             }
 
             BattleManager.CurrentBattle.EnemyDeathCount++;
             Fury.PlayBreakDown();
-            
             BattleManager.CurrentBattleActor.punchline.ReferedPunchlinesData.GetRandom(PunchlineCallback.KILL);
             punchline.PlayPunchline(PunchlineCallback.DEATH);
+        }
+
+        IEnumerator PlayDoScale()
+        {
+            yield return new WaitForSeconds(.95f);
+            transform.DOScale(Vector3.zero, .2f);
+            BattleActorAnimator.Death();
         }
 
         private void SetHelmet()
