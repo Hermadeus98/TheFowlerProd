@@ -82,7 +82,7 @@ public class MenuPauseManager : MonoBehaviour
 
         Player.canOpenPauseMenu = true;
 
-        if(BattleManager.CurrentBattle != null)
+        if(BattleManager.CurrentBattleReminder != null)
         {
             restartElement.gameObject.SetActive(true);
             if (!textNavigation.all_elements.Contains(restartElement))
@@ -93,21 +93,17 @@ public class MenuPauseManager : MonoBehaviour
             }
 
 
-            difficultyElement.gameObject.SetActive(false);
-
-            if (!settingsNavigation.all_elements.Contains(difficultyElement))
-            {
-                settingsNavigation.all_elements.Remove(difficultyElement);
-
-            }
-
-
         }
 
         else
         {
+            if (textNavigation.all_elements.Contains(restartElement))
+            {
+                textNavigation.all_elements.Remove(restartElement);
+                textNavigation.StartNavigate();
+
+            }
             restartElement.gameObject.SetActive(false);
-            difficultyElement.gameObject.SetActive(true);
         }
     }
 
@@ -126,7 +122,7 @@ public class MenuPauseManager : MonoBehaviour
             UI.GetView<ActionPickingView>(UI.Views.ActionPicking).Inputs.enabled = true;
         }
 
-        if (BattleManager.CurrentBattle != null)
+        if (BattleManager.CurrentBattleReminder != null)
         {
             if (!textNavigation.all_elements.Contains(restartElement))
             {
@@ -134,15 +130,8 @@ public class MenuPauseManager : MonoBehaviour
 
             }
 
-            restartElement.gameObject.SetActive(true);
-            if (!settingsNavigation.all_elements.Contains(difficultyElement))
-            {
-
-                settingsNavigation.all_elements.Insert(6, difficultyElement);
-                settingsNavigation.StartNavigate();
-            }
-
         }
+
     }
 
     public void Hide()
@@ -213,9 +202,39 @@ public class MenuPauseManager : MonoBehaviour
     
     public void OpenSettings()
     {
+
+
+
         currentPanel = MenuPausePanel.SETTINGS;
         main.HideAnim();
         settings.ShowAnim();
+
+        if (BattleManager.CurrentBattleReminder != null)
+        {
+            difficultyElement.gameObject.SetActive(false);
+            if (settingsNavigation.all_elements.Contains(difficultyElement))
+            {
+                settingsNavigation.all_elements.Remove(difficultyElement);
+
+            }
+
+        }
+
+        else
+        {
+            difficultyElement.gameObject.SetActive(true);
+
+            if (!settingsNavigation.all_elements.Contains(difficultyElement))
+            {
+                settingsNavigation.all_elements.Insert(6, difficultyElement);
+
+            }
+
+        }
+
+        settings.StartNavigate();
+
+
     }
     
     private void Update()

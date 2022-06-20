@@ -181,6 +181,7 @@ namespace TheFowler
         {
             base.EndPhase();
             MoreMountains.Feedbacks.MMTimeManager.Instance.ApplyTimeScale(1);
+            BattleManager.CurrentBattleReminder = null;
         }
 
         protected override void  Update()
