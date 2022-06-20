@@ -91,6 +91,12 @@ namespace TheFowler
         {
             Player.canOpenPauseMenu = false;
 
+            if (MenuPauseManager.Instance.isActive)
+            {
+                MenuPauseManager.Instance.SmoothHide();
+            }
+
+
             FindObjectOfType<GameTimer>().incrementeDialogueTimer = true;
 
 

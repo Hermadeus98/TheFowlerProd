@@ -22,7 +22,7 @@ public class MenuPauseManager : MonoBehaviour
     [SerializeField] private MenuPausePanel currentPanel;
     [SerializeField] private PlayerInput input;
 
-    private bool isActive = false;
+    public bool isActive = false;
     private bool isOpen = false;
     
     public RectTransform backGround;
@@ -35,8 +35,13 @@ public class MenuPauseManager : MonoBehaviour
     [SerializeField]
     private UISelectorElement restartElement, difficultyElement;
 
+    public static MenuPauseManager Instance;
+
+
     private void Awake()
     {
+        Instance = this;
+
         currentPanel = MenuPausePanel.MAIN;
             
         /*main.StartNavigate();

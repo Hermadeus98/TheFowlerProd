@@ -11,7 +11,8 @@ namespace TheFowler
     public class DestructionSystem : SerializedMonoBehaviour
     {
         public static DestructionSystem Instance;
-        
+        private bool isDestruct;
+
         private class LevelOfDestruction
         {
             public GameObject[] ObjectsToDesactivate;
@@ -87,86 +88,101 @@ namespace TheFowler
             }
         }
 
+        [Button]
+        public void Boom()
+        {
+            StartCoroutine(SetCam());
+        }
+
+        [Button]
         public IEnumerator SetCam()
         {
 
-
-            anim = null;
-            UIBattleBatch.Instance.Hide();
-            UIBattleBatch.SetUIGuardsVisibility(false);
-
-            destructionCam = BattleManager.CurrentBattle.BattleCameraBatch.CameraReferences["Destruction"].virtualCamera;
-
-            for (int i = 0; i < BattleManager.GetAllAllies().Length; i++)
+    
+            if (!isDestruct)
             {
-                if (!BattleManager.GetAllAllies()[i].BattleActorInfo.isDeath)
 
+                isDestruct = true;
+
+                anim = null;
+                UIBattleBatch.Instance.Hide();
+                UIBattleBatch.SetUIGuardsVisibility(false);
+
+                destructionCam = BattleManager.CurrentBattle.BattleCameraBatch.CameraReferences["Destruction"].virtualCamera;
+
+                for (int i = 0; i < BattleManager.GetAllAllies().Length; i++)
                 {
-                    if(BattleManager.GetAllAllies()[i].BattleActorData.actorName == "Robyn")
+                    if (!BattleManager.GetAllAllies()[i].BattleActorInfo.isDeath)
+
                     {
-                        SplitScreen.Instance.Show(BattleManager.CurrentBattle.BattleCameraBatch.CameraReferences["Destruction_Robyn"].virtualCamera, destructionCam);
-                        anim = BattleManager.GetAllAllies()[i].BattleActorAnimator.Animator;
+                        if (BattleManager.GetAllAllies()[i].BattleActorData.actorName == "Robyn")
+                        {
+                            SplitScreen.Instance.Show(BattleManager.CurrentBattle.BattleCameraBatch.CameraReferences["Destruction_Robyn"].virtualCamera, destructionCam);
+                            anim = BattleManager.GetAllAllies()[i].BattleActorAnimator.Animator;
 
-                        destructionRobynSFX.Post(gameObject);
-                        BattleManager.CurrentBattle.robyn.punchline.PlayPunchline(PunchlineCallback.SKILL_EXECUTION);
+                            destructionRobynSFX.Post(gameObject);
+                            BattleManager.CurrentBattle.robyn.punchline.PlayPunchline(PunchlineCallback.SKILL_EXECUTION);
 
-                        break;
+                            break;
+                        }
+                        else if (BattleManager.GetAllAllies()[i].BattleActorData.actorName == "Abigail")
+                        {
+                            SplitScreen.Instance.Show(BattleManager.CurrentBattle.BattleCameraBatch.CameraReferences["Destruction_Abi"].virtualCamera, destructionCam);
+                            anim = BattleManager.GetAllAllies()[i].BattleActorAnimator.Animator;
+
+                            destructionAbiSFX.Post(gameObject);
+                            BattleManager.CurrentBattle.abi.punchline.PlayPunchline(PunchlineCallback.SKILL_EXECUTION);
+
+                            break;
+                        }
+
+                        else if (BattleManager.GetAllAllies()[i].BattleActorData.actorName == "Phoebe")
+                        {
+                            SplitScreen.Instance.Show(BattleManager.CurrentBattle.BattleCameraBatch.CameraReferences["Destruction_Phoebe"].virtualCamera, destructionCam);
+                            anim = BattleManager.GetAllAllies()[i].BattleActorAnimator.Animator;
+
+                            destructionPhoebeSFX.Post(gameObject);
+                            BattleManager.CurrentBattle.phoebe.punchline.PlayPunchline(PunchlineCallback.SKILL_EXECUTION);
+
+                            break;
+                        }
+
                     }
-                    else if (BattleManager.GetAllAllies()[i].BattleActorData.actorName == "Abigail")
-                    {
-                        SplitScreen.Instance.Show(BattleManager.CurrentBattle.BattleCameraBatch.CameraReferences["Destruction_Abi"].virtualCamera, destructionCam);
-                        anim = BattleManager.GetAllAllies()[i].BattleActorAnimator.Animator;
-
-                        destructionAbiSFX.Post(gameObject);
-                        BattleManager.CurrentBattle.abi.punchline.PlayPunchline(PunchlineCallback.SKILL_EXECUTION);
-
-                        break;
-                    }
-
-                    else if (BattleManager.GetAllAllies()[i].BattleActorData.actorName == "Phoebe")
-                    {
-                        SplitScreen.Instance.Show(BattleManager.CurrentBattle.BattleCameraBatch.CameraReferences["Destruction_Phoebe"].virtualCamera, destructionCam);
-                        anim = BattleManager.GetAllAllies()[i].BattleActorAnimator.Animator;
-
-                        destructionPhoebeSFX.Post(gameObject);
-                        BattleManager.CurrentBattle.phoebe.punchline.PlayPunchline(PunchlineCallback.SKILL_EXECUTION);
-
-                        break;
-                    }
-
                 }
+
+
+                SplitScreen.Instance.SetBigCamera(destructionCam);
+
+
+                yield return new WaitForSeconds(1f);
+
+                feedbackPP?.PlayFeedbacks();
+                anim.SetTrigger("SpellExecution1");
+
+                yield return new WaitForSeconds(.5f);
+
+                feedback?.PlayFeedbacks();
+                yield return new WaitForSeconds(.2f);
+                LevelOfDestructions[1].ObjectsToDesactivate.ForEach(w => w.SetActive(false));
+                LevelOfDestructions[1].ObjectToActivate.ForEach(w => w.SetActive(true));
+
+                AkSoundEngine.SetState("Environement", "Destroyed");
+
+                yield return new WaitForSeconds(4.5f);
+
+
+                SplitScreen.Instance.Hide();
+                UIBattleBatch.Instance.Show();
+                UIBattleBatch.SetUIGuardsVisibility(true);
+
+
+                UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Inputs.enabled = true;
+                BattleManager.CurrentBattle.Inputs.enabled = true;
+
+                UIBattleBatch.Instance.CanvasGroup.alpha = 1;
             }
 
-
-            SplitScreen.Instance.SetBigCamera(destructionCam);
-
-
-            yield return new WaitForSeconds(1f);
-
-            feedbackPP?.PlayFeedbacks();
-            anim.SetTrigger("SpellExecution1");
-
-            yield return new WaitForSeconds(.5f);
-
-            feedback?.PlayFeedbacks();
-            yield return new WaitForSeconds(.2f);
-            LevelOfDestructions[1].ObjectsToDesactivate.ForEach(w => w.SetActive(false));
-            LevelOfDestructions[1].ObjectToActivate.ForEach(w => w.SetActive(true));
-
-            AkSoundEngine.SetState("Environement", "Destroyed");
-
-            yield return new WaitForSeconds(4.5f);
-
-
-            SplitScreen.Instance.Hide();
-            UIBattleBatch.Instance.Show();
-            UIBattleBatch.SetUIGuardsVisibility(true);
-
-
-            UI.GetView<SkillPickingView>(UI.Views.SkillPicking).Inputs.enabled = true;
-            BattleManager.CurrentBattle.Inputs.enabled = true;
-
-            UIBattleBatch.Instance.CanvasGroup.alpha = 1;
+           
 
         }
     }
