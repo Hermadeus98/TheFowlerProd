@@ -222,6 +222,8 @@ namespace TheFowler
             }
 
 
+            EnemyDeathCount = 0;
+
             yield break;
         }
 

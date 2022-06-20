@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using MoreMountains.Tools;
 using QRCode;
 using QRCode.Extensions;
@@ -34,6 +35,9 @@ namespace TheFowler
 
         public Color beakColor, featherColor, clawColor, neutralColor;
 
+        public bool playParticleSystemOnDeath = false;
+        public ParticleSystem onDeathPS;
+        
         protected override void OnAwake()
         {
             base.OnAwake();
@@ -137,6 +141,11 @@ namespace TheFowler
         {
             base.OnDeath();
             BattleActorAnimator.Death();
+            if(playParticleSystemOnDeath)
+            {
+                Instantiate(onDeathPS, transform.position, Quaternion.identity);
+                transform.DOScale(Vector3.zero, .2f);
+            }
 
             BattleManager.CurrentBattle.EnemyDeathCount++;
             Fury.PlayBreakDown();
