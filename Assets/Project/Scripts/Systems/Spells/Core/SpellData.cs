@@ -60,5 +60,7 @@ namespace TheFowler
         public int
             maxBuffCD = 3,
         minBuffCD = 1;
+
+        public ParticleSystem cooldownPS;
     }
 }
