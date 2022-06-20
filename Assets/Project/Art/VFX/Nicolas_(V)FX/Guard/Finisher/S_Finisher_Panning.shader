@@ -12,6 +12,7 @@ Shader "S_Finisher_Panning"
 		[Header(UV Gradient)]_Gradient_Threshold("Gradient_Threshold", Float) = 0
 		_Gradient_Smoothness("Gradient_Smoothness", Float) = 0.5
 		_Gradient_Strength("Gradient_Strength", Float) = 1
+		_Alpha("Alpha", Float) = 1
 		[HDR]_BaseEmissive("BaseEmissive", Color) = (0,0,0,0)
 		[Header(AlphaLerp)]_AlphaLerp_TexInfluence("AlphaLerp_TexInfluence", Range( 0 , 1)) = 0.2
 		[Header(Alpha Sharp)]_AlphaThreshold("AlphaThreshold", Float) = 0
@@ -275,24 +276,25 @@ Shader "S_Finisher_Panning"
 			CBUFFER_START( UnityPerMaterial )
 			float4 _BaseEmissive;
 			float4 _EdgeFadeV;
-			float4 _ColorA;
-			float4 _ColorB;
 			float4 _EdgeFadeU;
+			float4 _ColorB;
 			float4 _PanningTex_ST;
-			float _EdgeFade_Enable;
-			float _AddedEdgeFade;
-			float _AlphaSmoothness;
-			float _AlphaThreshold;
-			float _Bicolor_OneMinus;
-			float _PanningTex_InvertUV;
-			float _PanningTex_ManualOffset;
-			float _BicolorSmoothness;
-			float _BicolorThreshold;
+			float4 _ColorA;
 			float _Gradient_Strength;
-			float _Gradient_Smoothness;
-			float _Gradient_Threshold;
-			float _AlphaLerp_TexInfluence;
+			float _BicolorThreshold;
+			float _BicolorSmoothness;
+			float _PanningTex_ManualOffset;
+			float _PanningTex_InvertUV;
 			float _AlphaSharp_OneMinus;
+			float _Bicolor_OneMinus;
+			float _AlphaThreshold;
+			float _AlphaSmoothness;
+			float _Gradient_Smoothness;
+			float _AddedEdgeFade;
+			float _Gradient_Threshold;
+			float _EdgeFade_Enable;
+			float _AlphaLerp_TexInfluence;
+			float _Alpha;
 			float4 _EmissionColor;
 			float _RenderQueueType;
 			#ifdef _ADD_PRECOMPUTED_VELOCITY
@@ -546,34 +548,34 @@ Shader "S_Finisher_Panning"
 				float3 V = GetWorldSpaceNormalizeViewDir( input.positionRWS );
 
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
-				float2 texCoord6_g43 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
-				float smoothstepResult2_g43 = smoothstep( _Gradient_Threshold , ( _Gradient_Threshold + _Gradient_Smoothness ) , texCoord6_g43.y);
+				float2 texCoord6_g47 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
+				float smoothstepResult2_g47 = smoothstep( _Gradient_Threshold , ( _Gradient_Threshold + _Gradient_Smoothness ) , texCoord6_g47.y);
 				float4 texCoord12 = packedInput.ase_texcoord1;
 				texCoord12.xy = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 appendResult13 = (float2(0.0 , texCoord12.z));
-				float4 appendResult43_g1 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
-				float4 appendResult42_g1 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
-				float4 lerpResult41_g1 = lerp( appendResult43_g1 , appendResult42_g1 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g36 = _PanningTex_ST.zw;
-				float2 break3_g36 = temp_output_1_0_g36;
-				float4 appendResult5_g36 = (float4(break3_g36.y , break3_g36.x , 0.0 , 0.0));
-				float4 lerpResult2_g36 = lerp( float4( temp_output_1_0_g36, 0.0 , 0.0 ) , appendResult5_g36 , _PanningTex_InvertUV);
-				float2 texCoord9_g1 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 temp_output_1_0_g37 = texCoord9_g1;
-				float2 break3_g37 = temp_output_1_0_g37;
-				float4 appendResult5_g37 = (float4(break3_g37.y , break3_g37.x , 0.0 , 0.0));
-				float4 lerpResult2_g37 = lerp( float4( temp_output_1_0_g37, 0.0 , 0.0 ) , appendResult5_g37 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g38 = ( _PanningTex_ST.xy * float2( 1,1 ) );
-				float2 break3_g38 = temp_output_1_0_g38;
-				float4 appendResult5_g38 = (float4(break3_g38.y , break3_g38.x , 0.0 , 0.0));
-				float4 lerpResult2_g38 = lerp( float4( temp_output_1_0_g38, 0.0 , 0.0 ) , appendResult5_g38 , _PanningTex_InvertUV);
-				float2 panner1_g35 = ( _TimeParameters.x * (lerpResult2_g36).xy + ( (lerpResult2_g37).xy * (lerpResult2_g38).xy ));
-				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( appendResult13, 0.0 , 0.0 ) + lerpResult41_g1 ).xy + panner1_g35 ), ddx( texCoord9_g1 ), ddy( texCoord9_g1 ) );
-				float smoothstepResult5_g40 = smoothstep( _BicolorThreshold , ( _BicolorThreshold + _BicolorSmoothness ) , temp_output_7_0.r);
-				float lerpResult12_g40 = lerp( smoothstepResult5_g40 , ( 1.0 - smoothstepResult5_g40 ) , _Bicolor_OneMinus);
-				float4 lerpResult4_g40 = lerp( _ColorA , _ColorB , lerpResult12_g40);
+				float4 appendResult43_g40 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
+				float4 appendResult42_g40 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
+				float4 lerpResult41_g40 = lerp( appendResult43_g40 , appendResult42_g40 , _PanningTex_InvertUV);
+				float2 temp_output_1_0_g42 = _PanningTex_ST.zw;
+				float2 break3_g42 = temp_output_1_0_g42;
+				float4 appendResult5_g42 = (float4(break3_g42.y , break3_g42.x , 0.0 , 0.0));
+				float4 lerpResult2_g42 = lerp( float4( temp_output_1_0_g42, 0.0 , 0.0 ) , appendResult5_g42 , _PanningTex_InvertUV);
+				float2 texCoord9_g40 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 temp_output_1_0_g43 = texCoord9_g40;
+				float2 break3_g43 = temp_output_1_0_g43;
+				float4 appendResult5_g43 = (float4(break3_g43.y , break3_g43.x , 0.0 , 0.0));
+				float4 lerpResult2_g43 = lerp( float4( temp_output_1_0_g43, 0.0 , 0.0 ) , appendResult5_g43 , _PanningTex_InvertUV);
+				float2 temp_output_1_0_g44 = ( _PanningTex_ST.xy * float2( 1,1 ) );
+				float2 break3_g44 = temp_output_1_0_g44;
+				float4 appendResult5_g44 = (float4(break3_g44.y , break3_g44.x , 0.0 , 0.0));
+				float4 lerpResult2_g44 = lerp( float4( temp_output_1_0_g44, 0.0 , 0.0 ) , appendResult5_g44 , _PanningTex_InvertUV);
+				float2 panner1_g41 = ( _TimeParameters.x * (lerpResult2_g42).xy + ( (lerpResult2_g43).xy * (lerpResult2_g44).xy ));
+				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( appendResult13, 0.0 , 0.0 ) + lerpResult41_g40 ).xy + panner1_g41 ), ddx( texCoord9_g40 ), ddy( texCoord9_g40 ) );
+				float smoothstepResult5_g48 = smoothstep( _BicolorThreshold , ( _BicolorThreshold + _BicolorSmoothness ) , temp_output_7_0.r);
+				float lerpResult12_g48 = lerp( smoothstepResult5_g48 , ( 1.0 - smoothstepResult5_g48 ) , _Bicolor_OneMinus);
+				float4 lerpResult4_g48 = lerp( _ColorA , _ColorB , lerpResult12_g48);
 				
-				float temp_output_7_0_g42 = ( _AlphaThreshold + texCoord12.w );
+				float temp_output_7_0_g46 = ( _AlphaThreshold + texCoord12.w );
 				float2 texCoord7_g39 = packedInput.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 break9_g39 = frac( texCoord7_g39 );
 				float smoothstepResult3_g39 = smoothstep( _EdgeFadeU.x , ( _AddedEdgeFade + _EdgeFadeU.y ) , break9_g39.x);
@@ -585,14 +587,14 @@ Shader "S_Finisher_Panning"
 				float dotResult23 = dot( V , ase_worldNormal );
 				float temp_output_24_0 = abs( dotResult23 );
 				float smoothstepResult28 = smoothstep( 0.0 , 0.5 , saturate( temp_output_24_0 ));
-				float lerpResult1_g41 = lerp( ( lerpResult14_g39 * smoothstepResult28 ) , temp_output_7_0.r , _AlphaLerp_TexInfluence);
-				float temp_output_1_0_g42 = lerpResult1_g41;
-				float lerpResult9_g42 = lerp( temp_output_1_0_g42 , ( 1.0 - temp_output_1_0_g42 ) , _AlphaSharp_OneMinus);
-				float smoothstepResult2_g42 = smoothstep( temp_output_7_0_g42 , ( temp_output_7_0_g42 + _AlphaSmoothness ) , lerpResult9_g42);
+				float lerpResult1_g45 = lerp( ( lerpResult14_g39 * smoothstepResult28 ) , temp_output_7_0.r , _AlphaLerp_TexInfluence);
+				float temp_output_1_0_g46 = lerpResult1_g45;
+				float lerpResult9_g46 = lerp( temp_output_1_0_g46 , ( 1.0 - temp_output_1_0_g46 ) , _AlphaSharp_OneMinus);
+				float smoothstepResult2_g46 = smoothstep( temp_output_7_0_g46 , ( temp_output_7_0_g46 + _AlphaSmoothness ) , lerpResult9_g46);
 				
-				surfaceDescription.Color = ( ( _BaseEmissive * ( smoothstepResult2_g43 * _Gradient_Strength ) ) + lerpResult4_g40 ).rgb;
+				surfaceDescription.Color = ( ( _BaseEmissive * ( smoothstepResult2_g47 * _Gradient_Strength ) ) + lerpResult4_g48 ).rgb;
 				surfaceDescription.Emission = 0;
-				surfaceDescription.Alpha = ( packedInput.ase_color.a * smoothstepResult2_g42 );
+				surfaceDescription.Alpha = saturate( ( packedInput.ase_color.a * smoothstepResult2_g46 * _Alpha ) );
 				surfaceDescription.AlphaClipThreshold = _AlphaCutoff;
 				surfaceDescription.ShadowTint = float4( 0, 0 ,0 ,1 );
 				float2 Distortion = float2 ( 0, 0 );
@@ -700,24 +702,25 @@ Shader "S_Finisher_Panning"
 			CBUFFER_START( UnityPerMaterial )
 			float4 _BaseEmissive;
 			float4 _EdgeFadeV;
-			float4 _ColorA;
-			float4 _ColorB;
 			float4 _EdgeFadeU;
+			float4 _ColorB;
 			float4 _PanningTex_ST;
-			float _EdgeFade_Enable;
-			float _AddedEdgeFade;
-			float _AlphaSmoothness;
-			float _AlphaThreshold;
-			float _Bicolor_OneMinus;
-			float _PanningTex_InvertUV;
-			float _PanningTex_ManualOffset;
-			float _BicolorSmoothness;
-			float _BicolorThreshold;
+			float4 _ColorA;
 			float _Gradient_Strength;
-			float _Gradient_Smoothness;
-			float _Gradient_Threshold;
-			float _AlphaLerp_TexInfluence;
+			float _BicolorThreshold;
+			float _BicolorSmoothness;
+			float _PanningTex_ManualOffset;
+			float _PanningTex_InvertUV;
 			float _AlphaSharp_OneMinus;
+			float _Bicolor_OneMinus;
+			float _AlphaThreshold;
+			float _AlphaSmoothness;
+			float _Gradient_Smoothness;
+			float _AddedEdgeFade;
+			float _Gradient_Threshold;
+			float _EdgeFade_Enable;
+			float _AlphaLerp_TexInfluence;
+			float _Alpha;
 			float4 _EmissionColor;
 			float _RenderQueueType;
 			#ifdef _ADD_PRECOMPUTED_VELOCITY
@@ -962,7 +965,7 @@ Shader "S_Finisher_Panning"
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
 				float4 texCoord12 = packedInput.ase_texcoord;
 				texCoord12.xy = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float temp_output_7_0_g42 = ( _AlphaThreshold + texCoord12.w );
+				float temp_output_7_0_g46 = ( _AlphaThreshold + texCoord12.w );
 				float2 texCoord7_g39 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 break9_g39 = frac( texCoord7_g39 );
 				float smoothstepResult3_g39 = smoothstep( _EdgeFadeU.x , ( _AddedEdgeFade + _EdgeFadeU.y ) , break9_g39.x);
@@ -978,30 +981,30 @@ Shader "S_Finisher_Panning"
 				float temp_output_24_0 = abs( dotResult23 );
 				float smoothstepResult28 = smoothstep( 0.0 , 0.5 , saturate( temp_output_24_0 ));
 				float2 appendResult13 = (float2(0.0 , texCoord12.z));
-				float4 appendResult43_g1 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
-				float4 appendResult42_g1 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
-				float4 lerpResult41_g1 = lerp( appendResult43_g1 , appendResult42_g1 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g36 = _PanningTex_ST.zw;
-				float2 break3_g36 = temp_output_1_0_g36;
-				float4 appendResult5_g36 = (float4(break3_g36.y , break3_g36.x , 0.0 , 0.0));
-				float4 lerpResult2_g36 = lerp( float4( temp_output_1_0_g36, 0.0 , 0.0 ) , appendResult5_g36 , _PanningTex_InvertUV);
-				float2 texCoord9_g1 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 temp_output_1_0_g37 = texCoord9_g1;
-				float2 break3_g37 = temp_output_1_0_g37;
-				float4 appendResult5_g37 = (float4(break3_g37.y , break3_g37.x , 0.0 , 0.0));
-				float4 lerpResult2_g37 = lerp( float4( temp_output_1_0_g37, 0.0 , 0.0 ) , appendResult5_g37 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g38 = ( _PanningTex_ST.xy * float2( 1,1 ) );
-				float2 break3_g38 = temp_output_1_0_g38;
-				float4 appendResult5_g38 = (float4(break3_g38.y , break3_g38.x , 0.0 , 0.0));
-				float4 lerpResult2_g38 = lerp( float4( temp_output_1_0_g38, 0.0 , 0.0 ) , appendResult5_g38 , _PanningTex_InvertUV);
-				float2 panner1_g35 = ( _TimeParameters.x * (lerpResult2_g36).xy + ( (lerpResult2_g37).xy * (lerpResult2_g38).xy ));
-				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( appendResult13, 0.0 , 0.0 ) + lerpResult41_g1 ).xy + panner1_g35 ), ddx( texCoord9_g1 ), ddy( texCoord9_g1 ) );
-				float lerpResult1_g41 = lerp( ( lerpResult14_g39 * smoothstepResult28 ) , temp_output_7_0.r , _AlphaLerp_TexInfluence);
-				float temp_output_1_0_g42 = lerpResult1_g41;
-				float lerpResult9_g42 = lerp( temp_output_1_0_g42 , ( 1.0 - temp_output_1_0_g42 ) , _AlphaSharp_OneMinus);
-				float smoothstepResult2_g42 = smoothstep( temp_output_7_0_g42 , ( temp_output_7_0_g42 + _AlphaSmoothness ) , lerpResult9_g42);
+				float4 appendResult43_g40 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
+				float4 appendResult42_g40 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
+				float4 lerpResult41_g40 = lerp( appendResult43_g40 , appendResult42_g40 , _PanningTex_InvertUV);
+				float2 temp_output_1_0_g42 = _PanningTex_ST.zw;
+				float2 break3_g42 = temp_output_1_0_g42;
+				float4 appendResult5_g42 = (float4(break3_g42.y , break3_g42.x , 0.0 , 0.0));
+				float4 lerpResult2_g42 = lerp( float4( temp_output_1_0_g42, 0.0 , 0.0 ) , appendResult5_g42 , _PanningTex_InvertUV);
+				float2 texCoord9_g40 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 temp_output_1_0_g43 = texCoord9_g40;
+				float2 break3_g43 = temp_output_1_0_g43;
+				float4 appendResult5_g43 = (float4(break3_g43.y , break3_g43.x , 0.0 , 0.0));
+				float4 lerpResult2_g43 = lerp( float4( temp_output_1_0_g43, 0.0 , 0.0 ) , appendResult5_g43 , _PanningTex_InvertUV);
+				float2 temp_output_1_0_g44 = ( _PanningTex_ST.xy * float2( 1,1 ) );
+				float2 break3_g44 = temp_output_1_0_g44;
+				float4 appendResult5_g44 = (float4(break3_g44.y , break3_g44.x , 0.0 , 0.0));
+				float4 lerpResult2_g44 = lerp( float4( temp_output_1_0_g44, 0.0 , 0.0 ) , appendResult5_g44 , _PanningTex_InvertUV);
+				float2 panner1_g41 = ( _TimeParameters.x * (lerpResult2_g42).xy + ( (lerpResult2_g43).xy * (lerpResult2_g44).xy ));
+				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( appendResult13, 0.0 , 0.0 ) + lerpResult41_g40 ).xy + panner1_g41 ), ddx( texCoord9_g40 ), ddy( texCoord9_g40 ) );
+				float lerpResult1_g45 = lerp( ( lerpResult14_g39 * smoothstepResult28 ) , temp_output_7_0.r , _AlphaLerp_TexInfluence);
+				float temp_output_1_0_g46 = lerpResult1_g45;
+				float lerpResult9_g46 = lerp( temp_output_1_0_g46 , ( 1.0 - temp_output_1_0_g46 ) , _AlphaSharp_OneMinus);
+				float smoothstepResult2_g46 = smoothstep( temp_output_7_0_g46 , ( temp_output_7_0_g46 + _AlphaSmoothness ) , lerpResult9_g46);
 				
-				surfaceDescription.Alpha = ( packedInput.ase_color.a * smoothstepResult2_g42 );
+				surfaceDescription.Alpha = saturate( ( packedInput.ase_color.a * smoothstepResult2_g46 * _Alpha ) );
 				surfaceDescription.AlphaClipThreshold = _AlphaCutoff;
 
 				SurfaceData surfaceData;
@@ -1059,24 +1062,25 @@ Shader "S_Finisher_Panning"
 			CBUFFER_START( UnityPerMaterial )
 			float4 _BaseEmissive;
 			float4 _EdgeFadeV;
-			float4 _ColorA;
-			float4 _ColorB;
 			float4 _EdgeFadeU;
+			float4 _ColorB;
 			float4 _PanningTex_ST;
-			float _EdgeFade_Enable;
-			float _AddedEdgeFade;
-			float _AlphaSmoothness;
-			float _AlphaThreshold;
-			float _Bicolor_OneMinus;
-			float _PanningTex_InvertUV;
-			float _PanningTex_ManualOffset;
-			float _BicolorSmoothness;
-			float _BicolorThreshold;
+			float4 _ColorA;
 			float _Gradient_Strength;
-			float _Gradient_Smoothness;
-			float _Gradient_Threshold;
-			float _AlphaLerp_TexInfluence;
+			float _BicolorThreshold;
+			float _BicolorSmoothness;
+			float _PanningTex_ManualOffset;
+			float _PanningTex_InvertUV;
 			float _AlphaSharp_OneMinus;
+			float _Bicolor_OneMinus;
+			float _AlphaThreshold;
+			float _AlphaSmoothness;
+			float _Gradient_Smoothness;
+			float _AddedEdgeFade;
+			float _Gradient_Threshold;
+			float _EdgeFade_Enable;
+			float _AlphaLerp_TexInfluence;
+			float _Alpha;
 			float4 _EmissionColor;
 			float _RenderQueueType;
 			#ifdef _ADD_PRECOMPUTED_VELOCITY
@@ -1351,34 +1355,34 @@ Shader "S_Finisher_Panning"
 				float3 V = float3( 1.0, 1.0, 1.0 );
 
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
-				float2 texCoord6_g43 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float smoothstepResult2_g43 = smoothstep( _Gradient_Threshold , ( _Gradient_Threshold + _Gradient_Smoothness ) , texCoord6_g43.y);
+				float2 texCoord6_g47 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float smoothstepResult2_g47 = smoothstep( _Gradient_Threshold , ( _Gradient_Threshold + _Gradient_Smoothness ) , texCoord6_g47.y);
 				float4 texCoord12 = packedInput.ase_texcoord;
 				texCoord12.xy = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 appendResult13 = (float2(0.0 , texCoord12.z));
-				float4 appendResult43_g1 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
-				float4 appendResult42_g1 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
-				float4 lerpResult41_g1 = lerp( appendResult43_g1 , appendResult42_g1 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g36 = _PanningTex_ST.zw;
-				float2 break3_g36 = temp_output_1_0_g36;
-				float4 appendResult5_g36 = (float4(break3_g36.y , break3_g36.x , 0.0 , 0.0));
-				float4 lerpResult2_g36 = lerp( float4( temp_output_1_0_g36, 0.0 , 0.0 ) , appendResult5_g36 , _PanningTex_InvertUV);
-				float2 texCoord9_g1 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 temp_output_1_0_g37 = texCoord9_g1;
-				float2 break3_g37 = temp_output_1_0_g37;
-				float4 appendResult5_g37 = (float4(break3_g37.y , break3_g37.x , 0.0 , 0.0));
-				float4 lerpResult2_g37 = lerp( float4( temp_output_1_0_g37, 0.0 , 0.0 ) , appendResult5_g37 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g38 = ( _PanningTex_ST.xy * float2( 1,1 ) );
-				float2 break3_g38 = temp_output_1_0_g38;
-				float4 appendResult5_g38 = (float4(break3_g38.y , break3_g38.x , 0.0 , 0.0));
-				float4 lerpResult2_g38 = lerp( float4( temp_output_1_0_g38, 0.0 , 0.0 ) , appendResult5_g38 , _PanningTex_InvertUV);
-				float2 panner1_g35 = ( _TimeParameters.x * (lerpResult2_g36).xy + ( (lerpResult2_g37).xy * (lerpResult2_g38).xy ));
-				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( appendResult13, 0.0 , 0.0 ) + lerpResult41_g1 ).xy + panner1_g35 ), ddx( texCoord9_g1 ), ddy( texCoord9_g1 ) );
-				float smoothstepResult5_g40 = smoothstep( _BicolorThreshold , ( _BicolorThreshold + _BicolorSmoothness ) , temp_output_7_0.r);
-				float lerpResult12_g40 = lerp( smoothstepResult5_g40 , ( 1.0 - smoothstepResult5_g40 ) , _Bicolor_OneMinus);
-				float4 lerpResult4_g40 = lerp( _ColorA , _ColorB , lerpResult12_g40);
+				float4 appendResult43_g40 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
+				float4 appendResult42_g40 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
+				float4 lerpResult41_g40 = lerp( appendResult43_g40 , appendResult42_g40 , _PanningTex_InvertUV);
+				float2 temp_output_1_0_g42 = _PanningTex_ST.zw;
+				float2 break3_g42 = temp_output_1_0_g42;
+				float4 appendResult5_g42 = (float4(break3_g42.y , break3_g42.x , 0.0 , 0.0));
+				float4 lerpResult2_g42 = lerp( float4( temp_output_1_0_g42, 0.0 , 0.0 ) , appendResult5_g42 , _PanningTex_InvertUV);
+				float2 texCoord9_g40 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 temp_output_1_0_g43 = texCoord9_g40;
+				float2 break3_g43 = temp_output_1_0_g43;
+				float4 appendResult5_g43 = (float4(break3_g43.y , break3_g43.x , 0.0 , 0.0));
+				float4 lerpResult2_g43 = lerp( float4( temp_output_1_0_g43, 0.0 , 0.0 ) , appendResult5_g43 , _PanningTex_InvertUV);
+				float2 temp_output_1_0_g44 = ( _PanningTex_ST.xy * float2( 1,1 ) );
+				float2 break3_g44 = temp_output_1_0_g44;
+				float4 appendResult5_g44 = (float4(break3_g44.y , break3_g44.x , 0.0 , 0.0));
+				float4 lerpResult2_g44 = lerp( float4( temp_output_1_0_g44, 0.0 , 0.0 ) , appendResult5_g44 , _PanningTex_InvertUV);
+				float2 panner1_g41 = ( _TimeParameters.x * (lerpResult2_g42).xy + ( (lerpResult2_g43).xy * (lerpResult2_g44).xy ));
+				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( appendResult13, 0.0 , 0.0 ) + lerpResult41_g40 ).xy + panner1_g41 ), ddx( texCoord9_g40 ), ddy( texCoord9_g40 ) );
+				float smoothstepResult5_g48 = smoothstep( _BicolorThreshold , ( _BicolorThreshold + _BicolorSmoothness ) , temp_output_7_0.r);
+				float lerpResult12_g48 = lerp( smoothstepResult5_g48 , ( 1.0 - smoothstepResult5_g48 ) , _Bicolor_OneMinus);
+				float4 lerpResult4_g48 = lerp( _ColorA , _ColorB , lerpResult12_g48);
 				
-				float temp_output_7_0_g42 = ( _AlphaThreshold + texCoord12.w );
+				float temp_output_7_0_g46 = ( _AlphaThreshold + texCoord12.w );
 				float2 texCoord7_g39 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 break9_g39 = frac( texCoord7_g39 );
 				float smoothstepResult3_g39 = smoothstep( _EdgeFadeU.x , ( _AddedEdgeFade + _EdgeFadeU.y ) , break9_g39.x);
@@ -1393,14 +1397,14 @@ Shader "S_Finisher_Panning"
 				float dotResult23 = dot( ase_worldViewDir , ase_worldNormal );
 				float temp_output_24_0 = abs( dotResult23 );
 				float smoothstepResult28 = smoothstep( 0.0 , 0.5 , saturate( temp_output_24_0 ));
-				float lerpResult1_g41 = lerp( ( lerpResult14_g39 * smoothstepResult28 ) , temp_output_7_0.r , _AlphaLerp_TexInfluence);
-				float temp_output_1_0_g42 = lerpResult1_g41;
-				float lerpResult9_g42 = lerp( temp_output_1_0_g42 , ( 1.0 - temp_output_1_0_g42 ) , _AlphaSharp_OneMinus);
-				float smoothstepResult2_g42 = smoothstep( temp_output_7_0_g42 , ( temp_output_7_0_g42 + _AlphaSmoothness ) , lerpResult9_g42);
+				float lerpResult1_g45 = lerp( ( lerpResult14_g39 * smoothstepResult28 ) , temp_output_7_0.r , _AlphaLerp_TexInfluence);
+				float temp_output_1_0_g46 = lerpResult1_g45;
+				float lerpResult9_g46 = lerp( temp_output_1_0_g46 , ( 1.0 - temp_output_1_0_g46 ) , _AlphaSharp_OneMinus);
+				float smoothstepResult2_g46 = smoothstep( temp_output_7_0_g46 , ( temp_output_7_0_g46 + _AlphaSmoothness ) , lerpResult9_g46);
 				
-				surfaceDescription.Color = ( ( _BaseEmissive * ( smoothstepResult2_g43 * _Gradient_Strength ) ) + lerpResult4_g40 ).rgb;
+				surfaceDescription.Color = ( ( _BaseEmissive * ( smoothstepResult2_g47 * _Gradient_Strength ) ) + lerpResult4_g48 ).rgb;
 				surfaceDescription.Emission = 0;
-				surfaceDescription.Alpha = ( packedInput.ase_color.a * smoothstepResult2_g42 );
+				surfaceDescription.Alpha = saturate( ( packedInput.ase_color.a * smoothstepResult2_g46 * _Alpha ) );
 				surfaceDescription.AlphaClipThreshold =  _AlphaCutoff;
 
 				SurfaceData surfaceData;
@@ -1467,24 +1471,25 @@ Shader "S_Finisher_Panning"
 			CBUFFER_START( UnityPerMaterial )
 			float4 _BaseEmissive;
 			float4 _EdgeFadeV;
-			float4 _ColorA;
-			float4 _ColorB;
 			float4 _EdgeFadeU;
+			float4 _ColorB;
 			float4 _PanningTex_ST;
-			float _EdgeFade_Enable;
-			float _AddedEdgeFade;
-			float _AlphaSmoothness;
-			float _AlphaThreshold;
-			float _Bicolor_OneMinus;
-			float _PanningTex_InvertUV;
-			float _PanningTex_ManualOffset;
-			float _BicolorSmoothness;
-			float _BicolorThreshold;
+			float4 _ColorA;
 			float _Gradient_Strength;
-			float _Gradient_Smoothness;
-			float _Gradient_Threshold;
-			float _AlphaLerp_TexInfluence;
+			float _BicolorThreshold;
+			float _BicolorSmoothness;
+			float _PanningTex_ManualOffset;
+			float _PanningTex_InvertUV;
 			float _AlphaSharp_OneMinus;
+			float _Bicolor_OneMinus;
+			float _AlphaThreshold;
+			float _AlphaSmoothness;
+			float _Gradient_Smoothness;
+			float _AddedEdgeFade;
+			float _Gradient_Threshold;
+			float _EdgeFade_Enable;
+			float _AlphaLerp_TexInfluence;
+			float _Alpha;
 			float4 _EmissionColor;
 			float _RenderQueueType;
 			#ifdef _ADD_PRECOMPUTED_VELOCITY
@@ -1743,7 +1748,7 @@ Shader "S_Finisher_Panning"
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
 				float4 texCoord12 = packedInput.ase_texcoord;
 				texCoord12.xy = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float temp_output_7_0_g42 = ( _AlphaThreshold + texCoord12.w );
+				float temp_output_7_0_g46 = ( _AlphaThreshold + texCoord12.w );
 				float2 texCoord7_g39 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 break9_g39 = frac( texCoord7_g39 );
 				float smoothstepResult3_g39 = smoothstep( _EdgeFadeU.x , ( _AddedEdgeFade + _EdgeFadeU.y ) , break9_g39.x);
@@ -1759,30 +1764,30 @@ Shader "S_Finisher_Panning"
 				float temp_output_24_0 = abs( dotResult23 );
 				float smoothstepResult28 = smoothstep( 0.0 , 0.5 , saturate( temp_output_24_0 ));
 				float2 appendResult13 = (float2(0.0 , texCoord12.z));
-				float4 appendResult43_g1 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
-				float4 appendResult42_g1 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
-				float4 lerpResult41_g1 = lerp( appendResult43_g1 , appendResult42_g1 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g36 = _PanningTex_ST.zw;
-				float2 break3_g36 = temp_output_1_0_g36;
-				float4 appendResult5_g36 = (float4(break3_g36.y , break3_g36.x , 0.0 , 0.0));
-				float4 lerpResult2_g36 = lerp( float4( temp_output_1_0_g36, 0.0 , 0.0 ) , appendResult5_g36 , _PanningTex_InvertUV);
-				float2 texCoord9_g1 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 temp_output_1_0_g37 = texCoord9_g1;
-				float2 break3_g37 = temp_output_1_0_g37;
-				float4 appendResult5_g37 = (float4(break3_g37.y , break3_g37.x , 0.0 , 0.0));
-				float4 lerpResult2_g37 = lerp( float4( temp_output_1_0_g37, 0.0 , 0.0 ) , appendResult5_g37 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g38 = ( _PanningTex_ST.xy * float2( 1,1 ) );
-				float2 break3_g38 = temp_output_1_0_g38;
-				float4 appendResult5_g38 = (float4(break3_g38.y , break3_g38.x , 0.0 , 0.0));
-				float4 lerpResult2_g38 = lerp( float4( temp_output_1_0_g38, 0.0 , 0.0 ) , appendResult5_g38 , _PanningTex_InvertUV);
-				float2 panner1_g35 = ( _TimeParameters.x * (lerpResult2_g36).xy + ( (lerpResult2_g37).xy * (lerpResult2_g38).xy ));
-				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( appendResult13, 0.0 , 0.0 ) + lerpResult41_g1 ).xy + panner1_g35 ), ddx( texCoord9_g1 ), ddy( texCoord9_g1 ) );
-				float lerpResult1_g41 = lerp( ( lerpResult14_g39 * smoothstepResult28 ) , temp_output_7_0.r , _AlphaLerp_TexInfluence);
-				float temp_output_1_0_g42 = lerpResult1_g41;
-				float lerpResult9_g42 = lerp( temp_output_1_0_g42 , ( 1.0 - temp_output_1_0_g42 ) , _AlphaSharp_OneMinus);
-				float smoothstepResult2_g42 = smoothstep( temp_output_7_0_g42 , ( temp_output_7_0_g42 + _AlphaSmoothness ) , lerpResult9_g42);
+				float4 appendResult43_g40 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
+				float4 appendResult42_g40 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
+				float4 lerpResult41_g40 = lerp( appendResult43_g40 , appendResult42_g40 , _PanningTex_InvertUV);
+				float2 temp_output_1_0_g42 = _PanningTex_ST.zw;
+				float2 break3_g42 = temp_output_1_0_g42;
+				float4 appendResult5_g42 = (float4(break3_g42.y , break3_g42.x , 0.0 , 0.0));
+				float4 lerpResult2_g42 = lerp( float4( temp_output_1_0_g42, 0.0 , 0.0 ) , appendResult5_g42 , _PanningTex_InvertUV);
+				float2 texCoord9_g40 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 temp_output_1_0_g43 = texCoord9_g40;
+				float2 break3_g43 = temp_output_1_0_g43;
+				float4 appendResult5_g43 = (float4(break3_g43.y , break3_g43.x , 0.0 , 0.0));
+				float4 lerpResult2_g43 = lerp( float4( temp_output_1_0_g43, 0.0 , 0.0 ) , appendResult5_g43 , _PanningTex_InvertUV);
+				float2 temp_output_1_0_g44 = ( _PanningTex_ST.xy * float2( 1,1 ) );
+				float2 break3_g44 = temp_output_1_0_g44;
+				float4 appendResult5_g44 = (float4(break3_g44.y , break3_g44.x , 0.0 , 0.0));
+				float4 lerpResult2_g44 = lerp( float4( temp_output_1_0_g44, 0.0 , 0.0 ) , appendResult5_g44 , _PanningTex_InvertUV);
+				float2 panner1_g41 = ( _TimeParameters.x * (lerpResult2_g42).xy + ( (lerpResult2_g43).xy * (lerpResult2_g44).xy ));
+				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( appendResult13, 0.0 , 0.0 ) + lerpResult41_g40 ).xy + panner1_g41 ), ddx( texCoord9_g40 ), ddy( texCoord9_g40 ) );
+				float lerpResult1_g45 = lerp( ( lerpResult14_g39 * smoothstepResult28 ) , temp_output_7_0.r , _AlphaLerp_TexInfluence);
+				float temp_output_1_0_g46 = lerpResult1_g45;
+				float lerpResult9_g46 = lerp( temp_output_1_0_g46 , ( 1.0 - temp_output_1_0_g46 ) , _AlphaSharp_OneMinus);
+				float smoothstepResult2_g46 = smoothstep( temp_output_7_0_g46 , ( temp_output_7_0_g46 + _AlphaSmoothness ) , lerpResult9_g46);
 				
-				surfaceDescription.Alpha = ( packedInput.ase_color.a * smoothstepResult2_g42 );
+				surfaceDescription.Alpha = saturate( ( packedInput.ase_color.a * smoothstepResult2_g46 * _Alpha ) );
 				surfaceDescription.AlphaClipThreshold =  _AlphaCutoff;
 
 				GetSurfaceAndBuiltinData(surfaceDescription, input, V, posInput, surfaceData, builtinData);
@@ -1843,24 +1848,25 @@ Shader "S_Finisher_Panning"
 			CBUFFER_START( UnityPerMaterial )
 			float4 _BaseEmissive;
 			float4 _EdgeFadeV;
-			float4 _ColorA;
-			float4 _ColorB;
 			float4 _EdgeFadeU;
+			float4 _ColorB;
 			float4 _PanningTex_ST;
-			float _EdgeFade_Enable;
-			float _AddedEdgeFade;
-			float _AlphaSmoothness;
-			float _AlphaThreshold;
-			float _Bicolor_OneMinus;
-			float _PanningTex_InvertUV;
-			float _PanningTex_ManualOffset;
-			float _BicolorSmoothness;
-			float _BicolorThreshold;
+			float4 _ColorA;
 			float _Gradient_Strength;
-			float _Gradient_Smoothness;
-			float _Gradient_Threshold;
-			float _AlphaLerp_TexInfluence;
+			float _BicolorThreshold;
+			float _BicolorSmoothness;
+			float _PanningTex_ManualOffset;
+			float _PanningTex_InvertUV;
 			float _AlphaSharp_OneMinus;
+			float _Bicolor_OneMinus;
+			float _AlphaThreshold;
+			float _AlphaSmoothness;
+			float _Gradient_Smoothness;
+			float _AddedEdgeFade;
+			float _Gradient_Threshold;
+			float _EdgeFade_Enable;
+			float _AlphaLerp_TexInfluence;
+			float _Alpha;
 			float4 _EmissionColor;
 			float _RenderQueueType;
 			#ifdef _ADD_PRECOMPUTED_VELOCITY
@@ -2127,7 +2133,7 @@ Shader "S_Finisher_Panning"
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
 				float4 texCoord12 = packedInput.ase_texcoord;
 				texCoord12.xy = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float temp_output_7_0_g42 = ( _AlphaThreshold + texCoord12.w );
+				float temp_output_7_0_g46 = ( _AlphaThreshold + texCoord12.w );
 				float2 texCoord7_g39 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 break9_g39 = frac( texCoord7_g39 );
 				float smoothstepResult3_g39 = smoothstep( _EdgeFadeU.x , ( _AddedEdgeFade + _EdgeFadeU.y ) , break9_g39.x);
@@ -2143,30 +2149,30 @@ Shader "S_Finisher_Panning"
 				float temp_output_24_0 = abs( dotResult23 );
 				float smoothstepResult28 = smoothstep( 0.0 , 0.5 , saturate( temp_output_24_0 ));
 				float2 appendResult13 = (float2(0.0 , texCoord12.z));
-				float4 appendResult43_g1 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
-				float4 appendResult42_g1 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
-				float4 lerpResult41_g1 = lerp( appendResult43_g1 , appendResult42_g1 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g36 = _PanningTex_ST.zw;
-				float2 break3_g36 = temp_output_1_0_g36;
-				float4 appendResult5_g36 = (float4(break3_g36.y , break3_g36.x , 0.0 , 0.0));
-				float4 lerpResult2_g36 = lerp( float4( temp_output_1_0_g36, 0.0 , 0.0 ) , appendResult5_g36 , _PanningTex_InvertUV);
-				float2 texCoord9_g1 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 temp_output_1_0_g37 = texCoord9_g1;
-				float2 break3_g37 = temp_output_1_0_g37;
-				float4 appendResult5_g37 = (float4(break3_g37.y , break3_g37.x , 0.0 , 0.0));
-				float4 lerpResult2_g37 = lerp( float4( temp_output_1_0_g37, 0.0 , 0.0 ) , appendResult5_g37 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g38 = ( _PanningTex_ST.xy * float2( 1,1 ) );
-				float2 break3_g38 = temp_output_1_0_g38;
-				float4 appendResult5_g38 = (float4(break3_g38.y , break3_g38.x , 0.0 , 0.0));
-				float4 lerpResult2_g38 = lerp( float4( temp_output_1_0_g38, 0.0 , 0.0 ) , appendResult5_g38 , _PanningTex_InvertUV);
-				float2 panner1_g35 = ( _TimeParameters.x * (lerpResult2_g36).xy + ( (lerpResult2_g37).xy * (lerpResult2_g38).xy ));
-				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( appendResult13, 0.0 , 0.0 ) + lerpResult41_g1 ).xy + panner1_g35 ), ddx( texCoord9_g1 ), ddy( texCoord9_g1 ) );
-				float lerpResult1_g41 = lerp( ( lerpResult14_g39 * smoothstepResult28 ) , temp_output_7_0.r , _AlphaLerp_TexInfluence);
-				float temp_output_1_0_g42 = lerpResult1_g41;
-				float lerpResult9_g42 = lerp( temp_output_1_0_g42 , ( 1.0 - temp_output_1_0_g42 ) , _AlphaSharp_OneMinus);
-				float smoothstepResult2_g42 = smoothstep( temp_output_7_0_g42 , ( temp_output_7_0_g42 + _AlphaSmoothness ) , lerpResult9_g42);
+				float4 appendResult43_g40 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
+				float4 appendResult42_g40 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
+				float4 lerpResult41_g40 = lerp( appendResult43_g40 , appendResult42_g40 , _PanningTex_InvertUV);
+				float2 temp_output_1_0_g42 = _PanningTex_ST.zw;
+				float2 break3_g42 = temp_output_1_0_g42;
+				float4 appendResult5_g42 = (float4(break3_g42.y , break3_g42.x , 0.0 , 0.0));
+				float4 lerpResult2_g42 = lerp( float4( temp_output_1_0_g42, 0.0 , 0.0 ) , appendResult5_g42 , _PanningTex_InvertUV);
+				float2 texCoord9_g40 = packedInput.ase_texcoord.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 temp_output_1_0_g43 = texCoord9_g40;
+				float2 break3_g43 = temp_output_1_0_g43;
+				float4 appendResult5_g43 = (float4(break3_g43.y , break3_g43.x , 0.0 , 0.0));
+				float4 lerpResult2_g43 = lerp( float4( temp_output_1_0_g43, 0.0 , 0.0 ) , appendResult5_g43 , _PanningTex_InvertUV);
+				float2 temp_output_1_0_g44 = ( _PanningTex_ST.xy * float2( 1,1 ) );
+				float2 break3_g44 = temp_output_1_0_g44;
+				float4 appendResult5_g44 = (float4(break3_g44.y , break3_g44.x , 0.0 , 0.0));
+				float4 lerpResult2_g44 = lerp( float4( temp_output_1_0_g44, 0.0 , 0.0 ) , appendResult5_g44 , _PanningTex_InvertUV);
+				float2 panner1_g41 = ( _TimeParameters.x * (lerpResult2_g42).xy + ( (lerpResult2_g43).xy * (lerpResult2_g44).xy ));
+				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( appendResult13, 0.0 , 0.0 ) + lerpResult41_g40 ).xy + panner1_g41 ), ddx( texCoord9_g40 ), ddy( texCoord9_g40 ) );
+				float lerpResult1_g45 = lerp( ( lerpResult14_g39 * smoothstepResult28 ) , temp_output_7_0.r , _AlphaLerp_TexInfluence);
+				float temp_output_1_0_g46 = lerpResult1_g45;
+				float lerpResult9_g46 = lerp( temp_output_1_0_g46 , ( 1.0 - temp_output_1_0_g46 ) , _AlphaSharp_OneMinus);
+				float smoothstepResult2_g46 = smoothstep( temp_output_7_0_g46 , ( temp_output_7_0_g46 + _AlphaSmoothness ) , lerpResult9_g46);
 				
-				surfaceDescription.Alpha = ( packedInput.ase_color.a * smoothstepResult2_g42 );
+				surfaceDescription.Alpha = saturate( ( packedInput.ase_color.a * smoothstepResult2_g46 * _Alpha ) );
 				surfaceDescription.AlphaClipThreshold =  _AlphaCutoff;
 
 				SurfaceData surfaceData;
@@ -2239,24 +2245,25 @@ Shader "S_Finisher_Panning"
 			CBUFFER_START( UnityPerMaterial )
 			float4 _BaseEmissive;
 			float4 _EdgeFadeV;
-			float4 _ColorA;
-			float4 _ColorB;
 			float4 _EdgeFadeU;
+			float4 _ColorB;
 			float4 _PanningTex_ST;
-			float _EdgeFade_Enable;
-			float _AddedEdgeFade;
-			float _AlphaSmoothness;
-			float _AlphaThreshold;
-			float _Bicolor_OneMinus;
-			float _PanningTex_InvertUV;
-			float _PanningTex_ManualOffset;
-			float _BicolorSmoothness;
-			float _BicolorThreshold;
+			float4 _ColorA;
 			float _Gradient_Strength;
-			float _Gradient_Smoothness;
-			float _Gradient_Threshold;
-			float _AlphaLerp_TexInfluence;
+			float _BicolorThreshold;
+			float _BicolorSmoothness;
+			float _PanningTex_ManualOffset;
+			float _PanningTex_InvertUV;
 			float _AlphaSharp_OneMinus;
+			float _Bicolor_OneMinus;
+			float _AlphaThreshold;
+			float _AlphaSmoothness;
+			float _Gradient_Smoothness;
+			float _AddedEdgeFade;
+			float _Gradient_Threshold;
+			float _EdgeFade_Enable;
+			float _AlphaLerp_TexInfluence;
+			float _Alpha;
 			float4 _EmissionColor;
 			float _RenderQueueType;
 			#ifdef _ADD_PRECOMPUTED_VELOCITY
@@ -2605,7 +2612,7 @@ Shader "S_Finisher_Panning"
 				SurfaceDescription surfaceDescription = (SurfaceDescription)0;
 				float4 texCoord12 = packedInput.ase_texcoord3;
 				texCoord12.xy = packedInput.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
-				float temp_output_7_0_g42 = ( _AlphaThreshold + texCoord12.w );
+				float temp_output_7_0_g46 = ( _AlphaThreshold + texCoord12.w );
 				float2 texCoord7_g39 = packedInput.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
 				float2 break9_g39 = frac( texCoord7_g39 );
 				float smoothstepResult3_g39 = smoothstep( _EdgeFadeU.x , ( _AddedEdgeFade + _EdgeFadeU.y ) , break9_g39.x);
@@ -2618,30 +2625,30 @@ Shader "S_Finisher_Panning"
 				float temp_output_24_0 = abs( dotResult23 );
 				float smoothstepResult28 = smoothstep( 0.0 , 0.5 , saturate( temp_output_24_0 ));
 				float2 appendResult13 = (float2(0.0 , texCoord12.z));
-				float4 appendResult43_g1 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
-				float4 appendResult42_g1 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
-				float4 lerpResult41_g1 = lerp( appendResult43_g1 , appendResult42_g1 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g36 = _PanningTex_ST.zw;
-				float2 break3_g36 = temp_output_1_0_g36;
-				float4 appendResult5_g36 = (float4(break3_g36.y , break3_g36.x , 0.0 , 0.0));
-				float4 lerpResult2_g36 = lerp( float4( temp_output_1_0_g36, 0.0 , 0.0 ) , appendResult5_g36 , _PanningTex_InvertUV);
-				float2 texCoord9_g1 = packedInput.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
-				float2 temp_output_1_0_g37 = texCoord9_g1;
-				float2 break3_g37 = temp_output_1_0_g37;
-				float4 appendResult5_g37 = (float4(break3_g37.y , break3_g37.x , 0.0 , 0.0));
-				float4 lerpResult2_g37 = lerp( float4( temp_output_1_0_g37, 0.0 , 0.0 ) , appendResult5_g37 , _PanningTex_InvertUV);
-				float2 temp_output_1_0_g38 = ( _PanningTex_ST.xy * float2( 1,1 ) );
-				float2 break3_g38 = temp_output_1_0_g38;
-				float4 appendResult5_g38 = (float4(break3_g38.y , break3_g38.x , 0.0 , 0.0));
-				float4 lerpResult2_g38 = lerp( float4( temp_output_1_0_g38, 0.0 , 0.0 ) , appendResult5_g38 , _PanningTex_InvertUV);
-				float2 panner1_g35 = ( _TimeParameters.x * (lerpResult2_g36).xy + ( (lerpResult2_g37).xy * (lerpResult2_g38).xy ));
-				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( appendResult13, 0.0 , 0.0 ) + lerpResult41_g1 ).xy + panner1_g35 ), ddx( texCoord9_g1 ), ddy( texCoord9_g1 ) );
-				float lerpResult1_g41 = lerp( ( lerpResult14_g39 * smoothstepResult28 ) , temp_output_7_0.r , _AlphaLerp_TexInfluence);
-				float temp_output_1_0_g42 = lerpResult1_g41;
-				float lerpResult9_g42 = lerp( temp_output_1_0_g42 , ( 1.0 - temp_output_1_0_g42 ) , _AlphaSharp_OneMinus);
-				float smoothstepResult2_g42 = smoothstep( temp_output_7_0_g42 , ( temp_output_7_0_g42 + _AlphaSmoothness ) , lerpResult9_g42);
+				float4 appendResult43_g40 = (float4(0.0 , _PanningTex_ManualOffset , 0.0 , 0.0));
+				float4 appendResult42_g40 = (float4(_PanningTex_ManualOffset , 0.0 , 0.0 , 0.0));
+				float4 lerpResult41_g40 = lerp( appendResult43_g40 , appendResult42_g40 , _PanningTex_InvertUV);
+				float2 temp_output_1_0_g42 = _PanningTex_ST.zw;
+				float2 break3_g42 = temp_output_1_0_g42;
+				float4 appendResult5_g42 = (float4(break3_g42.y , break3_g42.x , 0.0 , 0.0));
+				float4 lerpResult2_g42 = lerp( float4( temp_output_1_0_g42, 0.0 , 0.0 ) , appendResult5_g42 , _PanningTex_InvertUV);
+				float2 texCoord9_g40 = packedInput.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
+				float2 temp_output_1_0_g43 = texCoord9_g40;
+				float2 break3_g43 = temp_output_1_0_g43;
+				float4 appendResult5_g43 = (float4(break3_g43.y , break3_g43.x , 0.0 , 0.0));
+				float4 lerpResult2_g43 = lerp( float4( temp_output_1_0_g43, 0.0 , 0.0 ) , appendResult5_g43 , _PanningTex_InvertUV);
+				float2 temp_output_1_0_g44 = ( _PanningTex_ST.xy * float2( 1,1 ) );
+				float2 break3_g44 = temp_output_1_0_g44;
+				float4 appendResult5_g44 = (float4(break3_g44.y , break3_g44.x , 0.0 , 0.0));
+				float4 lerpResult2_g44 = lerp( float4( temp_output_1_0_g44, 0.0 , 0.0 ) , appendResult5_g44 , _PanningTex_InvertUV);
+				float2 panner1_g41 = ( _TimeParameters.x * (lerpResult2_g42).xy + ( (lerpResult2_g43).xy * (lerpResult2_g44).xy ));
+				float4 temp_output_7_0 = tex2D( _PanningTex, ( ( float4( appendResult13, 0.0 , 0.0 ) + lerpResult41_g40 ).xy + panner1_g41 ), ddx( texCoord9_g40 ), ddy( texCoord9_g40 ) );
+				float lerpResult1_g45 = lerp( ( lerpResult14_g39 * smoothstepResult28 ) , temp_output_7_0.r , _AlphaLerp_TexInfluence);
+				float temp_output_1_0_g46 = lerpResult1_g45;
+				float lerpResult9_g46 = lerp( temp_output_1_0_g46 , ( 1.0 - temp_output_1_0_g46 ) , _AlphaSharp_OneMinus);
+				float smoothstepResult2_g46 = smoothstep( temp_output_7_0_g46 , ( temp_output_7_0_g46 + _AlphaSmoothness ) , lerpResult9_g46);
 				
-				surfaceDescription.Alpha = ( packedInput.ase_color.a * smoothstepResult2_g42 );
+				surfaceDescription.Alpha = saturate( ( packedInput.ase_color.a * smoothstepResult2_g46 * _Alpha ) );
 				surfaceDescription.AlphaClipThreshold = _AlphaCutoff;
 
 				SurfaceData surfaceData;
@@ -2690,7 +2697,7 @@ Shader "S_Finisher_Panning"
 }
 /*ASEBEGIN
 Version=18900
-1968;244;1920;1019;1716.501;366.1494;1.385436;True;False
+1913;243;1920;1007;1395.08;386.9309;1.385436;True;False
 Node;AmplifyShaderEditor.ViewDirInputsCoordNode;22;-713.615,525.6544;Inherit;False;World;False;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
 Node;AmplifyShaderEditor.WorldNormalVector;21;-704.6966,714.4262;Inherit;False;False;1;0;FLOAT3;0,0,1;False;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
 Node;AmplifyShaderEditor.DotProductOpNode;23;-465.3873,601.4604;Inherit;False;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT;0
@@ -2699,51 +2706,55 @@ Node;AmplifyShaderEditor.TextureCoordinatesNode;12;-1166.873,221.7377;Inherit;Fa
 Node;AmplifyShaderEditor.SaturateNode;27;-36.4975,614.8186;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.DynamicAppendNode;13;-965.8733,21.73767;Inherit;False;FLOAT2;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.SmoothstepOpNode;28;105.8137,615.1543;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0.5;False;1;FLOAT;0
-Node;AmplifyShaderEditor.FunctionNode;8;-782.7403,163.2386;Inherit;False;SF_EdgeFade;22;;39;2c737c027c7911941847cd940f44e2cc;0;1;8;FLOAT2;0,0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.FunctionNode;8;-782.7403,163.2386;Inherit;False;SF_EdgeFade;23;;39;2c737c027c7911941847cd940f44e2cc;0;1;8;FLOAT2;0,0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.FunctionNode;7;-836.8733,-59.26233;Inherit;False;SF_PanningTexture;0;;40;b045855c7f4c7344eb8723194efc0969;0;7;3;SAMPLER2D;;False;46;FLOAT;0;False;5;FLOAT2;0,0;False;8;FLOAT2;0,0;False;6;FLOAT2;0,0;False;14;FLOAT2;1,1;False;7;FLOAT2;0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;29;-531.9529,199.1087;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.FunctionNode;7;-836.8733,-59.26233;Inherit;False;SF_PanningTexture;0;;1;b045855c7f4c7344eb8723194efc0969;0;7;3;SAMPLER2D;;False;46;FLOAT;0;False;5;FLOAT2;0,0;False;8;FLOAT2;0,0;False;6;FLOAT2;0,0;False;14;FLOAT2;1,1;False;7;FLOAT2;0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.FunctionNode;10;-430.8733,73.73767;Inherit;False;SF_AlphaLerp;16;;41;853a1742ead4a334f9e5c5176cca2294;0;2;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.FunctionNode;10;-430.8733,73.73767;Inherit;False;SF_AlphaLerp;17;;45;853a1742ead4a334f9e5c5176cca2294;0;2;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.FunctionNode;11;-190.8733,160.7377;Inherit;False;SF_AlphaSharp;19;;46;1a46ba76a207bfe4e97ac05d03cb8401;0;2;1;FLOAT;0;False;6;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;30;20.83606,387.5278;Inherit;False;Property;_Alpha;Alpha;14;0;Create;True;0;0;0;False;0;False;1;5;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.VertexColorNode;14;-163.8733,-18.26233;Inherit;False;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.FunctionNode;11;-190.8733,160.7377;Inherit;False;SF_AlphaSharp;18;;42;1a46ba76a207bfe4e97ac05d03cb8401;0;2;1;FLOAT;0;False;6;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;26;-284.0482,742.6675;Inherit;False;Property;_FresnelPower1;FresnelPower;14;0;Create;True;0;0;0;False;0;False;8;1.5;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;15;81.12671,102.7377;Inherit;False;3;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.PowerNode;25;-174.0543,599.974;Inherit;False;False;2;0;FLOAT;0;False;1;FLOAT;3;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;18;104.1267,-339.2623;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
-Node;AmplifyShaderEditor.FunctionNode;17;-134.8733,-223.2623;Inherit;False;SF_UVGradient;10;;43;f1d490b9c55b55442b96d1506ffee0db;0;1;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.TextureCoordinatesNode;16;-332.8733,-339.2623;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.FunctionNode;9;-367.8733,-157.2623;Inherit;False;SF_Bicolor;27;;40;8f1c0adb31a562646a4d2a8fec362420;0;3;9;COLOR;0,0,0,0;False;10;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
-Node;AmplifyShaderEditor.ColorNode;19;-97.87329,-423.2623;Inherit;False;Property;_BaseEmissive;BaseEmissive;15;1;[HDR];Create;True;0;0;0;False;0;False;0,0,0,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;18;104.1267,-339.2623;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
+Node;AmplifyShaderEditor.FunctionNode;17;-134.8733,-223.2623;Inherit;False;SF_UVGradient;10;;47;f1d490b9c55b55442b96d1506ffee0db;0;1;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;26;-284.0482,742.6675;Inherit;False;Property;_FresnelPower;FresnelPower;15;0;Create;True;0;0;0;False;0;False;8;1.5;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.ColorNode;19;-97.87329,-423.2623;Inherit;False;Property;_BaseEmissive;BaseEmissive;16;1;[HDR];Create;True;0;0;0;False;0;False;0,0,0,0;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SimpleAddOpNode;20;230.1267,-173.2623;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;15;81.12671,102.7377;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.FunctionNode;9;-367.8733,-157.2623;Inherit;False;SF_Bicolor;28;;48;8f1c0adb31a562646a4d2a8fec362420;0;3;9;COLOR;0,0,0,0;False;10;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
+Node;AmplifyShaderEditor.SaturateNode;31;324.2466,199.1085;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;3;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;SceneSelectionPass;0;3;SceneSelectionPass;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;True;False;False;False;False;0;False;-1;False;False;False;False;False;False;False;False;False;True;1;False;-1;False;False;True;1;LightMode=SceneSelectionPass;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;5;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;Motion Vectors;0;5;Motion Vectors;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;False;False;False;False;False;False;False;False;True;True;0;True;-9;255;False;-1;255;True;-10;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;1;False;-1;False;False;True;1;LightMode=MotionVectors;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;0;543,-35;Float;False;True;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;13;S_Finisher_Panning;7f5cb9c3ea6481f469fdd856555439ef;True;Forward Unlit;0;0;Forward Unlit;9;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Transparent=Queue=-250;True;5;0;False;True;1;0;True;-20;0;True;-21;1;0;True;-22;0;True;-23;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;False;False;False;False;False;False;False;False;True;True;0;True;-5;255;False;-1;255;True;-6;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;0;True;-24;True;0;True;-32;False;True;1;LightMode=ForwardOnly;False;0;Hidden/InternalErrorShader;0;0;Standard;29;Surface Type;1;  Rendering Pass ;0;  Rendering Pass;0;  Blending Mode;0;  Receive Fog;1;  Distortion;0;    Distortion Mode;0;    Distortion Only;1;  Depth Write;0;  Cull Mode;0;  Depth Test;4;Double-Sided;1;Alpha Clipping;0;Motion Vectors;1;  Add Precomputed Velocity;0;Shadow Matte;0;Cast Shadows;1;DOTS Instancing;0;GPU Instancing;1;Tessellation;0;  Phong;0;  Strength;0.5,False,-1;  Type;0;  Tess;16,False,-1;  Min;10,False,-1;  Max;25,False,-1;  Edge Length;16,False,-1;  Max Displacement;25,False,-1;Vertex Position,InvertActionOnDeselection;1;0;7;True;True;True;True;True;True;False;False;;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;2;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;META;0;2;META;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;-1;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;LightMode=Meta;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;1;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;ShadowCaster;0;1;ShadowCaster;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;True;False;False;False;False;0;False;-1;False;False;False;False;False;False;False;False;False;True;1;False;-1;False;False;True;1;LightMode=ShadowCaster;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;6;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;DistortionVectors;0;6;DistortionVectors;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;True;4;1;False;-1;1;False;-1;4;1;False;-1;1;False;-1;True;1;False;-1;1;False;-1;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;False;False;False;False;False;False;False;False;True;True;0;True;-11;255;False;-1;255;True;-12;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;2;False;-1;True;3;False;-1;False;True;1;LightMode=DistortionVectors;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;4;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;DepthForwardOnly;0;4;DepthForwardOnly;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;True;False;False;False;False;0;False;-1;False;False;False;False;False;False;False;True;True;0;True;-7;255;False;-1;255;True;-8;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;1;False;-1;False;False;True;1;LightMode=DepthForwardOnly;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;3;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;SceneSelectionPass;0;3;SceneSelectionPass;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;True;False;False;False;False;0;False;-1;False;False;False;False;False;False;False;False;False;True;1;False;-1;False;False;True;1;LightMode=SceneSelectionPass;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;5;0,0;Float;False;False;-1;2;Rendering.HighDefinition.HDUnlitGUI;0;1;New Amplify Shader;7f5cb9c3ea6481f469fdd856555439ef;True;Motion Vectors;0;5;Motion Vectors;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;3;RenderPipeline=HDRenderPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;5;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;True;-26;False;False;False;False;False;False;False;False;False;True;True;0;True;-9;255;False;-1;255;True;-10;7;False;-1;3;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;False;True;1;False;-1;False;False;True;1;LightMode=MotionVectors;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 WireConnection;23;0;22;0
 WireConnection;23;1;21;0
 WireConnection;24;0;23;0
 WireConnection;27;0;24;0
 WireConnection;13;1;12;3
 WireConnection;28;0;27;0
+WireConnection;7;8;13;0
 WireConnection;29;0;8;0
 WireConnection;29;1;28;0
-WireConnection;7;8;13;0
 WireConnection;10;2;29;0
 WireConnection;10;3;7;0
 WireConnection;11;1;10;0
 WireConnection;11;6;12;4
+WireConnection;15;0;14;4
+WireConnection;15;1;11;0
+WireConnection;15;2;30;0
 WireConnection;25;0;24;0
 WireConnection;25;1;26;0
 WireConnection;18;0;19;0
 WireConnection;18;1;17;0
-WireConnection;9;1;7;0
 WireConnection;20;0;18;0
 WireConnection;20;1;9;0
-WireConnection;15;0;14;4
-WireConnection;15;1;11;0
+WireConnection;9;1;7;0
+WireConnection;31;0;15;0
 WireConnection;0;0;20;0
-WireConnection;0;2;15;0
+WireConnection;0;2;31;0
 ASEEND*/
-//CHKSM=D388C3DDE221B11610EA4D9EF10644DD3F4867C4
+//CHKSM=42AAD608EF41A435316B141B64FBE08B7AA83B7C
