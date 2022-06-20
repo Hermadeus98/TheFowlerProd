@@ -183,8 +183,10 @@ namespace TheFowler
             MoreMountains.Feedbacks.MMTimeManager.Instance.ApplyTimeScale(1);
         }
 
-        private void Update()
+        protected override void  Update()
         {
+
+
             if (isActive)
             {
                 MoreMountains.Feedbacks.MMTimeManager.Instance.ApplyTimeScale(battleSpeed);
